@@ -43,6 +43,27 @@ declare class Catalog {
      */
     createBulkProductUploadJob({ body, requestHeaders }?: CatalogPlatformValidator.CreateBulkProductUploadJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductBulkResponse>;
     /**
+     * @param {CatalogPlatformValidator.CreateCategoriesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.CategoryCreateResponse>} - Success response
+     * @name createCategories
+     * @summary: Create categories.
+     * @description: Lets user create product categories on for the seller on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCategories/).
+     */
+    createCategories({ body, requestHeaders }?: CatalogPlatformValidator.CreateCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryCreateResponse>;
+    /**
+     * @param {CatalogPlatformValidator.CreateDepartmentsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.DepartmentCreateResponse>} -
+     *   Success response
+     * @name createDepartments
+     * @summary: Create departments.
+     * @description: Create departments with this resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createDepartments/).
+     */
+    createDepartments({ body, requestHeaders }?: CatalogPlatformValidator.CreateDepartmentsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentCreateResponse>;
+    /**
      * @param {CatalogPlatformValidator.CreateInventoryExportParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -246,16 +267,6 @@ declare class Catalog {
      */
     getAllProductHsnCodes({ pageNo, pageSize, q, type, requestHeaders }?: CatalogPlatformValidator.GetAllProductHsnCodesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HsnCodesListingResponseSchemaV2>;
     /**
-     * @param {CatalogPlatformValidator.GetAttributeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AttributeDetail>} - Success response
-     * @name getAttribute
-     * @summary: Get attribute detail by slug
-     * @description: Retrieve the attribute detail for catalog listings by attribute slug passed for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAttribute/).
-     */
-    getAttribute({ attributeSlug, requestHeaders }?: CatalogPlatformValidator.GetAttributeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AttributeDetail>;
-    /**
      * @param {CatalogPlatformValidator.GetCategoryDataParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -328,6 +339,16 @@ declare class Catalog {
      * @description: Retrieve detailed information about a specific department by UID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartmentData/).
      */
     getDepartmentData({ uid, requestHeaders }?: CatalogPlatformValidator.GetDepartmentDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponse>;
+    /**
+     * @param {CatalogPlatformValidator.GetGenderAttributeParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GenderDetail>} - Success response
+     * @name getGenderAttribute
+     * @summary: Get gender attribute.
+     * @description: Retrieve the gender attribute for catalog listings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGenderAttribute/).
+     */
+    getGenderAttribute({ attributeSlug, requestHeaders }?: CatalogPlatformValidator.GetGenderAttributeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GenderDetail>;
     /**
      * @param {CatalogPlatformValidator.GetHsnCodeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -750,6 +771,26 @@ declare class Catalog {
      * @description: This API helps to edit notification_emails and status of export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/patchProductExportDetail/).
      */
     patchProductExportDetail({ jobId, body, requestHeaders }?: CatalogPlatformValidator.PatchProductExportDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PatchProductDownloadsResponse>;
+    /**
+     * @param {CatalogPlatformValidator.UpdateCategoryParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.CategoryUpdateResponse>} - Success response
+     * @name updateCategory
+     * @summary: Update category data.
+     * @description: Modify data for an existing category in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCategory/).
+     */
+    updateCategory({ uid, body, requestHeaders }?: CatalogPlatformValidator.UpdateCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryUpdateResponse>;
+    /**
+     * @param {CatalogPlatformValidator.UpdateDepartmentParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.DepartmentModel>} - Success response
+     * @name updateDepartment
+     * @summary: Update department data.
+     * @description: Modify the department by their uid using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDepartment/).
+     */
+    updateDepartment({ uid, body, requestHeaders }?: CatalogPlatformValidator.UpdateDepartmentParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentModel>;
     /**
      * @param {CatalogPlatformValidator.UpdateInventoriesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

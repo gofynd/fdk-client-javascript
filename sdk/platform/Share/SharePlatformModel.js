@@ -99,7 +99,6 @@ const Joi = require("joi");
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [total] - Total number of items.
- * @property {number} [page] - Current page number
  */
 
 /**
@@ -234,7 +233,6 @@ class SharePlatformModel {
       type: Joi.string().allow("").required(),
       size: Joi.number(),
       total: Joi.number(),
-      page: Joi.number(),
     });
   }
 

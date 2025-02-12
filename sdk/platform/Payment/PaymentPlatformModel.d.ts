@@ -633,17 +633,11 @@ export = PaymentPlatformModel;
 /**
  * @typedef MultiTenderPaymentMeta
  * @property {Object} [extra_meta]
- * @property {string} [order_id] - Fynd Platform order ID
- * @property {string} [payment_id] - A unique identifier associated with a
- *   specific payment transaction
- * @property {string} [current_status] - Represents the current state or
- *   condition of an object, such as an order or payment.
+ * @property {string} [order_id]
+ * @property {string} [payment_id]
+ * @property {string} [current_status]
  * @property {string} [payment_gateway]
- * @property {string} [key] - Specifies the name or identifier of the payment
- *   gateway. This will deprecated in future version. We recommend switching to
- *   `payment_gateway_slug` to ensure uninterrupted payment processing.
- * @property {string} [payment_gateway_slug] - A simplified, URL-friendly string
- *   that represents the name of the payment gateway and it will used for refund PG.
+ * @property {string} [key]
  */
 /**
  * @typedef MultiTenderPaymentMethod
@@ -3449,32 +3443,11 @@ type OrderBeneficiaryResponse = {
 declare function MultiTenderPaymentMeta(): MultiTenderPaymentMeta;
 type MultiTenderPaymentMeta = {
     extra_meta?: any;
-    /**
-     * - Fynd Platform order ID
-     */
     order_id?: string;
-    /**
-     * - A unique identifier associated with a
-     * specific payment transaction
-     */
     payment_id?: string;
-    /**
-     * - Represents the current state or
-     * condition of an object, such as an order or payment.
-     */
     current_status?: string;
     payment_gateway?: string;
-    /**
-     * - Specifies the name or identifier of the payment
-     * gateway. This will deprecated in future version. We recommend switching to
-     * `payment_gateway_slug` to ensure uninterrupted payment processing.
-     */
     key?: string;
-    /**
-     * - A simplified, URL-friendly string
-     * that represents the name of the payment gateway and it will used for refund PG.
-     */
-    payment_gateway_slug?: string;
 };
 /** @returns {MultiTenderPaymentMethod} */
 declare function MultiTenderPaymentMethod(): MultiTenderPaymentMethod;

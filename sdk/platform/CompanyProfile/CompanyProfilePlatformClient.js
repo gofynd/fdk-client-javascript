@@ -950,7 +950,6 @@ class CompanyProfile {
   async getLocations(
     {
       storeType,
-      storeCodes,
       q,
       stage,
       pageNo,
@@ -965,7 +964,6 @@ class CompanyProfile {
     const { error } = CompanyProfilePlatformValidator.getLocations().validate(
       {
         storeType,
-        storeCodes,
         q,
         stage,
         pageNo,
@@ -986,7 +984,6 @@ class CompanyProfile {
     } = CompanyProfilePlatformValidator.getLocations().validate(
       {
         storeType,
-        storeCodes,
         q,
         stage,
         pageNo,
@@ -1006,7 +1003,6 @@ class CompanyProfile {
 
     const query_params = {};
     query_params["store_type"] = storeType;
-    query_params["store_codes"] = storeCodes;
     query_params["q"] = q;
     query_params["stage"] = stage;
     query_params["page_no"] = pageNo;
@@ -1051,64 +1047,6 @@ class CompanyProfile {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.storeType] - Helps to sort the location list on the
-   *   basis of location type.
-   * @param {string[]} [arg.storeCodes] - List of up to 50 store codes to
-   *   fetch. Specify multiple values by repeating the query parameter (e.g.,
-   *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated
-   *   values are not supported.
-   * @param {string} [arg.q] - Query that is to be searched.
-   * @param {string} [arg.stage] - To filter companies on basis of verified or
-   *   unverified companies.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
-   * @param {string[]} [arg.types] - Helps to get the location list on the
-   *   basis of multiple location type.
-   * @param {string[]} [arg.tags] - Helps to get the location list on the
-   *   basis of multiple location tag.
-   * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
-   * @summary: Get list of locations
-   * @description: This API allows to view all the locations associated to a company.
-   */
-  getLocationsPaginator({
-    storeType,
-    storeCodes,
-    q,
-    stage,
-    pageSize,
-    locationIds,
-    types,
-    tags,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLocations({
-        storeType: storeType,
-        storeCodes: storeCodes,
-        q: q,
-        stage: stage,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        locationIds: locationIds,
-        types: types,
-        tags: tags,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**

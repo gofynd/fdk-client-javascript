@@ -1099,33 +1099,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomField
+ * @property {string} [definition_id]
+ */
+
+/**
  * @typedef CustomFieldRequestSchema
- * @property {Object[]} [fields]
+ * @property {CustomField[]} [fields]
  */
 
 /**
  * @typedef CustomObjectSchema
  * @property {string} [_id]
- * @property {string} [name]
- * @property {string} [creator]
- * @property {string} [company_id]
- * @property {string} [created_by]
- * @property {string} [updated_by]
- * @property {string} [status]
- * @property {string} [slug]
- * @property {string} [type]
- * @property {string} [display_name]
- * @property {string} [definition_id]
- * @property {boolean} [is_deleted]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {CustomFieldSchema[]} [fields]
- */
-
-/**
- * @typedef CustomObjectApplicationSchema
- * @property {string} [_id]
- * @property {string} [name]
  * @property {string} [creator]
  * @property {string} [company_id]
  * @property {string} [application_id]
@@ -2930,10 +2915,17 @@ class ContentPlatformModel {
     });
   }
 
+  /** @returns {CustomField} */
+  static CustomField() {
+    return Joi.object({
+      definition_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CustomFieldRequestSchema} */
   static CustomFieldRequestSchema() {
     return Joi.object({
-      fields: Joi.array().items(Joi.any()),
+      fields: Joi.array().items(ContentPlatformModel.CustomField()),
     });
   }
 
@@ -2941,28 +2933,6 @@ class ContentPlatformModel {
   static CustomObjectSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      creator: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      created_by: Joi.string().allow(""),
-      updated_by: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      definition_id: Joi.string().allow(""),
-      is_deleted: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      fields: Joi.array().items(ContentPlatformModel.CustomFieldSchema()),
-    });
-  }
-
-  /** @returns {CustomObjectApplicationSchema} */
-  static CustomObjectApplicationSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
       creator: Joi.string().allow(""),
       company_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),

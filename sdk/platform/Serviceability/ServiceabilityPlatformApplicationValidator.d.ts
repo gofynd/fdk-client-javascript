@@ -115,10 +115,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {string} [type] - Using type, you can filter custom or default zones
- * @property {string} [accessLevel] - Using access level, you can filter public
- *   and private zones as marketplace owner
- * @property {string} [status] - Using status zones listing can be filttered for
- *   marketplace owner and 3p sellers
  * @property {number} [pageSize] - Defines the number of items displayed per page.
  * @property {number} [pageNo] - Current page number.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
@@ -458,16 +454,6 @@ type GetZonesParam = {
      * - Using type, you can filter custom or default zones
      */
     type?: string;
-    /**
-     * - Using access level, you can filter public
-     * and private zones as marketplace owner
-     */
-    accessLevel?: string;
-    /**
-     * - Using status zones listing can be filttered for
-     * marketplace owner and 3p sellers
-     */
-    status?: string;
     /**
      * - Defines the number of items displayed per page.
      */

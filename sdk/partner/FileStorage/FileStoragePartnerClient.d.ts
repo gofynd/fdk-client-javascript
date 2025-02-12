@@ -26,7 +26,7 @@ declare class FileStorage {
      * @param {FileStoragePartnerValidator.CompleteUploadParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.FileUploadComplete>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.CompleteResponse>} - Success response
      * @name completeUpload
      * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
      * @description: Uploads an arbitrarily sized buffer or blob.
@@ -49,12 +49,12 @@ declare class FileStorage {
      * This operation will return the url for the uploaded file.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/completeUpload/).
      */
-    completeUpload({ namespace, body, requestHeaders }?: FileStoragePartnerValidator.CompleteUploadParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FileUploadComplete>;
+    completeUpload({ namespace, body, requestHeaders }?: FileStoragePartnerValidator.CompleteUploadParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.CompleteResponse>;
     /**
      * @param {FileStoragePartnerValidator.StartUploadParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.FileUpload>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.StartResponse>} - Success response
      * @name startUpload
      * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
      * @description: Uploads an arbitrarily sized buffer or blob.
@@ -77,7 +77,7 @@ declare class FileStorage {
      * This operation will return the url for the uploaded file.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/startUpload/).
      */
-    startUpload({ namespace, body, requestHeaders }?: FileStoragePartnerValidator.StartUploadParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FileUpload>;
+    startUpload({ namespace, body, requestHeaders }?: FileStoragePartnerValidator.StartUploadParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.StartResponse>;
     /**
      * @param {FileStoragePartnerValidator.BrowseParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -104,43 +104,43 @@ declare class FileStorage {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.FetchProxyDetails>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.ProxyResponse>} - Success response
      * @name organizationLevelFetchProxy
      * @summary: Proxy
      * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/organizationLevelFetchProxy/).
      */
-    organizationLevelFetchProxy({ applicationId, companyId, url, requestHeaders }?: FileStoragePartnerValidator.OrganizationLevelFetchProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FetchProxyDetails>;
+    organizationLevelFetchProxy({ applicationId, companyId, url, requestHeaders }?: FileStoragePartnerValidator.OrganizationLevelFetchProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.ProxyResponse>;
     /**
      * @param {FileStoragePartnerValidator.SaveOrganizationLevelProxyParam} arg
      *   - Arg object.
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.SaveProxy>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.FetchProxyResponse>} - Success response
      * @name saveOrganizationLevelProxy
      * @summary: Proxy
      * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/saveOrganizationLevelProxy/).
      */
-    saveOrganizationLevelProxy({ applicationId, companyId, body, requestHeaders }?: FileStoragePartnerValidator.SaveOrganizationLevelProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.SaveProxy>;
+    saveOrganizationLevelProxy({ applicationId, companyId, body, requestHeaders }?: FileStoragePartnerValidator.SaveOrganizationLevelProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FetchProxyResponse>;
     /**
      * @param {FileStoragePartnerValidator.FetchProxyParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.FetchProxyDetails>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.ProxyResponse>} - Success response
      * @name fetchProxy
      * @summary: Proxy
      * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/fetchProxy/).
      */
-    fetchProxy({ url, requestHeaders }?: FileStoragePartnerValidator.FetchProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FetchProxyDetails>;
+    fetchProxy({ url, requestHeaders }?: FileStoragePartnerValidator.FetchProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.ProxyResponse>;
     /**
      * @param {FileStoragePartnerValidator.SaveProxyDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.SaveProxy>} - Success response
+     * @returns {Promise<FileStoragePartnerModel.FetchProxyResponse>} - Success response
      * @name saveProxyDetails
      * @summary: Proxy
      * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/saveProxyDetails/).
      */
-    saveProxyDetails({ body, requestHeaders }?: FileStoragePartnerValidator.SaveProxyDetailsParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.SaveProxy>;
+    saveProxyDetails({ body, requestHeaders }?: FileStoragePartnerValidator.SaveProxyDetailsParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FetchProxyResponse>;
 }
 import FileStoragePartnerModel = require("./FileStoragePartnerModel");

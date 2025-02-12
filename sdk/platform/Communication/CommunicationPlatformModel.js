@@ -268,8 +268,8 @@ const Joi = require("joi");
 /**
  * @typedef Stats
  * @property {string} [_id]
- * @property {StatsImported} [imported]
- * @property {StatsProcessed} [processed]
+ * @property {Object} [imported]
+ * @property {Object} [processed]
  */
 
 /**
@@ -581,13 +581,13 @@ const Joi = require("joi");
 /**
  * @typedef EventSubscriptionTemplateSms
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {Object} [template]
  */
 
 /**
  * @typedef EventSubscriptionTemplateEmail
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {Object} [template]
  */
 
 /**
@@ -617,41 +617,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef EventSubscriptionTemplateSmsObj
- * @property {boolean} [subscribed]
- * @property {Object} [template]
- */
-
-/**
- * @typedef EventSubscriptionTemplateEmailObj
- * @property {boolean} [subscribed]
- * @property {string} [template]
- */
-
-/**
- * @typedef EventSubscriptionTemplateObj
- * @property {EventSubscriptionTemplateSmsObj} [sms]
- * @property {EventSubscriptionTemplateEmailObj} [email]
- * @property {EventSubscriptionTemplatePushnotification} [pushnotification]
- */
-
-/**
- * @typedef EventSubscriptionObj
- * @property {EventSubscriptionTemplateObj} [template]
- * @property {boolean} [is_default]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [category]
- * @property {Object} [event]
- * @property {string} [slug]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {number} [__v]
- */
-
-/**
  * @typedef EventSubscriptions
- * @property {EventSubscriptionObj[]} [items]
+ * @property {EventSubscription[]} [items]
  * @property {Page} [page]
  */
 
@@ -722,8 +689,8 @@ const Joi = require("joi");
 
 /**
  * @typedef JobLog
- * @property {StatsImported} [imported]
- * @property {StatsProcessed} [processed]
+ * @property {Object} [imported]
+ * @property {Object} [processed]
  * @property {string} [_id]
  * @property {string} [job]
  * @property {string} [campaign]
@@ -794,6 +761,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SendOtpSmsCommsTemplate
+ * @property {string} [key]
+ * @property {Object} [value]
+ */
+
+/**
  * @typedef SendOtpSmsCommsProvider
  * @property {string} [slug]
  * @property {string} [_id]
@@ -823,7 +796,7 @@ const Joi = require("joi");
  * @typedef SendOtpCommsReqSms
  * @property {number} [otp_length]
  * @property {number} [expiry]
- * @property {Object} [template]
+ * @property {SendOtpSmsCommsTemplate} [template]
  * @property {SendOtpSmsCommsProvider} [provider]
  */
 
@@ -1023,13 +996,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SystemNotificationSetting
- * @property {boolean} [sound]
- * @property {string} [priority]
- * @property {string} [time_to_live]
- */
-
-/**
  * @typedef SystemNotificationUser
  * @property {string} [type]
  * @property {string} [value]
@@ -1039,7 +1005,7 @@ const Joi = require("joi");
  * @typedef SystemNotification
  * @property {Notification} [notification]
  * @property {SystemNotificationUser} [user]
- * @property {SystemNotificationSetting} [settings]
+ * @property {SystemNotificationUser} [settings]
  * @property {string} [_id]
  * @property {string} [group]
  * @property {string} [created_at]
@@ -1459,8 +1425,8 @@ class CommunicationPlatformModel {
   static Stats() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      imported: CommunicationPlatformModel.StatsImported(),
-      processed: CommunicationPlatformModel.StatsProcessed(),
+      imported: Joi.any(),
+      processed: Joi.any(),
     });
   }
 
@@ -1848,7 +1814,7 @@ class CommunicationPlatformModel {
   static EventSubscriptionTemplateSms() {
     return Joi.object({
       subscribed: Joi.boolean(),
-      template: Joi.string().allow("").allow(null),
+      template: Joi.any(),
     });
   }
 
@@ -1856,7 +1822,7 @@ class CommunicationPlatformModel {
   static EventSubscriptionTemplateEmail() {
     return Joi.object({
       subscribed: Joi.boolean(),
-      template: Joi.string().allow("").allow(null),
+      template: Joi.any(),
     });
   }
 
@@ -1892,53 +1858,10 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {EventSubscriptionTemplateSmsObj} */
-  static EventSubscriptionTemplateSmsObj() {
-    return Joi.object({
-      subscribed: Joi.boolean(),
-      template: Joi.any().allow(null),
-    });
-  }
-
-  /** @returns {EventSubscriptionTemplateEmailObj} */
-  static EventSubscriptionTemplateEmailObj() {
-    return Joi.object({
-      subscribed: Joi.boolean(),
-      template: Joi.string().allow("").allow(null),
-    });
-  }
-
-  /** @returns {EventSubscriptionTemplateObj} */
-  static EventSubscriptionTemplateObj() {
-    return Joi.object({
-      sms: CommunicationPlatformModel.EventSubscriptionTemplateSmsObj(),
-      email: CommunicationPlatformModel.EventSubscriptionTemplateEmailObj(),
-      pushnotification: CommunicationPlatformModel.EventSubscriptionTemplatePushnotification(),
-    });
-  }
-
-  /** @returns {EventSubscriptionObj} */
-  static EventSubscriptionObj() {
-    return Joi.object({
-      template: CommunicationPlatformModel.EventSubscriptionTemplateObj(),
-      is_default: Joi.boolean(),
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      category: Joi.string().allow(""),
-      event: Joi.any(),
-      slug: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      __v: Joi.number(),
-    });
-  }
-
   /** @returns {EventSubscriptions} */
   static EventSubscriptions() {
     return Joi.object({
-      items: Joi.array().items(
-        CommunicationPlatformModel.EventSubscriptionObj()
-      ),
+      items: Joi.array().items(CommunicationPlatformModel.EventSubscription()),
       page: CommunicationPlatformModel.Page(),
     });
   }
@@ -2029,8 +1952,8 @@ class CommunicationPlatformModel {
   /** @returns {JobLog} */
   static JobLog() {
     return Joi.object({
-      imported: CommunicationPlatformModel.StatsImported(),
-      processed: CommunicationPlatformModel.StatsProcessed(),
+      imported: Joi.any(),
+      processed: Joi.any(),
       _id: Joi.string().allow(""),
       job: Joi.string().allow(""),
       campaign: Joi.string().allow(""),
@@ -2115,6 +2038,14 @@ class CommunicationPlatformModel {
     });
   }
 
+  /** @returns {SendOtpSmsCommsTemplate} */
+  static SendOtpSmsCommsTemplate() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.any(),
+    });
+  }
+
   /** @returns {SendOtpSmsCommsProvider} */
   static SendOtpSmsCommsProvider() {
     return Joi.object({
@@ -2154,7 +2085,7 @@ class CommunicationPlatformModel {
     return Joi.object({
       otp_length: Joi.number(),
       expiry: Joi.number(),
-      template: Joi.object().pattern(/\S/, Joi.any()),
+      template: CommunicationPlatformModel.SendOtpSmsCommsTemplate(),
       provider: CommunicationPlatformModel.SendOtpSmsCommsProvider(),
     });
   }
@@ -2390,15 +2321,6 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {SystemNotificationSetting} */
-  static SystemNotificationSetting() {
-    return Joi.object({
-      sound: Joi.boolean(),
-      priority: Joi.string().allow(""),
-      time_to_live: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {SystemNotificationUser} */
   static SystemNotificationUser() {
     return Joi.object({
@@ -2412,7 +2334,7 @@ class CommunicationPlatformModel {
     return Joi.object({
       notification: CommunicationPlatformModel.Notification(),
       user: CommunicationPlatformModel.SystemNotificationUser(),
-      settings: CommunicationPlatformModel.SystemNotificationSetting(),
+      settings: CommunicationPlatformModel.SystemNotificationUser(),
       _id: Joi.string().allow(""),
       group: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

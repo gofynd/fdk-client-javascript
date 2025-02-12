@@ -93,13 +93,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
      * @name createAppCustomObject
      * @summary: Create custom object entries
      * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
      */
-    createAppCustomObject({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectApplicationSchema>;
+    createAppCustomObject({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectDefinitionParam} arg
      *   - Arg object
@@ -1053,13 +1052,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
      * @name updateAppCustomObject
      * @summary: Update custom object details
      * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
      */
-    updateAppCustomObject({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectApplicationSchema>;
+    updateAppCustomObject({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionParam} arg
      *   - Arg object

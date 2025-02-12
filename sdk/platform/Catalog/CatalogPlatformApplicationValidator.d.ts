@@ -298,6 +298,34 @@ export = CatalogPlatformApplicationValidator;
  */
 /** @typedef GetAppReturnConfigurationParam */
 /**
+ * @typedef GetAppicationProductsParam
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a either a product, brand or category
+ * @property {string} [f] - The search filter parameters. All the parameter
+ *   filtered from filter parameters will be passed in **f** parameter in this
+ *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
+ *   details. This flag is used to fetch all filters
+ * @property {boolean} [isDependent] - This query parameter is used to get the
+ *   dependent products in the listing.
+ * @property {string} [sortOn] - The order to sort the list of products on. The
+ *   supported sort parameters are popularity, price, redemption and discount in
+ *   either ascending or descending order. See the supported values below.
+ * @property {string} [pageId] - Each response will contain **page_id** param,
+ *   which should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {number} [pageNo] - If page_type is number then pass it to fetch
+ *   page items. Default is 1.
+ * @property {string} [pageType] - For pagination type should be cursor or
+ *   number. Default is cursor.
+ * @property {string[]} [itemIds] - Item Ids of product
+ */
+/**
  * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
@@ -363,34 +391,6 @@ export = CatalogPlatformApplicationValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {string} [q] - Get Values filtered by q string
- */
-/**
- * @typedef GetApplicationProductsParam
- * @property {string} [q] - The search query. This can be a partial or complete
- *   name of a either a product, brand or category
- * @property {string} [f] - The search filter parameters. All the parameter
- *   filtered from filter parameters will be passed in **f** parameter in this
- *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
- *   details. This flag is used to fetch all filters
- * @property {boolean} [isDependent] - This query parameter is used to get the
- *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
- * @property {string} [pageId] - Each response will contain **page_id** param,
- *   which should be sent back to make pagination work.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - If page_type is number then pass it to fetch
- *   page items. Default is 1.
- * @property {string} [pageType] - For pagination type should be cursor or
- *   number. Default is cursor.
- * @property {string[]} [itemIds] - Item Ids of product
  */
 /**
  * @typedef GetAutocompleteConfigParam
@@ -585,12 +585,6 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef PollPriceFactoryJobsParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} [startDate] - Date that filters the jobs created after this date
- * @property {string} [endDate] - Date that filters the jobs created before this date
- * @property {string[]} [stage] - Filter jobs by the stage
- * @property {boolean} [isActive] - Filter active or inactive jobs
- * @property {string} [q] - Pass unique identifier for a particular job to poll
- * @property {string[]} [type] - Pass type for a particular job to poll
  */
 /**
  * @typedef PollProductPriceFactoryBulkJobParam
@@ -857,6 +851,8 @@ declare class CatalogPlatformApplicationValidator {
     static getAppProducts(): GetAppProductsParam;
     /** @returns {GetAppReturnConfigurationParam} */
     static getAppReturnConfiguration(): any;
+    /** @returns {GetAppicationProductsParam} */
+    static getAppicationProducts(): GetAppicationProductsParam;
     /** @returns {GetApplicationBrandListingParam} */
     static getApplicationBrandListing(): GetApplicationBrandListingParam;
     /** @returns {GetApplicationBrandsParam} */
@@ -869,8 +865,6 @@ declare class CatalogPlatformApplicationValidator {
     static getApplicationFilterKeys(): GetApplicationFilterKeysParam;
     /** @returns {GetApplicationFilterValuesParam} */
     static getApplicationFilterValues(): GetApplicationFilterValuesParam;
-    /** @returns {GetApplicationProductsParam} */
-    static getApplicationProducts(): GetApplicationProductsParam;
     /** @returns {GetAutocompleteConfigParam} */
     static getAutocompleteConfig(): GetAutocompleteConfigParam;
     /** @returns {GetAutocompleteKeywordDetailParam} */
@@ -1003,7 +997,7 @@ declare class CatalogPlatformApplicationValidator {
     static validateProductPriceFactoryBulkJob(): ValidateProductPriceFactoryBulkJobParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, AddProductsInPriceFactoryByZoneIdParam, ClearCollectionItemsPriorityParam, CreateAppCategoryReturnConfigurationParam, CreateAppPriceFactoryParam, CreateAppReturnConfigurationParam, CreateAutocompleteSettingsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateMerchandisingRuleBoostActionParam, CreateMerchandisingRuleBuryActionParam, CreateMerchandisingRuleHideActionParam, CreateMerchandisingRulePinActionParam, CreateMerchandisingRuleQueryParam, CreateProductPriceFactoryBulkJobParam, CreateSearchConfigurationParam, CreateSearchRerankParam, CreateSynonymsParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteMerchandisingRuleParam, DeleteMerchandisingRulesPreviewParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, DeleteSearchRerankConfigurationParam, DeleteSynonymParam, EditAppPriceFactoryParam, ExportProductsInPriceFactoryParam, ExportSynonymsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppPriceByIdParam, GetAppPriceFactoriesParam, GetAppPriceFactoryParam, GetAppProductParam, GetAppProductPricesParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetAutocompletePreviewParam, GetAutocompleteSettingsParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetConfigurationsFilterMetadataParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetLivePreviewParam, GetMerchandisingQueryParam, GetMerchandisingRuleBoostActionParam, GetMerchandisingRuleBuryActionParam, GetMerchandisingRuleHideActionParam, GetMerchandisingRulePinActionParam, GetMerchandisingRulesParam, GetProductDetailBySlugParam, GetProductsInPriceFactoryByZoneIdParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, GetSearchRerankParam, GetSearchRerankDetailParam, GetSynonymsParam, PollBulkSynonymsParam, PollPriceFactoryJobsParam, PollProductPriceFactoryBulkJobParam, ProcessBulkSynonymsParam, ProcessProductPriceFactoryBulkJobParam, SampleBulkSynonymsFileParam, SaveMerchandisingRulesParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateAutocompleteSettingsParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateMerchandisingRuleBoostActionParam, UpdateMerchandisingRuleBuryActionParam, UpdateMerchandisingRuleHideActionParam, UpdateMerchandisingRulePinActionParam, UpdateMerchandisingRuleQueryParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam, UpdateSearchRerankConfigurationParam, UpdateSynonymsParam, UploadSynonymsParam, ValidateBulkSynonymsParam, ValidateProductPriceFactoryBulkJobParam };
+    export { AddCollectionItemsParam, AddProductsInPriceFactoryByZoneIdParam, ClearCollectionItemsPriorityParam, CreateAppCategoryReturnConfigurationParam, CreateAppPriceFactoryParam, CreateAppReturnConfigurationParam, CreateAutocompleteSettingsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateMerchandisingRuleBoostActionParam, CreateMerchandisingRuleBuryActionParam, CreateMerchandisingRuleHideActionParam, CreateMerchandisingRulePinActionParam, CreateMerchandisingRuleQueryParam, CreateProductPriceFactoryBulkJobParam, CreateSearchConfigurationParam, CreateSearchRerankParam, CreateSynonymsParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteMerchandisingRuleParam, DeleteMerchandisingRulesPreviewParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, DeleteSearchRerankConfigurationParam, DeleteSynonymParam, EditAppPriceFactoryParam, ExportProductsInPriceFactoryParam, ExportSynonymsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppPriceByIdParam, GetAppPriceFactoriesParam, GetAppPriceFactoryParam, GetAppProductParam, GetAppProductPricesParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetAutocompletePreviewParam, GetAutocompleteSettingsParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetConfigurationsFilterMetadataParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetLivePreviewParam, GetMerchandisingQueryParam, GetMerchandisingRuleBoostActionParam, GetMerchandisingRuleBuryActionParam, GetMerchandisingRuleHideActionParam, GetMerchandisingRulePinActionParam, GetMerchandisingRulesParam, GetProductDetailBySlugParam, GetProductsInPriceFactoryByZoneIdParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, GetSearchRerankParam, GetSearchRerankDetailParam, GetSynonymsParam, PollBulkSynonymsParam, PollPriceFactoryJobsParam, PollProductPriceFactoryBulkJobParam, ProcessBulkSynonymsParam, ProcessProductPriceFactoryBulkJobParam, SampleBulkSynonymsFileParam, SaveMerchandisingRulesParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateAutocompleteSettingsParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateMerchandisingRuleBoostActionParam, UpdateMerchandisingRuleBuryActionParam, UpdateMerchandisingRuleHideActionParam, UpdateMerchandisingRulePinActionParam, UpdateMerchandisingRuleQueryParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam, UpdateSearchRerankConfigurationParam, UpdateSynonymsParam, UploadSynonymsParam, ValidateBulkSynonymsParam, ValidateProductPriceFactoryBulkJobParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -1500,6 +1494,66 @@ type GetAppProductsParam = {
      */
     q?: string;
 };
+type GetAppicationProductsParam = {
+    /**
+     * - The search query. This can be a partial or complete
+     * name of a either a product, brand or category
+     */
+    q?: string;
+    /**
+     * - The search filter parameters. All the parameter
+     * filtered from filter parameters will be passed in **f** parameter in this
+     * format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+     */
+    f?: string;
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+    /**
+     * - Pass `filters` parameter to fetch the filter
+     * details. This flag is used to fetch all filters
+     */
+    filters?: boolean;
+    /**
+     * - This query parameter is used to get the
+     * dependent products in the listing.
+     */
+    isDependent?: boolean;
+    /**
+     * - The order to sort the list of products on. The
+     * supported sort parameters are popularity, price, redemption and discount in
+     * either ascending or descending order. See the supported values below.
+     */
+    sortOn?: string;
+    /**
+     * - Each response will contain **page_id** param,
+     * which should be sent back to make pagination work.
+     */
+    pageId?: string;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - If page_type is number then pass it to fetch
+     * page items. Default is 1.
+     */
+    pageNo?: number;
+    /**
+     * - For pagination type should be cursor or
+     * number. Default is cursor.
+     */
+    pageType?: string;
+    /**
+     * - Item Ids of product
+     */
+    itemIds?: string[];
+};
 type GetApplicationBrandListingParam = {
     /**
      * - The page number to navigate through the given
@@ -1626,66 +1680,6 @@ type GetApplicationFilterValuesParam = {
      * - Get Values filtered by q string
      */
     q?: string;
-};
-type GetApplicationProductsParam = {
-    /**
-     * - The search query. This can be a partial or complete
-     * name of a either a product, brand or category
-     */
-    q?: string;
-    /**
-     * - The search filter parameters. All the parameter
-     * filtered from filter parameters will be passed in **f** parameter in this
-     * format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
-     */
-    f?: string;
-    /**
-     * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-     */
-    c?: string;
-    /**
-     * - Pass `filters` parameter to fetch the filter
-     * details. This flag is used to fetch all filters
-     */
-    filters?: boolean;
-    /**
-     * - This query parameter is used to get the
-     * dependent products in the listing.
-     */
-    isDependent?: boolean;
-    /**
-     * - The order to sort the list of products on. The
-     * supported sort parameters are popularity, price, redemption and discount in
-     * either ascending or descending order. See the supported values below.
-     */
-    sortOn?: string;
-    /**
-     * - Each response will contain **page_id** param,
-     * which should be sent back to make pagination work.
-     */
-    pageId?: string;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - If page_type is number then pass it to fetch
-     * page items. Default is 1.
-     */
-    pageNo?: number;
-    /**
-     * - For pagination type should be cursor or
-     * number. Default is cursor.
-     */
-    pageType?: string;
-    /**
-     * - Item Ids of product
-     */
-    itemIds?: string[];
 };
 type GetAutocompleteConfigParam = {
     /**
@@ -2035,30 +2029,6 @@ type PollPriceFactoryJobsParam = {
      * - An `id` is a unique identifier for a particular price factory.
      */
     id: string;
-    /**
-     * - Date that filters the jobs created after this date
-     */
-    startDate?: string;
-    /**
-     * - Date that filters the jobs created before this date
-     */
-    endDate?: string;
-    /**
-     * - Filter jobs by the stage
-     */
-    stage?: string[];
-    /**
-     * - Filter active or inactive jobs
-     */
-    isActive?: boolean;
-    /**
-     * - Pass unique identifier for a particular job to poll
-     */
-    q?: string;
-    /**
-     * - Pass type for a particular job to poll
-     */
-    type?: string[];
 };
 type PollProductPriceFactoryBulkJobParam = {
     /**

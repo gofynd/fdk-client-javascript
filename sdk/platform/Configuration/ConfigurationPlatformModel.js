@@ -1109,7 +1109,6 @@ const Joi = require("joi");
 
 /**
  * @typedef GoogleMap
- * @property {boolean} [enabled] - Shows whether Google map integration is enabled or not.
  * @property {GoogleMapCredentials} [credentials]
  */
 
@@ -1347,7 +1346,7 @@ const Joi = require("joi");
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. â‚¹
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  * @property {string} [country_name]
  * @property {string} [country_code]
  */
@@ -1719,7 +1718,6 @@ const Joi = require("joi");
  * @property {string} [sector] - Sector for the opted store.
  * @property {string} [country_code] - Country code of the selected country
  * @property {string} [state_code] - Selected state code
- * @property {string} [landmark] - Landmark of the address
  */
 
 /**
@@ -3104,7 +3102,6 @@ class ConfigurationPlatformModel {
   /** @returns {GoogleMap} */
   static GoogleMap() {
     return Joi.object({
-      enabled: Joi.boolean(),
       credentials: ConfigurationPlatformModel.GoogleMapCredentials(),
     });
   }
@@ -3791,7 +3788,6 @@ class ConfigurationPlatformModel {
       sector: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
-      landmark: Joi.string().allow(""),
     });
   }
 

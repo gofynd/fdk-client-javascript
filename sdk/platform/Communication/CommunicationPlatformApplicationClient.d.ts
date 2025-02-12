@@ -69,12 +69,14 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+     *   - Success response
+     *
      * @name createEventSubscriptions
      * @summary: Create event subscriptions
      * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptions/).
      */
-    createEventSubscriptions({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscription>;
+    createEventSubscriptions({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>;
     /**
      * @param {CommunicationPlatformApplicationValidator.CreateEventSubscriptionsByBulkParam} arg
      *   - Arg object
@@ -215,12 +217,14 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+     *   - Success response
+     *
      * @name editEventSubscriptions
      * @summary: Create event subscriptions
      * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/editEventSubscriptions/).
      */
-    editEventSubscriptions({ id, body, requestHeaders }?: CommunicationPlatformApplicationValidator.EditEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscription>;
+    editEventSubscriptions({ id, body, requestHeaders }?: CommunicationPlatformApplicationValidator.EditEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetAppProvidersParam} arg
      *   - Arg object

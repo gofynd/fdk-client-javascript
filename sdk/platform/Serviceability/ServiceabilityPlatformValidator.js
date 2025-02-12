@@ -91,13 +91,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetLocalitiesByPrefixParam
- * @property {number} [pageNo] - Starting index of the items.
- * @property {number} [pageSize] - Number of items per page.
- * @property {string} [q] - Localities starting with the specified prefix.
- */
-
-/**
  * @typedef GetLocalityParam
  * @property {string} localityType - A `locality_type` contains value
  *   geographical division.
@@ -284,15 +277,6 @@ class ServiceabilityPlatformValidator {
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
       name: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetLocalitiesByPrefixParam} */
-  static getLocalitiesByPrefix() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
     }).required();
   }
 

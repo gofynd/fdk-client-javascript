@@ -18,13 +18,10 @@ class Logistic {
       getCountries: "/service/application/logistics/v2.0/countries",
       getCountry:
         "/service/application/logistics/v1.0/countries/{country_iso_code}",
-      getDeliveryPromise:
-        "/service/application/logistics/v1.0/delivery-promise",
       getGeoAreas:
         "/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/geoareas",
       getLocalities:
         "/service/application/logistics/v1.0/localities/{locality_type}",
-      getLocalitiesByPrefix: "/service/application/logistics/v1.0/localities",
       getLocality:
         "/service/application/logistics/v1.0/localities/{locality_type}/{locality_value}",
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
@@ -265,45 +262,6 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetPromiseDetails>} - Success response
-   * @name getDeliveryPromise
-   * @summary: Get delivery promise
-   * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getDeliveryPromise/).
-   */
-  async getDeliveryPromise(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getDeliveryPromise"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<GeoAreaGetResponseBody>} - Success response
    * @name getGeoAreas
    * @summary: Get all geoareas in the current application.
@@ -475,86 +433,6 @@ class Logistic {
         pageSize: pageSize,
         q: q,
         name: name,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetLocalities>} - Success response
-   * @name getLocalitiesByPrefix
-   * @summary: Get Localities by Name Prefix
-   * @description: Get localities that start with a specified prefix. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalitiesByPrefix/).
-   */
-  async getLocalitiesByPrefix(
-    { companyId, pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["companyId"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getLocalitiesByPrefix"],
-        params: { companyId },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - The unique identifier of the company.
-   * @param {number} [arg.pageSize] - Number of items per page.
-   * @param {string} [arg.q] - Localities starting with the specified prefix.
-   * @returns {Paginator<GetLocalities>}
-   * @summary: Get Localities by Name Prefix
-   * @description: Get localities that start with a specified prefix.
-   */
-  getLocalitiesByPrefixPaginator({ companyId, pageSize, q } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLocalitiesByPrefix({
-        companyId: companyId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

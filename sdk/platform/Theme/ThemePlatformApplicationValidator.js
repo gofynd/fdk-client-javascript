@@ -3,6 +3,11 @@ const Joi = require("joi");
 const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
+ * @typedef AddThemeToApplicationParam
+ * @property {ThemePlatformModel.ThemesSchema} body
+ */
+
+/**
  * @typedef ApplyThemeParam
  * @property {string} themeId - The ID of the apply
  */
@@ -11,11 +16,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @typedef CreatePageParam
  * @property {string} themeId - ID of the theme
  * @property {ThemePlatformModel.AvailablePageSchema} body
- */
-
-/**
- * @typedef CreateThemeParam
- * @property {ThemePlatformModel.CompanyThemeReqSchema} body
  */
 
 /**
@@ -117,6 +117,13 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 class ThemePlatformApplicationValidator {
+  /** @returns {AddThemeToApplicationParam} */
+  static addThemeToApplication() {
+    return Joi.object({
+      body: ThemePlatformModel.ThemesSchema().required(),
+    }).required();
+  }
+
   /** @returns {ApplyThemeParam} */
   static applyTheme() {
     return Joi.object({
@@ -129,13 +136,6 @@ class ThemePlatformApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       body: ThemePlatformModel.AvailablePageSchema().required(),
-    }).required();
-  }
-
-  /** @returns {CreateThemeParam} */
-  static createTheme() {
-    return Joi.object({
-      body: ThemePlatformModel.CompanyThemeReqSchema().required(),
     }).required();
   }
 

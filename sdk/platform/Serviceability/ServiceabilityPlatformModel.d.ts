@@ -331,15 +331,7 @@ export = ServiceabilityPlatformModel;
  * @property {string} [type]
  * @property {PincodeLatLongData} [lat_long]
  * @property {string} [parent_uid]
- * @property {string} [code]
  * @property {LocalityParent[]} [localities]
- * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
- * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
- * @property {Object} [currency] - Currency information for the country.
- * @property {string} [phone_code] - Country's international phone dialing code.
- * @property {Object} [hierarchy] - Hierarchical data of the country's location.
- * @property {string} [latitude] - Latitude of the country's geographic center.
- * @property {string} [longitude] - Longitude of the country's geographic center.
  */
 /**
  * @typedef GetLocalities
@@ -355,15 +347,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [parent_ids]
  * @property {string} [type]
  * @property {Object} [serviceability]
- * @property {string} [code]
  * @property {string} [parent_uid]
- * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
- * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
- * @property {Object} [currency] - Currency information for the country.
- * @property {string} [phone_code] - Country's international phone dialing code.
- * @property {Object} [hierarchy] - Hierarchical data of the country's location.
- * @property {string} [latitude] - Latitude of the country's geographic center.
- * @property {string} [longitude] - Longitude of the country's geographic center.
  */
 /**
  * @typedef GetLocality
@@ -374,7 +358,6 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [parent_ids]
  * @property {string} [parent_uid]
  * @property {string} [type]
- * @property {string} [code]
  * @property {LocalityParent[]} [localities]
  */
 /**
@@ -593,15 +576,11 @@ export = ServiceabilityPlatformModel;
  * @property {string} zone_id
  * @property {string} name
  * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
  * @property {GeoArea[]} geo_areas
  * @property {string} slug
- * @property {ListViewProductV2} [stores]
+ * @property {ListViewProductV2} stores
  * @property {boolean} is_active
- * @property {boolean} is_opted - Indicates whether the zone is opted or not.
- * @property {boolean} [is_public_opted] - Indicates whether the public zone is
- *   opted by any seller or not
- * @property {ListViewProductV2} [product]
+ * @property {ListViewProductV2} product
  * @property {number} company_id
  * @property {string} application_id
  * @property {string} created_by
@@ -610,10 +589,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} modified_on
  * @property {string} [stage]
  * @property {Summary} [summary]
- */
-/**
- * @typedef SummaryRegions
- * @property {RegionSchema[]} [regions]
  */
 /**
  * @typedef Summary
@@ -700,13 +675,11 @@ export = ServiceabilityPlatformModel;
  * @property {string} [zone_id]
  * @property {string} [name]
  * @property {string} [type]
- * @property {string} [access_level] - Access level of the zone (public or private).
  * @property {string} [slug]
  * @property {string[]} [geo_areas]
  * @property {number} [company_id]
  * @property {string} [application_id]
  * @property {boolean} [is_active]
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
  * @property {ProductSchema} [product]
  * @property {StoresSchema} [stores]
  */
@@ -716,10 +689,8 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {number} company_id
  * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
  * @property {string} application_id
  * @property {boolean} is_active
- * @property {boolean} is_opted - Indicates whether the zone is opted or not.
  * @property {string[]} geo_areas
  * @property {ProductSchema} product
  * @property {StoresSchema} stores
@@ -728,8 +699,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} created_on
  * @property {string} modified_by
  * @property {string} modified_on
- * @property {string} [stage]
- * @property {Summary} [summary]
  */
 /**
  * @typedef ZoneDeleteSuccessResponse
@@ -784,9 +753,8 @@ export = ServiceabilityPlatformModel;
  * @property {string} name
  * @property {string} slug
  * @property {boolean} is_active
- * @property {boolean} [is_opted]
- * @property {ProductSchema} [product]
- * @property {StoresSchema} [stores]
+ * @property {ProductSchema} product
+ * @property {StoresSchema} stores
  * @property {string} [created_by]
  * @property {string} [created_on]
  * @property {string} [modified_by]
@@ -803,15 +771,13 @@ export = ServiceabilityPlatformModel;
  * @property {string} name - Name of the zone.
  * @property {string} slug - URL-friendly version of the zone name.
  * @property {boolean} is_active - Indicates whether the zone is active.
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
- * @property {ProductDetailsSchema} [product]
- * @property {StoresDetailsSchema} [stores]
+ * @property {ProductDetailsSchema} product
+ * @property {StoresDetailsSchema} stores
  * @property {string} [stage] - Current stage of the zone in its lifecycle.
  * @property {string} [overlapping_file_url] - URL of the file containing
  *   overlapping zone information.
  * @property {GeoAreaDetailsSchema[]} geo_areas
  * @property {string} type - Type of the zone (custom or default).
- * @property {string} [access_level] - Access level of the zone (public or private).
  * @property {string[]} [overlapping_zone_names] - List of names of overlapping zones.
  */
 /**
@@ -824,13 +790,12 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_active
  * @property {string} slug
  * @property {string} type
- * @property {string} access_level - Access level of zone
  * @property {string} name
  * @property {number} company_id
  * @property {string} application_id
  * @property {string[]} geo_areas
- * @property {ZoneStores} [stores]
- * @property {ZoneProduct} [product]
+ * @property {ZoneStores} stores
+ * @property {ZoneProduct} product
  */
 /**
  * @typedef ZoneBulkExport
@@ -874,22 +839,17 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {number} company_id
  * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
  * @property {string} application_id
  * @property {boolean} is_active
- * @property {boolean} [is_public_opted] - Indicates whether the public zone is
- *   opted by any seller or not
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
  * @property {string[]} geo_areas
- * @property {ListViewProductV2} [stores]
- * @property {ListViewProductV2} [product]
+ * @property {ListViewProductV2} stores
+ * @property {ListViewProductV2} product
  * @property {string} created_by
  * @property {string} created_on
  * @property {string} modified_by
  * @property {string} modified_on
- * @property {string} [stage]
+ * @property {string} stage
  * @property {string} zone_id
- * @property {SummaryRegions} [summary]
  */
 /**
  * @typedef CreateBulkZoneResponse
@@ -1123,10 +1083,6 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef ServiceabilityZoneErrorResult
  * @property {ServiceabilityErrorResponse[]} error
- */
-/**
- * @typedef ServiceabilityZoneNonMarketplaceErrorResult
- * @property {string} error
  */
 /**
  * @typedef ReAssignStoreResponse
@@ -2095,7 +2051,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { RuleConditionIntegerDetail, RuleConditionStringDetail, RuleResponseIntegerDetail, RuleResponseStringDetail, CourierPartnerRuleResponseDetailConditions, CourierPartnerRuleResponseDetailSchema, StoreLocationDetail, StoreRuleLocationDetailSchema, StoreRuleConditionDetailSchema, StoreRuleDataDetailsSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse, ArticleAssignment, OptimalLocationsArticles, ServiceabilityLocation, LocationDetailsServiceability, OptimlLocationsRequestSchema, ErrorResponseV3, ErrorObject, ValidateAddressRequest, CountryObject, GetCountries, CurrencyObject, CountryHierarchy, GetCountry, GetCountryFields, GetCountryFieldsAddressTemplate, FieldValidation, FieldValidationRegex, LengthValidation, GetOneOrAllQuery, GetOneOrAllPath, GetOneOrAllParams, GetOneOrAll, GetCountryFieldsAddressValues, GetCountryFieldsAddress, PincodeLatLongData, Localities, GetLocalities, LocalityParent, GetLocality, ApplicationConfigPutResponse, PromiseType, BuyboxRuleConfig, CourierPartnerConfig, ZoneConfig, ApplicationConfigGetResponse, ApplicationConfigPutRequest, InstallCourierPartnerItemsSchema, InstallCourierPartnerResponseSchema, UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ProductSchema, ProductDetailsSchema, StoresSchema, StoresDetailsSchema, DetailsSchema, StoreValueDetailsSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponse, ListViewResponseV2, ListViewItemsV2, SummaryRegions, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponse, ZoneDeleteSuccessResponse, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, GetZoneByIdDetailsSchema, GeoAreaDetailsSchema, CreateZoneV2Data, ZoneBulkExport, GetZoneBulkExport, ZoneBulkItem, CreateBulkZoneData, ZoneStores, ZoneProduct, ZoneResponseV2, CreateBulkZoneResponse, GetBulkZoneHistory, BulkZoneItems, PageV2, BulkCreateZoneExport, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ServiceabilityZoneErrorResult, ServiceabilityZoneNonMarketplaceErrorResult, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, MoPCommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodDataSchema, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResponse, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, ErrorResponseItem, ConflictingArea, GeoAreaResponseDetail, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponse, GeoAreaGetResponseBody, GeoAreaItemResponse, ErrorResponseV2, ErrorResponse, PackageMaterialNotFound, PackageMaterialsErrorResponse, CourierPartnerAccountFailureResponse, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRuleValuesV2, LocationRule, LocationRuleV2, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRuleResponseConditions, CourierPartnerRule, CourierPartnerRuleResponse, CourierPartnerRuleResponseSchema, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierAccountSchemeResponse, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageMpStores, PackageRuleRequest, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageRuleProductAttributes, PackageRuleDepartmentId, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, CompanySelfShip, ArithmeticOperationsV2, CompanyConfigurationShema, ValidationError };
+    export { RuleConditionIntegerDetail, RuleConditionStringDetail, RuleResponseIntegerDetail, RuleResponseStringDetail, CourierPartnerRuleResponseDetailConditions, CourierPartnerRuleResponseDetailSchema, StoreLocationDetail, StoreRuleLocationDetailSchema, StoreRuleConditionDetailSchema, StoreRuleDataDetailsSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse, ArticleAssignment, OptimalLocationsArticles, ServiceabilityLocation, LocationDetailsServiceability, OptimlLocationsRequestSchema, ErrorResponseV3, ErrorObject, ValidateAddressRequest, CountryObject, GetCountries, CurrencyObject, CountryHierarchy, GetCountry, GetCountryFields, GetCountryFieldsAddressTemplate, FieldValidation, FieldValidationRegex, LengthValidation, GetOneOrAllQuery, GetOneOrAllPath, GetOneOrAllParams, GetOneOrAll, GetCountryFieldsAddressValues, GetCountryFieldsAddress, PincodeLatLongData, Localities, GetLocalities, LocalityParent, GetLocality, ApplicationConfigPutResponse, PromiseType, BuyboxRuleConfig, CourierPartnerConfig, ZoneConfig, ApplicationConfigGetResponse, ApplicationConfigPutRequest, InstallCourierPartnerItemsSchema, InstallCourierPartnerResponseSchema, UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ProductSchema, ProductDetailsSchema, StoresSchema, StoresDetailsSchema, DetailsSchema, StoreValueDetailsSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponse, ListViewResponseV2, ListViewItemsV2, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponse, ZoneDeleteSuccessResponse, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, GetZoneByIdDetailsSchema, GeoAreaDetailsSchema, CreateZoneV2Data, ZoneBulkExport, GetZoneBulkExport, ZoneBulkItem, CreateBulkZoneData, ZoneStores, ZoneProduct, ZoneResponseV2, CreateBulkZoneResponse, GetBulkZoneHistory, BulkZoneItems, PageV2, BulkCreateZoneExport, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ServiceabilityZoneErrorResult, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, MoPCommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodDataSchema, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResponse, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, ErrorResponseItem, ConflictingArea, GeoAreaResponseDetail, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponse, GeoAreaGetResponseBody, GeoAreaItemResponse, ErrorResponseV2, ErrorResponse, PackageMaterialNotFound, PackageMaterialsErrorResponse, CourierPartnerAccountFailureResponse, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRuleValuesV2, LocationRule, LocationRuleV2, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRuleResponseConditions, CourierPartnerRule, CourierPartnerRuleResponse, CourierPartnerRuleResponseSchema, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierAccountSchemeResponse, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageMpStores, PackageRuleRequest, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageRuleProductAttributes, PackageRuleDepartmentId, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, CompanySelfShip, ArithmeticOperationsV2, CompanyConfigurationShema, ValidationError };
 }
 /** @returns {RuleConditionIntegerDetail} */
 declare function RuleConditionIntegerDetail(): RuleConditionIntegerDetail;
@@ -2534,36 +2490,7 @@ type Localities = {
     type?: string;
     lat_long?: PincodeLatLongData;
     parent_uid?: string;
-    code?: string;
     localities?: LocalityParent[];
-    /**
-     * - ISO 3166-1 alpha-2 code for the country.
-     */
-    iso2?: string;
-    /**
-     * - ISO 3166-1 alpha-3 code for the country.
-     */
-    iso3?: string;
-    /**
-     * - Currency information for the country.
-     */
-    currency?: any;
-    /**
-     * - Country's international phone dialing code.
-     */
-    phone_code?: string;
-    /**
-     * - Hierarchical data of the country's location.
-     */
-    hierarchy?: any;
-    /**
-     * - Latitude of the country's geographic center.
-     */
-    latitude?: string;
-    /**
-     * - Longitude of the country's geographic center.
-     */
-    longitude?: string;
 };
 /** @returns {GetLocalities} */
 declare function GetLocalities(): GetLocalities;
@@ -2581,36 +2508,7 @@ type LocalityParent = {
     parent_ids?: string[];
     type?: string;
     serviceability?: any;
-    code?: string;
     parent_uid?: string;
-    /**
-     * - ISO 3166-1 alpha-2 code for the country.
-     */
-    iso2?: string;
-    /**
-     * - ISO 3166-1 alpha-3 code for the country.
-     */
-    iso3?: string;
-    /**
-     * - Currency information for the country.
-     */
-    currency?: any;
-    /**
-     * - Country's international phone dialing code.
-     */
-    phone_code?: string;
-    /**
-     * - Hierarchical data of the country's location.
-     */
-    hierarchy?: any;
-    /**
-     * - Latitude of the country's geographic center.
-     */
-    latitude?: string;
-    /**
-     * - Longitude of the country's geographic center.
-     */
-    longitude?: string;
 };
 /** @returns {GetLocality} */
 declare function GetLocality(): GetLocality;
@@ -2622,7 +2520,6 @@ type GetLocality = {
     parent_ids?: string[];
     parent_uid?: string;
     type?: string;
-    code?: string;
     localities?: LocalityParent[];
 };
 /** @returns {ApplicationConfigPutResponse} */
@@ -2915,24 +2812,11 @@ type ListViewItemsV2 = {
     zone_id: string;
     name: string;
     type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
     geo_areas: GeoArea[];
     slug: string;
-    stores?: ListViewProductV2;
+    stores: ListViewProductV2;
     is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted: boolean;
-    /**
-     * - Indicates whether the public zone is
-     * opted by any seller or not
-     */
-    is_public_opted?: boolean;
-    product?: ListViewProductV2;
+    product: ListViewProductV2;
     company_id: number;
     application_id: string;
     created_by: string;
@@ -2941,11 +2825,6 @@ type ListViewItemsV2 = {
     modified_on: string;
     stage?: string;
     summary?: Summary;
-};
-/** @returns {SummaryRegions} */
-declare function SummaryRegions(): SummaryRegions;
-type SummaryRegions = {
-    regions?: RegionSchema[];
 };
 /** @returns {Summary} */
 declare function Summary(): Summary;
@@ -3046,19 +2925,11 @@ type UpdateZoneDataV2 = {
     zone_id?: string;
     name?: string;
     type?: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level?: string;
     slug?: string;
     geo_areas?: string[];
     company_id?: number;
     application_id?: string;
     is_active?: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
     product?: ProductSchema;
     stores?: StoresSchema;
 };
@@ -3069,16 +2940,8 @@ type ZoneUpdateSuccessResponse = {
     slug: string;
     company_id: number;
     type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
     application_id: string;
     is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted: boolean;
     geo_areas: string[];
     product: ProductSchema;
     stores: StoresSchema;
@@ -3087,8 +2950,6 @@ type ZoneUpdateSuccessResponse = {
     created_on: string;
     modified_by: string;
     modified_on: string;
-    stage?: string;
-    summary?: Summary;
 };
 /** @returns {ZoneDeleteSuccessResponse} */
 declare function ZoneDeleteSuccessResponse(): ZoneDeleteSuccessResponse;
@@ -3150,9 +3011,8 @@ type GetZoneByIdSchema = {
     name: string;
     slug: string;
     is_active: boolean;
-    is_opted?: boolean;
-    product?: ProductSchema;
-    stores?: StoresSchema;
+    product: ProductSchema;
+    stores: StoresSchema;
     created_by?: string;
     created_on?: string;
     modified_by?: string;
@@ -3182,12 +3042,8 @@ type GetZoneByIdDetailsSchema = {
      * - Indicates whether the zone is active.
      */
     is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
-    product?: ProductDetailsSchema;
-    stores?: StoresDetailsSchema;
+    product: ProductDetailsSchema;
+    stores: StoresDetailsSchema;
     /**
      * - Current stage of the zone in its lifecycle.
      */
@@ -3202,10 +3058,6 @@ type GetZoneByIdDetailsSchema = {
      * - Type of the zone (custom or default).
      */
     type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level?: string;
     /**
      * - List of names of overlapping zones.
      */
@@ -3229,16 +3081,12 @@ type CreateZoneV2Data = {
     is_active: boolean;
     slug: string;
     type: string;
-    /**
-     * - Access level of zone
-     */
-    access_level: string;
     name: string;
     company_id: number;
     application_id: string;
     geo_areas: string[];
-    stores?: ZoneStores;
-    product?: ZoneProduct;
+    stores: ZoneStores;
+    product: ZoneProduct;
 };
 /** @returns {ZoneBulkExport} */
 declare function ZoneBulkExport(): ZoneBulkExport;
@@ -3289,31 +3137,17 @@ type ZoneResponseV2 = {
     slug: string;
     company_id: number;
     type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
     application_id: string;
     is_active: boolean;
-    /**
-     * - Indicates whether the public zone is
-     * opted by any seller or not
-     */
-    is_public_opted?: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
     geo_areas: string[];
-    stores?: ListViewProductV2;
-    product?: ListViewProductV2;
+    stores: ListViewProductV2;
+    product: ListViewProductV2;
     created_by: string;
     created_on: string;
     modified_by: string;
     modified_on: string;
-    stage?: string;
+    stage: string;
     zone_id: string;
-    summary?: SummaryRegions;
 };
 /** @returns {CreateBulkZoneResponse} */
 declare function CreateBulkZoneResponse(): CreateBulkZoneResponse;
@@ -3580,11 +3414,6 @@ type ReAssignStoreRequest = {
 declare function ServiceabilityZoneErrorResult(): ServiceabilityZoneErrorResult;
 type ServiceabilityZoneErrorResult = {
     error: ServiceabilityErrorResponse[];
-};
-/** @returns {ServiceabilityZoneNonMarketplaceErrorResult} */
-declare function ServiceabilityZoneNonMarketplaceErrorResult(): ServiceabilityZoneNonMarketplaceErrorResult;
-type ServiceabilityZoneNonMarketplaceErrorResult = {
-    error: string;
 };
 /** @returns {ReAssignStoreResponse} */
 declare function ReAssignStoreResponse(): ReAssignStoreResponse;

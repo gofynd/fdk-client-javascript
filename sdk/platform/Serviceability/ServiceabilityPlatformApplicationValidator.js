@@ -145,10 +145,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {string} [type] - Using type, you can filter custom or default zones
- * @property {string} [accessLevel] - Using access level, you can filter public
- *   and private zones as marketplace owner
- * @property {string} [status] - Using status zones listing can be filttered for
- *   marketplace owner and 3p sellers
  * @property {number} [pageSize] - Defines the number of items displayed per page.
  * @property {number} [pageNo] - Current page number.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
@@ -441,8 +437,6 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({
       stage: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      accessLevel: Joi.string().allow(""),
-      status: Joi.string().allow(""),
       pageSize: Joi.number(),
       pageNo: Joi.number(),
       isActive: Joi.boolean(),

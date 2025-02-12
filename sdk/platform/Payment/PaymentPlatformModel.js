@@ -704,17 +704,11 @@ const Joi = require("joi");
 /**
  * @typedef MultiTenderPaymentMeta
  * @property {Object} [extra_meta]
- * @property {string} [order_id] - Fynd Platform order ID
- * @property {string} [payment_id] - A unique identifier associated with a
- *   specific payment transaction
- * @property {string} [current_status] - Represents the current state or
- *   condition of an object, such as an order or payment.
+ * @property {string} [order_id]
+ * @property {string} [payment_id]
+ * @property {string} [current_status]
  * @property {string} [payment_gateway]
- * @property {string} [key] - Specifies the name or identifier of the payment
- *   gateway. This will deprecated in future version. We recommend switching to
- *   `payment_gateway_slug` to ensure uninterrupted payment processing.
- * @property {string} [payment_gateway_slug] - A simplified, URL-friendly string
- *   that represents the name of the payment gateway and it will used for refund PG.
+ * @property {string} [key]
  */
 
 /**
@@ -3307,7 +3301,6 @@ class PaymentPlatformModel {
       current_status: Joi.string().allow(""),
       payment_gateway: Joi.string().allow(""),
       key: Joi.string().allow(""),
-      payment_gateway_slug: Joi.string().allow(""),
     });
   }
 

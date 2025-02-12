@@ -70,7 +70,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<SaveAddressResponse>} - Success response
    * @name addAddress
-   * @summary: Creates a new address for a customer
+   * @summary: Create a new address
    * @description: Add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
    */
   async addAddress(
@@ -367,7 +367,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<Address>} - Success response
    * @name getAddressById
-   * @summary: Get details for a single customer address
+   * @summary: Fetch address.
    * @description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
    */
   async getAddressById(
@@ -430,7 +430,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<GetAddressesResponse>} - Success response
    * @name getAddresses
-   * @summary: Get a list of addresses for a customer
+   * @summary: Get saved addresses.
    * @description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
    */
   async getAddresses(
@@ -483,7 +483,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
-   * @summary: List bulk discounts
+   * @summary: Bulk discounts.
    * @description: List offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
@@ -705,7 +705,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<GetShareCartLinkResponse>} - Success response
    * @name getCartShareLink
-   * @summary: Create share cart link
+   * @summary: Share cart link.
    * @description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartShareLink/).
    */
   async getCartShareLink(
@@ -742,7 +742,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<SharedCartResponse>} - Success response
    * @name getCartSharedItems
-   * @summary: List shared cart items
+   * @summary: Shared cart items.
    * @description: Get cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
    */
   async getCartSharedItems(
@@ -907,7 +907,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LadderPriceOffers>} - Success response
    * @name getLadderOffers
-   * @summary: List ladder offers
+   * @summary: Fetches ladder offers.
    * @description: Get ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
    */
   async getLadderOffers(
@@ -989,7 +989,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @name getPromotionOffers
-   * @summary: List available promotion offers
+   * @summary: Retrieves promotional offers
    * @description: List all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
    */
   async getPromotionOffers(
@@ -1089,7 +1089,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<DeleteAddressResponse>} - Success response
    * @name removeAddress
-   * @summary: Removes an address from a customer's address list
+   * @summary: Delete a address
    * @description: Delete an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
    */
   async removeAddress(
@@ -1175,7 +1175,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartDetailResponse>} - Success response
    * @name selectAddress
-   * @summary: Select customer address for order processing
+   * @summary: Select a delivery address
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
@@ -1216,7 +1216,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartDetailResponse>} - Success response
    * @name selectPaymentMode
-   * @summary: Select payment mode
+   * @summary: Pick payment method.
    * @description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
@@ -1256,7 +1256,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UpdateAddressResponse>} - Success response
    * @name updateAddress
-   * @summary: Updates an existing customer address
+   * @summary: Update address.
    * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
    */
   async updateAddress(
@@ -1395,7 +1395,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Update with shared items
+   * @summary: Merge or replace existing cart
    * @description: Merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
@@ -1442,7 +1442,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
-   * @summary: Validate applied coupon
+   * @summary: Validate coupon.
    * @description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
    */
   async validateCouponForPayment(

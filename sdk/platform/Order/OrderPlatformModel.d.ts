@@ -19,11 +19,10 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef ErrorResponse
- * @property {number} [status] - The HTTP status code corresponding to the error.
- * @property {boolean} [success] - Indicates whether the operation was
- *   successful. Always false in the case of an error.
- * @property {string} message - A message describing the error that occurred.
- * @property {string} [error_trace] - Error trace of the error that occurred.
+ * @property {number} [status]
+ * @property {boolean} [success]
+ * @property {string} message
+ * @property {string} [error_trace]
  * @property {string} [error]
  */
 /**
@@ -297,9 +296,9 @@ export = OrderPlatformModel;
  *   product’s identifier, such as a SKU, barcode, or another distinct code.
  *   This ensures the product is correctly identified and distinguished from
  *   other items in the system.
- * @property {number} [quantity] - The quantity of the product or item. This
- *   indicates how many units of the product are being referenced or processed,
- *   such as the number of items in a bag or shipment.
+ * @property {number} [quantity] - The quantity of the product or item,
+ *   specified as an integer. This indicates how many units of the product are
+ *   being referenced or processed, such as the number of items in a bag or shipment.
  */
 /**
  * @typedef ProductsDataUpdates
@@ -583,33 +582,6 @@ export = OrderPlatformModel;
  * @property {AffiliateStoreIdMapping[]} affiliate_store_id_mapping
  */
 /**
- * @typedef DPConfiguration
- * @property {string} [shipping_by] - Shipping_by denotes dp assignment
- *   strategy- if shipping_by is fynd dp assignment would be handled by OMS
- */
-/**
- * @typedef PaymentConfig
- * @property {string} [mode_of_payment] - Specifies the mode through which the
- *   payment was collected, serving as an identifier for the payment's origin.
- * @property {string} [source] - The source field identifies the channel through
- *   which the order was placed, such as MARKETPLACE, ECOMM.
- */
-/**
- * @typedef CreateOrderConfig
- * @property {DPConfiguration} [dp_configuration]
- * @property {string} [integration_type] - Flag denotes integration type which
- *   is used to retrieve specific configurations and application details
- *   relevant to channel fulfillment.
- * @property {boolean} [location_reassignment] - Flag denotes if the location
- *   for the store needs to be reassigned post cancellation.
- * @property {PaymentConfig} [payment]
- * @property {boolean} [optimal_shipment_creation] - Denotes the shipment
- *   breaking strategy. If the flag is set true, the shipment is created using
- *   optimal shipment creation strategy based on the servicability & packaging
- *   dimensions by OMS .If false, shipment details, including location_id, must
- *   be passed to FDK for processing.
- */
-/**
  * @typedef CreateOrderPayload
  * @property {string} affiliate_id
  * @property {OrderInfo} order_info
@@ -825,14 +797,6 @@ export = OrderPlatformModel;
  * @property {OrderDetails} order_details
  * @property {string[]} [errors]
  * @property {ShipmentDetail[]} [shipment_details]
- * @property {string} [text] - A label or description of the delivery status,
- *   such as 'Expected Delivery Date'.
- * @property {string} [value] - The detailed delivery status or time
- *   information, such as 'Arriving on 24 Nov 2022 15:54:00'.
- * @property {string} [color_code] - Hex code for the color representing the
- *   delivery status.
- * @property {string} [expected_delivery_date] - The ISO 8601 formatted date and
- *   time when the delivery is expected, e.g., '2022-11-24T22:15:54+00:00'.
  */
 /**
  * @typedef OrderStatusResult
@@ -886,69 +850,14 @@ export = OrderPlatformModel;
  * @property {string} type - The category or type of the charge.
  */
 /**
- * @typedef CurrencyValueSchema
- * @property {number} value - The numerical value of the charge.
- * @property {string} currency - The currency code (e.g., USD, INR).
- */
-/**
- * @typedef AmountSchema
- * @property {CurrencyValueSchema} ordering_currency
- * @property {CurrencyValueSchema} base_currency
- */
-/**
- * @typedef DynamicChargeTaxSchema
- * @property {string} reporting_hsn_code - HSN (Harmonized System of
- *   Nomenclature) code for reporting purposes.
- */
-/**
- * @typedef RuleConditionsSchema
- * @property {string} article_tag - The tag for the article.
- * @property {string[]} department - List of applicable departments.
- */
-/**
- * @typedef RuleSchema
- * @property {RuleConditionsSchema} conditions
- */
-/**
- * @typedef DistributionSchema
- * @property {string} type - Type of distribution (single or multi).
- * @property {string} logic - Logic for distribution (apportion, equally).
- * @property {RuleSchema} [rule]
- */
-/**
- * @typedef DistributionLogicSchema
- * @property {string} distribution_level - The level at which the charge is
- *   distributed (order, article, shipment).
- * @property {DistributionSchema} distribution
- */
-/**
- * @typedef DynamicChargeSchema
- * @property {string} name - The name of the charge.
- * @property {string} type - The category or type of the charge.
- * @property {string} [code] - An optional code associated with the charge for
- *   internal tracking.
- * @property {AmountSchema} amount
- * @property {DynamicChargeTaxSchema} [taxes]
- * @property {Object} [meta] - Meta data of the custom charge.
- * @property {DistributionLogicSchema} [distribution_logic]
- */
-/**
  * @typedef LineItem
- * @property {Charge[]} charges - These are the mandatory charges required
- *   during order creation and are integral to the order processing flow. They
- *   include fields like amount_paid, discount, and price_marked. The schema for
- *   these charges is predefined and remains consistent, ensuring seamless
- *   forward mapping in the code.
+ * @property {Charge[]} charges
  * @property {Object} [meta] - Meta data of the articles or line items.
  * @property {string} [custom_message] - Meta data of the articles or line items.
  * @property {number} [quantity] - Quantity of the articles or line items.
  * @property {string} seller_identifier - Seller identifier of the articles or line items.
  * @property {string} [external_line_id] - External unique identifier of the
  *   articles or line items.
- * @property {DynamicChargeSchema[]} [dynamic_charges] - (Optional) These are
- *   additional charges specified by the client based on specific use cases.
- *   They allow for flexibility in adding new fields such as installation_fee,
- *   service_charge, or other dynamic costs.
  */
 /**
  * @typedef ProcessingDates
@@ -968,12 +877,8 @@ export = OrderPlatformModel;
  * @property {ProcessingDates} [processing_dates]
  * @property {Object} [meta] - Meta data of the shipment.
  * @property {number} [priority] - Integer value indicating high and low priority.
- * @property {number} [location_id] - Location Identifier or Store/Fulfillment
- *   Identifier of the shipment- This field is mandatory when
- *   optimal_shipment_creation flag is set to false, indicating that shipments
- *   must be associated with a specific location. When
- *   `optimal_shipment_creation` is true, the optimal location for order
- *   creation would be assigned, location_id becomes optional.
+ * @property {number} location_id - Location Identifier or Store/Fulfillment
+ *   Identifier of the shipment.
  * @property {string} [order_type] - The order type of shipment HomeDelivery -
  *   If the customer wants the order home-delivered PickAtStore - If the
  *   customer wants the handover of an order at the store itself.
@@ -1004,6 +909,16 @@ export = OrderPlatformModel;
  * @property {ShipmentStatusData} [status]
  * @property {Prices} [price]
  * @property {ShipmentGstDetails} [gst]
+ */
+/**
+ * @typedef ShipmentRequestData
+ * @property {LineItem[]} line_items
+ * @property {ProcessingDates} [processing_dates]
+ * @property {Object} [meta] - Meta data of the shipment.
+ * @property {number} [priority] - Integer value indicating high and low priority.
+ * @property {string} [order_type] - The order type of shipment HomeDelivery -
+ *   If the customer wants the order home-delivered PickAtStore - If the
+ *   customer wants the handover of an order at the store itself.
  */
 /**
  * @typedef ShippingInfo
@@ -1136,31 +1051,34 @@ export = OrderPlatformModel;
  * @property {string} [logo]
  */
 /**
+ * @typedef Config
+ * @property {string[]} [lock_states]
+ * @property {ConfigPayment} payment
+ * @property {ConfigDpConfiguration} [dp_configuration]
+ * @property {boolean} [location_reassignment]
+ * @property {ConfigApplication} [application]
+ * @property {string} [ordering_channel_logo]
+ * @property {string} [integration_type]
+ */
+/**
  * @typedef CreateOrderAPI
  * @property {Shipment[]} shipments
+ * @property {ShipmentRequestData} [shipment_request_data]
  * @property {Object} shipping_info
  * @property {Object} billing_info
  * @property {CurrencyInfo} [currency_info]
  * @property {string} [external_order_id]
  * @property {string} [external_shipment_id]
  * @property {string} [order_type]
- * @property {Charge[]} [charges] - These are the mandatory charges required
- *   during order creation and are integral to the order processing flow. They
- *   include fields like amount_paid, discount, and price_marked, etc.. The
- *   schema for these charges is predefined and remains consistent, ensuring
- *   seamless forward mapping in the code.
+ * @property {Charge[]} [charges]
  * @property {string} [external_creation_date]
  * @property {Object} [meta]
  * @property {TaxInfo} [tax_info]
- * @property {CreateOrderConfig} [config]
+ * @property {Config} [config]
  * @property {PaymentInfo} payment_info
  * @property {UserInfo} [user_info]
  * @property {boolean} [unlock_before_transition]
  * @property {boolean} [lock_after_transition]
- * @property {DynamicChargeSchema[]} [dynamic_charges] - (Optional) These are
- *   additional charges specified by the client based on specific use cases.
- *   They allow for flexibility in adding new fields such as installation_fee,
- *   service_charge, or other dynamic costs.
  */
 /**
  * @typedef CreateOrderErrorReponse
@@ -1581,18 +1499,18 @@ export = OrderPlatformModel;
  * @typedef DateRange
  * @property {string} [from_date]
  * @property {string} [to_date]
- * @property {string} [end_date]
- * @property {string} [start_date]
  */
 /**
  * @typedef Filters
  * @property {DateRange} [date_range]
+ * @property {string} [logo]
+ * @property {string} [from_date]
  * @property {number} [stores]
+ * @property {string} [to_date]
  * @property {string} [dp_name]
- * @property {string} [dp_ids]
+ * @property {number} [dp_ids]
  * @property {string} [lane]
  * @property {string} [selected_shipments]
- * @property {string} [deselected_shipments]
  * @property {string} [store_name]
  * @property {string} [type]
  */
@@ -2057,239 +1975,6 @@ export = OrderPlatformModel;
  * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
  * @property {number} [page_size]
- */
-/**
- * @typedef ConfigData
- * @property {boolean} [acknowledged] - Indicates whether the update operation
- *   was acknowledged by the database.
- * @property {boolean} [is_upserted] - Indicates whether the update operation
- *   resulted in an upsert (an update or insert).
- * @property {boolean} [is_inserted] - Indicates whether the update operation
- *   resulted in a new document being inserted.
- */
-/**
- * @typedef ConfigUpdatedResponse
- * @property {ConfigData[]} data - The result of the config update operation,
- *   including whether it was acknowledged, upserted, or inserted.
- * @property {boolean} success - Indicates whether the config update operation
- *   was successful.
- */
-/**
- * @typedef FlagData
- * @property {Object} [value]
- * @property {Object} [filter]
- */
-/**
- * @typedef Flags
- * @property {FlagData[]} [allow_partial_transition] - Indicates whether a
- *   partial transition of bags to the next state is permissible, allowing some
- *   bags to progress while others remain in the current state.
- * @property {FlagData[]} [can_break_entity] - Specifies whether bags within a
- *   shipment, set,cdf or entity can be broken individually or as a group. If
- *   set to false, all bags within the entity must remain together and
- *   transition together to the same state.
- * @property {FlagData[]} [allowed_bag_updates] - Specifies which fields are
- *   permitted to be updated at the bag level. Allowed fields are:
- *
- *   - Meta
- *   - Pdf_links
- *   - Affiliate_meta
- *   - Delivery_awb_number
- *   - Store_invoice_id
- *   - Store_id
- *   - Return_store_id
- *   - Eway_bill_id
- *
- * @property {FlagData[]} [allowed_bag_status_updates] - Specifies which fields
- *   are permitted to be updated at the bag status level. Allowed fields are:
- *
- *   - Json
- *
- * @property {FlagData[]} [allowed_entity_updates] - Specifies which fields are
- *   permitted to be updated at shipment level. Allowed fields are:
- *
- *   - Meta
- *   - Pdf_links
- *   - Affiliate_meta
- *   - Delivery_awb_number
- *   - Store_invoice_id
- *   - Store_id
- *   - Return_store_id
- *   - Eway_bill_id
- *   - Logistics_meta
- *
- * @property {FlagData[]} [allowed_entity_status_updates] - Specifies which
- *   fields are permitted to be updated at the Entity status level. Allowed fields are:
- *
- *   - Json
- *
- * @property {FlagData[]} [status_update_type] - Describes the type of journey
- *   associated with the particular status of the shipment. Possible values are:
- *
- *   - Positive
- *   - Negative
- *
- * @property {FlagData[]} [is_bag_status_reason_allowed] - Indicates whether a
- *   reason at the product level should be allowed for a particular status.
- * @property {FlagData[]} [is_entity_status_reason_allowed] - Indicates whether
- *   a reason at the shipment level should be allowed for a particular status.
- * @property {FlagData[]} [transition_strategy] - This flag is used to define
- *   the shipment breaking strategy. Possible values are:
- *
- *   - Break_shipment_based_on_location_reassignment
- *   - Break_shipment_based_on_groups
- *   - Break_shipment_based_on_stormbreaker
- */
-/**
- * @typedef Filter
- * @property {string} [order_type] - Indicates the type or category of the order.
- *
- *   - PickAtStore: Pick from store
- *   - HomeDelivery: Home delivery
- *   - Digital: Digital
- *
- * @property {boolean} [is_partial_transition] - Specifies whether a partial
- *   transition of the order is allowed, allowing some components to progress
- *   while others remain in the current state.
- * @property {boolean} [auto_trigger_dp_assignment_acf] - Indicates whether the
- *   assignment of a designated person is automatically triggered in the context of ACF.
- * @property {string} [lock_status] - Indicates the current locking status of
- *   the shipment.
- *
- *   - `complete`: Complete shipment lock
- *   - `operational`: Operational shipment lock
- *   - `None`: No lock on shipment
- *
- * @property {boolean} [lock_after_transition] - Specifies whether locking is
- *   required after transitioning to the next status. lock_after_transition :
- *   true - Lock Transition enabled lock_after_transition : false - Lock
- *   Transition set false
- * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
- *   should resume automatically after unlocking, such as DP assignment task and
- *   invoicing task.
- * @property {boolean} [is_invoice_id_present] - Indicates whether an invoice ID
- *   is present for the order.
- * @property {boolean} [is_credit_note_generated] - Indicates whether a credit
- *   note has been generated for the order.
- * @property {boolean} [fulfill_virtual_invoice] - Specifies whether an
- *   automated virtual invoice ID is associated with the order.
- * @property {string} [next_status] - Indicates the next status to which the
- *   order will transition.
- * @property {boolean} [is_hook_enabled] - Indicates whether a task is enabled
- *   for the order.
- * @property {boolean} [pos_credit_note_check] - Specifies whether a credit note
- *   check is performed in a point of sale (POS) scenario.
- * @property {string} [order_platform] - Specifies the platform on which the
- *   order was placed.
- *
- *   - `platform-pos`: POS
- *   - `platform-site`: WEB
- *   - `openapi`: OPENAPI
- *   - `marketplace`: MARKETPLACE
- *
- * @property {string} [refund_type] - Indicates the type of refund associated
- *   with the order.
- *
- *   - `credit_note`: CREDIT_NOTE
- *   - `source`: SOURCE
- *   - `bank_transfer`: BANK
- *   - `manual_refund`: MANUAL_REFUND
- *
- * @property {boolean} [is_non_pos_platform] - Specifies whether the platform is
- *   non-point of sale (POS) in nature.
- * @property {boolean} [is_self_ship] - Indicates whether the order is
- *   self-shipped by the seller.
- * @property {string} [seller_country_code] - Specifies the country code of the seller.
- *
- *   - `seller_country_code`: US
- *   - `seller_country_code`: UK
- *   - `seller_country_code`: IN
- *
- * @property {string} [customer_country_code] - Specifies the country code of the seller.
- *
- *   - `customer_country_code`: US
- *   - `customer_country_code`: UK
- *   - `customer_country_code`: IN
- *
- * @property {boolean} [is_test_order] - Indicates whether the order is a test
- *   order used for testing purposes - `is_test_order` : True - indicates test order
- * @property {string[]} [task_trigger_condition] - Specifies trigger conditions:
- *
- *   - `status_update`: Status Update
- *   - `data_update`: Data Update
- */
-/**
- * @typedef PostHook
- * @property {string} task - Name of the hook that has to be added
- * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Filters for scope selection.
- */
-/**
- * @typedef PreHook
- * @property {string} task - Name of the hook that has to be added
- * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Filter
- */
-/**
- * @typedef Config
- * @property {string} [from_state] - Source state from which state transition
- *   will take place
- * @property {string} [to_state] - Target state to which state transition will take place
- * @property {PreHook[]} [pre_hooks] - Tasks to be run before state transition
- * @property {PostHook[]} [post_hooks] - Tasks to be run after state transition
- * @property {Flags} [flags] - Various flags related to the transition. These
- *   include options and settings that influence the behavior of the state
- *   transition, such as whether partial transitions are allowed or whether the
- *   transition can break the entity.
- */
-/**
- * @typedef TransitionConfigCondition
- * @property {string} app_id - The unique identifier of the application to which
- *   the configuration applies.
- * @property {string} ordering_channel - The channel through which the order was
- *   placed, such as ECOMM or another specified channel.
- * @property {string} entity - The type of entity that the configuration pertains to.
- */
-/**
- * @typedef TransitionConfigData
- * @property {TransitionConfigCondition} [conditions] - Conditions that must be
- *   met for the ESM config to be applied.
- * @property {Config[]} [configs] - The configuration settings for the entity
- *   transition. This includes pre_hooks, post_hooks, and flags for each
- *   transition state.
- */
-/**
- * @typedef TransitionConfigPayload
- * @property {TransitionConfigData} [data]
- */
-/**
- * @typedef ProcessManifestRequest
- * @property {string} [action] - Expected Actions: [save, process,
- *   pdf_generated,invalidate,pdf_failed,complete]
- * @property {Filters} [filters]
- * @property {string} [unique_id] - Unique Id.
- */
-/**
- * @typedef ManifestResponse
- * @property {ManifestItems} [items]
- */
-/**
- * @typedef ManifestItems
- * @property {Filters} [filters]
- * @property {string} [manifest_id] - Id of the manifest.
- * @property {string} [unique_id] - Unique Id.
- * @property {number} [company_id] - Id of the company.
- * @property {string} [dp_id] - Shipment with the specific courier partner Id.
- * @property {string} [courier_partner_slug] - Courier partner slug
- * @property {string} [action] - Expected Actions: [Save, Process, Pdf
- *   Generated, Invalidate, Pdf Failed, Complete]
- * @property {string} [created_by] - Created date of the manifest.
- * @property {string} [user_id] - Id of user.
- */
-/**
- * @typedef ManifestErrorResponse
- * @property {boolean} [success] - Success State.
- * @property {string} [error] - Error String.
  */
 /**
  * @typedef Page
@@ -2947,7 +2632,6 @@ export = OrderPlatformModel;
  * @property {string} [contact_person] - Name of the contact person
  * @property {string} [state] - State where the store is located.
  * @property {string} [city] - City where the store is located.
- * @property {string} [store_email] - Email address of store
  */
 /**
  * @typedef DPDetailsData
@@ -3273,7 +2957,6 @@ export = OrderPlatformModel;
  * @property {string} contact_person
  * @property {string} state
  * @property {string} city
- * @property {string} [store_email] - Email of the recipient associated with the store
  */
 /**
  * @typedef ShipmentPayments
@@ -3315,7 +2998,6 @@ export = OrderPlatformModel;
  *   transaction, this is essential for referencing individual payments.
  * @property {string} [display_name] - The name of the payment method as it
  *   should be displayed to the user.
- * @property {Object} [transaction_data] - All necessary data for transaction received
  */
 /**
  * @typedef PlatformShipment
@@ -3327,7 +3009,6 @@ export = OrderPlatformModel;
  * @property {string} [shipment_status] - Status of the shipment indicating its
  *   current stage
  * @property {GSTDetailsData} [gst_details]
- * @property {OrderStatusData} [order_status]
  * @property {Object} [delivery_slot] - Delivery slot details
  * @property {OrderDetailsData} [order]
  * @property {UserDataInfo} [user]
@@ -4012,7 +3693,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, LogErrorResponse, QuestionErrorResponse, RefundStateConfigurationByPaymentType, PostRefundStateConfiguration, PostRefundStateConfigurationResponse, GetRefundStateConfigurationResponse, RefundStates, GetRefundStates, RefundStateManualWithoutMessage, RefundStateManualWithMessage, RefundStateManualWithMessageData, RefundStateConfigurationManualSchema, RefundStateConfigurationManualSchemaResponse, RefundSubOption, RefundBreakup, RefundOptionShipmentResponse, CurrencySchema, RefundOptionsSchemaResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, RepricedProductsDataUpdates, DataUpdates, TransitionComments, ShipmentsRequest, StatuesRequest, ActionRequest, UpdateShipmentStatusRequest, UpdateShipmentActionRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, DPConfiguration, PaymentConfig, CreateOrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, RefundInformation, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponse, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Amount, Charge, CurrencyValueSchema, AmountSchema, DynamicChargeTaxSchema, RuleConditionsSchema, RuleSchema, DistributionSchema, DistributionLogicSchema, DynamicChargeSchema, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CurrencyInfoCurrency, CurrencyInfoConversionRate, CurrencyInfo, ConfigPayment, ConfigDpConfiguration, ConfigApplication, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, OrderData, OrderUpdatePayload, OrderUpdateResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfoFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, AttachOrderUserErrorResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, VerifyOtpErrorResponseData, VerifyOtpErrorResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, OptionItem, SuperLaneItem, RuleLaneConfigResponse, RuleLaneConfigResponseSchema, RuleLaneConfigErrorResponse, QuestionSetItem, Reason, RuleRequest, RuleResponse, RuleUpdateRequest, Condition, RuleMeta, RuleAction, Department, L3, Error, RuleSuccessResponse, UpdateRulePositionRequest, RuleListResponse, RuleItem, RuleParametersResponse, ParameterResponse, RuleListRequest, ErrorGenericWithStatus, RuleListItem, RuleError, RuleErrorResponse, PageInfo, ConfigData, ConfigUpdatedResponse, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, ProcessManifestRequest, ManifestResponse, ManifestItems, ManifestErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, ShipmentPaymentInfoData, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FilterOptions, FiltersList, GlobalFiltersResponse, ViewDetails, ParentViews, UserViewsResponse, UserViewPosition, CreateUpdateDeleteResponse, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, CDN, Upload, TemplateDownloadResponse };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, LogErrorResponse, QuestionErrorResponse, RefundStateConfigurationByPaymentType, PostRefundStateConfiguration, PostRefundStateConfigurationResponse, GetRefundStateConfigurationResponse, RefundStates, GetRefundStates, RefundStateManualWithoutMessage, RefundStateManualWithMessage, RefundStateManualWithMessageData, RefundStateConfigurationManualSchema, RefundStateConfigurationManualSchemaResponse, RefundSubOption, RefundBreakup, RefundOptionShipmentResponse, CurrencySchema, RefundOptionsSchemaResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, RepricedProductsDataUpdates, DataUpdates, TransitionComments, ShipmentsRequest, StatuesRequest, ActionRequest, UpdateShipmentStatusRequest, UpdateShipmentActionRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, RefundInformation, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponse, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Amount, Charge, LineItem, ProcessingDates, Shipment, ShipmentRequestData, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CurrencyInfoCurrency, CurrencyInfoConversionRate, CurrencyInfo, ConfigPayment, ConfigDpConfiguration, ConfigApplication, Config, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, OrderData, OrderUpdatePayload, OrderUpdateResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfoFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, AttachOrderUserErrorResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, VerifyOtpErrorResponseData, VerifyOtpErrorResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, OptionItem, SuperLaneItem, RuleLaneConfigResponse, RuleLaneConfigResponseSchema, RuleLaneConfigErrorResponse, QuestionSetItem, Reason, RuleRequest, RuleResponse, RuleUpdateRequest, Condition, RuleMeta, RuleAction, Department, L3, Error, RuleSuccessResponse, UpdateRulePositionRequest, RuleListResponse, RuleItem, RuleParametersResponse, ParameterResponse, RuleListRequest, ErrorGenericWithStatus, RuleListItem, RuleError, RuleErrorResponse, PageInfo, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, ShipmentPaymentInfoData, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FilterOptions, FiltersList, GlobalFiltersResponse, ViewDetails, ParentViews, UserViewsResponse, UserViewPosition, CreateUpdateDeleteResponse, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, CDN, Upload, TemplateDownloadResponse };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -4047,22 +3728,9 @@ type InvalidateShipmentCacheResponse = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
-    /**
-     * - The HTTP status code corresponding to the error.
-     */
     status?: number;
-    /**
-     * - Indicates whether the operation was
-     * successful. Always false in the case of an error.
-     */
     success?: boolean;
-    /**
-     * - A message describing the error that occurred.
-     */
     message: string;
-    /**
-     * - Error trace of the error that occurred.
-     */
     error_trace?: string;
     error?: string;
 };
@@ -4548,9 +4216,9 @@ type ProductsDataUpdatesFilters = {
      */
     identifier?: string;
     /**
-     * - The quantity of the product or item. This
-     * indicates how many units of the product are being referenced or processed,
-     * such as the number of items in a bag or shipment.
+     * - The quantity of the product or item,
+     * specified as an integer. This indicates how many units of the product are
+     * being referenced or processed, such as the number of items in a bag or shipment.
      */
     quantity?: number;
 };
@@ -4943,54 +4611,6 @@ type OrderConfig = {
     store_lookup?: string;
     affiliate_store_id_mapping: AffiliateStoreIdMapping[];
 };
-/** @returns {DPConfiguration} */
-declare function DPConfiguration(): DPConfiguration;
-type DPConfiguration = {
-    /**
-     * - Shipping_by denotes dp assignment
-     * strategy- if shipping_by is fynd dp assignment would be handled by OMS
-     */
-    shipping_by?: string;
-};
-/** @returns {PaymentConfig} */
-declare function PaymentConfig(): PaymentConfig;
-type PaymentConfig = {
-    /**
-     * - Specifies the mode through which the
-     * payment was collected, serving as an identifier for the payment's origin.
-     */
-    mode_of_payment?: string;
-    /**
-     * - The source field identifies the channel through
-     * which the order was placed, such as MARKETPLACE, ECOMM.
-     */
-    source?: string;
-};
-/** @returns {CreateOrderConfig} */
-declare function CreateOrderConfig(): CreateOrderConfig;
-type CreateOrderConfig = {
-    dp_configuration?: DPConfiguration;
-    /**
-     * - Flag denotes integration type which
-     * is used to retrieve specific configurations and application details
-     * relevant to channel fulfillment.
-     */
-    integration_type?: string;
-    /**
-     * - Flag denotes if the location
-     * for the store needs to be reassigned post cancellation.
-     */
-    location_reassignment?: boolean;
-    payment?: PaymentConfig;
-    /**
-     * - Denotes the shipment
-     * breaking strategy. If the flag is set true, the shipment is created using
-     * optimal shipment creation strategy based on the servicability & packaging
-     * dimensions by OMS .If false, shipment details, including location_id, must
-     * be passed to FDK for processing.
-     */
-    optimal_shipment_creation?: boolean;
-};
 /** @returns {CreateOrderPayload} */
 declare function CreateOrderPayload(): CreateOrderPayload;
 type CreateOrderPayload = {
@@ -5333,26 +4953,6 @@ type OrderStatusData = {
     order_details: OrderDetails;
     errors?: string[];
     shipment_details?: ShipmentDetail[];
-    /**
-     * - A label or description of the delivery status,
-     * such as 'Expected Delivery Date'.
-     */
-    text?: string;
-    /**
-     * - The detailed delivery status or time
-     * information, such as 'Arriving on 24 Nov 2022 15:54:00'.
-     */
-    value?: string;
-    /**
-     * - Hex code for the color representing the
-     * delivery status.
-     */
-    color_code?: string;
-    /**
-     * - The ISO 8601 formatted date and
-     * time when the delivery is expected, e.g., '2022-11-24T22:15:54+00:00'.
-     */
-    expected_delivery_date?: string;
 };
 /** @returns {OrderStatusResult} */
 declare function OrderStatusResult(): OrderStatusResult;
@@ -5425,107 +5025,9 @@ type Charge = {
      */
     type: string;
 };
-/** @returns {CurrencyValueSchema} */
-declare function CurrencyValueSchema(): CurrencyValueSchema;
-type CurrencyValueSchema = {
-    /**
-     * - The numerical value of the charge.
-     */
-    value: number;
-    /**
-     * - The currency code (e.g., USD, INR).
-     */
-    currency: string;
-};
-/** @returns {AmountSchema} */
-declare function AmountSchema(): AmountSchema;
-type AmountSchema = {
-    ordering_currency: CurrencyValueSchema;
-    base_currency: CurrencyValueSchema;
-};
-/** @returns {DynamicChargeTaxSchema} */
-declare function DynamicChargeTaxSchema(): DynamicChargeTaxSchema;
-type DynamicChargeTaxSchema = {
-    /**
-     * - HSN (Harmonized System of
-     * Nomenclature) code for reporting purposes.
-     */
-    reporting_hsn_code: string;
-};
-/** @returns {RuleConditionsSchema} */
-declare function RuleConditionsSchema(): RuleConditionsSchema;
-type RuleConditionsSchema = {
-    /**
-     * - The tag for the article.
-     */
-    article_tag: string;
-    /**
-     * - List of applicable departments.
-     */
-    department: string[];
-};
-/** @returns {RuleSchema} */
-declare function RuleSchema(): RuleSchema;
-type RuleSchema = {
-    conditions: RuleConditionsSchema;
-};
-/** @returns {DistributionSchema} */
-declare function DistributionSchema(): DistributionSchema;
-type DistributionSchema = {
-    /**
-     * - Type of distribution (single or multi).
-     */
-    type: string;
-    /**
-     * - Logic for distribution (apportion, equally).
-     */
-    logic: string;
-    rule?: RuleSchema;
-};
-/** @returns {DistributionLogicSchema} */
-declare function DistributionLogicSchema(): DistributionLogicSchema;
-type DistributionLogicSchema = {
-    /**
-     * - The level at which the charge is
-     * distributed (order, article, shipment).
-     */
-    distribution_level: string;
-    distribution: DistributionSchema;
-};
-/** @returns {DynamicChargeSchema} */
-declare function DynamicChargeSchema(): DynamicChargeSchema;
-type DynamicChargeSchema = {
-    /**
-     * - The name of the charge.
-     */
-    name: string;
-    /**
-     * - The category or type of the charge.
-     */
-    type: string;
-    /**
-     * - An optional code associated with the charge for
-     * internal tracking.
-     */
-    code?: string;
-    amount: AmountSchema;
-    taxes?: DynamicChargeTaxSchema;
-    /**
-     * - Meta data of the custom charge.
-     */
-    meta?: any;
-    distribution_logic?: DistributionLogicSchema;
-};
 /** @returns {LineItem} */
 declare function LineItem(): LineItem;
 type LineItem = {
-    /**
-     * - These are the mandatory charges required
-     * during order creation and are integral to the order processing flow. They
-     * include fields like amount_paid, discount, and price_marked. The schema for
-     * these charges is predefined and remains consistent, ensuring seamless
-     * forward mapping in the code.
-     */
     charges: Charge[];
     /**
      * - Meta data of the articles or line items.
@@ -5548,13 +5050,6 @@ type LineItem = {
      * articles or line items.
      */
     external_line_id?: string;
-    /**
-     * - (Optional) These are
-     * additional charges specified by the client based on specific use cases.
-     * They allow for flexibility in adding new fields such as installation_fee,
-     * service_charge, or other dynamic costs.
-     */
-    dynamic_charges?: DynamicChargeSchema[];
 };
 /** @returns {ProcessingDates} */
 declare function ProcessingDates(): ProcessingDates;
@@ -5587,13 +5082,9 @@ type Shipment = {
     priority?: number;
     /**
      * - Location Identifier or Store/Fulfillment
-     * Identifier of the shipment- This field is mandatory when
-     * optimal_shipment_creation flag is set to false, indicating that shipments
-     * must be associated with a specific location. When
-     * `optimal_shipment_creation` is true, the optimal location for order
-     * creation would be assigned, location_id becomes optional.
+     * Identifier of the shipment.
      */
-    location_id?: number;
+    location_id: number;
     /**
      * - The order type of shipment HomeDelivery -
      * If the customer wants the order home-delivered PickAtStore - If the
@@ -5627,6 +5118,26 @@ type Shipment = {
     status?: ShipmentStatusData;
     price?: Prices;
     gst?: ShipmentGstDetails;
+};
+/** @returns {ShipmentRequestData} */
+declare function ShipmentRequestData(): ShipmentRequestData;
+type ShipmentRequestData = {
+    line_items: LineItem[];
+    processing_dates?: ProcessingDates;
+    /**
+     * - Meta data of the shipment.
+     */
+    meta?: any;
+    /**
+     * - Integer value indicating high and low priority.
+     */
+    priority?: number;
+    /**
+     * - The order type of shipment HomeDelivery -
+     * If the customer wants the order home-delivered PickAtStore - If the
+     * customer wants the handover of an order at the store itself.
+     */
+    order_type?: string;
 };
 /** @returns {ShippingInfo} */
 declare function ShippingInfo(): ShippingInfo;
@@ -5770,39 +5281,37 @@ type ConfigApplication = {
     id: string;
     logo?: string;
 };
+/** @returns {Config} */
+declare function Config(): Config;
+type Config = {
+    lock_states?: string[];
+    payment: ConfigPayment;
+    dp_configuration?: ConfigDpConfiguration;
+    location_reassignment?: boolean;
+    application?: ConfigApplication;
+    ordering_channel_logo?: string;
+    integration_type?: string;
+};
 /** @returns {CreateOrderAPI} */
 declare function CreateOrderAPI(): CreateOrderAPI;
 type CreateOrderAPI = {
     shipments: Shipment[];
+    shipment_request_data?: ShipmentRequestData;
     shipping_info: any;
     billing_info: any;
     currency_info?: CurrencyInfo;
     external_order_id?: string;
     external_shipment_id?: string;
     order_type?: string;
-    /**
-     * - These are the mandatory charges required
-     * during order creation and are integral to the order processing flow. They
-     * include fields like amount_paid, discount, and price_marked, etc.. The
-     * schema for these charges is predefined and remains consistent, ensuring
-     * seamless forward mapping in the code.
-     */
     charges?: Charge[];
     external_creation_date?: string;
     meta?: any;
     tax_info?: TaxInfo;
-    config?: CreateOrderConfig;
+    config?: Config;
     payment_info: PaymentInfo;
     user_info?: UserInfo;
     unlock_before_transition?: boolean;
     lock_after_transition?: boolean;
-    /**
-     * - (Optional) These are
-     * additional charges specified by the client based on specific use cases.
-     * They allow for flexibility in adding new fields such as installation_fee,
-     * service_charge, or other dynamic costs.
-     */
-    dynamic_charges?: DynamicChargeSchema[];
 };
 /** @returns {CreateOrderErrorReponse} */
 declare function CreateOrderErrorReponse(): CreateOrderErrorReponse;
@@ -6342,19 +5851,19 @@ declare function DateRange(): DateRange;
 type DateRange = {
     from_date?: string;
     to_date?: string;
-    end_date?: string;
-    start_date?: string;
 };
 /** @returns {Filters} */
 declare function Filters(): Filters;
 type Filters = {
     date_range?: DateRange;
+    logo?: string;
+    from_date?: string;
     stores?: number;
+    to_date?: string;
     dp_name?: string;
-    dp_ids?: string;
+    dp_ids?: number;
     lane?: string;
     selected_shipments?: string;
-    deselected_shipments?: string;
     store_name?: string;
     type?: string;
 };
@@ -6944,432 +6453,6 @@ type PageInfo = {
     has_previous?: boolean;
     has_next?: boolean;
     page_size?: number;
-};
-/** @returns {ConfigData} */
-declare function ConfigData(): ConfigData;
-type ConfigData = {
-    /**
-     * - Indicates whether the update operation
-     * was acknowledged by the database.
-     */
-    acknowledged?: boolean;
-    /**
-     * - Indicates whether the update operation
-     * resulted in an upsert (an update or insert).
-     */
-    is_upserted?: boolean;
-    /**
-     * - Indicates whether the update operation
-     * resulted in a new document being inserted.
-     */
-    is_inserted?: boolean;
-};
-/** @returns {ConfigUpdatedResponse} */
-declare function ConfigUpdatedResponse(): ConfigUpdatedResponse;
-type ConfigUpdatedResponse = {
-    /**
-     * - The result of the config update operation,
-     * including whether it was acknowledged, upserted, or inserted.
-     */
-    data: ConfigData[];
-    /**
-     * - Indicates whether the config update operation
-     * was successful.
-     */
-    success: boolean;
-};
-/** @returns {FlagData} */
-declare function FlagData(): FlagData;
-type FlagData = {
-    value?: any;
-    filter?: any;
-};
-/** @returns {Flags} */
-declare function Flags(): Flags;
-type Flags = {
-    /**
-     * - Indicates whether a
-     * partial transition of bags to the next state is permissible, allowing some
-     * bags to progress while others remain in the current state.
-     */
-    allow_partial_transition?: FlagData[];
-    /**
-     * - Specifies whether bags within a
-     * shipment, set,cdf or entity can be broken individually or as a group. If
-     * set to false, all bags within the entity must remain together and
-     * transition together to the same state.
-     */
-    can_break_entity?: FlagData[];
-    /**
-     * - Specifies which fields are
-     * permitted to be updated at the bag level. Allowed fields are:
-     *
-     * - Meta
-     * - Pdf_links
-     * - Affiliate_meta
-     * - Delivery_awb_number
-     * - Store_invoice_id
-     * - Store_id
-     * - Return_store_id
-     * - Eway_bill_id
-     */
-    allowed_bag_updates?: FlagData[];
-    /**
-     * - Specifies which fields
-     * are permitted to be updated at the bag status level. Allowed fields are:
-     *
-     * - Json
-     */
-    allowed_bag_status_updates?: FlagData[];
-    /**
-     * - Specifies which fields are
-     * permitted to be updated at shipment level. Allowed fields are:
-     *
-     * - Meta
-     * - Pdf_links
-     * - Affiliate_meta
-     * - Delivery_awb_number
-     * - Store_invoice_id
-     * - Store_id
-     * - Return_store_id
-     * - Eway_bill_id
-     * - Logistics_meta
-     */
-    allowed_entity_updates?: FlagData[];
-    /**
-     * - Specifies which
-     * fields are permitted to be updated at the Entity status level. Allowed fields are:
-     *
-     * - Json
-     */
-    allowed_entity_status_updates?: FlagData[];
-    /**
-     * - Describes the type of journey
-     * associated with the particular status of the shipment. Possible values are:
-     *
-     * - Positive
-     * - Negative
-     */
-    status_update_type?: FlagData[];
-    /**
-     * - Indicates whether a
-     * reason at the product level should be allowed for a particular status.
-     */
-    is_bag_status_reason_allowed?: FlagData[];
-    /**
-     * - Indicates whether
-     * a reason at the shipment level should be allowed for a particular status.
-     */
-    is_entity_status_reason_allowed?: FlagData[];
-    /**
-     * - This flag is used to define
-     * the shipment breaking strategy. Possible values are:
-     *
-     * - Break_shipment_based_on_location_reassignment
-     * - Break_shipment_based_on_groups
-     * - Break_shipment_based_on_stormbreaker
-     */
-    transition_strategy?: FlagData[];
-};
-/** @returns {Filter} */
-declare function Filter(): Filter;
-type Filter = {
-    /**
-     * - Indicates the type or category of the order.
-     *
-     * - PickAtStore: Pick from store
-     * - HomeDelivery: Home delivery
-     * - Digital: Digital
-     */
-    order_type?: string;
-    /**
-     * - Specifies whether a partial
-     * transition of the order is allowed, allowing some components to progress
-     * while others remain in the current state.
-     */
-    is_partial_transition?: boolean;
-    /**
-     * - Indicates whether the
-     * assignment of a designated person is automatically triggered in the context of ACF.
-     */
-    auto_trigger_dp_assignment_acf?: boolean;
-    /**
-     * - Indicates the current locking status of
-     * the shipment.
-     *
-     * - `complete`: Complete shipment lock
-     * - `operational`: Operational shipment lock
-     * - `None`: No lock on shipment
-     */
-    lock_status?: string;
-    /**
-     * - Specifies whether locking is
-     * required after transitioning to the next status. lock_after_transition :
-     * true - Lock Transition enabled lock_after_transition : false - Lock
-     * Transition set false
-     */
-    lock_after_transition?: boolean;
-    /**
-     * - Indicates whether tasks
-     * should resume automatically after unlocking, such as DP assignment task and
-     * invoicing task.
-     */
-    resume_tasks_after_unlock?: boolean;
-    /**
-     * - Indicates whether an invoice ID
-     * is present for the order.
-     */
-    is_invoice_id_present?: boolean;
-    /**
-     * - Indicates whether a credit
-     * note has been generated for the order.
-     */
-    is_credit_note_generated?: boolean;
-    /**
-     * - Specifies whether an
-     * automated virtual invoice ID is associated with the order.
-     */
-    fulfill_virtual_invoice?: boolean;
-    /**
-     * - Indicates the next status to which the
-     * order will transition.
-     */
-    next_status?: string;
-    /**
-     * - Indicates whether a task is enabled
-     * for the order.
-     */
-    is_hook_enabled?: boolean;
-    /**
-     * - Specifies whether a credit note
-     * check is performed in a point of sale (POS) scenario.
-     */
-    pos_credit_note_check?: boolean;
-    /**
-     * - Specifies the platform on which the
-     * order was placed.
-     *
-     * - `platform-pos`: POS
-     * - `platform-site`: WEB
-     * - `openapi`: OPENAPI
-     * - `marketplace`: MARKETPLACE
-     */
-    order_platform?: string;
-    /**
-     * - Indicates the type of refund associated
-     * with the order.
-     *
-     * - `credit_note`: CREDIT_NOTE
-     * - `source`: SOURCE
-     * - `bank_transfer`: BANK
-     * - `manual_refund`: MANUAL_REFUND
-     */
-    refund_type?: string;
-    /**
-     * - Specifies whether the platform is
-     * non-point of sale (POS) in nature.
-     */
-    is_non_pos_platform?: boolean;
-    /**
-     * - Indicates whether the order is
-     * self-shipped by the seller.
-     */
-    is_self_ship?: boolean;
-    /**
-     * - Specifies the country code of the seller.
-     *
-     * - `seller_country_code`: US
-     * - `seller_country_code`: UK
-     * - `seller_country_code`: IN
-     */
-    seller_country_code?: string;
-    /**
-     * - Specifies the country code of the seller.
-     *
-     * - `customer_country_code`: US
-     * - `customer_country_code`: UK
-     * - `customer_country_code`: IN
-     */
-    customer_country_code?: string;
-    /**
-     * - Indicates whether the order is a test
-     * order used for testing purposes - `is_test_order` : True - indicates test order
-     */
-    is_test_order?: boolean;
-    /**
-     * - Specifies trigger conditions:
-     *
-     * - `status_update`: Status Update
-     * - `data_update`: Data Update
-     */
-    task_trigger_condition?: string[];
-};
-/** @returns {PostHook} */
-declare function PostHook(): PostHook;
-type PostHook = {
-    /**
-     * - Name of the hook that has to be added
-     */
-    task: string;
-    /**
-     * - Additional parameters for the hook
-     */
-    kwargs?: any;
-    /**
-     * - Filters for scope selection.
-     */
-    filters?: Filter;
-};
-/** @returns {PreHook} */
-declare function PreHook(): PreHook;
-type PreHook = {
-    /**
-     * - Name of the hook that has to be added
-     */
-    task: string;
-    /**
-     * - Additional parameters for the hook
-     */
-    kwargs?: any;
-    /**
-     * - Filter
-     */
-    filters?: Filter;
-};
-/** @returns {Config} */
-declare function Config(): Config;
-type Config = {
-    /**
-     * - Source state from which state transition
-     * will take place
-     */
-    from_state?: string;
-    /**
-     * - Target state to which state transition will take place
-     */
-    to_state?: string;
-    /**
-     * - Tasks to be run before state transition
-     */
-    pre_hooks?: PreHook[];
-    /**
-     * - Tasks to be run after state transition
-     */
-    post_hooks?: PostHook[];
-    /**
-     * - Various flags related to the transition. These
-     * include options and settings that influence the behavior of the state
-     * transition, such as whether partial transitions are allowed or whether the
-     * transition can break the entity.
-     */
-    flags?: Flags;
-};
-/** @returns {TransitionConfigCondition} */
-declare function TransitionConfigCondition(): TransitionConfigCondition;
-type TransitionConfigCondition = {
-    /**
-     * - The unique identifier of the application to which
-     * the configuration applies.
-     */
-    app_id: string;
-    /**
-     * - The channel through which the order was
-     * placed, such as ECOMM or another specified channel.
-     */
-    ordering_channel: string;
-    /**
-     * - The type of entity that the configuration pertains to.
-     */
-    entity: string;
-};
-/** @returns {TransitionConfigData} */
-declare function TransitionConfigData(): TransitionConfigData;
-type TransitionConfigData = {
-    /**
-     * - Conditions that must be
-     * met for the ESM config to be applied.
-     */
-    conditions?: TransitionConfigCondition;
-    /**
-     * - The configuration settings for the entity
-     * transition. This includes pre_hooks, post_hooks, and flags for each
-     * transition state.
-     */
-    configs?: Config[];
-};
-/** @returns {TransitionConfigPayload} */
-declare function TransitionConfigPayload(): TransitionConfigPayload;
-type TransitionConfigPayload = {
-    data?: TransitionConfigData;
-};
-/** @returns {ProcessManifestRequest} */
-declare function ProcessManifestRequest(): ProcessManifestRequest;
-type ProcessManifestRequest = {
-    /**
-     * - Expected Actions: [save, process,
-     * pdf_generated,invalidate,pdf_failed,complete]
-     */
-    action?: string;
-    filters?: Filters;
-    /**
-     * - Unique Id.
-     */
-    unique_id?: string;
-};
-/** @returns {ManifestResponse} */
-declare function ManifestResponse(): ManifestResponse;
-type ManifestResponse = {
-    items?: ManifestItems;
-};
-/** @returns {ManifestItems} */
-declare function ManifestItems(): ManifestItems;
-type ManifestItems = {
-    filters?: Filters;
-    /**
-     * - Id of the manifest.
-     */
-    manifest_id?: string;
-    /**
-     * - Unique Id.
-     */
-    unique_id?: string;
-    /**
-     * - Id of the company.
-     */
-    company_id?: number;
-    /**
-     * - Shipment with the specific courier partner Id.
-     */
-    dp_id?: string;
-    /**
-     * - Courier partner slug
-     */
-    courier_partner_slug?: string;
-    /**
-     * - Expected Actions: [Save, Process, Pdf
-     * Generated, Invalidate, Pdf Failed, Complete]
-     */
-    action?: string;
-    /**
-     * - Created date of the manifest.
-     */
-    created_by?: string;
-    /**
-     * - Id of user.
-     */
-    user_id?: string;
-};
-/** @returns {ManifestErrorResponse} */
-declare function ManifestErrorResponse(): ManifestErrorResponse;
-type ManifestErrorResponse = {
-    /**
-     * - Success State.
-     */
-    success?: boolean;
-    /**
-     * - Error String.
-     */
-    error?: string;
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -8959,10 +8042,6 @@ type OrderingStoreDetails = {
      * - City where the store is located.
      */
     city?: string;
-    /**
-     * - Email address of store
-     */
-    store_email?: string;
 };
 /** @returns {DPDetailsData} */
 declare function DPDetailsData(): DPDetailsData;
@@ -9570,10 +8649,6 @@ type FulfillingStore = {
     contact_person: string;
     state: string;
     city: string;
-    /**
-     * - Email of the recipient associated with the store
-     */
-    store_email?: string;
 };
 /** @returns {ShipmentPayments} */
 declare function ShipmentPayments(): ShipmentPayments;
@@ -9655,10 +8730,6 @@ type ShipmentPaymentInfoData = {
      * should be displayed to the user.
      */
     display_name?: string;
-    /**
-     * - All necessary data for transaction received
-     */
-    transaction_data?: any;
 };
 /** @returns {PlatformShipment} */
 declare function PlatformShipment(): PlatformShipment;
@@ -9683,7 +8754,6 @@ type PlatformShipment = {
      */
     shipment_status?: string;
     gst_details?: GSTDetailsData;
-    order_status?: OrderStatusData;
     /**
      * - Delivery slot details
      */
