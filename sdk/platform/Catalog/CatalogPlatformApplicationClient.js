@@ -4284,205 +4284,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetAppicationProductsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponse>}
-   *   - Success response
-   *
-   * @name getAppicationProducts
-   * @summary: Get application products.
-   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
-   */
-  async getAppicationProducts(
-    {
-      q,
-      f,
-      c,
-      filters,
-      isDependent,
-      sortOn,
-      pageId,
-      pageSize,
-      pageNo,
-      pageType,
-      itemIds,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getAppicationProducts().validate(
-      {
-        q,
-        f,
-        c,
-        filters,
-        isDependent,
-        sortOn,
-        pageId,
-        pageSize,
-        pageNo,
-        pageType,
-        itemIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getAppicationProducts().validate(
-      {
-        q,
-        f,
-        c,
-        filters,
-        isDependent,
-        sortOn,
-        pageId,
-        pageSize,
-        pageNo,
-        pageType,
-        itemIds,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getAppicationProducts \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["f"] = f;
-    query_params["c"] = c;
-    query_params["filters"] = filters;
-    query_params["is_dependent"] = isDependent;
-    query_params["sort_on"] = sortOn;
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-    query_params["page_type"] = pageType;
-    query_params["item_ids"] = itemIds;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.ApplicationProductListingResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getAppicationProducts \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {string} [arg.q] - The search query. This can be a partial or
-   *   complete name of a either a product, brand or category
-   * @param {string} [arg.f] - The search filter parameters. All the parameter
-   *   filtered from filter parameters will be passed in **f** parameter in
-   *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
-   * @param {string} [arg.c] - The search filter parameters for collection
-   *   items. All the parameter filtered from filter parameters will be passed
-   *   in **c** parameter in this format.
-   *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-   * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
-   *   filter details. This flag is used to fetch all filters
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
-   * @param {string} [arg.sortOn] - The order to sort the list of products on.
-   *   The supported sort parameters are popularity, price, redemption and
-   *   discount in either ascending or descending order. See the supported
-   *   values below.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string[]} [arg.itemIds] - Item Ids of product
-   * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
-   * @summary: Get application products.
-   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
-   */
-  getAppicationProductsPaginator({
-    companyId,
-    applicationId,
-    q,
-    f,
-    c,
-    filters,
-    isDependent,
-    sortOn,
-    pageSize,
-    itemIds,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getAppicationProducts({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        f: f,
-        c: c,
-        filters: filters,
-        isDependent: isDependent,
-        sortOn: sortOn,
-        pageId: pageId,
-        pageSize: pageSize,
-        pageNo: pageNo,
-        pageType: pageType,
-        itemIds: itemIds,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetApplicationBrandListingParam} arg
    *   - Arg object
    *
@@ -5214,6 +5015,205 @@ class Catalog {
     }
 
     return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetApplicationProductsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponse>}
+   *   - Success response
+   *
+   * @name getApplicationProducts
+   * @summary: Get application products.
+   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationProducts/).
+   */
+  async getApplicationProducts(
+    {
+      q,
+      f,
+      c,
+      filters,
+      isDependent,
+      sortOn,
+      pageId,
+      pageSize,
+      pageNo,
+      pageType,
+      itemIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getApplicationProducts().validate(
+      {
+        q,
+        f,
+        c,
+        filters,
+        isDependent,
+        sortOn,
+        pageId,
+        pageSize,
+        pageNo,
+        pageType,
+        itemIds,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getApplicationProducts().validate(
+      {
+        q,
+        f,
+        c,
+        filters,
+        isDependent,
+        sortOn,
+        pageId,
+        pageSize,
+        pageNo,
+        pageType,
+        itemIds,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getApplicationProducts \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+    query_params["f"] = f;
+    query_params["c"] = c;
+    query_params["filters"] = filters;
+    query_params["is_dependent"] = isDependent;
+    query_params["sort_on"] = sortOn;
+    query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+    query_params["page_type"] = pageType;
+    query_params["item_ids"] = itemIds;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.ApplicationProductListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationProducts \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   *   a particular seller account.
+   * @param {string} arg.applicationId - A `application_id` is a unique
+   *   identifier for a particular sale channel.
+   * @param {string} [arg.q] - The search query. This can be a partial or
+   *   complete name of a either a product, brand or category
+   * @param {string} [arg.f] - The search filter parameters. All the parameter
+   *   filtered from filter parameters will be passed in **f** parameter in
+   *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+   * @param {string} [arg.c] - The search filter parameters for collection
+   *   items. All the parameter filtered from filter parameters will be passed
+   *   in **c** parameter in this format.
+   *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+   * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
+   *   filter details. This flag is used to fetch all filters
+   * @param {boolean} [arg.isDependent] - This query parameter is used to get
+   *   the dependent products in the listing.
+   * @param {string} [arg.sortOn] - The order to sort the list of products on.
+   *   The supported sort parameters are popularity, price, redemption and
+   *   discount in either ascending or descending order. See the supported
+   *   values below.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @param {string[]} [arg.itemIds] - Item Ids of product
+   * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
+   * @summary: Get application products.
+   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
+   */
+  getApplicationProductsPaginator({
+    companyId,
+    applicationId,
+    q,
+    f,
+    c,
+    filters,
+    isDependent,
+    sortOn,
+    pageSize,
+    itemIds,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getApplicationProducts({
+        companyId: companyId,
+        applicationId: applicationId,
+        q: q,
+        f: f,
+        c: c,
+        filters: filters,
+        isDependent: isDependent,
+        sortOn: sortOn,
+        pageId: pageId,
+        pageSize: pageSize,
+        pageNo: pageNo,
+        pageType: pageType,
+        itemIds: itemIds,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -8034,7 +8034,9 @@ class Catalog {
    * @description: This API allows to poll job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/pollPriceFactoryJobs/).
    */
   async pollPriceFactoryJobs(
-    { id, requestHeaders } = { requestHeaders: {} },
+    { id, startDate, endDate, stage, isActive, q, type, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -8042,6 +8044,12 @@ class Catalog {
     } = CatalogPlatformApplicationValidator.pollPriceFactoryJobs().validate(
       {
         id,
+        startDate,
+        endDate,
+        stage,
+        isActive,
+        q,
+        type,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -8055,6 +8063,12 @@ class Catalog {
     } = CatalogPlatformApplicationValidator.pollPriceFactoryJobs().validate(
       {
         id,
+        startDate,
+        endDate,
+        stage,
+        isActive,
+        q,
+        type,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -8066,6 +8080,12 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
+    query_params["stage"] = stage;
+    query_params["is_active"] = isActive;
+    query_params["q"] = q;
+    query_params["type"] = type;
 
     const response = await PlatformAPIClient.execute(
       this.config,

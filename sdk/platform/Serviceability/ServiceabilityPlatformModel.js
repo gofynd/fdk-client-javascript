@@ -370,7 +370,15 @@ const Joi = require("joi");
  * @property {string} [type]
  * @property {PincodeLatLongData} [lat_long]
  * @property {string} [parent_uid]
+ * @property {string} [code]
  * @property {LocalityParent[]} [localities]
+ * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
+ * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
+ * @property {Object} [currency] - Currency information for the country.
+ * @property {string} [phone_code] - Country's international phone dialing code.
+ * @property {Object} [hierarchy] - Hierarchical data of the country's location.
+ * @property {string} [latitude] - Latitude of the country's geographic center.
+ * @property {string} [longitude] - Longitude of the country's geographic center.
  */
 
 /**
@@ -388,7 +396,15 @@ const Joi = require("joi");
  * @property {string[]} [parent_ids]
  * @property {string} [type]
  * @property {Object} [serviceability]
+ * @property {string} [code]
  * @property {string} [parent_uid]
+ * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
+ * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
+ * @property {Object} [currency] - Currency information for the country.
+ * @property {string} [phone_code] - Country's international phone dialing code.
+ * @property {Object} [hierarchy] - Hierarchical data of the country's location.
+ * @property {string} [latitude] - Latitude of the country's geographic center.
+ * @property {string} [longitude] - Longitude of the country's geographic center.
  */
 
 /**
@@ -400,6 +416,7 @@ const Joi = require("joi");
  * @property {string[]} [parent_ids]
  * @property {string} [parent_uid]
  * @property {string} [type]
+ * @property {string} [code]
  * @property {LocalityParent[]} [localities]
  */
 
@@ -650,11 +667,15 @@ const Joi = require("joi");
  * @property {string} zone_id
  * @property {string} name
  * @property {string} type
+ * @property {string} access_level - Access level of the zone (public or private).
  * @property {GeoArea[]} geo_areas
  * @property {string} slug
- * @property {ListViewProductV2} stores
+ * @property {ListViewProductV2} [stores]
  * @property {boolean} is_active
- * @property {ListViewProductV2} product
+ * @property {boolean} is_opted - Indicates whether the zone is opted or not.
+ * @property {boolean} [is_public_opted] - Indicates whether the public zone is
+ *   opted by any seller or not
+ * @property {ListViewProductV2} [product]
  * @property {number} company_id
  * @property {string} application_id
  * @property {string} created_by
@@ -663,6 +684,11 @@ const Joi = require("joi");
  * @property {string} modified_on
  * @property {string} [stage]
  * @property {Summary} [summary]
+ */
+
+/**
+ * @typedef SummaryRegions
+ * @property {RegionSchema[]} [regions]
  */
 
 /**
@@ -763,11 +789,13 @@ const Joi = require("joi");
  * @property {string} [zone_id]
  * @property {string} [name]
  * @property {string} [type]
+ * @property {string} [access_level] - Access level of the zone (public or private).
  * @property {string} [slug]
  * @property {string[]} [geo_areas]
  * @property {number} [company_id]
  * @property {string} [application_id]
  * @property {boolean} [is_active]
+ * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
  * @property {ProductSchema} [product]
  * @property {StoresSchema} [stores]
  */
@@ -778,8 +806,10 @@ const Joi = require("joi");
  * @property {string} slug
  * @property {number} company_id
  * @property {string} type
+ * @property {string} access_level - Access level of the zone (public or private).
  * @property {string} application_id
  * @property {boolean} is_active
+ * @property {boolean} is_opted - Indicates whether the zone is opted or not.
  * @property {string[]} geo_areas
  * @property {ProductSchema} product
  * @property {StoresSchema} stores
@@ -788,6 +818,8 @@ const Joi = require("joi");
  * @property {string} created_on
  * @property {string} modified_by
  * @property {string} modified_on
+ * @property {string} [stage]
+ * @property {Summary} [summary]
  */
 
 /**
@@ -849,8 +881,9 @@ const Joi = require("joi");
  * @property {string} name
  * @property {string} slug
  * @property {boolean} is_active
- * @property {ProductSchema} product
- * @property {StoresSchema} stores
+ * @property {boolean} [is_opted]
+ * @property {ProductSchema} [product]
+ * @property {StoresSchema} [stores]
  * @property {string} [created_by]
  * @property {string} [created_on]
  * @property {string} [modified_by]
@@ -868,13 +901,15 @@ const Joi = require("joi");
  * @property {string} name - Name of the zone.
  * @property {string} slug - URL-friendly version of the zone name.
  * @property {boolean} is_active - Indicates whether the zone is active.
- * @property {ProductDetailsSchema} product
- * @property {StoresDetailsSchema} stores
+ * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
+ * @property {ProductDetailsSchema} [product]
+ * @property {StoresDetailsSchema} [stores]
  * @property {string} [stage] - Current stage of the zone in its lifecycle.
  * @property {string} [overlapping_file_url] - URL of the file containing
  *   overlapping zone information.
  * @property {GeoAreaDetailsSchema[]} geo_areas
  * @property {string} type - Type of the zone (custom or default).
+ * @property {string} [access_level] - Access level of the zone (public or private).
  * @property {string[]} [overlapping_zone_names] - List of names of overlapping zones.
  */
 
@@ -889,12 +924,13 @@ const Joi = require("joi");
  * @property {boolean} is_active
  * @property {string} slug
  * @property {string} type
+ * @property {string} access_level - Access level of zone
  * @property {string} name
  * @property {number} company_id
  * @property {string} application_id
  * @property {string[]} geo_areas
- * @property {ZoneStores} stores
- * @property {ZoneProduct} product
+ * @property {ZoneStores} [stores]
+ * @property {ZoneProduct} [product]
  */
 
 /**
@@ -945,17 +981,22 @@ const Joi = require("joi");
  * @property {string} slug
  * @property {number} company_id
  * @property {string} type
+ * @property {string} access_level - Access level of the zone (public or private).
  * @property {string} application_id
  * @property {boolean} is_active
+ * @property {boolean} [is_public_opted] - Indicates whether the public zone is
+ *   opted by any seller or not
+ * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
  * @property {string[]} geo_areas
- * @property {ListViewProductV2} stores
- * @property {ListViewProductV2} product
+ * @property {ListViewProductV2} [stores]
+ * @property {ListViewProductV2} [product]
  * @property {string} created_by
  * @property {string} created_on
  * @property {string} modified_by
  * @property {string} modified_on
- * @property {string} stage
+ * @property {string} [stage]
  * @property {string} zone_id
+ * @property {SummaryRegions} [summary]
  */
 
 /**
@@ -1222,6 +1263,11 @@ const Joi = require("joi");
 /**
  * @typedef ServiceabilityZoneErrorResult
  * @property {ServiceabilityErrorResponse[]} error
+ */
+
+/**
+ * @typedef ServiceabilityZoneNonMarketplaceErrorResult
+ * @property {string} error
  */
 
 /**
@@ -2767,9 +2813,17 @@ class ServiceabilityPlatformModel {
       type: Joi.string().allow(""),
       lat_long: ServiceabilityPlatformModel.PincodeLatLongData(),
       parent_uid: Joi.string().allow("").allow(null),
+      code: Joi.string().allow(""),
       localities: Joi.array().items(
         ServiceabilityPlatformModel.LocalityParent()
       ),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      currency: Joi.any(),
+      phone_code: Joi.string().allow(""),
+      hierarchy: Joi.any(),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
     });
   }
 
@@ -2791,7 +2845,15 @@ class ServiceabilityPlatformModel {
       parent_ids: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       type: Joi.string().allow(""),
       serviceability: Joi.any(),
+      code: Joi.string().allow(""),
       parent_uid: Joi.string().allow("").allow(null),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      currency: Joi.any(),
+      phone_code: Joi.string().allow(""),
+      hierarchy: Joi.any(),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
     });
   }
 
@@ -2805,6 +2867,7 @@ class ServiceabilityPlatformModel {
       parent_ids: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       parent_uid: Joi.string().allow("").allow(null),
       type: Joi.string().allow(""),
+      code: Joi.string().allow(""),
       localities: Joi.array().items(
         ServiceabilityPlatformModel.LocalityParent()
       ),
@@ -3128,13 +3191,16 @@ class ServiceabilityPlatformModel {
       zone_id: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
+      access_level: Joi.string().allow("").required(),
       geo_areas: Joi.array()
         .items(ServiceabilityPlatformModel.GeoArea())
         .required(),
       slug: Joi.string().allow("").required(),
-      stores: ServiceabilityPlatformModel.ListViewProductV2().required(),
+      stores: ServiceabilityPlatformModel.ListViewProductV2(),
       is_active: Joi.boolean().required(),
-      product: ServiceabilityPlatformModel.ListViewProductV2().required(),
+      is_opted: Joi.boolean().required(),
+      is_public_opted: Joi.boolean(),
+      product: ServiceabilityPlatformModel.ListViewProductV2(),
       company_id: Joi.number().required(),
       application_id: Joi.string().allow("").required(),
       created_by: Joi.string().allow("").required(),
@@ -3143,6 +3209,13 @@ class ServiceabilityPlatformModel {
       modified_on: Joi.string().allow("").required(),
       stage: Joi.string().allow(""),
       summary: ServiceabilityPlatformModel.Summary(),
+    });
+  }
+
+  /** @returns {SummaryRegions} */
+  static SummaryRegions() {
+    return Joi.object({
+      regions: Joi.array().items(ServiceabilityPlatformModel.RegionSchema()),
     });
   }
 
@@ -3277,11 +3350,13 @@ class ServiceabilityPlatformModel {
       zone_id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      access_level: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       geo_areas: Joi.array().items(Joi.string().allow("")),
       company_id: Joi.number(),
       application_id: Joi.string().allow(""),
       is_active: Joi.boolean(),
+      is_opted: Joi.boolean(),
       product: ServiceabilityPlatformModel.ProductSchema(),
       stores: ServiceabilityPlatformModel.StoresSchema(),
     });
@@ -3294,8 +3369,10 @@ class ServiceabilityPlatformModel {
       slug: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
       type: Joi.string().allow("").required(),
+      access_level: Joi.string().allow("").required(),
       application_id: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
+      is_opted: Joi.boolean().required(),
       geo_areas: Joi.array().items(Joi.string().allow("")).required(),
       product: ServiceabilityPlatformModel.ProductSchema().required(),
       stores: ServiceabilityPlatformModel.StoresSchema().required(),
@@ -3304,6 +3381,8 @@ class ServiceabilityPlatformModel {
       created_on: Joi.string().allow("").required(),
       modified_by: Joi.string().allow("").required(),
       modified_on: Joi.string().allow("").required(),
+      stage: Joi.string().allow(""),
+      summary: ServiceabilityPlatformModel.Summary(),
     });
   }
 
@@ -3387,8 +3466,9 @@ class ServiceabilityPlatformModel {
       name: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
-      product: ServiceabilityPlatformModel.ProductSchema().required(),
-      stores: ServiceabilityPlatformModel.StoresSchema().required(),
+      is_opted: Joi.boolean(),
+      product: ServiceabilityPlatformModel.ProductSchema(),
+      stores: ServiceabilityPlatformModel.StoresSchema(),
       created_by: Joi.string().allow(""),
       created_on: Joi.string().allow(""),
       modified_by: Joi.string().allow(""),
@@ -3408,14 +3488,16 @@ class ServiceabilityPlatformModel {
       name: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
-      product: ServiceabilityPlatformModel.ProductDetailsSchema().required(),
-      stores: ServiceabilityPlatformModel.StoresDetailsSchema().required(),
+      is_opted: Joi.boolean(),
+      product: ServiceabilityPlatformModel.ProductDetailsSchema(),
+      stores: ServiceabilityPlatformModel.StoresDetailsSchema(),
       stage: Joi.string().allow(""),
       overlapping_file_url: Joi.string().allow("").allow(null),
       geo_areas: Joi.array()
         .items(ServiceabilityPlatformModel.GeoAreaDetailsSchema())
         .required(),
       type: Joi.string().allow("").required(),
+      access_level: Joi.string().allow(""),
       overlapping_zone_names: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -3434,12 +3516,13 @@ class ServiceabilityPlatformModel {
       is_active: Joi.boolean().required(),
       slug: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
+      access_level: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
       application_id: Joi.string().allow("").required(),
       geo_areas: Joi.array().items(Joi.string().allow("")).required(),
-      stores: ServiceabilityPlatformModel.ZoneStores().required(),
-      product: ServiceabilityPlatformModel.ZoneProduct().required(),
+      stores: ServiceabilityPlatformModel.ZoneStores(),
+      product: ServiceabilityPlatformModel.ZoneProduct(),
     });
   }
 
@@ -3504,17 +3587,21 @@ class ServiceabilityPlatformModel {
       slug: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
       type: Joi.string().allow("").required(),
+      access_level: Joi.string().allow("").required(),
       application_id: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
+      is_public_opted: Joi.boolean(),
+      is_opted: Joi.boolean(),
       geo_areas: Joi.array().items(Joi.string().allow("")).required(),
-      stores: ServiceabilityPlatformModel.ListViewProductV2().required(),
-      product: ServiceabilityPlatformModel.ListViewProductV2().required(),
+      stores: ServiceabilityPlatformModel.ListViewProductV2(),
+      product: ServiceabilityPlatformModel.ListViewProductV2(),
       created_by: Joi.string().allow("").required(),
       created_on: Joi.string().allow("").required(),
       modified_by: Joi.string().allow("").required(),
       modified_on: Joi.string().allow("").required(),
-      stage: Joi.string().allow("").required(),
+      stage: Joi.string().allow(""),
       zone_id: Joi.string().allow("").required(),
+      summary: ServiceabilityPlatformModel.SummaryRegions(),
     });
   }
 
@@ -3861,6 +3948,13 @@ class ServiceabilityPlatformModel {
       error: Joi.array()
         .items(ServiceabilityPlatformModel.ServiceabilityErrorResponse())
         .required(),
+    });
+  }
+
+  /** @returns {ServiceabilityZoneNonMarketplaceErrorResult} */
+  static ServiceabilityZoneNonMarketplaceErrorResult() {
+    return Joi.object({
+      error: Joi.string().allow("").required(),
     });
   }
 

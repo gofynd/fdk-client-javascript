@@ -4,18 +4,6 @@ declare class Theme {
     config: any;
     applicationId: any;
     /**
-     * @param {ThemePlatformApplicationValidator.AddThemeToApplicationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
-     * @name addThemeToApplication
-     * @summary: Create theme in sales channel
-     * @description: Include a theme in an application drafts from theme collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addThemeToApplication/).
-     */
-    addThemeToApplication({ body, requestHeaders }?: ThemePlatformApplicationValidator.AddThemeToApplicationParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
-    /**
      * @param {ThemePlatformApplicationValidator.ApplyThemeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -35,6 +23,16 @@ declare class Theme {
      * @description: Generate and add a new page to the selected theme of the Platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/createPage/).
      */
     createPage({ themeId, body, requestHeaders }?: ThemePlatformApplicationValidator.CreatePageParam, { responseHeaders }?: object): Promise<ThemePlatformModel.AvailablePageSchema>;
+    /**
+     * @param {ThemePlatformApplicationValidator.CreateThemeParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name createTheme
+     * @summary: Get Create theme
+     * @description: Creating a new theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/createTheme/).
+     */
+    createTheme({ body, requestHeaders }?: ThemePlatformApplicationValidator.CreateThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
     /**
      * @param {ThemePlatformApplicationValidator.DeletePageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

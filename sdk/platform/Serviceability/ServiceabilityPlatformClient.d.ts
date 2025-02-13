@@ -175,6 +175,30 @@ declare class Serviceability {
         name?: string;
     }): Paginator<ServiceabilityPlatformModel.GetLocalities>;
     /**
+     * @param {ServiceabilityPlatformValidator.GetLocalitiesByPrefixParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetLocalities>} - Success response
+     * @name getLocalitiesByPrefix
+     * @summary: Get Localities by Name Prefix
+     * @description: Get localities that start with a specified prefix. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getLocalitiesByPrefix/).
+     */
+    getLocalitiesByPrefix({ pageNo, pageSize, q, requestHeaders }?: ServiceabilityPlatformValidator.GetLocalitiesByPrefixParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetLocalities>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - Number of items per page.
+     * @param {string} [arg.q] - Localities starting with the specified prefix.
+     * @returns {Paginator<ServiceabilityPlatformModel.GetLocalities>}
+     * @summary: Get Localities by Name Prefix
+     * @description: Get localities that start with a specified prefix.
+     */
+    getLocalitiesByPrefixPaginator({ pageSize, q }?: {
+        pageSize?: number;
+        q?: string;
+    }): Paginator<ServiceabilityPlatformModel.GetLocalities>;
+    /**
      * @param {ServiceabilityPlatformValidator.GetLocalityParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

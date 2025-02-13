@@ -40,6 +40,7 @@ class Content {
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
       getSupportInformation: "/service/application/content/v1.0/support",
       getTags: "/service/application/content/v1.0/tags",
+      getWellKnownUrl: "/service/application/content/v1.0/well-known/{slug}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -986,6 +987,52 @@ class Content {
       constructUrl({
         url: this._urls["getTags"],
         params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<WellKnownResponse>} - Success response
+   * @name getWellKnownUrl
+   * @summary: Get a specific well-known URL
+   * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).
+   */
+  async getWellKnownUrl(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getWellKnownUrl"],
+        params: { slug },
       }),
       query_params,
       undefined,

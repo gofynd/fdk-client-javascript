@@ -88,6 +88,7 @@ export = SharePlatformModel;
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [total] - Total number of items.
+ * @property {number} [page] - Current page number
  */
 /**
  * @typedef ShortLinkList
@@ -245,6 +246,10 @@ type Page = {
      * - Total number of items.
      */
     total?: number;
+    /**
+     * - Current page number
+     */
+    page?: number;
 };
 /** @returns {ShortLinkList} */
 declare function ShortLinkList(): ShortLinkList;

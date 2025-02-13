@@ -984,6 +984,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef GoogleMap
+ * @property {boolean} [enabled] - Shows whether Google map integration is enabled or not.
  * @property {GoogleMapCredentials} [credentials]
  */
 /**
@@ -1193,7 +1194,7 @@ export = ConfigurationPlatformModel;
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. â‚¹
  * @property {string} [country_name]
  * @property {string} [country_code]
  */
@@ -1523,6 +1524,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [sector] - Sector for the opted store.
  * @property {string} [country_code] - Country code of the selected country
  * @property {string} [state_code] - Selected state code
+ * @property {string} [landmark] - Landmark of the address
  */
 /**
  * @typedef OrderingStore
@@ -3631,6 +3633,10 @@ type FyndRewardsCredentials = {
 /** @returns {GoogleMap} */
 declare function GoogleMap(): GoogleMap;
 type GoogleMap = {
+    /**
+     * - Shows whether Google map integration is enabled or not.
+     */
+    enabled?: boolean;
     credentials?: GoogleMapCredentials;
 };
 /** @returns {GoogleMapCredentials} */
@@ -4034,7 +4040,7 @@ type Currency = {
      */
     decimal_digits?: number;
     /**
-     * - Unique symbol for identifying the currency, e.g. ₹
+     * - Unique symbol for identifying the currency, e.g. â‚¹
      */
     symbol?: string;
     country_name?: string;
@@ -4750,6 +4756,10 @@ type OptedStoreAddress = {
      * - Selected state code
      */
     state_code?: string;
+    /**
+     * - Landmark of the address
+     */
+    landmark?: string;
 };
 /** @returns {OrderingStore} */
 declare function OrderingStore(): OrderingStore;

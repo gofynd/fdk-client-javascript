@@ -26,6 +26,7 @@ declare class Content {
         getSEOMarkupSchemas: string;
         getSupportInformation: string;
         getTags: string;
+        getWellKnownUrl: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -236,4 +237,13 @@ declare class Content {
      * @description: Lists HTML tags to power additional functionalities within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
      */
     getTags({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TagsSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<WellKnownResponse>} - Success response
+     * @name getWellKnownUrl
+     * @summary: Get a specific well-known URL
+     * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).
+     */
+    getWellKnownUrl({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<WellKnownResponse>;
 }

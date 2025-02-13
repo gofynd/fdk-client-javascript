@@ -1,9 +1,5 @@
 export = ThemePlatformApplicationValidator;
 /**
- * @typedef AddThemeToApplicationParam
- * @property {ThemePlatformModel.ThemesSchema} body
- */
-/**
  * @typedef ApplyThemeParam
  * @property {string} themeId - The ID of the apply
  */
@@ -11,6 +7,10 @@ export = ThemePlatformApplicationValidator;
  * @typedef CreatePageParam
  * @property {string} themeId - ID of the theme
  * @property {ThemePlatformModel.AvailablePageSchema} body
+ */
+/**
+ * @typedef CreateThemeParam
+ * @property {ThemePlatformModel.CompanyThemeReqSchema} body
  */
 /**
  * @typedef DeletePageParam
@@ -90,12 +90,12 @@ export = ThemePlatformApplicationValidator;
  * @property {string} themeId - The ID of the upgrade
  */
 declare class ThemePlatformApplicationValidator {
-    /** @returns {AddThemeToApplicationParam} */
-    static addThemeToApplication(): AddThemeToApplicationParam;
     /** @returns {ApplyThemeParam} */
     static applyTheme(): ApplyThemeParam;
     /** @returns {CreatePageParam} */
     static createPage(): CreatePageParam;
+    /** @returns {CreateThemeParam} */
+    static createTheme(): CreateThemeParam;
     /** @returns {DeletePageParam} */
     static deletePage(): DeletePageParam;
     /** @returns {DeleteThemeParam} */
@@ -140,11 +140,8 @@ declare class ThemePlatformApplicationValidator {
     static upgradeTheme(): UpgradeThemeParam;
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { AddThemeToApplicationParam, ApplyThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetExtensionSectionsParam, GetFontsParam, GetFontsV2Param, GetLatestVersionOfThemeBySlugParam, GetPageParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, IsUpgradableParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
+    export { ApplyThemeParam, CreatePageParam, CreateThemeParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetExtensionSectionsParam, GetFontsParam, GetFontsV2Param, GetLatestVersionOfThemeBySlugParam, GetPageParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, IsUpgradableParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
 }
-type AddThemeToApplicationParam = {
-    body: ThemePlatformModel.ThemesSchema;
-};
 type ApplyThemeParam = {
     /**
      * - The ID of the apply
@@ -157,6 +154,9 @@ type CreatePageParam = {
      */
     themeId: string;
     body: ThemePlatformModel.AvailablePageSchema;
+};
+type CreateThemeParam = {
+    body: ThemePlatformModel.CompanyThemeReqSchema;
 };
 type DeletePageParam = {
     /**

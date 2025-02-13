@@ -57,6 +57,10 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
+ * @property {string[]} [storeCodes] - List of up to 50 store codes to fetch.
+ *   Specify multiple values by repeating the query parameter (e.g.,
+ *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
+ *   are not supported.
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [stage] - To filter companies on basis of verified or
  *   unverified companies.
@@ -161,6 +165,7 @@ class CompanyProfilePlatformValidator {
   static getLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
+      storeCodes: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),

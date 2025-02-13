@@ -592,7 +592,8 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
+   *   Success response
    * @name createAppCustomObject
    * @summary: Create custom object entries
    * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
@@ -648,10 +649,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.CustomObjectApplicationSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7161,7 +7162,8 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
+   *   Success response
    * @name updateAppCustomObject
    * @summary: Update custom object details
    * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
@@ -7219,10 +7221,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.CustomObjectApplicationSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
