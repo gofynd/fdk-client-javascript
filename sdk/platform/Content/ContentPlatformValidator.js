@@ -3,20 +3,15 @@ const Joi = require("joi");
 const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
- * @typedef CreateCustomFieldByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
- * @property {ContentPlatformModel.CustomFieldRequestSchema} body
- */
-
-/**
  * @typedef CreateCustomFieldDefinitionParam
+ * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 
 /**
- * @typedef CreateCustomObjectParam
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef CreateCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 
 /**
@@ -25,35 +20,51 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef DeleteCustomFieldDefinitionParam
- * @property {string} id
+ * @typedef DeleteCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  */
 
 /**
- * @typedef DeleteCustomFieldsByResourceIdParam
+ * @typedef DeleteCustomFieldsByResourceSlugParam
  * @property {string} resource
- * @property {string} resourceId
+ * @property {string} resourceSlug
  * @property {string} ids
  */
 
 /**
- * @typedef DeleteCustomObjectParam
- * @property {string} id
+ * @typedef DeleteCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 
 /**
- * @typedef DeleteCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef DeleteCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 
 /**
- * @typedef ExportCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ExportCustomObjectEntriesBySlugParam
+ * @property {string} slug
  */
 
 /**
- * @typedef GetCustomFieldDefinitionParam
- * @property {string} id
+ * @typedef GetCustomFieldDefinitionByResourceParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {string} resource
+ * @property {string} [types]
+ * @property {string} [search]
+ * @property {string} [slugs]
+ * @property {string} [namespaces]
+ */
+
+/**
+ * @typedef GetCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  */
 
 /**
@@ -64,36 +75,26 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {string} [types]
  * @property {string} [search]
  * @property {string} [slugs]
- */
-
-/**
- * @typedef GetCustomFieldJobsParam
- * @property {string} page
- * @property {string} pageSize
- * @property {string} actionType
+ * @property {string} [namespaces]
  */
 
 /** @typedef GetCustomFieldTypesParam */
 
 /**
- * @typedef GetCustomFieldsParam
+ * @typedef GetCustomFieldsByResourceSlugParam
  * @property {string} resource
+ * @property {string} resourceSlug
  */
 
 /**
- * @typedef GetCustomFieldsByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
+ * @typedef GetCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 
 /**
- * @typedef GetCustomObjectParam
- * @property {string} id
- */
-
-/**
- * @typedef GetCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef GetCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 
 /**
@@ -104,10 +105,10 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef GetCustomObjectsParam
- * @property {string} [definitionId]
+ * @typedef GetCustomObjectsBySlugParam
  * @property {string} pageNo
  * @property {string} pageSize
+ * @property {string} definitionSlug
  */
 
 /**
@@ -120,62 +121,58 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /** @typedef GetResourcesParam */
 
 /**
- * @typedef ImportCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ImportCustomObjectEntriesBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectBulkSchema} body
  */
 
 /**
- * @typedef SampleCustomObjectBulkEntryParam
- * @property {string} definitionId
+ * @typedef SampleCustomObjectBulkEntryBySlugParam
+ * @property {string} slug
  */
 
 /**
- * @typedef UpdateCustomFieldByResourceIdParam
+ * @typedef UpdateCustomFieldByResourceSlugParam
  * @property {string} resource
- * @property {string} resourceId
+ * @property {string} resourceSlug
  * @property {ContentPlatformModel.CustomFieldRequestSchema} body
  */
 
 /**
- * @typedef UpdateCustomFieldDefinitionParam
- * @property {string} id
+ * @typedef UpdateCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 
 /**
- * @typedef UpdateCustomObjectParam
- * @property {string} id
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef UpdateCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 
 /**
- * @typedef UpdateCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef UpdateCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 
 class ContentPlatformValidator {
-  /** @returns {CreateCustomFieldByResourceIdParam} */
-  static createCustomFieldByResourceId() {
-    return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
-      body: ContentPlatformModel.CustomFieldRequestSchema().required(),
-    }).required();
-  }
-
   /** @returns {CreateCustomFieldDefinitionParam} */
   static createCustomFieldDefinition() {
     return Joi.object({
+      resource: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomFieldDefinitionRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {CreateCustomObjectParam} */
-  static createCustomObject() {
+  /** @returns {CreateCustomObjectBySlugParam} */
+  static createCustomObjectBySlug() {
     return Joi.object({
-      body: ContentPlatformModel.CustomObjectRequestSchema().required(),
+      definitionSlug: Joi.string().allow("").required(),
+      body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId().required(),
     }).required();
   }
 
@@ -186,47 +183,65 @@ class ContentPlatformValidator {
     }).required();
   }
 
-  /** @returns {DeleteCustomFieldDefinitionParam} */
-  static deleteCustomFieldDefinition() {
+  /** @returns {DeleteCustomFieldDefinitionBySlugParam} */
+  static deleteCustomFieldDefinitionBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      resource: Joi.string().allow("").required(),
+      namespace: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {DeleteCustomFieldsByResourceIdParam} */
-  static deleteCustomFieldsByResourceId() {
+  /** @returns {DeleteCustomFieldsByResourceSlugParam} */
+  static deleteCustomFieldsByResourceSlug() {
     return Joi.object({
       resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
+      resourceSlug: Joi.string().allow("").required(),
       ids: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {DeleteCustomObjectParam} */
-  static deleteCustomObject() {
+  /** @returns {DeleteCustomObjectBySlugParam} */
+  static deleteCustomObjectBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      definitionSlug: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {DeleteCustomObjectDefinitionParam} */
-  static deleteCustomObjectDefinition() {
+  /** @returns {DeleteCustomObjectDefinitionBySlugParam} */
+  static deleteCustomObjectDefinitionBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {ExportCustomObjectEntriesParam} */
-  static exportCustomObjectEntries() {
+  /** @returns {ExportCustomObjectEntriesBySlugParam} */
+  static exportCustomObjectEntriesBySlug() {
     return Joi.object({
-      definitionId: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetCustomFieldDefinitionParam} */
-  static getCustomFieldDefinition() {
+  /** @returns {GetCustomFieldDefinitionByResourceParam} */
+  static getCustomFieldDefinitionByResource() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      pageNo: Joi.string().allow("").required(),
+      pageSize: Joi.string().allow("").required(),
+      resource: Joi.string().allow("").required(),
+      types: Joi.string().allow(""),
+      search: Joi.string().allow(""),
+      slugs: Joi.string().allow(""),
+      namespaces: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetCustomFieldDefinitionBySlugParam} */
+  static getCustomFieldDefinitionBySlug() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      resource: Joi.string().allow("").required(),
+      namespace: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -239,15 +254,7 @@ class ContentPlatformValidator {
       types: Joi.string().allow(""),
       search: Joi.string().allow(""),
       slugs: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetCustomFieldJobsParam} */
-  static getCustomFieldJobs() {
-    return Joi.object({
-      page: Joi.string().allow("").required(),
-      pageSize: Joi.string().allow("").required(),
-      actionType: Joi.string().allow("").required(),
+      namespaces: Joi.string().allow(""),
     }).required();
   }
 
@@ -256,32 +263,26 @@ class ContentPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetCustomFieldsParam} */
-  static getCustomFields() {
+  /** @returns {GetCustomFieldsByResourceSlugParam} */
+  static getCustomFieldsByResourceSlug() {
     return Joi.object({
       resource: Joi.string().allow("").required(),
+      resourceSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetCustomFieldsByResourceIdParam} */
-  static getCustomFieldsByResourceId() {
+  /** @returns {GetCustomObjectBySlugParam} */
+  static getCustomObjectBySlug() {
     return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
+      definitionSlug: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetCustomObjectParam} */
-  static getCustomObject() {
+  /** @returns {GetCustomObjectDefinitionBySlugParam} */
+  static getCustomObjectDefinitionBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetCustomObjectDefinitionParam} */
-  static getCustomObjectDefinition() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -294,12 +295,12 @@ class ContentPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetCustomObjectsParam} */
-  static getCustomObjects() {
+  /** @returns {GetCustomObjectsBySlugParam} */
+  static getCustomObjectsBySlug() {
     return Joi.object({
-      definitionId: Joi.string().allow(""),
       pageNo: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
+      definitionSlug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -317,50 +318,53 @@ class ContentPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {ImportCustomObjectEntriesParam} */
-  static importCustomObjectEntries() {
+  /** @returns {ImportCustomObjectEntriesBySlugParam} */
+  static importCustomObjectEntriesBySlug() {
     return Joi.object({
-      definitionId: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomObjectBulkSchema().required(),
     }).required();
   }
 
-  /** @returns {SampleCustomObjectBulkEntryParam} */
-  static sampleCustomObjectBulkEntry() {
+  /** @returns {SampleCustomObjectBulkEntryBySlugParam} */
+  static sampleCustomObjectBulkEntryBySlug() {
     return Joi.object({
-      definitionId: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {UpdateCustomFieldByResourceIdParam} */
-  static updateCustomFieldByResourceId() {
+  /** @returns {UpdateCustomFieldByResourceSlugParam} */
+  static updateCustomFieldByResourceSlug() {
     return Joi.object({
       resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
+      resourceSlug: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomFieldRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdateCustomFieldDefinitionParam} */
-  static updateCustomFieldDefinition() {
+  /** @returns {UpdateCustomFieldDefinitionBySlugParam} */
+  static updateCustomFieldDefinitionBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      resource: Joi.string().allow("").required(),
+      namespace: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomFieldDefinitionRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdateCustomObjectParam} */
-  static updateCustomObject() {
+  /** @returns {UpdateCustomObjectBySlugParam} */
+  static updateCustomObjectBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.CustomObjectRequestSchema().required(),
+      definitionSlug: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId().required(),
     }).required();
   }
 
-  /** @returns {UpdateCustomObjectDefinitionParam} */
-  static updateCustomObjectDefinition() {
+  /** @returns {UpdateCustomObjectDefinitionBySlugParam} */
+  static updateCustomObjectDefinitionBySlug() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema().required(),
     }).required();
   }

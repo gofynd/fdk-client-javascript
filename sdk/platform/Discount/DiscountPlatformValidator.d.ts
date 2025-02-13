@@ -54,7 +54,7 @@ export = DiscountPlatformValidator;
 /**
  * @typedef ValidateDiscountFileParam
  * @property {string} [discount] - Discount
- * @property {DiscountPlatformModel.FileJobRequest} body
+ * @property {DiscountPlatformModel.FileJobRequestSchema} body
  */
 declare class DiscountPlatformValidator {
     /** @returns {CancelDownloadJobParam} */
@@ -181,6 +181,6 @@ type ValidateDiscountFileParam = {
      * - Discount
      */
     discount?: string;
-    body: DiscountPlatformModel.FileJobRequest;
+    body: DiscountPlatformModel.FileJobRequestSchema;
 };
 import DiscountPlatformModel = require("./DiscountPlatformModel");

@@ -15,95 +15,6 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.CreateCustomFieldByResourceIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
-   *   - Success response
-   *
-   * @name createCustomFieldByResourceId
-   * @summary: Create custom field entries for gives resource and resource_id
-   * @description: Use this API to create the custom field entry for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldByResourceId/).
-   */
-  async createCustomFieldByResourceId(
-    { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformValidator.createCustomFieldByResourceId().validate(
-      {
-        resource,
-        resourceId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformValidator.createCustomFieldByResourceId().validate(
-      {
-        resource,
-        resourceId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createCustomFieldByResourceId \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/${resource}/${resourceId}`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.CustomFieldsResponseByResourceIdSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createCustomFieldByResourceId \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentPlatformValidator.CreateCustomFieldDefinitionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -111,17 +22,18 @@ class Content {
    *   - Success response
    *
    * @name createCustomFieldDefinition
-   * @summary: Create custom field definition
+   * @summary: Create custom field definition for a given resource type
    * @description: You can create custom fields definition to any resource so you can extend property of resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldDefinition/).
    */
   async createCustomFieldDefinition(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { resource, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformValidator.createCustomFieldDefinition().validate(
       {
+        resource,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -135,6 +47,7 @@ class Content {
       error: warrning,
     } = ContentPlatformValidator.createCustomFieldDefinition().validate(
       {
+        resource,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -153,7 +66,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/definitions`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/definition`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -187,20 +100,23 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.CreateCustomObjectParam} arg - Arg object
+   * @param {ContentPlatformValidator.CreateCustomObjectBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
-   * @name createCustomObject
+   * @name createCustomObjectBySlug
    * @summary: Create custom object entries
-   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObject/).
+   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObjectBySlug/).
    */
-  async createCustomObject(
-    { body, requestHeaders } = { requestHeaders: {} },
+  async createCustomObjectBySlug(
+    { definitionSlug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ContentPlatformValidator.createCustomObject().validate(
+    const {
+      error,
+    } = ContentPlatformValidator.createCustomObjectBySlug().validate(
       {
+        definitionSlug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -212,8 +128,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.createCustomObject().validate(
+    } = ContentPlatformValidator.createCustomObjectBySlug().validate(
       {
+        definitionSlug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -221,7 +138,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createCustomObject \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > createCustomObjectBySlug \n ${warrning}`,
       });
     }
 
@@ -232,7 +149,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${definitionSlug}/entries`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -257,7 +174,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createCustomObject \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > createCustomObjectBySlug \n ${res_error}`,
         });
       }
     }
@@ -271,8 +188,9 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
-   *   Success response
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+   *   - Success response
+   *
    * @name createCustomObjectDefinition
    * @summary: Create custom object definition
    * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObjectDefinition/).
@@ -316,7 +234,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/definitions`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -330,7 +248,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
+    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -350,23 +268,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.DeleteCustomFieldDefinitionParam} arg - Arg object
+   * @param {ContentPlatformValidator.DeleteCustomFieldDefinitionBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-   * @name deleteCustomFieldDefinition
+   * @name deleteCustomFieldDefinitionBySlug
    * @summary: Delete custom fields definition
-   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinition/).
+   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinitionBySlug/).
    */
-  async deleteCustomFieldDefinition(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async deleteCustomFieldDefinitionBySlug(
+    { slug, resource, namespace, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.deleteCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.deleteCustomFieldDefinitionBySlug().validate(
       {
-        id,
+        slug,
+        resource,
+        namespace,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -377,16 +299,18 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.deleteCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.deleteCustomFieldDefinitionBySlug().validate(
       {
-        id,
+        slug,
+        resource,
+        namespace,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteCustomFieldDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteCustomFieldDefinitionBySlug \n ${warrning}`,
       });
     }
 
@@ -397,7 +321,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -422,7 +346,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteCustomFieldDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteCustomFieldDefinitionBySlug \n ${res_error}`,
         });
       }
     }
@@ -431,27 +355,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.DeleteCustomFieldsByResourceIdParam} arg
+   * @param {ContentPlatformValidator.DeleteCustomFieldsByResourceSlugParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomFieldsDeleteSchema>} -
    *   Success response
-   * @name deleteCustomFieldsByResourceId
-   * @summary: Delete custom fields of given resource and resource id
-   * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldsByResourceId/).
+   * @name deleteCustomFieldsByResourceSlug
+   * @summary: delete custom fields of given resource and resource slug
+   * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldsByResourceSlug/).
    */
-  async deleteCustomFieldsByResourceId(
-    { resource, resourceId, ids, requestHeaders } = { requestHeaders: {} },
+  async deleteCustomFieldsByResourceSlug(
+    { resource, resourceSlug, ids, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.deleteCustomFieldsByResourceId().validate(
+    } = ContentPlatformValidator.deleteCustomFieldsByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
         ids,
       },
       { abortEarly: false, allowUnknown: true }
@@ -463,10 +387,10 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.deleteCustomFieldsByResourceId().validate(
+    } = ContentPlatformValidator.deleteCustomFieldsByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
         ids,
       },
       { abortEarly: false, allowUnknown: false }
@@ -474,7 +398,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteCustomFieldsByResourceId \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteCustomFieldsByResourceSlug \n ${warrning}`,
       });
     }
 
@@ -486,7 +410,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/${resource}/${resourceId}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/${resourceSlug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -511,7 +435,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteCustomFieldsByResourceId \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteCustomFieldsByResourceSlug \n ${res_error}`,
         });
       }
     }
@@ -520,21 +444,24 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.DeleteCustomObjectParam} arg - Arg object
+   * @param {ContentPlatformValidator.DeleteCustomObjectBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-   * @name deleteCustomObject
+   * @name deleteCustomObjectBySlug
    * @summary: Delete custom object
-   * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObject/).
+   * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectBySlug/).
    */
-  async deleteCustomObject(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async deleteCustomObjectBySlug(
+    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ContentPlatformValidator.deleteCustomObject().validate(
+    const {
+      error,
+    } = ContentPlatformValidator.deleteCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -545,16 +472,17 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.deleteCustomObject().validate(
+    } = ContentPlatformValidator.deleteCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteCustomObject \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteCustomObjectBySlug \n ${warrning}`,
       });
     }
 
@@ -565,7 +493,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -590,7 +518,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteCustomObject \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteCustomObjectBySlug \n ${res_error}`,
         });
       }
     }
@@ -599,7 +527,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.DeleteCustomObjectDefinitionParam} arg
+   * @param {ContentPlatformValidator.DeleteCustomObjectDefinitionBySlugParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -607,19 +535,19 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>}
    *   - Success response
    *
-   * @name deleteCustomObjectDefinition
-   * @summary: delete custom object definition
-   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectDefinition/).
+   * @name deleteCustomObjectDefinitionBySlug
+   * @summary: Delete custom object definition
+   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectDefinitionBySlug/).
    */
-  async deleteCustomObjectDefinition(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async deleteCustomObjectDefinitionBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.deleteCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.deleteCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -630,16 +558,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.deleteCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.deleteCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteCustomObjectDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteCustomObjectDefinitionBySlug \n ${warrning}`,
       });
     }
 
@@ -650,7 +578,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -675,7 +603,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteCustomObjectDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteCustomObjectDefinitionBySlug \n ${res_error}`,
         });
       }
     }
@@ -684,25 +612,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.ExportCustomObjectEntriesParam} arg - Arg object
+   * @param {ContentPlatformValidator.ExportCustomObjectEntriesBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>}
    *   - Success response
    *
-   * @name exportCustomObjectEntries
+   * @name exportCustomObjectEntriesBySlug
    * @summary: Initiate download for bulk custom object entries
-   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportCustomObjectEntries/).
+   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportCustomObjectEntriesBySlug/).
    */
-  async exportCustomObjectEntries(
-    { definitionId, requestHeaders } = { requestHeaders: {} },
+  async exportCustomObjectEntriesBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.exportCustomObjectEntries().validate(
+    } = ContentPlatformValidator.exportCustomObjectEntriesBySlug().validate(
       {
-        definitionId,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -713,16 +643,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.exportCustomObjectEntries().validate(
+    } = ContentPlatformValidator.exportCustomObjectEntriesBySlug().validate(
       {
-        definitionId,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > exportCustomObjectEntries \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > exportCustomObjectEntriesBySlug \n ${warrning}`,
       });
     }
 
@@ -733,7 +663,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/bulk/${definitionId}/download`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}/bulk/download`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -758,7 +688,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > exportCustomObjectEntries \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > exportCustomObjectEntriesBySlug \n ${res_error}`,
         });
       }
     }
@@ -767,25 +697,41 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.GetCustomFieldDefinitionParam} arg - Arg object
+   * @param {ContentPlatformValidator.GetCustomFieldDefinitionByResourceParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
-   *   - Success response
-   *
-   * @name getCustomFieldDefinition
-   * @summary: Get custom fields definition
-   * @description: Custom field definitions can be fetch using definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinition/).
+   * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>} -
+   *   Success response
+   * @name getCustomFieldDefinitionByResource
+   * @summary: Get custom fields definitions for a given resource type
+   * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitionByResource/).
    */
-  async getCustomFieldDefinition(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async getCustomFieldDefinitionByResource(
+    {
+      pageNo,
+      pageSize,
+      resource,
+      types,
+      search,
+      slugs,
+      namespaces,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.getCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.getCustomFieldDefinitionByResource().validate(
       {
-        id,
+        pageNo,
+        pageSize,
+        resource,
+        types,
+        search,
+        slugs,
+        namespaces,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -796,27 +742,39 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.getCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.getCustomFieldDefinitionByResource().validate(
       {
-        id,
+        pageNo,
+        pageSize,
+        resource,
+        types,
+        search,
+        slugs,
+        namespaces,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomFieldDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getCustomFieldDefinitionByResource \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["types"] = types;
+    query_params["search"] = search;
+    query_params["slugs"] = slugs;
+    query_params["namespaces"] = namespaces;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/definition`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -830,7 +788,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomFieldDefinitionDetailResSchema().validate(
+    } = ContentPlatformModel.CustomFieldDefinitionsSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -841,7 +799,96 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomFieldDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getCustomFieldDefinitionByResource \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformValidator.GetCustomFieldDefinitionBySlugParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.MetaFieldDefinitionDetailResSchema>}
+   *   - Success response
+   *
+   * @name getCustomFieldDefinitionBySlug
+   * @summary: Get custom fields definition by resource, slug and namespace
+   * @description: Custom field definitions can be retrived from this using its slug, namespace and resource - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitionBySlug/).
+   */
+  async getCustomFieldDefinitionBySlug(
+    { slug, resource, namespace, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformValidator.getCustomFieldDefinitionBySlug().validate(
+      {
+        slug,
+        resource,
+        namespace,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformValidator.getCustomFieldDefinitionBySlug().validate(
+      {
+        slug,
+        resource,
+        namespace,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getCustomFieldDefinitionBySlug \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.MetaFieldDefinitionDetailResSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getCustomFieldDefinitionBySlug \n ${res_error}`,
         });
       }
     }
@@ -860,9 +907,16 @@ class Content {
    * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitions/).
    */
   async getCustomFieldDefinitions(
-    { pageNo, pageSize, resources, types, search, slugs, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pageNo,
+      pageSize,
+      resources,
+      types,
+      search,
+      slugs,
+      namespaces,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -875,6 +929,7 @@ class Content {
         types,
         search,
         slugs,
+        namespaces,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -893,6 +948,7 @@ class Content {
         types,
         search,
         slugs,
+        namespaces,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -910,13 +966,14 @@ class Content {
     query_params["types"] = types;
     query_params["search"] = search;
     query_params["slugs"] = slugs;
+    query_params["namespaces"] = namespaces;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/definitions`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/definition`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -942,92 +999,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getCustomFieldDefinitions \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformValidator.GetCustomFieldJobsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldBulkEntry>} - Success response
-   * @name getCustomFieldJobs
-   * @summary: Fetch bulk import and export job list.
-   * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldJobs/).
-   */
-  async getCustomFieldJobs(
-    { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentPlatformValidator.getCustomFieldJobs().validate(
-      {
-        page,
-        pageSize,
-        actionType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformValidator.getCustomFieldJobs().validate(
-      {
-        page,
-        pageSize,
-        actionType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomFieldJobs \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page"] = page;
-    query_params["page_size"] = pageSize;
-    query_params["action_type"] = actionType;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/jobs`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.CustomFieldBulkEntry().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomFieldJobs \n ${res_error}`,
         });
       }
     }
@@ -1111,106 +1082,28 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.GetCustomFieldsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseSchema>} -
-   *   Success response
-   * @name getCustomFields
-   * @summary: Get list of custom fields of given resource
-   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFields/).
-   */
-  async getCustomFields(
-    { resource, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentPlatformValidator.getCustomFields().validate(
-      {
-        resource,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformValidator.getCustomFields().validate(
-      {
-        resource,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomFields \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/${resource}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.CustomFieldsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomFields \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformValidator.GetCustomFieldsByResourceIdParam} arg - Arg object
+   * @param {ContentPlatformValidator.GetCustomFieldsByResourceSlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
    *   - Success response
    *
-   * @name getCustomFieldsByResourceId
-   * @summary: Get list of custom fields of given resource and resource id
-   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldsByResourceId/).
+   * @name getCustomFieldsByResourceSlug
+   * @summary: Get list of custom fields of given resource and resource slug
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldsByResourceSlug/).
    */
-  async getCustomFieldsByResourceId(
-    { resource, resourceId, requestHeaders } = { requestHeaders: {} },
+  async getCustomFieldsByResourceSlug(
+    { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.getCustomFieldsByResourceId().validate(
+    } = ContentPlatformValidator.getCustomFieldsByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1221,17 +1114,17 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.getCustomFieldsByResourceId().validate(
+    } = ContentPlatformValidator.getCustomFieldsByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomFieldsByResourceId \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getCustomFieldsByResourceSlug \n ${warrning}`,
       });
     }
 
@@ -1242,7 +1135,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/${resource}/${resourceId}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/${resourceSlug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1267,7 +1160,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomFieldsByResourceId \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getCustomFieldsByResourceSlug \n ${res_error}`,
         });
       }
     }
@@ -1276,21 +1169,23 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.GetCustomObjectParam} arg - Arg object
+   * @param {ContentPlatformValidator.GetCustomObjectBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
-   * @name getCustomObject
+   * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
+   *   Success response
+   * @name getCustomObjectBySlug
    * @summary: Get custom object details
-   * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObject/).
+   * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectBySlug/).
    */
-  async getCustomObject(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async getCustomObjectBySlug(
+    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ContentPlatformValidator.getCustomObject().validate(
+    const { error } = ContentPlatformValidator.getCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1301,16 +1196,17 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.getCustomObject().validate(
+    } = ContentPlatformValidator.getCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomObject \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getCustomObjectBySlug \n ${warrning}`,
       });
     }
 
@@ -1321,7 +1217,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1335,7 +1231,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectByIdSchema().validate(responseData, {
+    } = ContentPlatformModel.CustomObjectBySlugSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1346,7 +1242,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomObject \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getCustomObjectBySlug \n ${res_error}`,
         });
       }
     }
@@ -1355,24 +1251,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.GetCustomObjectDefinitionParam} arg - Arg object
+   * @param {ContentPlatformValidator.GetCustomObjectDefinitionBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
-   *   Success response
-   * @name getCustomObjectDefinition
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+   *   - Success response
+   *
+   * @name getCustomObjectDefinitionBySlug
    * @summary: Get custom object definition
-   * @description: Custom object definitions can be fetched using their definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinition/).
+   * @description: Custom object definitions can be fetched using their custom object definition slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinitionBySlug/).
    */
-  async getCustomObjectDefinition(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async getCustomObjectDefinitionBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.getCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.getCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1383,16 +1282,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.getCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.getCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomObjectDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getCustomObjectDefinitionBySlug \n ${warrning}`,
       });
     }
 
@@ -1403,7 +1302,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1417,7 +1316,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
+    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1428,7 +1327,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomObjectDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getCustomObjectDefinitionBySlug \n ${res_error}`,
         });
       }
     }
@@ -1444,7 +1343,7 @@ class Content {
    *   Success response
    * @name getCustomObjectDefinitions
    * @summary: Get custom object definitions
-   * @description: Custom object definition lists can be obtained using this endpoint - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinitions/).
+   * @description: Custom object definition lists can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinitions/).
    */
   async getCustomObjectDefinitions(
     { pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
@@ -1492,7 +1391,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/definitions`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1526,23 +1425,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.GetCustomObjectsParam} arg - Arg object
+   * @param {ContentPlatformValidator.GetCustomObjectsBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectsSchema>} - Success response
-   * @name getCustomObjects
-   * @summary: Get list of custom objects
-   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjects/).
+   * @name getCustomObjectsBySlug
+   * @summary: Get list of custom objects under a certain custom object definition
+   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectsBySlug/).
    */
-  async getCustomObjects(
-    { pageNo, pageSize, definitionId, requestHeaders } = { requestHeaders: {} },
+  async getCustomObjectsBySlug(
+    { pageNo, pageSize, definitionSlug, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ContentPlatformValidator.getCustomObjects().validate(
+    const {
+      error,
+    } = ContentPlatformValidator.getCustomObjectsBySlug().validate(
       {
         pageNo,
         pageSize,
-        definitionId,
+        definitionSlug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1553,23 +1456,22 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.getCustomObjects().validate(
+    } = ContentPlatformValidator.getCustomObjectsBySlug().validate(
       {
         pageNo,
         pageSize,
-        definitionId,
+        definitionSlug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getCustomObjects \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getCustomObjectsBySlug \n ${warrning}`,
       });
     }
 
     const query_params = {};
-    query_params["definition_id"] = definitionId;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
@@ -1578,7 +1480,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${definitionSlug}/entries`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1603,7 +1505,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getCustomObjects \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getCustomObjectsBySlug \n ${res_error}`,
         });
       }
     }
@@ -1771,25 +1673,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.ImportCustomObjectEntriesParam} arg - Arg object
+   * @param {ContentPlatformValidator.ImportCustomObjectEntriesBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadResponse>}
+   * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadDetails>}
    *   - Success response
    *
-   * @name importCustomObjectEntries
+   * @name importCustomObjectEntriesBySlug
    * @summary: Bulk custom object entries upload
-   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importCustomObjectEntries/).
+   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importCustomObjectEntriesBySlug/).
    */
-  async importCustomObjectEntries(
-    { definitionId, body, requestHeaders } = { requestHeaders: {} },
+  async importCustomObjectEntriesBySlug(
+    { slug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.importCustomObjectEntries().validate(
+    } = ContentPlatformValidator.importCustomObjectEntriesBySlug().validate(
       {
-        definitionId,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1801,9 +1705,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.importCustomObjectEntries().validate(
+    } = ContentPlatformValidator.importCustomObjectEntriesBySlug().validate(
       {
-        definitionId,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1811,7 +1715,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > importCustomObjectEntries \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > importCustomObjectEntriesBySlug \n ${warrning}`,
       });
     }
 
@@ -1822,7 +1726,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/bulk/${definitionId}/upload`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}/bulk/upload`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1836,7 +1740,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectEntryBulkUploadResponse().validate(
+    } = ContentPlatformModel.CustomObjectEntryBulkUploadDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1847,7 +1751,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > importCustomObjectEntries \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > importCustomObjectEntriesBySlug \n ${res_error}`,
         });
       }
     }
@@ -1856,23 +1760,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.SampleCustomObjectBulkEntryParam} arg - Arg object
+   * @param {ContentPlatformValidator.SampleCustomObjectBulkEntryBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
-   * @name sampleCustomObjectBulkEntry
+   * @name sampleCustomObjectBulkEntryBySlug
    * @summary: Download sample for custom object bulk entry
-   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleCustomObjectBulkEntry/).
+   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleCustomObjectBulkEntryBySlug/).
    */
-  async sampleCustomObjectBulkEntry(
-    { definitionId, requestHeaders } = { requestHeaders: {} },
+  async sampleCustomObjectBulkEntryBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.sampleCustomObjectBulkEntry().validate(
+    } = ContentPlatformValidator.sampleCustomObjectBulkEntryBySlug().validate(
       {
-        definitionId,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1883,16 +1789,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.sampleCustomObjectBulkEntry().validate(
+    } = ContentPlatformValidator.sampleCustomObjectBulkEntryBySlug().validate(
       {
-        definitionId,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > sampleCustomObjectBulkEntry \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > sampleCustomObjectBulkEntryBySlug \n ${warrning}`,
       });
     }
 
@@ -1903,7 +1809,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/bulk/${definitionId}/sample`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}/bulk/sample`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1925,7 +1831,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > sampleCustomObjectBulkEntry \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > sampleCustomObjectBulkEntryBySlug \n ${res_error}`,
         });
       }
     }
@@ -1934,7 +1840,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.UpdateCustomFieldByResourceIdParam} arg
+   * @param {ContentPlatformValidator.UpdateCustomFieldByResourceSlugParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1942,20 +1848,20 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
    *   - Success response
    *
-   * @name updateCustomFieldByResourceId
-   * @summary: Update custom field entries for gives resource and resource_id
-   * @description: You can edit a custom field using this endpoint to any resource by providing the resource ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldByResourceId/).
+   * @name updateCustomFieldByResourceSlug
+   * @summary: Update custom field entries for gives resource and resource slug
+   * @description: You can add a custom field using this endpoint to any resource by providing the resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldByResourceSlug/).
    */
-  async updateCustomFieldByResourceId(
-    { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
+  async updateCustomFieldByResourceSlug(
+    { resource, resourceSlug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.updateCustomFieldByResourceId().validate(
+    } = ContentPlatformValidator.updateCustomFieldByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1967,10 +1873,10 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.updateCustomFieldByResourceId().validate(
+    } = ContentPlatformValidator.updateCustomFieldByResourceSlug().validate(
       {
         resource,
-        resourceId,
+        resourceSlug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1978,7 +1884,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateCustomFieldByResourceId \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateCustomFieldByResourceSlug \n ${warrning}`,
       });
     }
 
@@ -1989,7 +1895,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/${resource}/${resourceId}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/${resourceSlug}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2014,7 +1920,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateCustomFieldByResourceId \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateCustomFieldByResourceSlug \n ${res_error}`,
         });
       }
     }
@@ -2023,25 +1929,31 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.UpdateCustomFieldDefinitionParam} arg - Arg object
+   * @param {ContentPlatformValidator.UpdateCustomFieldDefinitionBySlugParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
    *   - Success response
    *
-   * @name updateCustomFieldDefinition
+   * @name updateCustomFieldDefinitionBySlug
    * @summary: Update custom field definition
-   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldDefinition/).
+   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldDefinitionBySlug/).
    */
-  async updateCustomFieldDefinition(
-    { id, body, requestHeaders } = { requestHeaders: {} },
+  async updateCustomFieldDefinitionBySlug(
+    { slug, resource, namespace, body, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.updateCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.updateCustomFieldDefinitionBySlug().validate(
       {
-        id,
+        slug,
+        resource,
+        namespace,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2053,9 +1965,11 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.updateCustomFieldDefinition().validate(
+    } = ContentPlatformValidator.updateCustomFieldDefinitionBySlug().validate(
       {
-        id,
+        slug,
+        resource,
+        namespace,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2063,7 +1977,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateCustomFieldDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateCustomFieldDefinitionBySlug \n ${warrning}`,
       });
     }
 
@@ -2074,7 +1988,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metafields/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2099,7 +2013,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateCustomFieldDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateCustomFieldDefinitionBySlug \n ${res_error}`,
         });
       }
     }
@@ -2108,21 +2022,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.UpdateCustomObjectParam} arg - Arg object
+   * @param {ContentPlatformValidator.UpdateCustomObjectBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
-   * @name updateCustomObject
+   * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
+   *   Success response
+   * @name updateCustomObjectBySlug
    * @summary: Update custom object details
-   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObject/).
+   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectBySlug/).
    */
-  async updateCustomObject(
-    { id, body, requestHeaders } = { requestHeaders: {} },
+  async updateCustomObjectBySlug(
+    { definitionSlug, slug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ContentPlatformValidator.updateCustomObject().validate(
+    const {
+      error,
+    } = ContentPlatformValidator.updateCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2134,9 +2052,10 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.updateCustomObject().validate(
+    } = ContentPlatformValidator.updateCustomObjectBySlug().validate(
       {
-        id,
+        definitionSlug,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2144,7 +2063,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateCustomObject \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateCustomObjectBySlug \n ${warrning}`,
       });
     }
 
@@ -2155,7 +2074,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2169,7 +2088,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectSchema().validate(responseData, {
+    } = ContentPlatformModel.CustomObjectBySlugSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2180,7 +2099,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateCustomObject \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateCustomObjectBySlug \n ${res_error}`,
         });
       }
     }
@@ -2189,26 +2108,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformValidator.UpdateCustomObjectDefinitionParam} arg
+   * @param {ContentPlatformValidator.UpdateCustomObjectDefinitionBySlugParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
-   *   Success response
-   * @name updateCustomObjectDefinition
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+   *   - Success response
+   *
+   * @name updateCustomObjectDefinitionBySlug
    * @summary: Update custom object definition
-   * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectDefinition/).
+   * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectDefinitionBySlug/).
    */
-  async updateCustomObjectDefinition(
-    { id, body, requestHeaders } = { requestHeaders: {} },
+  async updateCustomObjectDefinitionBySlug(
+    { slug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformValidator.updateCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.updateCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2220,9 +2140,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformValidator.updateCustomObjectDefinition().validate(
+    } = ContentPlatformValidator.updateCustomObjectDefinitionBySlug().validate(
       {
-        id,
+        slug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2230,7 +2150,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateCustomObjectDefinition \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateCustomObjectDefinitionBySlug \n ${warrning}`,
       });
     }
 
@@ -2241,7 +2161,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/metaobjects/definitions/${id}`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customobjects/definition/${slug}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2255,7 +2175,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
+    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2266,7 +2186,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateCustomObjectDefinition \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateCustomObjectDefinitionBySlug \n ${res_error}`,
         });
       }
     }

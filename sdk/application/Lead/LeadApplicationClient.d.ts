@@ -16,7 +16,7 @@ declare class Lead {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<TicketHistory>} - Success response
      * @name createHistory
-     * @summary: Logs ticket history.
+     * @summary: Log ticket history
      * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
      */
     createHistory({ id, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<TicketHistory>;
@@ -50,10 +50,10 @@ declare class Lead {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SubmitCustomFormResponse>} - Success response
+     * @returns {Promise<SubmitCustomFormDetails>} - Success response
      * @name submitCustomForm
      * @summary: Submits form data
      * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
      */
-    submitCustomForm({ slug, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SubmitCustomFormResponse>;
+    submitCustomForm({ slug, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SubmitCustomFormDetails>;
 }

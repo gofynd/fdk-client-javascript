@@ -268,23 +268,6 @@ export = ContentPublicModel;
  * @property {CredentialSchema[]} [items]
  */
 /**
- * @typedef SDKLinksResponseSchema
- * @property {SDKLinkObjectSchema[]} [readmes]
- */
-/**
- * @typedef SDKLinkObjectSchema
- * @property {string} [owner]
- * @property {string} [repo]
- * @property {string} [path]
- * @property {string} [image]
- * @property {string} [name]
- * @property {string} [type]
- */
-/**
- * @typedef SDKbyTypeResponseSchema
- * @property {string} [readme_content]
- */
-/**
  * @typedef ContentAPIError
  * @property {string} [message]
  * @property {number} [status]
@@ -298,7 +281,7 @@ export = ContentPublicModel;
 declare class ContentPublicModel {
 }
 declare namespace ContentPublicModel {
-    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, SdkReadmeSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, SDKLinksResponseSchema, SDKLinkObjectSchema, SDKbyTypeResponseSchema, ContentAPIError };
+    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, SdkReadmeSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, ContentAPIError };
 }
 /** @returns {BasicDetailsPayloadSchema} */
 declare function BasicDetailsPayloadSchema(): BasicDetailsPayloadSchema;
@@ -601,26 +584,6 @@ type ConfigurationSchema = {
 declare function CredentialsSchema(): CredentialsSchema;
 type CredentialsSchema = {
     items?: CredentialSchema[];
-};
-/** @returns {SDKLinksResponseSchema} */
-declare function SDKLinksResponseSchema(): SDKLinksResponseSchema;
-type SDKLinksResponseSchema = {
-    readmes?: SDKLinkObjectSchema[];
-};
-/** @returns {SDKLinkObjectSchema} */
-declare function SDKLinkObjectSchema(): SDKLinkObjectSchema;
-type SDKLinkObjectSchema = {
-    owner?: string;
-    repo?: string;
-    path?: string;
-    image?: string;
-    name?: string;
-    type?: string;
-};
-/** @returns {SDKbyTypeResponseSchema} */
-declare function SDKbyTypeResponseSchema(): SDKbyTypeResponseSchema;
-type SDKbyTypeResponseSchema = {
-    readme_content?: string;
 };
 /** @returns {ContentAPIError} */
 declare function ContentAPIError(): ContentAPIError;

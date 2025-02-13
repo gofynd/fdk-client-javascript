@@ -5,7 +5,7 @@ export = FileStoragePlatformApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartResponse} body
+ * @property {FileStoragePlatformModel.FileUpload} body
  */
 /**
  * @typedef AppCopyFilesParam
@@ -18,7 +18,7 @@ export = FileStoragePlatformApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartRequest} body
+ * @property {FileStoragePlatformModel.FileUploadStart} body
  */
 /**
  * @typedef AppbrowseParam
@@ -143,7 +143,7 @@ type AppCompleteUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.StartResponse;
+    body: FileStoragePlatformModel.FileUpload;
 };
 type AppCopyFilesParam = {
     /**
@@ -160,7 +160,7 @@ type AppStartUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.StartRequest;
+    body: FileStoragePlatformModel.FileUploadStart;
 };
 type AppbrowseParam = {
     /**

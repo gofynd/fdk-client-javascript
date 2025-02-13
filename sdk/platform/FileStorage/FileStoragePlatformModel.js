@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef UpdatePdfTypeRequest
+ * @typedef UpdatePdfType
  * @property {number} [pdf_type_id]
  * @property {string} [name]
  * @property {string[]} [format]
@@ -12,11 +12,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PdfTypeIdResponse
+ * @typedef PdfTypeByIdDetails
  * @property {boolean} [store_os]
  * @property {string} [country_code]
  * @property {number} [pdf_type_id]
  * @property {number} [__v]
+ * @property {string} [_id]
  * @property {string[]} [format]
  * @property {string} [name]
  * @property {boolean} [visibility]
@@ -33,7 +34,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PdfConfigurationResponse
+ * @typedef UpdatedDefaultTemplateById
  * @property {PdfConfigurationData} [data]
  * @property {boolean} [success]
  */
@@ -48,7 +49,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PdfDefaultTemplateResponse
+ * @typedef PdfDefaultTemplateById
  * @property {string} [_id] - The ID of the PDF default template
  * @property {string} [country_code] - The country code associated with the template
  * @property {string} [format] - The format of the template (e.g., "A4")
@@ -89,7 +90,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FailedResponse
+ * @typedef FailedBrowseFilesResult
  * @property {string} message
  */
 
@@ -107,7 +108,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartResponse
+ * @typedef FileUpload
  * @property {string} file_name
  * @property {string} file_path
  * @property {string} content_type
@@ -120,7 +121,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartRequest
+ * @typedef FileUploadStart
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
@@ -134,7 +135,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompleteResponse
+ * @typedef FileUploadComplete
  * @property {string} _id
  * @property {string} file_name
  * @property {string} file_path
@@ -153,7 +154,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProxyResponse
+ * @typedef ProxyFileAccess
  * @property {Object} [data]
  * @property {Object} [support]
  */
@@ -177,18 +178,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SignUrlResponse
+ * @typedef SignUrlResult
  * @property {Urls[]} urls
  */
 
 /**
- * @typedef SignUrlRequest
+ * @typedef SignUrl
  * @property {number} expiry
  * @property {string[]} urls
  */
 
 /**
- * @typedef InvoiceTypesDataResponse
+ * @typedef InvoiceTypesData
  * @property {boolean} [status]
  * @property {string} _id
  * @property {number} pdf_type_id
@@ -201,8 +202,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvoiceTypesResponse
- * @property {InvoiceTypesDataResponse[]} data
+ * @typedef InvoiceTypes
+ * @property {InvoiceTypesData[]} data
  * @property {boolean} success
  */
 
@@ -515,7 +516,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DummyTemplateDataPayload
+ * @typedef PdfPayloadDetails
  * @property {boolean} [is_export]
  * @property {boolean} [is_export_shipment]
  * @property {string} [app_domain_name]
@@ -568,7 +569,7 @@ const Joi = require("joi");
  * @property {string} [_id] - This field contains the unique identifier for the
  *   PDF payload.
  * @property {number} [pdf_type_id] - This is invoice unique id
- * @property {DummyTemplateDataPayload} payload
+ * @property {PdfPayloadDetails} payload
  * @property {string} [country_code] - This field represents the country code.
  * @property {number} [__v]
  */
@@ -576,21 +577,21 @@ const Joi = require("joi");
 /**
  * @typedef savePdfPayload
  * @property {number} [pdf_type_id]
- * @property {DummyTemplateDataPayload} [payload]
+ * @property {PdfPayloadDetails} [payload]
  * @property {string} [country_code]
  */
 
 /**
- * @typedef DummyPayloadById
+ * @typedef MapperDetails
  * @property {string} [_id]
  * @property {number} [pdf_type_id]
- * @property {DummyTemplateDataPayload} [payload]
+ * @property {PdfPayloadDetails} [payload]
  * @property {string} [country_code]
  * @property {number} [__v] - This field holds the version number.
  */
 
 /**
- * @typedef DummyTemplateDataItems
+ * @typedef PdfDataItemsDetails
  * @property {DummyTemplateData[]} data
  * @property {boolean} success
  */
@@ -619,7 +620,12 @@ const Joi = require("joi");
  *   for the PDF document.
  * @property {number} [__v] - This field holds the version number of the PDF
  *   configuration document.
- * @property {string} [country_code] - This field represents the country code.
+ * @property {string} [country_code]
+ */
+
+/**
+ * @typedef DeleteMapperById
+ * @property {string} [message] - This field represents the country code.
  * @property {boolean} [default_template] - This field indicates whether the
  *   HTML template is the default template.
  */
@@ -737,26 +743,27 @@ const Joi = require("joi");
  */
 
 class FileStoragePlatformModel {
-  /** @returns {UpdatePdfTypeRequest} */
-  static UpdatePdfTypeRequest() {
+  /** @returns {UpdatePdfType} */
+  static UpdatePdfType() {
     return Joi.object({
       pdf_type_id: Joi.number(),
       name: Joi.string().allow(""),
       format: Joi.array().items(Joi.string().allow("")),
       visibility: Joi.boolean(),
-      schema: Joi.any(),
+      schema: Joi.object().pattern(/\S/, Joi.any()),
       store_os: Joi.boolean(),
       country_code: Joi.string().allow(""),
     });
   }
 
-  /** @returns {PdfTypeIdResponse} */
-  static PdfTypeIdResponse() {
+  /** @returns {PdfTypeByIdDetails} */
+  static PdfTypeByIdDetails() {
     return Joi.object({
       store_os: Joi.boolean(),
       country_code: Joi.string().allow(""),
       pdf_type_id: Joi.number(),
       __v: Joi.number(),
+      _id: Joi.string().allow(""),
       format: Joi.array().items(Joi.string().allow("")),
       name: Joi.string().allow(""),
       visibility: Joi.boolean(),
@@ -775,8 +782,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {PdfConfigurationResponse} */
-  static PdfConfigurationResponse() {
+  /** @returns {UpdatedDefaultTemplateById} */
+  static UpdatedDefaultTemplateById() {
     return Joi.object({
       data: FileStoragePlatformModel.PdfConfigurationData(),
       success: Joi.boolean(),
@@ -794,8 +801,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {PdfDefaultTemplateResponse} */
-  static PdfDefaultTemplateResponse() {
+  /** @returns {PdfDefaultTemplateById} */
+  static PdfDefaultTemplateById() {
     return Joi.object({
       _id: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
@@ -845,8 +852,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {FailedResponse} */
-  static FailedResponse() {
+  /** @returns {FailedBrowseFilesResult} */
+  static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
     });
@@ -869,8 +876,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {StartResponse} */
-  static StartResponse() {
+  /** @returns {FileUpload} */
+  static FileUpload() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -884,8 +891,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {StartRequest} */
-  static StartRequest() {
+  /** @returns {FileUploadStart} */
+  static FileUploadStart() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       content_type: Joi.string().allow("").required(),
@@ -902,8 +909,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {CompleteResponse} */
-  static CompleteResponse() {
+  /** @returns {FileUploadComplete} */
+  static FileUploadComplete() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
@@ -923,8 +930,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {ProxyResponse} */
-  static ProxyResponse() {
+  /** @returns {ProxyFileAccess} */
+  static ProxyFileAccess() {
     return Joi.object({
       data: Joi.object().pattern(/\S/, Joi.any()),
       support: Joi.object().pattern(/\S/, Joi.any()),
@@ -955,23 +962,23 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {SignUrlResponse} */
-  static SignUrlResponse() {
+  /** @returns {SignUrlResult} */
+  static SignUrlResult() {
     return Joi.object({
       urls: Joi.array().items(FileStoragePlatformModel.Urls()).required(),
     });
   }
 
-  /** @returns {SignUrlRequest} */
-  static SignUrlRequest() {
+  /** @returns {SignUrl} */
+  static SignUrl() {
     return Joi.object({
       expiry: Joi.number().required(),
       urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
-  /** @returns {InvoiceTypesDataResponse} */
-  static InvoiceTypesDataResponse() {
+  /** @returns {InvoiceTypesData} */
+  static InvoiceTypesData() {
     return Joi.object({
       status: Joi.boolean(),
       _id: Joi.string().allow("").required(),
@@ -985,11 +992,11 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {InvoiceTypesResponse} */
-  static InvoiceTypesResponse() {
+  /** @returns {InvoiceTypes} */
+  static InvoiceTypes() {
     return Joi.object({
       data: Joi.array()
-        .items(FileStoragePlatformModel.InvoiceTypesDataResponse())
+        .items(FileStoragePlatformModel.InvoiceTypesData())
         .required(),
       success: Joi.boolean().required(),
     });
@@ -1360,8 +1367,8 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {DummyTemplateDataPayload} */
-  static DummyTemplateDataPayload() {
+  /** @returns {PdfPayloadDetails} */
+  static PdfPayloadDetails() {
     return Joi.object({
       is_export: Joi.boolean(),
       is_export_shipment: Joi.boolean(),
@@ -1416,7 +1423,7 @@ class FileStoragePlatformModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       pdf_type_id: Joi.number(),
-      payload: FileStoragePlatformModel.DummyTemplateDataPayload().required(),
+      payload: FileStoragePlatformModel.PdfPayloadDetails().required(),
       country_code: Joi.string().allow(""),
       __v: Joi.number(),
     });
@@ -1426,24 +1433,24 @@ class FileStoragePlatformModel {
   static savePdfPayload() {
     return Joi.object({
       pdf_type_id: Joi.number(),
-      payload: FileStoragePlatformModel.DummyTemplateDataPayload(),
+      payload: FileStoragePlatformModel.PdfPayloadDetails(),
       country_code: Joi.string().allow(""),
     });
   }
 
-  /** @returns {DummyPayloadById} */
-  static DummyPayloadById() {
+  /** @returns {MapperDetails} */
+  static MapperDetails() {
     return Joi.object({
       _id: Joi.string().allow(""),
       pdf_type_id: Joi.number(),
-      payload: FileStoragePlatformModel.DummyTemplateDataPayload(),
+      payload: FileStoragePlatformModel.PdfPayloadDetails(),
       country_code: Joi.string().allow(""),
       __v: Joi.number(),
     });
   }
 
-  /** @returns {DummyTemplateDataItems} */
-  static DummyTemplateDataItems() {
+  /** @returns {PdfDataItemsDetails} */
+  static PdfDataItemsDetails() {
     return Joi.object({
       data: Joi.array()
         .items(FileStoragePlatformModel.DummyTemplateData())
@@ -1474,6 +1481,13 @@ class FileStoragePlatformModel {
       template: Joi.string().allow(""),
       __v: Joi.number(),
       country_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DeleteMapperById} */
+  static DeleteMapperById() {
+    return Joi.object({
+      message: Joi.string().allow(""),
       default_template: Joi.boolean(),
     });
   }
@@ -1600,7 +1614,7 @@ class FileStoragePlatformModel {
     return Joi.object({
       job_type: Joi.string().allow(""),
       action: Joi.string().allow(""),
-      event: Joi.any(),
+      event: Joi.object().pattern(/\S/, Joi.any()),
       organizaton_id: Joi.string().allow(""),
       company_id: Joi.number(),
       application_id: Joi.array().items(Joi.string().allow("")),
@@ -1608,7 +1622,7 @@ class FileStoragePlatformModel {
       trace_id: Joi.array().items(Joi.string().allow("")),
       created_timestamp: Joi.number(),
       service: FileStoragePlatformModel.PaymentReceiptService(),
-      event_trace_info: Joi.any(),
+      event_trace_info: Joi.object().pattern(/\S/, Joi.any()),
       trace: Joi.string().allow(""),
     });
   }

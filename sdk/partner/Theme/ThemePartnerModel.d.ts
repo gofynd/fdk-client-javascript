@@ -1,22 +1,5 @@
 export = ThemePartnerModel;
 /**
- * @typedef DefaultPageSchema
- * @property {string} [path]
- * @property {string} [type]
- * @property {string[]} [sections]
- * @property {string[]} [sections_meta]
- * @property {string} [text]
- * @property {string} [value]
- * @property {DefaultPageProp[]} [props]
- */
-/**
- * @typedef DefaultPageProp
- * @property {string} [type]
- * @property {string} [id]
- * @property {string} [label]
- * @property {string} [info]
- */
-/**
  * @typedef AvailablePageSchema
  * @property {string} [value]
  * @property {string} [text]
@@ -30,14 +13,10 @@ export = ThemePartnerModel;
  * @property {string} [_id]
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
- * @property {string} [application] - The application id
  */
 /**
- * @typedef ExtensionBinding
+ * @typedef DraftExtensionSection
  * @property {string} [extension_id]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
  * @property {ExtensionSection[]} [sections]
@@ -46,11 +25,11 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef DraftExtensionSectionResponse
- * @property {string} [message]
+ * @typedef ExtensionSectionDraft
+ * @property {Sections} [sections]
  */
 /**
- * @typedef SectionsResponse
+ * @typedef Sections
  * @property {boolean} [acknowledged]
  * @property {number} [matched_count]
  * @property {number} [modified_count]
@@ -77,7 +56,7 @@ export = ThemePartnerModel;
  * @property {string} [css]
  */
 /**
- * @typedef PublishExtensionSectionRequest
+ * @typedef PublishExtensionSection
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
@@ -87,17 +66,17 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef ExtensionPreviewRequest
+ * @typedef PreviewExtension
  * @property {string} [application_id] - Application ID
  * @property {string} [section_preview_hash] - Hash for the section preview
  */
 /**
- * @typedef ExtensionPreviewResponse
+ * @typedef ExtensionPreview
  * @property {string} [message]
  */
 /**
- * @typedef PublishExtensionSectionResponse
- * @property {string} [message]
+ * @typedef ExtensionSectionPublish
+ * @property {Sections} [sections]
  */
 /**
  * @typedef AvailablePageSectionMetaAttributes
@@ -109,8 +88,7 @@ export = ThemePartnerModel;
  * @property {string} [description]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumbs]
- * @property {string} [canonical_url]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [_id]
  */
 /**
@@ -141,7 +119,6 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef AvailablePageSchemaSections
- * @property {string} [_id] - Unique Id for section.
  * @property {string} [name]
  * @property {string} [label]
  * @property {Object} [props]
@@ -198,7 +175,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef MarketplaceThemeSchema
- * @property {MarketplaceTheme[]} [items]
+ * @property {MarketplaceTheme[]} [themes]
  * @property {PaginationSchema} [page]
  */
 /**
@@ -231,7 +208,6 @@ export = ThemePartnerModel;
  * @property {string} [created_at] - Theme creation timestamp
  * @property {string} [updated_at] - Theme update timestamp
  * @property {string} [template_theme_id] - Template theme ID
- * @property {string} [theme_type] - Theme type
  */
 /**
  * @typedef PaymentInfo
@@ -305,11 +281,25 @@ export = ThemePartnerModel;
  * @property {string} admin_id - The ID of the admin who rejected the theme
  * @property {string} user_id - The ID of the user who submitted the theme
  * @property {string} status - The status of the theme (e.g., rejected)
- * @property {Object} rejection_reasons
+ * @property {RejectedMessages} rejection_reasons
  * @property {string} [created_at] - The date and time when the theme rejection
  *   reasons object was created
  * @property {string} [updated_at] - The date and time when the theme rejection
  *   reasons object was last updated
+ */
+/**
+ * @typedef RejectedMessages
+ * @property {ThemeReviewRequestMessage} [theme_file]
+ * @property {ThemeReviewRequestMessage} [theme_details]
+ * @property {ThemeReviewRequestMessage} [theme_value_proposition]
+ * @property {ThemeReviewRequestMessage} [theme_attributes]
+ * @property {ThemeReviewRequestMessage} [theme_variations]
+ * @property {ThemeReviewRequestMessage} [theme_docs]
+ * @property {ThemeReviewRequestMessage} [theme_review]
+ */
+/**
+ * @typedef ThemeReviewRequestMessage
+ * @property {string} [message] - Message Explaining what the issue is
  */
 /**
  * @typedef AllAvailablePageSchema
@@ -326,7 +316,6 @@ export = ThemePartnerModel;
 /**
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
- * @property {string} [level]
  */
 /**
  * @typedef BlitzkriegInternalServerErrorSchema
@@ -354,7 +343,6 @@ export = ThemePartnerModel;
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
- * @property {Object[]} [global_sections]
  */
 /**
  * @typedef Font
@@ -513,20 +501,10 @@ export = ThemePartnerModel;
  * @property {Object[]} [blocks] - Blocks
  * @property {string} [name] - Name of the section
  * @property {string} [label] - Label for the section
- * @property {Object} [preset]
  */
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 /**
  * @typedef Preset
@@ -691,27 +669,8 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { DefaultPageSchema, DefaultPageProp, AvailablePageSchema, ExtensionBinding, DraftExtensionSectionResponse, SectionsResponse, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSectionRequest, ExtensionPreviewRequest, ExtensionPreviewResponse, PublishExtensionSectionResponse, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
+    export { AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
-/** @returns {DefaultPageSchema} */
-declare function DefaultPageSchema(): DefaultPageSchema;
-type DefaultPageSchema = {
-    path?: string;
-    type?: string;
-    sections?: string[];
-    sections_meta?: string[];
-    text?: string;
-    value?: string;
-    props?: DefaultPageProp[];
-};
-/** @returns {DefaultPageProp} */
-declare function DefaultPageProp(): DefaultPageProp;
-type DefaultPageProp = {
-    type?: string;
-    id?: string;
-    label?: string;
-    info?: string;
-};
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
 type AvailablePageSchema = {
@@ -733,18 +692,11 @@ type AvailablePageSchema = {
      * - The last update timestamp of the page
      */
     updated_at?: string;
-    /**
-     * - The application id
-     */
-    application?: string;
 };
-/** @returns {ExtensionBinding} */
-declare function ExtensionBinding(): ExtensionBinding;
-type ExtensionBinding = {
+/** @returns {DraftExtensionSection} */
+declare function DraftExtensionSection(): DraftExtensionSection;
+type DraftExtensionSection = {
     extension_id?: string;
-    _id?: string;
-    created_at?: string;
-    updated_at?: string;
     bundle_name?: string;
     organization_id?: string;
     sections?: ExtensionSection[];
@@ -752,14 +704,14 @@ type ExtensionBinding = {
     type?: string;
     status?: string;
 };
-/** @returns {DraftExtensionSectionResponse} */
-declare function DraftExtensionSectionResponse(): DraftExtensionSectionResponse;
-type DraftExtensionSectionResponse = {
-    message?: string;
+/** @returns {ExtensionSectionDraft} */
+declare function ExtensionSectionDraft(): ExtensionSectionDraft;
+type ExtensionSectionDraft = {
+    sections?: Sections;
 };
-/** @returns {SectionsResponse} */
-declare function SectionsResponse(): SectionsResponse;
-type SectionsResponse = {
+/** @returns {Sections} */
+declare function Sections(): Sections;
+type Sections = {
     acknowledged?: boolean;
     matched_count?: number;
     modified_count?: number;
@@ -788,9 +740,9 @@ type AssetsExtension = {
     js?: string;
     css?: string;
 };
-/** @returns {PublishExtensionSectionRequest} */
-declare function PublishExtensionSectionRequest(): PublishExtensionSectionRequest;
-type PublishExtensionSectionRequest = {
+/** @returns {PublishExtensionSection} */
+declare function PublishExtensionSection(): PublishExtensionSection;
+type PublishExtensionSection = {
     extension_id?: string;
     bundle_name?: string;
     organization_id?: string;
@@ -799,9 +751,9 @@ type PublishExtensionSectionRequest = {
     type?: string;
     status?: string;
 };
-/** @returns {ExtensionPreviewRequest} */
-declare function ExtensionPreviewRequest(): ExtensionPreviewRequest;
-type ExtensionPreviewRequest = {
+/** @returns {PreviewExtension} */
+declare function PreviewExtension(): PreviewExtension;
+type PreviewExtension = {
     /**
      * - Application ID
      */
@@ -811,15 +763,15 @@ type ExtensionPreviewRequest = {
      */
     section_preview_hash?: string;
 };
-/** @returns {ExtensionPreviewResponse} */
-declare function ExtensionPreviewResponse(): ExtensionPreviewResponse;
-type ExtensionPreviewResponse = {
+/** @returns {ExtensionPreview} */
+declare function ExtensionPreview(): ExtensionPreview;
+type ExtensionPreview = {
     message?: string;
 };
-/** @returns {PublishExtensionSectionResponse} */
-declare function PublishExtensionSectionResponse(): PublishExtensionSectionResponse;
-type PublishExtensionSectionResponse = {
-    message?: string;
+/** @returns {ExtensionSectionPublish} */
+declare function ExtensionSectionPublish(): ExtensionSectionPublish;
+type ExtensionSectionPublish = {
+    sections?: Sections;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
@@ -833,8 +785,7 @@ type AvailablePageSeo = {
     description?: string;
     meta_tags?: SEOMetaItem[];
     sitemap?: SEOSitemap;
-    breadcrumbs?: SEObreadcrumb[];
-    canonical_url?: string;
+    breadcrumb?: SEObreadcrumb[];
     _id?: string;
 };
 /** @returns {SEOMetaItem} */
@@ -874,10 +825,6 @@ type Action = {
 /** @returns {AvailablePageSchemaSections} */
 declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
 type AvailablePageSchemaSections = {
-    /**
-     * - Unique Id for section.
-     */
-    _id?: string;
     name?: string;
     label?: string;
     props?: any;
@@ -963,7 +910,7 @@ type AvailablePagePredicate = {
 /** @returns {MarketplaceThemeSchema} */
 declare function MarketplaceThemeSchema(): MarketplaceThemeSchema;
 type MarketplaceThemeSchema = {
-    items?: MarketplaceTheme[];
+    themes?: MarketplaceTheme[];
     page?: PaginationSchema;
 };
 /** @returns {MarketplaceTheme} */
@@ -1045,10 +992,6 @@ type MarketplaceTheme = {
      * - Template theme ID
      */
     template_theme_id?: string;
-    /**
-     * - Theme type
-     */
-    theme_type?: string;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
@@ -1231,7 +1174,7 @@ type ThemeRejectionReasons = {
      * - The status of the theme (e.g., rejected)
      */
     status: string;
-    rejection_reasons: any;
+    rejection_reasons: RejectedMessages;
     /**
      * - The date and time when the theme rejection
      * reasons object was created
@@ -1242,6 +1185,25 @@ type ThemeRejectionReasons = {
      * reasons object was last updated
      */
     updated_at?: string;
+};
+/** @returns {RejectedMessages} */
+declare function RejectedMessages(): RejectedMessages;
+type RejectedMessages = {
+    theme_file?: ThemeReviewRequestMessage;
+    theme_details?: ThemeReviewRequestMessage;
+    theme_value_proposition?: ThemeReviewRequestMessage;
+    theme_attributes?: ThemeReviewRequestMessage;
+    theme_variations?: ThemeReviewRequestMessage;
+    theme_docs?: ThemeReviewRequestMessage;
+    theme_review?: ThemeReviewRequestMessage;
+};
+/** @returns {ThemeReviewRequestMessage} */
+declare function ThemeReviewRequestMessage(): ThemeReviewRequestMessage;
+type ThemeReviewRequestMessage = {
+    /**
+     * - Message Explaining what the issue is
+     */
+    message?: string;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -1261,7 +1223,6 @@ type PaginationSchema = {
 declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
-    level?: string;
 };
 /** @returns {BlitzkriegInternalServerErrorSchema} */
 declare function BlitzkriegInternalServerErrorSchema(): BlitzkriegInternalServerErrorSchema;
@@ -1333,7 +1294,6 @@ type ThemesSchema = {
      */
     company_id?: number;
     src?: string;
-    global_sections?: any[];
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -1667,40 +1627,11 @@ type SectionItem = {
      * - Label for the section
      */
     label?: string;
-    preset?: any;
 };
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
-    props?: Prop[];
-};
-/** @returns {Prop} */
-declare function Prop(): Prop;
-type Prop = {
-    /**
-     * - The type of the property
-     */
-    type?: string;
-    /**
-     * - The category of the property
-     */
-    category?: string;
-    /**
-     * - The value of the property
-     */
-    value?: string;
-    /**
-     * - The ID of the property
-     */
-    id?: string;
-    /**
-     * - The label of the property
-     */
-    label?: string;
-    /**
-     * - Additional information about the property
-     */
-    info?: string;
+    props?: any[];
 };
 /** @returns {Preset} */
 declare function Preset(): Preset;

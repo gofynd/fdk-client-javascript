@@ -1,39 +1,65 @@
 export = ServiceabilityPlatformValidator;
 /**
+ * @typedef BulkServiceabilityParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
+ */
+/**
+ * @typedef BulkTatParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
+ */
+/**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
  */
 /**
  * @typedef CreatePackageMaterialParam
- * @property {number} [pageNo] - Index of the item to start returning with
  * @property {ServiceabilityPlatformModel.PackageMaterial} body
  */
 /**
  * @typedef CreatePackageMaterialRuleParam
- * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
+ * @property {ServiceabilityPlatformModel.PackageRule} body
+ */
+/**
+ * @typedef CreateZoneParam
+ * @property {ServiceabilityPlatformModel.CreateZoneData} body
+ */
+/** @typedef GetAllStoresParam */
+/**
+ * @typedef GetBulkServiceabilityParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {string} [batchId] - Unique identifier of bulk job
+ * @property {string} [action] - Import or export bulk type
+ * @property {string} [status] - Status of the bulk actions
+ * @property {string} [country] - Country for which bulk job is initiated
+ * @property {string} [region] - Region for which bulk job is initiated
+ * @property {string} [startDate] - Fetch job history after a particule date
+ * @property {string} [endDate] - Fetch job history before a particule date
+ */
+/**
+ * @typedef GetBulkTatParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {string} [batchId] - Unique identifier of bulk job
+ * @property {string} [action] - Import or export bulk type
+ * @property {string} [status] - Status of the bulk actions
+ * @property {string} [country] - Country for which bulk job is initiated
+ * @property {string} [region] - Region for which bulk job is initiated
+ * @property {string} [startDate] - Fetch job history after a particule date
+ * @property {string} [endDate] - Fetch job history before a particule date
  */
 /** @typedef GetCompanyConfigurationParam */
-/** @typedef GetCompanySelfShipParam */
-/**
- * @typedef GetCountriesParam
- * @property {boolean} [onboard] - Only fetch countries which allowed for
- *   onboard on Platform.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 12
- * @property {string} [q] - The search string to search in the list of countries by name.
- * @property {string} [hierarchy] - The search filter to filter countries based
- *   on their available hierarchy.
- */
-/**
- * @typedef GetCountryParam
- * @property {string} countryIsoCode - The `country_iso_code` is ISO-2 (alpha-2)
- *   code for the country.
- */
 /**
  * @typedef GetCourierPartnerAccountParam
- * @property {string} accountId - Unique ID of courier account
+ * @property {string} accountId - Unique ID of courier partner account
  */
 /**
  * @typedef GetCourierPartnerAccountsParam
@@ -42,60 +68,10 @@ export = ServiceabilityPlatformValidator;
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
- * @property {string[]} [accountIds] - Filters dp accounts based on their ids
- * @property {boolean} [selfShip] - To filter self ship/non self ship dp accounts
- * @property {boolean} [ownAccount] - Filters seller owned or admin owned dp accounts
- * @property {string} [q] - Filters dp accounts based on case sensitive partial
- *   account name
- */
-/**
- * @typedef GetInstalledCourierPartnerExtensionsParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string} [isInstalled] - Filter to get installed extensions only
- */
-/**
- * @typedef GetListPackageMaterialRuleDetailsParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string} [isActive] - Filters items based on given is_active
- */
-/**
- * @typedef GetLocalitiesParam
- * @property {string} localityType - A `locality_type` contains unique
- *   geographical division.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
- * @property {string} [name] - Search for localities. Either provide a full name
- *   or a search term.
- */
-/**
- * @typedef GetLocalitiesByPrefixParam
- * @property {number} [pageNo] - Starting index of the items.
- * @property {number} [pageSize] - Number of items per page.
- * @property {string} [q] - Localities starting with the specified prefix.
- */
-/**
- * @typedef GetLocalityParam
- * @property {string} localityType - A `locality_type` contains value
- *   geographical division.
- * @property {string} localityValue - A `locality_value` contains a specific
- *   name of the locality.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsDetailsSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -111,153 +87,256 @@ export = ServiceabilityPlatformValidator;
  *   identifier for a Package Material Rule
  */
 /**
- * @typedef GetPackageMaterialRuleDetailsParam
- * @property {string} ruleId - A `package_material_rule_id` is a unique
- *   identifier for a Package Material Rule
+ * @typedef GetPackageMaterialRulesParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [isActive] - Filters items based on given is_active
  */
 /**
  * @typedef GetPackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {string} packageMaterialId - Unique identifier for a Package. Material
+ */
+/**
+ * @typedef GetServiceabilityParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {string} regionId - Unique identifier of a region
+ */
+/**
+ * @typedef GetZoneByIdParam
+ * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
+ */
+/**
+ * @typedef GetZonesParam
+ * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {boolean} [isActive] - Status of Zone (either active or inactive)
+ * @property {string} [applicationId] - Zones filtered by an application
+ * @property {string} [q] - Search with name as a free text
+ * @property {string} [countryIsoCode] - ISO2 code of the country
+ * @property {string} [state] - State name
+ * @property {string} [city] - City name
+ * @property {string} [pincode] - Pincode value to search zones
+ * @property {string} [sector] - Sector value to search zones
  */
 /**
  * @typedef UpdateCompanyConfigurationParam
- * @property {ServiceabilityPlatformModel.CompanyConfigurationShema} body
- */
-/**
- * @typedef UpdateCompanySelfShipParam
- * @property {ServiceabilityPlatformModel.CompanySelfShip} body
+ * @property {ServiceabilityPlatformModel.CompanyConfig} body
  */
 /**
  * @typedef UpdateCourierPartnerAccountParam
- * @property {string} accountId - Unique ID of courier account
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {string} accountId - Unique ID of courier partner account
+ * @property {ServiceabilityPlatformModel.CourierAccountUpdateDetails} body
  */
 /**
  * @typedef UpdatePackageMaterialRuleParam
  * @property {string} ruleId - A `package_material_rule_id` is a unique
  *   identifier for a Package Material Rule
- * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
+ * @property {ServiceabilityPlatformModel.PackageRule} body
  */
 /**
  * @typedef UpdatePackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {string} packageMaterialId - Unique identifier for a Package. Material
  * @property {ServiceabilityPlatformModel.PackageMaterial} body
  */
 /**
- * @typedef ValidateAddressParam
- * @property {string} countryIsoCode - The ISO code of the country.
- * @property {string} templateName - The type of address form.
- * @property {ServiceabilityPlatformModel.ValidateAddressRequest} body
+ * @typedef UpdateServiceabilityParam
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {string} regionId - Unique identifier of a region
+ * @property {ServiceabilityPlatformModel.ServiceabilityModel} body
+ */
+/**
+ * @typedef UpdateZoneByIdParam
+ * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
+ * @property {ServiceabilityPlatformModel.UpdateZoneData} body
  */
 declare class ServiceabilityPlatformValidator {
+    /** @returns {BulkServiceabilityParam} */
+    static bulkServiceability(): BulkServiceabilityParam;
+    /** @returns {BulkTatParam} */
+    static bulkTat(): BulkTatParam;
     /** @returns {CreateCourierPartnerAccountParam} */
     static createCourierPartnerAccount(): CreateCourierPartnerAccountParam;
     /** @returns {CreatePackageMaterialParam} */
     static createPackageMaterial(): CreatePackageMaterialParam;
     /** @returns {CreatePackageMaterialRuleParam} */
     static createPackageMaterialRule(): CreatePackageMaterialRuleParam;
+    /** @returns {CreateZoneParam} */
+    static createZone(): CreateZoneParam;
+    /** @returns {GetAllStoresParam} */
+    static getAllStores(): any;
+    /** @returns {GetBulkServiceabilityParam} */
+    static getBulkServiceability(): GetBulkServiceabilityParam;
+    /** @returns {GetBulkTatParam} */
+    static getBulkTat(): GetBulkTatParam;
     /** @returns {GetCompanyConfigurationParam} */
     static getCompanyConfiguration(): any;
-    /** @returns {GetCompanySelfShipParam} */
-    static getCompanySelfShip(): any;
-    /** @returns {GetCountriesParam} */
-    static getCountries(): GetCountriesParam;
-    /** @returns {GetCountryParam} */
-    static getCountry(): GetCountryParam;
     /** @returns {GetCourierPartnerAccountParam} */
     static getCourierPartnerAccount(): GetCourierPartnerAccountParam;
     /** @returns {GetCourierPartnerAccountsParam} */
     static getCourierPartnerAccounts(): GetCourierPartnerAccountsParam;
-    /** @returns {GetInstalledCourierPartnerExtensionsParam} */
-    static getInstalledCourierPartnerExtensions(): GetInstalledCourierPartnerExtensionsParam;
-    /** @returns {GetListPackageMaterialRuleDetailsParam} */
-    static getListPackageMaterialRuleDetails(): GetListPackageMaterialRuleDetailsParam;
-    /** @returns {GetLocalitiesParam} */
-    static getLocalities(): GetLocalitiesParam;
-    /** @returns {GetLocalitiesByPrefixParam} */
-    static getLocalitiesByPrefix(): GetLocalitiesByPrefixParam;
-    /** @returns {GetLocalityParam} */
-    static getLocality(): GetLocalityParam;
     /** @returns {GetOptimalLocationsParam} */
     static getOptimalLocations(): GetOptimalLocationsParam;
     /** @returns {GetPackageMaterialListParam} */
     static getPackageMaterialList(): GetPackageMaterialListParam;
     /** @returns {GetPackageMaterialRuleParam} */
     static getPackageMaterialRule(): GetPackageMaterialRuleParam;
-    /** @returns {GetPackageMaterialRuleDetailsParam} */
-    static getPackageMaterialRuleDetails(): GetPackageMaterialRuleDetailsParam;
+    /** @returns {GetPackageMaterialRulesParam} */
+    static getPackageMaterialRules(): GetPackageMaterialRulesParam;
     /** @returns {GetPackageMaterialsParam} */
     static getPackageMaterials(): GetPackageMaterialsParam;
+    /** @returns {GetServiceabilityParam} */
+    static getServiceability(): GetServiceabilityParam;
+    /** @returns {GetZoneByIdParam} */
+    static getZoneById(): GetZoneByIdParam;
+    /** @returns {GetZonesParam} */
+    static getZones(): GetZonesParam;
     /** @returns {UpdateCompanyConfigurationParam} */
     static updateCompanyConfiguration(): UpdateCompanyConfigurationParam;
-    /** @returns {UpdateCompanySelfShipParam} */
-    static updateCompanySelfShip(): UpdateCompanySelfShipParam;
     /** @returns {UpdateCourierPartnerAccountParam} */
     static updateCourierPartnerAccount(): UpdateCourierPartnerAccountParam;
     /** @returns {UpdatePackageMaterialRuleParam} */
     static updatePackageMaterialRule(): UpdatePackageMaterialRuleParam;
     /** @returns {UpdatePackageMaterialsParam} */
     static updatePackageMaterials(): UpdatePackageMaterialsParam;
-    /** @returns {ValidateAddressParam} */
-    static validateAddress(): ValidateAddressParam;
+    /** @returns {UpdateServiceabilityParam} */
+    static updateServiceability(): UpdateServiceabilityParam;
+    /** @returns {UpdateZoneByIdParam} */
+    static updateZoneById(): UpdateZoneByIdParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetCompanyConfigurationParam, GetCompanySelfShipParam, GetCountriesParam, GetCountryParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetInstalledCourierPartnerExtensionsParam, GetListPackageMaterialRuleDetailsParam, GetLocalitiesParam, GetLocalitiesByPrefixParam, GetLocalityParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRuleDetailsParam, GetPackageMaterialsParam, UpdateCompanyConfigurationParam, UpdateCompanySelfShipParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, ValidateAddressParam };
+    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, CreateZoneParam, GetAllStoresParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRulesParam, GetPackageMaterialsParam, GetServiceabilityParam, GetZoneByIdParam, GetZonesParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateServiceabilityParam, UpdateZoneByIdParam };
 }
+type BulkServiceabilityParam = {
+    /**
+     * - Unique Identifier of courier partner extension.
+     */
+    extensionId: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    schemeId: string;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
+};
+type BulkTatParam = {
+    /**
+     * - Unique Identifier of courier partner extension.
+     */
+    extensionId: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    schemeId: string;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
+};
 type CreateCourierPartnerAccountParam = {
-    body: ServiceabilityPlatformModel.CourierAccount;
+    body: ServiceabilityPlatformModel.CourierAccountDetailsBody;
 };
 type CreatePackageMaterialParam = {
+    body: ServiceabilityPlatformModel.PackageMaterial;
+};
+type CreatePackageMaterialRuleParam = {
+    body: ServiceabilityPlatformModel.PackageRule;
+};
+type CreateZoneParam = {
+    body: ServiceabilityPlatformModel.CreateZoneData;
+};
+type GetBulkServiceabilityParam = {
+    /**
+     * - Unique Identifier of courier partner extension.
+     */
+    extensionId: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    schemeId: string;
     /**
      * - Index of the item to start returning with
      */
     pageNo?: number;
-    body: ServiceabilityPlatformModel.PackageMaterial;
-};
-type CreatePackageMaterialRuleParam = {
-    body: ServiceabilityPlatformModel.PackageRuleRequest;
-};
-type GetCountriesParam = {
     /**
-     * - Only fetch countries which allowed for
-     * onboard on Platform.
-     */
-    onboard?: boolean;
-    /**
-     * - The page number to navigate through the given
-     * set of results. Default value is 1.
-     */
-    pageNo?: number;
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 12
+     * - Determines the items to be displayed in a page
      */
     pageSize?: number;
     /**
-     * - The search string to search in the list of countries by name.
+     * - Unique identifier of bulk job
      */
-    q?: string;
+    batchId?: string;
     /**
-     * - The search filter to filter countries based
-     * on their available hierarchy.
+     * - Import or export bulk type
      */
-    hierarchy?: string;
+    action?: string;
+    /**
+     * - Status of the bulk actions
+     */
+    status?: string;
+    /**
+     * - Country for which bulk job is initiated
+     */
+    country?: string;
+    /**
+     * - Region for which bulk job is initiated
+     */
+    region?: string;
+    /**
+     * - Fetch job history after a particule date
+     */
+    startDate?: string;
+    /**
+     * - Fetch job history before a particule date
+     */
+    endDate?: string;
 };
-type GetCountryParam = {
+type GetBulkTatParam = {
     /**
-     * - The `country_iso_code` is ISO-2 (alpha-2)
-     * code for the country.
+     * - Unique Identifier of courier partner extension.
      */
-    countryIsoCode: string;
+    extensionId: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    schemeId: string;
+    /**
+     * - Index of the item to start returning with
+     */
+    pageNo?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+    /**
+     * - Unique identifier of bulk job
+     */
+    batchId?: string;
+    /**
+     * - Import or export bulk type
+     */
+    action?: string;
+    /**
+     * - Status of the bulk actions
+     */
+    status?: string;
+    /**
+     * - Country for which bulk job is initiated
+     */
+    country?: string;
+    /**
+     * - Region for which bulk job is initiated
+     */
+    region?: string;
+    /**
+     * - Fetch job history after a particule date
+     */
+    startDate?: string;
+    /**
+     * - Fetch job history before a particule date
+     */
+    endDate?: string;
 };
 type GetCourierPartnerAccountParam = {
     /**
-     * - Unique ID of courier account
+     * - Unique ID of courier partner account
      */
     accountId: string;
 };
@@ -282,132 +361,9 @@ type GetCourierPartnerAccountsParam = {
      * - Filters dp accounts based on transport_type
      */
     transportType?: string;
-    /**
-     * - Filters dp accounts based on their ids
-     */
-    accountIds?: string[];
-    /**
-     * - To filter self ship/non self ship dp accounts
-     */
-    selfShip?: boolean;
-    /**
-     * - Filters seller owned or admin owned dp accounts
-     */
-    ownAccount?: boolean;
-    /**
-     * - Filters dp accounts based on case sensitive partial
-     * account name
-     */
-    q?: string;
-};
-type GetInstalledCourierPartnerExtensionsParam = {
-    /**
-     * - Index of the item to start returning with
-     */
-    pageNo?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    /**
-     * - Filter to get installed extensions only
-     */
-    isInstalled?: string;
-};
-type GetListPackageMaterialRuleDetailsParam = {
-    /**
-     * - Index of the item to start returning with
-     */
-    pageNo?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    /**
-     * - Filters items based on given is_active
-     */
-    isActive?: string;
-};
-type GetLocalitiesParam = {
-    /**
-     * - A `locality_type` contains unique
-     * geographical division.
-     */
-    localityType: string;
-    /**
-     * - A `country` contains a specific value of the
-     * country iso2 code.
-     */
-    country?: string;
-    /**
-     * - A `state` contains a specific value of the
-     * state, province.
-     */
-    state?: string;
-    /**
-     * - A `city` contains a specific value of the city.
-     */
-    city?: string;
-    /**
-     * - Page number.
-     */
-    pageNo?: number;
-    /**
-     * - Page size.
-     */
-    pageSize?: number;
-    /**
-     * - Search.
-     */
-    q?: string;
-    /**
-     * - Search for localities. Either provide a full name
-     * or a search term.
-     */
-    name?: string;
-};
-type GetLocalitiesByPrefixParam = {
-    /**
-     * - Starting index of the items.
-     */
-    pageNo?: number;
-    /**
-     * - Number of items per page.
-     */
-    pageSize?: number;
-    /**
-     * - Localities starting with the specified prefix.
-     */
-    q?: string;
-};
-type GetLocalityParam = {
-    /**
-     * - A `locality_type` contains value
-     * geographical division.
-     */
-    localityType: string;
-    /**
-     * - A `locality_value` contains a specific
-     * name of the locality.
-     */
-    localityValue: string;
-    /**
-     * - A `country` contains a specific value of the
-     * country iso2 code.
-     */
-    country?: string;
-    /**
-     * - A `state` contains a specific value of the
-     * state, province.
-     */
-    state?: string;
-    /**
-     * - A `city` contains a specific value of the city.
-     */
-    city?: string;
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
+    body: ServiceabilityPlatformModel.OptimlLocationsDetailsSchema;
 };
 type GetPackageMaterialListParam = {
     /**
@@ -438,12 +394,7 @@ type GetPackageMaterialRuleParam = {
      */
     ruleId: string;
 };
-type GetPackageMaterialRuleDetailsParam = {
-    /**
-     * - A `package_material_rule_id` is a unique
-     * identifier for a Package Material Rule
-     */
-    ruleId: string;
+type GetPackageMaterialRulesParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -459,23 +410,81 @@ type GetPackageMaterialRuleDetailsParam = {
 };
 type GetPackageMaterialsParam = {
     /**
-     * - A `package_material_id` is a unique
-     * identifier for a Package Material
+     * - Unique identifier for a Package. Material
      */
     packageMaterialId: string;
 };
-type UpdateCompanyConfigurationParam = {
-    body: ServiceabilityPlatformModel.CompanyConfigurationShema;
+type GetServiceabilityParam = {
+    /**
+     * - Unique Identifier of courier partner extension.
+     */
+    extensionId: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    schemeId: string;
+    /**
+     * - Unique identifier of a region
+     */
+    regionId: string;
 };
-type UpdateCompanySelfShipParam = {
-    body: ServiceabilityPlatformModel.CompanySelfShip;
+type GetZoneByIdParam = {
+    /**
+     * - A `zone_id` is a unique identifier for a particular zone.
+     */
+    zoneId: string;
+};
+type GetZonesParam = {
+    /**
+     * - Index of the item to start returning with
+     */
+    pageNo?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+    /**
+     * - Status of Zone (either active or inactive)
+     */
+    isActive?: boolean;
+    /**
+     * - Zones filtered by an application
+     */
+    applicationId?: string;
+    /**
+     * - Search with name as a free text
+     */
+    q?: string;
+    /**
+     * - ISO2 code of the country
+     */
+    countryIsoCode?: string;
+    /**
+     * - State name
+     */
+    state?: string;
+    /**
+     * - City name
+     */
+    city?: string;
+    /**
+     * - Pincode value to search zones
+     */
+    pincode?: string;
+    /**
+     * - Sector value to search zones
+     */
+    sector?: string;
+};
+type UpdateCompanyConfigurationParam = {
+    body: ServiceabilityPlatformModel.CompanyConfig;
 };
 type UpdateCourierPartnerAccountParam = {
     /**
-     * - Unique ID of courier account
+     * - Unique ID of courier partner account
      */
     accountId: string;
-    body: ServiceabilityPlatformModel.CourierAccount;
+    body: ServiceabilityPlatformModel.CourierAccountUpdateDetails;
 };
 type UpdatePackageMaterialRuleParam = {
     /**
@@ -483,27 +492,37 @@ type UpdatePackageMaterialRuleParam = {
      * identifier for a Package Material Rule
      */
     ruleId: string;
-    body: ServiceabilityPlatformModel.PackageRuleRequest;
+    body: ServiceabilityPlatformModel.PackageRule;
 };
 type UpdatePackageMaterialsParam = {
     /**
-     * - A `package_material_id` is a unique
-     * identifier for a Package Material
+     * - Unique identifier for a Package. Material
      */
     packageMaterialId: string;
     body: ServiceabilityPlatformModel.PackageMaterial;
 };
-type ValidateAddressParam = {
+type UpdateServiceabilityParam = {
     /**
-     * - The ISO code of the country.
+     * - Unique Identifier of courier partner extension.
      */
-    countryIsoCode: string;
+    extensionId: string;
     /**
-     * - The type of address form.
+     * - Unique identifier of courier partner scheme.
      */
-    templateName: string;
-    body: ServiceabilityPlatformModel.ValidateAddressRequest;
+    schemeId: string;
+    /**
+     * - Unique identifier of a region
+     */
+    regionId: string;
+    body: ServiceabilityPlatformModel.ServiceabilityModel;
 };
+type UpdateZoneByIdParam = {
+    /**
+     * - A `zone_id` is a unique identifier for a particular zone.
+     */
+    zoneId: string;
+    body: ServiceabilityPlatformModel.UpdateZoneData;
+};
+type GetAllStoresParam = any;
 type GetCompanyConfigurationParam = any;
-type GetCompanySelfShipParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

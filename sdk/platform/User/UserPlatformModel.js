@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef SuccessMessageResponse
+ * @typedef SuccessMessage
  * @property {string} [success]
  */
 
@@ -26,7 +26,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeDefinitionResponse
+ * @typedef UserAttributeDefinitionDetails
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -54,62 +54,55 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeResponse
+ * @typedef UserAttribute
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 
 /**
- * @typedef CreateUserAttributeRequest
- * @property {boolean} [customer_overriden]
+ * @typedef CreateUserAttribute
+ * @property {boolean} [customer_overridden]
  * @property {Object} [attribute]
  */
 
 /**
  * @typedef CreateUserAttributeDefinition
- * @property {string} [name] - The name of user attribute definition.
- * @property {string} [slug] - The unique identifier of user attribute definition.
- * @property {string} [description] - The description for the user attribute definition.
- * @property {string} [type] - The attribute type for the user attribute definition.
- * @property {boolean} [multi_value] - Identifier to specify if attribute will
- *   have multiple values or not.
- * @property {boolean} [customer_editable] - Identifier to specify if attribute
- *   can be edited by the customer.
- * @property {boolean} [encrypted] - Identifier to specify if attribute will be
- *   stored in encrypted format.
- * @property {boolean} [pinned] - Identifier to specify if the definition is
- *   pinned or not.
- * @property {number} [pin_order] - Pin order of the Attribute Definition.
- * @property {Object} [default_value] - The default value for the User Attribute
- *   Definition. Data type of the default value depends on the type of the
- *   attribute definition type defined.
- * @property {Object[]} [validations] - The custom validations that have been
- *   set for this customer definition.
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {boolean} [customer_editable]
+ * @property {boolean} [encrypted]
+ * @property {boolean} [pinned]
+ * @property {number} [pin_order]
+ * @property {string} [default_value]
+ * @property {Object[]} [validations]
  */
 
 /**
  * @typedef BlockUserRequestSchema
- * @property {boolean} status
- * @property {string[]} user_id
- * @property {string} reason
+ * @property {boolean} [status]
+ * @property {string[]} [user_id]
+ * @property {string} [reason]
  */
 
 /**
  * @typedef ArchiveUserRequestSchema
- * @property {string} user_id
+ * @property {string} [user_id]
  */
 
 /**
  * @typedef UnDeleteUserRequestSchema
- * @property {string} user_id
- * @property {string} reason
- * @property {string} reason_id
+ * @property {string} [user_id]
+ * @property {string} [reason]
+ * @property {string} [reason_id]
  */
 
 /**
@@ -189,7 +182,7 @@ const Joi = require("joi");
  * @typedef Conditions
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {Object} [value]
+ * @property {string} [value]
  * @property {string} [key]
  */
 
@@ -202,7 +195,6 @@ const Joi = require("joi");
 /**
  * @typedef UserGroupResponseSchema
  * @property {Conditions[]} [conditions]
- * @property {string[]} [blacklisted_users]
  * @property {UserResponseErrorSchema} [error]
  * @property {string} [name]
  * @property {string} [description]
@@ -228,7 +220,7 @@ const Joi = require("joi");
  * @typedef ConditionsSchema
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {Object} [value]
+ * @property {string} [value]
  */
 
 /**
@@ -238,7 +230,6 @@ const Joi = require("joi");
  * @property {string} name
  * @property {string} description
  * @property {string} [file_url]
- * @property {string[]} [blacklisted_users]
  */
 
 /**
@@ -261,9 +252,8 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateUserSessionRequestSchema
- * @property {string} domain
- * @property {string} user_id
- * @property {number} [max_age]
+ * @property {string} [domain]
+ * @property {string} [user_id]
  */
 
 /**
@@ -283,8 +273,6 @@ const Joi = require("joi");
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
- * @property {AccountLockout} [account_lockout]
- * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -314,44 +302,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PasswordConfigs
- * @property {number} [length]
- * @property {boolean} [require_special_character]
- * @property {boolean} [require_number]
- * @property {boolean} [require_capital_character]
- */
-
-/**
- * @typedef PasswordHistory
- * @property {boolean} [required]
- * @property {number} [count]
- */
-
-/**
- * @typedef PasswordExpiry
- * @property {boolean} [required]
- * @property {number} [duration]
- */
-
-/**
- * @typedef PasswordSettings
- * @property {PasswordConfigs} [configs]
- * @property {PasswordHistory} [history]
- * @property {PasswordExpiry} [expiry]
- */
-
-/**
- * @typedef AccountLockout
- * @property {boolean} [enable]
- * @property {number} [attempts]
- * @property {number} [duration]
- */
-
-/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
- * @property {string} [via]
  */
 
 /**
@@ -368,15 +321,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PlatformPassword
- * @property {boolean} [is_required]
- */
-
-/**
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
- * @property {PlatformPassword} [password]
  */
 
 /**
@@ -395,7 +342,6 @@ const Joi = require("joi");
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
- * @property {PlatformPassword} [password]
  */
 
 /**
@@ -420,7 +366,7 @@ const Joi = require("joi");
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [accountkit]
+ * @property {Accountkit} [account_kit]
  * @property {Google} [google]
  */
 
@@ -483,10 +429,6 @@ const Joi = require("joi");
  * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
  *   type json. Array of user data. Must have `action` field and one of
  *   `phone_number`, `email` or `user_id` field in object
- * @property {string[]} [whitelisted_users] - List of user ids to be whitelisted
- *   from user group
- * @property {string[]} [blacklisted_users] - List of user ids to be blacklisted
- *   from user group
  */
 
 /**
@@ -527,17 +469,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserPasswordHistory
- * @property {string} [salt]
- * @property {string} [hash]
- */
-
-/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
- * @property {string} [password_last_modified]
- * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -598,8 +532,8 @@ const Joi = require("joi");
  */
 
 class UserPlatformModel {
-  /** @returns {SuccessMessageResponse} */
-  static SuccessMessageResponse() {
+  /** @returns {SuccessMessage} */
+  static SuccessMessage() {
     return Joi.object({
       success: Joi.string().allow(""),
     });
@@ -627,8 +561,8 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeDefinitionResponse} */
-  static UserAttributeDefinitionResponse() {
+  /** @returns {UserAttributeDefinitionDetails} */
+  static UserAttributeDefinitionDetails() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -660,25 +594,25 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeResponse} */
-  static UserAttributeResponse() {
+  /** @returns {UserAttribute} */
+  static UserAttribute() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      customer_overriden: Joi.boolean(),
-      attribute: Joi.any(),
+      customer_overridden: Joi.boolean(),
+      attribute: Joi.object().pattern(/\S/, Joi.any()),
       updated_by: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CreateUserAttributeRequest} */
-  static CreateUserAttributeRequest() {
+  /** @returns {CreateUserAttribute} */
+  static CreateUserAttribute() {
     return Joi.object({
-      customer_overriden: Joi.boolean(),
-      attribute: Joi.any(),
+      customer_overridden: Joi.boolean(),
+      attribute: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -694,7 +628,7 @@ class UserPlatformModel {
       encrypted: Joi.boolean(),
       pinned: Joi.boolean(),
       pin_order: Joi.number(),
-      default_value: Joi.any(),
+      default_value: Joi.string().allow(""),
       validations: Joi.array().items(Joi.any()),
     });
   }
@@ -702,25 +636,25 @@ class UserPlatformModel {
   /** @returns {BlockUserRequestSchema} */
   static BlockUserRequestSchema() {
     return Joi.object({
-      status: Joi.boolean().required(),
-      user_id: Joi.array().items(Joi.string().allow("")).required(),
-      reason: Joi.string().allow("").required(),
+      status: Joi.boolean(),
+      user_id: Joi.array().items(Joi.string().allow("")),
+      reason: Joi.string().allow(""),
     });
   }
 
   /** @returns {ArchiveUserRequestSchema} */
   static ArchiveUserRequestSchema() {
     return Joi.object({
-      user_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
     });
   }
 
   /** @returns {UnDeleteUserRequestSchema} */
   static UnDeleteUserRequestSchema() {
     return Joi.object({
-      user_id: Joi.string().allow("").required(),
-      reason: Joi.string().allow("").required(),
-      reason_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
+      reason: Joi.string().allow(""),
+      reason_id: Joi.string().allow(""),
     });
   }
 
@@ -802,7 +736,7 @@ class UserPlatformModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       error: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       authenticated: Joi.boolean(),
     });
   }
@@ -824,7 +758,7 @@ class UserPlatformModel {
     return Joi.object({
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      value: Joi.any(),
+      value: Joi.string().allow(""),
       key: Joi.string().allow(""),
     });
   }
@@ -841,7 +775,6 @@ class UserPlatformModel {
   static UserGroupResponseSchema() {
     return Joi.object({
       conditions: Joi.array().items(UserPlatformModel.Conditions()),
-      blacklisted_users: Joi.array().items(Joi.string().allow("")),
       error: UserPlatformModel.UserResponseErrorSchema(),
       name: Joi.string().allow(""),
       description: Joi.string().allow(""),
@@ -871,7 +804,7 @@ class UserPlatformModel {
     return Joi.object({
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      value: Joi.any(),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -883,7 +816,6 @@ class UserPlatformModel {
       name: Joi.string().allow("").required(),
       description: Joi.string().allow("").required(),
       file_url: Joi.string().allow(""),
-      blacklisted_users: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -896,7 +828,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       username: Joi.string().allow("").required(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
     });
@@ -912,9 +844,8 @@ class UserPlatformModel {
   /** @returns {CreateUserSessionRequestSchema} */
   static CreateUserSessionRequestSchema() {
     return Joi.object({
-      domain: Joi.string().allow("").required(),
-      user_id: Joi.string().allow("").required(),
-      max_age: Joi.number(),
+      domain: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     });
   }
 
@@ -938,8 +869,6 @@ class UserPlatformModel {
       active: Joi.boolean(),
       forgot_password: Joi.boolean(),
       login: UserPlatformModel.Login(),
-      account_lockout: UserPlatformModel.AccountLockout(),
-      password_settings: UserPlatformModel.PasswordSettings(),
       skip_captcha: Joi.boolean(),
       name: Joi.string().allow(""),
       meta: UserPlatformModel.MetaSchema(),
@@ -953,8 +882,8 @@ class UserPlatformModel {
       social_tokens: UserPlatformModel.SocialTokens(),
       created_at: Joi.string().allow(""),
       register: Joi.boolean(),
-      mobile_image: Joi.string().allow("").allow(null),
-      desktop_image: Joi.string().allow("").allow(null),
+      mobile_image: Joi.string().allow(""),
+      desktop_image: Joi.string().allow(""),
       delete_account_day: Joi.number(),
       delete_account_reasons: Joi.array().items(
         UserPlatformModel.DeleteAccountReasons()
@@ -973,56 +902,11 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {PasswordConfigs} */
-  static PasswordConfigs() {
-    return Joi.object({
-      length: Joi.number(),
-      require_special_character: Joi.boolean(),
-      require_number: Joi.boolean(),
-      require_capital_character: Joi.boolean(),
-    });
-  }
-
-  /** @returns {PasswordHistory} */
-  static PasswordHistory() {
-    return Joi.object({
-      required: Joi.boolean(),
-      count: Joi.number(),
-    });
-  }
-
-  /** @returns {PasswordExpiry} */
-  static PasswordExpiry() {
-    return Joi.object({
-      required: Joi.boolean(),
-      duration: Joi.number(),
-    });
-  }
-
-  /** @returns {PasswordSettings} */
-  static PasswordSettings() {
-    return Joi.object({
-      configs: UserPlatformModel.PasswordConfigs(),
-      history: UserPlatformModel.PasswordHistory(),
-      expiry: UserPlatformModel.PasswordExpiry(),
-    });
-  }
-
-  /** @returns {AccountLockout} */
-  static AccountLockout() {
-    return Joi.object({
-      enable: Joi.boolean(),
-      attempts: Joi.number(),
-      duration: Joi.number(),
-    });
-  }
-
   /** @returns {Login} */
   static Login() {
     return Joi.object({
       password: Joi.boolean(),
       otp: Joi.boolean(),
-      via: Joi.string().allow(""),
     });
   }
 
@@ -1043,19 +927,11 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {PlatformPassword} */
-  static PlatformPassword() {
-    return Joi.object({
-      is_required: Joi.boolean(),
-    });
-  }
-
   /** @returns {RequiredFields} */
   static RequiredFields() {
     return Joi.object({
       email: UserPlatformModel.PlatformEmail(),
       mobile: UserPlatformModel.PlatformMobile(),
-      password: UserPlatformModel.PlatformPassword(),
     });
   }
 
@@ -1080,7 +956,6 @@ class UserPlatformModel {
     return Joi.object({
       email: UserPlatformModel.RegisterRequiredFieldsEmail(),
       mobile: UserPlatformModel.RegisterRequiredFieldsMobile(),
-      password: UserPlatformModel.PlatformPassword(),
     });
   }
 
@@ -1113,7 +988,7 @@ class UserPlatformModel {
   static SocialTokens() {
     return Joi.object({
       facebook: UserPlatformModel.Facebook(),
-      accountkit: UserPlatformModel.Accountkit(),
+      account_kit: UserPlatformModel.Accountkit(),
       google: UserPlatformModel.Google(),
     });
   }
@@ -1186,8 +1061,6 @@ class UserPlatformModel {
       description: Joi.string().allow(""),
       file_url: Joi.string().allow(""),
       user_data: Joi.array().items(UserPlatformModel.UserGroupUpdateData()),
-      whitelisted_users: Joi.array().items(Joi.string().allow("")),
-      blacklisted_users: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1209,7 +1082,7 @@ class UserPlatformModel {
       gender: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       phone_numbers: Joi.array().items(UserPlatformModel.UserPhoneNumbers()),
       emails: Joi.array().items(UserPlatformModel.UserEmails()),
     });
@@ -1236,29 +1109,17 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserPasswordHistory} */
-  static UserPasswordHistory() {
-    return Joi.object({
-      salt: Joi.string().allow(""),
-      hash: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {UserSchema} */
   static UserSchema() {
     return Joi.object({
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
-      password_last_modified: Joi.string().allow(""),
-      password_history: Joi.array().items(
-        UserPlatformModel.UserPasswordHistory()
-      ),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
-      gender: Joi.string().allow("").allow(null),
+      gender: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
@@ -1278,11 +1139,11 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
-      gender: Joi.string().allow("").allow(null),
+      gender: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
