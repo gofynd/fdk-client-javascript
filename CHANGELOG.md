@@ -1,4 +1,4 @@
-# CHANGE LOG (3.0.0-beta.3) - 1.10.1
+# CHANGE LOG (3.0.0-beta.5) - 1.10.1
 
 ## Application Client
 
