@@ -20,7 +20,7 @@ declare class Lead {
      *   the ticket filters
      * @param {string} [arg.q] - Search through ticket titles and description
      * @param {string} [arg.status] - Filter tickets on status
-     * @param {LeadPartnerModel.PriorityEnum} [arg.priority] - Filter tickets on priority
+     * @param {string} [arg.priority] - Filter tickets on priority
      * @param {string} [arg.category] - Filter tickets on category
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
@@ -33,7 +33,7 @@ declare class Lead {
         filters?: boolean;
         q?: string;
         status?: string;
-        priority?: LeadPartnerModel.PriorityEnum;
+        priority?: string;
         category?: string;
         pageSize?: number;
     }): Paginator<LeadPartnerModel.TicketList>;
@@ -91,12 +91,12 @@ declare class Lead {
      * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LeadPartnerModel.GeneralConfigDetails>} - Success response
+     * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
-     * @summary: Get general support configuration
+     * @summary: Get general support configuration.
      * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigDetails>;
+    getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigResponse>;
 }
 import LeadPartnerModel = require("./LeadPartnerModel");
 import Paginator = require("../../common/Paginator");

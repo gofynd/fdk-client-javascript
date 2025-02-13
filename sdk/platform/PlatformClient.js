@@ -18,6 +18,8 @@ const Discount = require("./Discount/DiscountPlatformClient");
 
 const FileStorage = require("./FileStorage/FileStoragePlatformClient");
 
+const Finance = require("./Finance/FinancePlatformClient");
+
 const Lead = require("./Lead/LeadPlatformClient");
 
 const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
@@ -67,6 +69,8 @@ class PlatformClient {
     this.discount = new Discount(config);
 
     this.fileStorage = new FileStorage(config);
+
+    this.finance = new Finance(config);
 
     this.lead = new Lead(config);
 

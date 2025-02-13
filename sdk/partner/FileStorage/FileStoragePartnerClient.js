@@ -168,7 +168,7 @@ class FileStorage {
    * @param {FileStoragePartnerValidator.CompleteUploadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.FileUploadComplete>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.CompleteResponse>} - Success response
    * @name completeUpload
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
    * @description: Uploads an arbitrarily sized buffer or blob.
@@ -243,7 +243,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.FileUploadComplete().validate(responseData, {
+    } = FileStoragePartnerModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -266,7 +266,7 @@ class FileStorage {
    * @param {FileStoragePartnerValidator.StartUploadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.FileUpload>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.StartResponse>} - Success response
    * @name startUpload
    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
    * @description: Uploads an arbitrarily sized buffer or blob.
@@ -341,7 +341,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.FileUpload().validate(responseData, {
+    } = FileStoragePartnerModel.StartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -534,7 +534,7 @@ class FileStorage {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.FetchProxyDetails>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.ProxyResponse>} - Success response
    * @name organizationLevelFetchProxy
    * @summary: Proxy
    * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/organizationLevelFetchProxy/).
@@ -595,7 +595,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.FetchProxyDetails().validate(responseData, {
+    } = FileStoragePartnerModel.ProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -620,7 +620,7 @@ class FileStorage {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.SaveProxy>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.FetchProxyResponse>} - Success response
    * @name saveOrganizationLevelProxy
    * @summary: Proxy
    * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/saveOrganizationLevelProxy/).
@@ -680,7 +680,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.SaveProxy().validate(responseData, {
+    } = FileStoragePartnerModel.FetchProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -703,7 +703,7 @@ class FileStorage {
    * @param {FileStoragePartnerValidator.FetchProxyParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.FetchProxyDetails>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.ProxyResponse>} - Success response
    * @name fetchProxy
    * @summary: Proxy
    * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/fetchProxy/).
@@ -758,7 +758,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.FetchProxyDetails().validate(responseData, {
+    } = FileStoragePartnerModel.ProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -781,7 +781,7 @@ class FileStorage {
    * @param {FileStoragePartnerValidator.SaveProxyDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePartnerModel.SaveProxy>} - Success response
+   * @returns {Promise<FileStoragePartnerModel.FetchProxyResponse>} - Success response
    * @name saveProxyDetails
    * @summary: Proxy
    * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/saveProxyDetails/).
@@ -835,7 +835,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePartnerModel.SaveProxy().validate(responseData, {
+    } = FileStoragePartnerModel.FetchProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

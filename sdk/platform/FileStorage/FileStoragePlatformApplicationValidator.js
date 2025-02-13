@@ -8,7 +8,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 
 /**
@@ -23,7 +23,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 
 /**
@@ -122,7 +122,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUpload().required(),
+      body: FileStoragePlatformModel.StartResponse().required(),
     }).required();
   }
 
@@ -140,7 +140,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUploadStart().required(),
+      body: FileStoragePlatformModel.StartRequest().required(),
     }).required();
   }
 

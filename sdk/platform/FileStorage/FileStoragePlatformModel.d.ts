@@ -1,6 +1,6 @@
 export = FileStoragePlatformModel;
 /**
- * @typedef UpdatePdfType
+ * @typedef UpdatePdfTypeRequest
  * @property {number} [pdf_type_id]
  * @property {string} [name]
  * @property {string[]} [format]
@@ -10,12 +10,11 @@ export = FileStoragePlatformModel;
  * @property {string} [country_code]
  */
 /**
- * @typedef PdfTypeByIdDetails
+ * @typedef PdfTypeIdResponse
  * @property {boolean} [store_os]
  * @property {string} [country_code]
  * @property {number} [pdf_type_id]
  * @property {number} [__v]
- * @property {string} [_id]
  * @property {string[]} [format]
  * @property {string} [name]
  * @property {boolean} [visibility]
@@ -30,7 +29,7 @@ export = FileStoragePlatformModel;
  * @property {number} [__v]
  */
 /**
- * @typedef UpdatedDefaultTemplateById
+ * @typedef PdfConfigurationResponse
  * @property {PdfConfigurationData} [data]
  * @property {boolean} [success]
  */
@@ -43,7 +42,7 @@ export = FileStoragePlatformModel;
  * @property {boolean} [store_os] - This flag is to identify store-os
  */
 /**
- * @typedef PdfDefaultTemplateById
+ * @typedef PdfDefaultTemplateResponse
  * @property {string} [_id] - The ID of the PDF default template
  * @property {string} [country_code] - The country code associated with the template
  * @property {string} [format] - The format of the template (e.g., "A4")
@@ -79,7 +78,7 @@ export = FileStoragePlatformModel;
  * @property {boolean} [success] - Indicates if the request was successful.
  */
 /**
- * @typedef FailedBrowseFilesResult
+ * @typedef FailedResponse
  * @property {string} message
  */
 /**
@@ -94,7 +93,7 @@ export = FileStoragePlatformModel;
  * @property {string} url
  */
 /**
- * @typedef FileUpload
+ * @typedef StartResponse
  * @property {string} file_name
  * @property {string} file_path
  * @property {string} content_type
@@ -106,7 +105,7 @@ export = FileStoragePlatformModel;
  * @property {string[]} [tags]
  */
 /**
- * @typedef FileUploadStart
+ * @typedef StartRequest
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
@@ -118,7 +117,7 @@ export = FileStoragePlatformModel;
  * @property {string} [username]
  */
 /**
- * @typedef FileUploadComplete
+ * @typedef CompleteResponse
  * @property {string} _id
  * @property {string} file_name
  * @property {string} file_path
@@ -136,7 +135,7 @@ export = FileStoragePlatformModel;
  * @property {CreatedBy} [created_by]
  */
 /**
- * @typedef ProxyFileAccess
+ * @typedef ProxyResponse
  * @property {Object} [data]
  * @property {Object} [support]
  */
@@ -156,16 +155,16 @@ export = FileStoragePlatformModel;
  * @property {number} expiry
  */
 /**
- * @typedef SignUrlResult
+ * @typedef SignUrlResponse
  * @property {Urls[]} urls
  */
 /**
- * @typedef SignUrl
+ * @typedef SignUrlRequest
  * @property {number} expiry
  * @property {string[]} urls
  */
 /**
- * @typedef InvoiceTypesData
+ * @typedef InvoiceTypesDataResponse
  * @property {boolean} [status]
  * @property {string} _id
  * @property {number} pdf_type_id
@@ -177,8 +176,8 @@ export = FileStoragePlatformModel;
  * @property {string} country_code
  */
 /**
- * @typedef InvoiceTypes
- * @property {InvoiceTypesData[]} data
+ * @typedef InvoiceTypesResponse
+ * @property {InvoiceTypesDataResponse[]} data
  * @property {boolean} success
  */
 /**
@@ -459,7 +458,7 @@ export = FileStoragePlatformModel;
  * @property {MetaProperty} [generator]
  */
 /**
- * @typedef PdfPayloadDetails
+ * @typedef DummyTemplateDataPayload
  * @property {boolean} [is_export]
  * @property {boolean} [is_export_shipment]
  * @property {string} [app_domain_name]
@@ -511,26 +510,26 @@ export = FileStoragePlatformModel;
  * @property {string} [_id] - This field contains the unique identifier for the
  *   PDF payload.
  * @property {number} [pdf_type_id] - This is invoice unique id
- * @property {PdfPayloadDetails} payload
+ * @property {DummyTemplateDataPayload} payload
  * @property {string} [country_code] - This field represents the country code.
  * @property {number} [__v]
  */
 /**
  * @typedef savePdfPayload
  * @property {number} [pdf_type_id]
- * @property {PdfPayloadDetails} [payload]
+ * @property {DummyTemplateDataPayload} [payload]
  * @property {string} [country_code]
  */
 /**
- * @typedef MapperDetails
+ * @typedef DummyPayloadById
  * @property {string} [_id]
  * @property {number} [pdf_type_id]
- * @property {PdfPayloadDetails} [payload]
+ * @property {DummyTemplateDataPayload} [payload]
  * @property {string} [country_code]
  * @property {number} [__v] - This field holds the version number.
  */
 /**
- * @typedef PdfDataItemsDetails
+ * @typedef DummyTemplateDataItems
  * @property {DummyTemplateData[]} data
  * @property {boolean} success
  */
@@ -557,11 +556,7 @@ export = FileStoragePlatformModel;
  *   for the PDF document.
  * @property {number} [__v] - This field holds the version number of the PDF
  *   configuration document.
- * @property {string} [country_code]
- */
-/**
- * @typedef DeleteMapperById
- * @property {string} [message] - This field represents the country code.
+ * @property {string} [country_code] - This field represents the country code.
  * @property {boolean} [default_template] - This field indicates whether the
  *   HTML template is the default template.
  */
@@ -666,11 +661,11 @@ export = FileStoragePlatformModel;
 declare class FileStoragePlatformModel {
 }
 declare namespace FileStoragePlatformModel {
-    export { UpdatePdfType, PdfTypeByIdDetails, PdfConfigurationData, UpdatedDefaultTemplateById, UpdateTemplate, PdfDefaultTemplateById, PdfTemplateCreateSuccess, PdfTemplateCreateSuccessData, CreateTemplate, PdfDefaultTemplateSuccess, FailedBrowseFilesResult, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, ProxyFileAccess, DestinationNamespace, CopyFiles, Urls, SignUrlResult, SignUrl, InvoiceTypesData, InvoiceTypes, ConversionRate, DeliveryPartnerDetail, Image, PaymentData, InvoiceDetail, CompanyDetail, StoreDetail, CustomerBillingDetail, CustomerShippingDetail, ReturnDetail, Brand, Cgst, Sgst, Igst, Tax, ItemsProductTable, ProductTable, Taxes, TaxTable, RegisteredCompanyDetail, Kwargs, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, KwargsUpiQrcode, UpiQrcodeGenerator, DigitalsignatureGenerator, KwargsAwbNumber, AwbNumberLabelBarcodeGenerator, AwbNumberBarcodeGenerator, MetaProperty, Meta, PdfPayloadDetails, DummyTemplateData, savePdfPayload, MapperDetails, PdfDataItemsDetails, PdfConfig, PdfConfigSuccessData, DeleteMapperById, PdfConfigSuccess, PdfConfigSaveSuccessData, PdfConfigSaveSuccess, Document, PaymentReceiptRequestBody, PaymentReceiptOrderDetails, PaymentReceiptCustomerDetails, PaymentReceiptPayments, PaymentReceiptFormat, PaymentReceiptService, PaymentReceiptTaxes, PaymentReceiptPayload, PaymentReceiptMeta, ExtensionSlug };
+    export { UpdatePdfTypeRequest, PdfTypeIdResponse, PdfConfigurationData, PdfConfigurationResponse, UpdateTemplate, PdfDefaultTemplateResponse, PdfTemplateCreateSuccess, PdfTemplateCreateSuccessData, CreateTemplate, PdfDefaultTemplateSuccess, FailedResponse, CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, ProxyResponse, DestinationNamespace, CopyFiles, Urls, SignUrlResponse, SignUrlRequest, InvoiceTypesDataResponse, InvoiceTypesResponse, ConversionRate, DeliveryPartnerDetail, Image, PaymentData, InvoiceDetail, CompanyDetail, StoreDetail, CustomerBillingDetail, CustomerShippingDetail, ReturnDetail, Brand, Cgst, Sgst, Igst, Tax, ItemsProductTable, ProductTable, Taxes, TaxTable, RegisteredCompanyDetail, Kwargs, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, KwargsUpiQrcode, UpiQrcodeGenerator, DigitalsignatureGenerator, KwargsAwbNumber, AwbNumberLabelBarcodeGenerator, AwbNumberBarcodeGenerator, MetaProperty, Meta, DummyTemplateDataPayload, DummyTemplateData, savePdfPayload, DummyPayloadById, DummyTemplateDataItems, PdfConfig, PdfConfigSuccessData, PdfConfigSuccess, PdfConfigSaveSuccessData, PdfConfigSaveSuccess, Document, PaymentReceiptRequestBody, PaymentReceiptOrderDetails, PaymentReceiptCustomerDetails, PaymentReceiptPayments, PaymentReceiptFormat, PaymentReceiptService, PaymentReceiptTaxes, PaymentReceiptPayload, PaymentReceiptMeta, ExtensionSlug };
 }
-/** @returns {UpdatePdfType} */
-declare function UpdatePdfType(): UpdatePdfType;
-type UpdatePdfType = {
+/** @returns {UpdatePdfTypeRequest} */
+declare function UpdatePdfTypeRequest(): UpdatePdfTypeRequest;
+type UpdatePdfTypeRequest = {
     pdf_type_id?: number;
     name?: string;
     format?: string[];
@@ -679,14 +674,13 @@ type UpdatePdfType = {
     store_os?: boolean;
     country_code?: string;
 };
-/** @returns {PdfTypeByIdDetails} */
-declare function PdfTypeByIdDetails(): PdfTypeByIdDetails;
-type PdfTypeByIdDetails = {
+/** @returns {PdfTypeIdResponse} */
+declare function PdfTypeIdResponse(): PdfTypeIdResponse;
+type PdfTypeIdResponse = {
     store_os?: boolean;
     country_code?: string;
     pdf_type_id?: number;
     __v?: number;
-    _id?: string;
     format?: string[];
     name?: string;
     visibility?: boolean;
@@ -701,9 +695,9 @@ type PdfConfigurationData = {
     country_code?: string;
     __v?: number;
 };
-/** @returns {UpdatedDefaultTemplateById} */
-declare function UpdatedDefaultTemplateById(): UpdatedDefaultTemplateById;
-type UpdatedDefaultTemplateById = {
+/** @returns {PdfConfigurationResponse} */
+declare function PdfConfigurationResponse(): PdfConfigurationResponse;
+type PdfConfigurationResponse = {
     data?: PdfConfigurationData;
     success?: boolean;
 };
@@ -728,9 +722,9 @@ type UpdateTemplate = {
      */
     store_os?: boolean;
 };
-/** @returns {PdfDefaultTemplateById} */
-declare function PdfDefaultTemplateById(): PdfDefaultTemplateById;
-type PdfDefaultTemplateById = {
+/** @returns {PdfDefaultTemplateResponse} */
+declare function PdfDefaultTemplateResponse(): PdfDefaultTemplateResponse;
+type PdfDefaultTemplateResponse = {
     /**
      * - The ID of the PDF default template
      */
@@ -799,9 +793,9 @@ type PdfDefaultTemplateSuccess = {
      */
     success?: boolean;
 };
-/** @returns {FailedBrowseFilesResult} */
-declare function FailedBrowseFilesResult(): FailedBrowseFilesResult;
-type FailedBrowseFilesResult = {
+/** @returns {FailedResponse} */
+declare function FailedResponse(): FailedResponse;
+type FailedResponse = {
     message: string;
 };
 /** @returns {CDN} */
@@ -817,9 +811,9 @@ type Upload = {
     expiry: number;
     url: string;
 };
-/** @returns {FileUpload} */
-declare function FileUpload(): FileUpload;
-type FileUpload = {
+/** @returns {StartResponse} */
+declare function StartResponse(): StartResponse;
+type StartResponse = {
     file_name: string;
     file_path: string;
     content_type: string;
@@ -830,9 +824,9 @@ type FileUpload = {
     upload: Upload;
     tags?: string[];
 };
-/** @returns {FileUploadStart} */
-declare function FileUploadStart(): FileUploadStart;
-type FileUploadStart = {
+/** @returns {StartRequest} */
+declare function StartRequest(): StartRequest;
+type StartRequest = {
     file_name: string;
     content_type: string;
     size: number;
@@ -844,9 +838,9 @@ declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
     username?: string;
 };
-/** @returns {FileUploadComplete} */
-declare function FileUploadComplete(): FileUploadComplete;
-type FileUploadComplete = {
+/** @returns {CompleteResponse} */
+declare function CompleteResponse(): CompleteResponse;
+type CompleteResponse = {
     _id: string;
     file_name: string;
     file_path: string;
@@ -863,9 +857,9 @@ type FileUploadComplete = {
     modified_on: string;
     created_by?: CreatedBy;
 };
-/** @returns {ProxyFileAccess} */
-declare function ProxyFileAccess(): ProxyFileAccess;
-type ProxyFileAccess = {
+/** @returns {ProxyResponse} */
+declare function ProxyResponse(): ProxyResponse;
+type ProxyResponse = {
     data?: any;
     support?: any;
 };
@@ -887,20 +881,20 @@ type Urls = {
     signed_url: string;
     expiry: number;
 };
-/** @returns {SignUrlResult} */
-declare function SignUrlResult(): SignUrlResult;
-type SignUrlResult = {
+/** @returns {SignUrlResponse} */
+declare function SignUrlResponse(): SignUrlResponse;
+type SignUrlResponse = {
     urls: Urls[];
 };
-/** @returns {SignUrl} */
-declare function SignUrl(): SignUrl;
-type SignUrl = {
+/** @returns {SignUrlRequest} */
+declare function SignUrlRequest(): SignUrlRequest;
+type SignUrlRequest = {
     expiry: number;
     urls: string[];
 };
-/** @returns {InvoiceTypesData} */
-declare function InvoiceTypesData(): InvoiceTypesData;
-type InvoiceTypesData = {
+/** @returns {InvoiceTypesDataResponse} */
+declare function InvoiceTypesDataResponse(): InvoiceTypesDataResponse;
+type InvoiceTypesDataResponse = {
     status?: boolean;
     _id: string;
     pdf_type_id: number;
@@ -911,10 +905,10 @@ type InvoiceTypesData = {
     store_os: boolean;
     country_code: string;
 };
-/** @returns {InvoiceTypes} */
-declare function InvoiceTypes(): InvoiceTypes;
-type InvoiceTypes = {
-    data: InvoiceTypesData[];
+/** @returns {InvoiceTypesResponse} */
+declare function InvoiceTypesResponse(): InvoiceTypesResponse;
+type InvoiceTypesResponse = {
+    data: InvoiceTypesDataResponse[];
     success: boolean;
 };
 /** @returns {ConversionRate} */
@@ -1291,9 +1285,9 @@ declare function Meta(): Meta;
 type Meta = {
     generator?: MetaProperty;
 };
-/** @returns {PdfPayloadDetails} */
-declare function PdfPayloadDetails(): PdfPayloadDetails;
-type PdfPayloadDetails = {
+/** @returns {DummyTemplateDataPayload} */
+declare function DummyTemplateDataPayload(): DummyTemplateDataPayload;
+type DummyTemplateDataPayload = {
     is_export?: boolean;
     is_export_shipment?: boolean;
     app_domain_name?: string;
@@ -1352,7 +1346,7 @@ type DummyTemplateData = {
      * - This is invoice unique id
      */
     pdf_type_id?: number;
-    payload: PdfPayloadDetails;
+    payload: DummyTemplateDataPayload;
     /**
      * - This field represents the country code.
      */
@@ -1363,24 +1357,24 @@ type DummyTemplateData = {
 declare function savePdfPayload(): savePdfPayload;
 type savePdfPayload = {
     pdf_type_id?: number;
-    payload?: PdfPayloadDetails;
+    payload?: DummyTemplateDataPayload;
     country_code?: string;
 };
-/** @returns {MapperDetails} */
-declare function MapperDetails(): MapperDetails;
-type MapperDetails = {
+/** @returns {DummyPayloadById} */
+declare function DummyPayloadById(): DummyPayloadById;
+type DummyPayloadById = {
     _id?: string;
     pdf_type_id?: number;
-    payload?: PdfPayloadDetails;
+    payload?: DummyTemplateDataPayload;
     country_code?: string;
     /**
      * - This field holds the version number.
      */
     __v?: number;
 };
-/** @returns {PdfDataItemsDetails} */
-declare function PdfDataItemsDetails(): PdfDataItemsDetails;
-type PdfDataItemsDetails = {
+/** @returns {DummyTemplateDataItems} */
+declare function DummyTemplateDataItems(): DummyTemplateDataItems;
+type DummyTemplateDataItems = {
     data: DummyTemplateData[];
     success: boolean;
 };
@@ -1445,15 +1439,10 @@ type PdfConfigSuccessData = {
      * configuration document.
      */
     __v?: number;
-    country_code?: string;
-};
-/** @returns {DeleteMapperById} */
-declare function DeleteMapperById(): DeleteMapperById;
-type DeleteMapperById = {
     /**
      * - This field represents the country code.
      */
-    message?: string;
+    country_code?: string;
     /**
      * - This field indicates whether the
      * HTML template is the default template.

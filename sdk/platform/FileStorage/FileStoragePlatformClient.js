@@ -103,7 +103,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.FileUploadComplete>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name completeUpload
    * @summary: Complete file upload.
    * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
@@ -163,7 +163,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.FileUploadComplete().validate(responseData, {
+    } = FileStoragePlatformModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -266,7 +266,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.SignUrlResult>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
    * @name getSignUrls
    * @summary: Get signed URLs.
    * @description: Retrieve signed URLs for file access. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
@@ -322,7 +322,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.SignUrlResult().validate(responseData, {
+    } = FileStoragePlatformModel.SignUrlResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -345,7 +345,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.ProxyFileAccess>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
    * @name proxy
    * @summary: Proxy file access.
    * @description: Access files through a proxy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
@@ -400,7 +400,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.ProxyFileAccess().validate(responseData, {
+    } = FileStoragePlatformModel.ProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -423,7 +423,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.FileUpload>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name startUpload
    * @summary: Start file upload.
    * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
@@ -483,7 +483,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.FileUpload().validate(responseData, {
+    } = FileStoragePlatformModel.StartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

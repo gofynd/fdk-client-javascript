@@ -133,6 +133,11 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
+ * @typedef GetUsersByByGroupIdParam
+ * @property {string} groupId - Numeric ID allotted to a User Group
+ */
+
+/**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
  * @property {string[]} [query] - The search queries. Mobile numbers or email
@@ -160,7 +165,7 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {string} attributeDefId - The unique identifier of the attribute
  *   definition to update.
  * @property {string} userId - The unique identifier of the user to update.
- * @property {UserPlatformModel.CreateUserAttribute} body
+ * @property {UserPlatformModel.CreateUserAttributeRequest} body
  */
 
 /**
@@ -347,6 +352,13 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetUsersByByGroupIdParam} */
+  static getUsersByByGroupId() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {SearchUsersParam} */
   static searchUsers() {
     return Joi.object({
@@ -383,7 +395,7 @@ class UserPlatformApplicationValidator {
       attributeDefId: Joi.string().allow("").required(),
       userId: Joi.string().allow("").required(),
 
-      body: UserPlatformModel.CreateUserAttribute().required(),
+      body: UserPlatformModel.CreateUserAttributeRequest().required(),
     }).required();
   }
 

@@ -14,6 +14,8 @@ declare class Content {
         getMenuContentByType: string;
         getNavbar: string;
         getPricingBanner: string;
+        getSDKDocumentation: string;
+        getSDKDocumentationByType: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -127,6 +129,26 @@ declare class Content {
      * @description: Retrieve pricing banner information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getPricingBanner/).
      */
     getPricingBanner({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPublicModel.PricingBannerSchema>;
+    /**
+     * @param {ContentPublicValidator.GetSDKDocumentationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PublicAPIClient").Options} - Options
+     * @returns {Promise<ContentPublicModel.SDKLinksResponseSchema>} - Success response
+     * @name getSDKDocumentation
+     * @summary: Get documentation link of Software Development Kit
+     * @description: Get documentation of SDK - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getSDKDocumentation/).
+     */
+    getSDKDocumentation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPublicModel.SDKLinksResponseSchema>;
+    /**
+     * @param {ContentPublicValidator.GetSDKDocumentationByTypeParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PublicAPIClient").Options} - Options
+     * @returns {Promise<ContentPublicModel.SDKbyTypeResponseSchema>} - Success response
+     * @name getSDKDocumentationByType
+     * @summary: Get documentation of Software Development Kit by its type
+     * @description: Get documentation of SDK by its type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getSDKDocumentationByType/).
+     */
+    getSDKDocumentationByType({ type, requestHeaders }?: ContentPublicValidator.GetSDKDocumentationByTypeParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.SDKbyTypeResponseSchema>;
 }
 import ContentPublicModel = require("./ContentPublicModel");
 import ContentPublicValidator = require("./ContentPublicValidator");

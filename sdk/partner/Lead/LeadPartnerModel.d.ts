@@ -14,6 +14,7 @@ export = LeadPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef TicketHistoryList
@@ -28,7 +29,7 @@ export = LeadPartnerModel;
  * @property {string} [source] - Denotes if the ticket was created at partner or
  *   application level
  * @property {string} [status] - Denotes in what state is the ticket
- * @property {PriorityEnum} [priority]
+ * @property {string} [priority]
  * @property {AgentChangePayload} [assigned_to]
  * @property {string[]} [tags] - Tags relevant to ticket
  */
@@ -37,17 +38,31 @@ export = LeadPartnerModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef GeneralConfigDetails
+ * @typedef GeneralConfigResponse
+ * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
+ * @property {boolean} [show_communication_info]
+ * @property {boolean} [show_support_dris]
  * @property {string} [type]
  * @property {GeneralConfigIntegrationSchema} [integration]
+ * @property {boolean} [allow_ticket_creation]
+ * @property {boolean} [show_listing]
  * @property {string[]} [available_integration]
+ * @property {boolean} [enable_dris]
+ * @property {SupportSchema} [support_email]
+ * @property {SupportSchema} [support_phone]
+ * @property {SupportSchema} [support_faq]
+ */
+/**
+ * @typedef SupportSchema
+ * @property {string} [value]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef SupportCommunicationSchema
  * @property {string} [type]
  * @property {string} [title]
- * @property {Object} [value]
  * @property {string} [description]
  * @property {boolean} [enabled]
  */
@@ -60,21 +75,24 @@ export = LeadPartnerModel;
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} assignees - List of support staff availble for tickets assignment
+ * @property {Object[]} [assignees] - List of support staff availble for tickets
+ *   assignment
+ * @property {Object} [all_categories]
  */
 /**
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
- * @property {HistoryTypeEnum} type
+ * @property {string} type
  */
 /**
  * @typedef TicketContext
  * @property {string} [application_id] - Application ID related to the ticket
- * @property {string} partner_id - Partner ID related to the ticket
+ * @property {string} organization_id - Organization ID related to the ticket
  */
 /**
  * @typedef CreatedOn
  * @property {string} user_agent - Useragent details
+ * @property {string} [platform]
  */
 /**
  * @typedef TicketAsset
@@ -92,14 +110,14 @@ export = LeadPartnerModel;
  * @typedef AddTicketPayload
  * @property {Object} [created_by] - Creator of the ticket
  * @property {string} [status] - Status of the ticket
- * @property {PriorityEnum} [priority]
+ * @property {string} [priority]
  * @property {string} category - Category of the ticket
  * @property {TicketContent} content
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
  */
 /**
  * @typedef Priority
- * @property {PriorityEnum} key
+ * @property {string} key - Priority value of the ticket like urgent, low, medium, high.
  * @property {string} display - Display text for priority
  * @property {string} color - Color for priority
  */
@@ -123,7 +141,7 @@ export = LeadPartnerModel;
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories]
+ * @property {TicketCategory[]} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -137,6 +155,7 @@ export = LeadPartnerModel;
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [updated_at] - Time of last update of the history event
  * @property {string} [created_at] - Time of creation of the history event
+ * @property {number} [__v]
  */
 /**
  * @typedef Ticket
@@ -147,13 +166,14 @@ export = LeadPartnerModel;
  * @property {TicketContent} [content]
  * @property {TicketCategory} category
  * @property {string} [sub_category] - Sub-category assigned to the ticket
- * @property {TicketSourceEnum} source
+ * @property {string} source
  * @property {Status} status
  * @property {Priority} priority
  * @property {SLA} [sla]
  * @property {Object} [created_by] - User details of ticket creator
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
  * @property {string[]} [tags] - Tags relevant to ticket
+ * @property {string[]} [subscribers]
  * @property {Object} [_custom_json] - Custom json relevant to the ticket
  * @property {boolean} [is_feedback_pending] - Denotes if feedback submission is
  *   pending for the ticket
@@ -161,9 +181,20 @@ export = LeadPartnerModel;
  * @property {string} _id - Unique identifier for the ticket
  * @property {string} [updated_at] - Time when the ticket was last updated
  * @property {string} [created_at] - Time when the ticket was created
+ * @property {Object[]} [additional_info]
+ * @property {string} [ticket_link]
+ * @property {number} [__v]
  */
-/** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
-/** @typedef {"rating" | "log" | "comment"} HistoryTypeEnum */
+/**
+ * @typedef Error4XX
+ * @property {Object} [message]
+ * @property {string} [stack]
+ * @property {string} [sentry]
+ */
+/**
+ * @typedef NotFoundError
+ * @property {string} [message]
+ */
 /**
  * @typedef {| "image"
  *   | "video"
@@ -175,11 +206,10 @@ export = LeadPartnerModel;
  *   | "shipment"
  *   | "order"} TicketAssetTypeEnum
  */
-/** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 declare class LeadPartnerModel {
 }
 declare namespace LeadPartnerModel {
-    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigDetails, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponse, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum };
 }
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
@@ -222,6 +252,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - Total number of items.
+     */
+    total?: number;
 };
 /** @returns {TicketHistoryList} */
 declare function TicketHistoryList(): TicketHistoryList;
@@ -253,7 +287,7 @@ type EditTicketPayload = {
      * - Denotes in what state is the ticket
      */
     status?: string;
-    priority?: PriorityEnum;
+    priority?: string;
     assigned_to?: AgentChangePayload;
     /**
      * - Tags relevant to ticket
@@ -268,20 +302,35 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {GeneralConfigDetails} */
-declare function GeneralConfigDetails(): GeneralConfigDetails;
-type GeneralConfigDetails = {
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
+    _id?: string;
     support_communication?: SupportCommunicationSchema[];
+    show_communication_info?: boolean;
+    show_support_dris?: boolean;
     type?: string;
     integration?: GeneralConfigIntegrationSchema;
+    allow_ticket_creation?: boolean;
+    show_listing?: boolean;
     available_integration?: string[];
+    enable_dris?: boolean;
+    support_email?: SupportSchema;
+    support_phone?: SupportSchema;
+    support_faq?: SupportSchema;
+};
+/** @returns {SupportSchema} */
+declare function SupportSchema(): SupportSchema;
+type SupportSchema = {
+    value?: string;
+    description?: string;
+    enabled?: boolean;
 };
 /** @returns {SupportCommunicationSchema} */
 declare function SupportCommunicationSchema(): SupportCommunicationSchema;
 type SupportCommunicationSchema = {
     type?: string;
     title?: string;
-    value?: any;
     description?: string;
     enabled?: boolean;
 };
@@ -306,9 +355,11 @@ type Filter = {
      */
     statuses: Status[];
     /**
-     * - List of support staff availble for tickets assignment
+     * - List of support staff availble for tickets
+     * assignment
      */
-    assignees: any[];
+    assignees?: any[];
+    all_categories?: any;
 };
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -317,7 +368,7 @@ type TicketHistoryPayload = {
      * - Details of history event
      */
     value: any;
-    type: HistoryTypeEnum;
+    type: string;
 };
 /** @returns {TicketContext} */
 declare function TicketContext(): TicketContext;
@@ -327,9 +378,9 @@ type TicketContext = {
      */
     application_id?: string;
     /**
-     * - Partner ID related to the ticket
+     * - Organization ID related to the ticket
      */
-    partner_id: string;
+    organization_id: string;
 };
 /** @returns {CreatedOn} */
 declare function CreatedOn(): CreatedOn;
@@ -338,6 +389,7 @@ type CreatedOn = {
      * - Useragent details
      */
     user_agent: string;
+    platform?: string;
 };
 /** @returns {TicketAsset} */
 declare function TicketAsset(): TicketAsset;
@@ -379,7 +431,7 @@ type AddTicketPayload = {
      * - Status of the ticket
      */
     status?: string;
-    priority?: PriorityEnum;
+    priority?: string;
     /**
      * - Category of the ticket
      */
@@ -393,7 +445,10 @@ type AddTicketPayload = {
 /** @returns {Priority} */
 declare function Priority(): Priority;
 type Priority = {
-    key: PriorityEnum;
+    /**
+     * - Priority value of the ticket like urgent, low, medium, high.
+     */
+    key: string;
     /**
      * - Display text for priority
      */
@@ -451,7 +506,7 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    sub_categories?: TicketCategory;
+    sub_categories?: TicketCategory[];
     /**
      * - Group id of category releted data
      */
@@ -490,6 +545,7 @@ type TicketHistory = {
      * - Time of creation of the history event
      */
     created_at?: string;
+    __v?: number;
 };
 /** @returns {Ticket} */
 declare function Ticket(): Ticket;
@@ -507,7 +563,7 @@ type Ticket = {
      * - Sub-category assigned to the ticket
      */
     sub_category?: string;
-    source: TicketSourceEnum;
+    source: string;
     status: Status;
     priority: Priority;
     sla?: SLA;
@@ -523,6 +579,7 @@ type Ticket = {
      * - Tags relevant to ticket
      */
     tags?: string[];
+    subscribers?: string[];
     /**
      * - Custom json relevant to the ticket
      */
@@ -548,21 +605,22 @@ type Ticket = {
      * - Time when the ticket was created
      */
     created_at?: string;
+    additional_info?: any[];
+    ticket_link?: string;
+    __v?: number;
 };
-/**
- * Enum: PriorityEnum Used By: Lead
- *
- * @returns {PriorityEnum}
- */
-declare function PriorityEnum(): PriorityEnum;
-type PriorityEnum = "low" | "medium" | "high" | "urgent";
-/**
- * Enum: HistoryTypeEnum Used By: Lead
- *
- * @returns {HistoryTypeEnum}
- */
-declare function HistoryTypeEnum(): HistoryTypeEnum;
-type HistoryTypeEnum = "rating" | "log" | "comment";
+/** @returns {Error4XX} */
+declare function Error4XX(): Error4XX;
+type Error4XX = {
+    message?: any;
+    stack?: string;
+    sentry?: string;
+};
+/** @returns {NotFoundError} */
+declare function NotFoundError(): NotFoundError;
+type NotFoundError = {
+    message?: string;
+};
 /**
  * Enum: TicketAssetTypeEnum Used By: Lead
  *
@@ -570,10 +628,3 @@ type HistoryTypeEnum = "rating" | "log" | "comment";
  */
 declare function TicketAssetTypeEnum(): TicketAssetTypeEnum;
 type TicketAssetTypeEnum = "image" | "video" | "file" | "youtube" | "product" | "collection" | "brand" | "shipment" | "order";
-/**
- * Enum: TicketSourceEnum Used By: Lead
- *
- * @returns {TicketSourceEnum}
- */
-declare function TicketSourceEnum(): TicketSourceEnum;
-type TicketSourceEnum = "platform_panel" | "sales_channel";

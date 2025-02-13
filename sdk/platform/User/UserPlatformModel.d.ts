@@ -1,6 +1,6 @@
 export = UserPlatformModel;
 /**
- * @typedef SuccessMessage
+ * @typedef SuccessMessageResponse
  * @property {string} [success]
  */
 /**
@@ -23,7 +23,7 @@ export = UserPlatformModel;
  * @property {number} [__v] - The version number of the attribute.
  */
 /**
- * @typedef UserAttributeDefinitionDetails
+ * @typedef UserAttributeDefinitionResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -49,50 +49,57 @@ export = UserPlatformModel;
  * @property {Object} [value] - The validation value.
  */
 /**
- * @typedef UserAttribute
+ * @typedef UserAttributeResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 /**
- * @typedef CreateUserAttribute
- * @property {boolean} [customer_overridden]
+ * @typedef CreateUserAttributeRequest
+ * @property {boolean} [customer_overriden]
  * @property {Object} [attribute]
  */
 /**
  * @typedef CreateUserAttributeDefinition
- * @property {string} [name]
- * @property {string} [slug]
- * @property {string} [description]
- * @property {string} [type]
- * @property {boolean} [multi_value]
- * @property {boolean} [customer_editable]
- * @property {boolean} [encrypted]
- * @property {boolean} [pinned]
- * @property {number} [pin_order]
- * @property {string} [default_value]
- * @property {Object[]} [validations]
+ * @property {string} [name] - The name of user attribute definition.
+ * @property {string} [slug] - The unique identifier of user attribute definition.
+ * @property {string} [description] - The description for the user attribute definition.
+ * @property {string} [type] - The attribute type for the user attribute definition.
+ * @property {boolean} [multi_value] - Identifier to specify if attribute will
+ *   have multiple values or not.
+ * @property {boolean} [customer_editable] - Identifier to specify if attribute
+ *   can be edited by the customer.
+ * @property {boolean} [encrypted] - Identifier to specify if attribute will be
+ *   stored in encrypted format.
+ * @property {boolean} [pinned] - Identifier to specify if the definition is
+ *   pinned or not.
+ * @property {number} [pin_order] - Pin order of the Attribute Definition.
+ * @property {Object} [default_value] - The default value for the User Attribute
+ *   Definition. Data type of the default value depends on the type of the
+ *   attribute definition type defined.
+ * @property {Object[]} [validations] - The custom validations that have been
+ *   set for this customer definition.
  */
 /**
  * @typedef BlockUserRequestSchema
- * @property {boolean} [status]
- * @property {string[]} [user_id]
- * @property {string} [reason]
+ * @property {boolean} status
+ * @property {string[]} user_id
+ * @property {string} reason
  */
 /**
  * @typedef ArchiveUserRequestSchema
- * @property {string} [user_id]
+ * @property {string} user_id
  */
 /**
  * @typedef UnDeleteUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
+ * @property {string} user_id
+ * @property {string} reason
+ * @property {string} reason_id
  */
 /**
  * @typedef BlockUserSuccess
@@ -160,7 +167,7 @@ export = UserPlatformModel;
  * @typedef Conditions
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {string} [value]
+ * @property {Object} [value]
  * @property {string} [key]
  */
 /**
@@ -171,6 +178,7 @@ export = UserPlatformModel;
 /**
  * @typedef UserGroupResponseSchema
  * @property {Conditions[]} [conditions]
+ * @property {string[]} [blacklisted_users]
  * @property {UserResponseErrorSchema} [error]
  * @property {string} [name]
  * @property {string} [description]
@@ -194,7 +202,7 @@ export = UserPlatformModel;
  * @typedef ConditionsSchema
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {string} [value]
+ * @property {Object} [value]
  */
 /**
  * @typedef CreateUserGroup
@@ -203,6 +211,7 @@ export = UserPlatformModel;
  * @property {string} name
  * @property {string} description
  * @property {string} [file_url]
+ * @property {string[]} [blacklisted_users]
  */
 /**
  * @typedef CreateUserRequestSchema
@@ -222,8 +231,9 @@ export = UserPlatformModel;
  */
 /**
  * @typedef CreateUserSessionRequestSchema
- * @property {string} [domain]
- * @property {string} [user_id]
+ * @property {string} domain
+ * @property {string} user_id
+ * @property {number} [max_age]
  */
 /**
  * @typedef CreateUserSessionResponseSchema
@@ -241,6 +251,8 @@ export = UserPlatformModel;
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
+ * @property {AccountLockout} [account_lockout]
+ * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -268,9 +280,39 @@ export = UserPlatformModel;
  * @property {string} [background_color]
  */
 /**
+ * @typedef PasswordConfigs
+ * @property {number} [length]
+ * @property {boolean} [require_special_character]
+ * @property {boolean} [require_number]
+ * @property {boolean} [require_capital_character]
+ */
+/**
+ * @typedef PasswordHistory
+ * @property {boolean} [required]
+ * @property {number} [count]
+ */
+/**
+ * @typedef PasswordExpiry
+ * @property {boolean} [required]
+ * @property {number} [duration]
+ */
+/**
+ * @typedef PasswordSettings
+ * @property {PasswordConfigs} [configs]
+ * @property {PasswordHistory} [history]
+ * @property {PasswordExpiry} [expiry]
+ */
+/**
+ * @typedef AccountLockout
+ * @property {boolean} [enable]
+ * @property {number} [attempts]
+ * @property {number} [duration]
+ */
+/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
+ * @property {string} [via]
  */
 /**
  * @typedef MetaSchema
@@ -284,9 +326,14 @@ export = UserPlatformModel;
  * @property {boolean} [apple]
  */
 /**
+ * @typedef PlatformPassword
+ * @property {boolean} [is_required]
+ */
+/**
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef PlatformEmail
@@ -302,6 +349,7 @@ export = UserPlatformModel;
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef RegisterRequiredFieldsEmail
@@ -322,7 +370,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -377,6 +425,10 @@ export = UserPlatformModel;
  * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
  *   type json. Array of user data. Must have `action` field and one of
  *   `phone_number`, `email` or `user_id` field in object
+ * @property {string[]} [whitelisted_users] - List of user ids to be whitelisted
+ *   from user group
+ * @property {string[]} [blacklisted_users] - List of user ids to be blacklisted
+ *   from user group
  */
 /**
  * @typedef UserGroupUpdateData
@@ -412,9 +464,16 @@ export = UserPlatformModel;
  * @property {string} [country_code]
  */
 /**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
+ */
+/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [password_last_modified]
+ * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -473,11 +532,11 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, PlatformPassword, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserPasswordHistory, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
-/** @returns {SuccessMessage} */
-declare function SuccessMessage(): SuccessMessage;
-type SuccessMessage = {
+/** @returns {SuccessMessageResponse} */
+declare function SuccessMessageResponse(): SuccessMessageResponse;
+type SuccessMessageResponse = {
     success?: string;
 };
 /** @returns {UserAttributeDefinition} */
@@ -545,9 +604,9 @@ type UserAttributeDefinition = {
      */
     __v?: number;
 };
-/** @returns {UserAttributeDefinitionDetails} */
-declare function UserAttributeDefinitionDetails(): UserAttributeDefinitionDetails;
-type UserAttributeDefinitionDetails = {
+/** @returns {UserAttributeDefinitionResponse} */
+declare function UserAttributeDefinitionResponse(): UserAttributeDefinitionResponse;
+type UserAttributeDefinitionResponse = {
     /**
      * - The unique identifier for the attribute definition.
      */
@@ -627,9 +686,9 @@ type UserAttributeDefinitionValidation = {
      */
     value?: any;
 };
-/** @returns {UserAttribute} */
-declare function UserAttribute(): UserAttribute;
-type UserAttribute = {
+/** @returns {UserAttributeResponse} */
+declare function UserAttributeResponse(): UserAttributeResponse;
+type UserAttributeResponse = {
     /**
      * - The unique identifier for the attribute definition.
      */
@@ -653,49 +712,89 @@ type UserAttribute = {
     /**
      * - Whether the attribute is customer-editable.
      */
-    customer_overridden?: boolean;
+    customer_overriden?: boolean;
     attribute?: any;
     updated_by?: string;
 };
-/** @returns {CreateUserAttribute} */
-declare function CreateUserAttribute(): CreateUserAttribute;
-type CreateUserAttribute = {
-    customer_overridden?: boolean;
+/** @returns {CreateUserAttributeRequest} */
+declare function CreateUserAttributeRequest(): CreateUserAttributeRequest;
+type CreateUserAttributeRequest = {
+    customer_overriden?: boolean;
     attribute?: any;
 };
 /** @returns {CreateUserAttributeDefinition} */
 declare function CreateUserAttributeDefinition(): CreateUserAttributeDefinition;
 type CreateUserAttributeDefinition = {
+    /**
+     * - The name of user attribute definition.
+     */
     name?: string;
+    /**
+     * - The unique identifier of user attribute definition.
+     */
     slug?: string;
+    /**
+     * - The description for the user attribute definition.
+     */
     description?: string;
+    /**
+     * - The attribute type for the user attribute definition.
+     */
     type?: string;
+    /**
+     * - Identifier to specify if attribute will
+     * have multiple values or not.
+     */
     multi_value?: boolean;
+    /**
+     * - Identifier to specify if attribute
+     * can be edited by the customer.
+     */
     customer_editable?: boolean;
+    /**
+     * - Identifier to specify if attribute will be
+     * stored in encrypted format.
+     */
     encrypted?: boolean;
+    /**
+     * - Identifier to specify if the definition is
+     * pinned or not.
+     */
     pinned?: boolean;
+    /**
+     * - Pin order of the Attribute Definition.
+     */
     pin_order?: number;
-    default_value?: string;
+    /**
+     * - The default value for the User Attribute
+     * Definition. Data type of the default value depends on the type of the
+     * attribute definition type defined.
+     */
+    default_value?: any;
+    /**
+     * - The custom validations that have been
+     * set for this customer definition.
+     */
     validations?: any[];
 };
 /** @returns {BlockUserRequestSchema} */
 declare function BlockUserRequestSchema(): BlockUserRequestSchema;
 type BlockUserRequestSchema = {
-    status?: boolean;
-    user_id?: string[];
-    reason?: string;
+    status: boolean;
+    user_id: string[];
+    reason: string;
 };
 /** @returns {ArchiveUserRequestSchema} */
 declare function ArchiveUserRequestSchema(): ArchiveUserRequestSchema;
 type ArchiveUserRequestSchema = {
-    user_id?: string;
+    user_id: string;
 };
 /** @returns {UnDeleteUserRequestSchema} */
 declare function UnDeleteUserRequestSchema(): UnDeleteUserRequestSchema;
 type UnDeleteUserRequestSchema = {
-    user_id?: string;
-    reason?: string;
-    reason_id?: string;
+    user_id: string;
+    reason: string;
+    reason_id: string;
 };
 /** @returns {BlockUserSuccess} */
 declare function BlockUserSuccess(): BlockUserSuccess;
@@ -778,7 +877,7 @@ declare function Conditions(): Conditions;
 type Conditions = {
     user_attribute_definition_id?: string;
     type?: string;
-    value?: string;
+    value?: any;
     key?: string;
 };
 /** @returns {UserResponseErrorSchema} */
@@ -791,6 +890,7 @@ type UserResponseErrorSchema = {
 declare function UserGroupResponseSchema(): UserGroupResponseSchema;
 type UserGroupResponseSchema = {
     conditions?: Conditions[];
+    blacklisted_users?: string[];
     error?: UserResponseErrorSchema;
     name?: string;
     description?: string;
@@ -816,7 +916,7 @@ declare function ConditionsSchema(): ConditionsSchema;
 type ConditionsSchema = {
     user_attribute_definition_id?: string;
     type?: string;
-    value?: string;
+    value?: any;
 };
 /** @returns {CreateUserGroup} */
 declare function CreateUserGroup(): CreateUserGroup;
@@ -826,6 +926,7 @@ type CreateUserGroup = {
     name: string;
     description: string;
     file_url?: string;
+    blacklisted_users?: string[];
 };
 /** @returns {CreateUserRequestSchema} */
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
@@ -848,8 +949,9 @@ type CreateUserResponseSchema = {
 /** @returns {CreateUserSessionRequestSchema} */
 declare function CreateUserSessionRequestSchema(): CreateUserSessionRequestSchema;
 type CreateUserSessionRequestSchema = {
-    domain?: string;
-    user_id?: string;
+    domain: string;
+    user_id: string;
+    max_age?: number;
 };
 /** @returns {CreateUserSessionResponseSchema} */
 declare function CreateUserSessionResponseSchema(): CreateUserSessionResponseSchema;
@@ -869,6 +971,8 @@ type PlatformSchema = {
     active?: boolean;
     forgot_password?: boolean;
     login?: Login;
+    account_lockout?: AccountLockout;
+    password_settings?: PasswordSettings;
     skip_captcha?: boolean;
     name?: string;
     meta?: MetaSchema;
@@ -896,11 +1000,46 @@ type LookAndFeel = {
     card_position?: string;
     background_color?: string;
 };
+/** @returns {PasswordConfigs} */
+declare function PasswordConfigs(): PasswordConfigs;
+type PasswordConfigs = {
+    length?: number;
+    require_special_character?: boolean;
+    require_number?: boolean;
+    require_capital_character?: boolean;
+};
+/** @returns {PasswordHistory} */
+declare function PasswordHistory(): PasswordHistory;
+type PasswordHistory = {
+    required?: boolean;
+    count?: number;
+};
+/** @returns {PasswordExpiry} */
+declare function PasswordExpiry(): PasswordExpiry;
+type PasswordExpiry = {
+    required?: boolean;
+    duration?: number;
+};
+/** @returns {PasswordSettings} */
+declare function PasswordSettings(): PasswordSettings;
+type PasswordSettings = {
+    configs?: PasswordConfigs;
+    history?: PasswordHistory;
+    expiry?: PasswordExpiry;
+};
+/** @returns {AccountLockout} */
+declare function AccountLockout(): AccountLockout;
+type AccountLockout = {
+    enable?: boolean;
+    attempts?: number;
+    duration?: number;
+};
 /** @returns {Login} */
 declare function Login(): Login;
 type Login = {
     password?: boolean;
     otp?: boolean;
+    via?: string;
 };
 /** @returns {MetaSchema} */
 declare function MetaSchema(): MetaSchema;
@@ -915,11 +1054,17 @@ type Social = {
     google?: boolean;
     apple?: boolean;
 };
+/** @returns {PlatformPassword} */
+declare function PlatformPassword(): PlatformPassword;
+type PlatformPassword = {
+    is_required?: boolean;
+};
 /** @returns {RequiredFields} */
 declare function RequiredFields(): RequiredFields;
 type RequiredFields = {
     email?: PlatformEmail;
     mobile?: PlatformMobile;
+    password?: PlatformPassword;
 };
 /** @returns {PlatformEmail} */
 declare function PlatformEmail(): PlatformEmail;
@@ -938,6 +1083,7 @@ declare function RegisterRequiredFields(): RegisterRequiredFields;
 type RegisterRequiredFields = {
     email?: RegisterRequiredFieldsEmail;
     mobile?: RegisterRequiredFieldsMobile;
+    password?: PlatformPassword;
 };
 /** @returns {RegisterRequiredFieldsEmail} */
 declare function RegisterRequiredFieldsEmail(): RegisterRequiredFieldsEmail;
@@ -962,7 +1108,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */
@@ -1034,6 +1180,16 @@ type PartialUserGroupUpdateSchema = {
      * `phone_number`, `email` or `user_id` field in object
      */
     user_data?: UserGroupUpdateData[];
+    /**
+     * - List of user ids to be whitelisted
+     * from user group
+     */
+    whitelisted_users?: string[];
+    /**
+     * - List of user ids to be blacklisted
+     * from user group
+     */
+    blacklisted_users?: string[];
 };
 /** @returns {UserGroupUpdateData} */
 declare function UserGroupUpdateData(): UserGroupUpdateData;
@@ -1081,11 +1237,19 @@ type UserPhoneNumbers = {
     phone?: string;
     country_code?: string;
 };
+/** @returns {UserPasswordHistory} */
+declare function UserPasswordHistory(): UserPasswordHistory;
+type UserPasswordHistory = {
+    salt?: string;
+    hash?: string;
+};
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
     application_id?: string;
     user_id?: string;
+    password_last_modified?: string;
+    password_history?: UserPasswordHistory[];
     first_name?: string;
     meta?: any;
     last_name?: string;
