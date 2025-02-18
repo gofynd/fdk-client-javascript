@@ -399,6 +399,19 @@ export = UserPlatformModel;
  * @property {string} [consent_text]
  */
 /**
+ * @typedef GetUserTimeline
+ * @property {string} [delete_on] - Denotes the date on which the user will be deleted
+ * @property {UserTimeline[]} [timeline] - List of user timeline events
+ */
+/**
+ * @typedef UserTimeline
+ * @property {string} [date] - Denotes the date at which this event occured
+ * @property {string} [title] - Title of the timeline event
+ * @property {string} [type] - Type of the event, indicating its status
+ * @property {boolean} [visible] - Indicates whether the event should be shown on the UI
+ * @property {string} [sub_title] - Additional information about the event
+ */
+/**
  * @typedef Facebook
  * @property {string} [app_id]
  * @property {string} [app_secret]
@@ -517,6 +530,7 @@ export = UserPlatformModel;
  * @property {string} [rr_id]
  * @property {boolean} [archive]
  * @property {string} [status]
+ * @property {string} [deleted_on]
  */
 /**
  * @typedef PhoneNumber
@@ -536,7 +550,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
+    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -1189,6 +1203,42 @@ declare function DeleteAccountConsent(): DeleteAccountConsent;
 type DeleteAccountConsent = {
     consent_text?: string;
 };
+/** @returns {GetUserTimeline} */
+declare function GetUserTimeline(): GetUserTimeline;
+type GetUserTimeline = {
+    /**
+     * - Denotes the date on which the user will be deleted
+     */
+    delete_on?: string;
+    /**
+     * - List of user timeline events
+     */
+    timeline?: UserTimeline[];
+};
+/** @returns {UserTimeline} */
+declare function UserTimeline(): UserTimeline;
+type UserTimeline = {
+    /**
+     * - Denotes the date at which this event occured
+     */
+    date?: string;
+    /**
+     * - Title of the timeline event
+     */
+    title?: string;
+    /**
+     * - Type of the event, indicating its status
+     */
+    type?: string;
+    /**
+     * - Indicates whether the event should be shown on the UI
+     */
+    visible?: boolean;
+    /**
+     * - Additional information about the event
+     */
+    sub_title?: string;
+};
 /** @returns {Facebook} */
 declare function Facebook(): Facebook;
 type Facebook = {
@@ -1338,6 +1388,7 @@ type UserSearchSchema = {
     rr_id?: string;
     archive?: boolean;
     status?: string;
+    deleted_on?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;

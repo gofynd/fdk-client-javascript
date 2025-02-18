@@ -454,6 +454,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetUserTimeline
+ * @property {string} [delete_on] - Denotes the date on which the user will be deleted
+ * @property {UserTimeline[]} [timeline] - List of user timeline events
+ */
+
+/**
+ * @typedef UserTimeline
+ * @property {string} [date] - Denotes the date at which this event occured
+ * @property {string} [title] - Title of the timeline event
+ * @property {string} [type] - Type of the event, indicating its status
+ * @property {boolean} [visible] - Indicates whether the event should be shown on the UI
+ * @property {string} [sub_title] - Additional information about the event
+ */
+
+/**
  * @typedef Facebook
  * @property {string} [app_id]
  * @property {string} [app_secret]
@@ -583,6 +598,7 @@ const Joi = require("joi");
  * @property {string} [rr_id]
  * @property {boolean} [archive]
  * @property {string} [status]
+ * @property {string} [deleted_on]
  */
 
 /**
@@ -1155,6 +1171,25 @@ class UserPlatformModel {
     });
   }
 
+  /** @returns {GetUserTimeline} */
+  static GetUserTimeline() {
+    return Joi.object({
+      delete_on: Joi.string().allow(""),
+      timeline: Joi.array().items(UserPlatformModel.UserTimeline()),
+    });
+  }
+
+  /** @returns {UserTimeline} */
+  static UserTimeline() {
+    return Joi.object({
+      date: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      visible: Joi.boolean(),
+      sub_title: Joi.string().allow("").allow(null),
+    });
+  }
+
   /** @returns {Facebook} */
   static Facebook() {
     return Joi.object({
@@ -1302,6 +1337,7 @@ class UserPlatformModel {
       rr_id: Joi.string().allow(""),
       archive: Joi.boolean(),
       status: Joi.string().allow(""),
+      deleted_on: Joi.string().allow(""),
     });
   }
 

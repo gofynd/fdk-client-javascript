@@ -4285,7 +4285,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
+   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
    *   Success response
    * @name getSystemSmsTemplates
    * @summary: Gets all system SMS templates
@@ -4336,9 +4336,12 @@ class Communication {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.array()
-      .items(CommunicationPlatformModel.SystemSmsTemplates())
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SystemSmsTemplates().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

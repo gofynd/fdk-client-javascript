@@ -425,12 +425,12 @@ export = CommunicationPlatformModel;
 /**
  * @typedef EventSubscriptionTemplateSms
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {SmsTemplate} [template]
  */
 /**
  * @typedef EventSubscriptionTemplateEmail
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {EmailTemplate} [template]
  */
 /**
  * @typedef EventSubscriptionTemplate
@@ -443,11 +443,30 @@ export = CommunicationPlatformModel;
  * @property {boolean} [is_default]
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string} [event]
+ * @property {EventSubscriptionEvents} [event]
  * @property {string} [slug]
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {number} [__v]
+ */
+/**
+ * @typedef EventSubscriptionEvents
+ * @property {string} [category]
+ * @property {string} [event_name]
+ * @property {string} [group]
+ * @property {string} [slug]
+ * @property {EventTemplate} [template]
+ */
+/**
+ * @typedef EventTemplate
+ * @property {EventProviderTemplates} [email]
+ * @property {EventProviderTemplates} [pushnotification]
+ * @property {EventProviderTemplates} [sms]
+ */
+/**
+ * @typedef EventProviderTemplates
+ * @property {string} [provider_type] - Provider type for the event template
+ * @property {string} [template] - This is the unique id of the template
  */
 /**
  * @typedef EventSubscriptions
@@ -740,6 +759,10 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef SystemSmsTemplates
+ * @property {SystemSmsTemplate[]} [items] - An array of system SMS templates
+ */
+/**
+ * @typedef SystemSmsTemplate
  * @property {EnabledObj} [url_shorten]
  * @property {string} [_id]
  * @property {boolean} [is_system]
@@ -813,6 +836,7 @@ export = CommunicationPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef GenericError
@@ -858,7 +882,7 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { EventSubscriptionsBulkUpdatePayload, EventSubscriptionsBulkUpdateResult, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EnginePayload, EngineResult, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResult, TriggerJobPayload, GetGlobalVariablesResult, CreateGlobalVariablesResult, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfiguration };
+    export { EventSubscriptionsBulkUpdatePayload, EventSubscriptionsBulkUpdateResult, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EnginePayload, EngineResult, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptionEvents, EventTemplate, EventProviderTemplates, EventSubscriptions, TriggerJobResult, TriggerJobPayload, GetGlobalVariablesResult, CreateGlobalVariablesResult, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, SystemSmsTemplate, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfiguration };
 }
 /** @returns {EventSubscriptionsBulkUpdatePayload} */
 declare function EventSubscriptionsBulkUpdatePayload(): EventSubscriptionsBulkUpdatePayload;
@@ -1363,13 +1387,13 @@ type EngineResult = {
 declare function EventSubscriptionTemplateSms(): EventSubscriptionTemplateSms;
 type EventSubscriptionTemplateSms = {
     subscribed?: boolean;
-    template?: string;
+    template?: SmsTemplate;
 };
 /** @returns {EventSubscriptionTemplateEmail} */
 declare function EventSubscriptionTemplateEmail(): EventSubscriptionTemplateEmail;
 type EventSubscriptionTemplateEmail = {
     subscribed?: boolean;
-    template?: string;
+    template?: EmailTemplate;
 };
 /** @returns {EventSubscriptionTemplate} */
 declare function EventSubscriptionTemplate(): EventSubscriptionTemplate;
@@ -1384,11 +1408,39 @@ type EventSubscription = {
     is_default?: boolean;
     _id?: string;
     application?: string;
-    event?: string;
+    event?: EventSubscriptionEvents;
     slug?: string;
     created_at?: string;
     updated_at?: string;
     __v?: number;
+};
+/** @returns {EventSubscriptionEvents} */
+declare function EventSubscriptionEvents(): EventSubscriptionEvents;
+type EventSubscriptionEvents = {
+    category?: string;
+    event_name?: string;
+    group?: string;
+    slug?: string;
+    template?: EventTemplate;
+};
+/** @returns {EventTemplate} */
+declare function EventTemplate(): EventTemplate;
+type EventTemplate = {
+    email?: EventProviderTemplates;
+    pushnotification?: EventProviderTemplates;
+    sms?: EventProviderTemplates;
+};
+/** @returns {EventProviderTemplates} */
+declare function EventProviderTemplates(): EventProviderTemplates;
+type EventProviderTemplates = {
+    /**
+     * - Provider type for the event template
+     */
+    provider_type?: string;
+    /**
+     * - This is the unique id of the template
+     */
+    template?: string;
 };
 /** @returns {EventSubscriptions} */
 declare function EventSubscriptions(): EventSubscriptions;
@@ -1762,6 +1814,14 @@ type SmsTemplate = {
 /** @returns {SystemSmsTemplates} */
 declare function SystemSmsTemplates(): SystemSmsTemplates;
 type SystemSmsTemplates = {
+    /**
+     * - An array of system SMS templates
+     */
+    items?: SystemSmsTemplate[];
+};
+/** @returns {SystemSmsTemplate} */
+declare function SystemSmsTemplate(): SystemSmsTemplate;
+type SystemSmsTemplate = {
     url_shorten?: EnabledObj;
     _id?: string;
     is_system?: boolean;
@@ -1863,6 +1923,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {GenericError} */
 declare function GenericError(): GenericError;

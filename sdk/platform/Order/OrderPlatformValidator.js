@@ -71,6 +71,15 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef FailedOrderLogsParam
+ * @property {string} [applicationId] - Application ID
+ * @property {number} [pageNo] - Page Number
+ * @property {number} [pageSize] - Page Size
+ * @property {string} [searchType] - Search type for filter
+ * @property {string} [searchValue] - Search value for filter
+ */
+
+/**
  * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
@@ -599,6 +608,17 @@ class OrderPlatformValidator {
   static failedOrderLogDetails() {
     return Joi.object({
       logId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FailedOrderLogsParam} */
+  static failedOrderLogs() {
+    return Joi.object({
+      applicationId: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
     }).required();
   }
 

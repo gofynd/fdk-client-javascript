@@ -65,7 +65,7 @@ function convertUrlToAction(url) {
   }
 }
 
-function convertActionToUrl(action) {
+function convertActionToUrl(action, locale) {
   if (action && action.page && action.page.type) {
     switch (action.type) {
       case utils.NAV_TYPE.PAGE: {
@@ -83,16 +83,16 @@ function convertActionToUrl(action) {
             item.link +=
               "/?" + utils.transformRequestOptions(action.page.query);
           }
-          return item.link;
+          return locale ? `/${locale}${item.link}` : item.link;
         }
-        return "";
+        return locale ? `/${locale}` : "";
       }
       case utils.NAV_TYPE.POPUP: {
         break;
       }
     }
   } else {
-    return "";
+    return locale ? `/${locale}` : "";
   }
 }
 

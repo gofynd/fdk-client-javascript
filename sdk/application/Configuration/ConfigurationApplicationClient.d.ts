@@ -41,6 +41,27 @@ declare class Configuration {
      */
     getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffListResponseSchema>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {boolean} [arg.orderIncent] - Select `true` to retrieve the staff
+     *   members eligible for getting incentives on orders.
+     * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+     *   retrieving staff members working at a particular ordering store.
+     * @param {string} [arg.user] - ID of the staff. Helps in retrieving the
+     *   details of a particular staff member.
+     * @param {string} [arg.userName] - Username of the member.
+     * @returns {Paginator<AppStaffListResponseSchema>}
+     * @summary: List staff members
+     * @description: List all staff members of the sales channel.
+     */
+    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, userName, }?: {
+        pageSize?: number;
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
+        userName?: string;
+    }): Paginator<AppStaffListResponseSchema>;
+    /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<AppStaffResponseSchema>} - Success response
@@ -93,7 +114,7 @@ declare class Configuration {
      * @summary: Get a currency
      * @description: Get details of the currency. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
      */
-    getCurrencyById({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Currency>;
+    getCurrencyById({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<Currency>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -156,7 +177,7 @@ declare class Configuration {
      * @summary: Get a selling location
      * @description: Get details of a selling location (store) by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
      */
-    getStoreDetailById({ storeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderingStore>;
+    getStoreDetailById({ storeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<OrderingStore>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -167,3 +188,4 @@ declare class Configuration {
      */
     removeOrderingStoreCookie({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SuccessMessageResponseSchema>;
 }
+import Paginator = require("../../common/Paginator");

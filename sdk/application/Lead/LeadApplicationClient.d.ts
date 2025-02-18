@@ -19,7 +19,7 @@ declare class Lead {
      * @summary: Log ticket history
      * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
      */
-    createHistory({ id, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TicketHistory>;
+    createHistory({ id, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<TicketHistory>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -37,7 +37,7 @@ declare class Lead {
      * @summary: Get custom form
      * @description: Get a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
      */
-    getCustomForm({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomForm>;
+    getCustomForm({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomForm>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -46,7 +46,7 @@ declare class Lead {
      * @summary: Get a support ticket
      * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
      */
-    getTicket({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Ticket>;
+    getTicket({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<Ticket>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -55,5 +55,5 @@ declare class Lead {
      * @summary: Submits form data
      * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
      */
-    submitCustomForm({ slug, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SubmitCustomFormDetails>;
+    submitCustomForm({ slug, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SubmitCustomFormDetails>;
 }

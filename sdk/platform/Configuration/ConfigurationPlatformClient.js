@@ -185,6 +185,35 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.q] - Search param by name or domain
+   * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponseSchema>}
+   * @summary: List sales channel stores
+   * @description: Retrieve a list of available sales channels. sales channels are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of sales channels created within a company.
+   */
+  getApplicationsPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getApplications({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -843,7 +872,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/stores-by-brands`,
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/inventory/stores-by-brands`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

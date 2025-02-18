@@ -57,12 +57,14 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef FstIdentification
- * @property {boolean} [enabled] - Indicates whether FST identification is
- *   enabled for the application.
+ * @property {boolean} [enabled] - Indicates whether search query interpretation
+ *   is enabled for the application.
  */
 /**
  * @typedef QuerySuggestions
- * @property {boolean} [enabled] - Indicates whether query suggestions are enabled.
+ * @property {boolean} [enabled] - Indicates whether to enable or disable query
+ *   suggestions powered by the GPT model using the current live catalog within
+ *   the application.
  * @property {number} [max_limit] - Specifies the maximum number of query
  *   suggestions that can be returned.
  */
@@ -73,6 +75,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppInventoryConfig
+ * @property {DeliveryStrategy} [delivery_strategy]
  * @property {InventoryBrand} [brand]
  * @property {InventoryStore} [store]
  * @property {InventoryCategory} [category]
@@ -876,6 +879,20 @@ export = ConfigurationPlatformModel;
  *   address of the store, should be displayed upon visiting the website
  */
 /**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
+ */
+/**
+ * @typedef DeliveryStrategy
+ * @property {string} [value] - Indicates the delivery strategy value.
+ */
+/**
  * @typedef AppFeature
  * @property {ProductDetailFeature} [product_detail]
  * @property {LandingPageFeature} [landing_page]
@@ -886,6 +903,8 @@ export = ConfigurationPlatformModel;
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
+ * @property {DeliveryStrategy} [delivery_strategy]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -1156,6 +1175,7 @@ export = ConfigurationPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef ApplicationInformation
@@ -1336,7 +1356,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {number} [pincode] - 6-digit PIN code of the opted store location
+ * @property {string} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  * @property {string} [sector] - Sector for the opted store.
@@ -1354,7 +1374,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 /**
@@ -1390,7 +1410,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, FstIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
+    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, FstIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, BuyboxFeature, DeliveryStrategy, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
 }
 /** @returns {CurrencyExchangeResponseV2} */
 declare function CurrencyExchangeResponseV2(): CurrencyExchangeResponseV2;
@@ -1516,8 +1536,8 @@ type PiiMasking = {
 declare function FstIdentification(): FstIdentification;
 type FstIdentification = {
     /**
-     * - Indicates whether FST identification is
-     * enabled for the application.
+     * - Indicates whether search query interpretation
+     * is enabled for the application.
      */
     enabled?: boolean;
 };
@@ -1525,7 +1545,9 @@ type FstIdentification = {
 declare function QuerySuggestions(): QuerySuggestions;
 type QuerySuggestions = {
     /**
-     * - Indicates whether query suggestions are enabled.
+     * - Indicates whether to enable or disable query
+     * suggestions powered by the GPT model using the current live catalog within
+     * the application.
      */
     enabled?: boolean;
     /**
@@ -1543,6 +1565,7 @@ type SearchConfig = {
 /** @returns {AppInventoryConfig} */
 declare function AppInventoryConfig(): AppInventoryConfig;
 type AppInventoryConfig = {
+    delivery_strategy?: DeliveryStrategy;
     brand?: InventoryBrand;
     store?: InventoryStore;
     category?: InventoryCategory;
@@ -3149,6 +3172,34 @@ type RegistrationPageFeature = {
      */
     ask_store_address?: boolean;
 };
+/** @returns {BuyboxFeature} */
+declare function BuyboxFeature(): BuyboxFeature;
+type BuyboxFeature = {
+    /**
+     * - Allow users to see seller/stores name on
+     * PDP (product detail page).
+     */
+    show_name?: boolean;
+    /**
+     * - Allow selection of sellers/stores on
+     * PDP (product detail page).
+     */
+    enable_selection?: boolean;
+    /**
+     * - Toggle buybox listing
+     * between sellers and stores. True indicates seller listing, while False
+     * indicates store listing.
+     */
+    is_seller_buybox_enabled?: boolean;
+};
+/** @returns {DeliveryStrategy} */
+declare function DeliveryStrategy(): DeliveryStrategy;
+type DeliveryStrategy = {
+    /**
+     * - Indicates the delivery strategy value.
+     */
+    value?: string;
+};
 /** @returns {AppFeature} */
 declare function AppFeature(): AppFeature;
 type AppFeature = {
@@ -3161,6 +3212,8 @@ type AppFeature = {
     qr?: QrFeature;
     pcr?: PcrFeature;
     order?: OrderFeature;
+    buybox?: BuyboxFeature;
+    delivery_strategy?: DeliveryStrategy;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * for the sales channel features
@@ -3712,6 +3765,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {ApplicationInformation} */
 declare function ApplicationInformation(): ApplicationInformation;
@@ -4105,7 +4162,7 @@ type OptedStoreAddress = {
     /**
      * - 6-digit PIN code of the opted store location
      */
-    pincode?: number;
+    pincode?: string;
     /**
      * - Country of the opted store, e.g. India
      */
@@ -4160,7 +4217,7 @@ type OrderingStore = {
     /**
      * - 6-digit PIN Code of the ordering store, e.g. 400001
      */
-    pincode?: number;
+    pincode?: string;
     /**
      * - Code of the ordering store (usually same as Store Code)
      */

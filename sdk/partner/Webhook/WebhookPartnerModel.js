@@ -284,6 +284,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -637,6 +638,7 @@ class WebhookPartnerModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 

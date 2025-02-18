@@ -662,8 +662,8 @@ export = OrderPlatformModel;
  * @property {string} [text] - A reason for the activity or change.
  * @property {string} [category] - Category of the reason for the status change.
  * @property {string} [state] - Current state related to the reason.
- * @property {string} [dislay_name] - Display name of the reason for better user
- *   understanding.
+ * @property {string} [display_name] - Display name of the reason for better
+ *   user understanding.
  * @property {number} [code] - Unique code identifying the reason.
  * @property {number} [quantity] - Quantity related to the reason, if applicable.
  */
@@ -2413,9 +2413,9 @@ export = OrderPlatformModel;
  *   met and optimizing logistics.
  * @property {QuestionSet[]} question_set - An array of question sets linked to
  *   the reason, defining the questions to be answered.
- * @property {Object} meta - Meta object of the reason. This contains any
+ * @property {Object} [meta] - Meta object of the reason. This contains any
  *   additional metadata that might be relevant to the reason.
- * @property {boolean} is_active - Indicates whether the reason is currently
+ * @property {boolean} [is_active] - Indicates whether the reason is currently
  *   active. Active reasons are those that are currently in use within the system.
  */
 /**
@@ -2558,6 +2558,7 @@ export = OrderPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef BagReasonMeta
@@ -2709,6 +2710,7 @@ export = OrderPlatformModel;
  * @property {string} [uid] - A unique identifier for the user associated with
  *   the address.
  * @property {string} [user_id] - The unique identifier of the user in the system.
+ * @property {string} [code] - A unique identifier associated with store.
  */
 /**
  * @typedef ShipmentListingChannel
@@ -3577,6 +3579,8 @@ export = OrderPlatformModel;
  *   at the ordering store.
  * @property {string} [state] - The state or region where the ordering store is situated.
  * @property {string} [city] - The city in which the ordering store is located.
+ * @property {string} [name] - The name of the ordering store.
+ * @property {string} [store_email] - The email address of the ordering store.
  */
 /**
  * @typedef DPDetailsData
@@ -3809,6 +3813,8 @@ export = OrderPlatformModel;
  * @property {string} [size] - The size of the article, which may be relevant
  *   for clothing.
  * @property {string[]} [tags] - An array of tags associated with the article.
+ * @property {Object} [_custom_json] - A custom JSON object containing
+ *   additional details or configurations specific to the article.
  */
 /**
  * @typedef OrderBrandName
@@ -4024,6 +4030,7 @@ export = OrderPlatformModel;
  *   with a fulfilling store.
  * @property {string} state - The state or region where the fulfilling store is located.
  * @property {string} city - The city in which the fulfilling store is situated.
+ * @property {string} [store_email] - The email address of the fulfilling store.
  */
 /**
  * @typedef ShipmentPayments
@@ -6169,10 +6176,10 @@ type HistoryReason = {
      */
     state?: string;
     /**
-     * - Display name of the reason for better user
-     * understanding.
+     * - Display name of the reason for better
+     * user understanding.
      */
-    dislay_name?: string;
+    display_name?: string;
     /**
      * - Unique code identifying the reason.
      */
@@ -9723,12 +9730,12 @@ type Reason = {
      * - Meta object of the reason. This contains any
      * additional metadata that might be relevant to the reason.
      */
-    meta: any;
+    meta?: any;
     /**
      * - Indicates whether the reason is currently
      * active. Active reasons are those that are currently in use within the system.
      */
-    is_active: boolean;
+    is_active?: boolean;
 };
 /** @returns {Conditions} */
 declare function Conditions(): Conditions;
@@ -10046,6 +10053,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {BagReasonMeta} */
 declare function BagReasonMeta(): BagReasonMeta;
@@ -10404,6 +10415,10 @@ type Address = {
      * - The unique identifier of the user in the system.
      */
     user_id?: string;
+    /**
+     * - A unique identifier associated with store.
+     */
+    code?: string;
 };
 /** @returns {ShipmentListingChannel} */
 declare function ShipmentListingChannel(): ShipmentListingChannel;
@@ -12296,6 +12311,14 @@ type OrderingStoreDetails = {
      * - The city in which the ordering store is located.
      */
     city?: string;
+    /**
+     * - The name of the ordering store.
+     */
+    name?: string;
+    /**
+     * - The email address of the ordering store.
+     */
+    store_email?: string;
 };
 /** @returns {DPDetailsData} */
 declare function DPDetailsData(): DPDetailsData;
@@ -12832,6 +12855,11 @@ type OrderBagArticle = {
      * - An array of tags associated with the article.
      */
     tags?: string[];
+    /**
+     * - A custom JSON object containing
+     * additional details or configurations specific to the article.
+     */
+    _custom_json?: any;
 };
 /** @returns {OrderBrandName} */
 declare function OrderBrandName(): OrderBrandName;
@@ -13270,6 +13298,10 @@ type FulfillingStore = {
      * - The city in which the fulfilling store is situated.
      */
     city: string;
+    /**
+     * - The email address of the fulfilling store.
+     */
+    store_email?: string;
 };
 /** @returns {ShipmentPayments} */
 declare function ShipmentPayments(): ShipmentPayments;

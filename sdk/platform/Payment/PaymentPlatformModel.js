@@ -611,6 +611,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -1374,6 +1375,7 @@ const Joi = require("joi");
  * @property {string} aggregator - Aggregator name of the payment gateway.
  * @property {number} transaction_amount - Payable amount
  * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ * @property {string} [user_id] - The unique identifier of the user.
  */
 
 /**
@@ -1392,7 +1394,7 @@ const Joi = require("joi");
  *   it is ACTIVE, INACTIVE, or UNREGISTERED.
  * @property {UserCreditSchema} [redeemable_balance]
  * @property {UserCreditSchema} [available_balance]
- * @property {UserCreditSchema} [amount_on_hold]
+ * @property {UserCreditSchema[]} [amount_on_hold]
  */
 
 /**
@@ -2164,6 +2166,7 @@ class PaymentPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -3050,6 +3053,7 @@ class PaymentPlatformModel {
       aggregator: Joi.string().allow("").required(),
       transaction_amount: Joi.number().required(),
       cart_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     });
   }
 
@@ -3069,7 +3073,9 @@ class PaymentPlatformModel {
       status: Joi.string().allow("").required(),
       redeemable_balance: PaymentPlatformModel.UserCreditSchema(),
       available_balance: PaymentPlatformModel.UserCreditSchema(),
-      amount_on_hold: PaymentPlatformModel.UserCreditSchema(),
+      amount_on_hold: Joi.array().items(
+        PaymentPlatformModel.UserCreditSchema()
+      ),
     });
   }
 

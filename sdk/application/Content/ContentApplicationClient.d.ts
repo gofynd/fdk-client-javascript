@@ -3,6 +3,8 @@ declare class Content {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
+        fetchResourceTranslations: string;
+        fetchResourceTranslationsWithPayload: string;
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
@@ -22,10 +24,30 @@ declare class Content {
         getSEOConfiguration: string;
         getSEOMarkupSchemas: string;
         getSupportInformation: string;
+        getSupportedLanguages: string;
         getTags: string;
+        getTranslateUILabels: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ResourceTranslations>} - Success response
+     * @name fetchResourceTranslations
+     * @summary: Get Resource Translations
+     * @description: Fetch translations for specific resource IDs based on type and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslations/).
+     */
+    fetchResourceTranslations({ type, locale, resourceId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ResourceTranslations>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ResourceTranslations>} - Success response
+     * @name fetchResourceTranslationsWithPayload
+     * @summary: Post Resource Translations
+     * @description: Submit and retrieve translations for resources using payload data and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslationsWithPayload/).
+     */
+    fetchResourceTranslationsWithPayload({ type, locale, resourceId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ResourceTranslations>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -43,7 +65,7 @@ declare class Content {
      * @summary: Get a blog
      * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
      */
-    getBlog({ slug, rootId, preview, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<BlogSchema>;
+    getBlog({ slug, rootId, preview, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<BlogSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -61,7 +83,7 @@ declare class Content {
      * @summary: Get list of custom fields of given resource and resource slug
      * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
      */
-    getCustomFieldsByResourceId({ resource, resourceSlug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomFieldsResponseByResourceIdSchema>;
+    getCustomFieldsByResourceId({ resource, resourceSlug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomFieldsResponseByResourceIdSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -70,7 +92,7 @@ declare class Content {
      * @summary: Get custom object details
      * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
      */
-    getCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomObjectByIdSchema>;
+    getCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomObjectByIdSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -88,7 +110,7 @@ declare class Content {
      * @summary: Get FAQ
      * @description: Get a specific FAQ using its slug identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
      */
-    getFaqBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<FaqSchema>;
+    getFaqBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<FaqSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -106,7 +128,7 @@ declare class Content {
      * @summary: Get a FAQ category
      * @description: Get a specific FAQ category using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
      */
-    getFaqCategoryBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetFaqCategoryBySlugSchema>;
+    getFaqCategoryBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetFaqCategoryBySlugSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -124,7 +146,7 @@ declare class Content {
      * @summary: List FAQs by category
      * @description: Get FAQs belonging to a specific category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
      */
-    getFaqsByCategorySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetFaqSchema>;
+    getFaqsByCategorySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetFaqSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -160,7 +182,7 @@ declare class Content {
      * @summary: Get a page
      * @description: Get detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
      */
-    getPage({ slug, rootId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PageSchema>;
+    getPage({ slug, rootId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PageSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -200,10 +222,28 @@ declare class Content {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getSupportedLanguages
+     * @summary: List App Languages
+     * @description: Retrieve available languages and their configurations for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportedLanguages/).
+     */
+    getSupportedLanguages({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<any>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<TagsSchema>} - Success response
      * @name getTags
      * @summary: Get HTML tags
      * @description: Lists HTML tags to power additional functionalities within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
      */
     getTags({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TagsSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<TranslateUiLabelsPage>} - Success response
+     * @name getTranslateUILabels
+     * @summary: Get Translate Ui Labels
+     * @description: Retrieve Translate Ui Labels with filtering options for type, template, and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTranslateUILabels/).
+     */
+    getTranslateUILabels({ template, templateThemeId, themeId, locale, type, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TranslateUiLabelsPage>;
 }

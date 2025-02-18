@@ -6,6 +6,7 @@ const {
 const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 const ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
 const ConfigurationPublicModel = require("./ConfigurationPublicModel");
@@ -49,14 +50,6 @@ class Configuration {
     { locationType, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ConfigurationPublicValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: true }
@@ -138,14 +131,6 @@ class Configuration {
     { authorization, query, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ConfigurationPublicValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: true }

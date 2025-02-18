@@ -484,13 +484,13 @@ const Joi = require("joi");
 /**
  * @typedef EventSubscriptionTemplateSms
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {SmsTemplate} [template]
  */
 
 /**
  * @typedef EventSubscriptionTemplateEmail
  * @property {boolean} [subscribed]
- * @property {string} [template]
+ * @property {EmailTemplate} [template]
  */
 
 /**
@@ -505,11 +505,33 @@ const Joi = require("joi");
  * @property {boolean} [is_default]
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string} [event]
+ * @property {EventSubscriptionEvents} [event]
  * @property {string} [slug]
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {number} [__v]
+ */
+
+/**
+ * @typedef EventSubscriptionEvents
+ * @property {string} [category]
+ * @property {string} [event_name]
+ * @property {string} [group]
+ * @property {string} [slug]
+ * @property {EventTemplate} [template]
+ */
+
+/**
+ * @typedef EventTemplate
+ * @property {EventProviderTemplates} [email]
+ * @property {EventProviderTemplates} [pushnotification]
+ * @property {EventProviderTemplates} [sms]
+ */
+
+/**
+ * @typedef EventProviderTemplates
+ * @property {string} [provider_type] - Provider type for the event template
+ * @property {string} [template] - This is the unique id of the template
  */
 
 /**
@@ -841,6 +863,11 @@ const Joi = require("joi");
 
 /**
  * @typedef SystemSmsTemplates
+ * @property {SystemSmsTemplate[]} [items] - An array of system SMS templates
+ */
+
+/**
+ * @typedef SystemSmsTemplate
  * @property {EnabledObj} [url_shorten]
  * @property {string} [_id]
  * @property {boolean} [is_system]
@@ -921,6 +948,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -1595,7 +1623,7 @@ class CommunicationPlatformModel {
   static EventSubscriptionTemplateSms() {
     return Joi.object({
       subscribed: Joi.boolean(),
-      template: Joi.string().allow(""),
+      template: CommunicationPlatformModel.SmsTemplate(),
     });
   }
 
@@ -1603,7 +1631,7 @@ class CommunicationPlatformModel {
   static EventSubscriptionTemplateEmail() {
     return Joi.object({
       subscribed: Joi.boolean(),
-      template: Joi.string().allow(""),
+      template: CommunicationPlatformModel.EmailTemplate(),
     });
   }
 
@@ -1622,11 +1650,39 @@ class CommunicationPlatformModel {
       is_default: Joi.boolean(),
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
-      event: Joi.string().allow(""),
+      event: CommunicationPlatformModel.EventSubscriptionEvents(),
       slug: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       __v: Joi.number(),
+    });
+  }
+
+  /** @returns {EventSubscriptionEvents} */
+  static EventSubscriptionEvents() {
+    return Joi.object({
+      category: Joi.string().allow(""),
+      event_name: Joi.string().allow(""),
+      group: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      template: CommunicationPlatformModel.EventTemplate(),
+    });
+  }
+
+  /** @returns {EventTemplate} */
+  static EventTemplate() {
+    return Joi.object({
+      email: CommunicationPlatformModel.EventProviderTemplates(),
+      pushnotification: CommunicationPlatformModel.EventProviderTemplates(),
+      sms: CommunicationPlatformModel.EventProviderTemplates(),
+    });
+  }
+
+  /** @returns {EventProviderTemplates} */
+  static EventProviderTemplates() {
+    return Joi.object({
+      provider_type: Joi.string().allow("").allow(null),
+      template: Joi.string().allow("").allow(null),
     });
   }
 
@@ -2036,6 +2092,13 @@ class CommunicationPlatformModel {
   /** @returns {SystemSmsTemplates} */
   static SystemSmsTemplates() {
     return Joi.object({
+      items: Joi.array().items(CommunicationPlatformModel.SystemSmsTemplate()),
+    });
+  }
+
+  /** @returns {SystemSmsTemplate} */
+  static SystemSmsTemplate() {
+    return Joi.object({
       url_shorten: CommunicationPlatformModel.EnabledObj(),
       _id: Joi.string().allow(""),
       is_system: Joi.boolean(),
@@ -2130,6 +2193,7 @@ class CommunicationPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 

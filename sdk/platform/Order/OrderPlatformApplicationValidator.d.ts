@@ -1,12 +1,5 @@
 export = OrderPlatformApplicationValidator;
 /**
- * @typedef FailedOrderLogsParam
- * @property {number} [pageNo] - Page Number
- * @property {number} [pageSize] - Page Size
- * @property {string} [searchType] - Search type for filter
- * @property {string} [searchValue] - Search value for filter
- */
-/**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane] - Optional parameter to specify the lane for
  *   filtering results.
@@ -51,8 +44,6 @@ export = OrderPlatformApplicationValidator;
  * @property {string} shipmentId - The unique identifier for the shipment
  */
 declare class OrderPlatformApplicationValidator {
-    /** @returns {FailedOrderLogsParam} */
-    static failedOrderLogs(): FailedOrderLogsParam;
     /** @returns {GetApplicationShipmentsParam} */
     static getApplicationShipments(): GetApplicationShipmentsParam;
     /** @returns {GetPlatformShipmentReasonsParam} */
@@ -65,26 +56,8 @@ declare class OrderPlatformApplicationValidator {
     static trackShipmentPlatform(): TrackShipmentPlatformParam;
 }
 declare namespace OrderPlatformApplicationValidator {
-    export { FailedOrderLogsParam, GetApplicationShipmentsParam, GetPlatformShipmentReasonsParam, GetRulesParam, GetShipmentBagReasonsParam, TrackShipmentPlatformParam };
+    export { GetApplicationShipmentsParam, GetPlatformShipmentReasonsParam, GetRulesParam, GetShipmentBagReasonsParam, TrackShipmentPlatformParam };
 }
-type FailedOrderLogsParam = {
-    /**
-     * - Page Number
-     */
-    pageNo?: number;
-    /**
-     * - Page Size
-     */
-    pageSize?: number;
-    /**
-     * - Search type for filter
-     */
-    searchType?: string;
-    /**
-     * - Search value for filter
-     */
-    searchValue?: string;
-};
 type GetApplicationShipmentsParam = {
     /**
      * - Optional parameter to specify the lane for

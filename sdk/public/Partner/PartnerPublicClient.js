@@ -6,6 +6,7 @@ const {
 const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 const PartnerPublicValidator = require("./PartnerPublicValidator");
 const PartnerPublicModel = require("./PartnerPublicModel");
@@ -48,18 +49,12 @@ class Partner {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

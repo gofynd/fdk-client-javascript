@@ -2050,6 +2050,85 @@ class User {
   }
 
   /**
+   * @param {UserPlatformApplicationValidator.GetUserTimelineParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.GetUserTimeline>} - Success response
+   * @name getUserTimeline
+   * @summary: Get Deleted User Timeline
+   * @description: Fetches the timeline for the user who has made a data erase request. The timeline will show when the request was raised and when the request will be completed. It will also show if request has been cancelled before completion. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserTimeline/).
+   */
+  async getUserTimeline(
+    { userId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserTimeline().validate(
+      {
+        userId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserTimeline().validate(
+      {
+        userId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserTimeline \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}/timeline`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.GetUserTimeline().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserTimeline \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {UserPlatformApplicationValidator.GetUsersJobByJobIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

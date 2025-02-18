@@ -34,7 +34,6 @@ declare class Payment {
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
         linkWallet: string;
-        outstandingOrderDetails: string;
         paidOrderDetails: string;
         pollingPaymentLink: string;
         redirectToAggregator: string;
@@ -97,7 +96,7 @@ declare class Payment {
      * @summary: Get card details
      * @description: Get details of a specified payment card, including information such as the card type, brand, country, and expiration date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
      */
-    cardDetails({ cardInfo, aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CardDetailsFetchedDetails>;
+    cardDetails({ cardInfo, aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CardDetailsFetchedDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -232,7 +231,7 @@ declare class Payment {
      * @summary: Get payment aggregators
      * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
      */
-    getAggregatorsConfig({ xApiToken, refresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AggregatorsConfigDetail>;
+    getAggregatorsConfig({ refresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AggregatorsConfigDetail>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -332,15 +331,6 @@ declare class Payment {
      * @description: Verify the linking of wallet using OTP for further processing of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/linkWallet/).
      */
     linkWallet({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<WalletResponseSchema>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OutstandingOrderDetails>} - Success response
-     * @name outstandingOrderDetails
-     * @summary: Outstanding orders
-     * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
-     */
-    outstandingOrderDetails({ aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OutstandingOrderDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

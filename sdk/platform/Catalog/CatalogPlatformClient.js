@@ -64,7 +64,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2346,7 +2346,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-details/`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/marketplaces/company-details/`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -3023,7 +3023,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -5057,7 +5057,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/location-details/`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/marketplaces/location-details/`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },

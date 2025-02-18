@@ -26,6 +26,18 @@ declare class Configuration {
      */
     getApplications({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformValidator.GetApplicationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.ApplicationsResponseSchema>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.q] - Search param by name or domain
+     * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponseSchema>}
+     * @summary: List sales channel stores
+     * @description: Retrieve a list of available sales channels. sales channels are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of sales channels created within a company.
+     */
+    getApplicationsPaginator({ pageSize, q }?: {
+        pageSize?: number;
+        q?: string;
+    }): Paginator<ConfigurationPlatformModel.ApplicationsResponseSchema>;
+    /**
      * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -141,3 +153,4 @@ declare class Configuration {
 }
 import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import Paginator = require("../../common/Paginator");

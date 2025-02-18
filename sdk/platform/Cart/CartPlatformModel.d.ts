@@ -191,6 +191,7 @@ export = CartPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef CouponsResult
@@ -661,6 +662,8 @@ export = CartPlatformModel;
  * @property {number} [quantity] - Total quantity of the article to be
  *   considered (currently used only in discount type)
  * @property {Object} [meta] - Meta data related to article
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed at article level
  */
 /**
  * @typedef PriceAdjustmentRestrictions
@@ -686,7 +689,7 @@ export = CartPlatformModel;
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, mop, discount etc.
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
- *   allowed (default: False)
+ *   allowed at cart level
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
@@ -710,7 +713,7 @@ export = CartPlatformModel;
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, discount, mop etc.
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
- *   allowed (default: False) expect for `charge` type
+ *   allowed at cart level
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
@@ -742,7 +745,7 @@ export = CartPlatformModel;
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
- *   allowed (default: False)
+ *   allowed at cart level
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
@@ -1000,6 +1003,8 @@ export = CartPlatformModel;
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
  * @property {string} [offer_text] - Offer text of current promotion
  * @property {number} [amount] - Per unit discount amount applied with current promotion
+ * @property {string} [float_amount] - Per unit discount amount with decimal
+ *   values applied with current promotion.
  * @property {string} [promotion_type] - Promotion type of current promotion
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
@@ -1052,6 +1057,16 @@ export = CartPlatformModel;
  * @typedef ProductPriceInfo
  * @property {ProductPrice} [converted]
  * @property {ProductPrice} [base]
+ */
+/**
+ * @typedef ProductMaxQuantityInfo
+ * @property {number} [item] - The total quantity of the item available across
+ *   all stores for all sellers. If no data is available, this field will be null.
+ * @property {number} [item_seller] - The total quantity of the item available
+ *   across all stores for the specified seller. If no seller data is available,
+ *   this field will be null.
+ * @property {number} [item_store] - The total quantity of the item available
+ *   for a specific store. If no store data is available, this field will be null.
  */
 /**
  * @typedef CartProductIdentifer
@@ -1108,6 +1123,7 @@ export = CartPlatformModel;
  * @property {ProductAvailability} [availability]
  * @property {Object} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
+ * @property {ProductMaxQuantityInfo} [max_quantity]
  * @property {ProductPriceInfo} [price_per_unit]
  * @property {PromoMeta} [promo_meta]
  * @property {Object} [custom_order] - Whether MTO (Make to Order) is enabled or not.
@@ -1791,6 +1807,8 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PlatformGetAddressesDetails
+ * @property {boolean} [pii_masking] - Personally Identifiable Information
+ *   masking flag to denote if the user data in address is masked or not.
  * @property {PlatformAddress[]} [address] - List of all address saved by customer
  * @property {ValidationConfig} [validation_config]
  */
@@ -2179,7 +2197,7 @@ export = CartPlatformModel;
  *   customer address, customer phone, customer email, customer pincode,
  *   customer landmark and customer name
  * @property {string} [callback_url] - Callback url after payment received/failed
- * @property {string} user_id - The user id of user cart
+ * @property {string} [user_id] - The user id of user cart
  * @property {Object} [extra_meta] - Extra meta to be added while checkout in order
  * @property {string} order_type - Order type of the order being placed like
  *   pickAtStore or HomeDelivery
@@ -2290,7 +2308,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError };
+    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError };
 }
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
@@ -2765,6 +2783,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {CouponsResult} */
 declare function CouponsResult(): CouponsResult;
@@ -3912,6 +3934,11 @@ type Article = {
      * - Meta data related to article
      */
     meta?: any;
+    /**
+     * - Flag indicating whether refunds are
+     * allowed at article level
+     */
+    allowed_refund?: boolean;
 };
 /** @returns {PriceAdjustmentRestrictions} */
 declare function PriceAdjustmentRestrictions(): PriceAdjustmentRestrictions;
@@ -3971,7 +3998,7 @@ type PriceAdjustmentUpdate = {
     type: string;
     /**
      * - Flag indicating whether refunds are
-     * allowed (default: False)
+     * allowed at cart level
      */
     allowed_refund?: boolean;
     /**
@@ -4035,7 +4062,7 @@ type PriceAdjustment = {
     type: string;
     /**
      * - Flag indicating whether refunds are
-     * allowed (default: False) expect for `charge` type
+     * allowed at cart level
      */
     allowed_refund?: boolean;
     /**
@@ -4109,7 +4136,7 @@ type PriceAdjustmentAdd = {
     type: string;
     /**
      * - Flag indicating whether refunds are
-     * allowed (default: False)
+     * allowed at cart level
      */
     allowed_refund?: boolean;
     /**
@@ -4746,6 +4773,11 @@ type AppliedPromotion = {
      */
     amount?: number;
     /**
+     * - Per unit discount amount with decimal
+     * values applied with current promotion.
+     */
+    float_amount?: string;
+    /**
      * - Promotion type of current promotion
      */
     promotion_type?: string;
@@ -4867,6 +4899,26 @@ declare function ProductPriceInfo(): ProductPriceInfo;
 type ProductPriceInfo = {
     converted?: ProductPrice;
     base?: ProductPrice;
+};
+/** @returns {ProductMaxQuantityInfo} */
+declare function ProductMaxQuantityInfo(): ProductMaxQuantityInfo;
+type ProductMaxQuantityInfo = {
+    /**
+     * - The total quantity of the item available across
+     * all stores for all sellers. If no data is available, this field will be null.
+     */
+    item?: number;
+    /**
+     * - The total quantity of the item available
+     * across all stores for the specified seller. If no seller data is available,
+     * this field will be null.
+     */
+    item_seller?: number;
+    /**
+     * - The total quantity of the item available
+     * for a specific store. If no store data is available, this field will be null.
+     */
+    item_store?: number;
 };
 /** @returns {CartProductIdentifer} */
 declare function CartProductIdentifer(): CartProductIdentifer;
@@ -4994,6 +5046,7 @@ type CartProductInfo = {
      * of a product, e.g. 100.
      */
     moq?: any;
+    max_quantity?: ProductMaxQuantityInfo;
     price_per_unit?: ProductPriceInfo;
     promo_meta?: PromoMeta;
     /**
@@ -6823,6 +6876,11 @@ type ValidationConfig = {
 declare function PlatformGetAddressesDetails(): PlatformGetAddressesDetails;
 type PlatformGetAddressesDetails = {
     /**
+     * - Personally Identifiable Information
+     * masking flag to denote if the user data in address is masked or not.
+     */
+    pii_masking?: boolean;
+    /**
      * - List of all address saved by customer
      */
     address?: PlatformAddress[];
@@ -7774,7 +7832,7 @@ type PlatformCartCheckoutDetailV2Creation = {
     /**
      * - The user id of user cart
      */
-    user_id: string;
+    user_id?: string;
     /**
      * - Extra meta to be added while checkout in order
      */

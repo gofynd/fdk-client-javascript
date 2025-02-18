@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Communication {
   constructor(_conf) {
@@ -45,14 +46,6 @@ class Communication {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -90,14 +83,6 @@ class Communication {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -135,14 +120,6 @@ class Communication {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};

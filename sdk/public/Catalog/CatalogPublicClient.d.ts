@@ -16,7 +16,7 @@ declare class Catalog {
      * @summary: Get Taxonomy Information by Level
      * @description: Get Taxonomy Details for a given level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/catalog/getTaxonomyByLevel/).
      */
-    getTaxonomyByLevel({ level, l0Slug, l1Slug, l2Slug, l3Slug, limit, requestHeaders }?: CatalogPublicValidator.GetTaxonomyByLevelParam, { responseHeaders }?: object): Promise<CatalogPublicModel.TaxonomyResponseSchema>;
+    getTaxonomyByLevel({ level, l0Slug, l1Slug, l2Slug, l3Slug, limit, requestHeaders }?: CatalogPublicValidator.GetTaxonomyByLevelParam, { responseHeaders }?: object, ...args: any[]): Promise<CatalogPublicModel.TaxonomyResponseSchema>;
 }
 import CatalogPublicValidator = require("./CatalogPublicValidator");
 import CatalogPublicModel = require("./CatalogPublicModel");

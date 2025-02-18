@@ -138,6 +138,10 @@ export = UserPlatformApplicationValidator;
  * @property {number} [groupUid] - To get User Groups with given uid
  */
 /**
+ * @typedef GetUserTimelineParam
+ * @property {string} userId - User ID
+ */
+/**
  * @typedef GetUsersJobByJobIdParam
  * @property {string} jobId - The unique identifier of the job. This is used to
  *   fetch the details of the specific job.
@@ -233,6 +237,8 @@ declare class UserPlatformApplicationValidator {
     static getUserGroupById(): GetUserGroupByIdParam;
     /** @returns {GetUserGroupsParam} */
     static getUserGroups(): GetUserGroupsParam;
+    /** @returns {GetUserTimelineParam} */
+    static getUserTimeline(): GetUserTimelineParam;
     /** @returns {GetUsersJobByJobIdParam} */
     static getUsersJobByJobId(): GetUsersJobByJobIdParam;
     /** @returns {SearchUsersParam} */
@@ -253,7 +259,7 @@ declare class UserPlatformApplicationValidator {
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkImportStoreFrontUsersParam, CreateBulkExportUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetBulkExportUsersListParam, GetBulkImportUsersListParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUsersJobByJobIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkImportStoreFrontUsersParam, CreateBulkExportUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetBulkExportUsersListParam, GetBulkImportUsersListParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUserTimelineParam, GetUsersJobByJobIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
@@ -521,6 +527,12 @@ type GetUserGroupsParam = {
      * - To get User Groups with given uid
      */
     groupUid?: number;
+};
+type GetUserTimelineParam = {
+    /**
+     * - User ID
+     */
+    userId: string;
 };
 type GetUsersJobByJobIdParam = {
     /**

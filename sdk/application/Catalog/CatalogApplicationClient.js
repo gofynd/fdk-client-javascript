@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Catalog {
   constructor(_conf) {
@@ -33,9 +34,9 @@ class Catalog {
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
       getHomeProducts: "/service/application/catalog/v1.0/home/listing/",
       getInStockLocations:
-        "/service/application/catalog/v1.0/in-stock/locations/",
+        "/service/application/catalog/v2.0/in-stock/locations/",
       getLocationDetailsById:
-        "/service/application/catalog/v1.0/locations/{location_id}/",
+        "/service/application/catalog/v2.0/locations/{location_id}/",
       getProductBundlesBySlug:
         "/service/application/catalog/v1.0/product-grouping/",
       getProductComparisonBySlugs:
@@ -43,9 +44,9 @@ class Catalog {
       getProductDetailBySlug:
         "/service/application/catalog/v1.0/products/{slug}/",
       getProductPriceBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers/",
       getProductSizesBySlug:
         "/service/application/catalog/v1.0/products/{slug}/sizes/",
       getProductStockByIds:
@@ -58,7 +59,7 @@ class Catalog {
       getSearchResults: "/service/application/catalog/v1.0/auto-complete/",
       getSimilarComparisonProductBySlug:
         "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
-      getStores: "/service/application/catalog/v1.0/locations/",
+      getStores: "/service/application/catalog/v2.0/locations/",
       unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
     };
@@ -90,24 +91,15 @@ class Catalog {
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!collectionType) {
-      invalidInput.push({
-        message: `The 'collectionType' field is required.`,
-        path: ["collectionType"],
+    const errors = validateRequiredParams(arguments[0], [
+      "collectionType",
+      "collectionId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!collectionId) {
-      invalidInput.push({
-        message: `The 'collectionId' field is required.`,
-        path: ["collectionId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -148,18 +140,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -200,14 +186,6 @@ class Catalog {
     { department, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["department"] = department;
     query_params["page_no"] = pageNo;
@@ -280,14 +258,6 @@ class Catalog {
     { department, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["department"] = department;
 
@@ -326,18 +296,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -378,18 +342,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -441,18 +399,12 @@ class Catalog {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -556,14 +508,6 @@ class Catalog {
     { pageNo, pageSize, tag, q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -637,18 +581,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -689,14 +627,6 @@ class Catalog {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -734,14 +664,6 @@ class Catalog {
     { collectionType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["collection_type"] = collectionType;
 
@@ -782,18 +704,12 @@ class Catalog {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!collectionType) {
-      invalidInput.push({
-        message: `The 'collectionType' field is required.`,
-        path: ["collectionType"],
+    const errors = validateRequiredParams(arguments[0], ["collectionType"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -866,24 +782,15 @@ class Catalog {
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!collectionType) {
-      invalidInput.push({
-        message: `The 'collectionType' field is required.`,
-        path: ["collectionType"],
+    const errors = validateRequiredParams(arguments[0], [
+      "collectionType",
+      "collectionId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!collectionId) {
-      invalidInput.push({
-        message: `The 'collectionId' field is required.`,
-        path: ["collectionId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -924,14 +831,6 @@ class Catalog {
     { sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
@@ -1012,14 +911,6 @@ class Catalog {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -1111,18 +1002,12 @@ class Catalog {
     { locationId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!locationId) {
-      invalidInput.push({
-        message: `The 'locationId' field is required.`,
-        path: ["locationId"],
+    const errors = validateRequiredParams(arguments[0], ["locationId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1163,14 +1048,6 @@ class Catalog {
     { slug, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["slug"] = slug;
     query_params["id"] = id;
@@ -1210,21 +1087,6 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["slug"] = slug;
 
@@ -1263,18 +1125,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1306,7 +1162,7 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
+   * @returns {Promise<ProductSizePriceResponseV4>} - Success response
    * @name getProductPriceBySlug
    * @summary: Get product price
    * @description: Get the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
@@ -1315,24 +1171,12 @@ class Catalog {
     { slug, size, storeId, moq, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug", "size"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!size) {
-      invalidInput.push({
-        message: `The 'size' field is required.`,
-        path: ["size"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1366,7 +1210,7 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
+   * @returns {Promise<ProductSizeSellersResponseV4>} - Success response
    * @name getProductSellersBySlug
    * @summary: List sellers
    * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
@@ -1377,24 +1221,12 @@ class Catalog {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug", "size"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!size) {
-      invalidInput.push({
-        message: `The 'size' field is required.`,
-        path: ["size"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1437,7 +1269,7 @@ class Catalog {
    * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
    *   eg, fast-delivery, low-price, optimal.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<ProductSizeSellersResponseV3>}
+   * @returns {Paginator<ProductSizeSellersResponseV4>}
    * @summary: List sellers
    * @description: List all sellers offering a specific product identified by its slug and size.
    */
@@ -1476,18 +1308,12 @@ class Catalog {
     { slug, storeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1529,14 +1355,6 @@ class Catalog {
     { itemId, alu, skuCode, ean, upc, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["item_id"] = itemId;
     query_params["alu"] = alu;
@@ -1579,21 +1397,6 @@ class Catalog {
     { timestamp, pageSize, pageId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!timestamp) {
-      invalidInput.push({
-        message: `The 'timestamp' field is required.`,
-        path: ["timestamp"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["timestamp"] = timestamp;
     query_params["page_size"] = pageSize;
@@ -1663,18 +1466,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1725,14 +1522,6 @@ class Catalog {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["q"] = q;
     query_params["f"] = f;
@@ -1822,21 +1611,6 @@ class Catalog {
     { q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!q) {
-      invalidInput.push({
-        message: `The 'q' field is required.`,
-        path: ["q"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["q"] = q;
 
@@ -1875,18 +1649,12 @@ class Catalog {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -1937,14 +1705,6 @@ class Catalog {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2040,24 +1800,15 @@ class Catalog {
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!collectionType) {
-      invalidInput.push({
-        message: `The 'collectionType' field is required.`,
-        path: ["collectionType"],
+    const errors = validateRequiredParams(arguments[0], [
+      "collectionType",
+      "collectionId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!collectionId) {
-      invalidInput.push({
-        message: `The 'collectionId' field is required.`,
-        path: ["collectionId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

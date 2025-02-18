@@ -2,7 +2,11 @@ const Joi = require("joi");
 
 const ContentPublicModel = require("./ContentPublicModel");
 
+/** @typedef GetAllLanguagesParam */
+
 /** @typedef GetAllTagsParam */
+
+/** @typedef GetAllTranslatableResourcesParam */
 
 /** @typedef GetAnalyticsTagsParam */
 
@@ -26,6 +30,11 @@ const ContentPublicModel = require("./ContentPublicModel");
  * @property {string} pageType - The type of the page (e.g., pricing).
  */
 
+/**
+ * @typedef GetLanguageByLocaleParam
+ * @property {string} locale
+ */
+
 /** @typedef GetMenuContentParam */
 
 /**
@@ -38,8 +47,18 @@ const ContentPublicModel = require("./ContentPublicModel");
 /** @typedef GetPricingBannerParam */
 
 class ContentPublicValidator {
+  /** @returns {GetAllLanguagesParam} */
+  static getAllLanguages() {
+    return Joi.object({});
+  }
+
   /** @returns {GetAllTagsParam} */
   static getAllTags() {
+    return Joi.object({});
+  }
+
+  /** @returns {GetAllTranslatableResourcesParam} */
+  static getAllTranslatableResources() {
     return Joi.object({});
   }
 
@@ -76,6 +95,13 @@ class ContentPublicValidator {
   static getHomePageContent() {
     return Joi.object({
       pageType: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetLanguageByLocaleParam} */
+  static getLanguageByLocale() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
     }).required();
   }
 

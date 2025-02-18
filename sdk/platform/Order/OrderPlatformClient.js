@@ -997,6 +997,105 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.FailedOrderLogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
+   * @name failedOrderLogs
+   * @summary: List failed order logs
+   * @description: Get failed order logs listing for filters based on order Id, user contact number, user email Id and sales channel Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
+   */
+  async failedOrderLogs(
+    {
+      applicationId,
+      pageNo,
+      pageSize,
+      searchType,
+      searchValue,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.failedOrderLogs().validate(
+      {
+        applicationId,
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.failedOrderLogs().validate(
+      {
+        applicationId,
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > failedOrderLogs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["application_id"] = applicationId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/failed`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.FailedOrderLogs().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > failedOrderLogs \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.FetchRefundModeConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2983,6 +3082,129 @@ class Order {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] - Lane refers to a section where orders are
+   *   assigned, indicating its grouping.
+   * @param {string} [arg.searchType] - Search_type refers to the field that
+   *   will be used as the target for the search operation.
+   * @param {string} [arg.bagStatus] - Bag_status refers to status of the
+   *   entity. Filters orders based on the status.
+   * @param {number} [arg.timeToDispatch] - Time_to_dispatch refers to
+   *   estimated SLA time.
+   * @param {string} [arg.paymentMethods] - Comma separated values of payment
+   *   methods that were used to place order.
+   * @param {string} [arg.tags] - Tags refers to additional descriptive labels
+   *   associated with the order
+   * @param {string} [arg.searchValue] - Search_value is matched against the
+   *   field specified by the search_type
+   * @param {string} [arg.fromDate] - Date time in UTC timezone as per ISO format.
+   * @param {string} [arg.toDate] - Date time in UTC timezone as per ISO format.
+   * @param {string} [arg.startDate] - Date time in UTC timezone as per ISO format.
+   * @param {string} [arg.endDate] - Date time in UTC timezone as per ISO format.
+   * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+   * @param {string} [arg.stores] - A comma-separated list of store IDs used
+   *   to filter results to only those related to specific stores.
+   * @param {string} [arg.salesChannels] - A comma-separated list of sales
+   *   channel IDs to filter results based on the sales channels involved.
+   * @param {number} [arg.pageSize] - Determines the number of results
+   *   returned per page.
+   * @param {boolean} [arg.isPrioritySort] -
+   * @param {string} [arg.customMeta] -
+   * @param {boolean} [arg.myOrders] -
+   * @param {boolean} [arg.showCrossCompanyData] - Flag to view cross &
+   *   non-cross company order
+   * @param {string} [arg.customerId] - The unique identifier for the customer
+   *   associated with the query, useful for filtering results to a specific customer.
+   * @param {string} [arg.orderType] -
+   * @param {boolean} [arg.allowInactive] - Flag indicating whether inactive
+   *   shipments are allowed
+   * @param {string} [arg.groupEntity] - Defines the grouping criterion for
+   *   retrieving shipments or orders. It specifies whether the results should
+   *   be organized based on shipment groups or order groups. For example,
+   *   using 'shipments' groups results by shipment, while an invalid value
+   *   like 'abcd' may not be recognized, leading to errors or default behavior.
+   * @param {boolean} [arg.enforceDateFilter] - Applies a date filter for
+   *   listing orders. This is useful when fetching data for a specific date
+   *   range while performing searches.
+   * @param {string} [arg.fulfillmentType] - Define the Fulfillment Type for
+   *   Listing Orders, This is use when we want to get list of shipments or
+   *   orders by cross store or cross company or fulfilling Store (by
+   *   default), this is also depends on the login user accessType and store access
+   * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
+   * @summary: List orders
+   * @description: Get a list of orders based on the filters provided.
+   */
+  getOrdersPaginator({
+    lane,
+    searchType,
+    bagStatus,
+    timeToDispatch,
+    paymentMethods,
+    tags,
+    searchValue,
+    fromDate,
+    toDate,
+    startDate,
+    endDate,
+    dpIds,
+    stores,
+    salesChannels,
+    pageSize,
+    isPrioritySort,
+    customMeta,
+    myOrders,
+    showCrossCompanyData,
+    customerId,
+    orderType,
+    allowInactive,
+    groupEntity,
+    enforceDateFilter,
+    fulfillmentType,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrders({
+        lane: lane,
+        searchType: searchType,
+        bagStatus: bagStatus,
+        timeToDispatch: timeToDispatch,
+        paymentMethods: paymentMethods,
+        tags: tags,
+        searchValue: searchValue,
+        fromDate: fromDate,
+        toDate: toDate,
+        startDate: startDate,
+        endDate: endDate,
+        dpIds: dpIds,
+        stores: stores,
+        salesChannels: salesChannels,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        isPrioritySort: isPrioritySort,
+        customMeta: customMeta,
+        myOrders: myOrders,
+        showCrossCompanyData: showCrossCompanyData,
+        customerId: customerId,
+        orderType: orderType,
+        allowInactive: allowInactive,
+        groupEntity: groupEntity,
+        enforceDateFilter: enforceDateFilter,
+        fulfillmentType: fulfillmentType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -3547,6 +3769,181 @@ class Order {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] - Name of lane for which data is to be fetched
+   * @param {string} [arg.bagStatus] - Comma separated values of bag statuses.
+   * @param {string} [arg.statusAssigned] - Used to filter shipments based on
+   *   status present in shipment_status_history. For more information on
+   *   these statuses, refer to the Fynd Partners documentation.
+   * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
+   *   bag_status and override lane.
+   * @param {number} [arg.timeToDispatch] - Indicates the time to dispatch.
+   * @param {string} [arg.searchType] - Specifies the key used to determine
+   *   the type of search being performed.
+   * @param {string} [arg.searchValue] - The value corresponding to the search
+   *   type, such as a specific shipment ID or order ID.
+   * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+   * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+   * @param {string} [arg.startDate] - The UTC start date in ISO format
+   *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+   * @param {string} [arg.endDate] - The UTC end date in ISO format
+   *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+   * @param {string} [arg.statusAssignedStartDate] - Specifies the starting
+   *   UTC date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the
+   *   lower boundary for filtering shipments based on the `created_at`
+   *   timestamp of statuses in the shipment's status history. It allows
+   *   filtering statuses that were created within a specific time range.
+   * @param {string} [arg.statusAssignedEndDate] - Specifies the ending UTC
+   *   date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper
+   *   boundary for filtering shipments based on the `created_at` timestamp of
+   *   statuses in the shipment's status history.
+   * @param {string} [arg.dpIds] - A comma-separated list of delivery partner
+   *   IDs to filter results by specific delivery partners.
+   * @param {string} [arg.stores] - A comma-separated list of store IDs used
+   *   to filter results to only those related to specific stores.
+   * @param {string} [arg.salesChannels] - A comma-separated list of sales
+   *   channel IDs to filter results based on the sales channels involved.
+   * @param {number} [arg.pageSize] - Determines the number of results
+   *   returned per page.
+   * @param {boolean} [arg.fetchActiveShipment] - A boolean flag that
+   *   indicates whether to include only active shipments in the results.
+   * @param {boolean} [arg.allowInactive] - A flag indicating whether to allow
+   *   the inclusion of inactive shipments in the results.
+   * @param {boolean} [arg.excludeLockedShipments] - A flag to specify whether
+   *   to exclude shipments that are locked from the results.
+   * @param {string} [arg.paymentMethods] - A comma-separated list of payment methods.
+   * @param {string} [arg.channelShipmentId] - The shipment ID used in the
+   *   application, which can be used to reference specific shipments.
+   * @param {string} [arg.channelOrderId] - The order ID used in the application.
+   * @param {string} [arg.customMeta] - Custom metadata associated with the
+   *   query, allowing for additional filtering or information to be passed.
+   * @param {string} [arg.orderingChannel] - The channel through which the
+   *   order was placed.
+   * @param {string} [arg.companyAffiliateTag] - A tag used to identify the
+   *   company's affiliation for filtering or reporting purposes.
+   * @param {boolean} [arg.myOrders] - A boolean flag indicating whether the
+   *   query should return only the user's orders.
+   * @param {string} [arg.platformUserId] - The unique identifier of the user
+   *   on the platform, useful for filtering orders related to a specific user.
+   * @param {string} [arg.sortType] - Determines the sorting order of the
+   *   results based on specific criteria.
+   * @param {boolean} [arg.showCrossCompanyData] - A flag indicating whether
+   *   to include data from both cross-company and non-cross-company orders in
+   *   the results.
+   * @param {string} [arg.tags] - A comma-separated list of tags associated
+   *   with the orders to filter results based on specific characteristics.
+   * @param {string} [arg.customerId] - The unique identifier for the customer
+   *   associated with the query, useful for filtering results to a specific customer.
+   * @param {string} [arg.orderType] - The type of order being queried.
+   * @param {string} [arg.groupEntity] - Defines the grouping criterion for
+   *   retrieving shipments or orders. It specifies whether the results should
+   *   be organized based on shipment groups or order groups. For example,
+   *   using 'shipments' groups results by shipment, while an invalid value
+   *   like 'abcd' may not be recognized, leading to errors or default behavior.
+   * @param {boolean} [arg.enforceDateFilter] - Applies a date filter for
+   *   listing shipments. This is useful when fetching data for a specific
+   *   date range while performing searches.
+   * @param {string} [arg.fulfillmentType] - Define the Fulfillment Type for
+   *   Listing Orders, This is use when we want to get list of shipments or
+   *   orders by cross store or cross company or fulfilling Store (by
+   *   default), this is also depends on the login user accessType and store access
+   * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
+   * @summary: List shipments
+   * @description: Get a list of shipments based on the filters provided
+   */
+  getShipmentsPaginator({
+    lane,
+    bagStatus,
+    statusAssigned,
+    statusOverrideLane,
+    timeToDispatch,
+    searchType,
+    searchValue,
+    fromDate,
+    toDate,
+    startDate,
+    endDate,
+    statusAssignedStartDate,
+    statusAssignedEndDate,
+    dpIds,
+    stores,
+    salesChannels,
+    pageSize,
+    fetchActiveShipment,
+    allowInactive,
+    excludeLockedShipments,
+    paymentMethods,
+    channelShipmentId,
+    channelOrderId,
+    customMeta,
+    orderingChannel,
+    companyAffiliateTag,
+    myOrders,
+    platformUserId,
+    sortType,
+    showCrossCompanyData,
+    tags,
+    customerId,
+    orderType,
+    groupEntity,
+    enforceDateFilter,
+    fulfillmentType,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getShipments({
+        lane: lane,
+        bagStatus: bagStatus,
+        statusAssigned: statusAssigned,
+        statusOverrideLane: statusOverrideLane,
+        timeToDispatch: timeToDispatch,
+        searchType: searchType,
+        searchValue: searchValue,
+        fromDate: fromDate,
+        toDate: toDate,
+        startDate: startDate,
+        endDate: endDate,
+        statusAssignedStartDate: statusAssignedStartDate,
+        statusAssignedEndDate: statusAssignedEndDate,
+        dpIds: dpIds,
+        stores: stores,
+        salesChannels: salesChannels,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        fetchActiveShipment: fetchActiveShipment,
+        allowInactive: allowInactive,
+        excludeLockedShipments: excludeLockedShipments,
+        paymentMethods: paymentMethods,
+        channelShipmentId: channelShipmentId,
+        channelOrderId: channelOrderId,
+        customMeta: customMeta,
+        orderingChannel: orderingChannel,
+        companyAffiliateTag: companyAffiliateTag,
+        myOrders: myOrders,
+        platformUserId: platformUserId,
+        sortType: sortType,
+        showCrossCompanyData: showCrossCompanyData,
+        tags: tags,
+        customerId: customerId,
+        orderType: orderType,
+        groupEntity: groupEntity,
+        enforceDateFilter: enforceDateFilter,
+        fulfillmentType: fulfillmentType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**

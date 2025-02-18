@@ -212,7 +212,7 @@ const Joi = require("joi");
  * @typedef Author
  * @property {string} [designation]
  * @property {string} [id]
- * @property {string} [name]
+ * @property {string} [name] - Name of the author
  */
 
 /**
@@ -377,36 +377,70 @@ const Joi = require("joi");
 
 /**
  * @typedef HandpickedTagSchema
- * @property {string} [position]
- * @property {Object} [attributes]
- * @property {string} [name]
- * @property {string} [url]
- * @property {string} [type]
- * @property {string} [sub_type]
- * @property {string} [content]
+ * @property {string} [position] - The location in the page where the tag should
+ *   be injected, such as 'head', 'body-top', or 'body-bottom'.
+ * @property {Object} [attributes] - Additional attributes for the tag to define
+ *   its behavior or compatibility. Supported attributes may vary based on the
+ *   tag type for example:
+ *
+ *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
+ *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
+ *   - For `style` tags: `media`, `type`, `scoped`.
+ *   - Custom data attributes like `data-*` can also be added.
+ *
+ * @property {string[]} [compatible_engines] - List of UI frameworks where this
+ *   third-party tag can be injected or supported.
+ * @property {string} [name] - The name of the tag used to identify it in the
+ *   system. Example: 'Google External Script' or 'Bootstrap CSS'.
+ * @property {string} [url] - The URL where the external tag resource (such as a
+ *   script or stylesheet) is hosted.
+ * @property {string} [type] - The type of the tag, such as 'script' (for
+ *   JavaScript) or 'link' (for CSS).
+ * @property {string} [sub_type] - Defines whether the tag is embedded within
+ *   the HTML (inline) or linked externally (external).
+ * @property {string} [content] - The actual content of the inline tag, such as
+ *   JavaScript or CSS code if the tag is inline.
  */
 
 /**
  * @typedef RemoveHandpickedSchema
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - A list of tag IDs to remove from the system.
  */
 
 /**
  * @typedef CreateTagSchema
- * @property {string} [name]
- * @property {string} [sub_type]
- * @property {string} [_id]
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [position]
- * @property {Object} [attributes]
- * @property {Object[]} [pages]
- * @property {string} [content]
+ * @property {string} [name] - The name of the tag to be created, used for
+ *   identification purposes.
+ * @property {string} [sub_type] - Indicates if the tag is external (linked) or
+ *   inline (embedded within the page).
+ * @property {string} [_id] - The unique identifier for the tag.
+ * @property {string} [type] - The type of the tag, either JavaScript ('js') or
+ *   CSS ('css').
+ * @property {string} [url] - The external URL pointing to the script or
+ *   stylesheet resource.
+ * @property {string} [position] - The position on the webpage where the tag
+ *   will be injected, such as 'head', 'body-top', or 'body-bottom'.
+ * @property {Object} [attributes] - Additional attributes for the tag to define
+ *   its behavior or compatibility. Supported attributes may vary based on the
+ *   tag type for example:
+ *
+ *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
+ *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
+ *   - For `style` tags: `media`, `type`, `scoped`.
+ *   - Custom data attributes like `data-*` can also be added.
+ *
+ * @property {string[]} [compatible_engines] - List of UI frameworks where this
+ *   third-party tag can be injected or supported.
+ * @property {Object[]} [pages] - Pages or environments where the tag should be
+ *   injected or active.
+ * @property {string} [content] - The inline content for tags of type 'inline'
+ *   (e.g., JavaScript or CSS code).
  */
 
 /**
  * @typedef CreateTagRequestSchema
- * @property {CreateTagSchema[]} [tags]
+ * @property {CreateTagSchema[]} [tags] - A list of tags to be created or
+ *   updated, each containing details such as name, type, and attributes.
  */
 
 /**
@@ -434,7 +468,8 @@ const Joi = require("joi");
 
 /**
  * @typedef TagDeleteSuccessDetails
- * @property {boolean} [success]
+ * @property {boolean} [success] - Indicates whether the tag removal operation
+ *   was successful.
  */
 
 /**
@@ -561,6 +596,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -761,29 +797,46 @@ const Joi = require("joi");
 
 /**
  * @typedef TagsSchema
- * @property {string} [application]
- * @property {string} [_id]
- * @property {TagSchema[]} [tags]
+ * @property {string} [application] - The ID of the application that owns the tags.
+ * @property {string} [_id] - The unique identifier for the tag set.
+ * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
+ *   or stylesheets) that are configured for the application.
  */
 
 /**
  * @typedef TagSchema
- * @property {string} [name]
- * @property {string} [url]
- * @property {string} [type]
- * @property {string} [sub_type]
- * @property {string} [_id]
- * @property {string} [position]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {Object[]} [pages]
+ * @property {string} [name] - The name of the tag used to identify it.
+ * @property {string} [url] - The URL where the external tag resource (such as a
+ *   script or stylesheet) is located.
+ * @property {string} [type] - Specifies whether the tag is a JavaScript ('js')
+ *   or CSS ('css') tag.
+ * @property {string} [sub_type] - Indicates whether the tag is an external
+ *   resource (external) or inline content (inline).
+ * @property {string} [_id] - The unique identifier for the tag in the system.
+ * @property {string} [position] - The position within the page where the tag
+ *   should be injected.
+ * @property {Object} [attributes] - Additional attributes for the tag to define
+ *   its behavior or compatibility. Supported attributes may vary based on the
+ *   tag type for example:
+ *
+ *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
+ *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
+ *   - For `style` tags: `media`, `type`, `scoped`.
+ *   - Custom data attributes like `data-*` can also be added.
+ *
+ * @property {string} [content] - Content of the tag if it is inline, such as
+ *   JavaScript or CSS code.
+ * @property {string[]} [compatible_engines] - List of UI frameworks where this
+ *   third-party tag can be injected or supported.
+ * @property {Object[]} [pages] - Pages or environments where the tag should be active.
  * @property {TagSourceSchema} [__source]
  */
 
 /**
  * @typedef TagSourceSchema
- * @property {string} [type]
- * @property {string} [id]
+ * @property {string} [type] - The type of source, such as 'extension'
+ * @property {string} [id] - The identifier of the source that created or
+ *   provided the tag.
  */
 
 /**
@@ -1361,6 +1414,294 @@ const Joi = require("joi");
  * @property {PageType} type
  */
 
+/**
+ * @typedef TranslateUiLabels
+ * @property {string} [_id] - Unique MongoDB identifier assigned to the
+ *   Translate Ui Labels entry
+ * @property {string} [company_id] - Identifier linking the resource to a
+ *   specific company within the platform
+ * @property {string} [application_id] - Reference to the application where this
+ *   Translate Ui Labels is utilized
+ * @property {string} [template_theme_id] - Links the resource to a specific
+ *   template theme configuration
+ * @property {string} [theme_id] - Associates the resource with a particular
+ *   theme implementation
+ * @property {string} [locale] - Specifies the language and region format for
+ *   the resource content
+ * @property {Object} [resource] - Contains the actual resource data and
+ *   configuration settings
+ * @property {string} [type] - Categorizes the resource type for proper handling
+ *   and processing
+ */
+
+/**
+ * @typedef TranslateUiLabelsCreate
+ * @property {string} [template_theme_id] - Unique identifier for the template theme
+ * @property {string} [theme_id] - Unique identifier for the theme
+ * @property {string} [locale] - Locale
+ * @property {Object} [resource] - Translate Ui Labels json object
+ * @property {string} [type] - Resource type
+ */
+
+/**
+ * @typedef StaticResourceUpdate
+ * @property {string} [template_theme_id] - Unique identifier for the template theme
+ * @property {string} [theme_id] - Unique identifier for the theme
+ * @property {string} [locale] - Locale
+ * @property {Object} [resource] - Translate Ui Labels json object
+ * @property {string} [type] - Resource type
+ */
+
+/**
+ * @typedef TranslateUiLabelsPage
+ * @property {TranslateUiLabels[]} [items] - List of items containing all the
+ *   static info data.
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef Error
+ * @property {string} [error] - Detailed message explaining the error that occurred
+ */
+
+/**
+ * @typedef Meta
+ * @property {string} [created_by] - Identifier of the user who created this resource
+ * @property {string} [modified_by] - Identifier of the user who last modified
+ *   this resource
+ * @property {string} [created_on] - Timestamp when this resource was initially created
+ * @property {string} [modified_on] - Timestamp when this resource was last modified
+ */
+
+/**
+ * @typedef CompanyLanguage
+ * @property {string} [_id] - Unique identifier for the company language setting
+ * @property {string} company_id - Identifier of the company this language
+ *   configuration belongs to
+ * @property {string} [locale] - Language code following ISO standards for this
+ *   company setting
+ * @property {string} [name] - Display name of the language for company usage
+ * @property {string} [direction] - Text direction setting for company content
+ *   in this language
+ * @property {boolean} [is_default] - Indicates if this is the default language
+ *   for the company
+ * @property {string} [display_name] - Translated name of the language in
+ *   English for easy reference and display at the website.
+ */
+
+/**
+ * @typedef CompanyLanguageCreate
+ * @property {string[]} locales - List of language codes to be added to company
+ *   configuration
+ */
+
+/**
+ * @typedef CompanyLanguageUpdate
+ * @property {boolean} is_default - Sets the specified language as the company default
+ */
+
+/**
+ * @typedef ApplicationLanguage
+ * @property {string} [_id] - Unique identifier for the application language setting
+ * @property {string} company_id - Identifier of the company this application belongs to
+ * @property {string} application_id - Unique identifier of the application
+ *   using this language
+ * @property {string} locale - Language code following ISO standards for this application
+ * @property {string} name - Display name of the language for application usage
+ * @property {string} direction - Specifies the text direction for displaying
+ *   application content, either left-to-right (ltr) or right-to-left (rtl)
+ * @property {boolean} is_default - Indicates if this is the default language
+ *   for the application
+ * @property {boolean} published - Indicates whether this language is currently
+ *   active and visible within the storefront.
+ * @property {string} [display_name] - Translated name of the language in
+ *   English for easy reference and display at the website.
+ */
+
+/**
+ * @typedef unPublishApplicationLanguage
+ * @property {boolean} published - Updates the publication status of the language
+ */
+
+/**
+ * @typedef ApplicationLanguageCreate
+ * @property {string[]} locales - List of language codes to be added to
+ *   application configuration
+ */
+
+/**
+ * @typedef ApplicationLanguageUpdate
+ * @property {boolean} is_default - Sets the specified language as the application default
+ * @property {boolean} published - Updates the publication status of the language
+ */
+
+/**
+ * @typedef TranslatableResource
+ * @property {string} [_id] - Unique identifier for the translatable resource
+ * @property {string} type - Categorizes the type of content that can be translated
+ * @property {string} name - Display name of the translatable resource
+ * @property {string} description - Detailed explanation of the translatable resource
+ * @property {string} schema_type - Defines the processing type for the
+ *   translation schema static (fixed), dynamic (flexible), or partial_dynamic (mixed).
+ * @property {string} [created_by] - Identifier of the user who created this resource
+ * @property {string} [modified_by] - Identifier of the user who last modified
+ *   this resource
+ * @property {string} [created_on] - Timestamp when this resource was initially created
+ * @property {string} [modified_on] - Timestamp when this resource was last modified
+ * @property {TranslatableSection} [section_id]
+ */
+
+/**
+ * @typedef ResourceDefinition
+ * @property {string} [_id] - Unique identifier for the resource definition
+ * @property {string} translatable_resource_id - Reference to the associated
+ *   translatable resource
+ * @property {ResourceJsonSchema} [json_schema]
+ * @property {ResourceUISchema} [ui_schema]
+ * @property {ResourceBulkDetails} [bulk_details]
+ */
+
+/**
+ * @typedef ResourceJsonSchema
+ * @property {string} [schema]
+ * @property {ResourceJsonSchemaType} [type]
+ */
+
+/**
+ * @typedef ResourceJsonSchemaType
+ * @property {Author} [author]
+ * @property {Title} [title]
+ * @property {FeatureImage} [feature_image]
+ */
+
+/**
+ * @typedef ResourceUISchema
+ * @property {Author} [author]
+ * @property {Title} [title]
+ * @property {FeatureImage} [feature_image]
+ * @property {Seo} [seo]
+ */
+
+/**
+ * @typedef ResourceBulkDetails
+ * @property {string[]} [fields]
+ */
+
+/**
+ * @typedef Title
+ * @property {string} [ui_widget]
+ * @property {boolean} [ui_description]
+ */
+
+/**
+ * @typedef FeatureImage
+ * @property {string} [secure_url] - URL of the secure image
+ */
+
+/**
+ * @typedef Seo
+ * @property {Title} [title]
+ * @property {string} [description]
+ * @property {string} [canonical_url]
+ * @property {MetaTag[]} [meta_tags]
+ */
+
+/**
+ * @typedef MetaTag
+ * @property {string} [title] - Title of the meta tag
+ * @property {MetaTagItem[]} [items]
+ */
+
+/**
+ * @typedef MetaTagItem
+ * @property {string} [key] - Key of the meta tag item
+ * @property {string} [value] - Value of the meta tag item
+ */
+
+/**
+ * @typedef ResourceTranslation
+ * @property {string} [_id] - Unique identifier for the translation entry
+ * @property {string} [locale] - Language code for this translation
+ * @property {TranslationValue} [value]
+ */
+
+/**
+ * @typedef TranslationValue
+ * @property {string} [name] - Translated name
+ * @property {TranslationSeo} [seo]
+ */
+
+/**
+ * @typedef TranslationSeo
+ * @property {string} [title] - Translated SEO title
+ * @property {string[]} [breadcrumbs] - List of translated breadcrumbs
+ * @property {string[]} [meta_tags] - List of translated meta tags
+ * @property {string} [canonical_url] - Translated canonical URL
+ * @property {string} [description] - Translated SEO description
+ */
+
+/**
+ * @typedef DeletedResource
+ * @property {string} [message] - Confirmation message for successful deletion
+ */
+
+/**
+ * @typedef ResourceTranslationList
+ * @property {ResourceTranslationCreate[]} [items]
+ */
+
+/**
+ * @typedef ResourceTranslationCreate
+ * @property {string} [type] - Type of content being translated
+ * @property {string} [resource_id] - Identifier of the resource requiring translation
+ * @property {string} [locale] - Target language code for the translation
+ * @property {TranslationValue} [value]
+ */
+
+/**
+ * @typedef ResourceTranslationUpdate
+ * @property {TranslationValue} [value]
+ */
+
+/**
+ * @typedef TranslatableSection
+ * @property {string} [_id] - Unique identifier for the translatable section
+ * @property {string} [name] - Display name of the section
+ * @property {string} [description] - Detailed explanation of the section's purpose
+ * @property {string} [created_by] - Identifier of the user who created this resource
+ * @property {string} [modified_by] - Identifier of the user who last modified
+ *   this resource
+ * @property {string} [created_on] - Timestamp when this resource was initially created
+ * @property {string} [modified_on] - Timestamp when this resource was last modified
+ */
+
+/**
+ * @typedef Metrics
+ * @property {number} [total] - Total number of translation operations attempted
+ * @property {number} [success] - Number of successful translation operations
+ * @property {number} [failed] - Number of failed translation operations
+ */
+
+/**
+ * @typedef ResourceTranslationUpsertItem
+ * @property {string} [message] - Status message for the translation operation
+ * @property {ResourceTranslationCreate} [data]
+ */
+
+/**
+ * @typedef ResourceTranslationBulkUpsert
+ * @property {Metrics} [metrics]
+ * @property {ResourceTranslationUpsertItem[]} [failed_items] - List of failed
+ *   translation operations
+ * @property {ResourceTranslationUpsertItem[]} [updated_items] - List of
+ *   successful translation operations
+ */
+
+/**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
+ */
+
 /** @typedef {"title" | "description"} GenerationEntityType */
 
 /**
@@ -1889,6 +2230,7 @@ class ContentPlatformModel {
     return Joi.object({
       position: Joi.string().allow(""),
       attributes: Joi.object().pattern(/\S/, Joi.any()),
+      compatible_engines: Joi.array().items(Joi.string().allow("")),
       name: Joi.string().allow(""),
       url: Joi.string().allow(""),
       type: Joi.string().allow(""),
@@ -1914,6 +2256,7 @@ class ContentPlatformModel {
       url: Joi.string().allow(""),
       position: Joi.string().allow(""),
       attributes: Joi.object().pattern(/\S/, Joi.any()),
+      compatible_engines: Joi.array().items(Joi.string().allow("")),
       pages: Joi.array().items(Joi.any()),
       content: Joi.string().allow(""),
     });
@@ -2119,6 +2462,7 @@ class ContentPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -2383,6 +2727,7 @@ class ContentPlatformModel {
       position: Joi.string().allow(""),
       attributes: Joi.object().pattern(/\S/, Joi.any()),
       content: Joi.string().allow(""),
+      compatible_engines: Joi.array().items(Joi.string().allow("")),
       pages: Joi.array().items(Joi.any()),
       __source: ContentPlatformModel.TagSourceSchema(),
     });
@@ -3109,6 +3454,344 @@ class ContentPlatformModel {
       ),
       url: Joi.string().allow(""),
       type: ContentPlatformModel.PageType().required(),
+    });
+  }
+
+  /** @returns {TranslateUiLabels} */
+  static TranslateUiLabels() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      template_theme_id: Joi.string().allow(""),
+      theme_id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      resource: Joi.object().pattern(/\S/, Joi.any()),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TranslateUiLabelsCreate} */
+  static TranslateUiLabelsCreate() {
+    return Joi.object({
+      template_theme_id: Joi.string().allow(""),
+      theme_id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      resource: Joi.object().pattern(/\S/, Joi.any()),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StaticResourceUpdate} */
+  static StaticResourceUpdate() {
+    return Joi.object({
+      template_theme_id: Joi.string().allow(""),
+      theme_id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      resource: Joi.object().pattern(/\S/, Joi.any()),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TranslateUiLabelsPage} */
+  static TranslateUiLabelsPage() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.TranslateUiLabels()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {Error} */
+  static Error() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      created_by: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CompanyLanguage} */
+  static CompanyLanguage() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      company_id: Joi.string().allow("").required(),
+      locale: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      direction: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CompanyLanguageCreate} */
+  static CompanyLanguageCreate() {
+    return Joi.object({
+      locales: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {CompanyLanguageUpdate} */
+  static CompanyLanguageUpdate() {
+    return Joi.object({
+      is_default: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {ApplicationLanguage} */
+  static ApplicationLanguage() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      company_id: Joi.string().allow("").required(),
+      application_id: Joi.string().allow("").required(),
+      locale: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      direction: Joi.string().allow("").required(),
+      is_default: Joi.boolean().required(),
+      published: Joi.boolean().required(),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {unPublishApplicationLanguage} */
+  static unPublishApplicationLanguage() {
+    return Joi.object({
+      published: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {ApplicationLanguageCreate} */
+  static ApplicationLanguageCreate() {
+    return Joi.object({
+      locales: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {ApplicationLanguageUpdate} */
+  static ApplicationLanguageUpdate() {
+    return Joi.object({
+      is_default: Joi.boolean().required(),
+      published: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {TranslatableResource} */
+  static TranslatableResource() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      type: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      schema_type: Joi.string().allow("").required(),
+      created_by: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      section_id: ContentPlatformModel.TranslatableSection(),
+    });
+  }
+
+  /** @returns {ResourceDefinition} */
+  static ResourceDefinition() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      translatable_resource_id: Joi.string().allow("").required(),
+      json_schema: ContentPlatformModel.ResourceJsonSchema(),
+      ui_schema: ContentPlatformModel.ResourceUISchema(),
+      bulk_details: ContentPlatformModel.ResourceBulkDetails(),
+    });
+  }
+
+  /** @returns {ResourceJsonSchema} */
+  static ResourceJsonSchema() {
+    return Joi.object({
+      schema: Joi.string().allow(""),
+      type: ContentPlatformModel.ResourceJsonSchemaType(),
+    });
+  }
+
+  /** @returns {ResourceJsonSchemaType} */
+  static ResourceJsonSchemaType() {
+    return Joi.object({
+      author: ContentPlatformModel.Author(),
+      title: ContentPlatformModel.Title(),
+      feature_image: ContentPlatformModel.FeatureImage(),
+    });
+  }
+
+  /** @returns {ResourceUISchema} */
+  static ResourceUISchema() {
+    return Joi.object({
+      author: ContentPlatformModel.Author(),
+      title: ContentPlatformModel.Title(),
+      feature_image: ContentPlatformModel.FeatureImage(),
+      seo: ContentPlatformModel.Seo(),
+    });
+  }
+
+  /** @returns {ResourceBulkDetails} */
+  static ResourceBulkDetails() {
+    return Joi.object({
+      fields: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {Title} */
+  static Title() {
+    return Joi.object({
+      ui_widget: Joi.string().allow(""),
+      ui_description: Joi.boolean(),
+    });
+  }
+
+  /** @returns {FeatureImage} */
+  static FeatureImage() {
+    return Joi.object({
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Seo} */
+  static Seo() {
+    return Joi.object({
+      title: ContentPlatformModel.Title(),
+      description: Joi.string().allow(""),
+      canonical_url: Joi.string().allow(""),
+      meta_tags: Joi.array().items(ContentPlatformModel.MetaTag()),
+    });
+  }
+
+  /** @returns {MetaTag} */
+  static MetaTag() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      items: Joi.array().items(ContentPlatformModel.MetaTagItem()),
+    });
+  }
+
+  /** @returns {MetaTagItem} */
+  static MetaTagItem() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ResourceTranslation} */
+  static ResourceTranslation() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      value: ContentPlatformModel.TranslationValue(),
+    });
+  }
+
+  /** @returns {TranslationValue} */
+  static TranslationValue() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      seo: ContentPlatformModel.TranslationSeo(),
+    });
+  }
+
+  /** @returns {TranslationSeo} */
+  static TranslationSeo() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      breadcrumbs: Joi.array().items(Joi.string().allow("")),
+      meta_tags: Joi.array().items(Joi.string().allow("")),
+      canonical_url: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DeletedResource} */
+  static DeletedResource() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ResourceTranslationList} */
+  static ResourceTranslationList() {
+    return Joi.object({
+      items: Joi.array().items(
+        ContentPlatformModel.ResourceTranslationCreate()
+      ),
+    });
+  }
+
+  /** @returns {ResourceTranslationCreate} */
+  static ResourceTranslationCreate() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      resource_id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      value: ContentPlatformModel.TranslationValue(),
+    });
+  }
+
+  /** @returns {ResourceTranslationUpdate} */
+  static ResourceTranslationUpdate() {
+    return Joi.object({
+      value: ContentPlatformModel.TranslationValue(),
+    });
+  }
+
+  /** @returns {TranslatableSection} */
+  static TranslatableSection() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Metrics} */
+  static Metrics() {
+    return Joi.object({
+      total: Joi.number(),
+      success: Joi.number(),
+      failed: Joi.number(),
+    });
+  }
+
+  /** @returns {ResourceTranslationUpsertItem} */
+  static ResourceTranslationUpsertItem() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      data: ContentPlatformModel.ResourceTranslationCreate(),
+    });
+  }
+
+  /** @returns {ResourceTranslationBulkUpsert} */
+  static ResourceTranslationBulkUpsert() {
+    return Joi.object({
+      metrics: ContentPlatformModel.Metrics(),
+      failed_items: Joi.array().items(
+        ContentPlatformModel.ResourceTranslationUpsertItem()
+      ),
+      updated_items: Joi.array().items(
+        ContentPlatformModel.ResourceTranslationUpsertItem()
+      ),
+    });
+  }
+
+  /** @returns {StandardError} */
+  static StandardError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
     });
   }
 

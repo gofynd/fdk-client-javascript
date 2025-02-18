@@ -734,8 +734,8 @@ const Joi = require("joi");
  * @property {string} [text] - A reason for the activity or change.
  * @property {string} [category] - Category of the reason for the status change.
  * @property {string} [state] - Current state related to the reason.
- * @property {string} [dislay_name] - Display name of the reason for better user
- *   understanding.
+ * @property {string} [display_name] - Display name of the reason for better
+ *   user understanding.
  * @property {number} [code] - Unique code identifying the reason.
  * @property {number} [quantity] - Quantity related to the reason, if applicable.
  */
@@ -2632,9 +2632,9 @@ const Joi = require("joi");
  *   met and optimizing logistics.
  * @property {QuestionSet[]} question_set - An array of question sets linked to
  *   the reason, defining the questions to be answered.
- * @property {Object} meta - Meta object of the reason. This contains any
+ * @property {Object} [meta] - Meta object of the reason. This contains any
  *   additional metadata that might be relevant to the reason.
- * @property {boolean} is_active - Indicates whether the reason is currently
+ * @property {boolean} [is_active] - Indicates whether the reason is currently
  *   active. Active reasons are those that are currently in use within the system.
  */
 
@@ -2791,6 +2791,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -2949,6 +2950,7 @@ const Joi = require("joi");
  * @property {string} [uid] - A unique identifier for the user associated with
  *   the address.
  * @property {string} [user_id] - The unique identifier of the user in the system.
+ * @property {string} [code] - A unique identifier associated with store.
  */
 
 /**
@@ -3858,6 +3860,8 @@ const Joi = require("joi");
  *   at the ordering store.
  * @property {string} [state] - The state or region where the ordering store is situated.
  * @property {string} [city] - The city in which the ordering store is located.
+ * @property {string} [name] - The name of the ordering store.
+ * @property {string} [store_email] - The email address of the ordering store.
  */
 
 /**
@@ -4103,6 +4107,8 @@ const Joi = require("joi");
  * @property {string} [size] - The size of the article, which may be relevant
  *   for clothing.
  * @property {string[]} [tags] - An array of tags associated with the article.
+ * @property {Object} [_custom_json] - A custom JSON object containing
+ *   additional details or configurations specific to the article.
  */
 
 /**
@@ -4332,6 +4338,7 @@ const Joi = require("joi");
  *   with a fulfilling store.
  * @property {string} state - The state or region where the fulfilling store is located.
  * @property {string} city - The city in which the fulfilling store is situated.
+ * @property {string} [store_email] - The email address of the fulfilling store.
  */
 
 /**
@@ -6032,7 +6039,7 @@ class OrderPlatformModel {
       text: Joi.string().allow("").allow(null),
       category: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
-      dislay_name: Joi.string().allow("").allow(null),
+      display_name: Joi.string().allow("").allow(null),
       code: Joi.number().allow(null),
       quantity: Joi.number().allow(null),
     });
@@ -7727,8 +7734,8 @@ class OrderPlatformModel {
       question_set: Joi.array()
         .items(OrderPlatformModel.QuestionSet())
         .required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()).required(),
-      is_active: Joi.boolean().required(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      is_active: Joi.boolean(),
     }).id("Reason");
   }
 
@@ -7875,6 +7882,7 @@ class OrderPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -7985,6 +7993,7 @@ class OrderPlatformModel {
       state_code: Joi.string().allow(""),
       uid: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
+      code: Joi.string().allow("").allow(null),
     }).allow(null);
   }
 
@@ -8620,6 +8629,8 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
+      name: Joi.string().allow("").allow(null),
+      store_email: Joi.string().allow("").allow(null),
     });
   }
 
@@ -8807,6 +8818,7 @@ class OrderPlatformModel {
       uid: Joi.string().allow("").allow(null),
       size: Joi.string().allow("").allow(null),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -8992,6 +9004,7 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").required(),
       state: Joi.string().allow("").required(),
       city: Joi.string().allow("").required(),
+      store_email: Joi.string().allow("").allow(null),
     });
   }
 

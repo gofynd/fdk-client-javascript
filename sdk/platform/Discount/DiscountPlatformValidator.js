@@ -4,12 +4,12 @@ const DiscountPlatformModel = require("./DiscountPlatformModel");
 
 /**
  * @typedef CancelDownloadJobParam
- * @property {string} id - Id
+ * @property {string} id - Unique identifier for the discount
  */
 
 /**
  * @typedef CancelValidationJobParam
- * @property {string} id - Id
+ * @property {string} id - Unique identifier for the discount.
  */
 
 /**
@@ -19,54 +19,64 @@ const DiscountPlatformModel = require("./DiscountPlatformModel");
 
 /**
  * @typedef DownloadDiscountFileParam
- * @property {string} type - Type
+ * @property {string} type - The type of discount file to download, either
+ *   'product' or 'inventory'.
  * @property {DiscountPlatformModel.DownloadFileJob} body
  */
 
 /**
  * @typedef GetDiscountParam
- * @property {string} id - Unique id.
+ * @property {string} id - Unique identifier for the discount.
  */
 
 /**
  * @typedef GetDiscountsParam
- * @property {string} [view] - Listing or calender. Default is listing.
+ * @property {string} [view] - Specifies the format in which the discounts are
+ *   displayed. Options are 'listing' for a list view or 'calendar' for a
+ *   calendar view. Defaults to 'listing'.
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a discount.
- * @property {number} [pageNo] - Page number. Default is 1.
- * @property {number} [pageSize] - Page size. Default is 12.
- * @property {boolean} [archived] - Archived. Default is false.
- * @property {number} [month] - Month. Default is current month.
- * @property {number} [year] - Year. Default is current year.
- * @property {string} [type] - Basic or custom.
- * @property {string[]} [appIds] - Application ids.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default is 1.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {boolean} [archived] - Indicates whether to include expired
+ *   discounts in the results. Defaults to false.
+ * @property {number} [month] - The month for which discounts is requested.
+ *   Defaults to the current month if not specified.
+ * @property {number} [year] - The year for which discounts is requested.
+ *   Defaults to the current year if not specified.
+ * @property {string} [type] - Specifies the type of disocunt to list, either
+ *   'basic' or 'custom'.
+ * @property {string[]} [appIds] - A `application_id` is a unique identifier for
+ *   a particular sales channel.
  */
 
 /**
  * @typedef GetDownloadJobParam
- * @property {string} id - Id
+ * @property {string} id - Unique identifier for the discount.
  */
 
 /**
  * @typedef GetValidationJobParam
- * @property {string} id - Id
+ * @property {string} id - Unique identifier for the discount.
  */
 
 /**
  * @typedef UpdateDiscountParam
- * @property {string} id - Id
+ * @property {string} id - Unique identifier for the discount.
  * @property {DiscountPlatformModel.CreateUpdateDiscount} body
  */
 
 /**
  * @typedef UpsertDiscountItemsParam
- * @property {string} id - Job ID of the discount.
+ * @property {string} id - Unique identifier for the discount.
  * @property {DiscountPlatformModel.BulkDiscount} body
  */
 
 /**
  * @typedef ValidateDiscountFileParam
- * @property {string} [discount] - Discount
+ * @property {string} [discount] - Unique identifier for the discount.
  * @property {DiscountPlatformModel.FileJobRequestSchema} body
  */
 

@@ -30,7 +30,7 @@ declare class Rewards {
      * @summary: Get specific offer
      * @description: Retrieves detailed information about an offer by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
      */
-    getOfferByName({ name, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Offer>;
+    getOfferByName({ name, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<Offer>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

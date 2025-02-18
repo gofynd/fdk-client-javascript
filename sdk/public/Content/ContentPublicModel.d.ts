@@ -278,10 +278,59 @@ export = ContentPublicModel;
  * @property {string} [stack_trace]
  * @property {Object} [meta]
  */
+/**
+ * @typedef Language
+ * @property {string} [_id] - Unique identifier for the language entry in the
+ *   system database.
+ * @property {string} locale - Standard language code following ISO 639-1 format
+ *   for language identification.
+ * @property {string} direction - Text direction specification for proper
+ *   content rendering in the language.
+ * @property {string} name - Full name of the language in English for easy
+ *   reference and display at the merchant panel.
+ * @property {string} [display_name] - Translated name of the language in
+ *   English for easy reference and display at the website.
+ */
+/**
+ * @typedef Error
+ * @property {string} [error] - Detailed error message explaining the nature of
+ *   the failure or invalid request.
+ */
+/**
+ * @typedef TranslatableResource
+ * @property {string} [_id] - Unique identifier for the translatable resource in
+ *   the system.
+ * @property {string} type - Categorization of the resource indicating its
+ *   context and ownership level
+ * @property {string} name - Primary identifier or title of the resource in its
+ *   default language.
+ * @property {string} description - Detailed explanation of the resource's
+ *   purpose and content scope.
+ * @property {Meta} meta
+ */
+/**
+ * @typedef Meta
+ * @property {string} [created_by] - MongoDB ObjectId of the user who initially
+ *   created the resource.
+ * @property {string} [updated_by] - MongoDB ObjectId of the user who last
+ *   modified the resource.
+ * @property {string} [created_at] - Timestamp indicating when the resource was
+ *   first created.
+ * @property {string} [updated_at] - Timestamp indicating when the resource was
+ *   last modified.
+ */
+/**
+ * @typedef ResourceTranslation
+ * @property {string} [_id] - Unique identifier for the translation entry in the system.
+ * @property {string} [locale] - Language code indicating the target language of
+ *   the translation.
+ * @property {Object} [value] - Contains the translated content with flexible
+ *   schema based on resource type.
+ */
 declare class ContentPublicModel {
 }
 declare namespace ContentPublicModel {
-    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, SdkReadmeSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, ContentAPIError };
+    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, SdkReadmeSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, ContentAPIError, Language, Error, TranslatableResource, Meta, ResourceTranslation };
 }
 /** @returns {BasicDetailsPayloadSchema} */
 declare function BasicDetailsPayloadSchema(): BasicDetailsPayloadSchema;
@@ -596,4 +645,109 @@ type ContentAPIError = {
     request_id?: string;
     stack_trace?: string;
     meta?: any;
+};
+/** @returns {Language} */
+declare function Language(): Language;
+type Language = {
+    /**
+     * - Unique identifier for the language entry in the
+     * system database.
+     */
+    _id?: string;
+    /**
+     * - Standard language code following ISO 639-1 format
+     * for language identification.
+     */
+    locale: string;
+    /**
+     * - Text direction specification for proper
+     * content rendering in the language.
+     */
+    direction: string;
+    /**
+     * - Full name of the language in English for easy
+     * reference and display at the merchant panel.
+     */
+    name: string;
+    /**
+     * - Translated name of the language in
+     * English for easy reference and display at the website.
+     */
+    display_name?: string;
+};
+/** @returns {Error} */
+declare function Error(): Error;
+type Error = {
+    /**
+     * - Detailed error message explaining the nature of
+     * the failure or invalid request.
+     */
+    error?: string;
+};
+/** @returns {TranslatableResource} */
+declare function TranslatableResource(): TranslatableResource;
+type TranslatableResource = {
+    /**
+     * - Unique identifier for the translatable resource in
+     * the system.
+     */
+    _id?: string;
+    /**
+     * - Categorization of the resource indicating its
+     * context and ownership level
+     */
+    type: string;
+    /**
+     * - Primary identifier or title of the resource in its
+     * default language.
+     */
+    name: string;
+    /**
+     * - Detailed explanation of the resource's
+     * purpose and content scope.
+     */
+    description: string;
+    meta: Meta;
+};
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    /**
+     * - MongoDB ObjectId of the user who initially
+     * created the resource.
+     */
+    created_by?: string;
+    /**
+     * - MongoDB ObjectId of the user who last
+     * modified the resource.
+     */
+    updated_by?: string;
+    /**
+     * - Timestamp indicating when the resource was
+     * first created.
+     */
+    created_at?: string;
+    /**
+     * - Timestamp indicating when the resource was
+     * last modified.
+     */
+    updated_at?: string;
+};
+/** @returns {ResourceTranslation} */
+declare function ResourceTranslation(): ResourceTranslation;
+type ResourceTranslation = {
+    /**
+     * - Unique identifier for the translation entry in the system.
+     */
+    _id?: string;
+    /**
+     * - Language code indicating the target language of
+     * the translation.
+     */
+    locale?: string;
+    /**
+     * - Contains the translated content with flexible
+     * schema based on resource type.
+     */
+    value?: any;
 };

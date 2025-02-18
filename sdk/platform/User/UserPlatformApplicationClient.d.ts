@@ -275,6 +275,16 @@ declare class User {
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
     /**
+     * @param {UserPlatformApplicationValidator.GetUserTimelineParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.GetUserTimeline>} - Success response
+     * @name getUserTimeline
+     * @summary: Get Deleted User Timeline
+     * @description: Fetches the timeline for the user who has made a data erase request. The timeline will show when the request was raised and when the request will be completed. It will also show if request has been cancelled before completion. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserTimeline/).
+     */
+    getUserTimeline({ userId, requestHeaders }?: UserPlatformApplicationValidator.GetUserTimelineParam, { responseHeaders }?: object): Promise<UserPlatformModel.GetUserTimeline>;
+    /**
      * @param {UserPlatformApplicationValidator.GetUsersJobByJobIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

@@ -6,6 +6,7 @@ const {
 const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 const CatalogPublicValidator = require("./CatalogPublicValidator");
 const CatalogPublicModel = require("./CatalogPublicModel");
@@ -49,18 +50,12 @@ class Catalog {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!level) {
-      invalidInput.push({
-        message: `The 'level' field is required.`,
-        path: ["level"],
+    const errors = validateRequiredParams(arguments[0], ["level"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

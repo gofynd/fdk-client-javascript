@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Payment {
   constructor(_conf) {
@@ -61,8 +62,6 @@ class Payment {
         "/service/application/payment/v1.0/payment/request/link/",
       linkWallet:
         "/service/application/payment/v1.0/payment/options/wallet/verify",
-      outstandingOrderDetails:
-        "/service/application/payment/v1.0/payment/outstanding-orders/",
       paidOrderDetails:
         "/service/application/payment/v1.0/payment/paid-orders/",
       pollingPaymentLink:
@@ -119,14 +118,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -164,14 +155,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -209,14 +192,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -254,14 +229,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -299,18 +266,12 @@ class Payment {
     { cardInfo, aggregator, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!cardInfo) {
-      invalidInput.push({
-        message: `The 'cardInfo' field is required.`,
-        path: ["cardInfo"],
+    const errors = validateRequiredParams(arguments[0], ["cardInfo"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -352,14 +313,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -397,14 +350,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -442,14 +387,6 @@ class Payment {
     { aggregator, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["aggregator"] = aggregator;
 
@@ -488,14 +425,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -533,14 +462,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -578,14 +499,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -623,14 +536,6 @@ class Payment {
     { aggregator, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["aggregator"] = aggregator;
 
@@ -669,14 +574,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -714,14 +611,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -759,14 +648,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -804,14 +685,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -849,14 +722,6 @@ class Payment {
     { refresh, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["refresh"] = refresh;
 
@@ -895,14 +760,6 @@ class Payment {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -940,14 +797,6 @@ class Payment {
     { forceRefresh, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["force_refresh"] = forceRefresh;
 
@@ -983,22 +832,13 @@ class Payment {
    * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
    */
   async getAggregatorsConfig(
-    { xApiToken, refresh, requestHeaders } = { requestHeaders: {} },
+    { refresh, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["refresh"] = refresh;
 
     const xHeaders = {};
-    xHeaders["x-api-token"] = xApiToken;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1033,14 +873,6 @@ class Payment {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1078,21 +910,6 @@ class Payment {
     { orderId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["order_id"] = orderId;
 
@@ -1131,14 +948,6 @@ class Payment {
     { paymentLinkId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["payment_link_id"] = paymentLinkId;
 
@@ -1189,27 +998,6 @@ class Payment {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!amount) {
-      invalidInput.push({
-        message: `The 'amount' field is required.`,
-        path: ["amount"],
-      });
-    }
-    if (!cartId) {
-      invalidInput.push({
-        message: `The 'cartId' field is required.`,
-        path: ["cartId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["amount"] = amount;
     query_params["cart_id"] = cartId;
@@ -1257,21 +1045,6 @@ class Payment {
     { paymentLinkId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!paymentLinkId) {
-      invalidInput.push({
-        message: `The 'paymentLinkId' field is required.`,
-        path: ["paymentLinkId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["payment_link_id"] = paymentLinkId;
 
@@ -1320,39 +1093,6 @@ class Payment {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!amount) {
-      invalidInput.push({
-        message: `The 'amount' field is required.`,
-        path: ["amount"],
-      });
-    }
-    if (!cartId) {
-      invalidInput.push({
-        message: `The 'cartId' field is required.`,
-        path: ["cartId"],
-      });
-    }
-    if (!pincode) {
-      invalidInput.push({
-        message: `The 'pincode' field is required.`,
-        path: ["pincode"],
-      });
-    }
-    if (!orderType) {
-      invalidInput.push({
-        message: `The 'orderType' field is required.`,
-        path: ["orderType"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["amount"] = amount;
     query_params["cart_id"] = cartId;
@@ -1398,14 +1138,6 @@ class Payment {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1443,21 +1175,6 @@ class Payment {
     { orderId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["order_id"] = orderId;
 
@@ -1496,14 +1213,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1541,14 +1250,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1586,14 +1287,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1622,52 +1315,6 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OutstandingOrderDetails>} - Success response
-   * @name outstandingOrderDetails
-   * @summary: Outstanding orders
-   * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
-   */
-  async outstandingOrderDetails(
-    { aggregator, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["aggregator"] = aggregator;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["outstandingOrderDetails"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaidOrderDetails>} - Success response
    * @name paidOrderDetails
    * @summary: Retrieve details of paid orders
@@ -1677,14 +1324,6 @@ class Payment {
     { aggregator, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["aggregator"] = aggregator;
 
@@ -1723,14 +1362,6 @@ class Payment {
     { paymentLinkId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["payment_link_id"] = paymentLinkId;
 
@@ -1769,21 +1400,6 @@ class Payment {
     { aggregator, source, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!aggregator) {
-      invalidInput.push({
-        message: `The 'aggregator' field is required.`,
-        path: ["aggregator"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["source"] = source;
     query_params["aggregator"] = aggregator;
@@ -1823,14 +1439,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1868,14 +1476,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1913,14 +1513,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1958,14 +1550,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2003,14 +1587,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2048,14 +1624,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2093,14 +1661,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2138,14 +1698,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2183,14 +1735,6 @@ class Payment {
     { ifscCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["ifsc_code"] = ifscCode;
 
@@ -2229,14 +1773,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2274,14 +1810,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2319,14 +1847,6 @@ class Payment {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};

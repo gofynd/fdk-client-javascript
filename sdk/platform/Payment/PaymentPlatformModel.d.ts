@@ -542,6 +542,7 @@ export = PaymentPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef EdcDeviceListDetails
@@ -1230,6 +1231,7 @@ export = PaymentPlatformModel;
  * @property {string} aggregator - Aggregator name of the payment gateway.
  * @property {number} transaction_amount - Payable amount
  * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ * @property {string} [user_id] - The unique identifier of the user.
  */
 /**
  * @typedef UserCreditSchema
@@ -1246,7 +1248,7 @@ export = PaymentPlatformModel;
  *   it is ACTIVE, INACTIVE, or UNREGISTERED.
  * @property {UserCreditSchema} [redeemable_balance]
  * @property {UserCreditSchema} [available_balance]
- * @property {UserCreditSchema} [amount_on_hold]
+ * @property {UserCreditSchema[]} [amount_on_hold]
  */
 /**
  * @typedef ValidateCustomerCreditSchema
@@ -2699,6 +2701,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {EdcDeviceListDetails} */
 declare function EdcDeviceListDetails(): EdcDeviceListDetails;
@@ -4518,6 +4524,10 @@ type CustomerValidationSchema = {
      * - Unique identifier for the shopping cart.
      */
     cart_id?: string;
+    /**
+     * - The unique identifier of the user.
+     */
+    user_id?: string;
 };
 /** @returns {UserCreditSchema} */
 declare function UserCreditSchema(): UserCreditSchema;
@@ -4551,7 +4561,7 @@ type CreditAccountSummary = {
     status: string;
     redeemable_balance?: UserCreditSchema;
     available_balance?: UserCreditSchema;
-    amount_on_hold?: UserCreditSchema;
+    amount_on_hold?: UserCreditSchema[];
 };
 /** @returns {ValidateCustomerCreditSchema} */
 declare function ValidateCustomerCreditSchema(): ValidateCustomerCreditSchema;

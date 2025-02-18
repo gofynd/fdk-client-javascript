@@ -56,6 +56,14 @@ export = OrderPlatformValidator;
  * @property {string} logId - Log Error ID
  */
 /**
+ * @typedef FailedOrderLogsParam
+ * @property {string} [applicationId] - Application ID
+ * @property {number} [pageNo] - Page Number
+ * @property {number} [pageSize] - Page Size
+ * @property {string} [searchType] - Search type for filter
+ * @property {string} [searchValue] - Search value for filter
+ */
+/**
  * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
@@ -476,6 +484,8 @@ declare class OrderPlatformValidator {
     static eInvoiceRetry(): EInvoiceRetryParam;
     /** @returns {FailedOrderLogDetailsParam} */
     static failedOrderLogDetails(): FailedOrderLogDetailsParam;
+    /** @returns {FailedOrderLogsParam} */
+    static failedOrderLogs(): FailedOrderLogsParam;
     /** @returns {FetchRefundModeConfigParam} */
     static fetchRefundModeConfig(): FetchRefundModeConfigParam;
     /** @returns {GenerateInvoiceIDParam} */
@@ -568,7 +578,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -640,6 +650,28 @@ type FailedOrderLogDetailsParam = {
      * - Log Error ID
      */
     logId: string;
+};
+type FailedOrderLogsParam = {
+    /**
+     * - Application ID
+     */
+    applicationId?: string;
+    /**
+     * - Page Number
+     */
+    pageNo?: number;
+    /**
+     * - Page Size
+     */
+    pageSize?: number;
+    /**
+     * - Search type for filter
+     */
+    searchType?: string;
+    /**
+     * - Search value for filter
+     */
+    searchValue?: string;
 };
 type FetchRefundModeConfigParam = {
     body: OrderPlatformModel.RefundModeConfigRequestPayload;

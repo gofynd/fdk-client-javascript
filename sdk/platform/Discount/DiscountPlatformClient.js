@@ -529,6 +529,65 @@ class Discount {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.view] - Specifies the format in which the discounts
+   *   are displayed. Options are 'listing' for a list view or 'calendar' for
+   *   a calendar view. Defaults to 'listing'.
+   * @param {string} [arg.q] - The search query. This can be a partial or
+   *   complete name of a discount.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @param {boolean} [arg.archived] - Indicates whether to include expired
+   *   discounts in the results. Defaults to false.
+   * @param {number} [arg.month] - The month for which discounts is requested.
+   *   Defaults to the current month if not specified.
+   * @param {number} [arg.year] - The year for which discounts is requested.
+   *   Defaults to the current year if not specified.
+   * @param {string} [arg.type] - Specifies the type of disocunt to list,
+   *   either 'basic' or 'custom'.
+   * @param {string[]} [arg.appIds] - A `application_id` is a unique
+   *   identifier for a particular sales channel.
+   * @returns {Paginator<DiscountPlatformModel.ListOrCalender>}
+   * @summary: List discounts
+   * @description: Retrieve a list of discounts. You can also retrieve discounts using filter query parameters. There are additional optional parameters that can be specified in the parameters of the request when retrieving discount
+   */
+  getDiscountsPaginator({
+    view,
+    q,
+    pageSize,
+    archived,
+    month,
+    year,
+    type,
+    appIds,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getDiscounts({
+        view: view,
+        q: q,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        archived: archived,
+        month: month,
+        year: year,
+        type: type,
+        appIds: appIds,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

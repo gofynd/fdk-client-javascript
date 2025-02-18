@@ -62,13 +62,15 @@ const Joi = require("joi");
 
 /**
  * @typedef FstIdentification
- * @property {boolean} [enabled] - Indicates whether FST identification is
- *   enabled for the application.
+ * @property {boolean} [enabled] - Indicates whether search query interpretation
+ *   is enabled for the application.
  */
 
 /**
  * @typedef QuerySuggestions
- * @property {boolean} [enabled] - Indicates whether query suggestions are enabled.
+ * @property {boolean} [enabled] - Indicates whether to enable or disable query
+ *   suggestions powered by the GPT model using the current live catalog within
+ *   the application.
  * @property {number} [max_limit] - Specifies the maximum number of query
  *   suggestions that can be returned.
  */
@@ -81,6 +83,7 @@ const Joi = require("joi");
 
 /**
  * @typedef AppInventoryConfig
+ * @property {DeliveryStrategy} [delivery_strategy]
  * @property {InventoryBrand} [brand]
  * @property {InventoryStore} [store]
  * @property {InventoryCategory} [category]
@@ -993,6 +996,22 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
+ */
+
+/**
+ * @typedef DeliveryStrategy
+ * @property {string} [value] - Indicates the delivery strategy value.
+ */
+
+/**
  * @typedef AppFeature
  * @property {ProductDetailFeature} [product_detail]
  * @property {LandingPageFeature} [landing_page]
@@ -1003,6 +1022,8 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
+ * @property {DeliveryStrategy} [delivery_strategy]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -1302,6 +1323,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -1506,7 +1528,7 @@ const Joi = require("joi");
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {number} [pincode] - 6-digit PIN code of the opted store location
+ * @property {string} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  * @property {string} [sector] - Sector for the opted store.
@@ -1525,7 +1547,7 @@ const Joi = require("joi");
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 
@@ -1652,6 +1674,7 @@ class ConfigurationPlatformModel {
   /** @returns {AppInventoryConfig} */
   static AppInventoryConfig() {
     return Joi.object({
+      delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
       brand: ConfigurationPlatformModel.InventoryBrand(),
       store: ConfigurationPlatformModel.InventoryStore(),
       category: ConfigurationPlatformModel.InventoryCategory(),
@@ -2662,6 +2685,22 @@ class ConfigurationPlatformModel {
     });
   }
 
+  /** @returns {BuyboxFeature} */
+  static BuyboxFeature() {
+    return Joi.object({
+      show_name: Joi.boolean(),
+      enable_selection: Joi.boolean(),
+      is_seller_buybox_enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DeliveryStrategy} */
+  static DeliveryStrategy() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {AppFeature} */
   static AppFeature() {
     return Joi.object({
@@ -2674,6 +2713,8 @@ class ConfigurationPlatformModel {
       qr: ConfigurationPlatformModel.QrFeature(),
       pcr: ConfigurationPlatformModel.PcrFeature(),
       order: ConfigurationPlatformModel.OrderFeature(),
+      buybox: ConfigurationPlatformModel.BuyboxFeature(),
+      delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -2987,6 +3028,7 @@ class ConfigurationPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -3234,7 +3276,7 @@ class ConfigurationPlatformModel {
       address1: Joi.string().allow(""),
       lat_long: ConfigurationPlatformModel.StoreLatLong(),
       address2: Joi.string().allow(""),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       country: Joi.string().allow(""),
       city: Joi.string().allow(""),
       sector: Joi.string().allow(""),
@@ -3253,7 +3295,7 @@ class ConfigurationPlatformModel {
       display_name: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       code: Joi.string().allow(""),
     });
   }

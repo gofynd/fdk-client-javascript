@@ -165,6 +165,11 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
+ * @typedef GetUserTimelineParam
+ * @property {string} userId - User ID
+ */
+
+/**
  * @typedef GetUsersJobByJobIdParam
  * @property {string} jobId - The unique identifier of the job. This is used to
  *   fetch the details of the specific job.
@@ -422,6 +427,13 @@ class UserPlatformApplicationValidator {
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       groupUid: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {GetUserTimelineParam} */
+  static getUserTimeline() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
     }).required();
   }
 

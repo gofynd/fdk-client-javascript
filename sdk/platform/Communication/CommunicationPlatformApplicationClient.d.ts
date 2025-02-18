@@ -642,13 +642,13 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
+     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
      *   Success response
      * @name getSystemSmsTemplates
      * @summary: Gets all system SMS templates
      * @description: Retrieves system-defined SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
      */
-    getSystemSmsTemplates({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemSmsTemplates[]>;
+    getSystemSmsTemplates({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemSmsTemplates>;
     /**
      * @param {CommunicationPlatformApplicationValidator.PostGlobalVariablesParam} arg
      *   - Arg object

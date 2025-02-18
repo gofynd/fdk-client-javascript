@@ -156,33 +156,6 @@ declare class CompanyProfile {
      */
     getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, types, tags, requestHeaders, }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.storeType] - Helps to sort the location list on the
-     *   basis of location type.
-     * @param {string} [arg.q] - Query that is to be searched.
-     * @param {string} [arg.stage] - To filter companies on basis of verified or
-     *   unverified companies.
-     * @param {number} [arg.pageSize] - Number of items to retrieve in each
-     *   page. Default is 10.
-     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
-     * @param {string[]} [arg.types] - Helps to get the location list on the
-     *   basis of multiple location type.
-     * @param {string[]} [arg.tags] - Helps to get the location list on the
-     *   basis of multiple location tag.
-     * @returns {Paginator<CompanyProfilePlatformModel.LocationListSchema>}
-     * @summary: Get company specific stores
-     * @description: Retrieve a list of locations associated with the company.
-     */
-    getLocationsPaginator({ storeType, q, stage, pageSize, locationIds, types, tags, }?: {
-        storeType?: string;
-        q?: string;
-        stage?: string;
-        pageSize?: number;
-        locationIds?: number[];
-        types?: string[];
-        tags?: string[];
-    }): Paginator<CompanyProfilePlatformModel.LocationListSchema>;
-    /**
      * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

@@ -16,6 +16,85 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.AddApplicationLanguageParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name addApplicationLanguage
+   * @summary: Add app language
+   * @description: Add new languages to application's supported language list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addApplicationLanguage/).
+   */
+  async addApplicationLanguage(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.addApplicationLanguage().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.addApplicationLanguage().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > addApplicationLanguage \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > addApplicationLanguage \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -327,6 +406,85 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > addPathRedirectionRules \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name bulkUnPublishApplicationLanguage
+   * @summary: Unpublish all languages of sales channel.
+   * @description: Unpublish all application's published languages of specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/bulkUnPublishApplicationLanguage/).
+   */
+  async bulkUnPublishApplicationLanguage(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.bulkUnPublishApplicationLanguage().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.bulkUnPublishApplicationLanguage().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > bulkUnPublishApplicationLanguage \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > bulkUnPublishApplicationLanguage \n ${res_error}`,
         });
       }
     }
@@ -660,6 +818,87 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > createAppCustomObjectDefinition \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
+   * @name createApplicationResourceTranslation
+   * @summary: Add app translation
+   * @description: Create new translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createApplicationResourceTranslation/).
+   */
+  async createApplicationResourceTranslation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createApplicationResourceTranslation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createApplicationResourceTranslation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createApplicationResourceTranslation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.ResourceTranslation().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createApplicationResourceTranslation \n ${res_error}`,
         });
       }
     }
@@ -1144,6 +1383,87 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.CreateTranslateUILabelsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+   * @name createTranslateUILabels
+   * @summary: Add Translate Ui Labels
+   * @description: Creates a new Translate Ui Labels entry with specified configuration and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createTranslateUILabels/).
+   */
+  async createTranslateUILabels(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createTranslateUILabels().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createTranslateUILabels().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createTranslateUILabels \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createTranslateUILabels \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
    *   - Arg object
    *
@@ -1469,6 +1789,165 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > deleteAppCustomObjectDefinitionBySlug \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.DeleteApplicationLanguageParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<any>} - Success response
+   * @name deleteApplicationLanguage
+   * @summary: Remove app language
+   * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
+   */
+  async deleteApplicationLanguage(
+    { locale, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.deleteApplicationLanguage().validate(
+      {
+        locale,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.deleteApplicationLanguage().validate(
+      {
+        locale,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteApplicationLanguage \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages/${locale}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteApplicationLanguage \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.DeletedResource>} - Success response
+   * @name deleteApplicationResourceTranslation
+   * @summary: Remove app translation
+   * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
+   */
+  async deleteApplicationResourceTranslation(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.deleteApplicationResourceTranslation().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.deleteApplicationResourceTranslation().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteApplicationResourceTranslation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.DeletedResource().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteApplicationResourceTranslation \n ${res_error}`,
         });
       }
     }
@@ -3742,6 +4221,167 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetApplicationLanguagesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getApplicationLanguages
+   * @summary: Get app languages
+   * @description: Fetch all languages configured for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationLanguages/).
+   */
+  async getApplicationLanguages(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getApplicationLanguages().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getApplicationLanguages().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getApplicationLanguages \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getApplicationLanguages \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getApplicationResourceTranslations
+   * @summary: Get app translations
+   * @description: Fetch translations for application-level resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationResourceTranslations/).
+   */
+  async getApplicationResourceTranslations(
+    { locale, type, resourceId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getApplicationResourceTranslations().validate(
+      {
+        locale,
+        type,
+        resourceId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getApplicationResourceTranslations().validate(
+      {
+        locale,
+        type,
+        resourceId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getApplicationResourceTranslations \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["locale"] = locale;
+    query_params["type"] = type;
+    query_params["resource_id"] = resourceId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getApplicationResourceTranslations \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -5771,6 +6411,180 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TranslateUiLabelsPage>} - Success response
+   * @name getTranslateUILabels
+   * @summary: Get Translate Ui Labels
+   * @description: Retrieves Translate Ui Labels with optional filtering by type, application, and company identifiers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabels/).
+   */
+  async getTranslateUILabels(
+    { templateThemeId, themeId, locale, type, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getTranslateUILabels().validate(
+      {
+        templateThemeId,
+        themeId,
+        locale,
+        type,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getTranslateUILabels().validate(
+      {
+        templateThemeId,
+        themeId,
+        locale,
+        type,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getTranslateUILabels \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["template_theme_id"] = templateThemeId;
+    query_params["theme_id"] = themeId;
+    query_params["locale"] = locale;
+    query_params["type"] = type;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TranslateUiLabelsPage().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getTranslateUILabels \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+   * @name getTranslateUILabelsById
+   * @summary: Get Resource Detail
+   * @description: Fetches detailed information for a specific Translate Ui Labels using its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabelsById/).
+   */
+  async getTranslateUILabelsById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getTranslateUILabelsById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getTranslateUILabelsById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getTranslateUILabelsById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getTranslateUILabelsById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesBySlugParam} arg
    *   - Arg object
    *
@@ -6686,6 +7500,172 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > updateAppCustomObjectDefinitionBySlug \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.ApplicationLanguage>} - Success response
+   * @name updateApplicationLanguageStatus
+   * @summary: Set app language
+   * @description: Update language status and settings for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationLanguageStatus/).
+   */
+  async updateApplicationLanguageStatus(
+    { locale, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.updateApplicationLanguageStatus().validate(
+      {
+        locale,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.updateApplicationLanguageStatus().validate(
+      {
+        locale,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > updateApplicationLanguageStatus \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages/${locale}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.ApplicationLanguage().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > updateApplicationLanguageStatus \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
+   * @name updateApplicationResourceTranslation
+   * @summary: Update app translation
+   * @description: Update existing translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationResourceTranslation/).
+   */
+  async updateApplicationResourceTranslation(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.updateApplicationResourceTranslation().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.updateApplicationResourceTranslation().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > updateApplicationResourceTranslation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.ResourceTranslation().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > updateApplicationResourceTranslation \n ${res_error}`,
         });
       }
     }
@@ -7662,6 +8642,173 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > updateSupportInformation \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+   * @name updateTranslateUILabels
+   * @summary: Update Resource Detail
+   * @description: Modifies existing Translate Ui Labels properties including locale, type, and associated configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateTranslateUILabels/).
+   */
+  async updateTranslateUILabels(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.updateTranslateUILabels().validate(
+      {
+        id,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.updateTranslateUILabels().validate(
+      {
+        id,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > updateTranslateUILabels \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > updateTranslateUILabels \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>} -
+   *   Success response
+   * @name upsertApplicationResourceTranslationInBulk
+   * @summary: Bulk update translations
+   * @description: Create or update multiple translations in a single request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/upsertApplicationResourceTranslationInBulk/).
+   */
+  async upsertApplicationResourceTranslationInBulk(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.upsertApplicationResourceTranslationInBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.upsertApplicationResourceTranslationInBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > upsertApplicationResourceTranslationInBulk \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/bulk`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.ResourceTranslationBulkUpsert().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > upsertApplicationResourceTranslationInBulk \n ${res_error}`,
         });
       }
     }

@@ -3,14 +3,6 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
- * @typedef FailedOrderLogsParam
- * @property {number} [pageNo] - Page Number
- * @property {number} [pageSize] - Page Size
- * @property {string} [searchType] - Search type for filter
- * @property {string} [searchValue] - Search value for filter
- */
-
-/**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane] - Optional parameter to specify the lane for
  *   filtering results.
@@ -60,16 +52,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 class OrderPlatformApplicationValidator {
-  /** @returns {FailedOrderLogsParam} */
-  static failedOrderLogs() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetApplicationShipmentsParam} */
   static getApplicationShipments() {
     return Joi.object({

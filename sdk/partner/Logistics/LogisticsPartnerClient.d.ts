@@ -182,12 +182,13 @@ declare class Logistics {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
+     *   Success response
      * @name createCourierPartnerAccount
-     * @summary: Creation of Courier Account
-     * @description: This API Creates a new Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
+     * @summary: Create courier account
+     * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
      */
-    createCourierPartnerAccount({ companyId, body, requestHeaders }?: LogisticsPartnerValidator.CreateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccount>;
+    createCourierPartnerAccount({ companyId, body, requestHeaders }?: LogisticsPartnerValidator.CreateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountDetailsBody>;
     /**
      * @param {LogisticsPartnerValidator.GetCourierPartnerAccountsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -196,30 +197,31 @@ declare class Logistics {
      *   - Success response
      *
      * @name getCourierPartnerAccounts
-     * @summary: Getting Courier Account list of a company
-     * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
+     * @summary: List courier accounts
+     * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
      */
-    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResult>;
+    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, accountIds, selfShip, ownAccount, q, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResult>;
     /**
      * @param {LogisticsPartnerValidator.UpdateCourierPartnerAccountParam} arg
      *   - Arg object.
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierAccountResult>} - Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
+     *   Success response
      * @name updateCourierPartnerAccount
-     * @summary: Update Courier Account in database
-     * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
+     * @summary: Update courier account
+     * @description: Updates an existing courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
      */
-    updateCourierPartnerAccount({ companyId, accountId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResult>;
+    updateCourierPartnerAccount({ companyId, accountId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountDetailsBody>;
     /**
      * @param {LogisticsPartnerValidator.GetCourierPartnerAccountParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<LogisticsPartnerModel.CourierAccountResult>} - Success response
      * @name getCourierPartnerAccount
-     * @summary: Getting Courier Account of a company from database
-     * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
+     * @summary: Get courier account
+     * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
      */
     getCourierPartnerAccount({ companyId, accountId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResult>;
     /**
@@ -229,54 +231,56 @@ declare class Logistics {
      * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
      * @name getCountries
      * @summary: Get all countries and associated data
-     * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
+     * @description: Retrieve a list of countries for logistical purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
+    getCountries({ onboard, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
     /**
      * @param {LogisticsPartnerValidator.CreateCourierPartnerSchemeParam} arg -
      *   Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>} -
-     *   Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
+     *   - Success response
+     *
      * @name createCourierPartnerScheme
      * @summary: Create Scheme for courier partner extension
      * @description: Create Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerScheme/).
      */
-    createCourierPartnerScheme({ body, requestHeaders }?: LogisticsPartnerValidator.CreateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>;
+    createCourierPartnerScheme({ body, requestHeaders }?: LogisticsPartnerValidator.CreateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>;
     /**
      * @param {LogisticsPartnerValidator.GetCourierPartnerSchemesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.courierPartnerSchemeV2List>} -
+     * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeList>} -
      *   Success response
      * @name getCourierPartnerSchemes
      * @summary: Get created Schemes for courier partner
      * @description: Get created Schemes for courier partner - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerSchemes/).
      */
-    getCourierPartnerSchemes({ schemeType, paymentMode, capabilities, schemeIds, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.courierPartnerSchemeV2List>;
+    getCourierPartnerSchemes({ schemeType, paymentMode, capabilities, schemeIds, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeList>;
     /**
      * @param {LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam} arg -
      *   Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>} -
+     * @returns {Promise<LogisticsPartnerModel.CourierPartnerPutSchema>} -
      *   Success response
      * @name updateCourierPartnerScheme
      * @summary: Update Scheme for courier partner extension
      * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerScheme/).
      */
-    updateCourierPartnerScheme({ schemeId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>;
+    updateCourierPartnerScheme({ schemeId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerPutSchema>;
     /**
      * @param {LogisticsPartnerValidator.GetCourierPartnerSchemeParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>} -
-     *   Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
+     *   - Success response
+     *
      * @name getCourierPartnerScheme
      * @summary: Get Scheme for courier partner extension by Id
      * @description: Update Scheme for courier partner extension by Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerScheme/).
      */
-    getCourierPartnerScheme({ schemeId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerV2SchemeModel>;
+    getCourierPartnerScheme({ schemeId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>;
 }
 import LogisticsPartnerModel = require("./LogisticsPartnerModel");

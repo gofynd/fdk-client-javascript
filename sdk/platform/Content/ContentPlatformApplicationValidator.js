@@ -3,6 +3,11 @@ const Joi = require("joi");
 const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
+ * @typedef AddApplicationLanguageParam
+ * @property {ContentPlatformModel.ApplicationLanguageCreate} body
+ */
+
+/**
  * @typedef AddDataLoaderParam
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
@@ -21,6 +26,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef AddPathRedirectionRulesParam
  * @property {ContentPlatformModel.PathMappingSchema} body
+ */
+
+/**
+ * @typedef BulkUnPublishApplicationLanguageParam
+ * @property {ContentPlatformModel.unPublishApplicationLanguage} body
  */
 
 /**
@@ -43,6 +53,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef CreateAppCustomObjectDefinitionParam
  * @property {ContentPlatformModel.CustomObjectDefinitionRequestSchema} body
+ */
+
+/**
+ * @typedef CreateApplicationResourceTranslationParam
+ * @property {ContentPlatformModel.ResourceTranslationCreate} body
  */
 
 /**
@@ -76,6 +91,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef CreateTranslateUILabelsParam
+ * @property {ContentPlatformModel.TranslateUiLabelsCreate} body
+ */
+
+/**
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
@@ -96,6 +116,16 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef DeleteAppCustomObjectDefinitionBySlugParam
  * @property {string} slug
+ */
+
+/**
+ * @typedef DeleteApplicationLanguageParam
+ * @property {string} locale
+ */
+
+/**
+ * @typedef DeleteApplicationResourceTranslationParam
+ * @property {string} id
  */
 
 /**
@@ -261,6 +291,15 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /** @typedef GetAppResourcesParam */
 
+/** @typedef GetApplicationLanguagesParam */
+
+/**
+ * @typedef GetApplicationResourceTranslationsParam
+ * @property {string} locale
+ * @property {string} type
+ * @property {string} resourceId
+ */
+
 /**
  * @typedef GetBlogBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
@@ -403,6 +442,19 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /** @typedef GetSupportInformationParam */
 
 /**
+ * @typedef GetTranslateUILabelsParam
+ * @property {string} [templateThemeId] - Unique id of template theme
+ * @property {string} [themeId] - Unique id of theme
+ * @property {string} [locale] - Multilingual locale
+ * @property {string} [type] - Filter Translate Ui Labels by type
+ */
+
+/**
+ * @typedef GetTranslateUILabelsByIdParam
+ * @property {string} id - ID of the Translate Ui Labels
+ */
+
+/**
  * @typedef ImportAppCustomObjectEntriesBySlugParam
  * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectBulkSchema} body
@@ -467,6 +519,18 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef UpdateAppCustomObjectDefinitionBySlugParam
  * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
+ */
+
+/**
+ * @typedef UpdateApplicationLanguageStatusParam
+ * @property {string} locale
+ * @property {ContentPlatformModel.ApplicationLanguageUpdate} body
+ */
+
+/**
+ * @typedef UpdateApplicationResourceTranslationParam
+ * @property {string} id
+ * @property {ContentPlatformModel.ResourceTranslationUpdate} body
  */
 
 /**
@@ -539,7 +603,25 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {ContentPlatformModel.Support} body
  */
 
+/**
+ * @typedef UpdateTranslateUILabelsParam
+ * @property {string} id - The unique identifier of the Translate Ui Labels to update
+ * @property {ContentPlatformModel.StaticResourceUpdate} body
+ */
+
+/**
+ * @typedef UpsertApplicationResourceTranslationInBulkParam
+ * @property {ContentPlatformModel.ResourceTranslationList} body
+ */
+
 class ContentPlatformApplicationValidator {
+  /** @returns {AddApplicationLanguageParam} */
+  static addApplicationLanguage() {
+    return Joi.object({
+      body: ContentPlatformModel.ApplicationLanguageCreate().required(),
+    }).required();
+  }
+
   /** @returns {AddDataLoaderParam} */
   static addDataLoader() {
     return Joi.object({
@@ -566,6 +648,13 @@ class ContentPlatformApplicationValidator {
   static addPathRedirectionRules() {
     return Joi.object({
       body: ContentPlatformModel.PathMappingSchema().required(),
+    }).required();
+  }
+
+  /** @returns {BulkUnPublishApplicationLanguageParam} */
+  static bulkUnPublishApplicationLanguage() {
+    return Joi.object({
+      body: ContentPlatformModel.unPublishApplicationLanguage().required(),
     }).required();
   }
 
@@ -596,6 +685,13 @@ class ContentPlatformApplicationValidator {
   static createAppCustomObjectDefinition() {
     return Joi.object({
       body: ContentPlatformModel.CustomObjectDefinitionRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {CreateApplicationResourceTranslationParam} */
+  static createApplicationResourceTranslation() {
+    return Joi.object({
+      body: ContentPlatformModel.ResourceTranslationCreate().required(),
     }).required();
   }
 
@@ -641,6 +737,13 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateTranslateUILabelsParam} */
+  static createTranslateUILabels() {
+    return Joi.object({
+      body: ContentPlatformModel.TranslateUiLabelsCreate().required(),
+    }).required();
+  }
+
   /** @returns {DeleteAnnouncementParam} */
   static deleteAnnouncement() {
     return Joi.object({
@@ -669,6 +772,20 @@ class ContentPlatformApplicationValidator {
   static deleteAppCustomObjectDefinitionBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteApplicationLanguageParam} */
+  static deleteApplicationLanguage() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteApplicationResourceTranslationParam} */
+  static deleteApplicationResourceTranslation() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -885,6 +1002,20 @@ class ContentPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetApplicationLanguagesParam} */
+  static getApplicationLanguages() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetApplicationResourceTranslationsParam} */
+  static getApplicationResourceTranslations() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      resourceId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetBlogBySlugParam} */
   static getBlogBySlug() {
     return Joi.object({
@@ -1059,6 +1190,23 @@ class ContentPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetTranslateUILabelsParam} */
+  static getTranslateUILabels() {
+    return Joi.object({
+      templateThemeId: Joi.string().allow(""),
+      themeId: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetTranslateUILabelsByIdParam} */
+  static getTranslateUILabelsById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {ImportAppCustomObjectEntriesBySlugParam} */
   static importAppCustomObjectEntriesBySlug() {
     return Joi.object({
@@ -1145,6 +1293,22 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateApplicationLanguageStatusParam} */
+  static updateApplicationLanguageStatus() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+      body: ContentPlatformModel.ApplicationLanguageUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateApplicationResourceTranslationParam} */
+  static updateApplicationResourceTranslation() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: ContentPlatformModel.ResourceTranslationUpdate().required(),
     }).required();
   }
 
@@ -1238,6 +1402,22 @@ class ContentPlatformApplicationValidator {
   static updateSupportInformation() {
     return Joi.object({
       body: ContentPlatformModel.Support().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateTranslateUILabelsParam} */
+  static updateTranslateUILabels() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+
+      body: ContentPlatformModel.StaticResourceUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpsertApplicationResourceTranslationInBulkParam} */
+  static upsertApplicationResourceTranslationInBulk() {
+    return Joi.object({
+      body: ContentPlatformModel.ResourceTranslationList().required(),
     }).required();
   }
 }

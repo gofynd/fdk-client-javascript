@@ -239,8 +239,7 @@ const Joi = require("joi");
  *   with the product.
  * @property {number} category_uid - The unique identifier for the category to
  *   which the product belongs.
- * @property {number} [verification_status] - The verification status of the
- *   product, typically represented as an integer.
+ * @property {string} [verification_status] - Verification status of the product.
  * @property {string} [channel_identifier] - The identifier for the sales
  *   channel through which the product is sold.
  * @property {string} [category_slug] - A URL-friendly string representing the
@@ -277,7 +276,7 @@ const Joi = require("joi");
  *   variants of one another.
  * @property {MultiCategoriesSchema[]} [multi_categories]
  * @property {string} [template_tag] - Tag used for categorizing or templating purposes.
- * @property {Object} [net_quantity] - Net quantity details for the product.
+ * @property {NetQuantitySchema} [net_quantity]
  * @property {CustomOrder} [custom_order]
  * @property {string} country_of_origin - Country where the product is
  *   manufactured or sourced from.
@@ -287,6 +286,9 @@ const Joi = require("joi");
  * @property {CustomMeta[]} [_custom_meta] - Custom meta associated with the product.
  * @property {number} [discount_percentage] - The discount applied to the
  *   product in percentage.
+ * @property {number} [no_of_boxes] - Number of boxes containing the product.
+ * @property {string} [created_on] - The date and time when the product was created
+ * @property {string} [modified_on] - The date and time when the product was last modified
  */
 
 /**
@@ -1519,7 +1521,7 @@ const Joi = require("joi");
  *   for geolocation purposes.
  * @property {number} [longitude] - The longitude coordinate of the address,
  *   used for geolocation purposes.
- * @property {number} [pincode] - The postal code or ZIP code associated with the address.
+ * @property {string} [pincode] - The postal code or ZIP code associated with the address.
  * @property {string} [state] - The state or region where the address is located.
  */
 
@@ -2962,6 +2964,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -4673,6 +4676,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef NetQuantitySchema
+ * @property {string} [unit] - Specifies the unit of measurement for the net quantity.
+ * @property {number} [value] - The numerical value representing the net
+ *   quantity of the product.
+ */
+
+/**
  * @typedef CustomMeta
  * @property {string} key - The key of the metadata. Should be a non-empty
  *   string and length should not exceed 30 characters.
@@ -4975,7 +4985,7 @@ class CatalogPlatformModel {
       popularity: Joi.number(),
       brand_uid: Joi.number().required(),
       category_uid: Joi.number().required(),
-      verification_status: Joi.number(),
+      verification_status: Joi.string().allow(""),
       channel_identifier: Joi.string().allow(""),
       category_slug: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -5001,7 +5011,7 @@ class CatalogPlatformModel {
         CatalogPlatformModel.MultiCategoriesSchema()
       ),
       template_tag: Joi.string().allow(""),
-      net_quantity: Joi.object().pattern(/\S/, Joi.any()),
+      net_quantity: CatalogPlatformModel.NetQuantitySchema(),
       custom_order: CatalogPlatformModel.CustomOrder(),
       country_of_origin: Joi.string().allow("").required(),
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
@@ -5009,6 +5019,9 @@ class CatalogPlatformModel {
       item_id: Joi.number(),
       _custom_meta: Joi.array().items(CatalogPlatformModel.CustomMeta()),
       discount_percentage: Joi.number(),
+      no_of_boxes: Joi.number(),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -6371,7 +6384,7 @@ class CatalogPlatformModel {
       landmark: Joi.string().allow(""),
       latitude: Joi.number(),
       longitude: Joi.number(),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       state: Joi.string().allow(""),
     });
   }
@@ -7946,6 +7959,7 @@ class CatalogPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -9744,6 +9758,14 @@ class CatalogPlatformModel {
       l3: Joi.number(),
       is_active: Joi.boolean(),
       department: Joi.number(),
+    });
+  }
+
+  /** @returns {NetQuantitySchema} */
+  static NetQuantitySchema() {
+    return Joi.object({
+      unit: Joi.string().allow(""),
+      value: Joi.number(),
     });
   }
 

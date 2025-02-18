@@ -14,6 +14,7 @@ export = LeadPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef TicketHistoryList
@@ -222,6 +223,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {TicketHistoryList} */
 declare function TicketHistoryList(): TicketHistoryList;

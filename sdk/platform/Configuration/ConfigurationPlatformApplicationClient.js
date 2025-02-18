@@ -1070,7 +1070,7 @@ class Configuration {
    *   Success response
    * @name getDomains
    * @summary: List domains
-   * @description: Retrieve a list of existing domains by its sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
+   * @description: Retrieve a list of existing domains by its sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
    */
   async getDomains(
     { requestHeaders } = { requestHeaders: {} },
@@ -1431,7 +1431,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
       query_params,
       body,
       requestHeaders,
@@ -1603,7 +1603,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
       query_params,
       undefined,
       requestHeaders,

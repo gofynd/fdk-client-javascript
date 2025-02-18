@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Logistic {
   constructor(_conf) {
@@ -23,12 +24,7 @@ class Logistic {
         "/service/application/logistics/v1.0/localities/{locality_type}",
       getLocality:
         "/service/application/logistics/v1.0/localities/{locality_type}/{locality_value}",
-      getLocations: "/service/application/logistics/v1.0/locations",
-      getOptimalLocations:
-        "/service/application/logistics/v1.0/reassign_stores",
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
-      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
-      getTatProduct: "/service/application/logistics/v1.0/",
       validateAddress:
         "/service/application/logistics/v1.0/country/{country_iso_code}/address/templates/{template_name}/validate",
     };
@@ -51,7 +47,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CountryListResult>} - Success response
+   * @returns {Promise<CountryResult>} - Success response
    * @name getAllCountries
    * @summary: Get deliverable countries
    * @description: Get a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
@@ -60,14 +56,6 @@ class Logistic {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -113,14 +101,6 @@ class Logistic {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["onboarding"] = onboarding;
     query_params["page_no"] = pageNo;
@@ -164,18 +144,12 @@ class Logistic {
     { countryIsoCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!countryIsoCode) {
-      invalidInput.push({
-        message: `The 'countryIsoCode' field is required.`,
-        path: ["countryIsoCode"],
+    const errors = validateRequiredParams(arguments[0], ["countryIsoCode"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -209,31 +183,22 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShipmentCourierPartnerResult>} - Success response
    * @name getCourierPartners
-   * @summary: Serviceable Courier Partners.
+   * @summary: Serviceable Courier Partners
    * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCourierPartners/).
    */
   async getCourierPartners(
     { companyId, applicationId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!companyId) {
-      invalidInput.push({
-        message: `The 'companyId' field is required.`,
-        path: ["companyId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "companyId",
+      "applicationId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!applicationId) {
-      invalidInput.push({
-        message: `The 'applicationId' field is required.`,
-        path: ["applicationId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -271,22 +236,18 @@ class Logistic {
    * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getDeliveryPromise/).
    */
   async getDeliveryPromise(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { xLocationDetail, xApplicationData, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
     const xHeaders = {};
+    xHeaders["x-location-detail"] = xLocationDetail;
+    xHeaders["x-application-data"] = xApplicationData;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -312,10 +273,10 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetLocalities>} - Success response
+   * @returns {Promise<GetLocalitiesApp>} - Success response
    * @name getLocalities
-   * @summary: Get localities
-   * @description: Get geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
+   * @summary: Get Localities
+   * @description: Get Localities data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
    */
   async getLocalities(
     {
@@ -331,18 +292,12 @@ class Logistic {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!localityType) {
-      invalidInput.push({
-        message: `The 'localityType' field is required.`,
-        path: ["localityType"],
+    const errors = validateRequiredParams(arguments[0], ["localityType"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -381,35 +336,32 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetLocality>} - Success response
+   * @returns {Promise<GetLocalityApp>} - Success response
    * @name getLocality
-   * @summary: Get locality detail
+   * @summary: Get Locality API
    * @description: Get detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocality/).
    */
   async getLocality(
-    { localityType, localityValue, country, state, city, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      localityType,
+      localityValue,
+      country,
+      state,
+      city,
+      sector,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!localityType) {
-      invalidInput.push({
-        message: `The 'localityType' field is required.`,
-        path: ["localityType"],
+    const errors = validateRequiredParams(arguments[0], [
+      "localityType",
+      "localityValue",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!localityValue) {
-      invalidInput.push({
-        message: `The 'localityValue' field is required.`,
-        path: ["localityValue"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -417,6 +369,7 @@ class Logistic {
     query_params["country"] = country;
     query_params["state"] = state;
     query_params["city"] = city;
+    query_params["sector"] = sector;
 
     const xHeaders = {};
 
@@ -444,130 +397,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetStoreResult>} - Success response
-   * @name getLocations
-   * @summary: Get available selling locations
-   * @description: Get stores available for the application based on Delivery Zones and Order Orchestration rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
-   */
-  async getLocations(
-    {
-      xApplicationId,
-      xApplicationData,
-      country,
-      state,
-      city,
-      pincode,
-      sector,
-      pageNo,
-      pageSize,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    let invalidInput = [];
-
-    if (!xApplicationId) {
-      invalidInput.push({
-        message: `The 'xApplicationId' field is required.`,
-        path: ["xApplicationId"],
-      });
-    }
-    if (!xApplicationData) {
-      invalidInput.push({
-        message: `The 'xApplicationData' field is required.`,
-        path: ["xApplicationData"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["x-application-id"] = xApplicationId;
-    query_params["x-application-data"] = xApplicationData;
-    query_params["country"] = country;
-    query_params["state"] = state;
-    query_params["city"] = city;
-    query_params["pincode"] = pincode;
-    query_params["sector"] = sector;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getLocations"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ReAssignStoreResult>} - Success response
-   * @name getOptimalLocations
-   * @summary: Get selling locations
-   * @description: Get optimal fulfillment centre for customers by analyzing their location, product availability, and inventory levels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
-   */
-  async getOptimalLocations(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getOptimalLocations"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PincodeDetails>} - Success response
+   * @returns {Promise<PincodeDetailsResult>} - Success response
    * @name getPincodeCity
    * @summary: Get pincode details
    * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
@@ -576,18 +406,12 @@ class Logistic {
     { pincode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!pincode) {
-      invalidInput.push({
-        message: `The 'pincode' field is required.`,
-        path: ["pincode"],
+    const errors = validateRequiredParams(arguments[0], ["pincode"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -619,96 +443,6 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetZoneFromPincodeViewResult>} - Success response
-   * @name getPincodeZones
-   * @summary: Get zones
-   * @description: Get the delivery zone associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
-   */
-  async getPincodeZones(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getPincodeZones"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<TATViewResult>} - Success response
-   * @name getTatProduct
-   * @summary: Get product's turnaround time
-   * @description: Get the estimated delivery time frame for a specific product from a designated store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
-   */
-  async getTatProduct(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getTatProduct"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ValidateAddressDetails>} - Success response
    * @name validateAddress
    * @summary: Validate address
@@ -720,24 +454,15 @@ class Logistic {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!countryIsoCode) {
-      invalidInput.push({
-        message: `The 'countryIsoCode' field is required.`,
-        path: ["countryIsoCode"],
+    const errors = validateRequiredParams(arguments[0], [
+      "countryIsoCode",
+      "templateName",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!templateName) {
-      invalidInput.push({
-        message: `The 'templateName' field is required.`,
-        path: ["templateName"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

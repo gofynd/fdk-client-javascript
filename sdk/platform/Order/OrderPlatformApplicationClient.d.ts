@@ -4,16 +4,6 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
-     * @param {OrderPlatformApplicationValidator.FailedOrderLogsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
-     * @name failedOrderLogs
-     * @summary: List failed order logs
-     * @description: Get failed order logs listing for filters based on order Id, user contact number, user email Id and sales channel Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
-     */
-    failedOrderLogs({ pageNo, pageSize, searchType, searchValue, requestHeaders }?: OrderPlatformApplicationValidator.FailedOrderLogsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FailedOrderLogs>;
-    /**
      * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
      *   - Arg object
      *
