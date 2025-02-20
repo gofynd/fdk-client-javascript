@@ -303,26 +303,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SDKLinksResponseSchema
- * @property {SDKLinkObjectSchema[]} [readmes]
- */
-
-/**
- * @typedef SDKLinkObjectSchema
- * @property {string} [owner]
- * @property {string} [repo]
- * @property {string} [path]
- * @property {string} [image]
- * @property {string} [name]
- * @property {string} [type]
- */
-
-/**
- * @typedef SDKbyTypeResponseSchema
- * @property {string} [readme_content]
- */
-
-/**
  * @typedef ContentAPIError
  * @property {string} [message]
  * @property {number} [status]
@@ -709,32 +689,6 @@ class ContentPublicModel {
     });
   }
 
-  /** @returns {SDKLinksResponseSchema} */
-  static SDKLinksResponseSchema() {
-    return Joi.object({
-      readmes: Joi.array().items(ContentPublicModel.SDKLinkObjectSchema()),
-    });
-  }
-
-  /** @returns {SDKLinkObjectSchema} */
-  static SDKLinkObjectSchema() {
-    return Joi.object({
-      owner: Joi.string().allow(""),
-      repo: Joi.string().allow(""),
-      path: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SDKbyTypeResponseSchema} */
-  static SDKbyTypeResponseSchema() {
-    return Joi.object({
-      readme_content: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {ContentAPIError} */
   static ContentAPIError() {
     return Joi.object({
@@ -745,7 +699,7 @@ class ContentPublicModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 }

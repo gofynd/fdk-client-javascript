@@ -4,7 +4,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef AddMarketplaceThemeToCompanyParam
- * @property {ThemePlatformModel.CompanyThemeReqSchema} body
+ * @property {ThemePlatformModel.ThemeReq} body
  */
 
 /**
@@ -24,13 +24,11 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  *   return the response.
  */
 
-/** @typedef GetDefaultMarketplaceThemeParam */
-
 class ThemePlatformValidator {
   /** @returns {AddMarketplaceThemeToCompanyParam} */
   static addMarketplaceThemeToCompany() {
     return Joi.object({
-      body: ThemePlatformModel.CompanyThemeReqSchema().required(),
+      body: ThemePlatformModel.ThemeReq().required(),
     }).required();
   }
 
@@ -53,11 +51,6 @@ class ThemePlatformValidator {
     return Joi.object({
       searchText: Joi.string().allow(""),
     }).required();
-  }
-
-  /** @returns {GetDefaultMarketplaceThemeParam} */
-  static getDefaultMarketplaceTheme() {
-    return Joi.object({}).required();
   }
 }
 

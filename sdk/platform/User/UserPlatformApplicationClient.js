@@ -254,7 +254,7 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResponse>} -
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
    *   Success response
    * @name createUserAttributeDefinition
    * @summary: Create a User Attribute Definition
@@ -311,7 +311,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserAttributeDefinitionResponse().validate(
+    } = UserPlatformModel.UserAttributeDefinitionDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -664,7 +664,7 @@ class User {
    * @param {UserPlatformApplicationValidator.DeleteUserAttributeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+   * @returns {Promise<UserPlatformModel.SuccessMessage>} - Success response
    * @name deleteUserAttribute
    * @summary: Delete User Attribute
    * @description: Delete User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttribute/).
@@ -716,7 +716,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.SuccessMessageResponse().validate(responseData, {
+    } = UserPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -741,7 +741,7 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+   * @returns {Promise<UserPlatformModel.SuccessMessage>} - Success response
    * @name deleteUserAttributeDefinitionById
    * @summary: Delete User Attribute Definition
    * @description: Delete a user attribute definition by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttributeDefinitionById/).
@@ -793,7 +793,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.SuccessMessageResponse().validate(responseData, {
+    } = UserPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1055,7 +1055,7 @@ class User {
    * @param {UserPlatformApplicationValidator.GetUserAttributeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
    * @name getUserAttribute
    * @summary: Get User Attribute
    * @description: Get User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttribute/).
@@ -1107,7 +1107,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+    } = UserPlatformModel.UserAttribute().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1132,7 +1132,7 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
    * @name getUserAttributeById
    * @summary: Get User Attribute
    * @description: Retrieve User Attribute details by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeById/).
@@ -1184,7 +1184,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+    } = UserPlatformModel.UserAttribute().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1666,85 +1666,6 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
-   * @name getUsersByByGroupId
-   * @summary: Get users belonging to user group by Id
-   * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
-   */
-  async getUsersByByGroupId(
-    { groupId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getUsersByByGroupId().validate(
-      {
-        groupId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getUsersByByGroupId().validate(
-      {
-        groupId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getUsersByByGroupId \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}/users`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.CustomerListResponseSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > getUsersByByGroupId \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2066,7 +1987,7 @@ class User {
    * @param {UserPlatformApplicationValidator.UpdateUserAttributeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
    * @name updateUserAttribute
    * @summary: Update Or Create User Attribute
    * @description: Update Or Create User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserAttribute/).
@@ -2128,7 +2049,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+    } = UserPlatformModel.UserAttribute().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

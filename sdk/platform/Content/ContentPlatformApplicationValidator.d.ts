@@ -21,18 +21,14 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 /**
- * @typedef CreateAppCustomFieldByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
- * @property {ContentPlatformModel.CustomFieldRequestSchema} body
- */
-/**
  * @typedef CreateAppCustomFieldDefinitionParam
+ * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
- * @typedef CreateAppCustomObjectParam
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef CreateAppCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 /**
  * @typedef CreateAppCustomObjectDefinitionParam
@@ -40,15 +36,11 @@ export = ContentPlatformApplicationValidator;
  */
 /**
  * @typedef CreateBlogParam
- * @property {ContentPlatformModel.BlogRequest} body
+ * @property {ContentPlatformModel.BlogPayload} body
  */
 /**
  * @typedef CreateFaqCategoryParam
  * @property {ContentPlatformModel.CreateFaqCategoryRequestSchema} body
- */
-/**
- * @typedef CreateInjectableTagParam
- * @property {ContentPlatformModel.CreateTagRequestSchema} body
  */
 /**
  * @typedef CreateLandingPageParam
@@ -56,42 +48,46 @@ export = ContentPlatformApplicationValidator;
  */
 /**
  * @typedef CreateNavigationParam
- * @property {ContentPlatformModel.NavigationRequest} body
+ * @property {ContentPlatformModel.NavigationPayload} body
  */
 /**
  * @typedef CreatePageParam
- * @property {ContentPlatformModel.PageRequest} body
+ * @property {ContentPlatformModel.PagePayload} body
  */
 /**
  * @typedef CreatePagePreviewParam
- * @property {ContentPlatformModel.PageRequest} body
+ * @property {ContentPlatformModel.PagePayload} body
  */
 /**
  * @typedef CreateSEOMarkupSchemaParam
  * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
-/** @typedef DeleteAllInjectableTagsParam */
+/**
+ * @typedef CreateSitemapParam
+ * @property {ContentPlatformModel.SitemapConfigCreate} body
+ */
+/**
+ * @typedef CreateSlideshowParam
+ * @property {ContentPlatformModel.SlideshowPayload} body
+ */
 /**
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
 /**
- * @typedef DeleteAppCustomFieldDefinitionParam
- * @property {string} id
- */
-/**
- * @typedef DeleteAppCustomFieldsByResourceIdParam
+ * @typedef DeleteAppCustomFieldDefinitionBySlugParam
+ * @property {string} slug
  * @property {string} resource
- * @property {string} resourceId
- * @property {string} ids
+ * @property {string} namespace
  */
 /**
- * @typedef DeleteAppCustomObjectParam
- * @property {string} id
+ * @typedef DeleteAppCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 /**
- * @typedef DeleteAppCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef DeleteAppCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 /**
  * @typedef DeleteBlogParam
@@ -128,8 +124,16 @@ export = ContentPlatformApplicationValidator;
  */
 /**
  * @typedef DeleteSEOMarkupSchemaParam
- * @property {string} schemaId - Alphanumeric ID allotted to a SEO Markup Schema
+ * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
+ */
+/**
+ * @typedef DeleteSitemapParam
+ * @property {string} name
+ */
+/**
+ * @typedef DeleteSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
  */
 /**
  * @typedef EditDataLoaderParam
@@ -143,18 +147,19 @@ export = ContentPlatformApplicationValidator;
  */
 /**
  * @typedef EditSEOMarkupSchemaParam
- * @property {string} schemaId - Alphanumeric ID allotted to a SEO Markup Schema
+ * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
  * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
 /**
- * @typedef ExportAppCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ExportAppCustomObjectEntriesBySlugParam
+ * @property {string} slug
  */
 /**
  * @typedef GenerateSEOTitleParam
- * @property {string} type - String representing the type of SEO content to be
- *   generated. Possible values are: title, description
+ * @property {ContentPlatformModel.GenerationEntityType} type - String
+ *   representing the type of SEO content to be generated. Possible values are:
+ *   title, description
  * @property {ContentPlatformModel.GenerateSEOContent} body
  */
 /**
@@ -169,8 +174,20 @@ export = ContentPlatformApplicationValidator;
  *   Default value is 10.
  */
 /**
- * @typedef GetAppCustomFieldDefinitionParam
- * @property {string} id
+ * @typedef GetAppCustomFieldDefinitionByResourceParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {string} resource
+ * @property {string} [types]
+ * @property {string} [search]
+ * @property {string} [slugs]
+ * @property {string} [namespaces]
+ */
+/**
+ * @typedef GetAppCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  */
 /**
  * @typedef GetAppCustomFieldDefinitionsParam
@@ -180,30 +197,22 @@ export = ContentPlatformApplicationValidator;
  * @property {string} [types]
  * @property {string} [search]
  * @property {string} [slugs]
- */
-/**
- * @typedef GetAppCustomFieldJobsParam
- * @property {string} page
- * @property {string} pageSize
- * @property {string} actionType
+ * @property {string} [namespaces]
  */
 /** @typedef GetAppCustomFieldTypesParam */
 /**
- * @typedef GetAppCustomFieldsParam
+ * @typedef GetAppCustomFieldsByResourceSlugParam
  * @property {string} resource
+ * @property {string} resourceSlug
  */
 /**
- * @typedef GetAppCustomFieldsByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
+ * @typedef GetAppCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 /**
- * @typedef GetAppCustomObjectParam
- * @property {string} id
- */
-/**
- * @typedef GetAppCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef GetAppCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 /**
  * @typedef GetAppCustomObjectDefinitionsParam
@@ -212,10 +221,10 @@ export = ContentPlatformApplicationValidator;
  * @property {string} [search]
  */
 /**
- * @typedef GetAppCustomObjectsParam
- * @property {string} [definitionId]
+ * @typedef GetAppCustomObjectsBySlugParam
  * @property {string} pageNo
  * @property {string} pageSize
+ * @property {string} definitionSlug
  */
 /**
  * @typedef GetAppJobsParam
@@ -241,16 +250,6 @@ export = ContentPlatformApplicationValidator;
  * @property {string} [title] - Blogs retrieve based on the title passed.
  * @property {string} [status] - Blogs retrieve based on the status passed.
  */
-/**
- * @typedef GetComponentByIdParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a blog page. You can get slug value of a blog from `getBlogs` API.
- */
-/**
- * @typedef GetDataLoaderApiSpecsParam
- * @property {string} dataLoader - Alphanumeric ID allotted to an application
- *   created within a business account.
- */
 /** @typedef GetDataLoadersParam */
 /**
  * @typedef GetDataLoadersByServiceParam
@@ -262,6 +261,7 @@ export = ContentPlatformApplicationValidator;
  * @property {string} [pageType] - The type of page against which schema
  *   template was created
  */
+/** @typedef GetDefaultSitemapConfigParam */
 /**
  * @typedef GetFaqByIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
@@ -281,7 +281,10 @@ export = ContentPlatformApplicationValidator;
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
-/** @typedef GetInjectableTagsParam */
+/**
+ * @typedef GetInjectableTagsParam
+ * @property {boolean} [all] - Get all tags irrespective of the creator of tags
+ */
 /**
  * @typedef GetLandingPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -334,7 +337,7 @@ export = ContentPlatformApplicationValidator;
 /** @typedef GetSEOConfigurationParam */
 /**
  * @typedef GetSEOMarkupSchemaParam
- * @property {string} schemaId - Alphanumeric ID allotted to a SEO Markup Schema
+ * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
  */
 /**
@@ -346,10 +349,38 @@ export = ContentPlatformApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
+/**
+ * @typedef GetSitemapParam
+ * @property {string} name
+ */
+/**
+ * @typedef GetSitemapsParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {boolean} [isActive] - Boolean flag for checking if sitemap is
+ *   active or not in storefront
+ * @property {string} [name] - Query parameter to search sitemaps with name
+ */
+/**
+ * @typedef GetSlideshowBySlugParam
+ * @property {string} slug - A short, human-readable, URL-friendly identifier of
+ *   a slideshow. You can get slug value of a page from `getSlideshows` API.
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ */
+/**
+ * @typedef GetSlideshowsParam
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ */
 /** @typedef GetSupportInformationParam */
 /**
- * @typedef ImportAppCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ImportAppCustomObjectEntriesBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectBulkSchema} body
  */
 /**
@@ -362,8 +393,8 @@ export = ContentPlatformApplicationValidator;
  * @property {string} operationId - Name of operation id of the service.
  */
 /**
- * @typedef SampleAppCustomObjectBulkEntryParam
- * @property {string} definitionId
+ * @typedef SampleAppCustomObjectBulkEntryBySlugParam
+ * @property {string} slug
  */
 /**
  * @typedef SelectDataLoaderParam
@@ -380,30 +411,37 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.ScheduleSchema} body
  */
 /**
- * @typedef UpdateAppCustomFieldByResourceIdParam
+ * @typedef UpdateAppCustomFieldByResourceSlugParam
  * @property {string} resource
- * @property {string} resourceId
+ * @property {string} resourceSlug
  * @property {ContentPlatformModel.CustomFieldRequestSchema} body
  */
 /**
- * @typedef UpdateAppCustomFieldDefinitionParam
- * @property {string} id
+ * @typedef UpdateAppCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
- * @typedef UpdateAppCustomObjectParam
- * @property {string} id
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef UpdateAppCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 /**
- * @typedef UpdateAppCustomObjectDefinitionParam
- * @property {string} id
+ * @typedef UpdateAppCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 /**
  * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
- * @property {ContentPlatformModel.BlogRequest} body
+ * @property {ContentPlatformModel.BlogPayload} body
+ */
+/**
+ * @typedef UpdateDefaultSitemapConfigParam
+ * @property {ContentPlatformModel.DefaultSitemapConfig} body
  */
 /**
  * @typedef UpdateFaqParam
@@ -432,7 +470,7 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef UpdateNavigationParam
  * @property {string} id - ID allotted to the navigation.
- * @property {ContentPlatformModel.NavigationRequest} body
+ * @property {ContentPlatformModel.NavigationPayload} body
  */
 /**
  * @typedef UpdatePageParam
@@ -443,7 +481,7 @@ export = ContentPlatformApplicationValidator;
  * @typedef UpdatePagePreviewParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
- * @property {ContentPlatformModel.PagePublishRequest} body
+ * @property {ContentPlatformModel.PagePublishPayload} body
  */
 /**
  * @typedef UpdatePathRedirectionRulesParam
@@ -453,6 +491,16 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef UpdateSEOConfigurationParam
  * @property {ContentPlatformModel.SeoComponent} body
+ */
+/**
+ * @typedef UpdateSitemapParam
+ * @property {string} name
+ * @property {ContentPlatformModel.SitemapConfigUpdate} body
+ */
+/**
+ * @typedef UpdateSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
+ * @property {ContentPlatformModel.SlideshowPayload} body
  */
 /**
  * @typedef UpdateSupportInformationParam
@@ -469,20 +517,16 @@ declare class ContentPlatformApplicationValidator {
     static addPathRedirectionRules(): AddPathRedirectionRulesParam;
     /** @returns {CreateAnnouncementParam} */
     static createAnnouncement(): CreateAnnouncementParam;
-    /** @returns {CreateAppCustomFieldByResourceIdParam} */
-    static createAppCustomFieldByResourceId(): CreateAppCustomFieldByResourceIdParam;
     /** @returns {CreateAppCustomFieldDefinitionParam} */
     static createAppCustomFieldDefinition(): CreateAppCustomFieldDefinitionParam;
-    /** @returns {CreateAppCustomObjectParam} */
-    static createAppCustomObject(): CreateAppCustomObjectParam;
+    /** @returns {CreateAppCustomObjectBySlugParam} */
+    static createAppCustomObjectBySlug(): CreateAppCustomObjectBySlugParam;
     /** @returns {CreateAppCustomObjectDefinitionParam} */
     static createAppCustomObjectDefinition(): CreateAppCustomObjectDefinitionParam;
     /** @returns {CreateBlogParam} */
     static createBlog(): CreateBlogParam;
     /** @returns {CreateFaqCategoryParam} */
     static createFaqCategory(): CreateFaqCategoryParam;
-    /** @returns {CreateInjectableTagParam} */
-    static createInjectableTag(): CreateInjectableTagParam;
     /** @returns {CreateLandingPageParam} */
     static createLandingPage(): CreateLandingPageParam;
     /** @returns {CreateNavigationParam} */
@@ -493,18 +537,18 @@ declare class ContentPlatformApplicationValidator {
     static createPagePreview(): CreatePagePreviewParam;
     /** @returns {CreateSEOMarkupSchemaParam} */
     static createSEOMarkupSchema(): CreateSEOMarkupSchemaParam;
-    /** @returns {DeleteAllInjectableTagsParam} */
-    static deleteAllInjectableTags(): any;
+    /** @returns {CreateSitemapParam} */
+    static createSitemap(): CreateSitemapParam;
+    /** @returns {CreateSlideshowParam} */
+    static createSlideshow(): CreateSlideshowParam;
     /** @returns {DeleteAnnouncementParam} */
     static deleteAnnouncement(): DeleteAnnouncementParam;
-    /** @returns {DeleteAppCustomFieldDefinitionParam} */
-    static deleteAppCustomFieldDefinition(): DeleteAppCustomFieldDefinitionParam;
-    /** @returns {DeleteAppCustomFieldsByResourceIdParam} */
-    static deleteAppCustomFieldsByResourceId(): DeleteAppCustomFieldsByResourceIdParam;
-    /** @returns {DeleteAppCustomObjectParam} */
-    static deleteAppCustomObject(): DeleteAppCustomObjectParam;
-    /** @returns {DeleteAppCustomObjectDefinitionParam} */
-    static deleteAppCustomObjectDefinition(): DeleteAppCustomObjectDefinitionParam;
+    /** @returns {DeleteAppCustomFieldDefinitionBySlugParam} */
+    static deleteAppCustomFieldDefinitionBySlug(): DeleteAppCustomFieldDefinitionBySlugParam;
+    /** @returns {DeleteAppCustomObjectBySlugParam} */
+    static deleteAppCustomObjectBySlug(): DeleteAppCustomObjectBySlugParam;
+    /** @returns {DeleteAppCustomObjectDefinitionBySlugParam} */
+    static deleteAppCustomObjectDefinitionBySlug(): DeleteAppCustomObjectDefinitionBySlugParam;
     /** @returns {DeleteBlogParam} */
     static deleteBlog(): DeleteBlogParam;
     /** @returns {DeleteDataLoaderParam} */
@@ -523,40 +567,42 @@ declare class ContentPlatformApplicationValidator {
     static deletePathRedirectionRules(): DeletePathRedirectionRulesParam;
     /** @returns {DeleteSEOMarkupSchemaParam} */
     static deleteSEOMarkupSchema(): DeleteSEOMarkupSchemaParam;
+    /** @returns {DeleteSitemapParam} */
+    static deleteSitemap(): DeleteSitemapParam;
+    /** @returns {DeleteSlideshowParam} */
+    static deleteSlideshow(): DeleteSlideshowParam;
     /** @returns {EditDataLoaderParam} */
     static editDataLoader(): EditDataLoaderParam;
     /** @returns {EditInjectableTagParam} */
     static editInjectableTag(): EditInjectableTagParam;
     /** @returns {EditSEOMarkupSchemaParam} */
     static editSEOMarkupSchema(): EditSEOMarkupSchemaParam;
-    /** @returns {ExportAppCustomObjectEntriesParam} */
-    static exportAppCustomObjectEntries(): ExportAppCustomObjectEntriesParam;
+    /** @returns {ExportAppCustomObjectEntriesBySlugParam} */
+    static exportAppCustomObjectEntriesBySlug(): ExportAppCustomObjectEntriesBySlugParam;
     /** @returns {GenerateSEOTitleParam} */
     static generateSEOTitle(): GenerateSEOTitleParam;
     /** @returns {GetAnnouncementByIdParam} */
     static getAnnouncementById(): GetAnnouncementByIdParam;
     /** @returns {GetAnnouncementsListParam} */
     static getAnnouncementsList(): GetAnnouncementsListParam;
-    /** @returns {GetAppCustomFieldDefinitionParam} */
-    static getAppCustomFieldDefinition(): GetAppCustomFieldDefinitionParam;
+    /** @returns {GetAppCustomFieldDefinitionByResourceParam} */
+    static getAppCustomFieldDefinitionByResource(): GetAppCustomFieldDefinitionByResourceParam;
+    /** @returns {GetAppCustomFieldDefinitionBySlugParam} */
+    static getAppCustomFieldDefinitionBySlug(): GetAppCustomFieldDefinitionBySlugParam;
     /** @returns {GetAppCustomFieldDefinitionsParam} */
     static getAppCustomFieldDefinitions(): GetAppCustomFieldDefinitionsParam;
-    /** @returns {GetAppCustomFieldJobsParam} */
-    static getAppCustomFieldJobs(): GetAppCustomFieldJobsParam;
     /** @returns {GetAppCustomFieldTypesParam} */
     static getAppCustomFieldTypes(): any;
-    /** @returns {GetAppCustomFieldsParam} */
-    static getAppCustomFields(): GetAppCustomFieldsParam;
-    /** @returns {GetAppCustomFieldsByResourceIdParam} */
-    static getAppCustomFieldsByResourceId(): GetAppCustomFieldsByResourceIdParam;
-    /** @returns {GetAppCustomObjectParam} */
-    static getAppCustomObject(): GetAppCustomObjectParam;
-    /** @returns {GetAppCustomObjectDefinitionParam} */
-    static getAppCustomObjectDefinition(): GetAppCustomObjectDefinitionParam;
+    /** @returns {GetAppCustomFieldsByResourceSlugParam} */
+    static getAppCustomFieldsByResourceSlug(): GetAppCustomFieldsByResourceSlugParam;
+    /** @returns {GetAppCustomObjectBySlugParam} */
+    static getAppCustomObjectBySlug(): GetAppCustomObjectBySlugParam;
+    /** @returns {GetAppCustomObjectDefinitionBySlugParam} */
+    static getAppCustomObjectDefinitionBySlug(): GetAppCustomObjectDefinitionBySlugParam;
     /** @returns {GetAppCustomObjectDefinitionsParam} */
     static getAppCustomObjectDefinitions(): GetAppCustomObjectDefinitionsParam;
-    /** @returns {GetAppCustomObjectsParam} */
-    static getAppCustomObjects(): GetAppCustomObjectsParam;
+    /** @returns {GetAppCustomObjectsBySlugParam} */
+    static getAppCustomObjectsBySlug(): GetAppCustomObjectsBySlugParam;
     /** @returns {GetAppJobsParam} */
     static getAppJobs(): GetAppJobsParam;
     /** @returns {GetAppResourcesParam} */
@@ -565,10 +611,6 @@ declare class ContentPlatformApplicationValidator {
     static getBlogBySlug(): GetBlogBySlugParam;
     /** @returns {GetBlogsParam} */
     static getBlogs(): GetBlogsParam;
-    /** @returns {GetComponentByIdParam} */
-    static getComponentById(): GetComponentByIdParam;
-    /** @returns {GetDataLoaderApiSpecsParam} */
-    static getDataLoaderApiSpecs(): GetDataLoaderApiSpecsParam;
     /** @returns {GetDataLoadersParam} */
     static getDataLoaders(): any;
     /** @returns {GetDataLoadersByServiceParam} */
@@ -577,6 +619,8 @@ declare class ContentPlatformApplicationValidator {
     static getDefaultNavigations(): any;
     /** @returns {GetDefaultSEOMarkupSchemaParam} */
     static getDefaultSEOMarkupSchema(): GetDefaultSEOMarkupSchemaParam;
+    /** @returns {GetDefaultSitemapConfigParam} */
+    static getDefaultSitemapConfig(): any;
     /** @returns {GetFaqByIdOrSlugParam} */
     static getFaqByIdOrSlug(): GetFaqByIdOrSlugParam;
     /** @returns {GetFaqCategoriesParam} */
@@ -586,7 +630,7 @@ declare class ContentPlatformApplicationValidator {
     /** @returns {GetFaqsByCategoryIdOrSlugParam} */
     static getFaqsByCategoryIdOrSlug(): GetFaqsByCategoryIdOrSlugParam;
     /** @returns {GetInjectableTagsParam} */
-    static getInjectableTags(): any;
+    static getInjectableTags(): GetInjectableTagsParam;
     /** @returns {GetLandingPagesParam} */
     static getLandingPages(): GetLandingPagesParam;
     /** @returns {GetLegalInformationParam} */
@@ -613,32 +657,42 @@ declare class ContentPlatformApplicationValidator {
     static getSEOMarkupSchema(): GetSEOMarkupSchemaParam;
     /** @returns {GetSEOMarkupSchemasParam} */
     static getSEOMarkupSchemas(): GetSEOMarkupSchemasParam;
+    /** @returns {GetSitemapParam} */
+    static getSitemap(): GetSitemapParam;
+    /** @returns {GetSitemapsParam} */
+    static getSitemaps(): GetSitemapsParam;
+    /** @returns {GetSlideshowBySlugParam} */
+    static getSlideshowBySlug(): GetSlideshowBySlugParam;
+    /** @returns {GetSlideshowsParam} */
+    static getSlideshows(): GetSlideshowsParam;
     /** @returns {GetSupportInformationParam} */
     static getSupportInformation(): any;
-    /** @returns {ImportAppCustomObjectEntriesParam} */
-    static importAppCustomObjectEntries(): ImportAppCustomObjectEntriesParam;
+    /** @returns {ImportAppCustomObjectEntriesBySlugParam} */
+    static importAppCustomObjectEntriesBySlug(): ImportAppCustomObjectEntriesBySlugParam;
     /** @returns {RemoveInjectableTagParam} */
     static removeInjectableTag(): RemoveInjectableTagParam;
     /** @returns {ResetDataLoaderParam} */
     static resetDataLoader(): ResetDataLoaderParam;
-    /** @returns {SampleAppCustomObjectBulkEntryParam} */
-    static sampleAppCustomObjectBulkEntry(): SampleAppCustomObjectBulkEntryParam;
+    /** @returns {SampleAppCustomObjectBulkEntryBySlugParam} */
+    static sampleAppCustomObjectBulkEntryBySlug(): SampleAppCustomObjectBulkEntryBySlugParam;
     /** @returns {SelectDataLoaderParam} */
     static selectDataLoader(): SelectDataLoaderParam;
     /** @returns {UpdateAnnouncementParam} */
     static updateAnnouncement(): UpdateAnnouncementParam;
     /** @returns {UpdateAnnouncementScheduleParam} */
     static updateAnnouncementSchedule(): UpdateAnnouncementScheduleParam;
-    /** @returns {UpdateAppCustomFieldByResourceIdParam} */
-    static updateAppCustomFieldByResourceId(): UpdateAppCustomFieldByResourceIdParam;
-    /** @returns {UpdateAppCustomFieldDefinitionParam} */
-    static updateAppCustomFieldDefinition(): UpdateAppCustomFieldDefinitionParam;
-    /** @returns {UpdateAppCustomObjectParam} */
-    static updateAppCustomObject(): UpdateAppCustomObjectParam;
-    /** @returns {UpdateAppCustomObjectDefinitionParam} */
-    static updateAppCustomObjectDefinition(): UpdateAppCustomObjectDefinitionParam;
+    /** @returns {UpdateAppCustomFieldByResourceSlugParam} */
+    static updateAppCustomFieldByResourceSlug(): UpdateAppCustomFieldByResourceSlugParam;
+    /** @returns {UpdateAppCustomFieldDefinitionBySlugParam} */
+    static updateAppCustomFieldDefinitionBySlug(): UpdateAppCustomFieldDefinitionBySlugParam;
+    /** @returns {UpdateAppCustomObjectBySlugParam} */
+    static updateAppCustomObjectBySlug(): UpdateAppCustomObjectBySlugParam;
+    /** @returns {UpdateAppCustomObjectDefinitionBySlugParam} */
+    static updateAppCustomObjectDefinitionBySlug(): UpdateAppCustomObjectDefinitionBySlugParam;
     /** @returns {UpdateBlogParam} */
     static updateBlog(): UpdateBlogParam;
+    /** @returns {UpdateDefaultSitemapConfigParam} */
+    static updateDefaultSitemapConfig(): UpdateDefaultSitemapConfigParam;
     /** @returns {UpdateFaqParam} */
     static updateFaq(): UpdateFaqParam;
     /** @returns {UpdateFaqCategoryParam} */
@@ -659,11 +713,15 @@ declare class ContentPlatformApplicationValidator {
     static updatePathRedirectionRules(): UpdatePathRedirectionRulesParam;
     /** @returns {UpdateSEOConfigurationParam} */
     static updateSEOConfiguration(): UpdateSEOConfigurationParam;
+    /** @returns {UpdateSitemapParam} */
+    static updateSitemap(): UpdateSitemapParam;
+    /** @returns {UpdateSlideshowParam} */
+    static updateSlideshow(): UpdateSlideshowParam;
     /** @returns {UpdateSupportInformationParam} */
     static updateSupportInformation(): UpdateSupportInformationParam;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateAppCustomFieldByResourceIdParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectParam, CreateAppCustomObjectDefinitionParam, CreateBlogParam, CreateFaqCategoryParam, CreateInjectableTagParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSEOMarkupSchemaParam, DeleteAllInjectableTagsParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionParam, DeleteAppCustomFieldsByResourceIdParam, DeleteAppCustomObjectParam, DeleteAppCustomObjectDefinitionParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldJobsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsParam, GetAppCustomFieldsByResourceIdParam, GetAppCustomObjectParam, GetAppCustomObjectDefinitionParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsParam, GetAppJobsParam, GetAppResourcesParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoaderApiSpecsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSupportInformationParam, ImportAppCustomObjectEntriesParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldByResourceIdParam, UpdateAppCustomFieldDefinitionParam, UpdateAppCustomObjectParam, UpdateAppCustomObjectDefinitionParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSupportInformationParam };
+    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectBySlugParam, CreateAppCustomObjectDefinitionParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSEOMarkupSchemaParam, CreateSitemapParam, CreateSlideshowParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionBySlugParam, DeleteAppCustomObjectBySlugParam, DeleteAppCustomObjectDefinitionBySlugParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, DeleteSitemapParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesBySlugParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionByResourceParam, GetAppCustomFieldDefinitionBySlugParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsByResourceSlugParam, GetAppCustomObjectBySlugParam, GetAppCustomObjectDefinitionBySlugParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsBySlugParam, GetAppJobsParam, GetAppResourcesParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetDefaultSitemapConfigParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSitemapParam, GetSitemapsParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, ImportAppCustomObjectEntriesBySlugParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryBySlugParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldByResourceSlugParam, UpdateAppCustomFieldDefinitionBySlugParam, UpdateAppCustomObjectBySlugParam, UpdateAppCustomObjectDefinitionBySlugParam, UpdateBlogParam, UpdateDefaultSitemapConfigParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSitemapParam, UpdateSlideshowParam, UpdateSupportInformationParam };
 }
 type AddDataLoaderParam = {
     body: ContentPlatformModel.DataLoaderSchema;
@@ -684,43 +742,43 @@ type AddPathRedirectionRulesParam = {
 type CreateAnnouncementParam = {
     body: ContentPlatformModel.AdminAnnouncementSchema;
 };
-type CreateAppCustomFieldByResourceIdParam = {
-    resource: string;
-    resourceId: string;
-    body: ContentPlatformModel.CustomFieldRequestSchema;
-};
 type CreateAppCustomFieldDefinitionParam = {
+    resource: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
-type CreateAppCustomObjectParam = {
-    body: ContentPlatformModel.CustomObjectRequestSchema;
+type CreateAppCustomObjectBySlugParam = {
+    definitionSlug: string;
+    body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId;
 };
 type CreateAppCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionRequestSchema;
 };
 type CreateBlogParam = {
-    body: ContentPlatformModel.BlogRequest;
+    body: ContentPlatformModel.BlogPayload;
 };
 type CreateFaqCategoryParam = {
     body: ContentPlatformModel.CreateFaqCategoryRequestSchema;
-};
-type CreateInjectableTagParam = {
-    body: ContentPlatformModel.CreateTagRequestSchema;
 };
 type CreateLandingPageParam = {
     body: ContentPlatformModel.LandingPageSchema;
 };
 type CreateNavigationParam = {
-    body: ContentPlatformModel.NavigationRequest;
+    body: ContentPlatformModel.NavigationPayload;
 };
 type CreatePageParam = {
-    body: ContentPlatformModel.PageRequest;
+    body: ContentPlatformModel.PagePayload;
 };
 type CreatePagePreviewParam = {
-    body: ContentPlatformModel.PageRequest;
+    body: ContentPlatformModel.PagePayload;
 };
 type CreateSEOMarkupSchemaParam = {
     body: ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody;
+};
+type CreateSitemapParam = {
+    body: ContentPlatformModel.SitemapConfigCreate;
+};
+type CreateSlideshowParam = {
+    body: ContentPlatformModel.SlideshowPayload;
 };
 type DeleteAnnouncementParam = {
     /**
@@ -728,19 +786,17 @@ type DeleteAnnouncementParam = {
      */
     announcementId: string;
 };
-type DeleteAppCustomFieldDefinitionParam = {
-    id: string;
-};
-type DeleteAppCustomFieldsByResourceIdParam = {
+type DeleteAppCustomFieldDefinitionBySlugParam = {
+    slug: string;
     resource: string;
-    resourceId: string;
-    ids: string;
+    namespace: string;
 };
-type DeleteAppCustomObjectParam = {
-    id: string;
+type DeleteAppCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
 };
-type DeleteAppCustomObjectDefinitionParam = {
-    id: string;
+type DeleteAppCustomObjectDefinitionBySlugParam = {
+    slug: string;
 };
 type DeleteBlogParam = {
     /**
@@ -799,7 +855,16 @@ type DeleteSEOMarkupSchemaParam = {
      * - Alphanumeric ID allotted to a SEO Markup Schema
      * Template created within a business.
      */
-    schemaId: string;
+    id: string;
+};
+type DeleteSitemapParam = {
+    name: string;
+};
+type DeleteSlideshowParam = {
+    /**
+     * - ID allotted to the slideshow.
+     */
+    id: string;
 };
 type EditDataLoaderParam = {
     /**
@@ -820,18 +885,19 @@ type EditSEOMarkupSchemaParam = {
      * - Alphanumeric ID allotted to a SEO Markup Schema
      * Template created within a business.
      */
-    schemaId: string;
+    id: string;
     body: ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody;
 };
-type ExportAppCustomObjectEntriesParam = {
-    definitionId: string;
+type ExportAppCustomObjectEntriesBySlugParam = {
+    slug: string;
 };
 type GenerateSEOTitleParam = {
     /**
-     * - String representing the type of SEO content to be
-     * generated. Possible values are: title, description
+     * - String
+     * representing the type of SEO content to be generated. Possible values are:
+     * title, description
      */
-    type: string;
+    type: ContentPlatformModel.GenerationEntityType;
     body: ContentPlatformModel.GenerateSEOContent;
 };
 type GetAnnouncementByIdParam = {
@@ -852,8 +918,19 @@ type GetAnnouncementsListParam = {
      */
     pageSize?: number;
 };
-type GetAppCustomFieldDefinitionParam = {
-    id: string;
+type GetAppCustomFieldDefinitionByResourceParam = {
+    pageNo: string;
+    pageSize: string;
+    resource: string;
+    types?: string;
+    search?: string;
+    slugs?: string;
+    namespaces?: string;
+};
+type GetAppCustomFieldDefinitionBySlugParam = {
+    slug: string;
+    resource: string;
+    namespace: string;
 };
 type GetAppCustomFieldDefinitionsParam = {
     pageNo: string;
@@ -862,34 +939,28 @@ type GetAppCustomFieldDefinitionsParam = {
     types?: string;
     search?: string;
     slugs?: string;
+    namespaces?: string;
 };
-type GetAppCustomFieldJobsParam = {
-    page: string;
-    pageSize: string;
-    actionType: string;
-};
-type GetAppCustomFieldsParam = {
+type GetAppCustomFieldsByResourceSlugParam = {
     resource: string;
+    resourceSlug: string;
 };
-type GetAppCustomFieldsByResourceIdParam = {
-    resource: string;
-    resourceId: string;
+type GetAppCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
 };
-type GetAppCustomObjectParam = {
-    id: string;
-};
-type GetAppCustomObjectDefinitionParam = {
-    id: string;
+type GetAppCustomObjectDefinitionBySlugParam = {
+    slug: string;
 };
 type GetAppCustomObjectDefinitionsParam = {
     pageNo: string;
     pageSize: string;
     search?: string;
 };
-type GetAppCustomObjectsParam = {
-    definitionId?: string;
+type GetAppCustomObjectsBySlugParam = {
     pageNo: string;
     pageSize: string;
+    definitionSlug: string;
 };
 type GetAppJobsParam = {
     page: string;
@@ -935,20 +1006,6 @@ type GetBlogsParam = {
      */
     status?: string;
 };
-type GetComponentByIdParam = {
-    /**
-     * - A short, human-readable, URL-friendly identifier of
-     * a blog page. You can get slug value of a blog from `getBlogs` API.
-     */
-    slug: string;
-};
-type GetDataLoaderApiSpecsParam = {
-    /**
-     * - Alphanumeric ID allotted to an application
-     * created within a business account.
-     */
-    dataLoader: string;
-};
 type GetDataLoadersByServiceParam = {
     /**
      * - Service name of the data loader..
@@ -985,6 +1042,12 @@ type GetFaqsByCategoryIdOrSlugParam = {
      * can get slug value of an FAQ category from `getFaqCategories` API.
      */
     idOrSlug: string;
+};
+type GetInjectableTagsParam = {
+    /**
+     * - Get all tags irrespective of the creator of tags
+     */
+    all?: boolean;
 };
 type GetLandingPagesParam = {
     /**
@@ -1069,7 +1132,7 @@ type GetSEOMarkupSchemaParam = {
      * - Alphanumeric ID allotted to a SEO Markup Schema
      * Template created within a business.
      */
-    schemaId: string;
+    id: string;
 };
 type GetSEOMarkupSchemasParam = {
     /**
@@ -1091,8 +1154,53 @@ type GetSEOMarkupSchemasParam = {
      */
     pageSize?: number;
 };
-type ImportAppCustomObjectEntriesParam = {
-    definitionId: string;
+type GetSitemapParam = {
+    name: string;
+};
+type GetSitemapsParam = {
+    pageNo: string;
+    pageSize: string;
+    /**
+     * - Boolean flag for checking if sitemap is
+     * active or not in storefront
+     */
+    isActive?: boolean;
+    /**
+     * - Query parameter to search sitemaps with name
+     */
+    name?: string;
+};
+type GetSlideshowBySlugParam = {
+    /**
+     * - A short, human-readable, URL-friendly identifier of
+     * a slideshow. You can get slug value of a page from `getSlideshows` API.
+     */
+    slug: string;
+    /**
+     * - Filter slideshows by platform. Acceptable
+     * values are: web, android, ios and all
+     */
+    devicePlatform: string;
+};
+type GetSlideshowsParam = {
+    /**
+     * - Filter slideshows by platform. Acceptable
+     * values are: web, android, ios and all
+     */
+    devicePlatform: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
+};
+type ImportAppCustomObjectEntriesBySlugParam = {
+    slug: string;
     body: ContentPlatformModel.CustomObjectBulkSchema;
 };
 type RemoveInjectableTagParam = {
@@ -1108,8 +1216,8 @@ type ResetDataLoaderParam = {
      */
     operationId: string;
 };
-type SampleAppCustomObjectBulkEntryParam = {
-    definitionId: string;
+type SampleAppCustomObjectBulkEntryBySlugParam = {
+    slug: string;
 };
 type SelectDataLoaderParam = {
     /**
@@ -1131,21 +1239,24 @@ type UpdateAnnouncementScheduleParam = {
     announcementId: string;
     body: ContentPlatformModel.ScheduleSchema;
 };
-type UpdateAppCustomFieldByResourceIdParam = {
+type UpdateAppCustomFieldByResourceSlugParam = {
     resource: string;
-    resourceId: string;
+    resourceSlug: string;
     body: ContentPlatformModel.CustomFieldRequestSchema;
 };
-type UpdateAppCustomFieldDefinitionParam = {
-    id: string;
+type UpdateAppCustomFieldDefinitionBySlugParam = {
+    slug: string;
+    resource: string;
+    namespace: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
-type UpdateAppCustomObjectParam = {
-    id: string;
-    body: ContentPlatformModel.CustomObjectRequestSchema;
+type UpdateAppCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
+    body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId;
 };
-type UpdateAppCustomObjectDefinitionParam = {
-    id: string;
+type UpdateAppCustomObjectDefinitionBySlugParam = {
+    slug: string;
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
 type UpdateBlogParam = {
@@ -1153,7 +1264,10 @@ type UpdateBlogParam = {
      * - ID allotted to the blog.
      */
     id: string;
-    body: ContentPlatformModel.BlogRequest;
+    body: ContentPlatformModel.BlogPayload;
+};
+type UpdateDefaultSitemapConfigParam = {
+    body: ContentPlatformModel.DefaultSitemapConfig;
 };
 type UpdateFaqParam = {
     /**
@@ -1191,7 +1305,7 @@ type UpdateNavigationParam = {
      * - ID allotted to the navigation.
      */
     id: string;
-    body: ContentPlatformModel.NavigationRequest;
+    body: ContentPlatformModel.NavigationPayload;
 };
 type UpdatePageParam = {
     /**
@@ -1206,7 +1320,7 @@ type UpdatePagePreviewParam = {
      * a page. You can get slug value of a page from `getPages` API.
      */
     slug: string;
-    body: ContentPlatformModel.PagePublishRequest;
+    body: ContentPlatformModel.PagePublishPayload;
 };
 type UpdatePathRedirectionRulesParam = {
     /**
@@ -1218,16 +1332,26 @@ type UpdatePathRedirectionRulesParam = {
 type UpdateSEOConfigurationParam = {
     body: ContentPlatformModel.SeoComponent;
 };
+type UpdateSitemapParam = {
+    name: string;
+    body: ContentPlatformModel.SitemapConfigUpdate;
+};
+type UpdateSlideshowParam = {
+    /**
+     * - ID allotted to the slideshow.
+     */
+    id: string;
+    body: ContentPlatformModel.SlideshowPayload;
+};
 type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
-type DeleteAllInjectableTagsParam = any;
 type GetAppCustomFieldTypesParam = any;
 type GetAppResourcesParam = any;
 type GetDataLoadersParam = any;
 type GetDefaultNavigationsParam = any;
+type GetDefaultSitemapConfigParam = any;
 type GetFaqCategoriesParam = any;
-type GetInjectableTagsParam = any;
 type GetLegalInformationParam = any;
 type GetPageMetaParam = any;
 type GetPageSpecParam = any;

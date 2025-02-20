@@ -2,28 +2,28 @@ export = CompanyProfilePlatformValidator;
 /** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSchema} body
  */
 /**
  * @typedef CreateCompanyBrandMappingParam
- * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSchema} body
  */
 /**
  * @typedef CreateLocationParam
- * @property {CompanyProfilePlatformModel.LocationSerializer} body
+ * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 /**
  * @typedef CreateLocationBulkParam
- * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
+ * @property {CompanyProfilePlatformModel.BulkLocationSchema} body
  */
 /**
  * @typedef EditBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {string} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSchema} body
  */
 /**
  * @typedef GetBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  */
 /**
  * @typedef GetBrandsParam
@@ -36,7 +36,7 @@ export = CompanyProfilePlatformValidator;
 /** @typedef GetCompanyMetricsParam */
 /**
  * @typedef GetLocationDetailParam
- * @property {number} locationId - Id of the location which you want to view.
+ * @property {string} locationId - Id of the location which you want to view.
  */
 /** @typedef GetLocationTagsParam */
 /**
@@ -62,8 +62,8 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef UpdateLocationParam
- * @property {number} locationId - Id of the location which you want to edit.
- * @property {CompanyProfilePlatformModel.LocationSerializer} body
+ * @property {string} locationId - Id of the location which you want to edit.
+ * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 declare class CompanyProfilePlatformValidator {
     /** @returns {CbsOnboardGetParam} */
@@ -99,29 +99,29 @@ declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    body: CompanyProfilePlatformModel.CreateBrandRequestSchema;
 };
 type CreateCompanyBrandMappingParam = {
-    body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer;
+    body: CompanyProfilePlatformModel.CompanyBrandPostRequestSchema;
 };
 type CreateLocationParam = {
-    body: CompanyProfilePlatformModel.LocationSerializer;
+    body: CompanyProfilePlatformModel.LocationSchema;
 };
 type CreateLocationBulkParam = {
-    body: CompanyProfilePlatformModel.BulkLocationSerializer;
+    body: CompanyProfilePlatformModel.BulkLocationSchema;
 };
 type EditBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    brandId: string;
+    body: CompanyProfilePlatformModel.UpdateBrandRequestSchema;
 };
 type GetBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
+    brandId: string;
 };
 type GetBrandsParam = {
     /**
@@ -143,7 +143,7 @@ type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
-    locationId: number;
+    locationId: string;
 };
 type GetLocationsParam = {
     /**
@@ -192,8 +192,8 @@ type UpdateLocationParam = {
     /**
      * - Id of the location which you want to edit.
      */
-    locationId: number;
-    body: CompanyProfilePlatformModel.LocationSerializer;
+    locationId: string;
+    body: CompanyProfilePlatformModel.LocationSchema;
 };
 type CbsOnboardGetParam = any;
 type GetCompanyMetricsParam = any;

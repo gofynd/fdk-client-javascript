@@ -39,13 +39,13 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResponse>} -
+     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
      *   Success response
      * @name createUserAttributeDefinition
      * @summary: Create a User Attribute Definition
      * @description: Create a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
      */
-    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionResponse>;
+    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionDetails>;
     /**
      * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -95,24 +95,24 @@ declare class User {
      * @param {UserPlatformApplicationValidator.DeleteUserAttributeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+     * @returns {Promise<UserPlatformModel.SuccessMessage>} - Success response
      * @name deleteUserAttribute
      * @summary: Delete User Attribute
      * @description: Delete User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttribute/).
      */
-    deleteUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessageResponse>;
+    deleteUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessage>;
     /**
      * @param {UserPlatformApplicationValidator.DeleteUserAttributeDefinitionByIdParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+     * @returns {Promise<UserPlatformModel.SuccessMessage>} - Success response
      * @name deleteUserAttributeDefinitionById
      * @summary: Delete User Attribute Definition
      * @description: Delete a user attribute definition by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttributeDefinitionById/).
      */
-    deleteUserAttributeDefinitionById({ attributeDefId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributeDefinitionByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessageResponse>;
+    deleteUserAttributeDefinitionById({ attributeDefId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributeDefinitionByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessage>;
     /**
      * @param {UserPlatformApplicationValidator.GetActiveSessionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -147,24 +147,24 @@ declare class User {
      * @param {UserPlatformApplicationValidator.GetUserAttributeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+     * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
      * @name getUserAttribute
      * @summary: Get User Attribute
      * @description: Get User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttribute/).
      */
-    getUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeResponse>;
+    getUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttribute>;
     /**
      * @param {UserPlatformApplicationValidator.GetUserAttributeByIdParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+     * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
      * @name getUserAttributeById
      * @summary: Get User Attribute
      * @description: Retrieve User Attribute details by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeById/).
      */
-    getUserAttributeById({ attributeId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeResponse>;
+    getUserAttributeById({ attributeId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttribute>;
     /**
      * @param {UserPlatformApplicationValidator.GetUserAttributeDefinitionByIdParam} arg
      *   - Arg object
@@ -223,16 +223,6 @@ declare class User {
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
-     * @name getUsersByByGroupId
-     * @summary: Get users belonging to user group by Id
-     * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
-     */
-    getUsersByByGroupId({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersByByGroupIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
-    /**
      * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -278,12 +268,12 @@ declare class User {
      * @param {UserPlatformApplicationValidator.UpdateUserAttributeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+     * @returns {Promise<UserPlatformModel.UserAttribute>} - Success response
      * @name updateUserAttribute
      * @summary: Update Or Create User Attribute
      * @description: Update Or Create User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserAttribute/).
      */
-    updateUserAttribute({ attributeDefId, userId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeResponse>;
+    updateUserAttribute({ attributeDefId, userId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttribute>;
     /**
      * @param {UserPlatformApplicationValidator.UpdateUserAttributeDefinitionParam} arg
      *   - Arg object

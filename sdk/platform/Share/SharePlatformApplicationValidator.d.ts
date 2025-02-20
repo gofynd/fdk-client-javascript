@@ -8,9 +8,14 @@ export = SharePlatformApplicationValidator;
  * @property {string} hash
  */
 /**
+ * @typedef GetShortLinkClickStatsParam
+ * @property {string} surlId - Short link ID for which click statistics are to
+ *   be retrieved.
+ */
+/**
  * @typedef GetShortLinksParam
  * @property {number} [pageNo] - Current page number
- * @property {number} [pageSize] - Number of items displayed per page
+ * @property {number} [pageSize] - Current page size
  * @property {string} [createdBy] - Short link creator
  * @property {string} [active] - Short link active status
  * @property {string} [shortUrl] - Search for short url
@@ -27,13 +32,15 @@ declare class SharePlatformApplicationValidator {
     static createShortLink(): CreateShortLinkParam;
     /** @returns {GetShortLinkByHashParam} */
     static getShortLinkByHash(): GetShortLinkByHashParam;
+    /** @returns {GetShortLinkClickStatsParam} */
+    static getShortLinkClickStats(): GetShortLinkClickStatsParam;
     /** @returns {GetShortLinksParam} */
     static getShortLinks(): GetShortLinksParam;
     /** @returns {UpdateShortLinkByIdParam} */
     static updateShortLinkById(): UpdateShortLinkByIdParam;
 }
 declare namespace SharePlatformApplicationValidator {
-    export { CreateShortLinkParam, GetShortLinkByHashParam, GetShortLinksParam, UpdateShortLinkByIdParam };
+    export { CreateShortLinkParam, GetShortLinkByHashParam, GetShortLinkClickStatsParam, GetShortLinksParam, UpdateShortLinkByIdParam };
 }
 type CreateShortLinkParam = {
     body: SharePlatformModel.ShortLinkReq;
@@ -41,13 +48,20 @@ type CreateShortLinkParam = {
 type GetShortLinkByHashParam = {
     hash: string;
 };
+type GetShortLinkClickStatsParam = {
+    /**
+     * - Short link ID for which click statistics are to
+     * be retrieved.
+     */
+    surlId: string;
+};
 type GetShortLinksParam = {
     /**
      * - Current page number
      */
     pageNo?: number;
     /**
-     * - Number of items displayed per page
+     * - Current page size
      */
     pageSize?: number;
     /**

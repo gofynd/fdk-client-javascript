@@ -5,9 +5,9 @@ export = CartPlatformApplicationValidator;
  */
 /**
  * @typedef AddItemsParam
- * @property {string} cartId - Current Cart _id
+ * @property {string} cartId - Current Cart id of user cart
  * @property {boolean} [b]
- * @property {CartPlatformModel.AddCartRequest} body
+ * @property {CartPlatformModel.AddCartCreation} body
  */
 /**
  * @typedef AddPriceAdjustmentParam
@@ -20,11 +20,11 @@ export = CartPlatformApplicationValidator;
  * @property {boolean} [p]
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {CartPlatformModel.ApplyCouponRequest} body
+ * @property {CartPlatformModel.ApplyCouponDetails} body
  */
 /**
  * @typedef CheckCartServiceabilityParam
- * @property {CartPlatformModel.OpenApiCartServiceabilityRequest} body
+ * @property {CartPlatformModel.OpenApiCartServiceabilityCreation} body
  */
 /**
  * @typedef CheckoutCartParam
@@ -45,18 +45,21 @@ export = CartPlatformApplicationValidator;
 /**
  * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
- * @property {string} [cartType] - The type of cart
- * @property {CartPlatformModel.DeleteCartRequest} body
+ * @property {CartPlatformModel.DeleteCartDetails} body
  */
 /**
- * @typedef DeleteCartMetaConfigParam
- * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
- *   meta data for editing
+ * @typedef DeleteCouponParam
+ * @property {string} id
+ */
+/**
+ * @typedef DeletePromotionParam
+ * @property {string} id - Promotion id for fetching single promotion data for deleting
  */
 /**
  * @typedef FetchAndvalidateCartItemsParam
- * @property {CartPlatformModel.OpenapiCartDetailsRequest} body
+ * @property {CartPlatformModel.OpenapiCartDetailsCreation} body
  */
+/** @typedef FetchCartMetaConfigParam */
 /**
  * @typedef GetAbandonedCartParam
  * @property {number} [pageNo]
@@ -111,6 +114,9 @@ export = CartPlatformApplicationValidator;
  * @typedef GetCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {string} [userId] - Option to fetch cart for the provided user_id.
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -118,7 +124,6 @@ export = CartPlatformApplicationValidator;
  * @property {number} [assignCardId] - Token of user's debit or credit card
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
- * @property {string} [cartType] - The type of cart
  */
 /**
  * @typedef GetCartListParam
@@ -127,14 +132,8 @@ export = CartPlatformApplicationValidator;
  * @property {string} [filterOn]
  */
 /**
- * @typedef GetCartMetaConfigParam
- * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
- *   meta data for editing
- */
-/** @typedef GetCartMetaConfigsParam */
-/**
  * @typedef GetCartShareLinkParam
- * @property {CartPlatformModel.GetShareCartLinkRequest} body
+ * @property {CartPlatformModel.GetShareCartLinkCreation} body
  */
 /**
  * @typedef GetCartSharedItemsParam
@@ -149,7 +148,6 @@ export = CartPlatformApplicationValidator;
  * @property {string} [code]
  */
 /** @typedef GetCouponOptionValuesParam */
-/** @typedef GetCouponTagsParam */
 /**
  * @typedef GetCouponsParam
  * @property {number} [pageNo]
@@ -160,21 +158,27 @@ export = CartPlatformApplicationValidator;
  * @property {boolean} [isDisplay]
  * @property {string} [typeSlug]
  * @property {string} [code]
+ * @property {string} [createdBy]
+ * @property {string} [reviewedBy]
+ * @property {string} [approvedStartTime]
+ * @property {string} [approvedEndTime]
+ * @property {string} [reviewStartTime]
+ * @property {string} [reviewEndTime]
+ * @property {string} [status]
  */
 /**
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
- * @property {string} [cartType] - The type of cart
  */
 /**
  * @typedef GetPriceAdjustmentsParam
- * @property {string} cartId - Cart Id
+ * @property {string} cartId - Cart id of user cart
  */
 /**
  * @typedef GetPromosCouponConfigParam
- * @property {string} [entityType] - Entity_type as promotion or coupon
- * @property {boolean} [isHidden] - Promo-coupon config shown or not
+ * @property {string} [entityType] - Entity type as promotion or coupon
+ * @property {boolean} [isHidden] - Promotion coupon config shown or not
  */
 /**
  * @typedef GetPromotionByIdParam
@@ -184,7 +188,23 @@ export = CartPlatformApplicationValidator;
  * @typedef GetPromotionCodeExistsParam
  * @property {string} [code]
  */
-/** @typedef GetPromotionTagsParam */
+/**
+ * @typedef GetPromotionOffersParam
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier
+ *   of a product. You can get slug value from the endpoint
+ *   /service/application/catalog/v1.0/products/
+ * @property {number} [pageSize] - Number of offers to be fetched to show
+ * @property {string} [promotionGroup] - Type of promotion groups
+ * @property {number} [storeId] - Unique identifier of a store
+ * @property {string} [cartType] - The type of cart
+ * @property {string} [sortBy] - Specifies the sorting criteria for the
+ *   promotions. Sorts promotions in descending order by the value provided.
+ */
+/**
+ * @typedef GetPromotionPaymentOffersParam
+ * @property {string} [id] - Cart id of the user cart
+ * @property {number} [uid] - Cart uid of the user cart
+ */
 /**
  * @typedef GetPromotionsParam
  * @property {number} [pageNo]
@@ -195,6 +215,13 @@ export = CartPlatformApplicationValidator;
  * @property {string} [promotionType]
  * @property {string} [fpPanel]
  * @property {string} [promotionId]
+ * @property {string} [createdBy]
+ * @property {string} [reviewedBy]
+ * @property {string} [approvedStartTime]
+ * @property {string} [approvedEndTime]
+ * @property {string} [reviewStartTime]
+ * @property {string} [reviewEndTime]
+ * @property {string} [status]
  */
 /**
  * @typedef GetShipmentsParam
@@ -227,21 +254,21 @@ export = CartPlatformApplicationValidator;
  *   the price breakup of cart items.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {string} [id] - The unique identifier of the cart
- * @property {string} [cartType] - The type of cart
- * @property {CartPlatformModel.PlatformAddCartRequest} body
+ * @property {CartPlatformModel.PlatformAddCartDetails} body
  */
 /**
  * @typedef PlatformCheckoutCartParam
  * @property {string} [id] - The unique identifier of the cart
- * @property {string} [cartType] - The type of cart
- * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
+ * @property {CartPlatformModel.PlatformCartCheckoutDetailCreation} body
  */
 /**
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [id] - The unique identifier of the cart
- * @property {string} [cartType] - The type of cart
- * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
+ * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Creation} body
  */
 /**
  * @typedef PlatformUpdateCartParam
@@ -255,8 +282,7 @@ export = CartPlatformApplicationValidator;
  *   the price breakup of cart items.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
- * @property {string} [cartType] - The type of cart
- * @property {CartPlatformModel.PlatformUpdateCartRequest} body
+ * @property {CartPlatformModel.PlatformUpdateCartDetails} body
  */
 /**
  * @typedef RemoveAddressParam
@@ -267,7 +293,6 @@ export = CartPlatformApplicationValidator;
  * @typedef RemoveCouponParam
  * @property {string} [uid]
  * @property {boolean} [buyNow]
- * @property {string} [cartType] - The type of cart
  */
 /**
  * @typedef RemovePriceAdjustmentParam
@@ -279,24 +304,20 @@ export = CartPlatformApplicationValidator;
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
  * @property {boolean} [b]
- * @property {CartPlatformModel.PlatformSelectCartAddressRequest} body
+ * @property {CartPlatformModel.PlatformSelectCartAddress} body
  */
 /**
  * @typedef SelectPaymentModeParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {string} [orderType] - The order type of shipment HomeDelivery - If
- *   the customer wants the order home-delivered PickAtStore - If the customer
- *   wants the handover of an order at the store itself.
- * @property {CartPlatformModel.UpdateCartPaymentRequest} body
+ * @property {string} [orderType]
+ * @property {CartPlatformModel.CartPaymentUpdate} body
  */
 /**
  * @typedef SelectPaymentModeV2Param
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {string} [orderType] - The order type of shipment HomeDelivery - If
- *   the customer wants the order home-delivered PickAtStore - If the customer
- *   wants the handover of an order at the store itself.
+ * @property {string} [orderType]
  * @property {CartPlatformModel.UpdateCartPaymentRequestV2} body
  */
 /**
@@ -306,21 +327,20 @@ export = CartPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateCartParam
- * @property {string} cartId - Current Cart _id
+ * @property {string} cartId - Current Cart id of user cart
  * @property {boolean} [b]
- * @property {CartPlatformModel.UpdateCartRequest} body
+ * @property {CartPlatformModel.UpdateCartCreation} body
  */
 /**
  * @typedef UpdateCartMetaParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {string} [userId]
- * @property {CartPlatformModel.PlatformCartMetaRequest} body
+ * @property {CartPlatformModel.PlatformCartMetaCreation} body
  */
 /**
  * @typedef UpdateCartMetaConfigParam
- * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
- *   meta data for editing
+ * @property {string} cartMetaId - CartMeta id for fetching single cart meta
+ *   data for editing
  * @property {CartPlatformModel.CartMetaConfigUpdate} body
  */
 /**
@@ -371,7 +391,7 @@ export = CartPlatformApplicationValidator;
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
  *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {CartPlatformModel.UpdateCartShipmentRequest} body
+ * @property {CartPlatformModel.UpdateCartShipmentCreation} body
  */
 /**
  * @typedef ValidateCouponForPaymentParam
@@ -382,11 +402,6 @@ export = CartPlatformApplicationValidator;
  * @property {string} [paymentIdentifier]
  * @property {string} [aggregatorName]
  * @property {string} [merchantCode]
- * @property {string} [iin] - Debit/Credit card prefix (first 6 digit)
- * @property {string} [network] - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
- * @property {string} [type] - Card type, e.g. Credit, Debit
- * @property {string} [cardId] - Saved card token reference id
- * @property {string} [cartType] - Type of the cart
  */
 declare class CartPlatformApplicationValidator {
     /** @returns {AddAddressParam} */
@@ -409,10 +424,14 @@ declare class CartPlatformApplicationValidator {
     static createPromotion(): CreatePromotionParam;
     /** @returns {DeleteCartParam} */
     static deleteCart(): DeleteCartParam;
-    /** @returns {DeleteCartMetaConfigParam} */
-    static deleteCartMetaConfig(): DeleteCartMetaConfigParam;
+    /** @returns {DeleteCouponParam} */
+    static deleteCoupon(): DeleteCouponParam;
+    /** @returns {DeletePromotionParam} */
+    static deletePromotion(): DeletePromotionParam;
     /** @returns {FetchAndvalidateCartItemsParam} */
     static fetchAndvalidateCartItems(): FetchAndvalidateCartItemsParam;
+    /** @returns {FetchCartMetaConfigParam} */
+    static fetchCartMetaConfig(): any;
     /** @returns {GetAbandonedCartParam} */
     static getAbandonedCart(): GetAbandonedCartParam;
     /** @returns {GetAbandonedCartDetailsParam} */
@@ -429,10 +448,6 @@ declare class CartPlatformApplicationValidator {
     static getCart(): GetCartParam;
     /** @returns {GetCartListParam} */
     static getCartList(): GetCartListParam;
-    /** @returns {GetCartMetaConfigParam} */
-    static getCartMetaConfig(): GetCartMetaConfigParam;
-    /** @returns {GetCartMetaConfigsParam} */
-    static getCartMetaConfigs(): any;
     /** @returns {GetCartShareLinkParam} */
     static getCartShareLink(): GetCartShareLinkParam;
     /** @returns {GetCartSharedItemsParam} */
@@ -443,8 +458,6 @@ declare class CartPlatformApplicationValidator {
     static getCouponCodeExists(): GetCouponCodeExistsParam;
     /** @returns {GetCouponOptionValuesParam} */
     static getCouponOptionValues(): any;
-    /** @returns {GetCouponTagsParam} */
-    static getCouponTags(): any;
     /** @returns {GetCouponsParam} */
     static getCoupons(): GetCouponsParam;
     /** @returns {GetItemCountParam} */
@@ -457,8 +470,10 @@ declare class CartPlatformApplicationValidator {
     static getPromotionById(): GetPromotionByIdParam;
     /** @returns {GetPromotionCodeExistsParam} */
     static getPromotionCodeExists(): GetPromotionCodeExistsParam;
-    /** @returns {GetPromotionTagsParam} */
-    static getPromotionTags(): any;
+    /** @returns {GetPromotionOffersParam} */
+    static getPromotionOffers(): GetPromotionOffersParam;
+    /** @returns {GetPromotionPaymentOffersParam} */
+    static getPromotionPaymentOffers(): GetPromotionPaymentOffersParam;
     /** @returns {GetPromotionsParam} */
     static getPromotions(): GetPromotionsParam;
     /** @returns {GetShipmentsParam} */
@@ -515,18 +530,18 @@ declare class CartPlatformApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartPlatformApplicationValidator {
-    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, DeleteCartMetaConfigParam, FetchAndvalidateCartItemsParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartMetaConfigParam, GetCartMetaConfigsParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponTagsParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionTagsParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, DeleteCouponParam, DeletePromotionParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartPlatformModel.PlatformAddress;
 };
 type AddItemsParam = {
     /**
-     * - Current Cart _id
+     * - Current Cart id of user cart
      */
     cartId: string;
     b?: boolean;
-    body: CartPlatformModel.AddCartRequest;
+    body: CartPlatformModel.AddCartCreation;
 };
 type AddPriceAdjustmentParam = {
     body: CartPlatformModel.PriceAdjustmentAdd;
@@ -537,10 +552,10 @@ type ApplyCouponParam = {
     p?: boolean;
     id?: string;
     buyNow?: boolean;
-    body: CartPlatformModel.ApplyCouponRequest;
+    body: CartPlatformModel.ApplyCouponDetails;
 };
 type CheckCartServiceabilityParam = {
-    body: CartPlatformModel.OpenApiCartServiceabilityRequest;
+    body: CartPlatformModel.OpenApiCartServiceabilityCreation;
 };
 type CheckoutCartParam = {
     body: CartPlatformModel.OpenApiPlatformCheckoutReq;
@@ -559,21 +574,19 @@ type DeleteCartParam = {
      * - The unique identifier of the cart.
      */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
-    body: CartPlatformModel.DeleteCartRequest;
+    body: CartPlatformModel.DeleteCartDetails;
 };
-type DeleteCartMetaConfigParam = {
+type DeleteCouponParam = {
+    id: string;
+};
+type DeletePromotionParam = {
     /**
-     * - CartMeta mongo _id for fetching single cart
-     * meta data for editing
+     * - Promotion id for fetching single promotion data for deleting
      */
-    cartMetaId: string;
+    id: string;
 };
 type FetchAndvalidateCartItemsParam = {
-    body: CartPlatformModel.OpenapiCartDetailsRequest;
+    body: CartPlatformModel.OpenapiCartDetailsCreation;
 };
 type GetAbandonedCartParam = {
     pageNo?: number;
@@ -629,6 +642,12 @@ type GetCartParam = {
      */
     userId?: string;
     /**
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
+     * wants the handover of an order at the store itself.
+     */
+    orderType?: string;
+    /**
      * - This is a boolean value. Select `true` to retrieve
      * all the items added in the cart.
      */
@@ -647,25 +666,14 @@ type GetCartParam = {
      * set/initialize buy now cart
      */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type GetCartListParam = {
     fromDate?: string;
     toDate?: string;
     filterOn?: string;
 };
-type GetCartMetaConfigParam = {
-    /**
-     * - CartMeta mongo _id for fetching single cart
-     * meta data for editing
-     */
-    cartMetaId: string;
-};
 type GetCartShareLinkParam = {
-    body: CartPlatformModel.GetShareCartLinkRequest;
+    body: CartPlatformModel.GetShareCartLinkCreation;
 };
 type GetCartSharedItemsParam = {
     /**
@@ -688,6 +696,13 @@ type GetCouponsParam = {
     isDisplay?: boolean;
     typeSlug?: string;
     code?: string;
+    createdBy?: string;
+    reviewedBy?: string;
+    approvedStartTime?: string;
+    approvedEndTime?: string;
+    reviewStartTime?: string;
+    reviewEndTime?: string;
+    status?: string;
 };
 type GetItemCountParam = {
     /**
@@ -698,24 +713,20 @@ type GetItemCountParam = {
      * - Boolean value to get buy_now cart.
      */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type GetPriceAdjustmentsParam = {
     /**
-     * - Cart Id
+     * - Cart id of user cart
      */
     cartId: string;
 };
 type GetPromosCouponConfigParam = {
     /**
-     * - Entity_type as promotion or coupon
+     * - Entity type as promotion or coupon
      */
     entityType?: string;
     /**
-     * - Promo-coupon config shown or not
+     * - Promotion coupon config shown or not
      */
     isHidden?: boolean;
 };
@@ -724,6 +735,45 @@ type GetPromotionByIdParam = {
 };
 type GetPromotionCodeExistsParam = {
     code?: string;
+};
+type GetPromotionOffersParam = {
+    /**
+     * - A short, human-readable, URL-friendly identifier
+     * of a product. You can get slug value from the endpoint
+     * /service/application/catalog/v1.0/products/
+     */
+    slug?: string;
+    /**
+     * - Number of offers to be fetched to show
+     */
+    pageSize?: number;
+    /**
+     * - Type of promotion groups
+     */
+    promotionGroup?: string;
+    /**
+     * - Unique identifier of a store
+     */
+    storeId?: number;
+    /**
+     * - The type of cart
+     */
+    cartType?: string;
+    /**
+     * - Specifies the sorting criteria for the
+     * promotions. Sorts promotions in descending order by the value provided.
+     */
+    sortBy?: string;
+};
+type GetPromotionPaymentOffersParam = {
+    /**
+     * - Cart id of the user cart
+     */
+    id?: string;
+    /**
+     * - Cart uid of the user cart
+     */
+    uid?: number;
 };
 type GetPromotionsParam = {
     pageNo?: number;
@@ -734,6 +784,13 @@ type GetPromotionsParam = {
     promotionType?: string;
     fpPanel?: string;
     promotionId?: string;
+    createdBy?: string;
+    reviewedBy?: string;
+    approvedStartTime?: string;
+    approvedEndTime?: string;
+    reviewStartTime?: string;
+    reviewEndTime?: string;
+    status?: string;
 };
 type GetShipmentsParam = {
     pickAtStoreUid?: number;
@@ -790,36 +847,30 @@ type PlatformAddItemsParam = {
      */
     buyNow?: boolean;
     /**
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
+     * wants the handover of an order at the store itself.
+     */
+    orderType?: string;
+    /**
      * - The unique identifier of the cart
      */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
-    body: CartPlatformModel.PlatformAddCartRequest;
+    body: CartPlatformModel.PlatformAddCartDetails;
 };
 type PlatformCheckoutCartParam = {
     /**
      * - The unique identifier of the cart
      */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
-    body: CartPlatformModel.PlatformCartCheckoutDetailRequest;
+    body: CartPlatformModel.PlatformCartCheckoutDetailCreation;
 };
 type PlatformCheckoutCartV2Param = {
     /**
      * - The unique identifier of the cart
      */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
-    body: CartPlatformModel.PlatformCartCheckoutDetailV2Request;
+    body: CartPlatformModel.PlatformCartCheckoutDetailV2Creation;
 };
 type PlatformUpdateCartParam = {
     /**
@@ -847,11 +898,7 @@ type PlatformUpdateCartParam = {
      * set/initialize buy now cart
      */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
-    body: CartPlatformModel.PlatformUpdateCartRequest;
+    body: CartPlatformModel.PlatformUpdateCartDetails;
 };
 type RemoveAddressParam = {
     /**
@@ -866,10 +913,6 @@ type RemoveAddressParam = {
 type RemoveCouponParam = {
     uid?: string;
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type RemovePriceAdjustmentParam = {
     id: string;
@@ -879,27 +922,17 @@ type SelectAddressParam = {
     buyNow?: boolean;
     i?: boolean;
     b?: boolean;
-    body: CartPlatformModel.PlatformSelectCartAddressRequest;
+    body: CartPlatformModel.PlatformSelectCartAddress;
 };
 type SelectPaymentModeParam = {
     id?: string;
     buyNow?: boolean;
-    /**
-     * - The order type of shipment HomeDelivery - If
-     * the customer wants the order home-delivered PickAtStore - If the customer
-     * wants the handover of an order at the store itself.
-     */
     orderType?: string;
-    body: CartPlatformModel.UpdateCartPaymentRequest;
+    body: CartPlatformModel.CartPaymentUpdate;
 };
 type SelectPaymentModeV2Param = {
     id?: string;
     buyNow?: boolean;
-    /**
-     * - The order type of shipment HomeDelivery - If
-     * the customer wants the order home-delivered PickAtStore - If the customer
-     * wants the handover of an order at the store itself.
-     */
     orderType?: string;
     body: CartPlatformModel.UpdateCartPaymentRequestV2;
 };
@@ -912,22 +945,21 @@ type UpdateAddressParam = {
 };
 type UpdateCartParam = {
     /**
-     * - Current Cart _id
+     * - Current Cart id of user cart
      */
     cartId: string;
     b?: boolean;
-    body: CartPlatformModel.UpdateCartRequest;
+    body: CartPlatformModel.UpdateCartCreation;
 };
 type UpdateCartMetaParam = {
     id?: string;
     buyNow?: boolean;
-    userId?: string;
-    body: CartPlatformModel.PlatformCartMetaRequest;
+    body: CartPlatformModel.PlatformCartMetaCreation;
 };
 type UpdateCartMetaConfigParam = {
     /**
-     * - CartMeta mongo _id for fetching single cart
-     * meta data for editing
+     * - CartMeta id for fetching single cart meta
+     * data for editing
      */
     cartMetaId: string;
     body: CartPlatformModel.CartMetaConfigUpdate;
@@ -996,7 +1028,7 @@ type UpdateShipmentsParam = {
      * wants the handover of an order at the store itself.
      */
     orderType?: string;
-    body: CartPlatformModel.UpdateCartShipmentRequest;
+    body: CartPlatformModel.UpdateCartShipmentCreation;
 };
 type ValidateCouponForPaymentParam = {
     id?: string;
@@ -1006,29 +1038,7 @@ type ValidateCouponForPaymentParam = {
     paymentIdentifier?: string;
     aggregatorName?: string;
     merchantCode?: string;
-    /**
-     * - Debit/Credit card prefix (first 6 digit)
-     */
-    iin?: string;
-    /**
-     * - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
-     */
-    network?: string;
-    /**
-     * - Card type, e.g. Credit, Debit
-     */
-    type?: string;
-    /**
-     * - Saved card token reference id
-     */
-    cardId?: string;
-    /**
-     * - Type of the cart
-     */
-    cartType?: string;
 };
-type GetCartMetaConfigsParam = any;
+type FetchCartMetaConfigParam = any;
 type GetCouponOptionValuesParam = any;
-type GetCouponTagsParam = any;
-type GetPromotionTagsParam = any;
 import CartPlatformModel = require("./CartPlatformModel");

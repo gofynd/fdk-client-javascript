@@ -24,18 +24,15 @@ class Cart {
       getBulkDiscountOffers: "/service/application/cart/v1.0/bulk-price",
       getCart: "/service/application/cart/v1.0/detail",
       getCartLastModified: "/service/application/cart/v1.0/detail",
-      getCartMetaConfig:
-        "/service/application/cart/v1.0/cart/configuration/{cart_meta_id}",
-      getCartMetaConfigs: "/service/application/cart/v1.0/cart/configuration",
       getCartShareLink: "/service/application/cart/v1.0/share-cart",
       getCartSharedItems: "/service/application/cart/v1.0/share-cart/{token}",
       getCoupons: "/service/application/cart/v1.0/coupon",
       getItemCount: "/service/application/cart/v1.0/basic",
-      getItemCountV2: "/service/application/cart/v2.0/basic",
       getLadderOffers: "/service/application/cart/v1.0/available-ladder-prices",
-      getPaymentPromotionOffers:
-        "/service/application/cart/v1.0/available-payment-offers",
       getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
+      getPromotionPaymentOffers:
+        "/service/application/cart/v1.0/available-payment-offers",
+      getPromotions: "/service/application/cart/v1.0/promotion",
       getShipments: "/service/application/cart/v1.0/shipment",
       removeAddress: "/service/application/cart/v1.0/address/{id}",
       removeCoupon: "/service/application/cart/v1.0/coupon",
@@ -68,9 +65,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SaveAddressResponse>} - Success response
+   * @returns {Promise<SaveAddressResult>} - Success response
    * @name addAddress
-   * @summary: Create a new address
+   * @summary: Creates a new address for a customer
    * @description: Add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
    */
   async addAddress(
@@ -105,23 +102,15 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AddCartDetailResponse>} - Success response
+   * @returns {Promise<AddCartDetailResult>} - Success response
    * @name addItems
    * @summary: Add items to a cart
    * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
    */
   async addItems(
-    {
-      body,
-      i,
-      b,
-      areaCode,
-      buyNow,
-      id,
-      cartType,
-      orderType,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { body, i, b, areaCode, buyNow, id, orderType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -130,7 +119,6 @@ class Cart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
     query_params["order_type"] = orderType;
 
     const xHeaders = {};
@@ -159,9 +147,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name applyCoupon
-   * @summary: Apply coupon.
+   * @summary: Apply coupon
    * @description: Apply a coupon code to the cart to trigger discounts on eligible items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
    */
   async applyCoupon(
@@ -204,15 +192,13 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name applyRewardPoints
-   * @summary: Use reward points.
+   * @summary: Use reward points
    * @description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
    */
   async applyRewardPoints(
-    { body, id, i, b, buyNow, cartType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -220,7 +206,6 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -248,7 +233,7 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @returns {Promise<CartCheckoutResult>} - Success response
    * @name checkoutCart
    * @summary: Checkout cart
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
@@ -287,10 +272,10 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @returns {Promise<CartCheckoutResult>} - Success response
    * @name checkoutCartV2
-   * @summary: Enhanced cart checkout process
-   * @description: Enhanced version of checkout process that supports multiple mode of payment(MOP). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
+   * @summary: Checkout cart
+   * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
     { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
@@ -326,18 +311,17 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DeleteCartDetailResponse>} - Success response
+   * @returns {Promise<DeleteCartDetailResult>} - Success response
    * @name deleteCart
-   * @summary: Clears the cart
+   * @summary: Delete a cart
    * @description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
    */
   async deleteCart(
-    { body, id, cartType, requestHeaders } = { requestHeaders: {} },
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -349,7 +333,7 @@ class Cart {
         params: {},
       }),
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -367,7 +351,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<Address>} - Success response
    * @name getAddressById
-   * @summary: Fetch address.
+   * @summary: Get details for a single customer address
    * @description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
    */
   async getAddressById(
@@ -379,7 +363,6 @@ class Cart {
       checkoutMode,
       tags,
       isDefault,
-      userId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -400,7 +383,6 @@ class Cart {
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
-    query_params["user_id"] = userId;
 
     const xHeaders = {};
 
@@ -428,9 +410,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetAddressesResponse>} - Success response
+   * @returns {Promise<GetAddressesResult>} - Success response
    * @name getAddresses
-   * @summary: Get saved addresses.
+   * @summary: Get a list of addresses for a customer
    * @description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
    */
   async getAddresses(
@@ -441,7 +423,6 @@ class Cart {
       checkoutMode,
       tags,
       isDefault,
-      userId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -453,7 +434,6 @@ class Cart {
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
-    query_params["user_id"] = userId;
 
     const xHeaders = {};
 
@@ -481,15 +461,13 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BulkPriceResponse>} - Success response
+   * @returns {Promise<BulkPriceResult>} - Success response
    * @name getBulkDiscountOffers
-   * @summary: Bulk discounts.
+   * @summary: List bulk discounts
    * @description: List offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
-    { itemId, articleId, uid, slug, cartType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -497,7 +475,6 @@ class Cart {
     query_params["article_id"] = articleId;
     query_params["uid"] = uid;
     query_params["slug"] = slug;
-    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -525,9 +502,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name getCart
-   * @summary: Retrieve cart details.
+   * @summary: Get a cart
    * @description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
    */
   async getCart(
@@ -539,7 +516,6 @@ class Cart {
       assignCardId,
       areaCode,
       buyNow,
-      cartType,
       orderType,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -553,7 +529,6 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
     query_params["order_type"] = orderType;
 
     const xHeaders = {};
@@ -620,92 +595,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartConfigDetailResponse>} - Success response
-   * @name getCartMetaConfig
-   * @summary: Get cart configuration by id
-   * @description: Get cart configuration by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfig/).
-   */
-  async getCartMetaConfig(
-    { cartMetaId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["cartMetaId"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCartMetaConfig"],
-        params: { cartMetaId },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartMetaConfigListResponse>} - Success response
-   * @name getCartMetaConfigs
-   * @summary: Get cart configuration
-   * @description: Get cart configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfigs/).
-   */
-  async getCartMetaConfigs(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCartMetaConfigs"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetShareCartLinkResponse>} - Success response
+   * @returns {Promise<GetShareCartLinkResult>} - Success response
    * @name getCartShareLink
-   * @summary: Share cart link.
+   * @summary: Create share cart link
    * @description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartShareLink/).
    */
   async getCartShareLink(
@@ -740,9 +632,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SharedCartResponse>} - Success response
+   * @returns {Promise<SharedCartResult>} - Success response
    * @name getCartSharedItems
-   * @summary: Shared cart items.
+   * @summary: List shared cart items
    * @description: Get cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
    */
   async getCartSharedItems(
@@ -786,9 +678,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetCouponResponse>} - Success response
+   * @returns {Promise<GetCouponResult>} - Success response
    * @name getCoupons
-   * @summary: List available coupons.
+   * @summary: List available coupons
    * @description: List all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
    */
   async getCoupons(
@@ -827,9 +719,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartItemCountResponse>} - Success response
+   * @returns {Promise<CartItemCountResult>} - Success response
    * @name getItemCount
-   * @summary: Count cart items.
+   * @summary: Get a cart items count
    * @description: Get total count of items currently present in the customer's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
    */
   async getItemCount(
@@ -866,48 +758,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartItemCountResponseV2>} - Success response
-   * @name getItemCountV2
-   * @summary: Count items in the cart according to cart_type
-   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCountV2/).
-   */
-  async getItemCountV2(
-    { id, buyNow, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getItemCountV2"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LadderPriceOffers>} - Success response
    * @name getLadderOffers
-   * @summary: Fetches ladder offers.
+   * @summary: List ladder offers
    * @description: Get ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
    */
   async getLadderOffers(
@@ -948,54 +801,21 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PromotionPaymentOffersResponse>} - Success response
-   * @name getPaymentPromotionOffers
-   * @summary: Fetch available promotions payment offers
-   * @description: Use this API to get top 5 payment offers available for current cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPaymentPromotionOffers/).
-   */
-  async getPaymentPromotionOffers(
-    { id, uid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["uid"] = uid;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPaymentPromotionOffers"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PromotionOffersResponse>} - Success response
+   * @returns {Promise<PromotionOffersResult>} - Success response
    * @name getPromotionOffers
-   * @summary: Retrieves promotional offers
+   * @summary: List available promotion offers
    * @description: List all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
    */
   async getPromotionOffers(
-    { slug, pageSize, promotionGroup, storeId, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      slug,
+      pageSize,
+      promotionGroup,
+      storeId,
+      cartType,
+      sortBy,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -1003,6 +823,8 @@ class Cart {
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
     query_params["store_id"] = storeId;
+    query_params["cart_type"] = cartType;
+    query_params["sort_by"] = sortBy;
 
     const xHeaders = {};
 
@@ -1030,30 +852,99 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartShipmentsResponse>} - Success response
-   * @name getShipments
-   * @summary: List shipments.
-   * @description: Get shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
+   * @returns {Promise<PromotionPaymentOffersResult>} - Success response
+   * @name getPromotionPaymentOffers
+   * @summary: Fetch available promotions payment offers
+   * @description: Use this API to get top 5 payment offers available for current product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionPaymentOffers/).
    */
-  async getShipments(
-    {
-      pickAtStoreUid,
-      orderingStoreId,
-      i,
-      p,
-      id,
-      buyNow,
-      addressId,
-      areaCode,
-      orderType,
-      requestHeaders,
-    } = { requestHeaders: {} },
+  async getPromotionPaymentOffers(
+    { id, uid, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
-    query_params["pick_at_store_uid"] = pickAtStoreUid;
-    query_params["ordering_store_id"] = orderingStoreId;
-    query_params["i"] = i;
+    query_params["id"] = id;
+    query_params["uid"] = uid;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPromotionPaymentOffers"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Promotions>} - Success response
+   * @name getPromotions
+   * @summary: List all available promotions of the sales channel
+   * @description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotions/).
+   */
+  async getPromotions(
+    { pageSize, pageNo, promotionType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+    query_params["promotion_type"] = promotionType;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPromotions"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartShipmentsResult>} - Success response
+   * @name getShipments
+   * @summary: List shipments
+   * @description: Get shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
+   */
+  async getShipments(
+    { p, id, buyNow, addressId, areaCode, orderType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
     query_params["p"] = p;
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
@@ -1087,9 +978,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DeleteAddressResponse>} - Success response
+   * @returns {Promise<DeleteAddressResult>} - Success response
    * @name removeAddress
-   * @summary: Delete a address
+   * @summary: Removes an address from a customer's address list
    * @description: Delete an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
    */
   async removeAddress(
@@ -1133,19 +1024,18 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name removeCoupon
-   * @summary: Remove coupon.
+   * @summary: Remove coupon
    * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
    */
   async removeCoupon(
-    { id, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -1173,9 +1063,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name selectAddress
-   * @summary: Select a delivery address
+   * @summary: Select customer address for order processing
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
@@ -1214,19 +1104,18 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @returns {Promise<CartDetailResult>} - Success response
    * @name selectPaymentMode
-   * @summary: Pick payment method.
+   * @summary: Select payment mode
    * @description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
+    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -1254,9 +1143,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UpdateAddressResponse>} - Success response
+   * @returns {Promise<UpdateAddressResult>} - Success response
    * @name updateAddress
-   * @summary: Update address.
+   * @summary: Updates an existing customer address
    * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
    */
   async updateAddress(
@@ -1300,9 +1189,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UpdateCartDetailResponse>} - Success response
+   * @returns {Promise<UpdateCartDetailResult>} - Success response
    * @name updateCart
-   * @summary: Update items in the cart
+   * @summary: Update cart items
    * @description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
    */
   async updateCart(
@@ -1354,9 +1243,9 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartMetaResponse>} - Success response
+   * @returns {Promise<CartMetaResult>} - Success response
    * @name updateCartMeta
-   * @summary: Update cart metadata.
+   * @summary: Update cart metadata
    * @description: Update metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
    */
   async updateCartMeta(
@@ -1393,13 +1282,13 @@ class Cart {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SharedCartResponse>} - Success response
+   * @returns {Promise<SharedCartResult>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Merge or replace existing cart
+   * @summary: Update with shared items
    * @description: Merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
-    { token, action, cartId, requestHeaders } = { requestHeaders: {} },
+    { token, action, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["token", "action"]);
@@ -1412,7 +1301,6 @@ class Cart {
     }
 
     const query_params = {};
-    query_params["cart_id"] = cartId;
 
     const xHeaders = {};
 
@@ -1442,7 +1330,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
-   * @summary: Validate coupon.
+   * @summary: Validate applied coupon
    * @description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
    */
   async validateCouponForPayment(

@@ -6,33 +6,33 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSchema} body
  */
 
 /**
  * @typedef CreateCompanyBrandMappingParam
- * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSchema} body
  */
 
 /**
  * @typedef CreateLocationParam
- * @property {CompanyProfilePlatformModel.LocationSerializer} body
+ * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 
 /**
  * @typedef CreateLocationBulkParam
- * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
+ * @property {CompanyProfilePlatformModel.BulkLocationSchema} body
  */
 
 /**
  * @typedef EditBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {string} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSchema} body
  */
 
 /**
  * @typedef GetBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  */
 
 /**
@@ -48,7 +48,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef GetLocationDetailParam
- * @property {number} locationId - Id of the location which you want to view.
+ * @property {string} locationId - Id of the location which you want to view.
  */
 
 /** @typedef GetLocationTagsParam */
@@ -78,8 +78,8 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef UpdateLocationParam
- * @property {number} locationId - Id of the location which you want to edit.
- * @property {CompanyProfilePlatformModel.LocationSerializer} body
+ * @property {string} locationId - Id of the location which you want to edit.
+ * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 
 class CompanyProfilePlatformValidator {
@@ -91,43 +91,43 @@ class CompanyProfilePlatformValidator {
   /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      body: CompanyProfilePlatformModel.CreateBrandRequestSchema().required(),
     }).required();
   }
 
   /** @returns {CreateCompanyBrandMappingParam} */
   static createCompanyBrandMapping() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer().required(),
+      body: CompanyProfilePlatformModel.CompanyBrandPostRequestSchema().required(),
     }).required();
   }
 
   /** @returns {CreateLocationParam} */
   static createLocation() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.LocationSerializer().required(),
+      body: CompanyProfilePlatformModel.LocationSchema().required(),
     }).required();
   }
 
   /** @returns {CreateLocationBulkParam} */
   static createLocationBulk() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.BulkLocationSerializer().required(),
+      body: CompanyProfilePlatformModel.BulkLocationSchema().required(),
     }).required();
   }
 
   /** @returns {EditBrandParam} */
   static editBrand() {
     return Joi.object({
-      brandId: Joi.number().required(),
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      brandId: Joi.string().allow("").required(),
+      body: CompanyProfilePlatformModel.UpdateBrandRequestSchema().required(),
     }).required();
   }
 
   /** @returns {GetBrandParam} */
   static getBrand() {
     return Joi.object({
-      brandId: Joi.number().required(),
+      brandId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -148,7 +148,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {GetLocationDetailParam} */
   static getLocationDetail() {
     return Joi.object({
-      locationId: Joi.number().required(),
+      locationId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -181,8 +181,8 @@ class CompanyProfilePlatformValidator {
   /** @returns {UpdateLocationParam} */
   static updateLocation() {
     return Joi.object({
-      locationId: Joi.number().required(),
-      body: CompanyProfilePlatformModel.LocationSerializer().required(),
+      locationId: Joi.string().allow("").required(),
+      body: CompanyProfilePlatformModel.LocationSchema().required(),
     }).required();
   }
 }

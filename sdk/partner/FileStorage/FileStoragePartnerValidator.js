@@ -16,7 +16,7 @@ class FileStorageValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStorageModel.StartResponse().required(),
+      body: FileStorageModel.FileUpload().required(),
     }).required();
   }
 
@@ -24,7 +24,7 @@ class FileStorageValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStorageModel.StartRequest().required(),
+      body: FileStorageModel.FileUploadStart().required(),
     }).required();
   }
 
@@ -60,7 +60,7 @@ class FileStorageValidator {
     return Joi.object({
       applicationId: Joi.string().allow("").required(),
       companyId: Joi.number().required(),
-      body: FileStorageModel.FetchProxyRequest().required(),
+      body: FileStorageModel.ProxyFile().required(),
     }).required();
   }
 
@@ -72,7 +72,7 @@ class FileStorageValidator {
 
   static saveProxyDetails() {
     return Joi.object({
-      body: FileStorageModel.FetchProxyRequest().required(),
+      body: FileStorageModel.ProxyFile().required(),
     }).required();
   }
 }
