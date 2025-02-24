@@ -7,7 +7,6 @@ export function findBestMatchingLink(allLinks?: any[], pathname?: string): {
     value: string;
     params: {};
 };
-export function validURL(str: any): boolean;
 export function convertStringToBase64(string: any): string;
 export function isBrowser(): boolean;
 export function isNode(): boolean;
