@@ -5,9 +5,12 @@ function convertUrlToAction(url) {
   if (url) {
     const path = utils.trimChar(url);
     const query = utils.getQuery(path);
-    const pathname = utils.validURL(path)
-      ? new URL(path).pathname
-      : path.split("?")[0];
+    let pathname;
+    try {
+      pathname = new URL(path).pathname;
+    } catch (e) {
+      pathname = path.split("?")[0];
+    }
     const allNavigations = Object.assign({}, Constant.NAVIGATORS);
     const typeLink = {};
     for (nav in allNavigations) {

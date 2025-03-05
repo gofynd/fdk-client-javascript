@@ -31,7 +31,7 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v1.0/navigations",
+      getNavigations: "/service/application/content/v2.0/navigations",
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages",
       getSEOConfiguration: "/service/application/content/v1.0/seo",

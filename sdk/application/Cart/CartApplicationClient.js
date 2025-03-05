@@ -897,7 +897,7 @@ class Cart {
    * @description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotions/).
    */
   async getPromotions(
-    { pageSize, pageNo, promotionType, requestHeaders } = {
+    { pageSize, pageNo, promotionType, isBankOffer, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -906,6 +906,7 @@ class Cart {
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["promotion_type"] = promotionType;
+    query_params["is_bank_offer"] = isBankOffer;
 
     const xHeaders = {};
 

@@ -215,7 +215,7 @@ declare class Cart {
      * @summary: List all available promotions of the sales channel
      * @description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotions/).
      */
-    getPromotions({ pageSize, pageNo, promotionType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Promotions>;
+    getPromotions({ pageSize, pageNo, promotionType, isBankOffer, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Promotions>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
