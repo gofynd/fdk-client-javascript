@@ -18,7 +18,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 
 /**
@@ -29,7 +29,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef GetSignUrlsParam
- * @property {FileStoragePlatformModel.SignUrl} body
+ * @property {FileStoragePlatformModel.SignUrlRequest} body
  */
 
 /**
@@ -43,7 +43,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 
 class FileStoragePlatformValidator {
@@ -60,7 +60,7 @@ class FileStoragePlatformValidator {
   static completeUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStoragePlatformModel.FileUpload().required(),
+      body: FileStoragePlatformModel.StartResponse().required(),
     }).required();
   }
 
@@ -75,7 +75,7 @@ class FileStoragePlatformValidator {
   /** @returns {GetSignUrlsParam} */
   static getSignUrls() {
     return Joi.object({
-      body: FileStoragePlatformModel.SignUrl().required(),
+      body: FileStoragePlatformModel.SignUrlRequest().required(),
     }).required();
   }
 
@@ -90,7 +90,7 @@ class FileStoragePlatformValidator {
   static startUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStoragePlatformModel.FileUploadStart().required(),
+      body: FileStoragePlatformModel.StartRequest().required(),
     }).required();
   }
 }

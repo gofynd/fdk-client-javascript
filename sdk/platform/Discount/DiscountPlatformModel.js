@@ -106,7 +106,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FileJobResponseSchema
+ * @typedef FileJobResponse
  * @property {string} stage
  * @property {number} total
  * @property {number} failed
@@ -125,7 +125,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FileJobRequestSchema
+ * @typedef FileJobRequest
  * @property {string} name
  * @property {boolean} is_active
  * @property {number} company_id
@@ -147,7 +147,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CancelJobResponseSchema
+ * @typedef CancelJobResponse
  * @property {boolean} success
  */
 
@@ -246,7 +246,7 @@ class DiscountPlatformModel {
       modified_on: Joi.string().allow("").required(),
       created_by: DiscountPlatformModel.UserDetails().required(),
       modified_by: DiscountPlatformModel.UserDetails().required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
     });
   }
 
@@ -272,7 +272,7 @@ class DiscountPlatformModel {
       modified_on: Joi.string().allow(""),
       created_by: DiscountPlatformModel.UserDetails(),
       modified_by: DiscountPlatformModel.UserDetails(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
     });
   }
 
@@ -306,8 +306,8 @@ class DiscountPlatformModel {
     });
   }
 
-  /** @returns {FileJobResponseSchema} */
-  static FileJobResponseSchema() {
+  /** @returns {FileJobResponse} */
+  static FileJobResponse() {
     return Joi.object({
       stage: Joi.string().allow("").required(),
       total: Joi.number().required(),
@@ -327,8 +327,8 @@ class DiscountPlatformModel {
     });
   }
 
-  /** @returns {FileJobRequestSchema} */
-  static FileJobRequestSchema() {
+  /** @returns {FileJobRequest} */
+  static FileJobRequest() {
     return Joi.object({
       name: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
@@ -341,7 +341,7 @@ class DiscountPlatformModel {
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountPlatformModel.ValidityObject().required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
     });
   }
 
@@ -353,8 +353,8 @@ class DiscountPlatformModel {
     });
   }
 
-  /** @returns {CancelJobResponseSchema} */
-  static CancelJobResponseSchema() {
+  /** @returns {CancelJobResponse} */
+  static CancelJobResponse() {
     return Joi.object({
       success: Joi.boolean().required(),
     });

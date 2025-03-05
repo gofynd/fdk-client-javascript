@@ -25,7 +25,7 @@ export = RewardsPlatformApplicationValidator;
  */
 /**
  * @typedef SetRewardsConfigurationParam
- * @property {RewardsPlatformModel.SetConfiguration} body
+ * @property {RewardsPlatformModel.ConfigurationRequest} body
  */
 /**
  * @typedef ShowGiveawaysParam
@@ -114,7 +114,7 @@ type SaveGiveAwayParam = {
     body: RewardsPlatformModel.Giveaway;
 };
 type SetRewardsConfigurationParam = {
-    body: RewardsPlatformModel.SetConfiguration;
+    body: RewardsPlatformModel.ConfigurationRequest;
 };
 type ShowGiveawaysParam = {
     /**

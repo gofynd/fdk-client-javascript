@@ -16,10 +16,6 @@ class Logistic {
       getCountries: "/service/application/logistics/v2.0/countries",
       getCountry:
         "/service/application/logistics/v1.0/countries/{country_iso_code}",
-      getCourierPartners:
-        "/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/shipment/courier-partners",
-      getDeliveryPromise:
-        "/service/application/logistics/v1.0/delivery-promise",
       getLocalities:
         "/service/application/logistics/v1.0/localities/{locality_type}",
       getLocality:
@@ -52,7 +48,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CountryListResult>} - Success response
+   * @returns {Promise<CountryListResponse>} - Success response
    * @name getAllCountries
    * @summary: Get deliverable countries
    * @description: Get a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
@@ -95,7 +91,7 @@ class Logistic {
    * @description: List of supported countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
    */
   async getCountries(
-    { onboarding, pageNo, pageSize, q, hierarchy, requestHeaders } = {
+    { onboarding, pageNo, pageSize, q, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -105,7 +101,6 @@ class Logistic {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
-    query_params["hierarchy"] = hierarchy;
 
     const xHeaders = {};
 
@@ -161,94 +156,6 @@ class Logistic {
       constructUrl({
         url: this._urls["getCountry"],
         params: { countryIsoCode },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShipmentCourierPartnerResult>} - Success response
-   * @name getCourierPartners
-   * @summary: Serviceable Courier Partners.
-   * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCourierPartners/).
-   */
-  async getCourierPartners(
-    { companyId, applicationId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], [
-      "companyId",
-      "applicationId",
-    ]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getCourierPartners"],
-        params: { companyId, applicationId },
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetPromiseDetails>} - Success response
-   * @name getDeliveryPromise
-   * @summary: Get delivery promise
-   * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getDeliveryPromise/).
-   */
-  async getDeliveryPromise(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getDeliveryPromise"],
-        params: {},
       }),
       query_params,
       undefined,
@@ -382,7 +289,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetStoreResult>} - Success response
+   * @returns {Promise<GetStoreResponse>} - Success response
    * @name getLocations
    * @summary: Get available selling locations
    * @description: Get stores available for the application based on Delivery Zones and Order Orchestration rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
@@ -439,7 +346,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ReAssignStoreResult>} - Success response
+   * @returns {Promise<ReAssignStoreResponse>} - Success response
    * @name getOptimalLocations
    * @summary: Get selling locations
    * @description: Get optimal fulfillment centre for customers by analyzing their location, product availability, and inventory levels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
@@ -476,7 +383,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PincodeDetails>} - Success response
+   * @returns {Promise<PincodeApiResponse>} - Success response
    * @name getPincodeCity
    * @summary: Get pincode details
    * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
@@ -522,7 +429,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetZoneFromPincodeViewResult>} - Success response
+   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
    * @name getPincodeZones
    * @summary: Get zones
    * @description: Get the delivery zone associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
@@ -559,7 +466,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<TATViewResult>} - Success response
+   * @returns {Promise<TATViewResponse>} - Success response
    * @name getTatProduct
    * @summary: Get product's turnaround time
    * @description: Get the estimated delivery time frame for a specific product from a designated store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
@@ -596,7 +503,7 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ValidateAddressDetails>} - Success response
+   * @returns {Promise<ValidateAddressRequest>} - Success response
    * @name validateAddress
    * @summary: Validate address
    * @description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/validateAddress/).

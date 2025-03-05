@@ -1260,7 +1260,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemeUpgradable>} - Success response
+   * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
    * @name isUpgradable
    * @summary: Check theme is upgradable
    * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
@@ -1314,7 +1314,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemeUpgradable().validate(responseData, {
+    } = ThemePlatformModel.ThemeUpgradableResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1426,16 +1426,13 @@ class Theme {
    * @description: Modify and update the content of a page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updatePage/).
    */
   async updatePage(
-    { themeId, pageValue, socketId, body, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { themeId, pageValue, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.updatePage().validate(
       {
         themeId,
         pageValue,
-        socketId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1451,7 +1448,6 @@ class Theme {
       {
         themeId,
         pageValue,
-        socketId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1468,7 +1464,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}/${socketId}`,
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}`,
       query_params,
       body,
       requestHeaders,

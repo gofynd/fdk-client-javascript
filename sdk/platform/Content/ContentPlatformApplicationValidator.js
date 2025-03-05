@@ -29,15 +29,20 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef CreateAppCustomFieldDefinitionParam
+ * @typedef CreateAppCustomFieldByResourceIdParam
  * @property {string} resource
+ * @property {string} resourceId
+ * @property {ContentPlatformModel.CustomFieldRequestSchema} body
+ */
+
+/**
+ * @typedef CreateAppCustomFieldDefinitionParam
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 
 /**
- * @typedef CreateAppCustomObjectBySlugParam
- * @property {string} definitionSlug
- * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
+ * @typedef CreateAppCustomObjectParam
+ * @property {ContentPlatformModel.CustomObjectRequestSchema} body
  */
 
 /**
@@ -47,7 +52,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef CreateBlogParam
- * @property {ContentPlatformModel.BlogPayload} body
+ * @property {ContentPlatformModel.BlogRequest} body
  */
 
 /**
@@ -62,17 +67,17 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef CreateNavigationParam
- * @property {ContentPlatformModel.NavigationPayload} body
+ * @property {ContentPlatformModel.NavigationRequest} body
  */
 
 /**
  * @typedef CreatePageParam
- * @property {ContentPlatformModel.PagePayload} body
+ * @property {ContentPlatformModel.PageRequest} body
  */
 
 /**
  * @typedef CreatePagePreviewParam
- * @property {ContentPlatformModel.PagePayload} body
+ * @property {ContentPlatformModel.PageRequest} body
  */
 
 /**
@@ -81,13 +86,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef CreateSitemapParam
- * @property {ContentPlatformModel.SitemapConfigCreate} body
- */
-
-/**
  * @typedef CreateSlideshowParam
- * @property {ContentPlatformModel.SlideshowPayload} body
+ * @property {ContentPlatformModel.SlideshowRequest} body
  */
 
 /**
@@ -96,21 +96,18 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef DeleteAppCustomFieldDefinitionBySlugParam
- * @property {string} slug
- * @property {string} resource
- * @property {string} namespace
+ * @typedef DeleteAppCustomFieldDefinitionParam
+ * @property {string} definitionId
  */
 
 /**
- * @typedef DeleteAppCustomObjectBySlugParam
- * @property {string} definitionSlug
- * @property {string} slug
+ * @typedef DeleteAppCustomObjectParam
+ * @property {string} metaobjectId
  */
 
 /**
- * @typedef DeleteAppCustomObjectDefinitionBySlugParam
- * @property {string} slug
+ * @typedef DeleteAppCustomObjectDefinitionParam
+ * @property {string} definitionId
  */
 
 /**
@@ -161,11 +158,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef DeleteSitemapParam
- * @property {string} name
- */
-
-/**
  * @typedef DeleteSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
  */
@@ -190,8 +182,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef ExportAppCustomObjectEntriesBySlugParam
- * @property {string} slug
+ * @typedef ExportAppCustomObjectEntriesParam
+ * @property {string} definitionId
  */
 
 /**
@@ -216,51 +208,40 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef GetAppCustomFieldDefinitionByResourceParam
- * @property {string} pageNo
- * @property {string} pageSize
- * @property {string} resource
- * @property {string} [types]
- * @property {string} [search]
- * @property {string} [slugs]
- * @property {string} [namespaces]
- */
-
-/**
- * @typedef GetAppCustomFieldDefinitionBySlugParam
- * @property {string} slug
- * @property {string} resource
- * @property {string} namespace
+ * @typedef GetAppCustomFieldDefinitionParam
+ * @property {string} definitionId
  */
 
 /**
  * @typedef GetAppCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resources]
- * @property {string} [types]
+ * @property {string} [resource]
+ * @property {string} [type]
  * @property {string} [search]
- * @property {string} [slugs]
- * @property {string} [namespaces]
  */
 
 /** @typedef GetAppCustomFieldTypesParam */
 
 /**
- * @typedef GetAppCustomFieldsByResourceSlugParam
+ * @typedef GetAppCustomFieldsParam
  * @property {string} resource
- * @property {string} resourceSlug
  */
 
 /**
- * @typedef GetAppCustomObjectBySlugParam
- * @property {string} definitionSlug
- * @property {string} slug
+ * @typedef GetAppCustomFieldsByResourceIdParam
+ * @property {string} resource
+ * @property {string} resourceId
  */
 
 /**
- * @typedef GetAppCustomObjectDefinitionBySlugParam
- * @property {string} slug
+ * @typedef GetAppCustomObjectParam
+ * @property {string} metaobjectId
+ */
+
+/**
+ * @typedef GetAppCustomObjectDefinitionParam
+ * @property {string} definitionId
  */
 
 /**
@@ -271,10 +252,10 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef GetAppCustomObjectsBySlugParam
+ * @typedef GetAppCustomObjectsParam
+ * @property {string} [definitionId]
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} definitionSlug
  */
 
 /**
@@ -320,8 +301,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   template was created
  */
 
-/** @typedef GetDefaultSitemapConfigParam */
-
 /**
  * @typedef GetFaqByIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
@@ -364,8 +343,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef GetNavigationBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a navigation. You can get slug value of a navigation from `getNavigations` API.
- * @property {string} [devicePlatform] - Filter navigations by platform.
- *   Acceptable values are: web, android, ios.
+ * @property {string} devicePlatform - Filter navigations by platform.
+ *   Acceptable values are: web, android, ios, all
  */
 
 /**
@@ -428,20 +407,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef GetSitemapParam
- * @property {string} name
- */
-
-/**
- * @typedef GetSitemapsParam
- * @property {string} pageNo
- * @property {string} pageSize
- * @property {boolean} [isActive] - Boolean flag for checking if sitemap is
- *   active or not in storefront
- * @property {string} [name] - Query parameter to search sitemaps with name
- */
-
-/**
  * @typedef GetSlideshowBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value of a page from `getSlideshows` API.
@@ -462,8 +427,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /** @typedef GetSupportInformationParam */
 
 /**
- * @typedef ImportAppCustomObjectEntriesBySlugParam
- * @property {string} slug
+ * @typedef ImportAppCustomObjectEntriesParam
+ * @property {string} definitionId
  * @property {ContentPlatformModel.CustomObjectBulkSchema} body
  */
 
@@ -479,8 +444,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef SampleAppCustomObjectBulkEntryBySlugParam
- * @property {string} slug
+ * @typedef SampleAppCustomObjectBulkEntryParam
+ * @property {string} definitionId
  */
 
 /**
@@ -501,42 +466,27 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef UpdateAppCustomFieldByResourceSlugParam
- * @property {string} resource
- * @property {string} resourceSlug
- * @property {ContentPlatformModel.CustomFieldRequestSchema} body
- */
-
-/**
- * @typedef UpdateAppCustomFieldDefinitionBySlugParam
- * @property {string} slug
- * @property {string} resource
- * @property {string} namespace
+ * @typedef UpdateAppCustomFieldDefinitionParam
+ * @property {string} definitionId
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 
 /**
- * @typedef UpdateAppCustomObjectBySlugParam
- * @property {string} definitionSlug
- * @property {string} slug
- * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
+ * @typedef UpdateAppCustomObjectParam
+ * @property {string} metaobjectId
+ * @property {ContentPlatformModel.CustomObjectRequestSchema} body
  */
 
 /**
- * @typedef UpdateAppCustomObjectDefinitionBySlugParam
- * @property {string} slug
+ * @typedef UpdateAppCustomObjectDefinitionParam
+ * @property {string} definitionId
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 
 /**
  * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
- * @property {ContentPlatformModel.BlogPayload} body
- */
-
-/**
- * @typedef UpdateDefaultSitemapConfigParam
- * @property {ContentPlatformModel.DefaultSitemapConfig} body
+ * @property {ContentPlatformModel.BlogRequest} body
  */
 
 /**
@@ -571,7 +521,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef UpdateNavigationParam
  * @property {string} id - ID allotted to the navigation.
- * @property {ContentPlatformModel.NavigationPayload} body
+ * @property {ContentPlatformModel.NavigationRequest} body
  */
 
 /**
@@ -584,7 +534,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef UpdatePagePreviewParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
- * @property {ContentPlatformModel.PagePublishPayload} body
+ * @property {ContentPlatformModel.PagePublishRequest} body
  */
 
 /**
@@ -599,15 +549,9 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef UpdateSitemapParam
- * @property {string} name
- * @property {ContentPlatformModel.SitemapConfigUpdate} body
- */
-
-/**
  * @typedef UpdateSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
- * @property {ContentPlatformModel.SlideshowPayload} body
+ * @property {ContentPlatformModel.SlideshowRequest} body
  */
 
 /**
@@ -652,19 +596,26 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateAppCustomFieldByResourceIdParam} */
+  static createAppCustomFieldByResourceId() {
+    return Joi.object({
+      resource: Joi.string().allow("").required(),
+      resourceId: Joi.string().allow("").required(),
+      body: ContentPlatformModel.CustomFieldRequestSchema().required(),
+    }).required();
+  }
+
   /** @returns {CreateAppCustomFieldDefinitionParam} */
   static createAppCustomFieldDefinition() {
     return Joi.object({
-      resource: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomFieldDefinitionRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {CreateAppCustomObjectBySlugParam} */
-  static createAppCustomObjectBySlug() {
+  /** @returns {CreateAppCustomObjectParam} */
+  static createAppCustomObject() {
     return Joi.object({
-      definitionSlug: Joi.string().allow("").required(),
-      body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId().required(),
+      body: ContentPlatformModel.CustomObjectRequestSchema().required(),
     }).required();
   }
 
@@ -678,7 +629,7 @@ class ContentPlatformApplicationValidator {
   /** @returns {CreateBlogParam} */
   static createBlog() {
     return Joi.object({
-      body: ContentPlatformModel.BlogPayload().required(),
+      body: ContentPlatformModel.BlogRequest().required(),
     }).required();
   }
 
@@ -699,21 +650,21 @@ class ContentPlatformApplicationValidator {
   /** @returns {CreateNavigationParam} */
   static createNavigation() {
     return Joi.object({
-      body: ContentPlatformModel.NavigationPayload().required(),
+      body: ContentPlatformModel.NavigationRequest().required(),
     }).required();
   }
 
   /** @returns {CreatePageParam} */
   static createPage() {
     return Joi.object({
-      body: ContentPlatformModel.PagePayload().required(),
+      body: ContentPlatformModel.PageRequest().required(),
     }).required();
   }
 
   /** @returns {CreatePagePreviewParam} */
   static createPagePreview() {
     return Joi.object({
-      body: ContentPlatformModel.PagePayload().required(),
+      body: ContentPlatformModel.PageRequest().required(),
     }).required();
   }
 
@@ -724,17 +675,10 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateSitemapParam} */
-  static createSitemap() {
-    return Joi.object({
-      body: ContentPlatformModel.SitemapConfigCreate().required(),
-    }).required();
-  }
-
   /** @returns {CreateSlideshowParam} */
   static createSlideshow() {
     return Joi.object({
-      body: ContentPlatformModel.SlideshowPayload().required(),
+      body: ContentPlatformModel.SlideshowRequest().required(),
     }).required();
   }
 
@@ -745,27 +689,24 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteAppCustomFieldDefinitionBySlugParam} */
-  static deleteAppCustomFieldDefinitionBySlug() {
+  /** @returns {DeleteAppCustomFieldDefinitionParam} */
+  static deleteAppCustomFieldDefinition() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
-      resource: Joi.string().allow("").required(),
-      namespace: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {DeleteAppCustomObjectBySlugParam} */
-  static deleteAppCustomObjectBySlug() {
+  /** @returns {DeleteAppCustomObjectParam} */
+  static deleteAppCustomObject() {
     return Joi.object({
-      definitionSlug: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
+      metaobjectId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {DeleteAppCustomObjectDefinitionBySlugParam} */
-  static deleteAppCustomObjectDefinitionBySlug() {
+  /** @returns {DeleteAppCustomObjectDefinitionParam} */
+  static deleteAppCustomObjectDefinition() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -833,13 +774,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteSitemapParam} */
-  static deleteSitemap() {
-    return Joi.object({
-      name: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {DeleteSlideshowParam} */
   static deleteSlideshow() {
     return Joi.object({
@@ -871,10 +805,10 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {ExportAppCustomObjectEntriesBySlugParam} */
-  static exportAppCustomObjectEntriesBySlug() {
+  /** @returns {ExportAppCustomObjectEntriesParam} */
+  static exportAppCustomObjectEntries() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -901,25 +835,10 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetAppCustomFieldDefinitionByResourceParam} */
-  static getAppCustomFieldDefinitionByResource() {
+  /** @returns {GetAppCustomFieldDefinitionParam} */
+  static getAppCustomFieldDefinition() {
     return Joi.object({
-      pageNo: Joi.string().allow("").required(),
-      pageSize: Joi.string().allow("").required(),
-      resource: Joi.string().allow("").required(),
-      types: Joi.string().allow(""),
-      search: Joi.string().allow(""),
-      slugs: Joi.string().allow(""),
-      namespaces: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetAppCustomFieldDefinitionBySlugParam} */
-  static getAppCustomFieldDefinitionBySlug() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      resource: Joi.string().allow("").required(),
-      namespace: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -928,11 +847,9 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
-      resources: Joi.string().allow(""),
-      types: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      type: Joi.string().allow(""),
       search: Joi.string().allow(""),
-      slugs: Joi.string().allow(""),
-      namespaces: Joi.string().allow(""),
     }).required();
   }
 
@@ -941,26 +858,32 @@ class ContentPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetAppCustomFieldsByResourceSlugParam} */
-  static getAppCustomFieldsByResourceSlug() {
+  /** @returns {GetAppCustomFieldsParam} */
+  static getAppCustomFields() {
     return Joi.object({
       resource: Joi.string().allow("").required(),
-      resourceSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetAppCustomObjectBySlugParam} */
-  static getAppCustomObjectBySlug() {
+  /** @returns {GetAppCustomFieldsByResourceIdParam} */
+  static getAppCustomFieldsByResourceId() {
     return Joi.object({
-      definitionSlug: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
+      resource: Joi.string().allow("").required(),
+      resourceId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetAppCustomObjectDefinitionBySlugParam} */
-  static getAppCustomObjectDefinitionBySlug() {
+  /** @returns {GetAppCustomObjectParam} */
+  static getAppCustomObject() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      metaobjectId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetAppCustomObjectDefinitionParam} */
+  static getAppCustomObjectDefinition() {
+    return Joi.object({
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -973,12 +896,12 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetAppCustomObjectsBySlugParam} */
-  static getAppCustomObjectsBySlug() {
+  /** @returns {GetAppCustomObjectsParam} */
+  static getAppCustomObjects() {
     return Joi.object({
+      definitionId: Joi.string().allow(""),
       pageNo: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
-      definitionSlug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -1040,11 +963,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetDefaultSitemapConfigParam} */
-  static getDefaultSitemapConfig() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetFaqByIdOrSlugParam} */
   static getFaqByIdOrSlug() {
     return Joi.object({
@@ -1095,7 +1013,7 @@ class ContentPlatformApplicationValidator {
   static getNavigationBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
-      devicePlatform: Joi.string().allow(""),
+      devicePlatform: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -1170,23 +1088,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetSitemapParam} */
-  static getSitemap() {
-    return Joi.object({
-      name: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetSitemapsParam} */
-  static getSitemaps() {
-    return Joi.object({
-      pageNo: Joi.string().allow("").required(),
-      pageSize: Joi.string().allow("").required(),
-      isActive: Joi.boolean(),
-      name: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetSlideshowBySlugParam} */
   static getSlideshowBySlug() {
     return Joi.object({
@@ -1209,10 +1110,10 @@ class ContentPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {ImportAppCustomObjectEntriesBySlugParam} */
-  static importAppCustomObjectEntriesBySlug() {
+  /** @returns {ImportAppCustomObjectEntriesParam} */
+  static importAppCustomObjectEntries() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomObjectBulkSchema().required(),
     }).required();
   }
@@ -1232,10 +1133,10 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {SampleAppCustomObjectBulkEntryBySlugParam} */
-  static sampleAppCustomObjectBulkEntryBySlug() {
+  /** @returns {SampleAppCustomObjectBulkEntryParam} */
+  static sampleAppCustomObjectBulkEntry() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -1262,38 +1163,26 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateAppCustomFieldByResourceSlugParam} */
-  static updateAppCustomFieldByResourceSlug() {
+  /** @returns {UpdateAppCustomFieldDefinitionParam} */
+  static updateAppCustomFieldDefinition() {
     return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceSlug: Joi.string().allow("").required(),
-      body: ContentPlatformModel.CustomFieldRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateAppCustomFieldDefinitionBySlugParam} */
-  static updateAppCustomFieldDefinitionBySlug() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      resource: Joi.string().allow("").required(),
-      namespace: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomFieldDefinitionRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdateAppCustomObjectBySlugParam} */
-  static updateAppCustomObjectBySlug() {
+  /** @returns {UpdateAppCustomObjectParam} */
+  static updateAppCustomObject() {
     return Joi.object({
-      definitionSlug: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
-      body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId().required(),
+      metaobjectId: Joi.string().allow("").required(),
+      body: ContentPlatformModel.CustomObjectRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdateAppCustomObjectDefinitionBySlugParam} */
-  static updateAppCustomObjectDefinitionBySlug() {
+  /** @returns {UpdateAppCustomObjectDefinitionParam} */
+  static updateAppCustomObjectDefinition() {
     return Joi.object({
-      slug: Joi.string().allow("").required(),
+      definitionId: Joi.string().allow("").required(),
       body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema().required(),
     }).required();
   }
@@ -1302,14 +1191,7 @@ class ContentPlatformApplicationValidator {
   static updateBlog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.BlogPayload().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateDefaultSitemapConfigParam} */
-  static updateDefaultSitemapConfig() {
-    return Joi.object({
-      body: ContentPlatformModel.DefaultSitemapConfig().required(),
+      body: ContentPlatformModel.BlogRequest().required(),
     }).required();
   }
 
@@ -1356,7 +1238,7 @@ class ContentPlatformApplicationValidator {
   static updateNavigation() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.NavigationPayload().required(),
+      body: ContentPlatformModel.NavigationRequest().required(),
     }).required();
   }
 
@@ -1372,7 +1254,7 @@ class ContentPlatformApplicationValidator {
   static updatePagePreview() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
-      body: ContentPlatformModel.PagePublishPayload().required(),
+      body: ContentPlatformModel.PagePublishRequest().required(),
     }).required();
   }
 
@@ -1391,19 +1273,11 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateSitemapParam} */
-  static updateSitemap() {
-    return Joi.object({
-      name: Joi.string().allow("").required(),
-      body: ContentPlatformModel.SitemapConfigUpdate().required(),
-    }).required();
-  }
-
   /** @returns {UpdateSlideshowParam} */
   static updateSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.SlideshowPayload().required(),
+      body: ContentPlatformModel.SlideshowRequest().required(),
     }).required();
   }
 
