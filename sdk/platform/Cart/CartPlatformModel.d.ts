@@ -1002,6 +1002,8 @@ export = CartPlatformModel;
  * @property {string} [promotion_name] - Promotion name of current promotion
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
  * @property {string} [offer_text] - Offer text of current promotion
+ * @property {string} [offer_label] - Offer label of the applied promotion, to
+ *   be used as display text.
  * @property {number} [amount] - Per unit discount amount applied with current promotion
  * @property {string} [float_amount] - Per unit discount amount with decimal
  *   values applied with current promotion.
@@ -4768,6 +4770,11 @@ type AppliedPromotion = {
      * - Offer text of current promotion
      */
     offer_text?: string;
+    /**
+     * - Offer label of the applied promotion, to
+     * be used as display text.
+     */
+    offer_label?: string;
     /**
      * - Per unit discount amount applied with current promotion
      */

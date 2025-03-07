@@ -26,13 +26,13 @@ class LogisticsValidator {
 
   static getBulkTat() {
     return Joi.object({
-      extensionId: Joi.string().allow("").required(),
+      extensionId: Joi.string().allow("").allow(null).required(),
       schemeId: Joi.string().allow("").required(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       batchId: Joi.string().allow(""),
       action: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: Joi.string().allow("").allow(null),
       country: Joi.string().allow(""),
       region: Joi.string().allow(""),
       startDate: Joi.string().allow(""),
@@ -170,7 +170,7 @@ class LogisticsValidator {
       pageSize: Joi.number(),
       batchId: Joi.string().allow(""),
       action: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: Joi.string().allow("").allow(null),
       country: Joi.string().allow(""),
       region: Joi.string().allow(""),
       startDate: Joi.string().allow(""),

@@ -515,6 +515,8 @@ const Joi = require("joi");
  * @property {string} status - Current status of the result item.
  * @property {number} [total] - Total number of records processed.
  * @property {string} [error_file_path] - Path to the file containing error details.
+ * @property {string} [modified_on] - The timestamp when the record last modified.
+ * @property {string} [created_on] - The timestamp when the record was created.
  */
 
 /**
@@ -1751,7 +1753,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomerRadiusSchema
- * @property {string} unit - The unit of measurement for the radius (e.g.,
+ * @property {string} [unit] - The unit of measurement for the radius (e.g.,
  *   kilometers, miles).
  * @property {number} [lt] - The less-than comparison value for the radius.
  * @property {number} [lte] - The less-than-or-equal comparison value for the radius.
@@ -2809,6 +2811,8 @@ class ServiceabilityPlatformModel {
       status: Joi.string().allow("").required(),
       total: Joi.number(),
       error_file_path: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
     });
   }
 
@@ -4107,7 +4111,7 @@ class ServiceabilityPlatformModel {
   /** @returns {CustomerRadiusSchema} */
   static CustomerRadiusSchema() {
     return Joi.object({
-      unit: Joi.string().allow("").required(),
+      unit: Joi.string().allow(""),
       lt: Joi.number(),
       lte: Joi.number(),
       gt: Joi.number(),

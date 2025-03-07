@@ -309,6 +309,8 @@ export = LogisticsPartnerModel;
  * @property {string} status - Current status of the result item.
  * @property {number} [total] - Total number of records processed.
  * @property {string} [error_file_path] - Path to the file containing error details.
+ * @property {string} [modified_on] - The timestamp when the record last modified.
+ * @property {string} [created_on] - The timestamp when the record was created.
  */
 /**
  * @typedef BulkRegionResult
@@ -1360,6 +1362,14 @@ type BulkRegionResultItemData = {
      * - Path to the file containing error details.
      */
     error_file_path?: string;
+    /**
+     * - The timestamp when the record last modified.
+     */
+    modified_on?: string;
+    /**
+     * - The timestamp when the record was created.
+     */
+    created_on?: string;
 };
 /** @returns {BulkRegionResult} */
 declare function BulkRegionResult(): BulkRegionResult;

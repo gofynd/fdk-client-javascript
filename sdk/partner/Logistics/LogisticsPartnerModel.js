@@ -326,6 +326,8 @@ const Joi = require("joi");
  * @property {string} status - Current status of the result item.
  * @property {number} [total] - Total number of records processed.
  * @property {string} [error_file_path] - Path to the file containing error details.
+ * @property {string} [modified_on] - The timestamp when the record last modified.
+ * @property {string} [created_on] - The timestamp when the record was created.
  */
 
 /**
@@ -910,6 +912,8 @@ class LogisticsPartnerModel {
       status: Joi.string().allow("").required(),
       total: Joi.number(),
       error_file_path: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
     });
   }
 
