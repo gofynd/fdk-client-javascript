@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.15-beta.8) - 1.9.4
+# CHANGE LOG (1.4.15-beta.10) - 1.9.4
 
 ## Application Client
 
@@ -2938,6 +2938,7 @@
 
 	- [Added] property <code>items[].shipments[].bags[].item.l2_category</code> of schema <code>Item</code> in response with status code 200
 	- [Added] property <code>items[].shipments[].bags[].item.l2_category_id</code> of schema <code>Item</code> in response with status code 200
+	- [Added] property <code>items[].custom_json</code> of schema <code>OrderSchema</code> in response with status code 200
 	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
@@ -2985,6 +2986,7 @@
 - ##### What's New
 	- [Added] property <code>order.shipments[].bags[].item.l2_category</code> of schema <code>Item</code> in response with status code 200
 	- [Added] property <code>order.shipments[].bags[].item.l2_category_id</code> of schema <code>Item</code> in response with status code 200
+	- [Added] property <code>order.custom_json</code> of schema <code>OrderSchema</code> in response with status code 200
 	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
@@ -11597,6 +11599,7 @@
 	- [Added] property <code>order_platform</code> of schema <code>CreateOrderAPI</code> in request body
 	- [Added] property <code>fynd_order_id</code> of schema <code>CreateOrderAPI</code> in request body
 	- [Added] property <code>application_id</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Added] property <code>custom_json</code> of schema <code>CreateOrderAPI</code> in request body
 	- [Breaking] [Added] <code>shipping_info</code> made required in request body
 	- [Added] <code>fynd_order_id</code> made required in response with status code 200
 	- [Added] Response with status 4XX
@@ -13211,6 +13214,311 @@
 - ##### What's Deprecated
 	- [Breaking] [Deleted] method <code>getSDKDocumentationByType</code>
 
+
+
+# CHANGE LOG (v2.0.2) - 2.3.0
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+## Partner Client
+
+
+
+### Logistics
+
+
+
+#### bulkTat
+
+- ##### What's New
+	- [Added] property <code>modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### getBulkTat
+
+- ##### What's New
+	- [Added] property <code>items[].modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>items[].created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### bulkServiceability
+
+- ##### What's New
+	- [Added] property <code>modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### getBulkServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>items[].created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>cart.applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>items[].promotions_applied[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] property <code>applied_promo_details[].offer_label</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+### Serviceability
+
+
+
+#### bulkTat
+
+- ##### What's New
+	- [Added] property <code>modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### getBulkTat
+
+- ##### What's New
+	- [Added] property <code>items[].modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>items[].created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### bulkServiceability
+
+- ##### What's New
+	- [Added] property <code>modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+
+
+#### getBulkServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].modified_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
+	- [Added] property <code>items[].created_on</code> of schema <code>BulkRegionResultItemData</code> in response with status code 200
 
 
 # CHANGE LOG (2.0.1) - 2.2.0

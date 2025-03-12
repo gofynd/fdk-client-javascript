@@ -7253,7 +7253,7 @@ class CatalogPlatformModel {
       all_company_ids: Joi.array().items(Joi.number()),
       all_identifiers: Joi.array().items(Joi.string().allow("")),
       all_sizes: Joi.array().items(Joi.any()),
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       brand: CatalogPlatformModel.Brand(),
       brand_uid: Joi.number(),
       category: Joi.any(),

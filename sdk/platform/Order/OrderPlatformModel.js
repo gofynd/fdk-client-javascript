@@ -886,6 +886,8 @@ const Joi = require("joi");
  *   or system that is making the order request.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
+ * @property {Object} [custom_json] - An object containing additional metadata,
+ *   ensuring only the required fields are included as needed.
  */
 
 /**
@@ -4298,6 +4300,7 @@ class OrderPlatformModel {
       fynd_order_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
       external_shipment_id: Joi.string().allow(""),
+      custom_json: Joi.any().allow(null),
     });
   }
 

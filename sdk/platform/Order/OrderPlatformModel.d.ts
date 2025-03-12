@@ -812,6 +812,8 @@ export = OrderPlatformModel;
  *   or system that is making the order request.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
+ * @property {Object} [custom_json] - An object containing additional metadata,
+ *   ensuring only the required fields are included as needed.
  */
 /**
  * @typedef CreateOrderErrorReponse
@@ -4930,6 +4932,11 @@ type CreateOrderAPI = {
      * marketplace's unique shipment identifier.
      */
     external_shipment_id?: string;
+    /**
+     * - An object containing additional metadata,
+     * ensuring only the required fields are included as needed.
+     */
+    custom_json?: any;
 };
 /** @returns {CreateOrderErrorReponse} */
 declare function CreateOrderErrorReponse(): CreateOrderErrorReponse;
