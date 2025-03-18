@@ -154,7 +154,16 @@ const Joi = require("joi");
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
- * @property {string} [source]
+ * @property {SectionSource} [__source]
+ */
+
+/**
+ * @typedef SectionSource
+ * @property {string} [id] - The source id specifying the source of the section.
+ * @property {string} [bundle_name] - This is the extension binding name
+ *   containing this section.
+ * @property {string} [type] - This is source type. It will either be
+ *   themeBundle or extension.
  */
 
 /**
@@ -271,7 +280,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ThemeUpgradableResponse
+ * @typedef ThemeUpgradable
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
  * @property {ThemeVersions} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
@@ -576,7 +585,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DummyResponse
+ * @typedef DummyTheme
  * @property {string} [message]
  */
 
@@ -787,7 +796,7 @@ class ThemePlatformModel {
   /** @returns {AvailablePageSectionMetaAttributes} */
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -849,11 +858,20 @@ class ThemePlatformModel {
     return Joi.object({
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      props: Joi.any(),
+      props: Joi.object().pattern(/\S/, Joi.any()),
       blocks: Joi.array().items(Joi.any()),
-      preset: Joi.any(),
+      preset: Joi.object().pattern(/\S/, Joi.any()),
       predicate: ThemePlatformModel.AvailablePagePredicate(),
-      source: Joi.string().allow(""),
+      __source: ThemePlatformModel.SectionSource(),
+    });
+  }
+
+  /** @returns {SectionSource} */
+  static SectionSource() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      bundle_name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -891,7 +909,7 @@ class ThemePlatformModel {
     return Joi.object({
       selected: Joi.string().allow(""),
       exact_url: Joi.string().allow(""),
-      query: Joi.any(),
+      query: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -987,7 +1005,7 @@ class ThemePlatformModel {
       name: Joi.string().allow(""),
       template_theme_id: Joi.string().allow(""),
       version: Joi.string().allow(""),
-      styles: Joi.any(),
+      styles: Joi.object().pattern(/\S/, Joi.any()),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       assets: ThemePlatformModel.Assets(),
@@ -998,8 +1016,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {ThemeUpgradableResponse} */
-  static ThemeUpgradableResponse() {
+  /** @returns {ThemeUpgradable} */
+  static ThemeUpgradable() {
     return Joi.object({
       upgrade: Joi.boolean(),
       versions: ThemePlatformModel.ThemeVersions(),
@@ -1065,7 +1083,7 @@ class ThemePlatformModel {
   static ThemeConfiguration() {
     return Joi.object({
       name: Joi.string().allow(""),
-      global_config: Joi.any(),
+      global_config: Joi.object().pattern(/\S/, Joi.any()),
       page: Joi.array().items(ThemePlatformModel.ThemeConfigListPage()),
     });
   }
@@ -1117,7 +1135,7 @@ class ThemePlatformModel {
   /** @returns {ThemeConfigListPageSettingsProps} */
   static ThemeConfigListPageSettingsProps() {
     return Joi.object({
-      props: Joi.any(),
+      props: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1384,8 +1402,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {DummyResponse} */
-  static DummyResponse() {
+  /** @returns {DummyTheme} */
+  static DummyTheme() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

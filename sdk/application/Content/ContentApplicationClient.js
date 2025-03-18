@@ -14,12 +14,14 @@ class Content {
     this._relativeUrls = {
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
-      getBlogs: "/service/application/content/v1.0/blogs/",
-      getCustomFields:
-        "/service/application/content/v1.0/metafields/{resource}/{resource_id}",
-      getCustomObject:
-        "/service/application/content/v1.0/metaobjects/{metaobject_id}",
+      getBlogs: "/service/application/content/v1.0/blogs",
+      getCustomFieldsByResourceId:
+        "/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}",
+      getCustomObjectBySlug:
+        "/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
+      getDefaultSitemapConfig:
+        "/service/application/content/v1.0/seo/sitemap/default",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
       getFaqCategoryBySlug:
@@ -29,13 +31,15 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v1.0/navigations/",
+      getNavigations: "/service/application/content/v2.0/navigations",
       getPage: "/service/application/content/v2.0/pages/{slug}",
-      getPages: "/service/application/content/v2.0/pages/",
+      getPages: "/service/application/content/v2.0/pages",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
+      getSitemap: "/service/application/content/v1.0/seo/sitemaps/{name}",
+      getSitemaps: "/service/application/content/v1.0/seo/sitemaps",
       getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
-      getSlideshows: "/service/application/content/v1.0/slideshow/",
+      getSlideshows: "/service/application/content/v1.0/slideshow",
       getSupportInformation: "/service/application/content/v1.0/support",
       getTags: "/service/application/content/v1.0/tags",
     };
@@ -101,7 +105,7 @@ class Content {
    * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
   async getBlog(
-    { slug, rootId, requestHeaders } = { requestHeaders: {} },
+    { slug, rootId, preview, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["slug"]);
@@ -115,6 +119,7 @@ class Content {
 
     const query_params = {};
     query_params["root_id"] = rootId;
+    query_params["preview"] = preview;
 
     const xHeaders = {};
 
@@ -142,7 +147,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BlogGetResponse>} - Success response
+   * @returns {Promise<BlogGetDetails>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
@@ -184,17 +189,17 @@ class Content {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CustomFieldsResponseByResourceIdSchema>} - Success response
-   * @name getCustomFields
-   * @summary: Get list of custom fields
-   * @description: List custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+   * @name getCustomFieldsByResourceId
+   * @summary: Get list of custom fields of given resource and resource slug
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
    */
-  async getCustomFields(
-    { resource, resourceId, requestHeaders } = { requestHeaders: {} },
+  async getCustomFieldsByResourceId(
+    { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], [
       "resource",
-      "resourceId",
+      "resourceSlug",
     ]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
@@ -212,8 +217,8 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomFields"],
-        params: { resource, resourceId },
+        url: this._urls["getCustomFieldsByResourceId"],
+        params: { resource, resourceSlug },
       }),
       query_params,
       undefined,
@@ -233,15 +238,18 @@ class Content {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CustomObjectByIdSchema>} - Success response
-   * @name getCustomObject
-   * @summary: Get custom object
-   * @description: Get details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
+   * @name getCustomObjectBySlug
+   * @summary: Get custom object details
+   * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
    */
-  async getCustomObject(
-    { metaobjectId, requestHeaders } = { requestHeaders: {} },
+  async getCustomObjectBySlug(
+    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], ["metaobjectId"]);
+    const errors = validateRequiredParams(arguments[0], [
+      "definitionSlug",
+      "slug",
+    ]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
         message: "Missing required field",
@@ -258,8 +266,8 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomObject"],
-        params: { metaobjectId },
+        url: this._urls["getCustomObjectBySlug"],
+        params: { definitionSlug, slug },
       }),
       query_params,
       undefined,
@@ -296,6 +304,43 @@ class Content {
       "get",
       constructUrl({
         url: this._urls["getDataLoaders"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DefaultSitemapConfig>} - Success response
+   * @name getDefaultSitemapConfig
+   * @summary: Get default sitemap configuration
+   * @description: Retrieves the current default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDefaultSitemapConfig/).
+   */
+  async getDefaultSitemapConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getDefaultSitemapConfig"],
         params: {},
       }),
       query_params,
@@ -601,7 +646,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<NavigationGetResponse>} - Success response
+   * @returns {Promise<NavigationGetDetails>} - Success response
    * @name getNavigations
    * @summary: List navigation items
    * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
@@ -687,7 +732,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PageGetResponse>} - Success response
+   * @returns {Promise<PageGetDetails>} - Success response
    * @name getPages
    * @summary: Lists pages
    * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
@@ -802,6 +847,93 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SitemapConfig>} - Success response
+   * @name getSitemap
+   * @summary: Get a specific sitemap configuration
+   * @description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemap/).
+   */
+  async getSitemap(
+    { name, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["name"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSitemap"],
+        params: { name },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SitemapConfigurationList>} - Success response
+   * @name getSitemaps
+   * @summary: List sitemap configurations
+   * @description: Retrieve a list of sitemap configurations for a specific application. Each configuration contains the sitemap XML data.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemaps/).
+   */
+  async getSitemaps(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSitemaps"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<SlideshowSchema>} - Success response
    * @name getSlideshow
    * @summary: Get a Slideshow
@@ -848,7 +980,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SlideshowGetResponse>} - Success response
+   * @returns {Promise<SlideshowGetDetails>} - Success response
    * @name getSlideshows
    * @summary: List Slideshows
    * @description: List slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
@@ -882,33 +1014,6 @@ class Content {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<SlideshowGetResponse>}
-   * @summary: List Slideshows
-   * @description: List slideshows along with their details.
-   */
-  getSlideshowsPaginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSlideshows({
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**

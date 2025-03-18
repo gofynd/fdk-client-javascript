@@ -8,7 +8,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AddProxyResponse
+ * @typedef ExtensionProxyPathCreation
  * @property {string} [_id]
  * @property {string} [attached_path]
  * @property {string} [proxy_url]
@@ -20,7 +20,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef RemoveProxyResponse
+ * @typedef ExtensionProxyPathDelete
  * @property {string} [message]
  * @property {Object} [data]
  */
@@ -43,8 +43,8 @@ class PartnerPlatformModel {
     });
   }
 
-  /** @returns {AddProxyResponse} */
-  static AddProxyResponse() {
+  /** @returns {ExtensionProxyPathCreation} */
+  static ExtensionProxyPathCreation() {
     return Joi.object({
       _id: Joi.string().allow(""),
       attached_path: Joi.string().allow(""),
@@ -57,11 +57,11 @@ class PartnerPlatformModel {
     });
   }
 
-  /** @returns {RemoveProxyResponse} */
-  static RemoveProxyResponse() {
+  /** @returns {ExtensionProxyPathDelete} */
+  static ExtensionProxyPathDelete() {
     return Joi.object({
       message: Joi.string().allow(""),
-      data: Joi.any(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -72,7 +72,7 @@ class PartnerPlatformModel {
       message: Joi.string().allow(""),
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 }

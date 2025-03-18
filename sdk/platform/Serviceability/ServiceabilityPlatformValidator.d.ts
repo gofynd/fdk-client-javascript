@@ -1,19 +1,19 @@
 export = ServiceabilityPlatformValidator;
 /**
  * @typedef BulkServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 /**
  * @typedef BulkTatParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
  */
 /**
  * @typedef CreatePackageMaterialParam
@@ -30,8 +30,8 @@ export = ServiceabilityPlatformValidator;
 /** @typedef GetAllStoresParam */
 /**
  * @typedef GetBulkServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [batchId] - Unique identifier of bulk job
@@ -44,8 +44,8 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetBulkTatParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [batchId] - Unique identifier of bulk job
@@ -59,7 +59,7 @@ export = ServiceabilityPlatformValidator;
 /** @typedef GetCompanyConfigurationParam */
 /**
  * @typedef GetCourierPartnerAccountParam
- * @property {string} accountId - Unique ID of courier account
+ * @property {string} accountId - Unique ID of courier partner account
  */
 /**
  * @typedef GetCourierPartnerAccountsParam
@@ -71,7 +71,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsDetailsSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -94,13 +94,12 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetPackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {string} packageMaterialId - Unique identifier for a Package. Material
  */
 /**
  * @typedef GetServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
  * @property {string} regionId - Unique identifier of a region
  */
 /**
@@ -126,8 +125,8 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef UpdateCourierPartnerAccountParam
- * @property {string} accountId - Unique ID of courier account
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {string} accountId - Unique ID of courier partner account
+ * @property {ServiceabilityPlatformModel.CourierAccountUpdateDetails} body
  */
 /**
  * @typedef UpdatePackageMaterialRuleParam
@@ -137,14 +136,13 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef UpdatePackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {string} packageMaterialId - Unique identifier for a Package. Material
  * @property {ServiceabilityPlatformModel.PackageMaterial} body
  */
 /**
  * @typedef UpdateServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier of courier partner scheme.
  * @property {string} regionId - Unique identifier of a region
  * @property {ServiceabilityPlatformModel.ServiceabilityModel} body
  */
@@ -212,28 +210,28 @@ declare namespace ServiceabilityPlatformValidator {
 }
 type BulkServiceabilityParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
-    body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
 };
 type BulkTatParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
-    body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
 };
 type CreateCourierPartnerAccountParam = {
-    body: ServiceabilityPlatformModel.CourierAccountRequestBody;
+    body: ServiceabilityPlatformModel.CourierAccountDetailsBody;
 };
 type CreatePackageMaterialParam = {
     body: ServiceabilityPlatformModel.PackageMaterial;
@@ -246,11 +244,11 @@ type CreateZoneParam = {
 };
 type GetBulkServiceabilityParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
     /**
@@ -292,11 +290,11 @@ type GetBulkServiceabilityParam = {
 };
 type GetBulkTatParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
     /**
@@ -338,7 +336,7 @@ type GetBulkTatParam = {
 };
 type GetCourierPartnerAccountParam = {
     /**
-     * - Unique ID of courier account
+     * - Unique ID of courier partner account
      */
     accountId: string;
 };
@@ -365,7 +363,7 @@ type GetCourierPartnerAccountsParam = {
     transportType?: string;
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
+    body: ServiceabilityPlatformModel.OptimlLocationsDetailsSchema;
 };
 type GetPackageMaterialListParam = {
     /**
@@ -412,18 +410,17 @@ type GetPackageMaterialRulesParam = {
 };
 type GetPackageMaterialsParam = {
     /**
-     * - A `package_material_id` is a unique
-     * identifier for a Package Material
+     * - Unique identifier for a Package. Material
      */
     packageMaterialId: string;
 };
 type GetServiceabilityParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
     /**
@@ -484,10 +481,10 @@ type UpdateCompanyConfigurationParam = {
 };
 type UpdateCourierPartnerAccountParam = {
     /**
-     * - Unique ID of courier account
+     * - Unique ID of courier partner account
      */
     accountId: string;
-    body: ServiceabilityPlatformModel.CourierAccount;
+    body: ServiceabilityPlatformModel.CourierAccountUpdateDetails;
 };
 type UpdatePackageMaterialRuleParam = {
     /**
@@ -499,19 +496,18 @@ type UpdatePackageMaterialRuleParam = {
 };
 type UpdatePackageMaterialsParam = {
     /**
-     * - A `package_material_id` is a unique
-     * identifier for a Package Material
+     * - Unique identifier for a Package. Material
      */
     packageMaterialId: string;
     body: ServiceabilityPlatformModel.PackageMaterial;
 };
 type UpdateServiceabilityParam = {
     /**
-     * - Unique Identifier of CP Extension
+     * - Unique Identifier of courier partner extension.
      */
     extensionId: string;
     /**
-     * - Unique identifier of a scheme
+     * - Unique identifier of courier partner scheme.
      */
     schemeId: string;
     /**

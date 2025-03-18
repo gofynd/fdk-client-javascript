@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef GeneralConfigResponse
+ * @typedef GeneralConfigDetails
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -325,8 +325,8 @@ const Joi = require("joi");
 /** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 
 class LeadPlatformModel {
-  /** @returns {GeneralConfigResponse} */
-  static GeneralConfigResponse() {
+  /** @returns {GeneralConfigDetails} */
+  static GeneralConfigDetails() {
     return Joi.object({
       _id: Joi.string().allow(""),
       support_communication: Joi.array().items(
@@ -474,7 +474,7 @@ class LeadPlatformModel {
   /** @returns {TicketHistoryPayload} */
   static TicketHistoryPayload() {
     return Joi.object({
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       type: LeadPlatformModel.HistoryTypeEnum().required(),
     });
   }
@@ -515,12 +515,12 @@ class LeadPlatformModel {
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       status: Joi.string().allow(""),
       priority: LeadPlatformModel.PriorityEnum(),
       category: Joi.string().allow("").required(),
       content: LeadPlatformModel.TicketContent().required(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -559,7 +559,7 @@ class LeadPlatformModel {
   /** @returns {TicketFeedbackPayload} */
   static TicketFeedbackPayload() {
     return Joi.object({
-      form_response: Joi.any(),
+      form_response: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -605,9 +605,9 @@ class LeadPlatformModel {
   /** @returns {FeedbackForm} */
   static FeedbackForm() {
     return Joi.object({
-      inputs: Joi.any(),
+      inputs: Joi.object().pattern(/\S/, Joi.any()),
       title: Joi.string().allow(""),
-      timestamps: Joi.any(),
+      timestamps: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -641,7 +641,7 @@ class LeadPlatformModel {
         .items(LeadPlatformModel.FeedbackResponseItem())
         .required(),
       category: Joi.string().allow(""),
-      user: Joi.any(),
+      user: Joi.object().pattern(/\S/, Joi.any()),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
     });
@@ -651,10 +651,10 @@ class LeadPlatformModel {
   static TicketHistory() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       ticket_id: Joi.string().allow("").required(),
       created_on: LeadPlatformModel.CreatedOn(),
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -674,12 +674,12 @@ class LeadPlatformModel {
       status: LeadPlatformModel.Status().required(),
       priority: LeadPlatformModel.Priority().required(),
       sla: LeadPlatformModel.SLA(),
-      created_by: Joi.any(),
-      assigned_to: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      assigned_to: Joi.object().pattern(/\S/, Joi.any()),
       tags: Joi.array().items(Joi.string().allow("")),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       is_feedback_pending: Joi.boolean(),
-      integration: Joi.any(),
+      integration: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

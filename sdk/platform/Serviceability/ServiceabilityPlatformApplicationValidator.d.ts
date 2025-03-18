@@ -5,20 +5,24 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef CreateStoreRulesParam
- * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
 /** @typedef GetApplicationConfigParam */
 /** @typedef GetApplicationConfigurationParam */
 /** @typedef GetApplicationServiceabilitySelfShipmentParam */
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
+ * @property {string} ruleId - Unique identifier of the courier partner rule
  */
 /**
  * @typedef GetCourierPartnerRulesParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [status] - Filter rules based on rule status
+ */
+/**
+ * @typedef GetCourierPartnersParam
+ * @property {ServiceabilityPlatformModel.ShipmentCourierPartnerDetails} body
  */
 /**
  * @typedef GetStoreRuleParam
@@ -37,7 +41,7 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef PatchApplicationServiceabilitySelfShipmentParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ * @property {ServiceabilityPlatformModel.SelfShipResult} body
  */
 /**
  * @typedef UpdateApplicationConfigurationParam
@@ -45,16 +49,18 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
+ * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
  */
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
+ * @property {string} ruleId - Unique identifier of the courier partner rule.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 /**
  * @typedef UpdatePincodeAuditHistoryParam
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails} body
  */
 /**
  * @typedef UpdatePincodeBulkViewParam
@@ -62,7 +68,9 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdatePincodeCoDListingParam
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {ServiceabilityPlatformModel.PincodeCodStatusListingDetails} body
  */
 /**
  * @typedef UpdatePincodeMopViewParam
@@ -72,7 +80,7 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef UpdateStoreRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
- * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
 /**
  * @typedef UpdateStoreRulesConfigParam
@@ -93,6 +101,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getCourierPartnerRule(): GetCourierPartnerRuleParam;
     /** @returns {GetCourierPartnerRulesParam} */
     static getCourierPartnerRules(): GetCourierPartnerRulesParam;
+    /** @returns {GetCourierPartnersParam} */
+    static getCourierPartners(): GetCourierPartnersParam;
     /** @returns {GetStoreRuleParam} */
     static getStoreRule(): GetStoreRuleParam;
     /** @returns {GetStoreRulesParam} */
@@ -121,17 +131,17 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateStoreRulesConfig(): UpdateStoreRulesConfigParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
+    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
 }
 type CreateCourierPartnerRuleParam = {
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type CreateStoreRulesParam = {
-    body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema;
+    body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema;
 };
 type GetCourierPartnerRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a rule.
+     * - Unique identifier of the courier partner rule
      */
     ruleId: string;
 };
@@ -149,6 +159,9 @@ type GetCourierPartnerRulesParam = {
      */
     status?: string;
 };
+type GetCourierPartnersParam = {
+    body: ServiceabilityPlatformModel.ShipmentCourierPartnerDetails;
+};
 type GetStoreRuleParam = {
     /**
      * - A `rule_uid` is a unique identifier for a
@@ -165,29 +178,45 @@ type InsertApplicationConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;
 };
 type PatchApplicationServiceabilitySelfShipmentParam = {
-    body: ServiceabilityPlatformModel.SelfShipResponse;
+    body: ServiceabilityPlatformModel.SelfShipResult;
 };
 type UpdateApplicationConfigurationParam = {
     body: ServiceabilityPlatformModel.ApplicationConfig;
 };
 type UpdateCourierPartnerRulePriorityParam = {
-    body: ServiceabilityPlatformModel.RulePriorityRequest;
+    body: ServiceabilityPlatformModel.RulePriorityDetails;
 };
 type UpdateCourierRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a particular Dp.
+     * - Unique identifier of the courier partner rule.
      */
     ruleId: string;
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type UpdatePincodeAuditHistoryParam = {
-    body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest;
+    /**
+     * - Page number to be fetched.
+     */
+    pageNumber?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+    body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails;
 };
 type UpdatePincodeBulkViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopBulkData;
 };
 type UpdatePincodeCoDListingParam = {
-    body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest;
+    /**
+     * - Page number to be fetched.
+     */
+    pageNumber?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+    body: ServiceabilityPlatformModel.PincodeCodStatusListingDetails;
 };
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
@@ -198,7 +227,7 @@ type UpdateStoreRulesParam = {
      * particular rule object.
      */
     ruleUid: string;
-    body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema;
+    body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema;
 };
 type UpdateStoreRulesConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;
