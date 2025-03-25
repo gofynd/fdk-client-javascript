@@ -431,7 +431,7 @@ class Content {
    * @param {ContentPlatformValidator.DeleteCompanyLanguageParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<any>} - Success response
+   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
    * @name deleteCompanyLanguage
    * @summary: Remove company language
    * @description: Remove a language from company's supported languages list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyLanguage/).
@@ -485,9 +485,12 @@ class Content {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
+    const {
+      error: res_error,
+    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -509,7 +512,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DeletedResource>} - Success response
+   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
    * @name deleteCompanyResourceTranslation
    * @summary: Remove company translation
    * @description: Remove translations for company resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyResourceTranslation/).
@@ -567,7 +570,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DeletedResource().validate(responseData, {
+    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2509,7 +2512,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/translatable/sections/${id}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/translatable/section/${id}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -2883,13 +2886,14 @@ class Content {
    * @description: Update default language settings for the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCompanyLanguageDefault/).
    */
   async updateCompanyLanguageDefault(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { locale, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformValidator.updateCompanyLanguageDefault().validate(
       {
+        locale,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2903,6 +2907,7 @@ class Content {
       error: warrning,
     } = ContentPlatformValidator.updateCompanyLanguageDefault().validate(
       {
+        locale,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2921,7 +2926,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/languages`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/languages/${locale}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

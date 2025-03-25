@@ -41,7 +41,7 @@ export = CatalogPublicModel;
  */
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors
+ * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 /**
  * @typedef ValidationError
@@ -139,6 +139,9 @@ type TaxonomyResponseSchema = {
 /** @returns {ValidationErrors} */
 declare function ValidationErrors(): ValidationErrors;
 type ValidationErrors = {
+    /**
+     * - A list of validation errors in the request.
+     */
     errors: ValidationError[];
 };
 /** @returns {ValidationError} */

@@ -179,7 +179,7 @@ declare class Catalog {
      * @summary: Delete product
      * @description: Users can delete a product by providing the item_id and company_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
      */
-    deleteProduct({ itemId, body, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    deleteProduct({ itemId, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.DeleteProductBulkJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

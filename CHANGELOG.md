@@ -1,3 +1,57 @@
+# CHANGE LOG (3.0.0) - 2.4.0
+
+## Partner Client
+
+
+
+### Theme
+
+
+
+#### getApplicationThemes
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/themes</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/themes</code>
+
+
+#### getThemeById
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+
+
+#### updateTheme
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+
+
+#### deleteTheme
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### createProduct
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>uid</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+
+
+#### deleteProduct
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Body content in Request
+
+
 # CHANGE LOG (v2.0.2) - 2.3.0
 
 ## Application Client

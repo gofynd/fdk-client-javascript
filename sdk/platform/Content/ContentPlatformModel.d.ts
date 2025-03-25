@@ -1257,8 +1257,7 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef TranslateUiLabels
- * @property {string} [_id] - Unique MongoDB identifier assigned to the
- *   Translate Ui Labels entry
+ * @property {string} [_id] - Unique identifier assigned to the Translate Ui Labels entry
  * @property {string} [company_id] - Identifier linking the resource to a
  *   specific company within the platform
  * @property {string} [application_id] - Reference to the application where this
@@ -1455,10 +1454,6 @@ export = ContentPlatformModel;
  * @property {string} [description] - Translated SEO description
  */
 /**
- * @typedef DeletedResource
- * @property {string} [message] - Confirmation message for successful deletion
- */
-/**
  * @typedef ResourceTranslationList
  * @property {ResourceTranslationCreate[]} [items]
  */
@@ -1506,6 +1501,12 @@ export = ContentPlatformModel;
 /**
  * @typedef StandardError
  * @property {string} message - A brief description of the error.
+ */
+/**
+ * @typedef OperationResponseSchema
+ * @property {boolean} success - Indicates if the operation was successful
+ * @property {string} [message] - Optional message providing additional
+ *   information about the operation
  */
 /** @typedef {"title" | "description"} GenerationEntityType */
 /**
@@ -1561,7 +1562,7 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, Seo, MetaTag, MetaTagItem, ResourceTranslation, TranslationValue, TranslationSeo, DeletedResource, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, GenerationEntityType, PageType };
+    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, Seo, MetaTag, MetaTagItem, ResourceTranslation, TranslationValue, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
 }
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
@@ -3851,8 +3852,7 @@ type ActionPage = {
 declare function TranslateUiLabels(): TranslateUiLabels;
 type TranslateUiLabels = {
     /**
-     * - Unique MongoDB identifier assigned to the
-     * Translate Ui Labels entry
+     * - Unique identifier assigned to the Translate Ui Labels entry
      */
     _id?: string;
     /**
@@ -4280,14 +4280,6 @@ type TranslationSeo = {
      */
     description?: string;
 };
-/** @returns {DeletedResource} */
-declare function DeletedResource(): DeletedResource;
-type DeletedResource = {
-    /**
-     * - Confirmation message for successful deletion
-     */
-    message?: string;
-};
 /** @returns {ResourceTranslationList} */
 declare function ResourceTranslationList(): ResourceTranslationList;
 type ResourceTranslationList = {
@@ -4395,6 +4387,19 @@ type StandardError = {
      * - A brief description of the error.
      */
     message: string;
+};
+/** @returns {OperationResponseSchema} */
+declare function OperationResponseSchema(): OperationResponseSchema;
+type OperationResponseSchema = {
+    /**
+     * - Indicates if the operation was successful
+     */
+    success: boolean;
+    /**
+     * - Optional message providing additional
+     * information about the operation
+     */
+    message?: string;
 };
 /**
  * Enum: GenerationEntityType Used By: Content

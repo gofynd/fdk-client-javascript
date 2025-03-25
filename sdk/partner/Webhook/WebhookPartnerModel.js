@@ -26,7 +26,7 @@ const Joi = require("joi");
 /**
  * @typedef AuthMeta
  * @property {string} [type] - Specifies the type of authentication used.
- * @property {string} [secret] - Contains the secret key or token used for authentication.
+ * @property {string} [secret] - Contains the key or token used for authentication.
  */
 
 /**

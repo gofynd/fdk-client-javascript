@@ -1341,7 +1341,7 @@ class Serviceability {
    *
    * @name getInstalledCourierPartnerExtensions
    * @summary: Fetching of Package Material Rules from database.
-   * @description: This API returns response of Package Materials Rules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getInstalledCourierPartnerExtensions/).
+   * @description: This API returns response of Package Materials Rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getInstalledCourierPartnerExtensions/).
    */
   async getInstalledCourierPartnerExtensions(
     { pageNo, pageSize, isInstalled, requestHeaders } = { requestHeaders: {} },

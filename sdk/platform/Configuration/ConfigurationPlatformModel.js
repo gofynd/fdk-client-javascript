@@ -43,8 +43,7 @@ const Joi = require("joi");
  *   or not for sales channel inventory
  * @property {CommunicationConfig} [communication]
  * @property {string[]} [platforms]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel inventory
+ * @property {string} [_id] - The unique identifier of the sales channel inventory
  * @property {LoyaltyPointsConfig} [loyalty_points]
  * @property {string} [app] - Current sales channel ID
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel
@@ -414,8 +413,7 @@ const Joi = require("joi");
 /**
  * @typedef MobileAppConfiguration
  * @property {boolean} [is_active] - Indicates the availability of the mobile build
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   for mobile application configuration
+ * @property {string} [_id] - The unique identifier for mobile application configuration
  * @property {string} [app_name] - Name of the mobile app
  * @property {LandingImage} [landing_image]
  * @property {SplashImage} [splash_image]
@@ -460,7 +458,7 @@ const Joi = require("joi");
 
 /**
  * @typedef BuildVersion
- * @property {string} [_id] - 24-digit Mongo Object ID
+ * @property {string} [_id] - Primary Identifier of the build version.
  * @property {string} [application] - Application ID of the sales channel
  * @property {string} [platform_type] - Device platform for which the mobile app
  *   was built, e.g. android, ios.
@@ -479,8 +477,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AppSupportedCurrency
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the currency configuration supported by the application
+ * @property {string} [_id] - The unique identifier of the currency
+ *   configuration supported by the application
  * @property {string[]} [supported_currency]
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account.
@@ -493,8 +491,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DefaultCurrency
- * @property {string} [ref] - The unique identifier (24-digit Mongo Object ID)
- *   of the default currency
+ * @property {string} [ref] - The unique identifier of the default currency
  * @property {string} [code] - 3-character code of the default currency, e.g.
  *   INR, EUR, USD
  */
@@ -502,8 +499,7 @@ const Joi = require("joi");
 /**
  * @typedef DomainAdd
  * @property {string} [name] - Full domain name, e.g. uniket.hostx0.de
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
+ * @property {string} [_id] - The unique identifier of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -523,8 +519,7 @@ const Joi = require("joi");
 /**
  * @typedef Domain
  * @property {string} [name] - Full domain name, e.g. newton.com
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel domain
+ * @property {string} [_id] - The unique identifier of the sales channel domain
  * @property {boolean} [verified] - Domain is verified or not. TXT and A records
  *   should propagate correctly.
  * @property {boolean} [is_primary] - Domain is primary or not. Primary domain
@@ -542,8 +537,7 @@ const Joi = require("joi");
 /**
  * @typedef UpdateDomain
  * @property {string} [name] - Full domain name, e.g. zenz.com
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
+ * @property {string} [_id] - The unique identifier of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -645,8 +639,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AppInventoryStores
- * @property {string} [_id] - The unique identifier of the store (24-digit Mongo
- *   Object ID) in the sales channel inventory
+ * @property {string} [_id] - The unique identifier of the store in the sales
+ *   channel inventory
  * @property {string} [modified_on] - ISO 8601 timestamp of last known updation
  *   to the stores in sales channel inventory
  * @property {number} [uid] - Sales channel inventory store UID
@@ -679,8 +673,7 @@ const Joi = require("joi");
  * @property {string} [type] - Permitted values are 'hard' and 'soft'. For hard
  *   type delivery, store selection is compulsory. For soft type, delivery store
  *   selection is optional.
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the ordering stores
+ * @property {string} [_id] - The unique identifier of the ordering stores
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v]
@@ -711,8 +704,7 @@ const Joi = require("joi");
  * @typedef OtherSellerApplication
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OtherSellerCompany} [company]
  * @property {string} [opt_type] - Inventory opted by the other seller's sales
@@ -729,8 +721,7 @@ const Joi = require("joi");
  * @typedef OptedApplicationResponseSchema
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OptedCompany} [company]
  * @property {OptedInventory} [opted_inventory]
@@ -785,8 +776,7 @@ const Joi = require("joi");
 /**
  * @typedef TokenResponseSchema
  * @property {Tokens} [tokens]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the token
+ * @property {string} [_id] - The unique identifier of the token
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
@@ -1024,8 +1014,7 @@ const Joi = require("joi");
  * @property {OrderFeature} [order]
  * @property {BuyboxFeature} [buybox]
  * @property {DeliveryStrategy} [delivery_strategy]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   for the sales channel features
+ * @property {string} [_id] - The unique identifier for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
  * @property {string} [created_at] - ISO 8601 timestamp showing the date when
  *   the features were configured
@@ -1154,8 +1143,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Currency
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
+ * @property {string} [_id] - The unique identifier of the current sales channel
+ *   supported currency
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
@@ -1224,11 +1213,9 @@ const Joi = require("joi");
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
+ * @property {string} [_id] - The unique identifier of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
+ * @property {string} [owner] - The unique identifier of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1266,11 +1253,9 @@ const Joi = require("joi");
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
+ * @property {string} [_id] - The unique identifier of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
+ * @property {string} [owner] - The unique identifier of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1334,8 +1319,7 @@ const Joi = require("joi");
  * @property {Links[]} [links]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
- * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
- *   the application information
+ * @property {string} [_id] - Unique identifier of the application information
  * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
@@ -1472,8 +1456,7 @@ const Joi = require("joi");
 
 /**
  * @typedef BusinessHighlights
- * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
- *   the related business
+ * @property {string} [_id] - Unique identifier of the related business
  * @property {string} [title] - Title of the business highlight, e.g. Superfast Delivery
  * @property {string} [icon] - Hosted URL of icon image representing the
  *   business highlight
@@ -1491,8 +1474,7 @@ const Joi = require("joi");
  * @property {SecureUrl} [banner]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   for the sales channel details
+ * @property {string} [_id] - The unique identifier for the sales channel details
  * @property {string} [slug]
  * @property {number} [company_id]
  */
@@ -1504,8 +1486,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AppCurrencyResponseSchema
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the currency configuration supported by the application
+ * @property {string} [_id] - The unique identifier of the currency
+ *   configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
  * @property {DefaultCurrency} [default_currency]
@@ -1539,8 +1521,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderingStore
  * @property {OptedStoreAddress} [address]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the ordering store
+ * @property {string} [_id] - The unique identifier of the ordering store
  * @property {number} [uid] - Ordering store UID
  * @property {string} [name] - Store name of the ordering store
  * @property {string} [display_name] - Display name of the ordering store
@@ -1560,8 +1541,7 @@ const Joi = require("joi");
  * @property {boolean} [enabled] - Allow ordering stores for current sales channel
  * @property {string} [type] - For hard type delivery, store selection is
  *   compulsory. For soft type, delivery store selection is optional.
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the ordering store
+ * @property {string} [_id] - The unique identifier of the ordering store
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v] - Version key for tracking ordering stores. Default
@@ -1576,7 +1556,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors
+ * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 
 /**

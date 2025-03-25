@@ -54,7 +54,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateProductParam
- * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductCreateSchemaV2} body
  */
 
 /**
@@ -91,7 +91,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef DeleteProductParam
  * @property {number} itemId - Id of the product to be deleted.
- * @property {CatalogPlatformModel.DeleteProductRequestBody} body
  */
 
 /**
@@ -129,7 +128,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
- * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductUpdateSchemaV2} body
  */
 
 /**
@@ -525,7 +524,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateSizeGuideParam
- * @property {string} id - Mongo id of the size guide to be edited
+ * @property {string} id - Identifier of the size guide to be edited
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 
@@ -635,7 +634,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateProductParam} */
   static createProduct() {
     return Joi.object({
-      body: CatalogPlatformModel.ProductCreateUpdateSchemaV2().required(),
+      body: CatalogPlatformModel.ProductCreateSchemaV2().required(),
     }).required();
   }
 
@@ -686,7 +685,6 @@ class CatalogPlatformValidator {
   static deleteProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
-      body: CatalogPlatformModel.DeleteProductRequestBody().required(),
     }).required();
   }
 
@@ -734,7 +732,7 @@ class CatalogPlatformValidator {
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
-      body: CatalogPlatformModel.ProductCreateUpdateSchemaV2().required(),
+      body: CatalogPlatformModel.ProductUpdateSchemaV2().required(),
     }).required();
   }
 

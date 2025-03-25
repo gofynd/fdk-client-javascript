@@ -519,7 +519,7 @@ const Joi = require("joi");
 
 /**
  * @typedef UserGroupUpdateData
- * @property {string} [user_id] - Must be valid mongodb objectid of existing user
+ * @property {string} [user_id] - Must be valid ID of existing user
  * @property {string} [phone_number] - Phone number of registered user
  * @property {string} [email] - Email of registered user
  * @property {string} action

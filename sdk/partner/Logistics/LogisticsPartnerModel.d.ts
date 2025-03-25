@@ -464,7 +464,7 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors
+ * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 /**
  * @typedef CreatedBy
@@ -1706,6 +1706,9 @@ type StandardError = {
 /** @returns {ValidationErrors} */
 declare function ValidationErrors(): ValidationErrors;
 type ValidationErrors = {
+    /**
+     * - A list of validation errors in the request.
+     */
     errors: ValidationError[];
 };
 /** @returns {CreatedBy} */

@@ -191,6 +191,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef UpdateCompanyLanguageDefaultParam
+ * @property {string} locale
  * @property {ContentPlatformModel.CompanyLanguageUpdate} body
  */
 
@@ -492,6 +493,7 @@ class ContentPlatformValidator {
   /** @returns {UpdateCompanyLanguageDefaultParam} */
   static updateCompanyLanguageDefault() {
     return Joi.object({
+      locale: Joi.string().allow("").required(),
       body: ContentPlatformModel.CompanyLanguageUpdate().required(),
     }).required();
   }

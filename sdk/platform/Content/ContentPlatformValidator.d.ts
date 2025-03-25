@@ -154,6 +154,7 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef UpdateCompanyLanguageDefaultParam
+ * @property {string} locale
  * @property {ContentPlatformModel.CompanyLanguageUpdate} body
  */
 /**
@@ -390,6 +391,7 @@ type SampleCustomObjectBulkEntryBySlugParam = {
     slug: string;
 };
 type UpdateCompanyLanguageDefaultParam = {
+    locale: string;
     body: ContentPlatformModel.CompanyLanguageUpdate;
 };
 type UpdateCompanyResourceTranslationParam = {

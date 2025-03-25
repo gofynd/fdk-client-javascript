@@ -310,10 +310,8 @@ export = ContentPublicModel;
  */
 /**
  * @typedef Meta
- * @property {string} [created_by] - MongoDB ObjectId of the user who initially
- *   created the resource.
- * @property {string} [updated_by] - MongoDB ObjectId of the user who last
- *   modified the resource.
+ * @property {string} [created_by] - ID of the user who initially created the resource.
+ * @property {string} [updated_by] - ID of the user who last modified the resource.
  * @property {string} [created_at] - Timestamp indicating when the resource was
  *   first created.
  * @property {string} [updated_at] - Timestamp indicating when the resource was
@@ -713,13 +711,11 @@ type TranslatableResource = {
 declare function Meta(): Meta;
 type Meta = {
     /**
-     * - MongoDB ObjectId of the user who initially
-     * created the resource.
+     * - ID of the user who initially created the resource.
      */
     created_by?: string;
     /**
-     * - MongoDB ObjectId of the user who last
-     * modified the resource.
+     * - ID of the user who last modified the resource.
      */
     updated_by?: string;
     /**

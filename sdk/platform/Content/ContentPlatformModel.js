@@ -1416,8 +1416,7 @@ const Joi = require("joi");
 
 /**
  * @typedef TranslateUiLabels
- * @property {string} [_id] - Unique MongoDB identifier assigned to the
- *   Translate Ui Labels entry
+ * @property {string} [_id] - Unique identifier assigned to the Translate Ui Labels entry
  * @property {string} [company_id] - Identifier linking the resource to a
  *   specific company within the platform
  * @property {string} [application_id] - Reference to the application where this
@@ -1641,11 +1640,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DeletedResource
- * @property {string} [message] - Confirmation message for successful deletion
- */
-
-/**
  * @typedef ResourceTranslationList
  * @property {ResourceTranslationCreate[]} [items]
  */
@@ -1700,6 +1694,13 @@ const Joi = require("joi");
 /**
  * @typedef StandardError
  * @property {string} message - A brief description of the error.
+ */
+
+/**
+ * @typedef OperationResponseSchema
+ * @property {boolean} success - Indicates if the operation was successful
+ * @property {string} [message] - Optional message providing additional
+ *   information about the operation
  */
 
 /** @typedef {"title" | "description"} GenerationEntityType */
@@ -3614,7 +3615,7 @@ class ContentPlatformModel {
     return Joi.object({
       schema: Joi.string().allow(""),
       type: ContentPlatformModel.ResourceJsonSchemaType(),
-    });
+    }).allow(null);
   }
 
   /** @returns {ResourceJsonSchemaType} */
@@ -3633,14 +3634,14 @@ class ContentPlatformModel {
       title: ContentPlatformModel.Title(),
       feature_image: ContentPlatformModel.FeatureImage(),
       seo: ContentPlatformModel.Seo(),
-    });
+    }).allow(null);
   }
 
   /** @returns {ResourceBulkDetails} */
   static ResourceBulkDetails() {
     return Joi.object({
       fields: Joi.array().items(Joi.string().allow("")),
-    });
+    }).allow(null);
   }
 
   /** @returns {Title} */
@@ -3709,13 +3710,6 @@ class ContentPlatformModel {
       meta_tags: Joi.array().items(Joi.string().allow("")),
       canonical_url: Joi.string().allow(""),
       description: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DeletedResource} */
-  static DeletedResource() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 
@@ -3792,6 +3786,14 @@ class ContentPlatformModel {
   static StandardError() {
     return Joi.object({
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OperationResponseSchema} */
+  static OperationResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
     });
   }
 

@@ -9,7 +9,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors
+ * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 
 /**
@@ -1251,15 +1251,6 @@ const Joi = require("joi");
 /**
  * @typedef DeleteAppCategoryReturnConfig
  * @property {number[]} category_ids - List of category_ids to be deleted.
- */
-
-/**
- * @typedef DeleteProductRequestBody
- * @property {number} [brand_uid] - The brand identifier for the product.
- * @property {string} [item_code] - The code of the item to be deleted.
- * @property {string} [company_id] - The ID of the company. (Optional if already
- *   provided in the path)
- * @property {number} [item_id] - The ID of the product.
  */
 
 /**
@@ -3235,7 +3226,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductCreateUpdateSchemaV2
+ * @typedef ProductUpdateSchemaV2
  * @property {Object} [_custom_json] - Custom JSON data that can be used for
  *   additional product properties.
  * @property {string} [action] - The action to perform wrt to the product (e.g.,
@@ -3287,6 +3278,63 @@ const Joi = require("joi");
  *   classification.
  * @property {Trader[]} trader - List of traders associated with the product.
  * @property {number} [uid] - Unique identifier for the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ */
+
+/**
+ * @typedef ProductCreateSchemaV2
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {string} [action] - The action to perform wrt to the product (e.g.,
+ *   upsert, update, delete).
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {number} brand_uid - Unique identifier for the product's brand.
+ * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
+ * @property {string} category_slug - The category to which the product belongs.
+ * @property {string} [change_request_id] - Change request identifier for product updates.
+ * @property {number} company_id - Unique identifier for the company associated
+ *   with the product.
+ * @property {string} country_of_origin - The country where the product was
+ *   manufactured or sourced.
+ * @property {string} currency - The currency in which the product's price is listed.
+ * @property {CustomOrder} [custom_order]
+ * @property {number[]} departments - List of department IDs associated with the product.
+ * @property {string} [description] - A detailed description of the product.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {boolean} [is_image_less_product] - Flag to indicate if the product
+ *   does not have associated images.
+ * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
+ * @property {string} item_code - Unique item code or SKU of the product.
+ * @property {string} item_type - Type of the product (e.g., standard, set,
+ *   composite, digital).
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} name - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {string} [requester] - The role requesting the product operation
+ *   (admin or user).
+ * @property {ReturnConfig} return_config
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {Object[]} sizes - List of sizes available for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifier} tax_identifier
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} template_tag - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} trader - List of traders associated with the product.
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
@@ -6105,16 +6153,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {DeleteProductRequestBody} */
-  static DeleteProductRequestBody() {
-    return Joi.object({
-      brand_uid: Joi.number(),
-      item_code: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      item_id: Joi.number(),
-    });
-  }
-
   /** @returns {DeleteResponseSchema} */
   static DeleteResponseSchema() {
     return Joi.object({
@@ -8224,8 +8262,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ProductCreateUpdateSchemaV2} */
-  static ProductCreateUpdateSchemaV2() {
+  /** @returns {ProductUpdateSchemaV2} */
+  static ProductUpdateSchemaV2() {
     return Joi.object({
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       action: Joi.string().allow(""),
@@ -8268,6 +8306,55 @@ class CatalogPlatformModel {
       template_tag: Joi.string().allow("").required(),
       trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
       uid: Joi.number().allow(null),
+      variant_group: Joi.object().pattern(/\S/, Joi.any()),
+      variant_media: Joi.object().pattern(/\S/, Joi.any()),
+      variants: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {ProductCreateSchemaV2} */
+  static ProductCreateSchemaV2() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      action: Joi.string().allow(""),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      brand_uid: Joi.number().required(),
+      bulk_job_id: Joi.string().allow(""),
+      category_slug: Joi.string().allow("").required(),
+      change_request_id: Joi.string().allow("").allow(null),
+      company_id: Joi.number().required(),
+      country_of_origin: Joi.string().allow("").required(),
+      currency: Joi.string().allow("").required(),
+      custom_order: CatalogPlatformModel.CustomOrder(),
+      departments: Joi.array().items(Joi.number()).required(),
+      description: Joi.string().allow(""),
+      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      is_active: Joi.boolean(),
+      is_dependent: Joi.boolean(),
+      is_image_less_product: Joi.boolean(),
+      is_set: Joi.boolean(),
+      item_code: Joi.string().allow("").required(),
+      item_type: Joi.string().allow("").required(),
+      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
+      multi_size: Joi.boolean(),
+      name: Joi.string().allow("").required(),
+      net_quantity: CatalogPlatformModel.NetQuantity(),
+      no_of_boxes: Joi.number(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+      product_publish: CatalogPlatformModel.ProductPublish(),
+      requester: Joi.string().allow(""),
+      return_config: CatalogPlatformModel.ReturnConfig().required(),
+      short_description: Joi.string().allow(""),
+      size_guide: Joi.string().allow(""),
+      sizes: Joi.array()
+        .items(Joi.object().pattern(/\S/, Joi.any()))
+        .required(),
+      slug: Joi.string().allow("").required(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
+      teaser_tag: CatalogPlatformModel.TeaserTag(),
+      template_tag: Joi.string().allow("").required(),
+      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
       variant_group: Joi.object().pattern(/\S/, Joi.any()),
       variant_media: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.object().pattern(/\S/, Joi.any()),

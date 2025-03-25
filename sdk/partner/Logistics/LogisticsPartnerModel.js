@@ -493,7 +493,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors
+ * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 
 /**

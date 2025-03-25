@@ -64,24 +64,24 @@ declare class Content {
      * @param {ContentPlatformValidator.DeleteCompanyLanguageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
      * @name deleteCompanyLanguage
      * @summary: Remove company language
      * @description: Remove a language from company's supported languages list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyLanguage/).
      */
-    deleteCompanyLanguage({ locale, requestHeaders }?: ContentPlatformValidator.DeleteCompanyLanguageParam, { responseHeaders }?: object): Promise<any>;
+    deleteCompanyLanguage({ locale, requestHeaders }?: ContentPlatformValidator.DeleteCompanyLanguageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformValidator.DeleteCompanyResourceTranslationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DeletedResource>} - Success response
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
      * @name deleteCompanyResourceTranslation
      * @summary: Remove company translation
      * @description: Remove translations for company resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyResourceTranslation/).
      */
-    deleteCompanyResourceTranslation({ id, requestHeaders }?: ContentPlatformValidator.DeleteCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DeletedResource>;
+    deleteCompanyResourceTranslation({ id, requestHeaders }?: ContentPlatformValidator.DeleteCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformValidator.DeleteCustomFieldDefinitionBySlugParam} arg
      *   - Arg object
@@ -404,7 +404,7 @@ declare class Content {
      * @summary: Set default language
      * @description: Update default language settings for the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCompanyLanguageDefault/).
      */
-    updateCompanyLanguageDefault({ body, requestHeaders }?: ContentPlatformValidator.UpdateCompanyLanguageDefaultParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CompanyLanguage>;
+    updateCompanyLanguageDefault({ locale, body, requestHeaders }?: ContentPlatformValidator.UpdateCompanyLanguageDefaultParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CompanyLanguage>;
     /**
      * @param {ContentPlatformValidator.UpdateCompanyResourceTranslationParam} arg
      *   - Arg object

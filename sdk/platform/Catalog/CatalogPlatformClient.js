@@ -1316,13 +1316,12 @@ class Catalog {
    * @description: Users can delete a product by providing the item_id and company_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
    */
   async deleteProduct(
-    { itemId, body, requestHeaders } = { requestHeaders: {} },
+    { itemId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
-        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1336,7 +1335,6 @@ class Catalog {
     } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
-        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1356,7 +1354,7 @@ class Catalog {
       "delete",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

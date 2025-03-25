@@ -349,10 +349,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Meta
- * @property {string} [created_by] - MongoDB ObjectId of the user who initially
- *   created the resource.
- * @property {string} [updated_by] - MongoDB ObjectId of the user who last
- *   modified the resource.
+ * @property {string} [created_by] - ID of the user who initially created the resource.
+ * @property {string} [updated_by] - ID of the user who last modified the resource.
  * @property {string} [created_at] - Timestamp indicating when the resource was
  *   first created.
  * @property {string} [updated_at] - Timestamp indicating when the resource was

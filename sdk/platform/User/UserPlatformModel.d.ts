@@ -456,7 +456,7 @@ export = UserPlatformModel;
  */
 /**
  * @typedef UserGroupUpdateData
- * @property {string} [user_id] - Must be valid mongodb objectid of existing user
+ * @property {string} [user_id] - Must be valid ID of existing user
  * @property {string} [phone_number] - Phone number of registered user
  * @property {string} [email] - Email of registered user
  * @property {string} action
@@ -1301,7 +1301,7 @@ type PartialUserGroupUpdateSchema = {
 declare function UserGroupUpdateData(): UserGroupUpdateData;
 type UserGroupUpdateData = {
     /**
-     * - Must be valid mongodb objectid of existing user
+     * - Must be valid ID of existing user
      */
     user_id?: string;
     /**

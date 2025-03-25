@@ -1802,7 +1802,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<any>} - Success response
+   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
    * @name deleteApplicationLanguage
    * @summary: Remove app language
    * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
@@ -1856,9 +1856,12 @@ class Content {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
+    const {
+      error: res_error,
+    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1880,7 +1883,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DeletedResource>} - Success response
+   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
    * @name deleteApplicationResourceTranslation
    * @summary: Remove app translation
    * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
@@ -1936,7 +1939,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DeletedResource().validate(responseData, {
+    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

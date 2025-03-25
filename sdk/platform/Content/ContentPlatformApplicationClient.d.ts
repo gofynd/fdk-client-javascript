@@ -270,24 +270,24 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<any>} - Success response
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
      * @name deleteApplicationLanguage
      * @summary: Remove app language
      * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
      */
-    deleteApplicationLanguage({ locale, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationLanguageParam, { responseHeaders }?: object): Promise<any>;
+    deleteApplicationLanguage({ locale, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationLanguageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DeletedResource>} - Success response
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
      * @name deleteApplicationResourceTranslation
      * @summary: Remove app translation
      * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
      */
-    deleteApplicationResourceTranslation({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DeletedResource>;
+    deleteApplicationResourceTranslation({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

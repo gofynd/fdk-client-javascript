@@ -42,7 +42,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateProductParam
- * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductCreateSchemaV2} body
  */
 /**
  * @typedef CreateProductAssetsInBulkParam
@@ -72,7 +72,6 @@ export = CatalogPlatformValidator;
 /**
  * @typedef DeleteProductParam
  * @property {number} itemId - Id of the product to be deleted.
- * @property {CatalogPlatformModel.DeleteProductRequestBody} body
  */
 /**
  * @typedef DeleteProductBulkJobParam
@@ -104,7 +103,7 @@ export = CatalogPlatformValidator;
 /**
  * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
- * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductUpdateSchemaV2} body
  */
 /**
  * @typedef ExportInventoryConfigParam
@@ -450,7 +449,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef UpdateSizeGuideParam
- * @property {string} id - Mongo id of the size guide to be edited
+ * @property {string} id - Identifier of the size guide to be edited
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 /**
@@ -691,7 +690,7 @@ type CreateMarketplaceOptinParam = {
     body: CatalogPlatformModel.OptInPostRequestSchema;
 };
 type CreateProductParam = {
-    body: CatalogPlatformModel.ProductCreateUpdateSchemaV2;
+    body: CatalogPlatformModel.ProductCreateSchemaV2;
 };
 type CreateProductAssetsInBulkParam = {
     body: CatalogPlatformModel.ProductBulkAssets;
@@ -723,7 +722,6 @@ type DeleteProductParam = {
      * - Id of the product to be deleted.
      */
     itemId: number;
-    body: CatalogPlatformModel.DeleteProductRequestBody;
 };
 type DeleteProductBulkJobParam = {
     /**
@@ -779,7 +777,7 @@ type EditProductParam = {
      * - Id of the product to be updated.
      */
     itemId: number;
-    body: CatalogPlatformModel.ProductCreateUpdateSchemaV2;
+    body: CatalogPlatformModel.ProductUpdateSchemaV2;
 };
 type ExportInventoryConfigParam = {
     /**
@@ -1487,7 +1485,7 @@ type UpdateRealtimeInventoryParam = {
 };
 type UpdateSizeGuideParam = {
     /**
-     * - Mongo id of the size guide to be edited
+     * - Identifier of the size guide to be edited
      */
     id: string;
     body: CatalogPlatformModel.ValidateSizeGuide;
