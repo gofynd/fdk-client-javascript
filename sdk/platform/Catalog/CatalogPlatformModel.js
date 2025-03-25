@@ -4706,7 +4706,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Price1
- * @property {CurrencyCodeEnum} [currency_code]
+ * @property {string} [currency_code] - ISO 4217 currency codes
  * @property {string} [currency_symbol]
  * @property {number} [max]
  * @property {number} [min]
@@ -4788,8 +4788,6 @@ const Joi = require("joi");
  *   | "order-status"
  *   | "locate-us"} PageType
  */
-
-/** @typedef {"INR" | "USD" | "EUR"} CurrencyCodeEnum */
 
 class CatalogPlatformModel {
   /** @returns {Action} */
@@ -9830,7 +9828,7 @@ class CatalogPlatformModel {
   /** @returns {Price1} */
   static Price1() {
     return Joi.object({
-      currency_code: CatalogPlatformModel.CurrencyCodeEnum(),
+      currency_code: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
       max: Joi.number(),
       min: Joi.number(),
@@ -9966,21 +9964,6 @@ class CatalogPlatformModel {
       "order-status",
 
       "locate-us"
-    );
-  }
-
-  /**
-   * Enum: CurrencyCodeEnum Used By: Catalog
-   *
-   * @returns {CurrencyCodeEnum}
-   */
-  static CurrencyCodeEnum() {
-    return Joi.string().valid(
-      "INR",
-
-      "USD",
-
-      "EUR"
     );
   }
 }

@@ -33,6 +33,8 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef CreateOrderParam
+ * @property {string} [xOrderingSource] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
@@ -84,7 +86,11 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} orderingChannel - The channel through which orders are placed.
+ * @property {string} [orderingChannel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -378,6 +384,8 @@ export = OrderPlatformValidator;
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 /** @typedef GetStateTransitionMapParam */
@@ -628,6 +636,11 @@ type CreateChannelConfigParam = {
     body: OrderPlatformModel.CreateChannelConfigData;
 };
 type CreateOrderParam = {
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    xOrderingSource?: string;
     body: OrderPlatformModel.CreateOrderAPI;
 };
 type DispatchManifestsParam = {
@@ -693,9 +706,16 @@ type GenerateProcessManifestParam = {
 };
 type GetAllowedStateTransitionParam = {
     /**
-     * - The channel through which orders are placed.
+     * - The specific channel through which
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
      */
-    orderingChannel: string;
+    orderingChannel?: string;
+    /**
+     * - To uniquely identify the source through
+     * which order has been placed.
+     */
+    orderingSource?: string;
     /**
      * - The status key indicates the current status for
      * which the API will provide a list of possible next state transitions.
@@ -1382,6 +1402,11 @@ type GetStateManagerConfigParam = {
      * - The channel through which orders are placed.
      */
     orderingChannel?: string;
+    /**
+     * - To uniquely identify the source through
+     * which order has been placed.
+     */
+    orderingSource?: string;
     /**
      * - The entity for which the configuration is applied.
      */

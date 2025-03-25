@@ -51,7 +51,11 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @property {string} [companyMode] - The mode of the company
  */
 
-/** @typedef GetFontsParam */
+/**
+ * @typedef GetFontsParam
+ * @property {string} [capability] - Filter fonts based on supported
+ *   capabilities (e.g., "WOFF2").
+ */
 
 /**
  * @typedef GetPageParam
@@ -187,7 +191,9 @@ class ThemePlatformApplicationValidator {
 
   /** @returns {GetFontsParam} */
   static getFonts() {
-    return Joi.object({}).required();
+    return Joi.object({
+      capability: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetPageParam} */

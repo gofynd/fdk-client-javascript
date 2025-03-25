@@ -130,7 +130,7 @@ declare class Theme {
      * @summary: List theme fonts
      * @description: Retrieve a list of available fonts that can be used by themes in the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFonts/).
      */
-    getFonts({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
+    getFonts({ capability, requestHeaders }?: ThemePlatformApplicationValidator.GetFontsParam, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
     /**
      * @param {ThemePlatformApplicationValidator.GetPageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

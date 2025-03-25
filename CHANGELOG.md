@@ -1,38 +1,200 @@
-# CHANGE LOG (3.0.0) - 2.4.0
+# CHANGE LOG (3.1.0) - 2.5.0
 
-## Partner Client
-
-
-
-### Theme
+## Application Client
 
 
 
-#### getApplicationThemes
-
-- ##### What's Changed
-	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/themes</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/themes</code>
+### Cart
 
 
-#### getThemeById
 
-- ##### What's Changed
-	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+#### getCart
 
-
-#### updateTheme
-
-- ##### What's Changed
-	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
 
 
-#### deleteTheme
 
-- ##### What's Changed
-	- [Changed] Path From <code>/service/partner/theme/v2.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code> To <code>/service/partner/theme/v1.0/organization/{organization_id}/company/{company_id}/application/{application_id}/{theme_id}</code>
+#### addItems
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### getCoupons
+
+- ##### What's New
+	- [Breaking] [Deleted] <code>query</code> parameter <code>slug</code> (type: <code>string</code>),
+ [Added] <code>query</code> parameter <code>productSlug</code> (type: <code>string</code>)
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### validateCouponForPayment
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
 
 
 ## Platform Client
+
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### validateCouponForPayment
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
+
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>undefined</code>)
 
 
 
@@ -40,16 +202,84 @@
 
 
 
-#### createProduct
+#### getCollectionItems
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>uid</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.effective.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.marked.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.selling.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
 
 
-#### deleteProduct
+#### getApplicationProducts
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] Body content in Request
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.effective.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.marked.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.selling.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xOrderingSource</code> (type: <code>string</code>)
+
+
+
+#### getStateManagerConfig
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>orderingSource</code> (type: <code>string</code>)
+
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].ordering_source</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Added] property <code>shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.ordering_source</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] property <code>shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Added] property <code>shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property <code>items[].ordering_source</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property <code>data.order.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property <code>data.items[].order.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
 
 
 # CHANGE LOG (v2.0.2) - 2.3.0

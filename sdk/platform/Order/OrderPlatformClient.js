@@ -530,12 +530,13 @@ class Order {
    * @description: Creates an order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
    */
   async createOrder(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.createOrder().validate(
       {
         body,
+        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -547,6 +548,7 @@ class Order {
     const { error: warrning } = OrderPlatformValidator.createOrder().validate(
       {
         body,
+        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -560,6 +562,7 @@ class Order {
     const query_params = {};
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1438,15 +1441,18 @@ class Order {
    * @description: Retrieve next possible states based on logged in user's role - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedStateTransition/).
    */
   async getAllowedStateTransition(
-    { orderingChannel, status, requestHeaders } = { requestHeaders: {} },
+    { status, orderingChannel, orderingSource, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = OrderPlatformValidator.getAllowedStateTransition().validate(
       {
-        orderingChannel,
         status,
+        orderingChannel,
+        orderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1459,8 +1465,9 @@ class Order {
       error: warrning,
     } = OrderPlatformValidator.getAllowedStateTransition().validate(
       {
-        orderingChannel,
         status,
+        orderingChannel,
+        orderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1473,6 +1480,7 @@ class Order {
 
     const query_params = {};
     query_params["ordering_channel"] = orderingChannel;
+    query_params["ordering_source"] = orderingSource;
     query_params["status"] = status;
 
     const xHeaders = {};
@@ -3958,13 +3966,16 @@ class Order {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerConfig/).
    */
   async getStateManagerConfig(
-    { appId, orderingChannel, entity, requestHeaders } = { requestHeaders: {} },
+    { appId, orderingChannel, orderingSource, entity, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getStateManagerConfig().validate(
       {
         appId,
         orderingChannel,
+        orderingSource,
         entity,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3980,6 +3991,7 @@ class Order {
       {
         appId,
         orderingChannel,
+        orderingSource,
         entity,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3994,6 +4006,7 @@ class Order {
     const query_params = {};
     query_params["app_id"] = appId;
     query_params["ordering_channel"] = orderingChannel;
+    query_params["ordering_source"] = orderingSource;
     query_params["entity"] = entity;
 
     const xHeaders = {};

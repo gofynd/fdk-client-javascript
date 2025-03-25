@@ -77,7 +77,7 @@ declare class Order {
      * @summary: Create order
      * @description: Creates an order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
      */
-    createOrder({ body, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponseSchema>;
+    createOrder({ body, xOrderingSource, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponseSchema>;
     /**
      * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -195,7 +195,7 @@ declare class Order {
      * @summary: Get allowed state transition
      * @description: Retrieve next possible states based on logged in user's role - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedStateTransition/).
      */
-    getAllowedStateTransition({ orderingChannel, status, requestHeaders }?: OrderPlatformValidator.GetAllowedStateTransitionParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RoleBaseStateTransitionMapping>;
+    getAllowedStateTransition({ status, orderingChannel, orderingSource, requestHeaders }?: OrderPlatformValidator.GetAllowedStateTransitionParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RoleBaseStateTransitionMapping>;
     /**
      * @param {OrderPlatformValidator.GetAllowedTemplatesForBulkParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -624,7 +624,7 @@ declare class Order {
      * The ESM config stores order processing configuration. Each document in the ESM config collection of  Order Management System - OMS's database is a JSON object representing the configuration of a specific application ID. This includes filters, hooks, flags set on different state-transitions.  This configuration is picked and accordingly features are enabled.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerConfig/).
      */
-    getStateManagerConfig({ appId, orderingChannel, entity, requestHeaders }?: OrderPlatformValidator.GetStateManagerConfigParam, { responseHeaders }?: object): Promise<any>;
+    getStateManagerConfig({ appId, orderingChannel, orderingSource, entity, requestHeaders }?: OrderPlatformValidator.GetStateManagerConfigParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

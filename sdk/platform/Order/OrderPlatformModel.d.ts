@@ -833,7 +833,11 @@ export = OrderPlatformModel;
  * @property {string} [currency] - The currency in which the prices details
  *   associated with the item is specified.
  * @property {number} [total_order_value]
- * @property {string} [ordering_channel]
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {Object} [meta] - Meta data of the order data contains additional,
  *   potentially dynamic information about the order data.
  * @property {number} [cod_charges]
@@ -2331,8 +2335,11 @@ export = OrderPlatformModel;
  * @typedef TransitionConfigCondition
  * @property {string} app_id - The unique identifier of the application to which
  *   the configuration applies.
- * @property {string} ordering_channel - The channel through which the order was
- *   placed, such as ECOMM or another specified channel.
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} entity - The type of entity that the configuration pertains to.
  */
 /**
@@ -3403,7 +3410,11 @@ export = OrderPlatformModel;
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
  * @property {string} order_id - The unique identifier of the order for the shipment.
- * @property {string} [ordering_channnel] - The channel used for ordering the shipment.
+ * @property {string} [ordering_channnel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} [shipment_id] - The unique identifier for the shipment itself.
  * @property {string} [customer_note] - Any special notes or instructions
  *   provided by the customer related to the shipment.
@@ -3499,7 +3510,10 @@ export = OrderPlatformModel;
  *   related to the order.
  * @property {string} [order_value] - The total monetary value of the order
  * @property {string} [ordering_channel] - The specific channel through which
- *   the order was placed
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -4257,7 +4271,10 @@ export = OrderPlatformModel;
 /**
  * @typedef OrderData
  * @property {string} [ordering_channel] - The specific channel through which
- *   the order was placed.
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -6567,7 +6584,17 @@ type OrderDetails = {
      */
     currency?: string;
     total_order_value?: number;
+    /**
+     * - The specific channel through which
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
+     */
     ordering_channel?: string;
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    ordering_source?: string;
     /**
      * - Meta data of the order data contains additional,
      * potentially dynamic information about the order data.
@@ -9565,10 +9592,16 @@ type TransitionConfigCondition = {
      */
     app_id: string;
     /**
-     * - The channel through which the order was
-     * placed, such as ECOMM or another specified channel.
+     * - The specific channel through which
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
      */
-    ordering_channel: string;
+    ordering_channel?: string;
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    ordering_source?: string;
     /**
      * - The type of entity that the configuration pertains to.
      */
@@ -11929,9 +11962,16 @@ type ShipmentItem = {
      */
     order_id: string;
     /**
-     * - The channel used for ordering the shipment.
+     * - The specific channel through which
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
      */
     ordering_channnel?: string;
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    ordering_source?: string;
     /**
      * - The unique identifier for the shipment itself.
      */
@@ -12140,9 +12180,15 @@ type OrderDetailsData = {
     order_value?: string;
     /**
      * - The specific channel through which
-     * the order was placed
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
      */
     ordering_channel?: string;
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    ordering_source?: string;
     /**
      * - Meta data of the order contains additional,
      * potentially dynamic information about the order.
@@ -13778,9 +13824,15 @@ declare function OrderData(): OrderData;
 type OrderData = {
     /**
      * - The specific channel through which
-     * the order was placed.
+     * your order was placed. This field will be phased out after version 2.4.0.
+     * Please use ordering_source instead to ensure accurate order tracking and processing.
      */
     ordering_channel?: string;
+    /**
+     * - To uniquely identify the source
+     * through which order has been placed.
+     */
+    ordering_source?: string;
     /**
      * - Specifies the exact date and time when the
      * order was placed by the customer, serving as a key timestamp for the

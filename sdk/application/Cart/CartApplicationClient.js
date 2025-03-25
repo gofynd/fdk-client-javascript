@@ -108,9 +108,17 @@ class Cart {
    * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
    */
   async addItems(
-    { body, i, b, areaCode, buyNow, id, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      i,
+      b,
+      areaCode,
+      buyNow,
+      id,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -122,6 +130,7 @@ class Cart {
     query_params["order_type"] = orderType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -153,7 +162,7 @@ class Cart {
    * @description: Apply a coupon code to the cart to trigger discounts on eligible items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
    */
   async applyCoupon(
-    { body, i, b, p, id, buyNow, cartType, requestHeaders } = {
+    { body, xOrderingSource, i, b, p, id, buyNow, cartType, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -167,6 +176,7 @@ class Cart {
     query_params["cart_type"] = cartType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -198,7 +208,9 @@ class Cart {
    * @description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
    */
   async applyRewardPoints(
-    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -208,6 +220,7 @@ class Cart {
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -239,7 +252,9 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
    */
   async checkoutCart(
-    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, buyNow, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -247,6 +262,7 @@ class Cart {
     query_params["cart_type"] = cartType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -278,7 +294,9 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
-    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, buyNow, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -286,6 +304,7 @@ class Cart {
     query_params["cart_type"] = cartType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -509,6 +528,7 @@ class Cart {
    */
   async getCart(
     {
+      xOrderingSource,
       id,
       i,
       b,
@@ -532,6 +552,7 @@ class Cart {
     query_params["order_type"] = orderType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -684,13 +705,15 @@ class Cart {
    * @description: List all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
    */
   async getCoupons(
-    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, productSlug, storeId, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["slug"] = slug;
+    query_params["product_slug"] = productSlug;
     query_params["store_id"] = storeId;
 
     const xHeaders = {};
@@ -981,7 +1004,7 @@ class Cart {
    * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
    */
   async removeCoupon(
-    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { xOrderingSource, id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -989,6 +1012,7 @@ class Cart {
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1020,7 +1044,9 @@ class Cart {
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
-    { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, cartId, buyNow, i, b, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -1030,6 +1056,7 @@ class Cart {
     query_params["b"] = b;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1061,7 +1088,9 @@ class Cart {
    * @description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, id, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -1069,6 +1098,7 @@ class Cart {
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1148,6 +1178,7 @@ class Cart {
   async updateCart(
     {
       body,
+      xOrderingSource,
       id,
       i,
       b,
@@ -1169,6 +1200,7 @@ class Cart {
     query_params["order_type"] = orderType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1200,7 +1232,7 @@ class Cart {
    * @description: Update cart. Customers can adjust the cart breakup by  applying or removing store credits as needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartBreakup/).
    */
   async updateCartBreakup(
-    { body, id, i, b, buyNow, cartType, requestHeaders } = {
+    { body, xOrderingSource, id, i, b, buyNow, cartType, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1213,6 +1245,7 @@ class Cart {
     query_params["cart_type"] = cartType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1330,6 +1363,7 @@ class Cart {
    */
   async validateCouponForPayment(
     {
+      xOrderingSource,
       id,
       buyNow,
       addressId,
@@ -1361,6 +1395,7 @@ class Cart {
     query_params["cart_type"] = cartType;
 
     const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,

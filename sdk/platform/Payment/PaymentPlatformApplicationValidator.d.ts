@@ -114,6 +114,8 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef GetPosPaymentModeRoutesParam
+ * @property {string} [xOrderingSource] - Optional header to identify the
+ *   ordering source used to determine\ applicable payment options for business unit.
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -491,6 +493,11 @@ type GetPaymentSessionParam = {
     lineItem?: boolean;
 };
 type GetPosPaymentModeRoutesParam = {
+    /**
+     * - Optional header to identify the
+     * ordering source used to determine\ applicable payment options for business unit.
+     */
+    xOrderingSource?: string;
     /**
      * - Payable amount.
      */

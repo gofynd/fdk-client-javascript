@@ -916,7 +916,11 @@ const Joi = require("joi");
  * @property {string} [currency] - The currency in which the prices details
  *   associated with the item is specified.
  * @property {number} [total_order_value]
- * @property {string} [ordering_channel]
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {Object} [meta] - Meta data of the order data contains additional,
  *   potentially dynamic information about the order data.
  * @property {number} [cod_charges]
@@ -2542,8 +2546,11 @@ const Joi = require("joi");
  * @typedef TransitionConfigCondition
  * @property {string} app_id - The unique identifier of the application to which
  *   the configuration applies.
- * @property {string} ordering_channel - The channel through which the order was
- *   placed, such as ECOMM or another specified channel.
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} entity - The type of entity that the configuration pertains to.
  */
 
@@ -3675,7 +3682,11 @@ const Joi = require("joi");
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
  * @property {string} order_id - The unique identifier of the order for the shipment.
- * @property {string} [ordering_channnel] - The channel used for ordering the shipment.
+ * @property {string} [ordering_channnel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} [shipment_id] - The unique identifier for the shipment itself.
  * @property {string} [customer_note] - Any special notes or instructions
  *   provided by the customer related to the shipment.
@@ -3775,7 +3786,10 @@ const Joi = require("joi");
  *   related to the order.
  * @property {string} [order_value] - The total monetary value of the order
  * @property {string} [ordering_channel] - The specific channel through which
- *   the order was placed
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -4574,7 +4588,10 @@ const Joi = require("joi");
 /**
  * @typedef OrderData
  * @property {string} [ordering_channel] - The specific channel through which
- *   the order was placed.
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [ordering_source] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -6197,6 +6214,7 @@ class OrderPlatformModel {
       currency: Joi.string().allow(""),
       total_order_value: Joi.number(),
       ordering_channel: Joi.string().allow(""),
+      ordering_source: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       cod_charges: Joi.number().allow(null),
       cashback_value: Joi.number().allow(null),
@@ -7658,7 +7676,8 @@ class OrderPlatformModel {
   static TransitionConfigCondition() {
     return Joi.object({
       app_id: Joi.string().allow("").required(),
-      ordering_channel: Joi.string().allow("").required(),
+      ordering_channel: Joi.string().allow(""),
+      ordering_source: Joi.string().allow("").allow(null),
       entity: Joi.string().allow("").required(),
     });
   }
@@ -8491,6 +8510,7 @@ class OrderPlatformModel {
       ordering_currency_prices: OrderPlatformModel.OrderingCurrencyPrices(),
       order_id: Joi.string().allow("").required(),
       ordering_channnel: Joi.string().allow("").allow(null),
+      ordering_source: Joi.string().allow("").allow(null),
       shipment_id: Joi.string().allow("").allow(null),
       customer_note: Joi.string().allow("").allow(null),
       total_bags: Joi.number().required(),
@@ -8557,6 +8577,7 @@ class OrderPlatformModel {
         .allow(null, ""),
       order_value: Joi.string().allow("").allow(null),
       ordering_channel: Joi.string().allow("").allow(null),
+      ordering_source: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -9164,6 +9185,7 @@ class OrderPlatformModel {
   static OrderData() {
     return Joi.object({
       ordering_channel: Joi.string().allow(""),
+      ordering_source: Joi.string().allow("").allow(null),
       order_date: Joi.string().allow("").required(),
       created_ts: Joi.string().allow(""),
       tax_details: OrderPlatformModel.TaxDetails(),

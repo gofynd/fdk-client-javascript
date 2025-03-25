@@ -880,11 +880,13 @@ class Theme {
    * @description: Retrieve a list of available fonts that can be used by themes in the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFonts/).
    */
   async getFonts(
-    { requestHeaders } = { requestHeaders: {} },
+    { capability, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.getFonts().validate(
-      {},
+      {
+        capability,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -895,7 +897,9 @@ class Theme {
     const {
       error: warrning,
     } = ThemePlatformApplicationValidator.getFonts().validate(
-      {},
+      {
+        capability,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -906,6 +910,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["capability"] = capability;
 
     const response = await PlatformAPIClient.execute(
       this.config,

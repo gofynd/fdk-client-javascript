@@ -2513,6 +2513,17 @@ const Joi = require("joi");
  * @property {string} field - The field in the request that caused the error.
  */
 
+/**
+ * @typedef {| "storefront"
+ *   | "store_os_pos"
+ *   | "kiosk"
+ *   | "scan_go"
+ *   | "smart_trolley"
+ *   | "marketplace"
+ *   | "social_commerce"
+ *   | "ondc"} OrderingSource
+ */
+
 class CartPlatformModel {
   /** @returns {CouponDateMeta} */
   static CouponDateMeta() {
@@ -5115,6 +5126,31 @@ class CartPlatformModel {
       message: Joi.string().allow("").required(),
       field: Joi.string().allow("").required(),
     });
+  }
+
+  /**
+   * Enum: OrderingSource Used By: Cart
+   *
+   * @returns {OrderingSource}
+   */
+  static OrderingSource() {
+    return Joi.string().valid(
+      "storefront",
+
+      "store_os_pos",
+
+      "kiosk",
+
+      "scan_go",
+
+      "smart_trolley",
+
+      "marketplace",
+
+      "social_commerce",
+
+      "ondc"
+    );
   }
 }
 module.exports = CartPlatformModel;

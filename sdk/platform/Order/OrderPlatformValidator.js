@@ -42,6 +42,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef CreateOrderParam
+ * @property {string} [xOrderingSource] - To uniquely identify the source
+ *   through which order has been placed.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 
@@ -104,7 +106,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} orderingChannel - The channel through which orders are placed.
+ * @property {string} [orderingChannel] - The specific channel through which
+ *   your order was placed. This field will be phased out after version 2.4.0.
+ *   Please use ordering_source instead to ensure accurate order tracking and processing.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -419,6 +425,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 
@@ -572,6 +580,7 @@ class OrderPlatformValidator {
   /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
+      xOrderingSource: Joi.string().allow(""),
       body: OrderPlatformModel.CreateOrderAPI().required(),
     }).required();
   }
@@ -656,7 +665,8 @@ class OrderPlatformValidator {
   /** @returns {GetAllowedStateTransitionParam} */
   static getAllowedStateTransition() {
     return Joi.object({
-      orderingChannel: Joi.string().allow("").required(),
+      orderingChannel: Joi.string().allow(""),
+      orderingSource: Joi.string().allow(""),
       status: Joi.string().allow("").required(),
     }).required();
   }
@@ -931,6 +941,7 @@ class OrderPlatformValidator {
     return Joi.object({
       appId: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
+      orderingSource: Joi.string().allow(""),
       entity: Joi.string().allow(""),
     }).required();
   }
