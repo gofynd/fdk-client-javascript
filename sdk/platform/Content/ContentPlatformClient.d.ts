@@ -51,19 +51,6 @@ declare class Content {
      */
     deleteCustomFieldDefinitionBySlug({ slug, resource, namespace, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
     /**
-     * @param {ContentPlatformValidator.DeleteCustomFieldsByResourceSlugParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomFieldsDeleteSchema>} -
-     *   Success response
-     * @name deleteCustomFieldsByResourceSlug
-     * @summary: delete custom fields of given resource and resource slug
-     * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldsByResourceSlug/).
-     */
-    deleteCustomFieldsByResourceSlug({ resource, resourceSlug, ids, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldsByResourceSlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsDeleteSchema>;
-    /**
      * @param {ContentPlatformValidator.DeleteCustomObjectBySlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -218,7 +205,7 @@ declare class Content {
      * @summary: Get bulk import and export job list
      * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getJobs/).
      */
-    getJobs({ page, pageSize, actionType, requestHeaders }?: ContentPlatformValidator.GetJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;
+    getJobs({ pageNo, pageSize, actionType, requestHeaders }?: ContentPlatformValidator.GetJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;
     /**
      * @param {ContentPlatformValidator.GetResourcesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

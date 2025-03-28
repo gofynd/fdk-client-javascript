@@ -23,7 +23,7 @@ class CompanyProfile {
    *
    * @name cbsOnboardGet
    * @summary: Get company profile
-   * @description: View the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/cbsOnboardGet/).
+   * @description: This API allows to view the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/cbsOnboardGet/).
    */
   async cbsOnboardGet(
     { requestHeaders } = { requestHeaders: {} },
@@ -58,7 +58,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -99,8 +99,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name createBrand
-   * @summary: Create brand
-   * @description: Allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
+   * @summary: Create a Brand.
+   * @description: This API allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
    */
   async createBrand(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -139,7 +139,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/brand`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -182,8 +182,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name createCompanyBrandMapping
-   * @summary: Create company-brand mapping
-   * @description: Establish a mapping between a company and a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
    */
   async createCompanyBrandMapping(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -224,7 +224,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/company-brand`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -265,8 +265,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name createLocation
-   * @summary: Create company stores
-   * @description: Create a new location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
+   * @summary: Create a location associated to a company.
+   * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
    */
   async createLocation(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -305,7 +305,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/location`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -346,8 +346,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name createLocationBulk
-   * @summary: Bulk create company stores
-   * @description: Allows to create locations in bulk at once associated to a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
+   * @summary: Create a location asscoiated to a company in bulk.
+   * @description: This API allows to create a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
    */
   async createLocationBulk(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -388,7 +388,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/bulk`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -429,8 +429,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name editBrand
-   * @summary: update brand
-   * @description: Modify brand details and meta of a specific brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
+   * @summary: Edit a brand.
+   * @description: This API allows to edit meta of a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
    */
   async editBrand(
     { brandId, body, requestHeaders } = { requestHeaders: {} },
@@ -471,7 +471,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -511,8 +511,8 @@ class CompanyProfile {
    * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSchema>} -
    *   Success response
    * @name getBrand
-   * @summary: Get a brand
-   * @description: Retrieve detailed information about a specific brand associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
+   * @summary: Get a single company brand.
+   * @description: This API helps to get data associated to a particular company brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
    */
   async getBrand(
     { brandId, requestHeaders } = { requestHeaders: {} },
@@ -551,7 +551,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -591,8 +591,8 @@ class CompanyProfile {
    * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSchema>} -
    *   Success response
    * @name getBrands
-   * @summary: list company brands
-   * @description: Retrieve a list of available brands associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
+   * @summary: Get brands associated to a company
+   * @description: This API helps to get view brands associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
    */
   async getBrands(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -638,7 +638,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/company-brand`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -677,8 +677,8 @@ class CompanyProfile {
    *   page. Default is 10.
    * @param {string} [arg.q] - Search term for name.
    * @returns {Paginator<CompanyProfilePlatformModel.CompanyBrandListSchema>}
-   * @summary: list company brands
-   * @description: Retrieve a list of available brands associated to a company.
+   * @summary: Get brands associated to a company
+   * @description: This API helps to get view brands associated to a particular company.
    */
   getBrandsPaginator({ pageSize, q } = {}) {
     const paginator = new Paginator();
@@ -708,7 +708,7 @@ class CompanyProfile {
    * @returns {Promise<CompanyProfilePlatformModel.MetricsSchema>} - Success response
    * @name getCompanyMetrics
    * @summary: Get company metrics
-   * @description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
+   * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
    */
   async getCompanyMetrics(
     { requestHeaders } = { requestHeaders: {} },
@@ -745,7 +745,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/metrics`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -785,8 +785,8 @@ class CompanyProfile {
    * @returns {Promise<CompanyProfilePlatformModel.GetLocationSchema>} -
    *   Success response
    * @name getLocationDetail
-   * @summary: Get company stores
-   * @description: Retrive detailed information about a specific location associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationDetail/).
+   * @summary: Get details of a specific location.
+   * @description: This API helps to get data associated to a specific location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationDetail/).
    */
   async getLocationDetail(
     { locationId, requestHeaders } = { requestHeaders: {} },
@@ -827,7 +827,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -868,8 +868,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name getLocationTags
-   * @summary: Get company store tags
-   * @description: Retrieve all the distinct tags associated to a company location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
+   * @summary: Get tags associated with locations for a company.
+   * @description: This API fetches all the tags associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
    */
   async getLocationTags(
     { requestHeaders } = { requestHeaders: {} },
@@ -906,7 +906,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/tags`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/tags`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -946,12 +946,13 @@ class CompanyProfile {
    * @returns {Promise<CompanyProfilePlatformModel.LocationListSchema>} -
    *   Success response
    * @name getLocations
-   * @summary: Get company specific stores
-   * @description: Retrieve a list of locations associated with the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
+   * @summary: Get list of locations
+   * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
    */
   async getLocations(
     {
       storeType,
+      storeCodes,
       q,
       stage,
       pageNo,
@@ -966,6 +967,7 @@ class CompanyProfile {
     const { error } = CompanyProfilePlatformValidator.getLocations().validate(
       {
         storeType,
+        storeCodes,
         q,
         stage,
         pageNo,
@@ -986,6 +988,7 @@ class CompanyProfile {
     } = CompanyProfilePlatformValidator.getLocations().validate(
       {
         storeType,
+        storeCodes,
         q,
         stage,
         pageNo,
@@ -1005,6 +1008,7 @@ class CompanyProfile {
 
     const query_params = {};
     query_params["store_type"] = storeType;
+    query_params["store_codes"] = storeCodes;
     query_params["q"] = q;
     query_params["stage"] = stage;
     query_params["page_no"] = pageNo;
@@ -1018,7 +1022,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/location`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1055,6 +1059,10 @@ class CompanyProfile {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.storeType] - Helps to sort the location list on the
    *   basis of location type.
+   * @param {string[]} [arg.storeCodes] - List of up to 50 store codes to
+   *   fetch. Specify multiple values by repeating the query parameter (e.g.,
+   *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated
+   *   values are not supported.
    * @param {string} [arg.q] - Query that is to be searched.
    * @param {string} [arg.stage] - To filter companies on basis of verified or
    *   unverified companies.
@@ -1066,11 +1074,12 @@ class CompanyProfile {
    * @param {string[]} [arg.tags] - Helps to get the location list on the
    *   basis of multiple location tag.
    * @returns {Paginator<CompanyProfilePlatformModel.LocationListSchema>}
-   * @summary: Get company specific stores
-   * @description: Retrieve a list of locations associated with the company.
+   * @summary: Get list of locations
+   * @description: This API allows to view all the locations associated to a company.
    */
   getLocationsPaginator({
     storeType,
+    storeCodes,
     q,
     stage,
     pageSize,
@@ -1085,6 +1094,7 @@ class CompanyProfile {
       const pageType = "number";
       const data = await this.getLocations({
         storeType: storeType,
+        storeCodes: storeCodes,
         q: q,
         stage: stage,
         pageNo: pageNo,
@@ -1111,8 +1121,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name updateCompany
-   * @summary: Update company profile
-   * @description: Allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
+   * @summary: Edit company profile
+   * @description: This API allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
    */
   async updateCompany(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1151,7 +1161,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1192,8 +1202,8 @@ class CompanyProfile {
    *   - Success response
    *
    * @name updateLocation
-   * @summary: Update company stores
-   * @description: Allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
+   * @summary: Edit a location asscoiated to a company.
+   * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
    */
   async updateLocation(
     { locationId, body, requestHeaders } = { requestHeaders: {} },
@@ -1234,7 +1244,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

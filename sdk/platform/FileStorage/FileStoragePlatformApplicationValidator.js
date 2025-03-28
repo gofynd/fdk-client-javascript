@@ -51,17 +51,17 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef DeletePdfGeneratorConfigParam
- * @property {string} id
+ * @property {string} id - Unique identifier used for operations.
  */
 
 /**
  * @typedef FetchPdfDefaultTemplateByIdParam
- * @property {string} id
+ * @property {string} id - Unique identifier for the default PDF template.
  */
 
 /**
  * @typedef FetchPdfTypeByIdParam
- * @property {string} id
+ * @property {string} id - Unique identifier for the PDF type.
  */
 
 /**
@@ -71,38 +71,46 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef GetConfigHtmlTemplateByIdParam
- * @property {string} id
+ * @property {string} id - Unique identifier for fetching PDF configuration details.
  */
 
 /**
  * @typedef GetDefaultPdfDataParam
- * @property {number} pdfTypeId
- * @property {string} [countryCode]
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
  */
 
 /**
  * @typedef GetDefaultPdfTemplateParam
- * @property {number} pdfTypeId
- * @property {string} format
- * @property {string} [countryCode]
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} format - Specifies the invoice document format (e.g., A4,
+ *   A6, POS, A3).
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
  */
 
 /**
  * @typedef GetHtmlTemplateConfigParam
- * @property {number} pdfTypeId
- * @property {string} format
- * @property {string} [countryCode]
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} format - Specifies the invoice document format (e.g., A4,
+ *   A6, POS, A3).
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
  */
 
 /**
  * @typedef GetPdfPayloadByIdParam
- * @property {string} id
+ * @property {string} id - Unique identifier associated with the PDF payload,
+ *   used for retrieving or processing PDF-related data.
  */
 
 /**
  * @typedef GetPdfTypesParam
- * @property {string} [countryCode]
- * @property {boolean} storeOs
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
+ * @property {boolean} storeOs - Identifies whether the store OS determines the
+ *   PDF generator flow displayed on the UI.
  */
 
 /**
@@ -112,7 +120,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef UpdateHtmlTemplateParam
- * @property {string} id
+ * @property {string} id - Unique identifier used for operations.
  * @property {FileStoragePlatformModel.PdfConfig} body
  */
 

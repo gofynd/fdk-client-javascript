@@ -29,11 +29,6 @@ const Joi = require("joi");
  * @property {string} [action]
  */
 
-/**
- * @typedef BadRequestSchema
- * @property {string} [message] - Failure message.
- */
-
 class AuditTrailPlatformModel {
   /** @returns {RequestBodyAuditLog} */
   static RequestBodyAuditLog() {
@@ -69,13 +64,6 @@ class AuditTrailPlatformModel {
       id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       action: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 }

@@ -80,7 +80,7 @@ class ThemeValidator {
       applicationId: Joi.string().allow("").required(),
       themeId: Joi.string().allow("").required(),
 
-      body: ThemeModel.UpdateThemeRequestBody().required(),
+      body: ThemeModel.ThemesSchema().required(),
     }).required();
   }
 
@@ -139,10 +139,24 @@ class ThemeValidator {
     }).required();
   }
 
+  static getThemeRejectionReasons() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static createExtensionSectionDraft() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       body: ThemeModel.DraftExtensionSection().required(),
+    }).required();
+  }
+
+  static getExtensionbinding() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      bundleName: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -167,12 +181,6 @@ class ThemeValidator {
     }).required();
   }
 
-  static getThemeRejectionReasons() {
-    return Joi.object({
-      themeId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getThemeVersions() {
     return Joi.object({
       themeSlug: Joi.string().allow("").required(),
@@ -186,7 +194,29 @@ class ThemeValidator {
       companyId: Joi.number().required(),
       applicationId: Joi.string().allow("").required(),
 
-      body: ThemeModel.CreateNewTheme().required(),
+      body: ThemeModel.ThemesSchema().required(),
+    }).required();
+  }
+
+  static getOrgnaizationDefaultTheme() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getSystemPage() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
+      pageValue: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getAppliedTheme() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
     }).required();
   }
 }

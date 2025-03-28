@@ -38,10 +38,9 @@ class Content {
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
       getSitemap: "/service/application/content/v1.0/seo/sitemaps/{name}",
       getSitemaps: "/service/application/content/v1.0/seo/sitemaps",
-      getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
-      getSlideshows: "/service/application/content/v1.0/slideshow",
       getSupportInformation: "/service/application/content/v1.0/support",
       getTags: "/service/application/content/v1.0/tags",
+      getWellKnownUrl: "/service/application/content/v1.0/well-known/{slug}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -105,7 +104,7 @@ class Content {
    * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
   async getBlog(
-    { slug, rootId, preview, requestHeaders } = { requestHeaders: {} },
+    { slug, rootId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["slug"]);
@@ -119,7 +118,6 @@ class Content {
 
     const query_params = {};
     query_params["root_id"] = rootId;
-    query_params["preview"] = preview;
 
     const xHeaders = {};
 
@@ -147,7 +145,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BlogGetDetails>} - Success response
+   * @returns {Promise<BlogGetResponseSchema>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
@@ -575,7 +573,7 @@ class Content {
    * @returns {Promise<LandingPageSchema>} - Success response
    * @name getLandingPage
    * @summary: Get a landing page
-   * @description: Get content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
+   * @description: Gets the content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
    */
   async getLandingPage(
     { requestHeaders } = { requestHeaders: {} },
@@ -646,7 +644,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<NavigationGetDetails>} - Success response
+   * @returns {Promise<NavigationGetResponseSchema>} - Success response
    * @name getNavigations
    * @summary: List navigation items
    * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
@@ -687,8 +685,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PageSchema>} - Success response
    * @name getPage
-   * @summary: Get a page
-   * @description: Get detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
+   * @summary: Get page by slug
+   * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
    */
   async getPage(
     { slug, rootId, requestHeaders } = { requestHeaders: {} },
@@ -732,10 +730,10 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PageGetDetails>} - Success response
+   * @returns {Promise<PageGetResponseSchema>} - Success response
    * @name getPages
    * @summary: Lists pages
-   * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
+   * @description: Lists all Custom Pages - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
    */
   async getPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -897,16 +895,20 @@ class Content {
    * @returns {Promise<SitemapConfigurationList>} - Success response
    * @name getSitemaps
    * @summary: List sitemap configurations
-   * @description: Retrieve a list of sitemap configurations for a specific application. Each configuration contains the sitemap XML data.
+   * @description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status.
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemaps/).
    */
   async getSitemaps(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, isActive, name, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["is_active"] = isActive;
+    query_params["name"] = name;
 
     const xHeaders = {};
 
@@ -915,91 +917,6 @@ class Content {
       "get",
       constructUrl({
         url: this._urls["getSitemaps"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SlideshowSchema>} - Success response
-   * @name getSlideshow
-   * @summary: Get a Slideshow
-   * @description: Get a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
-   */
-  async getSlideshow(
-    { slug, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["slug"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSlideshow"],
-        params: { slug },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SlideshowGetDetails>} - Success response
-   * @name getSlideshows
-   * @summary: List Slideshows
-   * @description: List slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
-   */
-  async getSlideshows(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSlideshows"],
         params: {},
       }),
       query_params,
@@ -1075,6 +992,52 @@ class Content {
       constructUrl({
         url: this._urls["getTags"],
         params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<WellKnownResponseSchema>} - Success response
+   * @name getWellKnownUrl
+   * @summary: Get a specific well-known URL
+   * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).
+   */
+  async getWellKnownUrl(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getWellKnownUrl"],
+        params: { slug },
       }),
       query_params,
       undefined,

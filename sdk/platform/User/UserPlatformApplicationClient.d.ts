@@ -39,13 +39,13 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
+     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResp>} -
      *   Success response
      * @name createUserAttributeDefinition
      * @summary: Create a User Attribute Definition
      * @description: Create a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
      */
-    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionDetails>;
+    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionResp>;
     /**
      * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -222,6 +222,16 @@ declare class User {
      * @description: Retrieve a list of user groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
+    /**
+     * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
+     * @name getUsersByByGroupId
+     * @summary: Get users belonging to user group by Id
+     * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
+     */
+    getUsersByByGroupId({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersByByGroupIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

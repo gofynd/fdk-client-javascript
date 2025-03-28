@@ -20,12 +20,6 @@ export = ContentPlatformValidator;
  * @property {string} namespace
  */
 /**
- * @typedef DeleteCustomFieldsByResourceSlugParam
- * @property {string} resource
- * @property {string} resourceSlug
- * @property {string} ids
- */
-/**
  * @typedef DeleteCustomObjectBySlugParam
  * @property {string} definitionSlug
  * @property {string} slug
@@ -93,7 +87,7 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef GetJobsParam
- * @property {string} page
+ * @property {string} pageNo
  * @property {string} pageSize
  * @property {string} actionType
  */
@@ -140,8 +134,6 @@ declare class ContentPlatformValidator {
     static createCustomObjectDefinition(): CreateCustomObjectDefinitionParam;
     /** @returns {DeleteCustomFieldDefinitionBySlugParam} */
     static deleteCustomFieldDefinitionBySlug(): DeleteCustomFieldDefinitionBySlugParam;
-    /** @returns {DeleteCustomFieldsByResourceSlugParam} */
-    static deleteCustomFieldsByResourceSlug(): DeleteCustomFieldsByResourceSlugParam;
     /** @returns {DeleteCustomObjectBySlugParam} */
     static deleteCustomObjectBySlug(): DeleteCustomObjectBySlugParam;
     /** @returns {DeleteCustomObjectDefinitionBySlugParam} */
@@ -184,7 +176,7 @@ declare class ContentPlatformValidator {
     static updateCustomObjectDefinitionBySlug(): UpdateCustomObjectDefinitionBySlugParam;
 }
 declare namespace ContentPlatformValidator {
-    export { CreateCustomFieldDefinitionParam, CreateCustomObjectBySlugParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionBySlugParam, DeleteCustomFieldsByResourceSlugParam, DeleteCustomObjectBySlugParam, DeleteCustomObjectDefinitionBySlugParam, ExportCustomObjectEntriesBySlugParam, GetCustomFieldDefinitionByResourceParam, GetCustomFieldDefinitionBySlugParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsByResourceSlugParam, GetCustomObjectBySlugParam, GetCustomObjectDefinitionBySlugParam, GetCustomObjectDefinitionsParam, GetCustomObjectsBySlugParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesBySlugParam, SampleCustomObjectBulkEntryBySlugParam, UpdateCustomFieldByResourceSlugParam, UpdateCustomFieldDefinitionBySlugParam, UpdateCustomObjectBySlugParam, UpdateCustomObjectDefinitionBySlugParam };
+    export { CreateCustomFieldDefinitionParam, CreateCustomObjectBySlugParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionBySlugParam, DeleteCustomObjectBySlugParam, DeleteCustomObjectDefinitionBySlugParam, ExportCustomObjectEntriesBySlugParam, GetCustomFieldDefinitionByResourceParam, GetCustomFieldDefinitionBySlugParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsByResourceSlugParam, GetCustomObjectBySlugParam, GetCustomObjectDefinitionBySlugParam, GetCustomObjectDefinitionsParam, GetCustomObjectsBySlugParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesBySlugParam, SampleCustomObjectBulkEntryBySlugParam, UpdateCustomFieldByResourceSlugParam, UpdateCustomFieldDefinitionBySlugParam, UpdateCustomObjectBySlugParam, UpdateCustomObjectDefinitionBySlugParam };
 }
 type CreateCustomFieldDefinitionParam = {
     resource: string;
@@ -201,11 +193,6 @@ type DeleteCustomFieldDefinitionBySlugParam = {
     slug: string;
     resource: string;
     namespace: string;
-};
-type DeleteCustomFieldsByResourceSlugParam = {
-    resource: string;
-    resourceSlug: string;
-    ids: string;
 };
 type DeleteCustomObjectBySlugParam = {
     definitionSlug: string;
@@ -262,7 +249,7 @@ type GetCustomObjectsBySlugParam = {
     definitionSlug: string;
 };
 type GetJobsParam = {
-    page: string;
+    pageNo: string;
     pageSize: string;
     actionType: string;
 };

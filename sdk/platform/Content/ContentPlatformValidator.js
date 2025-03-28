@@ -27,13 +27,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef DeleteCustomFieldsByResourceSlugParam
- * @property {string} resource
- * @property {string} resourceSlug
- * @property {string} ids
- */
-
-/**
  * @typedef DeleteCustomObjectBySlugParam
  * @property {string} definitionSlug
  * @property {string} slug
@@ -113,7 +106,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef GetJobsParam
- * @property {string} page
+ * @property {string} pageNo
  * @property {string} pageSize
  * @property {string} actionType
  */
@@ -189,15 +182,6 @@ class ContentPlatformValidator {
       slug: Joi.string().allow("").required(),
       resource: Joi.string().allow("").required(),
       namespace: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteCustomFieldsByResourceSlugParam} */
-  static deleteCustomFieldsByResourceSlug() {
-    return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceSlug: Joi.string().allow("").required(),
-      ids: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -307,7 +291,7 @@ class ContentPlatformValidator {
   /** @returns {GetJobsParam} */
   static getJobs() {
     return Joi.object({
-      page: Joi.string().allow("").required(),
+      pageNo: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
       actionType: Joi.string().allow("").required(),
     }).required();

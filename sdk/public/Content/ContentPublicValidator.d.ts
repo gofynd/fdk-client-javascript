@@ -23,6 +23,11 @@ export = ContentPublicValidator;
  */
 /** @typedef GetNavbarParam */
 /** @typedef GetPricingBannerParam */
+/** @typedef GetSDKDocumentationParam */
+/**
+ * @typedef GetSDKDocumentationByTypeParam
+ * @property {string} type - Type of SDK
+ */
 declare class ContentPublicValidator {
     /** @returns {GetAllTagsParam} */
     static getAllTags(): any;
@@ -46,9 +51,13 @@ declare class ContentPublicValidator {
     static getNavbar(): any;
     /** @returns {GetPricingBannerParam} */
     static getPricingBanner(): any;
+    /** @returns {GetSDKDocumentationParam} */
+    static getSDKDocumentation(): any;
+    /** @returns {GetSDKDocumentationByTypeParam} */
+    static getSDKDocumentationByType(): GetSDKDocumentationByTypeParam;
 }
 declare namespace ContentPublicValidator {
-    export { GetAllTagsParam, GetAnalyticsTagsParam, GetBasicDetailsParam, GetCredentialsByEntityParam, GetCustomPageParam, GetFooterContentParam, GetHomePageContentParam, GetMenuContentParam, GetMenuContentByTypeParam, GetNavbarParam, GetPricingBannerParam };
+    export { GetAllTagsParam, GetAnalyticsTagsParam, GetBasicDetailsParam, GetCredentialsByEntityParam, GetCustomPageParam, GetFooterContentParam, GetHomePageContentParam, GetMenuContentParam, GetMenuContentByTypeParam, GetNavbarParam, GetPricingBannerParam, GetSDKDocumentationParam, GetSDKDocumentationByTypeParam };
 }
 type GetCredentialsByEntityParam = {
     /**
@@ -75,6 +84,12 @@ type GetMenuContentByTypeParam = {
      */
     type: string;
 };
+type GetSDKDocumentationByTypeParam = {
+    /**
+     * - Type of SDK
+     */
+    type: string;
+};
 type GetAllTagsParam = any;
 type GetAnalyticsTagsParam = any;
 type GetBasicDetailsParam = any;
@@ -82,3 +97,4 @@ type GetFooterContentParam = any;
 type GetMenuContentParam = any;
 type GetNavbarParam = any;
 type GetPricingBannerParam = any;
+type GetSDKDocumentationParam = any;

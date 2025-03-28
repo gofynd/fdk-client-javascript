@@ -30,7 +30,6 @@ declare class User {
         sendOTPOnEmail: string;
         sendOTPOnMobile: string;
         sendResetPasswordEmail: string;
-        sendResetPasswordMobile: string;
         sendResetToken: string;
         sendVerificationLinkToEmail: string;
         sendVerificationLinkToMobile: string;
@@ -135,7 +134,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserAttributes>} - Success response
      * @name getUserAttributes
-     * @summary: Get User Attributes
+     * @summary: Get user attributes
      * @description: Get the list of user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
      */
     getUserAttributes({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserAttributes>;
@@ -259,12 +258,12 @@ declare class User {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SendOtpSuccess>} - Success response
+     * @returns {Promise<OtpSuccess>} - Success response
      * @name sendForgotOTPOnMobile
      * @summary: Send mobile OTP for forgot-password
      * @description: Send a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
      */
-    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SendOtpSuccess>;
+    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OtpSuccess>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -277,12 +276,12 @@ declare class User {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SendOtpSuccess>} - Success response
+     * @returns {Promise<OtpSuccess>} - Success response
      * @name sendOTPOnMobile
      * @summary: Send OTP on Mobile
      * @description: Send a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
      */
-    sendOTPOnMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SendOtpSuccess>;
+    sendOTPOnMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OtpSuccess>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -292,15 +291,6 @@ declare class User {
      * @description: Send a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
      */
     sendResetPasswordEmail({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ResetPasswordSuccess>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<any>} - Success response
-     * @name sendResetPasswordMobile
-     * @summary: Reset Password via Mobile
-     * @description: Send a password reset link to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
-     */
-    sendResetPasswordMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<any>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -351,7 +341,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<VerifyEmailSuccess>} - Success response
      * @name updatePassword
-     * @summary: Update password
+     * @summary: Update Password
      * @description: Allow user to change their password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
      */
     updatePassword({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<VerifyEmailSuccess>;
@@ -369,19 +359,19 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserAttributes>} - Success response
      * @name updateUserAttributes
-     * @summary: Update User Attributes
+     * @summary: Update user attributes
      * @description: Update user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
      */
     updateUserAttributes({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserAttributes>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserExistsDetails>} - Success response
+     * @returns {Promise<UserExists>} - Success response
      * @name userExists
-     * @summary: Chcek User Existence
+     * @summary: Check User Existence
      * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
      */
-    userExists({ q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserExistsDetails>;
+    userExists({ q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserExists>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -432,7 +422,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<VerifyOtpSuccess>} - Success response
      * @name verifyMobileOTP
-     * @summary: Verify mobile OTP
+     * @summary: Verify Mobile OTP
      * @description: Verify one-time password sent to user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
      */
     verifyMobileOTP({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<VerifyOtpSuccess>;
