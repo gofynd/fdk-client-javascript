@@ -1,4 +1,4 @@
-# CHANGE LOG (0.0.1111-1.beta.2) - 0.0.1111
+# CHANGE LOG (0.0.1111-3.beta.1) - 0.0.1111
 
 ## Application Client
 
