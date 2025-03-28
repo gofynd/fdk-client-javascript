@@ -8,7 +8,7 @@ class LeadValidator {
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: LeadModel.PriorityEnum(),
+      priority: Joi.string().allow(""),
       category: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),

@@ -94,13 +94,14 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef ErrorResponseSchema
- * @property {string} [message] - A descriptive message providing details about
- *   the error, intended to convey the nature and context of the issue.
- * @property {Object} [error] - An object containing additional error details,
- *   which may vary depending on the error type.
+ * @property {number} [code]
+ * @property {string} [error]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {number} [status]
  */
 /**
- * @typedef CompanyRequestTaxesSchema
+ * @typedef CompanyTaxesSchema1
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
@@ -109,7 +110,7 @@ export = CompanyProfilePlatformModel;
  * @typedef CreateUpdateAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} pincode
+ * @property {string} [pincode]
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -126,7 +127,7 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [warnings]
  * @property {string} [company_type]
  * @property {Object} [_custom_json]
- * @property {CompanyRequestTaxesSchema[]} [taxes]
+ * @property {CompanyTaxesSchema1[]} [taxes]
  * @property {BusinessDetails} [business_details]
  * @property {Document[]} [documents]
  * @property {string} [business_type]
@@ -139,6 +140,7 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef ProfileSuccessResponseSchema
  * @property {number} [uid]
+ * @property {Object[]} [data]
  * @property {string} [message]
  * @property {boolean} [success]
  */
@@ -185,7 +187,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} [description]
  */
 /**
- * @typedef CreateBrandRequestSchema
+ * @typedef CreateUpdateBrandRequestSchema
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -197,19 +199,6 @@ export = CompanyProfilePlatformModel;
  * @property {BrandBannerSchema} banner
  * @property {string} name
  * @property {string} [slug_key]
- */
-/**
- * @typedef UpdateBrandRequestSchema
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
- * @property {string[]} [synonyms]
- * @property {number} [company_id]
- * @property {string} [description]
- * @property {string} logo
- * @property {string} [brand_tier]
- * @property {number} [uid]
- * @property {BrandBannerSchema} banner
- * @property {string} name
  */
 /**
  * @typedef CompanySocialAccounts
@@ -232,7 +221,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
- * @property {string} business_type
+ * @property {string} [business_type]
  * @property {GetAddressSchema[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
@@ -266,7 +255,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef CompanyBrandListSchema
@@ -293,6 +282,7 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef GetCompanySchema
  * @property {string} [stage]
+ * @property {Object} [_custom_json]
  * @property {string} [verified_on]
  * @property {UserSchema} [verified_by]
  * @property {string} [created_on]
@@ -445,7 +435,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyRequestTaxesSchema, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateBrandRequestSchema, UpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyTaxesSchema1, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateUpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
 /** @returns {CompanyTaxesSchema} */
 declare function CompanyTaxesSchema(): CompanyTaxesSchema;
@@ -554,20 +544,15 @@ type GetCompanyProfileSerializerResponseSchema = {
 /** @returns {ErrorResponseSchema} */
 declare function ErrorResponseSchema(): ErrorResponseSchema;
 type ErrorResponseSchema = {
-    /**
-     * - A descriptive message providing details about
-     * the error, intended to convey the nature and context of the issue.
-     */
+    code?: number;
+    error?: string;
     message?: string;
-    /**
-     * - An object containing additional error details,
-     * which may vary depending on the error type.
-     */
-    error?: any;
+    meta?: any;
+    status?: number;
 };
-/** @returns {CompanyRequestTaxesSchema} */
-declare function CompanyRequestTaxesSchema(): CompanyRequestTaxesSchema;
-type CompanyRequestTaxesSchema = {
+/** @returns {CompanyTaxesSchema1} */
+declare function CompanyTaxesSchema1(): CompanyTaxesSchema1;
+type CompanyTaxesSchema1 = {
     effective_date?: string;
     rate?: number;
     enable?: boolean;
@@ -577,7 +562,7 @@ declare function CreateUpdateAddressSchema(): CreateUpdateAddressSchema;
 type CreateUpdateAddressSchema = {
     landmark?: string;
     country_code?: string;
-    pincode: string;
+    pincode?: string;
     address_type: string;
     longitude: number;
     country: string;
@@ -595,7 +580,7 @@ type UpdateCompany = {
     warnings?: any;
     company_type?: string;
     _custom_json?: any;
-    taxes?: CompanyRequestTaxesSchema[];
+    taxes?: CompanyTaxesSchema1[];
     business_details?: BusinessDetails;
     documents?: Document[];
     business_type?: string;
@@ -609,6 +594,7 @@ type UpdateCompany = {
 declare function ProfileSuccessResponseSchema(): ProfileSuccessResponseSchema;
 type ProfileSuccessResponseSchema = {
     uid?: number;
+    data?: any[];
     message?: string;
     success?: boolean;
 };
@@ -658,9 +644,9 @@ type GetBrandResponseSchema = {
     logo?: string;
     description?: string;
 };
-/** @returns {CreateBrandRequestSchema} */
-declare function CreateBrandRequestSchema(): CreateBrandRequestSchema;
-type CreateBrandRequestSchema = {
+/** @returns {CreateUpdateBrandRequestSchema} */
+declare function CreateUpdateBrandRequestSchema(): CreateUpdateBrandRequestSchema;
+type CreateUpdateBrandRequestSchema = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -672,20 +658,6 @@ type CreateBrandRequestSchema = {
     banner: BrandBannerSchema;
     name: string;
     slug_key?: string;
-};
-/** @returns {UpdateBrandRequestSchema} */
-declare function UpdateBrandRequestSchema(): UpdateBrandRequestSchema;
-type UpdateBrandRequestSchema = {
-    _custom_json?: any;
-    _locale_language?: any;
-    synonyms?: string[];
-    company_id?: number;
-    description?: string;
-    logo: string;
-    brand_tier?: string;
-    uid?: number;
-    banner: BrandBannerSchema;
-    name: string;
 };
 /** @returns {CompanySocialAccounts} */
 declare function CompanySocialAccounts(): CompanySocialAccounts;
@@ -711,7 +683,7 @@ type CompanySchema = {
     company_type: string;
     modified_on?: string;
     market_channels?: string[];
-    business_type: string;
+    business_type?: string;
     addresses?: GetAddressSchema[];
     notification_emails?: string[];
     details?: CompanyDetails;
@@ -769,9 +741,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - The number of items per page.
+     * - Total number of items.
      */
-    page_size?: number;
+    total?: number;
 };
 /** @returns {CompanyBrandListSchema} */
 declare function CompanyBrandListSchema(): CompanyBrandListSchema;
@@ -803,6 +775,7 @@ type InvoiceDetailsSchema = {
 declare function GetCompanySchema(): GetCompanySchema;
 type GetCompanySchema = {
     stage?: string;
+    _custom_json?: any;
     verified_on?: string;
     verified_by?: UserSchema;
     created_on?: string;

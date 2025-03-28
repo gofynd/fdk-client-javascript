@@ -57,7 +57,7 @@ export = RewardsPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef Offer
@@ -256,9 +256,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - The number of items per page.
+     * - Total number of items.
      */
-    page_size?: number;
+    total?: number;
 };
 /** @returns {Offer} */
 declare function Offer(): Offer;

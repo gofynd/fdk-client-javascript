@@ -18,7 +18,7 @@ export = LeadPlatformApplicationValidator;
  * @property {LeadPlatformModel.EditCustomFormPayload} body
  */
 /**
- * @typedef EditNewTicketParam
+ * @typedef EditTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -28,21 +28,21 @@ export = LeadPlatformApplicationValidator;
  */
 /** @typedef GetCustomFormsParam */
 /**
- * @typedef GetNewTicketParam
+ * @typedef GetTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 /**
- * @typedef GetNewTicketHistoryParam
+ * @typedef GetTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 /**
- * @typedef GetNewTicketsParam
+ * @typedef GetTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
+ * @property {string} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  */
 declare class LeadPlatformApplicationValidator {
@@ -54,21 +54,21 @@ declare class LeadPlatformApplicationValidator {
     static deleteCustomForm(): DeleteCustomFormParam;
     /** @returns {EditCustomFormParam} */
     static editCustomForm(): EditCustomFormParam;
-    /** @returns {EditNewTicketParam} */
-    static editNewTicket(): EditNewTicketParam;
+    /** @returns {EditTicketParam} */
+    static editTicket(): EditTicketParam;
     /** @returns {GetCustomFormParam} */
     static getCustomForm(): GetCustomFormParam;
     /** @returns {GetCustomFormsParam} */
     static getCustomForms(): any;
-    /** @returns {GetNewTicketParam} */
-    static getNewTicket(): GetNewTicketParam;
-    /** @returns {GetNewTicketHistoryParam} */
-    static getNewTicketHistory(): GetNewTicketHistoryParam;
-    /** @returns {GetNewTicketsParam} */
-    static getNewTickets(): GetNewTicketsParam;
+    /** @returns {GetTicketParam} */
+    static getTicket(): GetTicketParam;
+    /** @returns {GetTicketHistoryParam} */
+    static getTicketHistory(): GetTicketHistoryParam;
+    /** @returns {GetTicketsParam} */
+    static getTickets(): GetTicketsParam;
 }
 declare namespace LeadPlatformApplicationValidator {
-    export { CreateCustomFormParam, CreateNewHistoryParam, DeleteCustomFormParam, EditCustomFormParam, EditNewTicketParam, GetCustomFormParam, GetCustomFormsParam, GetNewTicketParam, GetNewTicketHistoryParam, GetNewTicketsParam };
+    export { CreateCustomFormParam, CreateNewHistoryParam, DeleteCustomFormParam, EditCustomFormParam, EditTicketParam, GetCustomFormParam, GetCustomFormsParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam };
 }
 type CreateCustomFormParam = {
     body: LeadPlatformModel.CreateCustomFormPayload;
@@ -93,7 +93,7 @@ type EditCustomFormParam = {
     slug: string;
     body: LeadPlatformModel.EditCustomFormPayload;
 };
-type EditNewTicketParam = {
+type EditTicketParam = {
     /**
      * - Ticket ID of ticket to be edited
      */
@@ -106,19 +106,19 @@ type GetCustomFormParam = {
      */
     slug: string;
 };
-type GetNewTicketParam = {
+type GetTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
      */
     id: string;
 };
-type GetNewTicketHistoryParam = {
+type GetTicketHistoryParam = {
     /**
      * - Ticket ID for which history is to be fetched
      */
     id: string;
 };
-type GetNewTicketsParam = {
+type GetTicketsParam = {
     /**
      * - Decides that the reponse will contain the list of tickets
      */
@@ -139,7 +139,7 @@ type GetNewTicketsParam = {
     /**
      * - Filter tickets on priority
      */
-    priority?: LeadPlatformModel.PriorityEnum;
+    priority?: string;
     /**
      * - Filter tickets on category
      */
