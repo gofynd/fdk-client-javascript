@@ -1,6 +1,6 @@
 export = PaymentPlatformModel;
 /**
- * @typedef PaymentGatewayConfigDetails
+ * @typedef PaymentGatewayConfigResponse
  * @property {AggregatorConfig[]} [aggregators] - List of all config specific to
  *   the aggregator with their Details.
  * @property {string} app_id - Application Id to which Payment config Mapped
@@ -36,7 +36,7 @@ export = PaymentPlatformModel;
  *   payment aggregator for the merchant.
  */
 /**
- * @typedef PaymentGatewayConfigCreation
+ * @typedef PaymentGatewayConfigRequest
  * @property {string} app_id - Application Id to which Payment config Mapped
  * @property {boolean} [is_active] - Enable or Disable Flag
  * @property {PaymentGatewayConfig} [ccavenue]
@@ -54,33 +54,33 @@ export = PaymentPlatformModel;
  * @property {string} [code] - Error descrption code.
  */
 /**
- * @typedef HttpErrorDetails
+ * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} [error]
  * @property {boolean} success - Response is successful or not
  * @property {string[]} [items] - Return empty array in error response
  * @property {string} [message] - Error description message
  */
 /**
- * @typedef RefundErrorCodeAndMessage
+ * @typedef RefundErrorCodeAndResponse
  * @property {boolean} success - Response is successful or not
  * @property {string} [message] - Response message
  * @property {IFSCErrorData} [data]
  * @property {EDCError} [error]
  */
 /**
- * @typedef PaymentOptionErrorCodeAndMessage
+ * @typedef PaymentOptionErrorCodeAndResponse
  * @property {boolean} success - Response is successful or not
  * @property {string} [message]
  * @property {string[]} [error]
  */
 /**
- * @typedef RefundOptionErrorCodeAndMessage
+ * @typedef RefundOptionErrorCodeAndResponse
  * @property {boolean} success - Response is successful or not
  * @property {RefundOptionMessage} [message]
  * @property {RefundOptionError} [error]
  */
 /**
- * @typedef UserCODAdvanceErrorCodeAndMessage
+ * @typedef UserCODAdvanceErrorCodeAndResponse
  * @property {boolean} success - Response is successful or not
  * @property {UserCodErrorMessage} [error]
  */
@@ -140,10 +140,10 @@ export = PaymentPlatformModel;
 /**
  * @typedef ProductCODData
  * @property {Object} [items] - Item id with its cod availability.
- * @property {CODChargesLimitsDetails} [cod_charges]
+ * @property {CODChargesLimitsResponse} [cod_charges]
  */
 /**
- * @typedef CODChargesLimitsDetails
+ * @typedef CODChargesLimitsResponse
  * @property {number} [max_cart_value] - Max allowed cart value for cod order.
  * @property {number} [min_cart_value] - Min allowed cart value for cod order.
  * @property {number} [cod_charge] - Cod charges to be applied on order.
@@ -379,7 +379,7 @@ export = PaymentPlatformModel;
  * @property {AdvanceObject} [advance]
  */
 /**
- * @typedef PaymentModeRouteDetails
+ * @typedef PaymentModeRouteResponse
  * @property {PaymentOptionAndFlow} payment_options
  * @property {boolean} success - Response is successful or not
  * @property {Object} [payment_breakup] - Payment Breakup for advance payment
@@ -414,7 +414,7 @@ export = PaymentPlatformModel;
  * @property {number} [delivery_slot_id]
  */
 /**
- * @typedef PaymentOptionsDetails
+ * @typedef PaymentOptionsResponse
  * @property {PaymentOptions} payment_options
  * @property {boolean} success - Response is successful or not
  * @property {Object} [payment_breakup] - Payment Breakup for advance payment
@@ -456,7 +456,7 @@ export = PaymentPlatformModel;
  * @property {string} transfer_type - Transafer type
  */
 /**
- * @typedef PayoutsDetails
+ * @typedef PayoutsResponse
  * @property {boolean} success - Response is successful or not
  * @property {Payout[]} items - Contains list of PayoutSchema
  */
@@ -481,7 +481,7 @@ export = PaymentPlatformModel;
  * @property {string} [mobile]
  */
 /**
- * @typedef PayoutCreation
+ * @typedef PayoutRequest
  * @property {string} aggregator - Aggregator Name
  * @property {PayoutUserDetails} users
  * @property {string} unique_external_id - Unique Id of Payout
@@ -490,7 +490,7 @@ export = PaymentPlatformModel;
  * @property {string} transfer_type - Transafer type
  */
 /**
- * @typedef PayoutDetails
+ * @typedef PayoutResponse
  * @property {string} [payment_status] - Status of payment
  * @property {PayoutUserDetails} users
  * @property {string} aggregator - Aggregator Name
@@ -500,10 +500,10 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Response is successful or not
  * @property {string} transfer_type - Transfer type
  * @property {boolean} created - Created flag
- * @property {PayoutData} [payouts]
+ * @property {PayoutDetails} [payouts]
  */
 /**
- * @typedef PayoutData
+ * @typedef PayoutDetails
  * @property {BankDetails} [more_attributes]
  * @property {string} [aggregator_fund_id]
  */
@@ -521,7 +521,7 @@ export = PaymentPlatformModel;
  * @property {string} [aggregator_fund_id]
  */
 /**
- * @typedef UpdatePayoutDetails
+ * @typedef UpdatePayoutResponse
  * @property {boolean} [is_default] - Enable or Disable Default Payout
  * @property {boolean} [is_active] - Enable or DIsable Flag Payout
  * @property {boolean} success - Response is successful or not
@@ -539,50 +539,26 @@ export = PaymentPlatformModel;
  * @property {string} [aggregator_fund_id]
  */
 /**
- * @typedef UpdatePayoutCreation
+ * @typedef UpdatePayoutRequest
  * @property {boolean} [is_default] - Enable or Disable Default Payout
  * @property {boolean} is_active - Enable or Disable Flag Payout
  * @property {string} unique_external_id - Unique Id of Payout
  */
 /**
- * @typedef DeletePayoutDetails
+ * @typedef DeletePayoutResponse
  * @property {boolean} [delete] - Delete is successful or not
  * @property {string} [unique_transfer_no] - Unique transafer no of payout
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef SubscriptionPaymentMethodDetails
- * @property {Object[]} data - Subscription Payment Method Object
- * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef DeleteSubscriptionPaymentMethodDetails
- * @property {boolean} success - Success or failure.
- */
-/**
- * @typedef SubscriptionConfigDetails
- * @property {string} aggregator - Aggregator Name
- * @property {Object} config - Aggregator Config
- * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef SaveSubscriptionSetupIntentCreation
- * @property {string} unique_external_id - Unique id i.e company:id
- */
-/**
- * @typedef SaveSubscriptionSetupIntentDetails
- * @property {Object} data - Subscription Payment Method Object
- * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef RefundAccountDetails
+ * @typedef RefundAccountResponse
  * @property {boolean} [is_verified_flag] - Account is verified or not
  * @property {string} [message] - Response message
  * @property {Object} [data] - Refund account data.
  * @property {boolean} success - Success or failure flag.
  */
 /**
- * @typedef GetRefundAccountDetails
+ * @typedef GetRefundAccountResponse
  * @property {boolean} [is_verified_flag]
  * @property {string} [message] - Response message
  * @property {BankDetailsForOTP[]} data - Refund account data.
@@ -601,14 +577,14 @@ export = PaymentPlatformModel;
  * @property {string} branch_name - Branch name of account
  * @property {string} bank_name - Bank name of account
  * @property {string} account_holder - Accountg holder name of account
- * @property {string} [address]
- * @property {string} [comment]
- * @property {string} [email]
- * @property {string} [mobile]
- * @property {string} [beneficiary_id]
+ * @property {string} [address] - Address of account
+ * @property {string} [comment] - Comment for account
+ * @property {string} [email] - Email address of account
+ * @property {string} [mobile] - Mobile number of account
+ * @property {string} [beneficiary_id] - Beneficiary id of account
  */
 /**
- * @typedef AddBeneficiaryDetailsOTPCreation
+ * @typedef AddBeneficiaryDetailsOTPRequest
  * @property {string} [transfer_mode]
  * @property {string} [shipment_id]
  * @property {boolean} [delights]
@@ -616,7 +592,7 @@ export = PaymentPlatformModel;
  * @property {BankDetailsForOTP} details
  */
 /**
- * @typedef IfscCodeDetails
+ * @typedef IfscCodeResponse
  * @property {boolean} [success]
  * @property {string} branch_name
  * @property {string} bank_name
@@ -650,7 +626,7 @@ export = PaymentPlatformModel;
  * @property {boolean} [default_beneficiary]
  */
 /**
- * @typedef OrderBeneficiaryFetchResults
+ * @typedef OrderBeneficiaryResponse
  * @property {OrderBeneficiaryDetails[]} [beneficiaries] - All Beneficiaries Of An Order
  * @property {boolean} [show_beneficiary_details] - Show beneficiary details or not.
  * @property {OrderBeneficiaryDetails[]} [bank]
@@ -678,12 +654,12 @@ export = PaymentPlatformModel;
  * @property {string} mode - Payment mode short code
  */
 /**
- * @typedef PaymentConfirmationCreation
+ * @typedef PaymentConfirmationRequest
  * @property {string} order_id - Unique order id
  * @property {MultiTenderPaymentMethod[]} payment_methods
  */
 /**
- * @typedef PaymentConfirmationDetails
+ * @typedef PaymentConfirmationResponse
  * @property {string} [order_id] - Unique order id
  * @property {string} message - Message
  * @property {boolean} success - Payment confirmation updated or not.
@@ -701,34 +677,29 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef CODLimitConfig
- * @property {number} [storefront]
- * @property {number} [pos]
+ * @property {number} storefront - Limit for storefront
+ * @property {number} pos - Limit for pos
  */
 /**
  * @typedef CODPaymentLimitConfig
- * @property {boolean} is_active
- * @property {number} usages
- * @property {number} user_id
- * @property {string} [merchant_user_id]
- * @property {number} remaining_limit
+ * @property {boolean} is_active - Boolean flag to show the status
+ * @property {number} usages - Used cod limit
+ * @property {number} user_id - User_id
+ * @property {string} merchant_user_id - Merchant_user_id
+ * @property {number} remaining_limit - Remaining COD limit
  * @property {CODLimitConfig} limit
  */
 /**
- * @typedef UserPaymentLimitConfig
- * @property {AdvancePaymentLimitConfig} [advance]
- * @property {CODPaymentLimitConfig} [cod]
+ * @typedef GetUserBULimitResponse
+ * @property {string} buisness_unit - COD limit business unit
+ * @property {string} display_name - Display name for cod limit
+ * @property {CODPaymentLimitConfig} config
  */
 /**
- * @typedef GetUserBULimitDetails
- * @property {string} [buisness_unit]
- * @property {string} [display_name]
- * @property {UserPaymentLimitConfig} [config]
- */
-/**
- * @typedef GetUserCODLimitDetails
- * @property {boolean} [success] - Response is successful or not
- * @property {string} [message]
- * @property {GetUserBULimitDetails[]} [items]
+ * @typedef GetUserCODLimitResponse
+ * @property {GetUserBULimitResponse[]} items
+ * @property {boolean} success - Response is successful or not
+ * @property {string} [message] - Message for cod limit
  */
 /**
  * @typedef SetAdvanceLimitConfig
@@ -758,16 +729,10 @@ export = PaymentPlatformModel;
  * @property {SetUserPaymentLimitConfig} config
  */
 /**
- * @typedef SetCODForUserCreation
+ * @typedef SetCODForUserRequest
  * @property {string} [mobile_no] - Mobile No. of User
  * @property {string} merchant_user_id - Merchant User id
- * @property {boolean} is_active - Either true or false
  * @property {SetBUPaymentLimit[]} items
- */
-/**
- * @typedef SetCODOptionDetails
- * @property {string} message - Message
- * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef EdcModelData
@@ -776,7 +741,7 @@ export = PaymentPlatformModel;
  * @property {string[]} models - List of string of edc models
  */
 /**
- * @typedef EdcAggregatorAndModelListDetails
+ * @typedef EdcAggregatorAndModelListResponse
  * @property {EdcModelData[]} data - List of aggregators and their edc models
  * @property {boolean} success - Response is successful or not
  */
@@ -786,12 +751,12 @@ export = PaymentPlatformModel;
  * @property {number} active_device_count - No of active devices
  */
 /**
- * @typedef EdcDeviceStatsDetails
+ * @typedef EdcDeviceStatsResponse
  * @property {StatisticsData} statistics
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef EdcAddCreation
+ * @typedef EdcAddRequest
  * @property {string} edc_model - Model of the edc machine
  * @property {number} store_id - Store at which devices is to used
  * @property {number} aggregator_id - Aggregator which will accept payment
@@ -816,17 +781,17 @@ export = PaymentPlatformModel;
  * @property {string} application_id - Application ID
  */
 /**
- * @typedef EdcDeviceAddDetails
+ * @typedef EdcDeviceAddResponse
  * @property {EdcDevice} data
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef EdcDeviceDetails
+ * @typedef EdcDeviceDetailsResponse
  * @property {EdcDevice} data
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef EdcUpdate
+ * @typedef EdcUpdateRequest
  * @property {string} [edc_model] - Model of the edc machine
  * @property {number} [store_id] - Store at which devices is to used
  * @property {number} [aggregator_id] - Aggregator which will accept payment
@@ -836,7 +801,7 @@ export = PaymentPlatformModel;
  * @property {string} [device_tag] - Device tag of edc device to identify it
  */
 /**
- * @typedef EdcDeviceUpdateDetails
+ * @typedef EdcDeviceUpdateResponse
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -851,14 +816,14 @@ export = PaymentPlatformModel;
  * @property {number} [total] - Total number of items.
  */
 /**
- * @typedef EdcDeviceListDetails
+ * @typedef EdcDeviceListResponse
  * @property {EdcDevice[]} items - List of all edc mapped to the application
  *   options with their Details.
  * @property {Page} page
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef PaymentInitializationCreation
+ * @typedef PaymentInitializationRequest
  * @property {string} [razorpay_payment_id] - Payment gateway payment id
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} [email] - Customer valid email
@@ -875,7 +840,7 @@ export = PaymentPlatformModel;
  * @property {string} method - Payment method
  */
 /**
- * @typedef PaymentInitializationDetails
+ * @typedef PaymentInitializationResponse
  * @property {string} [razorpay_payment_id] - Payment id.
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} [upi_poll_url] - UPI poll url.
@@ -896,24 +861,24 @@ export = PaymentPlatformModel;
  * @property {string} method - Payment method
  */
 /**
- * @typedef PaymentStatusUpdateCreation
+ * @typedef PaymentStatusUpdateRequest
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} [email] - Customer valid email
  * @property {string} [customer_id] - Payment gateway customer id.
  * @property {string} [vpa] - Customer vpa address
  * @property {string} aggregator - Payment gateway name
- * @property {string} order_id - Payment gateway order id
+ * @property {string} [order_id] - Payment gateway order id
  * @property {string} [currency] - Currency code.
  * @property {number} amount - Payable amount.
  * @property {string} [contact] - Customer valid mobile number
  * @property {string} merchant_order_id - Unique fynd order id
- * @property {string} status - Status of payment.
+ * @property {string} [status] - Status of payment.
  * @property {string} method - Payment method
  * @property {string} [merchant_transaction_id] - Unique fynd transaction id
  * @property {string} [unique_link_id] - Unique payment link id
  */
 /**
- * @typedef PaymentStatusUpdateDetails
+ * @typedef PaymentStatusUpdateResponse
  * @property {string} [redirect_url] - Redirect url
  * @property {boolean} [retry] - Response is successful or not.
  * @property {boolean} [success] - Response is successful or not
@@ -921,7 +886,7 @@ export = PaymentPlatformModel;
  * @property {string} aggregator_name - Payment gateway name
  */
 /**
- * @typedef ResendOrCancelPaymentCreation
+ * @typedef ResendOrCancelPaymentRequest
  * @property {string} order_id - Unique order id
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} request_type - Either resend or cancel
@@ -932,16 +897,16 @@ export = PaymentPlatformModel;
  * @property {string} [message] - Message
  */
 /**
- * @typedef ResendOrCancelPaymentDetails
+ * @typedef ResendOrCancelPaymentResponse
  * @property {LinkStatus} data
  * @property {boolean} success - Response is successful or not.
  */
 /**
- * @typedef PaymentStatusBulkHandlerCreation
+ * @typedef PaymentStatusBulkHandlerRequest
  * @property {string[]} merchant_order_id - List of order ids
  */
 /**
- * @typedef PaymentObjectList
+ * @typedef PaymentObjectListSerializer
  * @property {Object} user_object
  * @property {string} modified_on
  * @property {string} collected_by
@@ -964,10 +929,10 @@ export = PaymentPlatformModel;
 /**
  * @typedef PaymentStatusObject
  * @property {string} merchant_order_id
- * @property {PaymentObjectList[]} [payment_object_list]
+ * @property {PaymentObjectListSerializer[]} [payment_object_list]
  */
 /**
- * @typedef PaymentStatusBulkHandlerDetails
+ * @typedef PaymentStatusBulkHandlerResponse
  * @property {number} [count]
  * @property {PaymentStatusObject[]} [data]
  * @property {boolean} success
@@ -975,7 +940,7 @@ export = PaymentPlatformModel;
  * @property {number} status
  */
 /**
- * @typedef GetOauthUrlDetails
+ * @typedef GetOauthUrlResponse
  * @property {string} url - The url to call for authenticating
  * @property {boolean} success - Response is successful or not
  */
@@ -1006,12 +971,12 @@ export = PaymentPlatformModel;
  * @property {RepaymentRequestDetails[]} [shipment_details]
  */
 /**
- * @typedef RepaymentDetails
+ * @typedef RepaymentResponse
  * @property {Object} [data]
  * @property {boolean} success - Success/Failure of the transaction
  */
 /**
- * @typedef MerchantOnBoardingCreation
+ * @typedef MerchantOnBoardingRequest
  * @property {string} credit_line_id - Merchant ID at Ajiodhan's end
  * @property {string} aggregator - Payment aggregator name
  * @property {string} app_id - Application id
@@ -1019,7 +984,7 @@ export = PaymentPlatformModel;
  * @property {string} status - Status
  */
 /**
- * @typedef MerchantOnBoardingDetails
+ * @typedef MerchantOnBoardingResponse
  * @property {MerchantOnboardingData} data
  * @property {boolean} success - Success/Failure of the transaction
  */
@@ -1030,7 +995,7 @@ export = PaymentPlatformModel;
  * @property {boolean} [status] - Successful or failure
  */
 /**
- * @typedef ValidateCustomerCreation
+ * @typedef ValidateCustomerRequest
  * @property {string} phone_number - User mobile number without country code.
  * @property {string} aggregator - Payment gateway name in camel case i.e Simpl, Rupifi
  * @property {string} [payload] - Hashed payload string.
@@ -1051,7 +1016,7 @@ export = PaymentPlatformModel;
  * @property {number} [quantity]
  */
 /**
- * @typedef ValidateCustomerDetails
+ * @typedef ValidateCustomerResponse
  * @property {string} message - Error or success message.
  * @property {ValidateCustomer} [data]
  * @property {boolean} success - Response is successful or not
@@ -1078,7 +1043,7 @@ export = PaymentPlatformModel;
  * @property {number} [allowed_redemption_amount]
  */
 /**
- * @typedef GetPaymentLinkDetails
+ * @typedef GetPaymentLinkResponse
  * @property {string} [currency] - Currency
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
@@ -1105,11 +1070,11 @@ export = PaymentPlatformModel;
  * @property {string} [description]
  */
 /**
- * @typedef ErrorDetails
+ * @typedef ErrorResponse
  * @property {number} [status_code] - HTTP status code
- * @property {ErrorDescription} [error]
  * @property {string} [message] - Message
  * @property {boolean} success - Successful or failure
+ * @property {ErrorDescription} [error]
  */
 /**
  * @typedef CreatePaymentLinkMeta
@@ -1118,10 +1083,10 @@ export = PaymentPlatformModel;
  * @property {string} amount - Payment link amount to be paid by the customer
  * @property {string} [assign_card_id] - Assigned card id against which payment
  *   to be done via payment link
- * @property {string} [pincode]
+ * @property {string} [pincode] - Pincode of customer
  */
 /**
- * @typedef CreatePaymentLinkCreation
+ * @typedef CreatePaymentLinkRequest
  * @property {string} email - Email to which the payment link is to be sent
  * @property {number} amount - Total value of order
  * @property {string} mobile_number - Mobile number to which the payment link is
@@ -1130,13 +1095,9 @@ export = PaymentPlatformModel;
  * @property {string} [description] - Merchant order id
  * @property {CreatePaymentLinkMeta} meta
  * @property {string} external_order_id - Merchant order id
- * @property {string} [success_redirection_url] - URL to which the user will be
- *   redirected after a successful payment.
- * @property {string} [failure_redirection_url] - URL to which the user will be
- *   redirected if the payment fails.
  */
 /**
- * @typedef CreatePaymentLinkDetails
+ * @typedef CreatePaymentLinkResponse
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {string} [payment_link_url] - Url of payment link
@@ -1145,7 +1106,7 @@ export = PaymentPlatformModel;
  * @property {string} [payment_link_id] - Unique id of payment link
  */
 /**
- * @typedef PollingPaymentLinkDetails
+ * @typedef PollingPaymentLinkResponse
  * @property {string} [message] - Message
  * @property {number} [http_status] - HTTP status code
  * @property {number} [status_code] - HTTP status code
@@ -1159,16 +1120,15 @@ export = PaymentPlatformModel;
  * @property {string} [error]
  */
 /**
- * @typedef CancelOrResendPaymentLinkCreation
+ * @typedef CancelOrResendPaymentLinkRequest
  * @property {string} payment_link_id - Unique id of payment link
  */
 /**
- * @typedef ResendPaymentLinkDetails
+ * @typedef ResendPaymentLinkResponse
  * @property {number} status_code - HTTP status code
  * @property {string} message - Message
  * @property {number} [polling_timeout] - Polling request timeout
  * @property {boolean} success - Successful or failure
- * @property {PaymentLinkError} [error]
  */
 /**
  * @typedef PaymentLinkError
@@ -1176,11 +1136,10 @@ export = PaymentPlatformModel;
  * @property {string} [msg] - Message
  */
 /**
- * @typedef CancelPaymentLinkDetails
+ * @typedef CancelPaymentLinkResponse
  * @property {number} status_code - HTTP status code
  * @property {string} message - Message
  * @property {boolean} success - Successful or failure
- * @property {PaymentLinkError} [error]
  */
 /**
  * @typedef Code
@@ -1229,18 +1188,18 @@ export = PaymentPlatformModel;
  * @property {PaymentCode} [jm_wallet]
  */
 /**
- * @typedef GetPaymentCodeDetails
+ * @typedef GetPaymentCodeResponse
  * @property {GetPaymentCode} data
  * @property {boolean} success - Response is successful or not.
  */
 /**
- * @typedef PlatformOnlineOfflinePaymentDetails
+ * @typedef PlatformOnlineOfflinePaymentResponse
  * @property {string} [message] - Message
  * @property {PlatformOnlineOfflineItem} [items]
  * @property {boolean} success - Response is successful or not.
  */
 /**
- * @typedef PatchPlatformOnlineOfflinePaymentDetails
+ * @typedef PatchPlatformOnlineOfflinePaymentResponse
  * @property {string} [message] - Message
  * @property {PlatformOnlineOfflineItem[]} [items]
  * @property {boolean} success - Response is successful or not.
@@ -1249,7 +1208,7 @@ export = PaymentPlatformModel;
  * @typedef PlatformOnlineOfflineItem
  * @property {OnlinePaymentDetails} [online]
  * @property {OfflinePaymentDetails} [offline]
- * @property {PlatformOfflineAdvanceDetails} [advance]
+ * @property {PlatformOfflineAdvanceResponse} [advance]
  */
 /**
  * @typedef OnlinePaymentDetails
@@ -1289,7 +1248,7 @@ export = PaymentPlatformModel;
  * @property {boolean} [is_active]
  */
 /**
- * @typedef PlatformPaymentMode
+ * @typedef PlatformPaymentModeRequest
  * @property {string} [business_unit] - Business unit identifier.
  * @property {string} [device] - Device identifier.
  * @property {boolean} [is_active] - Indicates if the payment option is active.
@@ -1297,7 +1256,7 @@ export = PaymentPlatformModel;
  *   mode details.
  */
 /**
- * @typedef PlatformPaymentModeDetails
+ * @typedef PlatformPaymentModeResponse
  * @property {boolean} [success]
  * @property {string} [message]
  * @property {string} [business_unit] - Business unit identifier.
@@ -1307,7 +1266,7 @@ export = PaymentPlatformModel;
  *   mode details.
  */
 /**
- * @typedef AggregatorPlatformPaymentModeDetails
+ * @typedef AggregatorPlatformPaymentModeResponse
  * @property {boolean} [success]
  * @property {string} [message]
  * @property {string} [business_unit] - Business unit identifier.
@@ -1319,13 +1278,13 @@ export = PaymentPlatformModel;
  *   mode details.
  */
 /**
- * @typedef PlatformOfflineAdvance
+ * @typedef PlatformOfflineAdvanceRequest
  * @property {string} [business_unit] - Business unit identifier.
  * @property {OfflineAdvanceConfig[]} [items]
  * @property {OfflineAdvanceDevice} [device]
  */
 /**
- * @typedef PlatformOfflineAdvanceDetails
+ * @typedef PlatformOfflineAdvanceResponse
  * @property {boolean} [success]
  * @property {boolean} [is_active] - Indicates if the payment option is active.
  * @property {string} [message] - Indicates if the payment option is active.
@@ -1385,7 +1344,7 @@ export = PaymentPlatformModel;
  * @property {SubPaymentMode[]} [sub_payment_mode] - List of sub-payment modes.
  */
 /**
- * @typedef MerchantPaymentMode
+ * @typedef MerchantPaymentModeRequest
  * @property {ModeIsactive} [offline]
  * @property {ModeIsactive} [online]
  */
@@ -1394,21 +1353,16 @@ export = PaymentPlatformModel;
  * @property {boolean} [is_active]
  */
 /**
- * @typedef OfferSerializerData
+ * @typedef OfferSerializer
  * @property {number} [offer_amount] - Offer amount.
  * @property {string} [offer_code] - Offer code.
  * @property {string} [offer_description] - Offer description.
  * @property {string} [offer_id] - Offer id.
  */
 /**
- * @typedef AppliedOfferSerializerData
+ * @typedef AppliedOfferSerializer
  * @property {number} [total_applied_offer_amount] - Total applied offer amount
- * @property {OfferSerializerData[]} [offer_list]
- */
-/**
- * @typedef MerchnatPaymentModeCreation
- * @property {Object} [offline] - Details to be updated for online payment configuration.
- * @property {Object} [online] - Details to be updated for offline payment configuration.
+ * @property {OfferSerializer[]} [offer_list]
  */
 /**
  * @typedef OrderDetail
@@ -1504,69 +1458,51 @@ export = PaymentPlatformModel;
  * @property {string} status - Status of the payment
  */
 /**
- * @typedef RefundDetailsSerializerData
- * @property {number} amount - Refunded amount
- * @property {string} currency - The currency of the payment.
- * @property {string} request_id - Refund request id, unique id generated by Fynd platform
- * @property {string} status - The status of the refund.
- * @property {string} created - Timestamp in epoch.
- * @property {string} refund_utr - Unique refund utr generated by payment gateway.
- */
-/**
- * @typedef AmountSerializerData
+ * @typedef AmountSerializer
  * @property {number} value - Amount in integer
  * @property {string} currency - Currency in which amount is getting passed
  */
 /**
- * @typedef ChargeAmountSerializerData
- * @property {AmountSerializerData} ordering_currency
- * @property {AmountSerializerData} base_currency
+ * @typedef ChargeAmountSerializer
+ * @property {AmountSerializer} ordering_currency
+ * @property {AmountSerializer} base_currency
  */
 /**
- * @typedef CartChargesSerializerData
+ * @typedef CartChargesSerializer
  * @property {string} [charge_type] - Type of charge
  * @property {string} [name] - Name of the charge
  * @property {string} [code] - Unique identifier code for charge
- * @property {ChargeAmountSerializerData} [amount]
+ * @property {ChargeAmountSerializer} [amount]
  */
 /**
- * @typedef CartDetailsSerializerData
- * @property {Object} items - Items that are added in cart
- * @property {Object[]} articles - List of articles that are added in cart
- * @property {number} cart_value - Total cart value i.e. amount to be paid
- * @property {CartChargesSerializerData[]} [cart_charges] - Contains all the
- *   charges that are applicable on cart
- * @property {number} [total_quantity] - Total number of items in cart
- */
-/**
- * @typedef GetPaymentSessionDetails
+ * @typedef GetPaymentSessionResponse
  * @property {Object} [meta] - Meta
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {AppliedOfferSerializerData} [applied_payment_offers]
+ * @property {AppliedOfferSerializer} [applied_payment_offers]
  * @property {string} [checksum]
  * @property {string} status - Status of the payment.
  * @property {string} currency - Currency of the payment.
  * @property {PaymentSessionDetail} payment_details
- * @property {CartDetailsSerializerData} [cart_details]
+ * @property {CartDetailsSerializer} [cart_details]
  * @property {number} total_amount - Amount paid.
- * @property {RefundDetailsSerializerData[]} [refund_details] - Object of refund details
+ * @property {RefundDetailsSerializer[]} [refund_details] - Object of refund details
  */
 /**
- * @typedef PaymentSessionCreation
+ * @typedef PaymentSessionRequestSerializer
  * @property {Object} [meta] - Extra meta data specific to extensions
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {AppliedOfferSerializerData} [applied_payment_offers]
+ * @property {AppliedOfferSerializer} [applied_payment_offers]
+ * @property {string} [checksum] - Checksum to verify the payload
  * @property {OrderDetail} order_details - The details of the order.
  * @property {string} status - Status of the payment.
  * @property {string} currency - Currency of the payment.
  * @property {PaymentSessionDetail[]} payment_details - The payment details with
  *   the schema `PaymentSessionDetail`.
  * @property {number} total_amount - Amount paid.
- * @property {string} [checksum] - Checksum to verify the payload
  * @property {string} [source] - Source of payment update session
  */
 /**
@@ -1577,7 +1513,7 @@ export = PaymentPlatformModel;
  * @property {string} [payment_id] - Unique number generated by extension
  */
 /**
- * @typedef PaymentSessionPutDetails
+ * @typedef PaymentSessionResponseSerializer
  * @property {string} [gid] - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
@@ -1607,7 +1543,7 @@ export = PaymentPlatformModel;
  * @property {string} [balance_transaction] - Balance transaction.
  */
 /**
- * @typedef RefundSessionCreation
+ * @typedef RefundSessionRequestSerializer
  * @property {Object} [meta] - Meta
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
@@ -1615,16 +1551,16 @@ export = PaymentPlatformModel;
  * @property {string} status - The status of the refund.
  * @property {string} currency - The currency of the payment.
  * @property {PaymentSessionDetail} payment_details - Details of the payment
- * @property {string} checksum
+ * @property {string} [checksum]
  * @property {number} total_amount - The total amount refunded.
  * @property {RefundSessionDetail[]} [refund_details] - Details of the refund
  * @property {ErrorDescription} [error]
  * @property {string} [message] - The status of the refund.
  */
 /**
- * @typedef RefundSessionDetails
- * @property {boolean} success
- * @property {string} message
+ * @typedef RefundSessionResponseSerializer
+ * @property {boolean} [success]
+ * @property {string} [message]
  * @property {string} [gid] - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
@@ -1634,7 +1570,7 @@ export = PaymentPlatformModel;
  * @property {number} [total_refund_amount] - The total amount refunded.
  */
 /**
- * @typedef PaymentDetails
+ * @typedef PaymentDetailsSerializer
  * @property {Object[]} payment_methods - List of payment methods
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
@@ -1669,16 +1605,17 @@ export = PaymentPlatformModel;
  *   id generated by payment gateway
  */
 /**
- * @typedef CartDetails
+ * @typedef CartDetailsSerializer
  * @property {Object} items - Items that are added in cart
  * @property {Object[]} articles - List of articles that are added in cart
  * @property {number} cart_value - Total cart value i.e. amount to be paid
  * @property {number} [total_quantity] - Total number of items in cart
  * @property {Object} [custom_cart_meta] - This field is used to add and
  *   retrieve custom data fields to cart items.
+ * @property {Object[]} [cart_charges] - List of cart charges that are added in cart
  */
 /**
- * @typedef RefundDetails
+ * @typedef RefundDetailsSerializer
  * @property {number} amount - Refunded amount
  * @property {string} currency - The currency of the payment.
  * @property {string} request_id - Refund request id, unique id generated by Fynd platform
@@ -1687,7 +1624,7 @@ export = PaymentPlatformModel;
  * @property {string} refund_utr - Unique refund utr generated by payment gateway.
  */
 /**
- * @typedef PaymentSessionFetchDetails
+ * @typedef PaymentSessionSerializer
  * @property {Object} payment_details - Object of payment details
  * @property {string} [currency] - The currency of the payment.
  * @property {string} status - The status of the payment session.
@@ -1695,8 +1632,8 @@ export = PaymentPlatformModel;
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {CartDetails} [cart_details]
- * @property {RefundDetails[]} refund_details - Object of refund details
+ * @property {CartDetailsSerializer} [cart_details]
+ * @property {RefundDetailsSerializer[]} refund_details - Object of refund details
  */
 /**
  * @typedef RefundSourcesPriority
@@ -1706,7 +1643,7 @@ export = PaymentPlatformModel;
  * @property {string} source - Source of refund
  */
 /**
- * @typedef RefundPriorityDetails
+ * @typedef RefundPriorityResponseSerializer
  * @property {string} configuration - Configuration for merchant or customer
  * @property {boolean} success - Success
  * @property {boolean} apportion - Apportion refund to multiple sources
@@ -1716,16 +1653,10 @@ export = PaymentPlatformModel;
  * @property {string} [message] - Message
  */
 /**
- * @typedef RefundPriorityCreation
+ * @typedef RefundPriorityRequestSerializer
  * @property {boolean} [settle_offline] - Settle Offline flag
  * @property {boolean} apportion - Apportion refund to multiple sources
  * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
- */
-/**
- * @typedef MerchantPaymentModeCreation
- * @property {string} business_unit - Business unit
- * @property {Object[]} items - List of item details with respect to payment_mode
- * @property {Object} device - List of devices and its activation status
  */
 /**
  * @typedef FromConfig
@@ -1738,7 +1669,7 @@ export = PaymentPlatformModel;
  * @property {string} business_unit - Business unit name
  */
 /**
- * @typedef PlatformPaymentModeCopyConfigCreation
+ * @typedef PlatformPaymentModeCopyConfigRequest
  * @property {FromConfig} from_config
  * @property {ToConfig} to_config
  */
@@ -1759,7 +1690,7 @@ export = PaymentPlatformModel;
  * @property {string} name - Payment mode name
  */
 /**
- * @typedef PaymentOrderCreation
+ * @typedef PaymentOrderRequest
  * @property {string} order_id - Order id
  * @property {PaymentOrderMethods[]} [payment_methods]
  * @property {string} [shipment_id] - Shipment_id
@@ -1797,7 +1728,7 @@ export = PaymentPlatformModel;
  * @property {string} [bank] - Bank
  */
 /**
- * @typedef PaymentOrderDetails
+ * @typedef PaymentOrderResponse
  * @property {string} message - Message
  * @property {boolean} success - Successful or failure
  * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
@@ -1813,7 +1744,7 @@ export = PaymentPlatformModel;
  * @property {string} [is_greater_than]
  */
 /**
- * @typedef AggregatorVersionDetails
+ * @typedef AggregatorVersionResponse
  * @property {string} message - Message
  * @property {boolean} success - Successful or failure
  * @property {AggregatorVersionItemSchema[]} [items]
@@ -1825,7 +1756,7 @@ export = PaymentPlatformModel;
  * @property {string} [is_greater_than]
  */
 /**
- * @typedef PatchAggregatorControl
+ * @typedef AggregatorControlRequest
  * @property {string} [business_unit] - Business unit
  * @property {Object[]} [items] - List of item details with respect to payment_mode
  * @property {string} [device] - Device name
@@ -1881,13 +1812,13 @@ export = PaymentPlatformModel;
  * @property {PaymentModeCustomConfigSchema[]} items
  */
 /**
- * @typedef DeleteBeneficiary
+ * @typedef DeleteBeneficiaryRequest
  * @property {string} [beneficiary_id] - Saved Beneficiary ID
  */
 /**
- * @typedef DeleteRefundAccountDetails
+ * @typedef DeleteRefundAccountResponse
  * @property {boolean} success - Success/Failure of the deleted beneficiary
- * @property {string} [message] - Message
+ * @property {string} message - Message
  */
 /**
  * @typedef RefundOptionsDetails
@@ -1911,17 +1842,17 @@ export = PaymentPlatformModel;
  *   refund collection options.
  */
 /**
- * @typedef RefundOptionDetails
+ * @typedef RefundOptionResponse
  * @property {OfflineRefundOptions} offline_refund_options - Available offline
  *   refund options data
  * @property {boolean} success - Success/Failure Of response
  * @property {RefundOptions} refund_options - Available refund options data
  */
 /**
- * @typedef SelectedRefundOptionDetails
+ * @typedef SelectedRefundOptionResponse
  * @property {TransferMode} transfer_mode
- * @property {string} [shipment_id] - Shipment ID
- * @property {string} [message] - Message
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} message - Message
  * @property {boolean} success - Successful or not.
  * @property {Object} [beneficiary_details] - Beneficiary Short description
  */
@@ -1990,7 +1921,7 @@ export = PaymentPlatformModel;
  * @property {number} [upi]
  */
 /**
- * @typedef ValidateValidateAddress
+ * @typedef ValidateValidateAddressRequest
  * @property {string} [ifsc_code] - IFSC Code
  * @property {string} [upi_vpa] - VPA Address
  * @property {string} [aggregator] - Aggregator Name
@@ -2003,14 +1934,14 @@ export = PaymentPlatformModel;
  * @property {string} customer_name - VPA Customer Name
  */
 /**
- * @typedef ValidateValidateAddressDetails
+ * @typedef ValidateValidateAddressResponse
  * @property {VPADetails} [upi] - UPI validation details.
  * @property {boolean} success - Successful or not.
  * @property {Object} [ifsc] - IFSC details response data
  * @property {VPADetails} [vpa] - UPI validation details.
  */
 /**
- * @typedef SetDefaultBeneficiary
+ * @typedef SetDefaultBeneficiaryRequest
  * @property {string} order_id - Merchant Order Id
  * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added
  * @property {string} [shipment_id] - Shipment Id from respective merchant order ID
@@ -2018,12 +1949,12 @@ export = PaymentPlatformModel;
  *   merchant order ID
  */
 /**
- * @typedef SetDefaultBeneficiaryDetails
+ * @typedef SetDefaultBeneficiaryResponse
  * @property {boolean} is_beneficiary_set - Boolean Flag whether Beneficiary set or not
  * @property {boolean} [success] - Response is successful or not
  */
 /**
- * @typedef ShipmentRefundDetailsMeta
+ * @typedef ShipmentRefundRequestMeta
  * @property {string} [shipment_id] - Shipment Id of the respective Merchant Order Id
  * @property {string} [name] - Name of the Transfer Mode.
  * @property {string} [utr] - Unique Transaction Reference of the refund.
@@ -2031,24 +1962,24 @@ export = PaymentPlatformModel;
  * @property {string} [billing_employee_code] - Billing Employee Code
  */
 /**
- * @typedef ShipmentRefundDetails
+ * @typedef ShipmentRefundRequest
  * @property {string} order_id - Merchant Order Id
  * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
  * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added
- * @property {string[]} [shipment_ids] - Detailed list of shipment IDs for
- *   single and multi-bag return cases
- * @property {ShipmentRefundDetailsMeta} [meta]
+ * @property {string[]} shipment_ids - Detailed list of shipment IDs for single
+ *   and multi-bag return cases
+ * @property {ShipmentRefundRequestMeta} [meta]
  */
 /**
  * @typedef ShipmentRefundDetail
  * @property {string} order_id - Order ID
  * @property {string} transfer_mode - TransferMode
  * @property {string} beneficiary_id - Beneficiary ID
- * @property {string[]} [shipment_ids] - Detailed list of shipment IDs for
- *   single and multi-bag return cases
+ * @property {string[]} shipment_ids - Detailed list of shipment IDs for single
+ *   and multi-bag return cases
  */
 /**
- * @typedef ShipmentRefundRes
+ * @typedef ShipmentRefundResponse
  * @property {ShipmentRefundDetail} [data] - Selected Shipment refund option details.
  * @property {boolean} [success] - Successful or not.
  * @property {string} [message] - Message
@@ -2072,23 +2003,23 @@ export = PaymentPlatformModel;
  * @property {boolean} [is_active]
  */
 /**
- * @typedef PennyDropValidationDetails
+ * @typedef PennyDropValidationResponse
  * @property {boolean} success - Successful or not.
- * @property {string} [message] - Message
+ * @property {string} message - Message
  * @property {boolean} allow_pennydrop_validation - PennyDrop validation flag.
  */
 /**
- * @typedef UpdatePennyDropValidation
+ * @typedef UpdatePennyDropValidationRequest
  * @property {boolean} allow_pennydrop_validation - Allow Penny Drop Validation flag
  */
 /**
- * @typedef AggregatorConfigDetails
+ * @typedef AggregatorConfigResponse
  * @property {boolean} [success]
  * @property {string} [message]
  * @property {PaymentOptionItem[]} [items]
  */
 /**
- * @typedef PaymentModeDetails
+ * @typedef PaymentModeResponse
  * @property {boolean} [success]
  * @property {string} [message]
  * @property {PaymentMode[]} [items]
@@ -2139,7 +2070,7 @@ export = PaymentPlatformModel;
  * @property {PaymentModeLogo} [logos]
  */
 /**
- * @typedef AggregatorCredentialReq
+ * @typedef AggregatorCredentialRequest
  * @property {boolean} [success]
  * @property {AggregatorCredential} [ccavenue]
  * @property {AggregatorCredential} [juspay]
@@ -2150,12 +2081,12 @@ export = PaymentPlatformModel;
  * @property {string} [app_id]
  */
 /**
- * @typedef PatchAggregatorCredentialDetails
+ * @typedef PatchAggregatorCredentialResponse
  * @property {boolean} [success]
  * @property {string[]} [aggregators]
  */
 /**
- * @typedef AggregatorCredentialRes
+ * @typedef AggregatorCredentialResponse
  * @property {boolean} [success]
  * @property {boolean} [created]
  * @property {string} [app_id]
@@ -2185,7 +2116,7 @@ export = PaymentPlatformModel;
  * @property {string} [review_status]
  */
 /**
- * @typedef GetDevice
+ * @typedef GetDeviceResponse
  * @property {string} [message] - Message
  * @property {boolean} [success] - Response is successful or not.
  * @property {BusinessUnitDevice} [items]
@@ -2206,7 +2137,7 @@ export = PaymentPlatformModel;
  * @property {string} [slug] - The slug of the device.
  */
 /**
- * @typedef AggregatorHistoryDetails
+ * @typedef AggregatorHistoryResponse
  * @property {boolean} [success]
  * @property {HistoryItem[]} [items]
  */
@@ -2251,7 +2182,7 @@ export = PaymentPlatformModel;
  * @property {string} [others]
  */
 /**
- * @typedef PaymentMethodConfigDetails
+ * @typedef PaymentMethodConfigResponse
  * @property {boolean} [success]
  * @property {RefundTo} [refund_to]
  * @property {RequiredSessionPath[]} [required_session_paths]
@@ -2275,7 +2206,7 @@ export = PaymentPlatformModel;
  * @property {string[]} [methods]
  */
 /**
- * @typedef PaymentErrorCodeAndMessage
+ * @typedef PaymentErrorCodeAndResponse
  * @property {PaymentError} [error]
  * @property {boolean} [success] - Response is successful or not
  * @property {string} [error_msg]
@@ -2289,34 +2220,21 @@ export = PaymentPlatformModel;
  * @property {string[]} [transaction_amount_in_paise]
  */
 /**
- * @typedef ShipmentBeneficiaryDetailsRes
+ * @typedef ShipmentBeneficiaryDetailsResponse
  * @property {boolean} [success] - Response is successful or not.
  * @property {string} [shipment_id] - Shipment Id
  * @property {TransferMode} [transfer_mode]
  * @property {string} [message] - Message of response
  * @property {string} [beneficiary_details] - Encrypted beneficiary details
  */
-/**
- * @typedef HttpErrorCodeAndMessage
- * @property {string} [message] - Error message
- * @property {string[]} [items] - Return empty array in error response
- * @property {ErrorCodeAndDescription} error
- * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef ErrorCodeDescription
- * @property {string} description - Error human understandable description.
- * @property {string} code - Error descrption code.
- * @property {boolean} success - Response is successful or not
- */
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, AggregatorConfig, DisplayDetails, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, RefundErrorCodeAndMessage, PaymentOptionErrorCodeAndMessage, RefundOptionErrorCodeAndMessage, UserCODAdvanceErrorCodeAndMessage, UserCodErrorMessage, RefundOptionMessage, RefundOptionError, PaymentOptionError, PaymentSessionError, PaymentErrorCodeDescription, EDCError, IFSCErrorData, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, Version, VersionDetails, PaymentOptions, PaymentFlowData, PaymentConfig, GatewayData, SDKDetails, SDKConfig, UserData, AggregatorRouteData, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, DeliverySlot, DeliverySlotDetail, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutUserDetails, PayoutCreation, PayoutDetails, PayoutData, BankDetails, UpdatePayoutDetails, Payouts, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, GetRefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, AdvancePaymentLimitConfig, CODLimitConfig, CODPaymentLimitConfig, UserPaymentLimitConfig, GetUserBULimitDetails, GetUserCODLimitDetails, SetAdvanceLimitConfig, SetCODLimitConfig, SetUserPaymentLimitConfig, SetBUPaymentLimit, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, MerchantOnboardingData, ValidateCustomerCreation, MerchantParams, OrderItems, ValidateCustomerDetails, ValidateCustomer, ValidateCustomerData, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, PaymentLinkError, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformOnlineOfflinePaymentDetails, PatchPlatformOnlineOfflinePaymentDetails, PlatformOnlineOfflineItem, OnlinePaymentDetails, OfflinePaymentDetails, CODOffline, AggregatorDetails, CODPaymentMode, PlatformPaymentMode, PlatformPaymentModeDetails, AggregatorPlatformPaymentModeDetails, PlatformOfflineAdvance, PlatformOfflineAdvanceDetails, OfflineAdvanceConfigurationItem, OfflineAdvanceDevice, OfflineAdvanceConfig, PaymentModeItem, MerchantPaymentMode, ModeIsactive, OfferSerializerData, AppliedOfferSerializerData, MerchnatPaymentModeCreation, OrderDetail, AggregatorOrderDetail, GoogleMapPoint, AddressDetail, LatLongDetail, PaymentSessionDetail, RefundDetailsSerializerData, AmountSerializerData, ChargeAmountSerializerData, CartChargesSerializerData, CartDetailsSerializerData, GetPaymentSessionDetails, PaymentSessionCreation, TransactionDetail, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, CustomerDetails, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, DeleteBeneficiary, DeleteRefundAccountDetails, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionDetails, SelectedRefundOptionDetails, TransferMode, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, RefundOptionsLimit, ValidateValidateAddress, VPADetails, ValidateValidateAddressDetails, SetDefaultBeneficiary, SetDefaultBeneficiaryDetails, ShipmentRefundDetailsMeta, ShipmentRefundDetails, ShipmentRefundDetail, ShipmentRefundRes, RefundOptionsPriority, RefundItem, PennyDropValidationDetails, UpdatePennyDropValidation, AggregatorConfigDetails, PaymentModeDetails, PaymentOptionItem, PaymentMode, SubPaymentMode, AggregatorCredentialReq, PatchAggregatorCredentialDetails, AggregatorCredentialRes, AggregatorCredential, AggregatorDisplayItem, GetDevice, BusinessUnitDevice, BusinessUnit, Device, AggregatorHistoryDetails, HistoryItem, CheckoutType, Mode, Country, Currency, RefundTo, PaymentMethodConfigDetails, RequiredSessionPath, SessionItem, PaymentErrorCodeAndMessage, PaymentError, ShipmentBeneficiaryDetailsRes, HttpErrorCodeAndMessage, ErrorCodeDescription };
+    export { PaymentGatewayConfigResponse, AggregatorConfig, DisplayDetails, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, RefundErrorCodeAndResponse, PaymentOptionErrorCodeAndResponse, RefundOptionErrorCodeAndResponse, UserCODAdvanceErrorCodeAndResponse, UserCodErrorMessage, RefundOptionMessage, RefundOptionError, PaymentOptionError, PaymentSessionError, PaymentErrorCodeDescription, EDCError, IFSCErrorData, IntentAppErrorList, ProductCODData, CODChargesLimitsResponse, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, Version, VersionDetails, PaymentOptions, PaymentFlowData, PaymentConfig, GatewayData, SDKDetails, SDKConfig, UserData, AggregatorRouteData, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteResponse, DeliverySlot, DeliverySlotDetail, PaymentOptionsResponse, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsResponse, PayoutBankDetails, PayoutUserDetails, PayoutRequest, PayoutResponse, PayoutDetails, BankDetails, UpdatePayoutResponse, Payouts, UpdatePayoutRequest, DeletePayoutResponse, RefundAccountResponse, GetRefundAccountResponse, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, IfscCodeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationRequest, PaymentConfirmationResponse, AdvancePaymentLimitConfig, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponse, GetUserCODLimitResponse, SetAdvanceLimitConfig, SetCODLimitConfig, SetUserPaymentLimitConfig, SetBUPaymentLimit, SetCODForUserRequest, EdcModelData, EdcAggregatorAndModelListResponse, StatisticsData, EdcDeviceStatsResponse, EdcAddRequest, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcUpdateRequest, EdcDeviceUpdateResponse, Page, EdcDeviceListResponse, PaymentInitializationRequest, PaymentInitializationResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, ResendOrCancelPaymentRequest, LinkStatus, ResendOrCancelPaymentResponse, PaymentStatusBulkHandlerRequest, PaymentObjectListSerializer, PaymentStatusObject, PaymentStatusBulkHandlerResponse, GetOauthUrlResponse, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentResponse, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchantOnboardingData, ValidateCustomerRequest, MerchantParams, OrderItems, ValidateCustomerResponse, ValidateCustomer, ValidateCustomerData, GetPaymentLinkResponse, ErrorDescription, ErrorResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, PollingPaymentLinkResponse, CancelOrResendPaymentLinkRequest, ResendPaymentLinkResponse, PaymentLinkError, CancelPaymentLinkResponse, Code, PaymentCode, GetPaymentCode, GetPaymentCodeResponse, PlatformOnlineOfflinePaymentResponse, PatchPlatformOnlineOfflinePaymentResponse, PlatformOnlineOfflineItem, OnlinePaymentDetails, OfflinePaymentDetails, CODOffline, AggregatorDetails, CODPaymentMode, PlatformPaymentModeRequest, PlatformPaymentModeResponse, AggregatorPlatformPaymentModeResponse, PlatformOfflineAdvanceRequest, PlatformOfflineAdvanceResponse, OfflineAdvanceConfigurationItem, OfflineAdvanceDevice, OfflineAdvanceConfig, PaymentModeItem, MerchantPaymentModeRequest, ModeIsactive, OfferSerializer, AppliedOfferSerializer, OrderDetail, AggregatorOrderDetail, GoogleMapPoint, AddressDetail, LatLongDetail, PaymentSessionDetail, AmountSerializer, ChargeAmountSerializer, CartChargesSerializer, GetPaymentSessionResponse, PaymentSessionRequestSerializer, TransactionDetail, PaymentSessionResponseSerializer, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, PaymentDetailsSerializer, CartDetailsSerializer, RefundDetailsSerializer, PaymentSessionSerializer, RefundSourcesPriority, RefundPriorityResponseSerializer, RefundPriorityRequestSerializer, FromConfig, ToConfig, PlatformPaymentModeCopyConfigRequest, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderRequest, CustomerDetails, PaymentOrderData, PaymentOrderResponse, AggregatorVersionItemSchema, AggregatorVersionResponse, AggregatorVersionRequestSchema, AggregatorControlRequest, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, DeleteBeneficiaryRequest, DeleteRefundAccountResponse, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionResponse, SelectedRefundOptionResponse, TransferMode, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, RefundOptionsLimit, ValidateValidateAddressRequest, VPADetails, ValidateValidateAddressResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, ShipmentRefundRequestMeta, ShipmentRefundRequest, ShipmentRefundDetail, ShipmentRefundResponse, RefundOptionsPriority, RefundItem, PennyDropValidationResponse, UpdatePennyDropValidationRequest, AggregatorConfigResponse, PaymentModeResponse, PaymentOptionItem, PaymentMode, SubPaymentMode, AggregatorCredentialRequest, PatchAggregatorCredentialResponse, AggregatorCredentialResponse, AggregatorCredential, AggregatorDisplayItem, GetDeviceResponse, BusinessUnitDevice, BusinessUnit, Device, AggregatorHistoryResponse, HistoryItem, CheckoutType, Mode, Country, Currency, RefundTo, PaymentMethodConfigResponse, RequiredSessionPath, SessionItem, PaymentErrorCodeAndResponse, PaymentError, ShipmentBeneficiaryDetailsResponse };
 }
-/** @returns {PaymentGatewayConfigDetails} */
-declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
-type PaymentGatewayConfigDetails = {
+/** @returns {PaymentGatewayConfigResponse} */
+declare function PaymentGatewayConfigResponse(): PaymentGatewayConfigResponse;
+type PaymentGatewayConfigResponse = {
     /**
      * - List of all config specific to
      * the aggregator with their Details.
@@ -2387,9 +2305,9 @@ type PaymentGatewayConfig = {
      */
     merchant_salt?: string;
 };
-/** @returns {PaymentGatewayConfigCreation} */
-declare function PaymentGatewayConfigCreation(): PaymentGatewayConfigCreation;
-type PaymentGatewayConfigCreation = {
+/** @returns {PaymentGatewayConfigRequest} */
+declare function PaymentGatewayConfigRequest(): PaymentGatewayConfigRequest;
+type PaymentGatewayConfigRequest = {
     /**
      * - Application Id to which Payment config Mapped
      */
@@ -2426,9 +2344,9 @@ type ErrorCodeAndDescription = {
      */
     code?: string;
 };
-/** @returns {HttpErrorDetails} */
-declare function HttpErrorDetails(): HttpErrorDetails;
-type HttpErrorDetails = {
+/** @returns {HttpErrorCodeAndResponse} */
+declare function HttpErrorCodeAndResponse(): HttpErrorCodeAndResponse;
+type HttpErrorCodeAndResponse = {
     error?: ErrorCodeAndDescription;
     /**
      * - Response is successful or not
@@ -2443,9 +2361,9 @@ type HttpErrorDetails = {
      */
     message?: string;
 };
-/** @returns {RefundErrorCodeAndMessage} */
-declare function RefundErrorCodeAndMessage(): RefundErrorCodeAndMessage;
-type RefundErrorCodeAndMessage = {
+/** @returns {RefundErrorCodeAndResponse} */
+declare function RefundErrorCodeAndResponse(): RefundErrorCodeAndResponse;
+type RefundErrorCodeAndResponse = {
     /**
      * - Response is successful or not
      */
@@ -2457,9 +2375,9 @@ type RefundErrorCodeAndMessage = {
     data?: IFSCErrorData;
     error?: EDCError;
 };
-/** @returns {PaymentOptionErrorCodeAndMessage} */
-declare function PaymentOptionErrorCodeAndMessage(): PaymentOptionErrorCodeAndMessage;
-type PaymentOptionErrorCodeAndMessage = {
+/** @returns {PaymentOptionErrorCodeAndResponse} */
+declare function PaymentOptionErrorCodeAndResponse(): PaymentOptionErrorCodeAndResponse;
+type PaymentOptionErrorCodeAndResponse = {
     /**
      * - Response is successful or not
      */
@@ -2467,9 +2385,9 @@ type PaymentOptionErrorCodeAndMessage = {
     message?: string;
     error?: string[];
 };
-/** @returns {RefundOptionErrorCodeAndMessage} */
-declare function RefundOptionErrorCodeAndMessage(): RefundOptionErrorCodeAndMessage;
-type RefundOptionErrorCodeAndMessage = {
+/** @returns {RefundOptionErrorCodeAndResponse} */
+declare function RefundOptionErrorCodeAndResponse(): RefundOptionErrorCodeAndResponse;
+type RefundOptionErrorCodeAndResponse = {
     /**
      * - Response is successful or not
      */
@@ -2477,9 +2395,9 @@ type RefundOptionErrorCodeAndMessage = {
     message?: RefundOptionMessage;
     error?: RefundOptionError;
 };
-/** @returns {UserCODAdvanceErrorCodeAndMessage} */
-declare function UserCODAdvanceErrorCodeAndMessage(): UserCODAdvanceErrorCodeAndMessage;
-type UserCODAdvanceErrorCodeAndMessage = {
+/** @returns {UserCODAdvanceErrorCodeAndResponse} */
+declare function UserCODAdvanceErrorCodeAndResponse(): UserCODAdvanceErrorCodeAndResponse;
+type UserCODAdvanceErrorCodeAndResponse = {
     /**
      * - Response is successful or not
      */
@@ -2582,11 +2500,11 @@ type ProductCODData = {
      * - Item id with its cod availability.
      */
     items?: any;
-    cod_charges?: CODChargesLimitsDetails;
+    cod_charges?: CODChargesLimitsResponse;
 };
-/** @returns {CODChargesLimitsDetails} */
-declare function CODChargesLimitsDetails(): CODChargesLimitsDetails;
-type CODChargesLimitsDetails = {
+/** @returns {CODChargesLimitsResponse} */
+declare function CODChargesLimitsResponse(): CODChargesLimitsResponse;
+type CODChargesLimitsResponse = {
     /**
      * - Max allowed cart value for cod order.
      */
@@ -3069,9 +2987,9 @@ type AdvancePaymentObject = {
     split?: SplitObject;
     advance?: AdvanceObject;
 };
-/** @returns {PaymentModeRouteDetails} */
-declare function PaymentModeRouteDetails(): PaymentModeRouteDetails;
-type PaymentModeRouteDetails = {
+/** @returns {PaymentModeRouteResponse} */
+declare function PaymentModeRouteResponse(): PaymentModeRouteResponse;
+type PaymentModeRouteResponse = {
     payment_options: PaymentOptionAndFlow;
     /**
      * - Response is successful or not
@@ -3116,9 +3034,9 @@ type DeliverySlotDetail = {
     delivery_slot_timing?: string;
     delivery_slot_id?: number;
 };
-/** @returns {PaymentOptionsDetails} */
-declare function PaymentOptionsDetails(): PaymentOptionsDetails;
-type PaymentOptionsDetails = {
+/** @returns {PaymentOptionsResponse} */
+declare function PaymentOptionsResponse(): PaymentOptionsResponse;
+type PaymentOptionsResponse = {
     payment_options: PaymentOptions;
     /**
      * - Response is successful or not
@@ -3232,9 +3150,9 @@ type Payout = {
      */
     transfer_type: string;
 };
-/** @returns {PayoutsDetails} */
-declare function PayoutsDetails(): PayoutsDetails;
-type PayoutsDetails = {
+/** @returns {PayoutsResponse} */
+declare function PayoutsResponse(): PayoutsResponse;
+type PayoutsResponse = {
     /**
      * - Response is successful or not
      */
@@ -3266,9 +3184,9 @@ type PayoutUserDetails = {
     email?: string;
     mobile?: string;
 };
-/** @returns {PayoutCreation} */
-declare function PayoutCreation(): PayoutCreation;
-type PayoutCreation = {
+/** @returns {PayoutRequest} */
+declare function PayoutRequest(): PayoutRequest;
+type PayoutRequest = {
     /**
      * - Aggregator Name
      */
@@ -3288,9 +3206,9 @@ type PayoutCreation = {
      */
     transfer_type: string;
 };
-/** @returns {PayoutDetails} */
-declare function PayoutDetails(): PayoutDetails;
-type PayoutDetails = {
+/** @returns {PayoutResponse} */
+declare function PayoutResponse(): PayoutResponse;
+type PayoutResponse = {
     /**
      * - Status of payment
      */
@@ -3321,11 +3239,11 @@ type PayoutDetails = {
      * - Created flag
      */
     created: boolean;
-    payouts?: PayoutData;
+    payouts?: PayoutDetails;
 };
-/** @returns {PayoutData} */
-declare function PayoutData(): PayoutData;
-type PayoutData = {
+/** @returns {PayoutDetails} */
+declare function PayoutDetails(): PayoutDetails;
+type PayoutDetails = {
     more_attributes?: BankDetails;
     aggregator_fund_id?: string;
 };
@@ -3343,9 +3261,9 @@ type BankDetails = {
     ifsc_code?: string;
     aggregator_fund_id?: string;
 };
-/** @returns {UpdatePayoutDetails} */
-declare function UpdatePayoutDetails(): UpdatePayoutDetails;
-type UpdatePayoutDetails = {
+/** @returns {UpdatePayoutResponse} */
+declare function UpdatePayoutResponse(): UpdatePayoutResponse;
+type UpdatePayoutResponse = {
     /**
      * - Enable or Disable Default Payout
      */
@@ -3372,9 +3290,9 @@ declare function Payouts(): Payouts;
 type Payouts = {
     aggregator_fund_id?: string;
 };
-/** @returns {UpdatePayoutCreation} */
-declare function UpdatePayoutCreation(): UpdatePayoutCreation;
-type UpdatePayoutCreation = {
+/** @returns {UpdatePayoutRequest} */
+declare function UpdatePayoutRequest(): UpdatePayoutRequest;
+type UpdatePayoutRequest = {
     /**
      * - Enable or Disable Default Payout
      */
@@ -3388,9 +3306,9 @@ type UpdatePayoutCreation = {
      */
     unique_external_id: string;
 };
-/** @returns {DeletePayoutDetails} */
-declare function DeletePayoutDetails(): DeletePayoutDetails;
-type DeletePayoutDetails = {
+/** @returns {DeletePayoutResponse} */
+declare function DeletePayoutResponse(): DeletePayoutResponse;
+type DeletePayoutResponse = {
     /**
      * - Delete is successful or not
      */
@@ -3404,65 +3322,9 @@ type DeletePayoutDetails = {
      */
     success: boolean;
 };
-/** @returns {SubscriptionPaymentMethodDetails} */
-declare function SubscriptionPaymentMethodDetails(): SubscriptionPaymentMethodDetails;
-type SubscriptionPaymentMethodDetails = {
-    /**
-     * - Subscription Payment Method Object
-     */
-    data: any[];
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {DeleteSubscriptionPaymentMethodDetails} */
-declare function DeleteSubscriptionPaymentMethodDetails(): DeleteSubscriptionPaymentMethodDetails;
-type DeleteSubscriptionPaymentMethodDetails = {
-    /**
-     * - Success or failure.
-     */
-    success: boolean;
-};
-/** @returns {SubscriptionConfigDetails} */
-declare function SubscriptionConfigDetails(): SubscriptionConfigDetails;
-type SubscriptionConfigDetails = {
-    /**
-     * - Aggregator Name
-     */
-    aggregator: string;
-    /**
-     * - Aggregator Config
-     */
-    config: any;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {SaveSubscriptionSetupIntentCreation} */
-declare function SaveSubscriptionSetupIntentCreation(): SaveSubscriptionSetupIntentCreation;
-type SaveSubscriptionSetupIntentCreation = {
-    /**
-     * - Unique id i.e company:id
-     */
-    unique_external_id: string;
-};
-/** @returns {SaveSubscriptionSetupIntentDetails} */
-declare function SaveSubscriptionSetupIntentDetails(): SaveSubscriptionSetupIntentDetails;
-type SaveSubscriptionSetupIntentDetails = {
-    /**
-     * - Subscription Payment Method Object
-     */
-    data: any;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {RefundAccountDetails} */
-declare function RefundAccountDetails(): RefundAccountDetails;
-type RefundAccountDetails = {
+/** @returns {RefundAccountResponse} */
+declare function RefundAccountResponse(): RefundAccountResponse;
+type RefundAccountResponse = {
     /**
      * - Account is verified or not
      */
@@ -3480,9 +3342,9 @@ type RefundAccountDetails = {
      */
     success: boolean;
 };
-/** @returns {GetRefundAccountDetails} */
-declare function GetRefundAccountDetails(): GetRefundAccountDetails;
-type GetRefundAccountDetails = {
+/** @returns {GetRefundAccountResponse} */
+declare function GetRefundAccountResponse(): GetRefundAccountResponse;
+type GetRefundAccountResponse = {
     is_verified_flag?: boolean;
     /**
      * - Response message
@@ -3536,15 +3398,30 @@ type BankDetailsForOTP = {
      * - Accountg holder name of account
      */
     account_holder: string;
+    /**
+     * - Address of account
+     */
     address?: string;
+    /**
+     * - Comment for account
+     */
     comment?: string;
+    /**
+     * - Email address of account
+     */
     email?: string;
+    /**
+     * - Mobile number of account
+     */
     mobile?: string;
+    /**
+     * - Beneficiary id of account
+     */
     beneficiary_id?: string;
 };
-/** @returns {AddBeneficiaryDetailsOTPCreation} */
-declare function AddBeneficiaryDetailsOTPCreation(): AddBeneficiaryDetailsOTPCreation;
-type AddBeneficiaryDetailsOTPCreation = {
+/** @returns {AddBeneficiaryDetailsOTPRequest} */
+declare function AddBeneficiaryDetailsOTPRequest(): AddBeneficiaryDetailsOTPRequest;
+type AddBeneficiaryDetailsOTPRequest = {
     transfer_mode?: string;
     shipment_id?: string;
     delights?: boolean;
@@ -3554,9 +3431,9 @@ type AddBeneficiaryDetailsOTPCreation = {
     order_id: string;
     details: BankDetailsForOTP;
 };
-/** @returns {IfscCodeDetails} */
-declare function IfscCodeDetails(): IfscCodeDetails;
-type IfscCodeDetails = {
+/** @returns {IfscCodeResponse} */
+declare function IfscCodeResponse(): IfscCodeResponse;
+type IfscCodeResponse = {
     success?: boolean;
     branch_name: string;
     bank_name: string;
@@ -3638,9 +3515,9 @@ type OrderBeneficiaryDetails = {
     mobile?: string;
     default_beneficiary?: boolean;
 };
-/** @returns {OrderBeneficiaryFetchResults} */
-declare function OrderBeneficiaryFetchResults(): OrderBeneficiaryFetchResults;
-type OrderBeneficiaryFetchResults = {
+/** @returns {OrderBeneficiaryResponse} */
+declare function OrderBeneficiaryResponse(): OrderBeneficiaryResponse;
+type OrderBeneficiaryResponse = {
     /**
      * - All Beneficiaries Of An Order
      */
@@ -3702,18 +3579,18 @@ type MultiTenderPaymentMethod = {
      */
     mode: string;
 };
-/** @returns {PaymentConfirmationCreation} */
-declare function PaymentConfirmationCreation(): PaymentConfirmationCreation;
-type PaymentConfirmationCreation = {
+/** @returns {PaymentConfirmationRequest} */
+declare function PaymentConfirmationRequest(): PaymentConfirmationRequest;
+type PaymentConfirmationRequest = {
     /**
      * - Unique order id
      */
     order_id: string;
     payment_methods: MultiTenderPaymentMethod[];
 };
-/** @returns {PaymentConfirmationDetails} */
-declare function PaymentConfirmationDetails(): PaymentConfirmationDetails;
-type PaymentConfirmationDetails = {
+/** @returns {PaymentConfirmationResponse} */
+declare function PaymentConfirmationResponse(): PaymentConfirmationResponse;
+type PaymentConfirmationResponse = {
     /**
      * - Unique order id
      */
@@ -3742,41 +3619,65 @@ type AdvancePaymentLimitConfig = {
 /** @returns {CODLimitConfig} */
 declare function CODLimitConfig(): CODLimitConfig;
 type CODLimitConfig = {
-    storefront?: number;
-    pos?: number;
+    /**
+     * - Limit for storefront
+     */
+    storefront: number;
+    /**
+     * - Limit for pos
+     */
+    pos: number;
 };
 /** @returns {CODPaymentLimitConfig} */
 declare function CODPaymentLimitConfig(): CODPaymentLimitConfig;
 type CODPaymentLimitConfig = {
+    /**
+     * - Boolean flag to show the status
+     */
     is_active: boolean;
+    /**
+     * - Used cod limit
+     */
     usages: number;
+    /**
+     * - User_id
+     */
     user_id: number;
-    merchant_user_id?: string;
+    /**
+     * - Merchant_user_id
+     */
+    merchant_user_id: string;
+    /**
+     * - Remaining COD limit
+     */
     remaining_limit: number;
     limit: CODLimitConfig;
 };
-/** @returns {UserPaymentLimitConfig} */
-declare function UserPaymentLimitConfig(): UserPaymentLimitConfig;
-type UserPaymentLimitConfig = {
-    advance?: AdvancePaymentLimitConfig;
-    cod?: CODPaymentLimitConfig;
+/** @returns {GetUserBULimitResponse} */
+declare function GetUserBULimitResponse(): GetUserBULimitResponse;
+type GetUserBULimitResponse = {
+    /**
+     * - COD limit business unit
+     */
+    buisness_unit: string;
+    /**
+     * - Display name for cod limit
+     */
+    display_name: string;
+    config: CODPaymentLimitConfig;
 };
-/** @returns {GetUserBULimitDetails} */
-declare function GetUserBULimitDetails(): GetUserBULimitDetails;
-type GetUserBULimitDetails = {
-    buisness_unit?: string;
-    display_name?: string;
-    config?: UserPaymentLimitConfig;
-};
-/** @returns {GetUserCODLimitDetails} */
-declare function GetUserCODLimitDetails(): GetUserCODLimitDetails;
-type GetUserCODLimitDetails = {
+/** @returns {GetUserCODLimitResponse} */
+declare function GetUserCODLimitResponse(): GetUserCODLimitResponse;
+type GetUserCODLimitResponse = {
+    items: GetUserBULimitResponse[];
     /**
      * - Response is successful or not
      */
-    success?: boolean;
+    success: boolean;
+    /**
+     * - Message for cod limit
+     */
     message?: string;
-    items?: GetUserBULimitDetails[];
 };
 /** @returns {SetAdvanceLimitConfig} */
 declare function SetAdvanceLimitConfig(): SetAdvanceLimitConfig;
@@ -3812,9 +3713,9 @@ type SetBUPaymentLimit = {
     buisness_unit: string;
     config: SetUserPaymentLimitConfig;
 };
-/** @returns {SetCODForUserCreation} */
-declare function SetCODForUserCreation(): SetCODForUserCreation;
-type SetCODForUserCreation = {
+/** @returns {SetCODForUserRequest} */
+declare function SetCODForUserRequest(): SetCODForUserRequest;
+type SetCODForUserRequest = {
     /**
      * - Mobile No. of User
      */
@@ -3823,23 +3724,7 @@ type SetCODForUserCreation = {
      * - Merchant User id
      */
     merchant_user_id: string;
-    /**
-     * - Either true or false
-     */
-    is_active: boolean;
     items: SetBUPaymentLimit[];
-};
-/** @returns {SetCODOptionDetails} */
-declare function SetCODOptionDetails(): SetCODOptionDetails;
-type SetCODOptionDetails = {
-    /**
-     * - Message
-     */
-    message: string;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
 };
 /** @returns {EdcModelData} */
 declare function EdcModelData(): EdcModelData;
@@ -3857,9 +3742,9 @@ type EdcModelData = {
      */
     models: string[];
 };
-/** @returns {EdcAggregatorAndModelListDetails} */
-declare function EdcAggregatorAndModelListDetails(): EdcAggregatorAndModelListDetails;
-type EdcAggregatorAndModelListDetails = {
+/** @returns {EdcAggregatorAndModelListResponse} */
+declare function EdcAggregatorAndModelListResponse(): EdcAggregatorAndModelListResponse;
+type EdcAggregatorAndModelListResponse = {
     /**
      * - List of aggregators and their edc models
      */
@@ -3881,18 +3766,18 @@ type StatisticsData = {
      */
     active_device_count: number;
 };
-/** @returns {EdcDeviceStatsDetails} */
-declare function EdcDeviceStatsDetails(): EdcDeviceStatsDetails;
-type EdcDeviceStatsDetails = {
+/** @returns {EdcDeviceStatsResponse} */
+declare function EdcDeviceStatsResponse(): EdcDeviceStatsResponse;
+type EdcDeviceStatsResponse = {
     statistics: StatisticsData;
     /**
      * - Response is successful or not
      */
     success: boolean;
 };
-/** @returns {EdcAddCreation} */
-declare function EdcAddCreation(): EdcAddCreation;
-type EdcAddCreation = {
+/** @returns {EdcAddRequest} */
+declare function EdcAddRequest(): EdcAddRequest;
+type EdcAddRequest = {
     /**
      * - Model of the edc machine
      */
@@ -3968,27 +3853,27 @@ type EdcDevice = {
      */
     application_id: string;
 };
-/** @returns {EdcDeviceAddDetails} */
-declare function EdcDeviceAddDetails(): EdcDeviceAddDetails;
-type EdcDeviceAddDetails = {
+/** @returns {EdcDeviceAddResponse} */
+declare function EdcDeviceAddResponse(): EdcDeviceAddResponse;
+type EdcDeviceAddResponse = {
     data: EdcDevice;
     /**
      * - Response is successful or not
      */
     success: boolean;
 };
-/** @returns {EdcDeviceDetails} */
-declare function EdcDeviceDetails(): EdcDeviceDetails;
-type EdcDeviceDetails = {
+/** @returns {EdcDeviceDetailsResponse} */
+declare function EdcDeviceDetailsResponse(): EdcDeviceDetailsResponse;
+type EdcDeviceDetailsResponse = {
     data: EdcDevice;
     /**
      * - Response is successful or not
      */
     success: boolean;
 };
-/** @returns {EdcUpdate} */
-declare function EdcUpdate(): EdcUpdate;
-type EdcUpdate = {
+/** @returns {EdcUpdateRequest} */
+declare function EdcUpdateRequest(): EdcUpdateRequest;
+type EdcUpdateRequest = {
     /**
      * - Model of the edc machine
      */
@@ -4018,9 +3903,9 @@ type EdcUpdate = {
      */
     device_tag?: string;
 };
-/** @returns {EdcDeviceUpdateDetails} */
-declare function EdcDeviceUpdateDetails(): EdcDeviceUpdateDetails;
-type EdcDeviceUpdateDetails = {
+/** @returns {EdcDeviceUpdateResponse} */
+declare function EdcDeviceUpdateResponse(): EdcDeviceUpdateResponse;
+type EdcDeviceUpdateResponse = {
     /**
      * - Response is successful or not
      */
@@ -4062,9 +3947,9 @@ type Page = {
      */
     total?: number;
 };
-/** @returns {EdcDeviceListDetails} */
-declare function EdcDeviceListDetails(): EdcDeviceListDetails;
-type EdcDeviceListDetails = {
+/** @returns {EdcDeviceListResponse} */
+declare function EdcDeviceListResponse(): EdcDeviceListResponse;
+type EdcDeviceListResponse = {
     /**
      * - List of all edc mapped to the application
      * options with their Details.
@@ -4076,9 +3961,9 @@ type EdcDeviceListDetails = {
      */
     success: boolean;
 };
-/** @returns {PaymentInitializationCreation} */
-declare function PaymentInitializationCreation(): PaymentInitializationCreation;
-type PaymentInitializationCreation = {
+/** @returns {PaymentInitializationRequest} */
+declare function PaymentInitializationRequest(): PaymentInitializationRequest;
+type PaymentInitializationRequest = {
     /**
      * - Payment gateway payment id
      */
@@ -4136,9 +4021,9 @@ type PaymentInitializationCreation = {
      */
     method: string;
 };
-/** @returns {PaymentInitializationDetails} */
-declare function PaymentInitializationDetails(): PaymentInitializationDetails;
-type PaymentInitializationDetails = {
+/** @returns {PaymentInitializationResponse} */
+declare function PaymentInitializationResponse(): PaymentInitializationResponse;
+type PaymentInitializationResponse = {
     /**
      * - Payment id.
      */
@@ -4212,9 +4097,9 @@ type PaymentInitializationDetails = {
      */
     method: string;
 };
-/** @returns {PaymentStatusUpdateCreation} */
-declare function PaymentStatusUpdateCreation(): PaymentStatusUpdateCreation;
-type PaymentStatusUpdateCreation = {
+/** @returns {PaymentStatusUpdateRequest} */
+declare function PaymentStatusUpdateRequest(): PaymentStatusUpdateRequest;
+type PaymentStatusUpdateRequest = {
     /**
      * - EDC machine Unique Identifier
      */
@@ -4238,7 +4123,7 @@ type PaymentStatusUpdateCreation = {
     /**
      * - Payment gateway order id
      */
-    order_id: string;
+    order_id?: string;
     /**
      * - Currency code.
      */
@@ -4258,7 +4143,7 @@ type PaymentStatusUpdateCreation = {
     /**
      * - Status of payment.
      */
-    status: string;
+    status?: string;
     /**
      * - Payment method
      */
@@ -4272,9 +4157,9 @@ type PaymentStatusUpdateCreation = {
      */
     unique_link_id?: string;
 };
-/** @returns {PaymentStatusUpdateDetails} */
-declare function PaymentStatusUpdateDetails(): PaymentStatusUpdateDetails;
-type PaymentStatusUpdateDetails = {
+/** @returns {PaymentStatusUpdateResponse} */
+declare function PaymentStatusUpdateResponse(): PaymentStatusUpdateResponse;
+type PaymentStatusUpdateResponse = {
     /**
      * - Redirect url
      */
@@ -4296,9 +4181,9 @@ type PaymentStatusUpdateDetails = {
      */
     aggregator_name: string;
 };
-/** @returns {ResendOrCancelPaymentCreation} */
-declare function ResendOrCancelPaymentCreation(): ResendOrCancelPaymentCreation;
-type ResendOrCancelPaymentCreation = {
+/** @returns {ResendOrCancelPaymentRequest} */
+declare function ResendOrCancelPaymentRequest(): ResendOrCancelPaymentRequest;
+type ResendOrCancelPaymentRequest = {
     /**
      * - Unique order id
      */
@@ -4324,26 +4209,26 @@ type LinkStatus = {
      */
     message?: string;
 };
-/** @returns {ResendOrCancelPaymentDetails} */
-declare function ResendOrCancelPaymentDetails(): ResendOrCancelPaymentDetails;
-type ResendOrCancelPaymentDetails = {
+/** @returns {ResendOrCancelPaymentResponse} */
+declare function ResendOrCancelPaymentResponse(): ResendOrCancelPaymentResponse;
+type ResendOrCancelPaymentResponse = {
     data: LinkStatus;
     /**
      * - Response is successful or not.
      */
     success: boolean;
 };
-/** @returns {PaymentStatusBulkHandlerCreation} */
-declare function PaymentStatusBulkHandlerCreation(): PaymentStatusBulkHandlerCreation;
-type PaymentStatusBulkHandlerCreation = {
+/** @returns {PaymentStatusBulkHandlerRequest} */
+declare function PaymentStatusBulkHandlerRequest(): PaymentStatusBulkHandlerRequest;
+type PaymentStatusBulkHandlerRequest = {
     /**
      * - List of order ids
      */
     merchant_order_id: string[];
 };
-/** @returns {PaymentObjectList} */
-declare function PaymentObjectList(): PaymentObjectList;
-type PaymentObjectList = {
+/** @returns {PaymentObjectListSerializer} */
+declare function PaymentObjectListSerializer(): PaymentObjectListSerializer;
+type PaymentObjectListSerializer = {
     user_object: any;
     modified_on: string;
     collected_by: string;
@@ -4367,20 +4252,20 @@ type PaymentObjectList = {
 declare function PaymentStatusObject(): PaymentStatusObject;
 type PaymentStatusObject = {
     merchant_order_id: string;
-    payment_object_list?: PaymentObjectList[];
+    payment_object_list?: PaymentObjectListSerializer[];
 };
-/** @returns {PaymentStatusBulkHandlerDetails} */
-declare function PaymentStatusBulkHandlerDetails(): PaymentStatusBulkHandlerDetails;
-type PaymentStatusBulkHandlerDetails = {
+/** @returns {PaymentStatusBulkHandlerResponse} */
+declare function PaymentStatusBulkHandlerResponse(): PaymentStatusBulkHandlerResponse;
+type PaymentStatusBulkHandlerResponse = {
     count?: number;
     data?: PaymentStatusObject[];
     success: boolean;
     error?: string;
     status: number;
 };
-/** @returns {GetOauthUrlDetails} */
-declare function GetOauthUrlDetails(): GetOauthUrlDetails;
-type GetOauthUrlDetails = {
+/** @returns {GetOauthUrlResponse} */
+declare function GetOauthUrlResponse(): GetOauthUrlResponse;
+type GetOauthUrlResponse = {
     /**
      * - The url to call for authenticating
      */
@@ -4467,18 +4352,18 @@ type RepaymentDetailsSerialiserPayAll = {
     aggregator_order_id: string;
     shipment_details?: RepaymentRequestDetails[];
 };
-/** @returns {RepaymentDetails} */
-declare function RepaymentDetails(): RepaymentDetails;
-type RepaymentDetails = {
+/** @returns {RepaymentResponse} */
+declare function RepaymentResponse(): RepaymentResponse;
+type RepaymentResponse = {
     data?: any;
     /**
      * - Success/Failure of the transaction
      */
     success: boolean;
 };
-/** @returns {MerchantOnBoardingCreation} */
-declare function MerchantOnBoardingCreation(): MerchantOnBoardingCreation;
-type MerchantOnBoardingCreation = {
+/** @returns {MerchantOnBoardingRequest} */
+declare function MerchantOnBoardingRequest(): MerchantOnBoardingRequest;
+type MerchantOnBoardingRequest = {
     /**
      * - Merchant ID at Ajiodhan's end
      */
@@ -4500,9 +4385,9 @@ type MerchantOnBoardingCreation = {
      */
     status: string;
 };
-/** @returns {MerchantOnBoardingDetails} */
-declare function MerchantOnBoardingDetails(): MerchantOnBoardingDetails;
-type MerchantOnBoardingDetails = {
+/** @returns {MerchantOnBoardingResponse} */
+declare function MerchantOnBoardingResponse(): MerchantOnBoardingResponse;
+type MerchantOnBoardingResponse = {
     data: MerchantOnboardingData;
     /**
      * - Success/Failure of the transaction
@@ -4525,9 +4410,9 @@ type MerchantOnboardingData = {
      */
     status?: boolean;
 };
-/** @returns {ValidateCustomerCreation} */
-declare function ValidateCustomerCreation(): ValidateCustomerCreation;
-type ValidateCustomerCreation = {
+/** @returns {ValidateCustomerRequest} */
+declare function ValidateCustomerRequest(): ValidateCustomerRequest;
+type ValidateCustomerRequest = {
     /**
      * - User mobile number without country code.
      */
@@ -4564,9 +4449,9 @@ type OrderItems = {
     price?: number;
     quantity?: number;
 };
-/** @returns {ValidateCustomerDetails} */
-declare function ValidateCustomerDetails(): ValidateCustomerDetails;
-type ValidateCustomerDetails = {
+/** @returns {ValidateCustomerResponse} */
+declare function ValidateCustomerResponse(): ValidateCustomerResponse;
+type ValidateCustomerResponse = {
     /**
      * - Error or success message.
      */
@@ -4600,9 +4485,9 @@ type ValidateCustomerData = {
     total_locked_amount?: number;
     allowed_redemption_amount?: number;
 };
-/** @returns {GetPaymentLinkDetails} */
-declare function GetPaymentLinkDetails(): GetPaymentLinkDetails;
-type GetPaymentLinkDetails = {
+/** @returns {GetPaymentLinkResponse} */
+declare function GetPaymentLinkResponse(): GetPaymentLinkResponse;
+type GetPaymentLinkResponse = {
     /**
      * - Currency
      */
@@ -4683,14 +4568,13 @@ type ErrorDescription = {
     cancelled?: boolean;
     description?: string;
 };
-/** @returns {ErrorDetails} */
-declare function ErrorDetails(): ErrorDetails;
-type ErrorDetails = {
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
     /**
      * - HTTP status code
      */
     status_code?: number;
-    error?: ErrorDescription;
     /**
      * - Message
      */
@@ -4699,6 +4583,7 @@ type ErrorDetails = {
      * - Successful or failure
      */
     success: boolean;
+    error?: ErrorDescription;
 };
 /** @returns {CreatePaymentLinkMeta} */
 declare function CreatePaymentLinkMeta(): CreatePaymentLinkMeta;
@@ -4720,11 +4605,14 @@ type CreatePaymentLinkMeta = {
      * to be done via payment link
      */
     assign_card_id?: string;
+    /**
+     * - Pincode of customer
+     */
     pincode?: string;
 };
-/** @returns {CreatePaymentLinkCreation} */
-declare function CreatePaymentLinkCreation(): CreatePaymentLinkCreation;
-type CreatePaymentLinkCreation = {
+/** @returns {CreatePaymentLinkRequest} */
+declare function CreatePaymentLinkRequest(): CreatePaymentLinkRequest;
+type CreatePaymentLinkRequest = {
     /**
      * - Email to which the payment link is to be sent
      */
@@ -4751,20 +4639,10 @@ type CreatePaymentLinkCreation = {
      * - Merchant order id
      */
     external_order_id: string;
-    /**
-     * - URL to which the user will be
-     * redirected after a successful payment.
-     */
-    success_redirection_url?: string;
-    /**
-     * - URL to which the user will be
-     * redirected if the payment fails.
-     */
-    failure_redirection_url?: string;
 };
-/** @returns {CreatePaymentLinkDetails} */
-declare function CreatePaymentLinkDetails(): CreatePaymentLinkDetails;
-type CreatePaymentLinkDetails = {
+/** @returns {CreatePaymentLinkResponse} */
+declare function CreatePaymentLinkResponse(): CreatePaymentLinkResponse;
+type CreatePaymentLinkResponse = {
     /**
      * - Message
      */
@@ -4790,9 +4668,9 @@ type CreatePaymentLinkDetails = {
      */
     payment_link_id?: string;
 };
-/** @returns {PollingPaymentLinkDetails} */
-declare function PollingPaymentLinkDetails(): PollingPaymentLinkDetails;
-type PollingPaymentLinkDetails = {
+/** @returns {PollingPaymentLinkResponse} */
+declare function PollingPaymentLinkResponse(): PollingPaymentLinkResponse;
+type PollingPaymentLinkResponse = {
     /**
      * - Message
      */
@@ -4835,17 +4713,17 @@ type PollingPaymentLinkDetails = {
     aggregator_name?: string;
     error?: string;
 };
-/** @returns {CancelOrResendPaymentLinkCreation} */
-declare function CancelOrResendPaymentLinkCreation(): CancelOrResendPaymentLinkCreation;
-type CancelOrResendPaymentLinkCreation = {
+/** @returns {CancelOrResendPaymentLinkRequest} */
+declare function CancelOrResendPaymentLinkRequest(): CancelOrResendPaymentLinkRequest;
+type CancelOrResendPaymentLinkRequest = {
     /**
      * - Unique id of payment link
      */
     payment_link_id: string;
 };
-/** @returns {ResendPaymentLinkDetails} */
-declare function ResendPaymentLinkDetails(): ResendPaymentLinkDetails;
-type ResendPaymentLinkDetails = {
+/** @returns {ResendPaymentLinkResponse} */
+declare function ResendPaymentLinkResponse(): ResendPaymentLinkResponse;
+type ResendPaymentLinkResponse = {
     /**
      * - HTTP status code
      */
@@ -4862,7 +4740,6 @@ type ResendPaymentLinkDetails = {
      * - Successful or failure
      */
     success: boolean;
-    error?: PaymentLinkError;
 };
 /** @returns {PaymentLinkError} */
 declare function PaymentLinkError(): PaymentLinkError;
@@ -4873,9 +4750,9 @@ type PaymentLinkError = {
      */
     msg?: string;
 };
-/** @returns {CancelPaymentLinkDetails} */
-declare function CancelPaymentLinkDetails(): CancelPaymentLinkDetails;
-type CancelPaymentLinkDetails = {
+/** @returns {CancelPaymentLinkResponse} */
+declare function CancelPaymentLinkResponse(): CancelPaymentLinkResponse;
+type CancelPaymentLinkResponse = {
     /**
      * - HTTP status code
      */
@@ -4888,7 +4765,6 @@ type CancelPaymentLinkDetails = {
      * - Successful or failure
      */
     success: boolean;
-    error?: PaymentLinkError;
 };
 /** @returns {Code} */
 declare function Code(): Code;
@@ -4951,18 +4827,18 @@ type GetPaymentCode = {
     sodexo?: PaymentCode;
     jm_wallet?: PaymentCode;
 };
-/** @returns {GetPaymentCodeDetails} */
-declare function GetPaymentCodeDetails(): GetPaymentCodeDetails;
-type GetPaymentCodeDetails = {
+/** @returns {GetPaymentCodeResponse} */
+declare function GetPaymentCodeResponse(): GetPaymentCodeResponse;
+type GetPaymentCodeResponse = {
     data: GetPaymentCode;
     /**
      * - Response is successful or not.
      */
     success: boolean;
 };
-/** @returns {PlatformOnlineOfflinePaymentDetails} */
-declare function PlatformOnlineOfflinePaymentDetails(): PlatformOnlineOfflinePaymentDetails;
-type PlatformOnlineOfflinePaymentDetails = {
+/** @returns {PlatformOnlineOfflinePaymentResponse} */
+declare function PlatformOnlineOfflinePaymentResponse(): PlatformOnlineOfflinePaymentResponse;
+type PlatformOnlineOfflinePaymentResponse = {
     /**
      * - Message
      */
@@ -4973,9 +4849,9 @@ type PlatformOnlineOfflinePaymentDetails = {
      */
     success: boolean;
 };
-/** @returns {PatchPlatformOnlineOfflinePaymentDetails} */
-declare function PatchPlatformOnlineOfflinePaymentDetails(): PatchPlatformOnlineOfflinePaymentDetails;
-type PatchPlatformOnlineOfflinePaymentDetails = {
+/** @returns {PatchPlatformOnlineOfflinePaymentResponse} */
+declare function PatchPlatformOnlineOfflinePaymentResponse(): PatchPlatformOnlineOfflinePaymentResponse;
+type PatchPlatformOnlineOfflinePaymentResponse = {
     /**
      * - Message
      */
@@ -4991,7 +4867,7 @@ declare function PlatformOnlineOfflineItem(): PlatformOnlineOfflineItem;
 type PlatformOnlineOfflineItem = {
     online?: OnlinePaymentDetails;
     offline?: OfflinePaymentDetails;
-    advance?: PlatformOfflineAdvanceDetails;
+    advance?: PlatformOfflineAdvanceResponse;
 };
 /** @returns {OnlinePaymentDetails} */
 declare function OnlinePaymentDetails(): OnlinePaymentDetails;
@@ -5035,9 +4911,9 @@ type CODPaymentMode = {
     logos?: PaymentModeLogo;
     is_active?: boolean;
 };
-/** @returns {PlatformPaymentMode} */
-declare function PlatformPaymentMode(): PlatformPaymentMode;
-type PlatformPaymentMode = {
+/** @returns {PlatformPaymentModeRequest} */
+declare function PlatformPaymentModeRequest(): PlatformPaymentModeRequest;
+type PlatformPaymentModeRequest = {
     /**
      * - Business unit identifier.
      */
@@ -5056,9 +4932,9 @@ type PlatformPaymentMode = {
      */
     items?: PaymentModeItem[];
 };
-/** @returns {PlatformPaymentModeDetails} */
-declare function PlatformPaymentModeDetails(): PlatformPaymentModeDetails;
-type PlatformPaymentModeDetails = {
+/** @returns {PlatformPaymentModeResponse} */
+declare function PlatformPaymentModeResponse(): PlatformPaymentModeResponse;
+type PlatformPaymentModeResponse = {
     success?: boolean;
     message?: string;
     /**
@@ -5079,9 +4955,9 @@ type PlatformPaymentModeDetails = {
      */
     items?: PaymentOptionItem[];
 };
-/** @returns {AggregatorPlatformPaymentModeDetails} */
-declare function AggregatorPlatformPaymentModeDetails(): AggregatorPlatformPaymentModeDetails;
-type AggregatorPlatformPaymentModeDetails = {
+/** @returns {AggregatorPlatformPaymentModeResponse} */
+declare function AggregatorPlatformPaymentModeResponse(): AggregatorPlatformPaymentModeResponse;
+type AggregatorPlatformPaymentModeResponse = {
     success?: boolean;
     message?: string;
     /**
@@ -5107,9 +4983,9 @@ type AggregatorPlatformPaymentModeDetails = {
      */
     items?: PaymentOptionItem[];
 };
-/** @returns {PlatformOfflineAdvance} */
-declare function PlatformOfflineAdvance(): PlatformOfflineAdvance;
-type PlatformOfflineAdvance = {
+/** @returns {PlatformOfflineAdvanceRequest} */
+declare function PlatformOfflineAdvanceRequest(): PlatformOfflineAdvanceRequest;
+type PlatformOfflineAdvanceRequest = {
     /**
      * - Business unit identifier.
      */
@@ -5117,9 +4993,9 @@ type PlatformOfflineAdvance = {
     items?: OfflineAdvanceConfig[];
     device?: OfflineAdvanceDevice;
 };
-/** @returns {PlatformOfflineAdvanceDetails} */
-declare function PlatformOfflineAdvanceDetails(): PlatformOfflineAdvanceDetails;
-type PlatformOfflineAdvanceDetails = {
+/** @returns {PlatformOfflineAdvanceResponse} */
+declare function PlatformOfflineAdvanceResponse(): PlatformOfflineAdvanceResponse;
+type PlatformOfflineAdvanceResponse = {
     success?: boolean;
     /**
      * - Indicates if the payment option is active.
@@ -5281,9 +5157,9 @@ type PaymentModeItem = {
      */
     sub_payment_mode?: SubPaymentMode[];
 };
-/** @returns {MerchantPaymentMode} */
-declare function MerchantPaymentMode(): MerchantPaymentMode;
-type MerchantPaymentMode = {
+/** @returns {MerchantPaymentModeRequest} */
+declare function MerchantPaymentModeRequest(): MerchantPaymentModeRequest;
+type MerchantPaymentModeRequest = {
     offline?: ModeIsactive;
     online?: ModeIsactive;
 };
@@ -5292,9 +5168,9 @@ declare function ModeIsactive(): ModeIsactive;
 type ModeIsactive = {
     is_active?: boolean;
 };
-/** @returns {OfferSerializerData} */
-declare function OfferSerializerData(): OfferSerializerData;
-type OfferSerializerData = {
+/** @returns {OfferSerializer} */
+declare function OfferSerializer(): OfferSerializer;
+type OfferSerializer = {
     /**
      * - Offer amount.
      */
@@ -5312,26 +5188,14 @@ type OfferSerializerData = {
      */
     offer_id?: string;
 };
-/** @returns {AppliedOfferSerializerData} */
-declare function AppliedOfferSerializerData(): AppliedOfferSerializerData;
-type AppliedOfferSerializerData = {
+/** @returns {AppliedOfferSerializer} */
+declare function AppliedOfferSerializer(): AppliedOfferSerializer;
+type AppliedOfferSerializer = {
     /**
      * - Total applied offer amount
      */
     total_applied_offer_amount?: number;
-    offer_list?: OfferSerializerData[];
-};
-/** @returns {MerchnatPaymentModeCreation} */
-declare function MerchnatPaymentModeCreation(): MerchnatPaymentModeCreation;
-type MerchnatPaymentModeCreation = {
-    /**
-     * - Details to be updated for online payment configuration.
-     */
-    offline?: any;
-    /**
-     * - Details to be updated for offline payment configuration.
-     */
-    online?: any;
+    offer_list?: OfferSerializer[];
 };
 /** @returns {OrderDetail} */
 declare function OrderDetail(): OrderDetail;
@@ -5567,37 +5431,9 @@ type PaymentSessionDetail = {
      */
     status: string;
 };
-/** @returns {RefundDetailsSerializerData} */
-declare function RefundDetailsSerializerData(): RefundDetailsSerializerData;
-type RefundDetailsSerializerData = {
-    /**
-     * - Refunded amount
-     */
-    amount: number;
-    /**
-     * - The currency of the payment.
-     */
-    currency: string;
-    /**
-     * - Refund request id, unique id generated by Fynd platform
-     */
-    request_id: string;
-    /**
-     * - The status of the refund.
-     */
-    status: string;
-    /**
-     * - Timestamp in epoch.
-     */
-    created: string;
-    /**
-     * - Unique refund utr generated by payment gateway.
-     */
-    refund_utr: string;
-};
-/** @returns {AmountSerializerData} */
-declare function AmountSerializerData(): AmountSerializerData;
-type AmountSerializerData = {
+/** @returns {AmountSerializer} */
+declare function AmountSerializer(): AmountSerializer;
+type AmountSerializer = {
     /**
      * - Amount in integer
      */
@@ -5607,15 +5443,15 @@ type AmountSerializerData = {
      */
     currency: string;
 };
-/** @returns {ChargeAmountSerializerData} */
-declare function ChargeAmountSerializerData(): ChargeAmountSerializerData;
-type ChargeAmountSerializerData = {
-    ordering_currency: AmountSerializerData;
-    base_currency: AmountSerializerData;
+/** @returns {ChargeAmountSerializer} */
+declare function ChargeAmountSerializer(): ChargeAmountSerializer;
+type ChargeAmountSerializer = {
+    ordering_currency: AmountSerializer;
+    base_currency: AmountSerializer;
 };
-/** @returns {CartChargesSerializerData} */
-declare function CartChargesSerializerData(): CartChargesSerializerData;
-type CartChargesSerializerData = {
+/** @returns {CartChargesSerializer} */
+declare function CartChargesSerializer(): CartChargesSerializer;
+type CartChargesSerializer = {
     /**
      * - Type of charge
      */
@@ -5628,36 +5464,11 @@ type CartChargesSerializerData = {
      * - Unique identifier code for charge
      */
     code?: string;
-    amount?: ChargeAmountSerializerData;
+    amount?: ChargeAmountSerializer;
 };
-/** @returns {CartDetailsSerializerData} */
-declare function CartDetailsSerializerData(): CartDetailsSerializerData;
-type CartDetailsSerializerData = {
-    /**
-     * - Items that are added in cart
-     */
-    items: any;
-    /**
-     * - List of articles that are added in cart
-     */
-    articles: any[];
-    /**
-     * - Total cart value i.e. amount to be paid
-     */
-    cart_value: number;
-    /**
-     * - Contains all the
-     * charges that are applicable on cart
-     */
-    cart_charges?: CartChargesSerializerData[];
-    /**
-     * - Total number of items in cart
-     */
-    total_quantity?: number;
-};
-/** @returns {GetPaymentSessionDetails} */
-declare function GetPaymentSessionDetails(): GetPaymentSessionDetails;
-type GetPaymentSessionDetails = {
+/** @returns {GetPaymentSessionResponse} */
+declare function GetPaymentSessionResponse(): GetPaymentSessionResponse;
+type GetPaymentSessionResponse = {
     /**
      * - Meta
      */
@@ -5668,7 +5479,7 @@ type GetPaymentSessionDetails = {
      * Fynd payments platform and is unique.
      */
     gid: string;
-    applied_payment_offers?: AppliedOfferSerializerData;
+    applied_payment_offers?: AppliedOfferSerializer;
     checksum?: string;
     /**
      * - Status of the payment.
@@ -5679,7 +5490,7 @@ type GetPaymentSessionDetails = {
      */
     currency: string;
     payment_details: PaymentSessionDetail;
-    cart_details?: CartDetailsSerializerData;
+    cart_details?: CartDetailsSerializer;
     /**
      * - Amount paid.
      */
@@ -5687,11 +5498,11 @@ type GetPaymentSessionDetails = {
     /**
      * - Object of refund details
      */
-    refund_details?: RefundDetailsSerializerData[];
+    refund_details?: RefundDetailsSerializer[];
 };
-/** @returns {PaymentSessionCreation} */
-declare function PaymentSessionCreation(): PaymentSessionCreation;
-type PaymentSessionCreation = {
+/** @returns {PaymentSessionRequestSerializer} */
+declare function PaymentSessionRequestSerializer(): PaymentSessionRequestSerializer;
+type PaymentSessionRequestSerializer = {
     /**
      * - Extra meta data specific to extensions
      */
@@ -5702,7 +5513,11 @@ type PaymentSessionCreation = {
      * Fynd payments platform and is unique.
      */
     gid: string;
-    applied_payment_offers?: AppliedOfferSerializerData;
+    applied_payment_offers?: AppliedOfferSerializer;
+    /**
+     * - Checksum to verify the payload
+     */
+    checksum?: string;
     /**
      * - The details of the order.
      */
@@ -5724,10 +5539,6 @@ type PaymentSessionCreation = {
      * - Amount paid.
      */
     total_amount: number;
-    /**
-     * - Checksum to verify the payload
-     */
-    checksum?: string;
     /**
      * - Source of payment update session
      */
@@ -5753,9 +5564,9 @@ type TransactionDetail = {
      */
     payment_id?: string;
 };
-/** @returns {PaymentSessionPutDetails} */
-declare function PaymentSessionPutDetails(): PaymentSessionPutDetails;
-type PaymentSessionPutDetails = {
+/** @returns {PaymentSessionResponseSerializer} */
+declare function PaymentSessionResponseSerializer(): PaymentSessionResponseSerializer;
+type PaymentSessionResponseSerializer = {
     /**
      * - Global identifier of the entity (e.g. order, cart
      * etc.) against which payment_session was initiated. This is generated by
@@ -5836,9 +5647,9 @@ type RefundSessionDetail = {
      */
     balance_transaction?: string;
 };
-/** @returns {RefundSessionCreation} */
-declare function RefundSessionCreation(): RefundSessionCreation;
-type RefundSessionCreation = {
+/** @returns {RefundSessionRequestSerializer} */
+declare function RefundSessionRequestSerializer(): RefundSessionRequestSerializer;
+type RefundSessionRequestSerializer = {
     /**
      * - Meta
      */
@@ -5861,7 +5672,7 @@ type RefundSessionCreation = {
      * - Details of the payment
      */
     payment_details: PaymentSessionDetail;
-    checksum: string;
+    checksum?: string;
     /**
      * - The total amount refunded.
      */
@@ -5876,11 +5687,11 @@ type RefundSessionCreation = {
      */
     message?: string;
 };
-/** @returns {RefundSessionDetails} */
-declare function RefundSessionDetails(): RefundSessionDetails;
-type RefundSessionDetails = {
-    success: boolean;
-    message: string;
+/** @returns {RefundSessionResponseSerializer} */
+declare function RefundSessionResponseSerializer(): RefundSessionResponseSerializer;
+type RefundSessionResponseSerializer = {
+    success?: boolean;
+    message?: string;
     /**
      * - Global identifier of the entity (e.g. order, cart
      * etc.) against which payment_session was initiated. This is generated by
@@ -5904,9 +5715,9 @@ type RefundSessionDetails = {
      */
     total_refund_amount?: number;
 };
-/** @returns {PaymentDetails} */
-declare function PaymentDetails(): PaymentDetails;
-type PaymentDetails = {
+/** @returns {PaymentDetailsSerializer} */
+declare function PaymentDetailsSerializer(): PaymentDetailsSerializer;
+type PaymentDetailsSerializer = {
     /**
      * - List of payment methods
      */
@@ -6000,9 +5811,9 @@ type PaymentDetails = {
      */
     aggregator_order_id?: string;
 };
-/** @returns {CartDetails} */
-declare function CartDetails(): CartDetails;
-type CartDetails = {
+/** @returns {CartDetailsSerializer} */
+declare function CartDetailsSerializer(): CartDetailsSerializer;
+type CartDetailsSerializer = {
     /**
      * - Items that are added in cart
      */
@@ -6024,10 +5835,14 @@ type CartDetails = {
      * retrieve custom data fields to cart items.
      */
     custom_cart_meta?: any;
+    /**
+     * - List of cart charges that are added in cart
+     */
+    cart_charges?: any[];
 };
-/** @returns {RefundDetails} */
-declare function RefundDetails(): RefundDetails;
-type RefundDetails = {
+/** @returns {RefundDetailsSerializer} */
+declare function RefundDetailsSerializer(): RefundDetailsSerializer;
+type RefundDetailsSerializer = {
     /**
      * - Refunded amount
      */
@@ -6053,9 +5868,9 @@ type RefundDetails = {
      */
     refund_utr: string;
 };
-/** @returns {PaymentSessionFetchDetails} */
-declare function PaymentSessionFetchDetails(): PaymentSessionFetchDetails;
-type PaymentSessionFetchDetails = {
+/** @returns {PaymentSessionSerializer} */
+declare function PaymentSessionSerializer(): PaymentSessionSerializer;
+type PaymentSessionSerializer = {
     /**
      * - Object of payment details
      */
@@ -6078,11 +5893,11 @@ type PaymentSessionFetchDetails = {
      * Fynd payments platform and is unique.
      */
     gid: string;
-    cart_details?: CartDetails;
+    cart_details?: CartDetailsSerializer;
     /**
      * - Object of refund details
      */
-    refund_details: RefundDetails[];
+    refund_details: RefundDetailsSerializer[];
 };
 /** @returns {RefundSourcesPriority} */
 declare function RefundSourcesPriority(): RefundSourcesPriority;
@@ -6104,9 +5919,9 @@ type RefundSourcesPriority = {
      */
     source: string;
 };
-/** @returns {RefundPriorityDetails} */
-declare function RefundPriorityDetails(): RefundPriorityDetails;
-type RefundPriorityDetails = {
+/** @returns {RefundPriorityResponseSerializer} */
+declare function RefundPriorityResponseSerializer(): RefundPriorityResponseSerializer;
+type RefundPriorityResponseSerializer = {
     /**
      * - Configuration for merchant or customer
      */
@@ -6136,9 +5951,9 @@ type RefundPriorityDetails = {
      */
     message?: string;
 };
-/** @returns {RefundPriorityCreation} */
-declare function RefundPriorityCreation(): RefundPriorityCreation;
-type RefundPriorityCreation = {
+/** @returns {RefundPriorityRequestSerializer} */
+declare function RefundPriorityRequestSerializer(): RefundPriorityRequestSerializer;
+type RefundPriorityRequestSerializer = {
     /**
      * - Settle Offline flag
      */
@@ -6151,22 +5966,6 @@ type RefundPriorityCreation = {
      * - Refund sources priority
      */
     refund_sources_priority: RefundSourcesPriority[];
-};
-/** @returns {MerchantPaymentModeCreation} */
-declare function MerchantPaymentModeCreation(): MerchantPaymentModeCreation;
-type MerchantPaymentModeCreation = {
-    /**
-     * - Business unit
-     */
-    business_unit: string;
-    /**
-     * - List of item details with respect to payment_mode
-     */
-    items: any[];
-    /**
-     * - List of devices and its activation status
-     */
-    device: any;
 };
 /** @returns {FromConfig} */
 declare function FromConfig(): FromConfig;
@@ -6189,9 +5988,9 @@ type ToConfig = {
      */
     business_unit: string;
 };
-/** @returns {PlatformPaymentModeCopyConfigCreation} */
-declare function PlatformPaymentModeCopyConfigCreation(): PlatformPaymentModeCopyConfigCreation;
-type PlatformPaymentModeCopyConfigCreation = {
+/** @returns {PlatformPaymentModeCopyConfigRequest} */
+declare function PlatformPaymentModeCopyConfigRequest(): PlatformPaymentModeCopyConfigRequest;
+type PlatformPaymentModeCopyConfigRequest = {
     from_config: FromConfig;
     to_config: ToConfig;
 };
@@ -6237,9 +6036,9 @@ type PaymentOrderMethods = {
      */
     name: string;
 };
-/** @returns {PaymentOrderCreation} */
-declare function PaymentOrderCreation(): PaymentOrderCreation;
-type PaymentOrderCreation = {
+/** @returns {PaymentOrderRequest} */
+declare function PaymentOrderRequest(): PaymentOrderRequest;
+type PaymentOrderRequest = {
     /**
      * - Order id
      */
@@ -6326,9 +6125,9 @@ type PaymentOrderData = {
      */
     bank?: string;
 };
-/** @returns {PaymentOrderDetails} */
-declare function PaymentOrderDetails(): PaymentOrderDetails;
-type PaymentOrderDetails = {
+/** @returns {PaymentOrderResponse} */
+declare function PaymentOrderResponse(): PaymentOrderResponse;
+type PaymentOrderResponse = {
     /**
      * - Message
      */
@@ -6362,9 +6161,9 @@ type AggregatorVersionItemSchema = {
     is_less_than?: string;
     is_greater_than?: string;
 };
-/** @returns {AggregatorVersionDetails} */
-declare function AggregatorVersionDetails(): AggregatorVersionDetails;
-type AggregatorVersionDetails = {
+/** @returns {AggregatorVersionResponse} */
+declare function AggregatorVersionResponse(): AggregatorVersionResponse;
+type AggregatorVersionResponse = {
     /**
      * - Message
      */
@@ -6382,9 +6181,9 @@ type AggregatorVersionRequestSchema = {
     is_less_than?: string;
     is_greater_than?: string;
 };
-/** @returns {PatchAggregatorControl} */
-declare function PatchAggregatorControl(): PatchAggregatorControl;
-type PatchAggregatorControl = {
+/** @returns {AggregatorControlRequest} */
+declare function AggregatorControlRequest(): AggregatorControlRequest;
+type AggregatorControlRequest = {
     /**
      * - Business unit
      */
@@ -6495,17 +6294,17 @@ type PaymentCustomConfigResponseSchema = {
     message?: string;
     items: PaymentModeCustomConfigSchema[];
 };
-/** @returns {DeleteBeneficiary} */
-declare function DeleteBeneficiary(): DeleteBeneficiary;
-type DeleteBeneficiary = {
+/** @returns {DeleteBeneficiaryRequest} */
+declare function DeleteBeneficiaryRequest(): DeleteBeneficiaryRequest;
+type DeleteBeneficiaryRequest = {
     /**
      * - Saved Beneficiary ID
      */
     beneficiary_id?: string;
 };
-/** @returns {DeleteRefundAccountDetails} */
-declare function DeleteRefundAccountDetails(): DeleteRefundAccountDetails;
-type DeleteRefundAccountDetails = {
+/** @returns {DeleteRefundAccountResponse} */
+declare function DeleteRefundAccountResponse(): DeleteRefundAccountResponse;
+type DeleteRefundAccountResponse = {
     /**
      * - Success/Failure of the deleted beneficiary
      */
@@ -6513,7 +6312,7 @@ type DeleteRefundAccountDetails = {
     /**
      * - Message
      */
-    message?: string;
+    message: string;
 };
 /** @returns {RefundOptionsDetails} */
 declare function RefundOptionsDetails(): RefundOptionsDetails;
@@ -6566,9 +6365,9 @@ type OfflineRefundOptions = {
      */
     offline_refund_collect_type?: string[];
 };
-/** @returns {RefundOptionDetails} */
-declare function RefundOptionDetails(): RefundOptionDetails;
-type RefundOptionDetails = {
+/** @returns {RefundOptionResponse} */
+declare function RefundOptionResponse(): RefundOptionResponse;
+type RefundOptionResponse = {
     /**
      * - Available offline
      * refund options data
@@ -6583,18 +6382,18 @@ type RefundOptionDetails = {
      */
     refund_options: RefundOptions;
 };
-/** @returns {SelectedRefundOptionDetails} */
-declare function SelectedRefundOptionDetails(): SelectedRefundOptionDetails;
-type SelectedRefundOptionDetails = {
+/** @returns {SelectedRefundOptionResponse} */
+declare function SelectedRefundOptionResponse(): SelectedRefundOptionResponse;
+type SelectedRefundOptionResponse = {
     transfer_mode: TransferMode;
     /**
      * - Shipment ID
      */
-    shipment_id?: string;
+    shipment_id: string;
     /**
      * - Message
      */
-    message?: string;
+    message: string;
     /**
      * - Successful or not.
      */
@@ -6785,9 +6584,9 @@ type RefundOptionsLimit = {
     wallet?: number;
     upi?: number;
 };
-/** @returns {ValidateValidateAddress} */
-declare function ValidateValidateAddress(): ValidateValidateAddress;
-type ValidateValidateAddress = {
+/** @returns {ValidateValidateAddressRequest} */
+declare function ValidateValidateAddressRequest(): ValidateValidateAddressRequest;
+type ValidateValidateAddressRequest = {
     /**
      * - IFSC Code
      */
@@ -6821,9 +6620,9 @@ type VPADetails = {
      */
     customer_name: string;
 };
-/** @returns {ValidateValidateAddressDetails} */
-declare function ValidateValidateAddressDetails(): ValidateValidateAddressDetails;
-type ValidateValidateAddressDetails = {
+/** @returns {ValidateValidateAddressResponse} */
+declare function ValidateValidateAddressResponse(): ValidateValidateAddressResponse;
+type ValidateValidateAddressResponse = {
     /**
      * - UPI validation details.
      */
@@ -6841,9 +6640,9 @@ type ValidateValidateAddressDetails = {
      */
     vpa?: VPADetails;
 };
-/** @returns {SetDefaultBeneficiary} */
-declare function SetDefaultBeneficiary(): SetDefaultBeneficiary;
-type SetDefaultBeneficiary = {
+/** @returns {SetDefaultBeneficiaryRequest} */
+declare function SetDefaultBeneficiaryRequest(): SetDefaultBeneficiaryRequest;
+type SetDefaultBeneficiaryRequest = {
     /**
      * - Merchant Order Id
      */
@@ -6862,9 +6661,9 @@ type SetDefaultBeneficiary = {
      */
     merchant_shipment_id?: string;
 };
-/** @returns {SetDefaultBeneficiaryDetails} */
-declare function SetDefaultBeneficiaryDetails(): SetDefaultBeneficiaryDetails;
-type SetDefaultBeneficiaryDetails = {
+/** @returns {SetDefaultBeneficiaryResponse} */
+declare function SetDefaultBeneficiaryResponse(): SetDefaultBeneficiaryResponse;
+type SetDefaultBeneficiaryResponse = {
     /**
      * - Boolean Flag whether Beneficiary set or not
      */
@@ -6874,9 +6673,9 @@ type SetDefaultBeneficiaryDetails = {
      */
     success?: boolean;
 };
-/** @returns {ShipmentRefundDetailsMeta} */
-declare function ShipmentRefundDetailsMeta(): ShipmentRefundDetailsMeta;
-type ShipmentRefundDetailsMeta = {
+/** @returns {ShipmentRefundRequestMeta} */
+declare function ShipmentRefundRequestMeta(): ShipmentRefundRequestMeta;
+type ShipmentRefundRequestMeta = {
     /**
      * - Shipment Id of the respective Merchant Order Id
      */
@@ -6898,9 +6697,9 @@ type ShipmentRefundDetailsMeta = {
      */
     billing_employee_code?: string;
 };
-/** @returns {ShipmentRefundDetails} */
-declare function ShipmentRefundDetails(): ShipmentRefundDetails;
-type ShipmentRefundDetails = {
+/** @returns {ShipmentRefundRequest} */
+declare function ShipmentRefundRequest(): ShipmentRefundRequest;
+type ShipmentRefundRequest = {
     /**
      * - Merchant Order Id
      */
@@ -6914,11 +6713,11 @@ type ShipmentRefundDetails = {
      */
     beneficiary_id?: string;
     /**
-     * - Detailed list of shipment IDs for
-     * single and multi-bag return cases
+     * - Detailed list of shipment IDs for single
+     * and multi-bag return cases
      */
-    shipment_ids?: string[];
-    meta?: ShipmentRefundDetailsMeta;
+    shipment_ids: string[];
+    meta?: ShipmentRefundRequestMeta;
 };
 /** @returns {ShipmentRefundDetail} */
 declare function ShipmentRefundDetail(): ShipmentRefundDetail;
@@ -6936,14 +6735,14 @@ type ShipmentRefundDetail = {
      */
     beneficiary_id: string;
     /**
-     * - Detailed list of shipment IDs for
-     * single and multi-bag return cases
+     * - Detailed list of shipment IDs for single
+     * and multi-bag return cases
      */
-    shipment_ids?: string[];
+    shipment_ids: string[];
 };
-/** @returns {ShipmentRefundRes} */
-declare function ShipmentRefundRes(): ShipmentRefundRes;
-type ShipmentRefundRes = {
+/** @returns {ShipmentRefundResponse} */
+declare function ShipmentRefundResponse(): ShipmentRefundResponse;
+type ShipmentRefundResponse = {
     /**
      * - Selected Shipment refund option details.
      */
@@ -6983,9 +6782,9 @@ type RefundItem = {
     display_name?: string;
     is_active?: boolean;
 };
-/** @returns {PennyDropValidationDetails} */
-declare function PennyDropValidationDetails(): PennyDropValidationDetails;
-type PennyDropValidationDetails = {
+/** @returns {PennyDropValidationResponse} */
+declare function PennyDropValidationResponse(): PennyDropValidationResponse;
+type PennyDropValidationResponse = {
     /**
      * - Successful or not.
      */
@@ -6993,30 +6792,30 @@ type PennyDropValidationDetails = {
     /**
      * - Message
      */
-    message?: string;
+    message: string;
     /**
      * - PennyDrop validation flag.
      */
     allow_pennydrop_validation: boolean;
 };
-/** @returns {UpdatePennyDropValidation} */
-declare function UpdatePennyDropValidation(): UpdatePennyDropValidation;
-type UpdatePennyDropValidation = {
+/** @returns {UpdatePennyDropValidationRequest} */
+declare function UpdatePennyDropValidationRequest(): UpdatePennyDropValidationRequest;
+type UpdatePennyDropValidationRequest = {
     /**
      * - Allow Penny Drop Validation flag
      */
     allow_pennydrop_validation: boolean;
 };
-/** @returns {AggregatorConfigDetails} */
-declare function AggregatorConfigDetails(): AggregatorConfigDetails;
-type AggregatorConfigDetails = {
+/** @returns {AggregatorConfigResponse} */
+declare function AggregatorConfigResponse(): AggregatorConfigResponse;
+type AggregatorConfigResponse = {
     success?: boolean;
     message?: string;
     items?: PaymentOptionItem[];
 };
-/** @returns {PaymentModeDetails} */
-declare function PaymentModeDetails(): PaymentModeDetails;
-type PaymentModeDetails = {
+/** @returns {PaymentModeResponse} */
+declare function PaymentModeResponse(): PaymentModeResponse;
+type PaymentModeResponse = {
     success?: boolean;
     message?: string;
     items?: PaymentMode[];
@@ -7072,9 +6871,9 @@ type SubPaymentMode = {
     logo?: string;
     logos?: PaymentModeLogo;
 };
-/** @returns {AggregatorCredentialReq} */
-declare function AggregatorCredentialReq(): AggregatorCredentialReq;
-type AggregatorCredentialReq = {
+/** @returns {AggregatorCredentialRequest} */
+declare function AggregatorCredentialRequest(): AggregatorCredentialRequest;
+type AggregatorCredentialRequest = {
     success?: boolean;
     ccavenue?: AggregatorCredential;
     juspay?: AggregatorCredential;
@@ -7084,15 +6883,15 @@ type AggregatorCredentialReq = {
     is_active?: boolean;
     app_id?: string;
 };
-/** @returns {PatchAggregatorCredentialDetails} */
-declare function PatchAggregatorCredentialDetails(): PatchAggregatorCredentialDetails;
-type PatchAggregatorCredentialDetails = {
+/** @returns {PatchAggregatorCredentialResponse} */
+declare function PatchAggregatorCredentialResponse(): PatchAggregatorCredentialResponse;
+type PatchAggregatorCredentialResponse = {
     success?: boolean;
     aggregators?: string[];
 };
-/** @returns {AggregatorCredentialRes} */
-declare function AggregatorCredentialRes(): AggregatorCredentialRes;
-type AggregatorCredentialRes = {
+/** @returns {AggregatorCredentialResponse} */
+declare function AggregatorCredentialResponse(): AggregatorCredentialResponse;
+type AggregatorCredentialResponse = {
     success?: boolean;
     created?: boolean;
     app_id?: string;
@@ -7123,9 +6922,9 @@ type AggregatorDisplayItem = {
     description?: string;
     review_status?: string;
 };
-/** @returns {GetDevice} */
-declare function GetDevice(): GetDevice;
-type GetDevice = {
+/** @returns {GetDeviceResponse} */
+declare function GetDeviceResponse(): GetDeviceResponse;
+type GetDeviceResponse = {
     /**
      * - Message
      */
@@ -7169,9 +6968,9 @@ type Device = {
      */
     slug?: string;
 };
-/** @returns {AggregatorHistoryDetails} */
-declare function AggregatorHistoryDetails(): AggregatorHistoryDetails;
-type AggregatorHistoryDetails = {
+/** @returns {AggregatorHistoryResponse} */
+declare function AggregatorHistoryResponse(): AggregatorHistoryResponse;
+type AggregatorHistoryResponse = {
     success?: boolean;
     items?: HistoryItem[];
 };
@@ -7221,9 +7020,9 @@ type RefundTo = {
     source?: string;
     others?: string;
 };
-/** @returns {PaymentMethodConfigDetails} */
-declare function PaymentMethodConfigDetails(): PaymentMethodConfigDetails;
-type PaymentMethodConfigDetails = {
+/** @returns {PaymentMethodConfigResponse} */
+declare function PaymentMethodConfigResponse(): PaymentMethodConfigResponse;
+type PaymentMethodConfigResponse = {
     success?: boolean;
     refund_to?: RefundTo;
     required_session_paths?: RequiredSessionPath[];
@@ -7248,9 +7047,9 @@ type SessionItem = {
     content_type?: string;
     methods?: string[];
 };
-/** @returns {PaymentErrorCodeAndMessage} */
-declare function PaymentErrorCodeAndMessage(): PaymentErrorCodeAndMessage;
-type PaymentErrorCodeAndMessage = {
+/** @returns {PaymentErrorCodeAndResponse} */
+declare function PaymentErrorCodeAndResponse(): PaymentErrorCodeAndResponse;
+type PaymentErrorCodeAndResponse = {
     error?: PaymentError;
     /**
      * - Response is successful or not
@@ -7267,9 +7066,9 @@ type PaymentError = {
     order_type?: string[];
     transaction_amount_in_paise?: string[];
 };
-/** @returns {ShipmentBeneficiaryDetailsRes} */
-declare function ShipmentBeneficiaryDetailsRes(): ShipmentBeneficiaryDetailsRes;
-type ShipmentBeneficiaryDetailsRes = {
+/** @returns {ShipmentBeneficiaryDetailsResponse} */
+declare function ShipmentBeneficiaryDetailsResponse(): ShipmentBeneficiaryDetailsResponse;
+type ShipmentBeneficiaryDetailsResponse = {
     /**
      * - Response is successful or not.
      */
@@ -7287,37 +7086,4 @@ type ShipmentBeneficiaryDetailsRes = {
      * - Encrypted beneficiary details
      */
     beneficiary_details?: string;
-};
-/** @returns {HttpErrorCodeAndMessage} */
-declare function HttpErrorCodeAndMessage(): HttpErrorCodeAndMessage;
-type HttpErrorCodeAndMessage = {
-    /**
-     * - Error message
-     */
-    message?: string;
-    /**
-     * - Return empty array in error response
-     */
-    items?: string[];
-    error: ErrorCodeAndDescription;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {ErrorCodeDescription} */
-declare function ErrorCodeDescription(): ErrorCodeDescription;
-type ErrorCodeDescription = {
-    /**
-     * - Error human understandable description.
-     */
-    description: string;
-    /**
-     * - Error descrption code.
-     */
-    code: string;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
 };

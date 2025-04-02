@@ -4,7 +4,7 @@ const LogisticsModel = require("./LogisticsPartnerModel");
 class LogisticsValidator {
   static sampleFileServiceability() {
     return Joi.object({
-      body: LogisticsModel.BulkRegionServiceabilityTatRequestSchema().required(),
+      body: LogisticsModel.BulkRegionServiceabilityTatRequest().required(),
     }).required();
   }
 
@@ -20,7 +20,7 @@ class LogisticsValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.BulkRegionJobSerializerSchema().required(),
+      body: LogisticsModel.BulkRegionJobSerializer().required(),
     }).required();
   }
 
@@ -44,7 +44,7 @@ class LogisticsValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.BulkRegionJobSerializerSchema().required(),
+      body: LogisticsModel.BulkRegionJobSerializer().required(),
     }).required();
   }
 
@@ -107,7 +107,7 @@ class LogisticsValidator {
   static updateCourierPartnerScheme() {
     return Joi.object({
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.CourierPartnerSchemeUpdateRequestSchema().required(),
+      body: LogisticsModel.CourierPartnerSchemeUpdateRequest().required(),
     }).required();
   }
 

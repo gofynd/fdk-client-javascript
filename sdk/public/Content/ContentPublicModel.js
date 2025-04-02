@@ -239,6 +239,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SdkReadmeSchema
+ * @property {string} [data]
+ */
+
+/**
  * @typedef TagsSchema
  * @property {CustomItemSchema[]} [items]
  * @property {PageSchema} [page]
@@ -624,6 +629,13 @@ class ContentPublicModel {
     });
   }
 
+  /** @returns {SdkReadmeSchema} */
+  static SdkReadmeSchema() {
+    return Joi.object({
+      data: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {TagsSchema} */
   static TagsSchema() {
     return Joi.object({
@@ -733,7 +745,7 @@ class ContentPublicModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
     });
   }
 }

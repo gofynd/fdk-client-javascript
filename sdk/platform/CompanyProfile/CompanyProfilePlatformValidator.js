@@ -6,28 +6,28 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 
 /**
  * @typedef CreateCompanyBrandMappingParam
- * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
  */
 
 /**
  * @typedef CreateLocationParam
- * @property {CompanyProfilePlatformModel.LocationSchema} body
+ * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 
 /**
  * @typedef CreateLocationBulkParam
- * @property {CompanyProfilePlatformModel.BulkLocationSchema} body
+ * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
  */
 
 /**
  * @typedef EditBrandParam
  * @property {number} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 
 /**
@@ -83,7 +83,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 /**
  * @typedef UpdateLocationParam
  * @property {number} locationId - Id of the location which you want to edit.
- * @property {CompanyProfilePlatformModel.LocationSchema} body
+ * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 
 class CompanyProfilePlatformValidator {
@@ -95,28 +95,28 @@ class CompanyProfilePlatformValidator {
   /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema().required(),
+      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
     }).required();
   }
 
   /** @returns {CreateCompanyBrandMappingParam} */
   static createCompanyBrandMapping() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CompanyBrandPostRequestSchema().required(),
+      body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer().required(),
     }).required();
   }
 
   /** @returns {CreateLocationParam} */
   static createLocation() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.LocationSchema().required(),
+      body: CompanyProfilePlatformModel.LocationSerializer().required(),
     }).required();
   }
 
   /** @returns {CreateLocationBulkParam} */
   static createLocationBulk() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.BulkLocationSchema().required(),
+      body: CompanyProfilePlatformModel.BulkLocationSerializer().required(),
     }).required();
   }
 
@@ -124,7 +124,7 @@ class CompanyProfilePlatformValidator {
   static editBrand() {
     return Joi.object({
       brandId: Joi.number().required(),
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema().required(),
+      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
     }).required();
   }
 
@@ -187,7 +187,7 @@ class CompanyProfilePlatformValidator {
   static updateLocation() {
     return Joi.object({
       locationId: Joi.number().required(),
-      body: CompanyProfilePlatformModel.LocationSchema().required(),
+      body: CompanyProfilePlatformModel.LocationSerializer().required(),
     }).required();
   }
 }

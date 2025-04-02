@@ -31,10 +31,9 @@ export = ThemePartnerModel;
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
  * @property {string} [application] - The application id
- * @property {number} [__v] - Version of document
  */
 /**
- * @typedef DraftExtensionSection
+ * @typedef ExtensionBinding
  * @property {string} [extension_id]
  * @property {string} [_id]
  * @property {string} [created_at]
@@ -47,11 +46,11 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef ExtensionSectionDraft
+ * @typedef DraftExtensionSectionResponse
  * @property {string} [message]
  */
 /**
- * @typedef Sections
+ * @typedef SectionsResponse
  * @property {boolean} [acknowledged]
  * @property {number} [matched_count]
  * @property {number} [modified_count]
@@ -78,7 +77,7 @@ export = ThemePartnerModel;
  * @property {string} [css]
  */
 /**
- * @typedef PublishExtensionSection
+ * @typedef PublishExtensionSectionRequest
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
@@ -88,20 +87,16 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef PreviewExtension
+ * @typedef ExtensionPreviewRequest
  * @property {string} [application_id] - Application ID
  * @property {string} [section_preview_hash] - Hash for the section preview
  */
 /**
- * @typedef ExtensionPreview
+ * @typedef ExtensionPreviewResponse
  * @property {string} [message]
  */
 /**
- * @typedef ExtensionSectionPublish
- * @property {Sections} [sections]
- */
-/**
- * @typedef PublishExtensionSectionResponseSchema
+ * @typedef PublishExtensionSectionResponse
  * @property {string} [message]
  */
 /**
@@ -132,7 +127,6 @@ export = ThemePartnerModel;
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
- * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 /**
  * @typedef SEObreadcrumb
@@ -311,25 +305,11 @@ export = ThemePartnerModel;
  * @property {string} admin_id - The ID of the admin who rejected the theme
  * @property {string} user_id - The ID of the user who submitted the theme
  * @property {string} status - The status of the theme (e.g., rejected)
- * @property {RejectedMessages} rejection_reasons
+ * @property {Object} rejection_reasons
  * @property {string} [created_at] - The date and time when the theme rejection
  *   reasons object was created
  * @property {string} [updated_at] - The date and time when the theme rejection
  *   reasons object was last updated
- */
-/**
- * @typedef RejectedMessages
- * @property {ThemeReviewRequestMessage} [theme_file]
- * @property {ThemeReviewRequestMessage} [theme_details]
- * @property {ThemeReviewRequestMessage} [theme_value_proposition]
- * @property {ThemeReviewRequestMessage} [theme_attributes]
- * @property {ThemeReviewRequestMessage} [theme_variations]
- * @property {ThemeReviewRequestMessage} [theme_docs]
- * @property {ThemeReviewRequestMessage} [theme_review]
- */
-/**
- * @typedef ThemeReviewRequestMessage
- * @property {string} [message] - Message Explaining what the issue is
  */
 /**
  * @typedef AllAvailablePageSchema
@@ -702,7 +682,7 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { DefaultPageSchema, DefaultPageProp, AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, PublishExtensionSectionResponseSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
+    export { DefaultPageSchema, DefaultPageProp, AvailablePageSchema, ExtensionBinding, DraftExtensionSectionResponse, SectionsResponse, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSectionRequest, ExtensionPreviewRequest, ExtensionPreviewResponse, PublishExtensionSectionResponse, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
 /** @returns {DefaultPageSchema} */
 declare function DefaultPageSchema(): DefaultPageSchema;
@@ -748,14 +728,10 @@ type AvailablePageSchema = {
      * - The application id
      */
     application?: string;
-    /**
-     * - Version of document
-     */
-    __v?: number;
 };
-/** @returns {DraftExtensionSection} */
-declare function DraftExtensionSection(): DraftExtensionSection;
-type DraftExtensionSection = {
+/** @returns {ExtensionBinding} */
+declare function ExtensionBinding(): ExtensionBinding;
+type ExtensionBinding = {
     extension_id?: string;
     _id?: string;
     created_at?: string;
@@ -767,14 +743,14 @@ type DraftExtensionSection = {
     type?: string;
     status?: string;
 };
-/** @returns {ExtensionSectionDraft} */
-declare function ExtensionSectionDraft(): ExtensionSectionDraft;
-type ExtensionSectionDraft = {
+/** @returns {DraftExtensionSectionResponse} */
+declare function DraftExtensionSectionResponse(): DraftExtensionSectionResponse;
+type DraftExtensionSectionResponse = {
     message?: string;
 };
-/** @returns {Sections} */
-declare function Sections(): Sections;
-type Sections = {
+/** @returns {SectionsResponse} */
+declare function SectionsResponse(): SectionsResponse;
+type SectionsResponse = {
     acknowledged?: boolean;
     matched_count?: number;
     modified_count?: number;
@@ -803,9 +779,9 @@ type AssetsExtension = {
     js?: string;
     css?: string;
 };
-/** @returns {PublishExtensionSection} */
-declare function PublishExtensionSection(): PublishExtensionSection;
-type PublishExtensionSection = {
+/** @returns {PublishExtensionSectionRequest} */
+declare function PublishExtensionSectionRequest(): PublishExtensionSectionRequest;
+type PublishExtensionSectionRequest = {
     extension_id?: string;
     bundle_name?: string;
     organization_id?: string;
@@ -814,9 +790,9 @@ type PublishExtensionSection = {
     type?: string;
     status?: string;
 };
-/** @returns {PreviewExtension} */
-declare function PreviewExtension(): PreviewExtension;
-type PreviewExtension = {
+/** @returns {ExtensionPreviewRequest} */
+declare function ExtensionPreviewRequest(): ExtensionPreviewRequest;
+type ExtensionPreviewRequest = {
     /**
      * - Application ID
      */
@@ -826,19 +802,14 @@ type PreviewExtension = {
      */
     section_preview_hash?: string;
 };
-/** @returns {ExtensionPreview} */
-declare function ExtensionPreview(): ExtensionPreview;
-type ExtensionPreview = {
+/** @returns {ExtensionPreviewResponse} */
+declare function ExtensionPreviewResponse(): ExtensionPreviewResponse;
+type ExtensionPreviewResponse = {
     message?: string;
 };
-/** @returns {ExtensionSectionPublish} */
-declare function ExtensionSectionPublish(): ExtensionSectionPublish;
-type ExtensionSectionPublish = {
-    sections?: Sections;
-};
-/** @returns {PublishExtensionSectionResponseSchema} */
-declare function PublishExtensionSectionResponseSchema(): PublishExtensionSectionResponseSchema;
-type PublishExtensionSectionResponseSchema = {
+/** @returns {PublishExtensionSectionResponse} */
+declare function PublishExtensionSectionResponse(): PublishExtensionSectionResponse;
+type PublishExtensionSectionResponse = {
     message?: string;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
@@ -874,10 +845,6 @@ declare function SEOSitemap(): SEOSitemap;
 type SEOSitemap = {
     priority?: number;
     frequency?: string;
-    /**
-     * - Timestamp at which the document was last modified on
-     */
-    modified_on?: string;
 };
 /** @returns {SEObreadcrumb} */
 declare function SEObreadcrumb(): SEObreadcrumb;
@@ -1255,7 +1222,7 @@ type ThemeRejectionReasons = {
      * - The status of the theme (e.g., rejected)
      */
     status: string;
-    rejection_reasons: RejectedMessages;
+    rejection_reasons: any;
     /**
      * - The date and time when the theme rejection
      * reasons object was created
@@ -1266,25 +1233,6 @@ type ThemeRejectionReasons = {
      * reasons object was last updated
      */
     updated_at?: string;
-};
-/** @returns {RejectedMessages} */
-declare function RejectedMessages(): RejectedMessages;
-type RejectedMessages = {
-    theme_file?: ThemeReviewRequestMessage;
-    theme_details?: ThemeReviewRequestMessage;
-    theme_value_proposition?: ThemeReviewRequestMessage;
-    theme_attributes?: ThemeReviewRequestMessage;
-    theme_variations?: ThemeReviewRequestMessage;
-    theme_docs?: ThemeReviewRequestMessage;
-    theme_review?: ThemeReviewRequestMessage;
-};
-/** @returns {ThemeReviewRequestMessage} */
-declare function ThemeReviewRequestMessage(): ThemeReviewRequestMessage;
-type ThemeReviewRequestMessage = {
-    /**
-     * - Message Explaining what the issue is
-     */
-    message?: string;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;

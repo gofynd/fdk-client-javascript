@@ -100,8 +100,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name changeDomainType
    * @summary: Change domain type.
    * @description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
@@ -157,10 +156,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -503,9 +502,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name deleteUrlRedirection
    * @summary: Delete a URL redirection
    * @description: Delete a URL redirection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/deleteUrlRedirection/).
@@ -557,7 +555,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -582,8 +580,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name getAppApiTokens
    * @summary: Get application API tokens.
    * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
@@ -635,10 +632,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.TokenResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -737,8 +734,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CompaniesResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
    * @name getAppCompanies
    * @summary: Get application companies.
    * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
@@ -801,10 +797,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.CompaniesResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.CompaniesResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -829,7 +825,7 @@ class Configuration {
    * @param {number} [arg.uid] - UID of companies to be fetched
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponseSchema>}
+   * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponse>}
    * @summary: Get application companies.
    * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
    */
@@ -1018,9 +1014,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
+   *   Success response
    * @name getAppFeatures
    * @summary: Get application features.
    * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
@@ -1072,10 +1067,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.AppFeatureResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.AppFeatureResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1097,8 +1092,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.StoresResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
    * @name getAppStores
    * @summary: Get application stores.
    * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
@@ -1158,10 +1152,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.StoresResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.StoresResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1185,7 +1179,7 @@ class Configuration {
    *   application (sales channel website) created within a business account
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ConfigurationPlatformModel.StoresResponseSchema>}
+   * @returns {Paginator<ConfigurationPlatformModel.StoresResponse>}
    * @summary: Get application stores.
    * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
    */
@@ -1217,9 +1211,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
+   *   Success response
    * @name getAppSupportedCurrency
    * @summary: Get supported currencies.
    * @description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
@@ -1271,7 +1264,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.AppCurrencyResponseSchema().validate(
+    } = ConfigurationPlatformModel.AppCurrencyResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1450,7 +1443,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponseSchema>}
+   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
    *   - Success response
    *
    * @name getApplicationDomainAvailibility
@@ -1508,7 +1501,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainSuggestionsResponseSchema().validate(
+    } = ConfigurationPlatformModel.DomainSuggestionsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1533,9 +1526,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
+   *   Success response
    * @name getDomainStatus
    * @summary: Get domain status.
    * @description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
@@ -1591,7 +1583,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainStatusResponseSchema().validate(
+    } = ConfigurationPlatformModel.DomainStatusResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1614,8 +1606,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name getDomains
    * @summary: Get domains.
    * @description: Get list of domains.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
@@ -1667,10 +1658,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1848,9 +1839,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name getOrderingStoreCookie
    * @summary: Get an Ordering Store signed cookie on selection of ordering store.
    * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreCookie/).
@@ -1906,7 +1896,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2144,7 +2134,7 @@ class Configuration {
    *   application (sales channel website) created within a business account
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {ConfigurationPlatformModel.FilterOrderingStoreRequestSchemaSchema} arg.body
+   * @param {ConfigurationPlatformModel.FilterOrderingStoreRequest} arg.body
    * @returns {Paginator<ConfigurationPlatformModel.OrderingStores>}
    * @summary: Get ordering store by filter
    * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
@@ -2183,9 +2173,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
+   *   Success response
    * @name getStaffOrderingStores
    * @summary: Get deployment stores
    * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
@@ -2248,7 +2237,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.OrderingStoresResponseSchema().validate(
+    } = ConfigurationPlatformModel.OrderingStoresResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2276,7 +2265,7 @@ class Configuration {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @param {string} [arg.q] - Store code or name of the ordering store.
-   * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponse>}
    * @summary: Get deployment stores
    * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
    */
@@ -2476,9 +2465,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.UrlRedirectionResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.UrlRedirectionResponse>} -
+   *   Success response
    * @name getUrlRedirections
    * @summary: Get URL redirections
    * @description: Retrieves the URL redirections for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getUrlRedirections/).
@@ -2530,7 +2518,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.UrlRedirectionResponseSchema().validate(
+    } = ConfigurationPlatformModel.UrlRedirectionResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2718,9 +2706,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name removeDomainById
    * @summary: Remove domain by ID.
    * @description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
@@ -2776,7 +2763,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2801,9 +2788,8 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name removeOrderingStoreCookie
    * @summary: Unset the Ordering Store signed cookie.
    * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeOrderingStoreCookie/).
@@ -2855,7 +2841,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2880,8 +2866,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name updateAppApiTokens
    * @summary: Update application API tokens.
    * @description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
@@ -2937,10 +2922,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.TokenResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

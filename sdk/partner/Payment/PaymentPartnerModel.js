@@ -69,7 +69,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PaymentConfigDetails
+ * @typedef PaymentConfigResponse
  * @property {boolean} [success]
  * @property {RefundTo} [refund_to]
  * @property {PaymentMethod[]} [payment_methods]
@@ -82,7 +82,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PostPayoutDetails
+ * @typedef PostPayoutResponse
  * @property {boolean} [success]
  * @property {Users} [users]
  * @property {boolean} [is_active]
@@ -97,7 +97,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PostPayout
+ * @typedef PostPayoutRequest
  * @property {string} [unique_external_id]
  * @property {Users} [users]
  * @property {boolean} [is_active]
@@ -144,13 +144,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef HttpErrorCodeAndMessage
+ * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} [error]
  * @property {boolean} success - Response is successful or not
  */
 
 /**
- * @typedef PayoutDetails
+ * @typedef PayoutResponse
  * @property {PayoutItem[]} [items]
  * @property {boolean} [success]
  */
@@ -282,8 +282,8 @@ class PaymentPartnerModel {
     }).allow(null);
   }
 
-  /** @returns {PaymentConfigDetails} */
-  static PaymentConfigDetails() {
+  /** @returns {PaymentConfigResponse} */
+  static PaymentConfigResponse() {
     return Joi.object({
       success: Joi.boolean(),
       refund_to: PaymentPartnerModel.RefundTo(),
@@ -299,8 +299,8 @@ class PaymentPartnerModel {
     });
   }
 
-  /** @returns {PostPayoutDetails} */
-  static PostPayoutDetails() {
+  /** @returns {PostPayoutResponse} */
+  static PostPayoutResponse() {
     return Joi.object({
       success: Joi.boolean(),
       users: PaymentPartnerModel.Users(),
@@ -316,8 +316,8 @@ class PaymentPartnerModel {
     });
   }
 
-  /** @returns {PostPayout} */
-  static PostPayout() {
+  /** @returns {PostPayoutRequest} */
+  static PostPayoutRequest() {
     return Joi.object({
       unique_external_id: Joi.string().allow(""),
       users: PaymentPartnerModel.Users(),
@@ -373,16 +373,16 @@ class PaymentPartnerModel {
     });
   }
 
-  /** @returns {HttpErrorCodeAndMessage} */
-  static HttpErrorCodeAndMessage() {
+  /** @returns {HttpErrorCodeAndResponse} */
+  static HttpErrorCodeAndResponse() {
     return Joi.object({
       error: PaymentPartnerModel.ErrorCodeAndDescription(),
       success: Joi.boolean().required(),
     });
   }
 
-  /** @returns {PayoutDetails} */
-  static PayoutDetails() {
+  /** @returns {PayoutResponse} */
+  static PayoutResponse() {
     return Joi.object({
       items: Joi.array().items(PaymentPartnerModel.PayoutItem()),
       success: Joi.boolean(),

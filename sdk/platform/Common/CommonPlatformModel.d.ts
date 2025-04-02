@@ -1,6 +1,6 @@
 export = CommonPlatformModel;
 /**
- * @typedef ApplicationResponseSchema
+ * @typedef ApplicationResponse
  * @property {Application} [application]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
@@ -15,7 +15,7 @@ export = CommonPlatformModel;
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ?
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  */
 /**
  * @typedef Domain
@@ -104,7 +104,7 @@ export = CommonPlatformModel;
  * @property {string} [message] - Response message for not found
  */
 /**
- * @typedef BadRequestSchema
+ * @typedef BadRequest
  * @property {string} [message] - Failure message (in a string format)
  */
 /**
@@ -145,11 +145,11 @@ export = CommonPlatformModel;
 declare class CommonPlatformModel {
 }
 declare namespace CommonPlatformModel {
-    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
+    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
-/** @returns {ApplicationResponseSchema} */
-declare function ApplicationResponseSchema(): ApplicationResponseSchema;
-type ApplicationResponseSchema = {
+/** @returns {ApplicationResponse} */
+declare function ApplicationResponse(): ApplicationResponse;
+type ApplicationResponse = {
     application?: Application;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
@@ -186,7 +186,7 @@ type ApplicationResponseSchema = {
      */
     decimal_digits?: number;
     /**
-     * - Unique symbol for identifying the currency, e.g. ?
+     * - Unique symbol for identifying the currency, e.g. ₹
      */
     symbol?: string;
 };
@@ -372,9 +372,9 @@ type NotFound = {
      */
     message?: string;
 };
-/** @returns {BadRequestSchema} */
-declare function BadRequestSchema(): BadRequestSchema;
-type BadRequestSchema = {
+/** @returns {BadRequest} */
+declare function BadRequest(): BadRequest;
+type BadRequest = {
     /**
      * - Failure message (in a string format)
      */

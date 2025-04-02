@@ -18,7 +18,7 @@ class Payment {
    * @param {PaymentPartnerValidator.GetPaymentconfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PaymentConfigDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PaymentConfigResponse>} - Success response
    * @name getPaymentconfig
    * @summary: Fetch payment configs.
    * @description: Get partner Payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/getPaymentconfig/).
@@ -68,7 +68,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PaymentConfigDetails().validate(responseData, {
+    } = PaymentPartnerModel.PaymentConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -91,7 +91,7 @@ class Payment {
    * @param {PaymentPartnerValidator.GetPayoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PayoutResponse>} - Success response
    * @name getPayout
    * @summary: Fetch payment gatewats.
    * @description: Get partner Payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/getPayout/).
@@ -144,7 +144,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -167,7 +167,7 @@ class Payment {
    * @param {PaymentPartnerValidator.PostPayoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name postPayout
    * @summary: save payout details.
    * @description: save payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/postPayout/).
@@ -219,7 +219,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -242,7 +242,7 @@ class Payment {
    * @param {PaymentPartnerValidator.UpdatePayoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name updatePayout
    * @summary: save payout details.
    * @description: save payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/updatePayout/).
@@ -294,7 +294,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -317,7 +317,7 @@ class Payment {
    * @param {PaymentPartnerValidator.PutPayoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name putPayout
    * @summary: update payout details.
    * @description: update payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/putPayout/).
@@ -369,7 +369,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -392,7 +392,7 @@ class Payment {
    * @param {PaymentPartnerValidator.DeletePayoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PayoutResponse>} - Success response
    * @name deletePayout
    * @summary: Fetch payment gatewats.
    * @description: Get partner Payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/deletePayout/).
@@ -445,7 +445,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -468,7 +468,7 @@ class Payment {
    * @param {PaymentPartnerValidator.GetPayoutsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PayoutResponse>} - Success response
    * @name getPayouts
    * @summary: Fetch payment gatewats.
    * @description: Get partner Payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/getPayouts/).
@@ -525,7 +525,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -548,7 +548,7 @@ class Payment {
    * @param {PaymentPartnerValidator.PostPayoutsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name postPayouts
    * @summary: save payout details.
    * @description: save payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/postPayouts/).
@@ -602,7 +602,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -625,7 +625,7 @@ class Payment {
    * @param {PaymentPartnerValidator.UpdatePayoutsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name updatePayouts
    * @summary: save payout details.
    * @description: save payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/updatePayouts/).
@@ -681,7 +681,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -704,7 +704,7 @@ class Payment {
    * @param {PaymentPartnerValidator.PutPayoutsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PostPayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PostPayoutResponse>} - Success response
    * @name putPayouts
    * @summary: update payout details.
    * @description: update payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/putPayouts/).
@@ -758,7 +758,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PostPayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PostPayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -781,7 +781,7 @@ class Payment {
    * @param {PaymentPartnerValidator.DeletePayoutsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<PaymentPartnerModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPartnerModel.PayoutResponse>} - Success response
    * @name deletePayouts
    * @summary: Fetch payment gatewats.
    * @description: Get partner Payout details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/payment/deletePayouts/).
@@ -835,7 +835,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPartnerModel.PayoutDetails().validate(responseData, {
+    } = PaymentPartnerModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

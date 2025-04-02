@@ -3,6 +3,11 @@ const Joi = require("joi");
 const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
+ * @typedef CreateAppPushtokenParam
+ * @property {CommunicationPlatformModel.PushtokenReq} body
+ */
+
+/**
  * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
@@ -23,8 +28,18 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef CreateEventSubscriptionsParam
+ * @property {CommunicationPlatformModel.SubscriptionsObject} body
+ */
+
+/**
  * @typedef CreateEventSubscriptionsByBulkParam
- * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateReq} body
+ * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest} body
+ */
+
+/**
+ * @typedef CreateJobsParam
+ * @property {CommunicationPlatformModel.CreateJobsReq} body
  */
 
 /**
@@ -38,13 +53,45 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef DeleteAudienceByIdParam
+ * @property {string} id - Event subscription id
+ * @property {CommunicationPlatformModel.AudienceReq} body
+ */
+
+/**
+ * @typedef DeleteCampaignByIdParam
+ * @property {string} id - Event subscription id
+ */
+
+/**
+ * @typedef DeleteEmailProviderByIdParam
+ * @property {string} id - Event subscription id
+ */
+
+/**
  * @typedef DeleteEmailTemplateByIdParam
+ * @property {string} id - Event subscription id
+ */
+
+/**
+ * @typedef DeleteEventSubscriptionsByIdParam
+ * @property {string} id - Event subscription id
+ */
+
+/**
+ * @typedef DeleteSmsProviderByIdParam
  * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Event subscription id
+ */
+
+/**
+ * @typedef EditEventSubscriptionsParam
+ * @property {string} id - Event subscription id
+ * @property {CommunicationPlatformModel.SubscriptionsObjectRequest} body
  */
 
 /** @typedef GetAppProvidersParam */
@@ -87,6 +134,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /** @typedef GetDefaultSmsProvidersParam */
 
+/** @typedef GetDummyDatasourcesParam */
+
+/**
+ * @typedef GetDummyDatasourcesMetaParam
+ * @property {number} id - Dummy datasources meta ID
+ */
+
 /**
  * @typedef GetEmailProviderByIdParam
  * @property {string} id - Event subscription id
@@ -120,6 +174,12 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {string} [populate] - Populate Fields
  */
 
+/**
+ * @typedef GetEventSubscriptionsByIdParam
+ * @property {string} [populate] - Populate Fields
+ * @property {string} id - Event subscription id
+ */
+
 /** @typedef GetGlobalProvidersParam */
 
 /** @typedef GetGlobalVariablesParam */
@@ -143,6 +203,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef GetNSampleRecordsFromCsvParam
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
+ */
+
+/**
+ * @typedef GetNSampleRecordsFromCsvByGetParam
+ * @property {number} [count] - Number or records
+ * @property {boolean} [header] - Header needed
+ * @property {string} [url] - Url of file
  */
 
 /** @typedef GetOtpConfigurationParam */
@@ -203,12 +270,17 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef SendCommunicationAsynchronouslyParam
- * @property {CommunicationPlatformModel.EngineReq} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
  * @typedef SendCommunicationSynchronouslyParam
- * @property {CommunicationPlatformModel.EngineReq} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+
+/**
+ * @typedef SendEngineCommunicationSynchronouslyParam
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
@@ -219,12 +291,23 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef TriggerCampaignJobParam
- * @property {CommunicationPlatformModel.TriggerJobReq} body
+ * @property {CommunicationPlatformModel.TriggerJobRequest} body
  */
 
 /**
  * @typedef UpdateAppProvidersParam
  * @property {CommunicationPlatformModel.AppProviderReq} body
+ */
+
+/**
+ * @typedef UpdateAppProvidersGlobalProviderParam
+ * @property {CommunicationPlatformModel.AppProvidersGlobalProviderRequest} body
+ */
+
+/**
+ * @typedef UpdateAudienceByIdParam
+ * @property {string} id - Event subscription id
+ * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
@@ -268,6 +351,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 class CommunicationPlatformApplicationValidator {
+  /** @returns {CreateAppPushtokenParam} */
+  static createAppPushtoken() {
+    return Joi.object({
+      body: CommunicationPlatformModel.PushtokenReq().required(),
+    }).required();
+  }
+
   /** @returns {CreateAudienceParam} */
   static createAudience() {
     return Joi.object({
@@ -296,10 +386,24 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateEventSubscriptionsParam} */
+  static createEventSubscriptions() {
+    return Joi.object({
+      body: CommunicationPlatformModel.SubscriptionsObject().required(),
+    }).required();
+  }
+
   /** @returns {CreateEventSubscriptionsByBulkParam} */
   static createEventSubscriptionsByBulk() {
     return Joi.object({
-      body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateReq().required(),
+      body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest().required(),
+    }).required();
+  }
+
+  /** @returns {CreateJobsParam} */
+  static createJobs() {
+    return Joi.object({
+      body: CommunicationPlatformModel.CreateJobsReq().required(),
     }).required();
   }
 
@@ -317,8 +421,44 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {DeleteAudienceByIdParam} */
+  static deleteAudienceById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.AudienceReq().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCampaignByIdParam} */
+  static deleteCampaignById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteEmailProviderByIdParam} */
+  static deleteEmailProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {DeleteEmailTemplateByIdParam} */
   static deleteEmailTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteEventSubscriptionsByIdParam} */
+  static deleteEventSubscriptionsById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteSmsProviderByIdParam} */
+  static deleteSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -328,6 +468,14 @@ class CommunicationPlatformApplicationValidator {
   static deleteSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {EditEventSubscriptionsParam} */
+  static editEventSubscriptions() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.SubscriptionsObjectRequest().required(),
     }).required();
   }
 
@@ -390,6 +538,18 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetDummyDatasourcesParam} */
+  static getDummyDatasources() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetDummyDatasourcesMetaParam} */
+  static getDummyDatasourcesMeta() {
+    return Joi.object({
+      id: Joi.number().required(),
+    }).required();
+  }
+
   /** @returns {GetEmailProviderByIdParam} */
   static getEmailProviderById() {
     return Joi.object({
@@ -433,6 +593,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetEventSubscriptionsByIdParam} */
+  static getEventSubscriptionsById() {
+    return Joi.object({
+      populate: Joi.string().allow(""),
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetGlobalProvidersParam} */
   static getGlobalProviders() {
     return Joi.object({}).required();
@@ -467,6 +635,15 @@ class CommunicationPlatformApplicationValidator {
   static getNSampleRecordsFromCsv() {
     return Joi.object({
       body: CommunicationPlatformModel.GetNRecordsCsvReq().required(),
+    }).required();
+  }
+
+  /** @returns {GetNSampleRecordsFromCsvByGetParam} */
+  static getNSampleRecordsFromCsvByGet() {
+    return Joi.object({
+      count: Joi.number(),
+      header: Joi.boolean(),
+      url: Joi.string().allow(""),
     }).required();
   }
 
@@ -554,14 +731,21 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {SendCommunicationAsynchronouslyParam} */
   static sendCommunicationAsynchronously() {
     return Joi.object({
-      body: CommunicationPlatformModel.EngineReq().required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
   /** @returns {SendCommunicationSynchronouslyParam} */
   static sendCommunicationSynchronously() {
     return Joi.object({
-      body: CommunicationPlatformModel.EngineReq().required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
+    }).required();
+  }
+
+  /** @returns {SendEngineCommunicationSynchronouslyParam} */
+  static sendEngineCommunicationSynchronously() {
+    return Joi.object({
+      body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
@@ -576,7 +760,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {TriggerCampaignJobParam} */
   static triggerCampaignJob() {
     return Joi.object({
-      body: CommunicationPlatformModel.TriggerJobReq().required(),
+      body: CommunicationPlatformModel.TriggerJobRequest().required(),
     }).required();
   }
 
@@ -584,6 +768,21 @@ class CommunicationPlatformApplicationValidator {
   static updateAppProviders() {
     return Joi.object({
       body: CommunicationPlatformModel.AppProviderReq().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAppProvidersGlobalProviderParam} */
+  static updateAppProvidersGlobalProvider() {
+    return Joi.object({
+      body: CommunicationPlatformModel.AppProvidersGlobalProviderRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAudienceByIdParam} */
+  static updateAudienceById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.AudienceReq().required(),
     }).required();
   }
 

@@ -2,11 +2,11 @@ export = PaymentPlatformValidator;
 /**
  * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.UpdatePayoutCreation} body
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 /**
  * @typedef ActivateAndDectivatePayoutsParam
- * @property {PaymentPlatformModel.UpdatePayoutCreation} body
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 /**
  * @typedef DeletePayoutParam
@@ -28,21 +28,21 @@ export = PaymentPlatformValidator;
 /** @typedef GetPaymentMethodConfigParam */
 /**
  * @typedef SavePayoutParam
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef SavePayoutsParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef UpdatePayoutsParam
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef VerifyIfscCodeParam
@@ -82,10 +82,10 @@ type ActivateAndDectivatePayoutParam = {
      * - Unique transfer id
      */
     uniqueTransferNo: string;
-    body: PaymentPlatformModel.UpdatePayoutCreation;
+    body: PaymentPlatformModel.UpdatePayoutRequest;
 };
 type ActivateAndDectivatePayoutsParam = {
-    body: PaymentPlatformModel.UpdatePayoutCreation;
+    body: PaymentPlatformModel.UpdatePayoutRequest;
 };
 type DeletePayoutParam = {
     /**
@@ -116,24 +116,24 @@ type GetAllPayoutsParam = {
     uniqueExternalId?: string;
 };
 type SavePayoutParam = {
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type SavePayoutsParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type UpdatePayoutParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type UpdatePayoutsParam = {
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type VerifyIfscCodeParam = {
     ifscCode: string;

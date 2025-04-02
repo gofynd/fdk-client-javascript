@@ -53,17 +53,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef DeleteCourierPartnerRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
- */
-
-/**
- * @typedef DeleteStoreRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
- *   particular rule object.
- */
-
-/**
  * @typedef DeleteZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
  */
@@ -108,7 +97,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetCourierPartnerRulesParam
- * @property {string} [q] - Courier-partner rules starting with the specified prefix q
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [status] - Filter rules based on rule status
@@ -189,8 +177,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} [state] - State of the country.
  * @property {string} [city] - City of the country.
  * @property {string} [sector] - Sector name of mentioned address.
- * @property {number} [storeUid] - Unique identifier for a specific store.
- * @property {string} [regionUid] - Unique identifier for a geographical region.
  */
 
 /**
@@ -200,12 +186,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef PatchApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
  */
 
 /**
  * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequest} body
  */
 
 /**
@@ -216,7 +202,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequestSchema} body
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
  */
 
 /**
@@ -233,7 +219,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeAuditHistoryParam
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
  */
 
 /**
@@ -243,7 +229,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeCoDListingParam
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
  */
 
 /**
@@ -253,7 +239,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateStoreRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequestSchema} body
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
  */
 
 /**
@@ -345,20 +331,6 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteCourierPartnerRuleParam} */
-  static deleteCourierPartnerRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteStoreRuleParam} */
-  static deleteStoreRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {DeleteZoneParam} */
   static deleteZone() {
     return Joi.object({
@@ -434,7 +406,6 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {GetCourierPartnerRulesParam} */
   static getCourierPartnerRules() {
     return Joi.object({
-      q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       status: Joi.string().allow(""),
@@ -531,8 +502,6 @@ class ServiceabilityPlatformApplicationValidator {
       state: Joi.string().allow(""),
       city: Joi.string().allow(""),
       sector: Joi.string().allow(""),
-      storeUid: Joi.number(),
-      regionUid: Joi.string().allow(""),
     }).required();
   }
 
@@ -546,14 +515,14 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {PatchApplicationConfigurationParam} */
   static patchApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest().required(),
     }).required();
   }
 
   /** @returns {UpdateApplicationConfigurationParam} */
   static updateApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPutRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPutRequest().required(),
     }).required();
   }
 
@@ -568,7 +537,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateCourierPartnerRulePriorityParam} */
   static updateCourierPartnerRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequestSchema().required(),
+      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
     }).required();
   }
 
@@ -592,7 +561,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequestSchema().required(),
+      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
@@ -606,7 +575,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequestSchema().required(),
+      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
@@ -620,7 +589,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateStoreRulePriorityParam} */
   static updateStoreRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequestSchema().required(),
+      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
     }).required();
   }
 

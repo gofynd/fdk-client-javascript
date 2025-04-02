@@ -1,11 +1,11 @@
 export = ConfigurationPlatformApplicationValidator;
 /**
  * @typedef AddDomainParam
- * @property {ConfigurationPlatformModel.DomainAddRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainAddRequest} body
  */
 /**
  * @typedef ChangeDomainTypeParam
- * @property {ConfigurationPlatformModel.UpdateDomainTypeRequestSchema} body
+ * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
  */
 /**
  * @typedef CreateAppCurrencyConfigParam
@@ -14,7 +14,7 @@ export = ConfigurationPlatformApplicationValidator;
 /** @typedef CreateTokensParam */
 /**
  * @typedef CreateUrlRedirectionParam
- * @property {ConfigurationPlatformModel.UrlRedirectionRequestSchema} body
+ * @property {ConfigurationPlatformModel.UrlRedirectionRequest} body
  */
 /**
  * @typedef DeleteTokenParam
@@ -49,18 +49,18 @@ export = ConfigurationPlatformApplicationValidator;
 /** @typedef GetApplicationConfigurationParam */
 /**
  * @typedef GetApplicationDomainAvailibilityParam
- * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 /**
  * @typedef GetDomainStatusParam
- * @property {ConfigurationPlatformModel.DomainStatusRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainStatusRequest} body
  */
 /** @typedef GetDomainsParam */
 /** @typedef GetInventoryConfigParam */
 /** @typedef GetOrderingStoreConfigParam */
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationPlatformModel.OrderingStoreSelectRequestSchema} body
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
  */
 /**
  * @typedef GetOrderingStoresParam
@@ -76,7 +76,7 @@ export = ConfigurationPlatformApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.FilterOrderingStoreRequestSchemaSchema} body
+ * @property {ConfigurationPlatformModel.FilterOrderingStoreRequest} body
  */
 /**
  * @typedef GetStaffOrderingStoresParam
@@ -97,7 +97,7 @@ export = ConfigurationPlatformApplicationValidator;
 /** @typedef GetUrlRedirectionsParam */
 /**
  * @typedef ModifyAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
  * @typedef PartiallyUpdateInventoryConfigParam
@@ -111,7 +111,7 @@ export = ConfigurationPlatformApplicationValidator;
 /** @typedef RemoveOrderingStoreCookieParam */
 /**
  * @typedef UpdateAppApiTokensParam
- * @property {ConfigurationPlatformModel.TokenResponseSchema} body
+ * @property {ConfigurationPlatformModel.TokenResponse} body
  */
 /**
  * @typedef UpdateAppBasicDetailsParam
@@ -127,7 +127,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
  * @typedef UpdateApplicationParam
@@ -135,7 +135,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateApplicationVersionParam
- * @property {ConfigurationPlatformModel.PlatformVersionRequestSchema} body
+ * @property {ConfigurationPlatformModel.PlatformVersionRequest} body
  */
 /**
  * @typedef UpdateInventoryConfigParam
@@ -242,16 +242,16 @@ declare namespace ConfigurationPlatformApplicationValidator {
     export { AddDomainParam, ChangeDomainTypeParam, CreateAppCurrencyConfigParam, CreateTokensParam, CreateUrlRedirectionParam, DeleteTokenParam, DeleteUrlRedirectionParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetApplicationConfigurationParam, GetApplicationDomainAvailibilityParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresParam, GetOrderingStoresByFilterParam, GetStaffOrderingStoresParam, GetStoreDetailByIdParam, GetUrlRedirectionParam, GetUrlRedirectionsParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateApplicationParam, UpdateApplicationVersionParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam, UpdateUrlRedirectionParam };
 }
 type AddDomainParam = {
-    body: ConfigurationPlatformModel.DomainAddRequestSchema;
+    body: ConfigurationPlatformModel.DomainAddRequest;
 };
 type ChangeDomainTypeParam = {
-    body: ConfigurationPlatformModel.UpdateDomainTypeRequestSchema;
+    body: ConfigurationPlatformModel.UpdateDomainTypeRequest;
 };
 type CreateAppCurrencyConfigParam = {
     body: ConfigurationPlatformModel.AppSupportedCurrency;
 };
 type CreateUrlRedirectionParam = {
-    body: ConfigurationPlatformModel.UrlRedirectionRequestSchema;
+    body: ConfigurationPlatformModel.UrlRedirectionRequest;
 };
 type DeleteTokenParam = {
     /**
@@ -294,13 +294,13 @@ type GetAppStoresParam = {
     pageSize?: number;
 };
 type GetApplicationDomainAvailibilityParam = {
-    body: ConfigurationPlatformModel.DomainSuggestionsRequestSchema;
+    body: ConfigurationPlatformModel.DomainSuggestionsRequest;
 };
 type GetDomainStatusParam = {
-    body: ConfigurationPlatformModel.DomainStatusRequestSchema;
+    body: ConfigurationPlatformModel.DomainStatusRequest;
 };
 type GetOrderingStoreCookieParam = {
-    body: ConfigurationPlatformModel.OrderingStoreSelectRequestSchema;
+    body: ConfigurationPlatformModel.OrderingStoreSelectRequest;
 };
 type GetOrderingStoresParam = {
     /**
@@ -329,7 +329,7 @@ type GetOrderingStoresByFilterParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.FilterOrderingStoreRequestSchemaSchema;
+    body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
 };
 type GetStaffOrderingStoresParam = {
     /**
@@ -360,7 +360,7 @@ type GetUrlRedirectionParam = {
     redirectionDomainId: string;
 };
 type ModifyAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
+    body: ConfigurationPlatformModel.AppFeatureRequest;
 };
 type PartiallyUpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.AppInventoryPartialUpdate;
@@ -373,7 +373,7 @@ type RemoveDomainByIdParam = {
     domainId: string;
 };
 type UpdateAppApiTokensParam = {
-    body: ConfigurationPlatformModel.TokenResponseSchema;
+    body: ConfigurationPlatformModel.TokenResponse;
 };
 type UpdateAppBasicDetailsParam = {
     body: ConfigurationPlatformModel.ApplicationDetail;
@@ -385,13 +385,13 @@ type UpdateAppCurrencyConfigParam = {
     body: ConfigurationPlatformModel.AppSupportedCurrency;
 };
 type UpdateAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
+    body: ConfigurationPlatformModel.AppFeatureRequest;
 };
 type UpdateApplicationParam = {
     body: ConfigurationPlatformModel.Application;
 };
 type UpdateApplicationVersionParam = {
-    body: ConfigurationPlatformModel.PlatformVersionRequestSchema;
+    body: ConfigurationPlatformModel.PlatformVersionRequest;
 };
 type UpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.ApplicationInventory;

@@ -15,13 +15,15 @@ class Content {
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
       getBlogs: "/service/application/content/v1.0/blogs",
-      getCustomFieldsByResourceId:
-        "/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}",
-      getCustomObjectBySlug:
-        "/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}",
+      getCustomFieldDefinition:
+        "/service/application/content/v1.0/metafields/definitions/{id}",
+      getCustomFieldDefinitions:
+        "/service/application/content/v1.0/metafields/definitions",
+      getCustomFields:
+        "/service/application/content/v1.0/metafields/{resource}",
+      getCustomObject: "/service/application/content/v1.0/metaobjects/{id}",
+      getCustomObjects: "/service/application/content/v1.0/metaobjects",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
-      getDefaultSitemapConfig:
-        "/service/application/content/v1.0/seo/sitemap/default",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
       getFaqCategoryBySlug:
@@ -31,13 +33,11 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v2.0/navigations",
+      getNavigations: "/service/application/content/v1.0/navigations",
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
-      getSitemap: "/service/application/content/v1.0/seo/sitemaps/{name}",
-      getSitemaps: "/service/application/content/v1.0/seo/sitemaps",
       getSupportInformation: "/service/application/content/v1.0/support",
       getTags: "/service/application/content/v1.0/tags",
       getWellKnownUrl: "/service/application/content/v1.0/well-known/{slug}",
@@ -145,7 +145,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BlogGetResponseSchema>} - Success response
+   * @returns {Promise<BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
@@ -186,19 +186,16 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CustomFieldsResponseByResourceIdSchema>} - Success response
-   * @name getCustomFieldsByResourceId
-   * @summary: Get list of custom fields of given resource and resource slug
-   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
+   * @returns {Promise<CustomFieldDefinitionDetailResSchema>} - Success response
+   * @name getCustomFieldDefinition
+   * @summary: Get custom fields definition by id
+   * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldDefinition/).
    */
-  async getCustomFieldsByResourceId(
-    { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
+  async getCustomFieldDefinition(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], [
-      "resource",
-      "resourceSlug",
-    ]);
+    const errors = validateRequiredParams(arguments[0], ["id"]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
         message: "Missing required field",
@@ -215,8 +212,92 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomFieldsByResourceId"],
-        params: { resource, resourceSlug },
+        url: this._urls["getCustomFieldDefinition"],
+        params: { id },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CustomFieldDefinitionsSchema>} - Success response
+   * @name getCustomFieldDefinitions
+   * @summary: Get custom fields definitions
+   * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldDefinitions/).
+   */
+  async getCustomFieldDefinitions(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCustomFieldDefinitions"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CustomFieldsResponseByResourceIdSchema>} - Success response
+   * @name getCustomFields
+   * @summary: Get list of custom fields of given resource
+   * @description: Use this API to retrieve the custom fields for given resource and resource_ids in param - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+   */
+  async getCustomFields(
+    { resource, resourceIds, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["resource"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["resource_ids"] = resourceIds;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCustomFields"],
+        params: { resource },
       }),
       query_params,
       undefined,
@@ -236,18 +317,15 @@ class Content {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CustomObjectByIdSchema>} - Success response
-   * @name getCustomObjectBySlug
-   * @summary: Get custom object details
-   * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
+   * @name getCustomObject
+   * @summary: Get custom object
+   * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
    */
-  async getCustomObjectBySlug(
-    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
+  async getCustomObject(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], [
-      "definitionSlug",
-      "slug",
-    ]);
+    const errors = validateRequiredParams(arguments[0], ["id"]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
         message: "Missing required field",
@@ -264,8 +342,53 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomObjectBySlug"],
-        params: { definitionSlug, slug },
+        url: this._urls["getCustomObject"],
+        params: { id },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CustomObjectsSchema>} - Success response
+   * @name getCustomObjects
+   * @summary: Get list of custom objects
+   * @description: Use this API to retrieve the custom objects. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjects/).
+   */
+  async getCustomObjects(
+    { pageNo, pageSize, definitionId, type, ids, search, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["definition_id"] = definitionId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["type"] = type;
+    query_params["ids"] = ids;
+    query_params["search"] = search;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCustomObjects"],
+        params: {},
       }),
       query_params,
       undefined,
@@ -302,43 +425,6 @@ class Content {
       "get",
       constructUrl({
         url: this._urls["getDataLoaders"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DefaultSitemapConfig>} - Success response
-   * @name getDefaultSitemapConfig
-   * @summary: Get default sitemap configuration
-   * @description: Retrieves the current default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDefaultSitemapConfig/).
-   */
-  async getDefaultSitemapConfig(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getDefaultSitemapConfig"],
         params: {},
       }),
       query_params,
@@ -644,7 +730,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<NavigationGetResponseSchema>} - Success response
+   * @returns {Promise<NavigationGetResponse>} - Success response
    * @name getNavigations
    * @summary: List navigation items
    * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
@@ -730,7 +816,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PageGetResponseSchema>} - Success response
+   * @returns {Promise<PageGetResponse>} - Success response
    * @name getPages
    * @summary: Lists pages
    * @description: Lists all Custom Pages - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
@@ -845,97 +931,6 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SitemapConfig>} - Success response
-   * @name getSitemap
-   * @summary: Get a specific sitemap configuration
-   * @description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemap/).
-   */
-  async getSitemap(
-    { name, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["name"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSitemap"],
-        params: { name },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SitemapConfigurationList>} - Success response
-   * @name getSitemaps
-   * @summary: List sitemap configurations
-   * @description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemaps/).
-   */
-  async getSitemaps(
-    { pageNo, pageSize, isActive, name, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_active"] = isActive;
-    query_params["name"] = name;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSitemaps"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<Support>} - Success response
    * @name getSupportInformation
    * @summary: Get customer support information
@@ -1010,7 +1005,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<WellKnownResponseSchema>} - Success response
+   * @returns {Promise<WellKnownResponse>} - Success response
    * @name getWellKnownUrl
    * @summary: Get a specific well-known URL
    * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).

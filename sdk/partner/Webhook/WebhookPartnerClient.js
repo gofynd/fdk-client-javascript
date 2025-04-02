@@ -103,7 +103,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchDeliverySummaryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliverySummaryResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliverySummaryResponse>} - Success response
    * @name fetchDeliverySummary
    * @summary: Webhook delivery summary
    * @description: Webhook delivery summary - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchDeliverySummary/).
@@ -165,7 +165,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliverySummaryResult().validate(responseData, {
+    } = WebhookPartnerModel.DeliverySummaryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -188,7 +188,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetDeliveryDetailInsightsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliveryDetailsResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliveryDetailsResponse>} - Success response
    * @name getDeliveryDetailInsights
    * @summary: Get the insights of delivery details of the events that was pushed to subscribers
    * @description: Get the delivery details insights - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/getDeliveryDetailInsights/).
@@ -246,7 +246,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliveryDetailsResult().validate(responseData, {
+    } = WebhookPartnerModel.DeliveryDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -269,7 +269,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchDeliveryTsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliveryTsResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliveryTsResponse>} - Success response
    * @name fetchDeliveryTs
    * @summary: Webhook delivery ts
    * @description: Webhook delivery ts - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchDeliveryTs/).
@@ -331,7 +331,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliveryTsResult().validate(responseData, {
+    } = WebhookPartnerModel.DeliveryTsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -354,7 +354,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchReportFiltersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.FilterReportResult[]>} - Success response
+   * @returns {Promise<WebhookPartnerModel.FilterReportResponse[]>} - Success response
    * @name fetchReportFilters
    * @summary: Fetch webhook report filters
    * @description: Fetch webhook report filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchReportFilters/).
@@ -421,7 +421,7 @@ class Webhook {
     }
 
     const { error: res_error } = Joi.array()
-      .items(WebhookPartnerModel.FilterReportResult())
+      .items(WebhookPartnerModel.FilterReportResponse())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -442,7 +442,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.CancelReportDownloadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.CancelDownloadResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.CancelDownloadResponse>} - Success response
    * @name cancelReportDownload
    * @summary: Cancel report download job
    * @description: Cancel report download job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/cancelReportDownload/).
@@ -498,7 +498,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.CancelDownloadResult().validate(responseData, {
+    } = WebhookPartnerModel.CancelDownloadResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -521,7 +521,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetHistoricalReportsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.HistoryResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.HistoryResponse>} - Success response
    * @name getHistoricalReports
    * @summary: Get report download history.
    * @description: Retrieve history reports for a specific company based on the provided filters.
@@ -578,7 +578,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.HistoryResult().validate(responseData, {
+    } = WebhookPartnerModel.HistoryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -601,7 +601,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetInvalidEventListParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.InvalidEventsResult[]>} - Success response
+   * @returns {Promise<WebhookPartnerModel.InvalidEventsResponse[]>} - Success response
    * @name getInvalidEventList
    * @summary: Get invalid event list
    * @description: Get invalid event list.
@@ -657,7 +657,7 @@ class Webhook {
     }
 
     const { error: res_error } = Joi.array()
-      .items(WebhookPartnerModel.InvalidEventsResult())
+      .items(WebhookPartnerModel.InvalidEventsResponse())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -678,7 +678,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchSubscribersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.SubscriberConfigDetails>} - Success response
+   * @returns {Promise<WebhookPartnerModel.SubscriberConfigResponse>} - Success response
    * @name fetchSubscribers
    * @summary: Fetch subscriber by filters
    * @description: Fetch subscriber by filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchSubscribers/).
@@ -732,7 +732,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.SubscriberConfigDetails().validate(responseData, {
+    } = WebhookPartnerModel.SubscriberConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -755,7 +755,7 @@ class Webhook {
    * @param {WebhookPartnerValidator.UpdateSubscriberParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.SubscriberUpdateResult>} - Success response
+   * @returns {Promise<WebhookPartnerModel.UpdateSubscriberResponse>} - Success response
    * @name updateSubscriber
    * @summary: Update subscriber status by id.
    * @description: Update subscriber status by id.
@@ -816,7 +816,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.SubscriberUpdateResult().validate(responseData, {
+    } = WebhookPartnerModel.UpdateSubscriberResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

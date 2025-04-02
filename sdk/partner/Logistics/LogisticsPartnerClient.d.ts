@@ -20,14 +20,14 @@ declare class Logistics {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema>}
+     * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponse>}
      *   - Success response
      *
      * @name getSampleFileServiceabilityStatus
      * @summary: Get Serviceability TAT sample files generator status
      * @description: Get Serviceability TAT sample file generator status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getSampleFileServiceabilityStatus/).
      */
-    getSampleFileServiceabilityStatus({ pageNo, pageSize, batchId, requestHeaders }?: LogisticsPartnerValidator.GetSampleFileServiceabilityStatusParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema>;
+    getSampleFileServiceabilityStatus({ pageNo, pageSize, batchId, requestHeaders }?: LogisticsPartnerValidator.GetSampleFileServiceabilityStatusParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponse>;
     /**
      * @param {LogisticsPartnerValidator.BulkTatParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -43,13 +43,12 @@ declare class Logistics {
      * @param {LogisticsPartnerValidator.GetBulkTatParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-     *   Success response
+     * @returns {Promise<LogisticsPartnerModel.BulkRegionResponse>} - Success response
      * @name getBulkTat
      * @summary: Get region tat bulk history
      * @description: Get region tat bulk history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkTat/).
      */
-    getBulkTat({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, country, region, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkTatParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionResponseSchema>;
+    getBulkTat({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, country, region, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkTatParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionResponse>;
     /**
      * @param {LogisticsPartnerValidator.BulkServiceabilityParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -65,13 +64,12 @@ declare class Logistics {
      * @param {LogisticsPartnerValidator.GetBulkServiceabilityParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-     *   Success response
+     * @returns {Promise<LogisticsPartnerModel.BulkRegionResponse>} - Success response
      * @name getBulkServiceability
      * @summary: Get Region Serviceability Bulk History
      * @description: Get Region Serviceability Bulk History - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkServiceability/).
      */
-    getBulkServiceability({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, country, region, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkServiceabilityParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionResponseSchema>;
+    getBulkServiceability({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, country, region, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkServiceabilityParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRegionResponse>;
     /**
      * @param {LogisticsPartnerValidator.CreateCourierPartnerAccountParam} arg
      *   - Arg object.
@@ -88,14 +86,14 @@ declare class Logistics {
      * @param {LogisticsPartnerValidator.GetCourierPartnerAccountsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema>}
+     * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>}
      *   - Success response
      *
      * @name getCourierPartnerAccounts
      * @summary: Getting Courier Account list of a company.
      * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
      */
-    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, accountIds, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema>;
+    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, accountIds, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>;
     /**
      * @param {LogisticsPartnerValidator.UpdateCourierPartnerAccountParam} arg
      *   - Arg object.
@@ -112,13 +110,12 @@ declare class Logistics {
      * @param {LogisticsPartnerValidator.GetCourierPartnerAccountParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierAccountResponseSchema>} -
-     *   Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
      * @name getCourierPartnerAccount
      * @summary: Getting Courier Account of a company from database.
      * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
      */
-    getCourierPartnerAccount({ companyId, accountId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResponseSchema>;
+    getCourierPartnerAccount({ companyId, accountId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResponse>;
     /**
      * @param {LogisticsPartnerValidator.CreateCourierPartnerSchemeParam} arg -
      *   Arg object.
@@ -136,14 +133,14 @@ declare class Logistics {
      *   Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema>}
+     * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequest>}
      *   - Success response
      *
      * @name updateCourierPartnerScheme
      * @summary: Update Scheme for courier partner extension
      * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerScheme/).
      */
-    updateCourierPartnerScheme({ schemeId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema>;
+    updateCourierPartnerScheme({ schemeId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequest>;
     /**
      * @param {LogisticsPartnerValidator.GetCountriesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

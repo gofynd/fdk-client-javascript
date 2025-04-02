@@ -212,6 +212,10 @@ export = ContentPublicModel;
  * @property {number} [__v]
  */
 /**
+ * @typedef SdkReadmeSchema
+ * @property {string} [data]
+ */
+/**
  * @typedef TagsSchema
  * @property {CustomItemSchema[]} [items]
  * @property {PageSchema} [page]
@@ -294,7 +298,7 @@ export = ContentPublicModel;
 declare class ContentPublicModel {
 }
 declare namespace ContentPublicModel {
-    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, SDKLinksResponseSchema, SDKLinkObjectSchema, SDKbyTypeResponseSchema, ContentAPIError };
+    export { BasicDetailsPayloadSchema, WhatsNew, Features, BusinessAccount, SellerSupport, MenuSchema, MenusSchema, MenuTypeSchema, CompanyLevelMenuItemSchema, ApplicationLevelMenuItemSchema, VisibleOnSchema, SalesChannelSchema, OtherSellerSchema, FooterContentSchema, AnalyticsTagsSchema, CustomPageBySlugSchema, ItemSchema, CreateCustomPageSeoSchema, RawHtmlContentSchema, FooterSchema, HomePageContentSchema, NavItemSchema, NavbarSchema, MediaSchema, CreatedBySchema, PricingBannerSchema, SdkReadmeSchema, TagsSchema, CustomItemSchema, PageSchema, UserSchema, CredentialSchema, ConfigurationSchema, CredentialsSchema, SDKLinksResponseSchema, SDKLinkObjectSchema, SDKbyTypeResponseSchema, ContentAPIError };
 }
 /** @returns {BasicDetailsPayloadSchema} */
 declare function BasicDetailsPayloadSchema(): BasicDetailsPayloadSchema;
@@ -533,6 +537,11 @@ type PricingBannerSchema = {
     created_on?: string;
     modified_on?: string;
     __v?: number;
+};
+/** @returns {SdkReadmeSchema} */
+declare function SdkReadmeSchema(): SdkReadmeSchema;
+type SdkReadmeSchema = {
+    data?: string;
 };
 /** @returns {TagsSchema} */
 declare function TagsSchema(): TagsSchema;

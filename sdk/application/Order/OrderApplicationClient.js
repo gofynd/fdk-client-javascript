@@ -58,7 +58,7 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CustomerDetailsResponseSchema>} - Success response
+   * @returns {Promise<CustomerDetailsResponse>} - Success response
    * @name getCustomerDetailsByShipmentId
    * @summary: Retrieves shipment customer.
    * @description: Get customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
@@ -155,7 +155,7 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderById>} - Success response
    * @name getOrderById
-   * @summary: Get an order
+   * @summary: Fetches order by ID.
    * @description: Get order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
   async getOrderById(
@@ -202,7 +202,7 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderList>} - Success response
    * @name getOrders
-   * @summary: List customer orders
+   * @summary: Lists customer orders.
    * @description: Get all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
    */
   async getOrders(
@@ -301,7 +301,7 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundOptionsSchemaResponseSchema>} - Success response
+   * @returns {Promise<RefundOptionsSchemaResponse>} - Success response
    * @name getRefundOptions
    * @summary: Retrieve refund options with amount breakup for  specific shipment and bags.
    * @description: This API can be used for giving the refund amount with available option of MOPs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getRefundOptions/).
@@ -362,8 +362,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: Retrieve Reasons for Cancellation and Return journey
-   * @description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
+   * @summary: Lists bag reasons.
+   * @description: Get reasons to perform full or partial cancellation of a bag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
@@ -502,7 +502,7 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShipmentRefundSummaryResponseSchema>} - Success response
+   * @returns {Promise<ShipmentRefundSummaryResponse>} - Success response
    * @name getShipmentRefundSummary
    * @summary: Retreives shipment's refund summary.
    * @description: Retreives shipment's refund summary using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentRefundSummary/).
@@ -548,7 +548,7 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SendOtpToCustomerResponseSchema>} - Success response
+   * @returns {Promise<SendOtpToCustomerResponse>} - Success response
    * @name sendOtpToShipmentCustomer
    * @summary: Sends OTP to customer.
    * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
@@ -643,10 +643,10 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShipmentApplicationStatusResponseSchema>} - Success response
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @name updateShipmentStatus
    * @summary: Updates shipment status.
-   * @description: This operation allows for updating the status and properties of a shipment.  For example, it allows users to initiate a return by providing reasons and  uploading quality check images. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
+   * @description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
    */
   async updateShipmentStatus(
     { shipmentId, body, requestHeaders } = { requestHeaders: {} },
@@ -689,7 +689,7 @@ class Order {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<VerifyOtpResponseSchema>} - Success response
+   * @returns {Promise<VerifyOtpResponse>} - Success response
    * @name verifyOtpShipmentCustomer
    * @summary: Verifies OTP.
    * @description: Verify OTP sent by customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).

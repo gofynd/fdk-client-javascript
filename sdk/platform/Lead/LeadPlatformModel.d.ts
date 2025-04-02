@@ -1,6 +1,6 @@
 export = LeadPlatformModel;
 /**
- * @typedef GeneralConfigResponseSchema
+ * @typedef GeneralConfigResponse
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -102,6 +102,11 @@ export = LeadPlatformModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
+ * @typedef NotifyUser
+ * @property {string} country_code - Country code
+ * @property {string} phone_number - Phone number
+ */
+/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -171,6 +176,15 @@ export = LeadPlatformModel;
  * @property {string} color - Color for status
  */
 /**
+ * @typedef TicketFeedbackList
+ * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
+ */
+/**
+ * @typedef TicketFeedbackPayload
+ * @property {Object} [form_response] - Key-value pairs of all the form fields
+ *   and their response
+ */
+/**
  * @typedef SubmitButton
  * @property {string} title - Title for submit button
  * @property {string} title_color - Title color submit button
@@ -225,6 +239,18 @@ export = LeadPlatformModel;
  * @typedef FeedbackResponseItem
  * @property {string} display - Question/Title of the form field
  * @property {string} key - Key of the form field
+ */
+/**
+ * @typedef TicketFeedback
+ * @property {string} _id - Unique identifier for the feedback
+ * @property {string} ticket_id - Readable ticket number
+ * @property {string} company_id - Company id for which ticket was raised
+ * @property {FeedbackResponseItem[]} response
+ * @property {string} [category] - Category of the ticket
+ * @property {Object} [user] - User who submitted the feedback
+ * @property {string} [updated_at] - Time when the feedback was last updated
+ * @property {string} [created_at] - Time when the feedback was created
+ * @property {number} [__v]
  */
 /**
  * @typedef TicketHistory
@@ -294,11 +320,11 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { GeneralConfigResponseSchema, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AdditionalInfoSchema, AddTicketPayload, Priority, SLA, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum, PriorityEnum, HistoryTypeEnum, TicketSourceEnum };
+    export { GeneralConfigResponse, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, NotifyUser, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AdditionalInfoSchema, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum, PriorityEnum, HistoryTypeEnum, TicketSourceEnum };
 }
-/** @returns {GeneralConfigResponseSchema} */
-declare function GeneralConfigResponseSchema(): GeneralConfigResponseSchema;
-type GeneralConfigResponseSchema = {
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
     _id?: string;
     support_communication?: SupportCommunicationSchema[];
     show_communication_info?: boolean;
@@ -500,6 +526,18 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
+/** @returns {NotifyUser} */
+declare function NotifyUser(): NotifyUser;
+type NotifyUser = {
+    /**
+     * - Country code
+     */
+    country_code: string;
+    /**
+     * - Phone number
+     */
+    phone_number: string;
+};
 /** @returns {Filter} */
 declare function Filter(): Filter;
 type Filter = {
@@ -658,6 +696,23 @@ type Status = {
      */
     color: string;
 };
+/** @returns {TicketFeedbackList} */
+declare function TicketFeedbackList(): TicketFeedbackList;
+type TicketFeedbackList = {
+    /**
+     * - List of all ticket feedback for the ticket
+     */
+    items?: TicketFeedback[];
+};
+/** @returns {TicketFeedbackPayload} */
+declare function TicketFeedbackPayload(): TicketFeedbackPayload;
+type TicketFeedbackPayload = {
+    /**
+     * - Key-value pairs of all the form fields
+     * and their response
+     */
+    form_response?: any;
+};
 /** @returns {SubmitButton} */
 declare function SubmitButton(): SubmitButton;
 type SubmitButton = {
@@ -794,6 +849,40 @@ type FeedbackResponseItem = {
      * - Key of the form field
      */
     key: string;
+};
+/** @returns {TicketFeedback} */
+declare function TicketFeedback(): TicketFeedback;
+type TicketFeedback = {
+    /**
+     * - Unique identifier for the feedback
+     */
+    _id: string;
+    /**
+     * - Readable ticket number
+     */
+    ticket_id: string;
+    /**
+     * - Company id for which ticket was raised
+     */
+    company_id: string;
+    response: FeedbackResponseItem[];
+    /**
+     * - Category of the ticket
+     */
+    category?: string;
+    /**
+     * - User who submitted the feedback
+     */
+    user?: any;
+    /**
+     * - Time when the feedback was last updated
+     */
+    updated_at?: string;
+    /**
+     * - Time when the feedback was created
+     */
+    created_at?: string;
+    __v?: number;
 };
 /** @returns {TicketHistory} */
 declare function TicketHistory(): TicketHistory;

@@ -38,7 +38,7 @@ export = LeadPartnerModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef GeneralConfigResponseSchema
+ * @typedef GeneralConfigResponse
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -209,7 +209,7 @@ export = LeadPartnerModel;
 declare class LeadPartnerModel {
 }
 declare namespace LeadPartnerModel {
-    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponseSchema, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum };
+    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponse, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum };
 }
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
@@ -302,9 +302,9 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {GeneralConfigResponseSchema} */
-declare function GeneralConfigResponseSchema(): GeneralConfigResponseSchema;
-type GeneralConfigResponseSchema = {
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
     _id?: string;
     support_communication?: SupportCommunicationSchema[];
     show_communication_info?: boolean;

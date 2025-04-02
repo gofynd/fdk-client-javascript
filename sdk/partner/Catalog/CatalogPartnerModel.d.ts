@@ -11,16 +11,16 @@ export = CatalogPartnerModel;
  * @property {number} [total] - Total number of items.
  */
 /**
- * @typedef CompanyListSchema
+ * @typedef CompanyListSerializer
  * @property {Page} [page]
- * @property {CompanySchema[]} [items]
+ * @property {CompanySerializer[]} [items]
  */
 /**
- * @typedef CompaniesSchema
- * @property {CompanySchema[]} [items]
+ * @typedef CompaniesSerializer
+ * @property {CompanySerializer[]} [items]
  */
 /**
- * @typedef ErrorResponseSchema
+ * @typedef ErrorResponse
  * @property {string} [code]
  * @property {Object} [error]
  * @property {string} [message]
@@ -32,19 +32,19 @@ export = CatalogPartnerModel;
  * @property {number[]} [company_ids]
  */
 /**
- * @typedef CompanySchema
+ * @typedef CompanySerializer
  * @property {number} [uid]
  * @property {string} [created_on]
  * @property {string} [modified_on]
  * @property {string} [verified_on]
- * @property {UserSchema} [verified_by]
- * @property {UserSchema} [modified_by]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [verified_by]
+ * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [name]
  * @property {string} company_type
  * @property {string} business_type
  * @property {CompanyDetails} [details]
- * @property {GetAddressSchema[]} [addresses]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {string[]} [market_channels]
  * @property {string[]} [notification_emails]
  * @property {string} [reject_reason]
@@ -53,7 +53,7 @@ export = CatalogPartnerModel;
  * @property {BusinessCountryInfo} [business_country_info]
  */
 /**
- * @typedef GetAddressSchema
+ * @typedef GetAddressSerializer
  * @property {string} [address1]
  * @property {string} [address2]
  * @property {string} [address_type]
@@ -80,7 +80,7 @@ export = CatalogPartnerModel;
  * @property {string} name
  */
 /**
- * @typedef UserSchema
+ * @typedef UserSerializer
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -100,7 +100,7 @@ export = CatalogPartnerModel;
 declare class CatalogPartnerModel {
 }
 declare namespace CatalogPartnerModel {
-    export { Page, CompanyListSchema, CompaniesSchema, ErrorResponseSchema, PartnerCompanyDetailsRequestSchema, CompanySchema, GetAddressSchema, BusinessCountryInfo, CountryCurrencyInfo, UserSchema, CompanyDetails, CompanySocialAccounts };
+    export { Page, CompanyListSerializer, CompaniesSerializer, ErrorResponse, PartnerCompanyDetailsRequestSchema, CompanySerializer, GetAddressSerializer, BusinessCountryInfo, CountryCurrencyInfo, UserSerializer, CompanyDetails, CompanySocialAccounts };
 }
 /** @returns {Page} */
 declare function Page(): Page;
@@ -138,20 +138,20 @@ type Page = {
      */
     total?: number;
 };
-/** @returns {CompanyListSchema} */
-declare function CompanyListSchema(): CompanyListSchema;
-type CompanyListSchema = {
+/** @returns {CompanyListSerializer} */
+declare function CompanyListSerializer(): CompanyListSerializer;
+type CompanyListSerializer = {
     page?: Page;
-    items?: CompanySchema[];
+    items?: CompanySerializer[];
 };
-/** @returns {CompaniesSchema} */
-declare function CompaniesSchema(): CompaniesSchema;
-type CompaniesSchema = {
-    items?: CompanySchema[];
+/** @returns {CompaniesSerializer} */
+declare function CompaniesSerializer(): CompaniesSerializer;
+type CompaniesSerializer = {
+    items?: CompanySerializer[];
 };
-/** @returns {ErrorResponseSchema} */
-declare function ErrorResponseSchema(): ErrorResponseSchema;
-type ErrorResponseSchema = {
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
     code?: string;
     error?: any;
     message?: string;
@@ -163,21 +163,21 @@ declare function PartnerCompanyDetailsRequestSchema(): PartnerCompanyDetailsRequ
 type PartnerCompanyDetailsRequestSchema = {
     company_ids?: number[];
 };
-/** @returns {CompanySchema} */
-declare function CompanySchema(): CompanySchema;
-type CompanySchema = {
+/** @returns {CompanySerializer} */
+declare function CompanySerializer(): CompanySerializer;
+type CompanySerializer = {
     uid?: number;
     created_on?: string;
     modified_on?: string;
     verified_on?: string;
-    verified_by?: UserSchema;
-    modified_by?: UserSchema;
-    created_by?: UserSchema;
+    verified_by?: UserSerializer;
+    modified_by?: UserSerializer;
+    created_by?: UserSerializer;
     name?: string;
     company_type: string;
     business_type: string;
     details?: CompanyDetails;
-    addresses?: GetAddressSchema[];
+    addresses?: GetAddressSerializer[];
     market_channels?: string[];
     notification_emails?: string[];
     reject_reason?: string;
@@ -185,9 +185,9 @@ type CompanySchema = {
     _custom_json?: any;
     business_country_info?: BusinessCountryInfo;
 };
-/** @returns {GetAddressSchema} */
-declare function GetAddressSchema(): GetAddressSchema;
-type GetAddressSchema = {
+/** @returns {GetAddressSerializer} */
+declare function GetAddressSerializer(): GetAddressSerializer;
+type GetAddressSerializer = {
     address1?: string;
     address2?: string;
     address_type?: string;
@@ -215,9 +215,9 @@ type CountryCurrencyInfo = {
     symbol: string;
     name: string;
 };
-/** @returns {UserSchema} */
-declare function UserSchema(): UserSchema;
-type UserSchema = {
+/** @returns {UserSerializer} */
+declare function UserSerializer(): UserSerializer;
+type UserSerializer = {
     _id?: string;
     contact?: string;
     uid?: string;

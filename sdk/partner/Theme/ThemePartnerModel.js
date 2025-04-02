@@ -34,11 +34,10 @@ const Joi = require("joi");
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
  * @property {string} [application] - The application id
- * @property {number} [__v] - Version of document
  */
 
 /**
- * @typedef DraftExtensionSection
+ * @typedef ExtensionBinding
  * @property {string} [extension_id]
  * @property {string} [_id]
  * @property {string} [created_at]
@@ -52,12 +51,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ExtensionSectionDraft
+ * @typedef DraftExtensionSectionResponse
  * @property {string} [message]
  */
 
 /**
- * @typedef Sections
+ * @typedef SectionsResponse
  * @property {boolean} [acknowledged]
  * @property {number} [matched_count]
  * @property {number} [modified_count]
@@ -88,7 +87,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PublishExtensionSection
+ * @typedef PublishExtensionSectionRequest
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
@@ -99,23 +98,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PreviewExtension
+ * @typedef ExtensionPreviewRequest
  * @property {string} [application_id] - Application ID
  * @property {string} [section_preview_hash] - Hash for the section preview
  */
 
 /**
- * @typedef ExtensionPreview
+ * @typedef ExtensionPreviewResponse
  * @property {string} [message]
  */
 
 /**
- * @typedef ExtensionSectionPublish
- * @property {Sections} [sections]
- */
-
-/**
- * @typedef PublishExtensionSectionResponseSchema
+ * @typedef PublishExtensionSectionResponse
  * @property {string} [message]
  */
 
@@ -151,7 +145,6 @@ const Joi = require("joi");
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
- * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 
 /**
@@ -355,27 +348,11 @@ const Joi = require("joi");
  * @property {string} admin_id - The ID of the admin who rejected the theme
  * @property {string} user_id - The ID of the user who submitted the theme
  * @property {string} status - The status of the theme (e.g., rejected)
- * @property {RejectedMessages} rejection_reasons
+ * @property {Object} rejection_reasons
  * @property {string} [created_at] - The date and time when the theme rejection
  *   reasons object was created
  * @property {string} [updated_at] - The date and time when the theme rejection
  *   reasons object was last updated
- */
-
-/**
- * @typedef RejectedMessages
- * @property {ThemeReviewRequestMessage} [theme_file]
- * @property {ThemeReviewRequestMessage} [theme_details]
- * @property {ThemeReviewRequestMessage} [theme_value_proposition]
- * @property {ThemeReviewRequestMessage} [theme_attributes]
- * @property {ThemeReviewRequestMessage} [theme_variations]
- * @property {ThemeReviewRequestMessage} [theme_docs]
- * @property {ThemeReviewRequestMessage} [theme_review]
- */
-
-/**
- * @typedef ThemeReviewRequestMessage
- * @property {string} [message] - Message Explaining what the issue is
  */
 
 /**
@@ -838,12 +815,11 @@ class ThemePartnerModel {
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       application: Joi.string().allow(""),
-      __v: Joi.number(),
     });
   }
 
-  /** @returns {DraftExtensionSection} */
-  static DraftExtensionSection() {
+  /** @returns {ExtensionBinding} */
+  static ExtensionBinding() {
     return Joi.object({
       extension_id: Joi.string().allow(""),
       _id: Joi.string().allow(""),
@@ -858,15 +834,15 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {ExtensionSectionDraft} */
-  static ExtensionSectionDraft() {
+  /** @returns {DraftExtensionSectionResponse} */
+  static DraftExtensionSectionResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {Sections} */
-  static Sections() {
+  /** @returns {SectionsResponse} */
+  static SectionsResponse() {
     return Joi.object({
       acknowledged: Joi.boolean(),
       matched_count: Joi.number(),
@@ -904,8 +880,8 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {PublishExtensionSection} */
-  static PublishExtensionSection() {
+  /** @returns {PublishExtensionSectionRequest} */
+  static PublishExtensionSectionRequest() {
     return Joi.object({
       extension_id: Joi.string().allow(""),
       bundle_name: Joi.string().allow(""),
@@ -917,30 +893,23 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {PreviewExtension} */
-  static PreviewExtension() {
+  /** @returns {ExtensionPreviewRequest} */
+  static ExtensionPreviewRequest() {
     return Joi.object({
       application_id: Joi.string().allow(""),
       section_preview_hash: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ExtensionPreview} */
-  static ExtensionPreview() {
+  /** @returns {ExtensionPreviewResponse} */
+  static ExtensionPreviewResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ExtensionSectionPublish} */
-  static ExtensionSectionPublish() {
-    return Joi.object({
-      sections: ThemePartnerModel.Sections(),
-    });
-  }
-
-  /** @returns {PublishExtensionSectionResponseSchema} */
-  static PublishExtensionSectionResponseSchema() {
+  /** @returns {PublishExtensionSectionResponse} */
+  static PublishExtensionSectionResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
@@ -949,7 +918,7 @@ class ThemePartnerModel {
   /** @returns {AvailablePageSectionMetaAttributes} */
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.any(),
     });
   }
 
@@ -987,7 +956,6 @@ class ThemePartnerModel {
     return Joi.object({
       priority: Joi.number(),
       frequency: Joi.string().allow(""),
-      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -1014,9 +982,9 @@ class ThemePartnerModel {
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      props: Joi.object().pattern(/\S/, Joi.any()),
+      props: Joi.any(),
       blocks: Joi.array().items(Joi.any()),
-      preset: Joi.object().pattern(/\S/, Joi.any()),
+      preset: Joi.any(),
       predicate: ThemePartnerModel.AvailablePagePredicate(),
       __source: ThemePartnerModel.SectionSource(),
     });
@@ -1239,29 +1207,9 @@ class ThemePartnerModel {
       admin_id: Joi.string().allow("").required(),
       user_id: Joi.string().allow("").required(),
       status: Joi.string().allow("").required(),
-      rejection_reasons: ThemePartnerModel.RejectedMessages().required(),
+      rejection_reasons: Joi.object().pattern(/\S/, Joi.any()).required(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RejectedMessages} */
-  static RejectedMessages() {
-    return Joi.object({
-      theme_file: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_details: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_value_proposition: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_attributes: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_variations: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_docs: ThemePartnerModel.ThemeReviewRequestMessage(),
-      theme_review: ThemePartnerModel.ThemeReviewRequestMessage(),
-    });
-  }
-
-  /** @returns {ThemeReviewRequestMessage} */
-  static ThemeReviewRequestMessage() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 
@@ -1313,7 +1261,7 @@ class ThemePartnerModel {
       name: Joi.string().allow(""),
       template_theme_id: Joi.string().allow(""),
       version: Joi.string().allow(""),
-      styles: Joi.object().pattern(/\S/, Joi.any()),
+      styles: Joi.any(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       assets: ThemePartnerModel.Assets(),
@@ -1368,7 +1316,7 @@ class ThemePartnerModel {
   static ThemeConfiguration() {
     return Joi.object({
       name: Joi.string().allow(""),
-      global_config: Joi.object().pattern(/\S/, Joi.any()),
+      global_config: Joi.any(),
       page: Joi.array().items(ThemePartnerModel.ThemeConfigListPage()),
     });
   }
@@ -1420,7 +1368,7 @@ class ThemePartnerModel {
   /** @returns {ThemeConfigListPageSettingsProps} */
   static ThemeConfigListPageSettingsProps() {
     return Joi.object({
-      props: Joi.object().pattern(/\S/, Joi.any()),
+      props: Joi.any(),
     });
   }
 

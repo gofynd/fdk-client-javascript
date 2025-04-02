@@ -19,7 +19,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.AddEdcDeviceParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>} - Success response
    * @name addEdcDevice
    * @summary: Create an EDC device
    * @description: Registration and addition of a new EDC device to the system - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addEdcDevice/).
@@ -77,7 +77,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcDeviceUpdateDetails().validate(responseData, {
+    } = PaymentPlatformModel.EdcDeviceUpdateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -102,7 +102,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundAccountDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
    * @name addRefundBankAccount
    * @summary: Save bank details for cancelled/returned order
    * @description: save bank details for returned/cancelled order to refund amount in his account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addRefundBankAccount/).
@@ -158,7 +158,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundAccountDetails().validate(responseData, {
+    } = PaymentPlatformModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -183,7 +183,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundAccountDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
    * @name addRefundBankAccountUsingOTP
    * @summary: Create refund account
    * @description: The addition of a bank account specifically for refunds, employing OTP verification for security - Payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addRefundBankAccountUsingOTP/).
@@ -239,7 +239,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundAccountDetails().validate(responseData, {
+    } = PaymentPlatformModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -264,7 +264,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkDetails>} -
+   * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkResponse>} -
    *   Success response
    * @name cancelPaymentLink
    * @summary: Cancel payment link.
@@ -321,10 +321,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.CancelPaymentLinkDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.CancelPaymentLinkResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -346,7 +346,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>} -
    *   Success response
    * @name checkAndUpdatePaymentStatus
    * @summary: Check and update payment status.
@@ -403,7 +403,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentStatusUpdateDetails().validate(
+    } = PaymentPlatformModel.PaymentStatusUpdateResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -426,7 +426,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.ConfirmPaymentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentConfirmationDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PaymentConfirmationResponse>} -
    *   Success response
    * @name confirmPayment
    * @summary: Payment confirmation
@@ -483,7 +483,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentConfirmationDetails().validate(
+    } = PaymentPlatformModel.PaymentConfirmationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -508,7 +508,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorConfigDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorConfigResponse>} -
+   *   Success response
    * @name copyConfigAggPaymentModes
    * @summary: Copy aggregator config of onc device to another.
    * @description: Copy aggregator config like Wallet, NB, paylater from one device of an aggregator like razorpay to another device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/copyConfigAggPaymentModes/).
@@ -566,7 +567,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorConfigDetails().validate(responseData, {
+    } = PaymentPlatformModel.AggregatorConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -591,7 +592,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorConfigDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorConfigResponse>} -
+   *   Success response
    * @name copyConfigPaymentModes
    * @summary: Copy payment mode config of onc device to another.
    * @description: Copy aggregator config like Wallet, NB, paylater from one device of an aggregator like razorpay to another device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/copyConfigPaymentModes/).
@@ -647,7 +649,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorConfigDetails().validate(responseData, {
+    } = PaymentPlatformModel.AggregatorConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -672,7 +674,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundPriorityDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+   *   - Success response
+   *
    * @name createMerchantRefundPriority
    * @summary: Create merchant refund priority
    * @description: Create merchant refund priority configurations, with the provided refund sources priority details, and return the status of the operation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createMerchantRefundPriority/).
@@ -732,10 +736,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundPriorityDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.RefundPriorityResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -757,7 +761,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkDetails>} -
+   * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkResponse>} -
    *   Success response
    * @name createPaymentLink
    * @summary: Create payment link.
@@ -814,10 +818,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.CreatePaymentLinkDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.CreatePaymentLinkResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -839,7 +843,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentOrderDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentOrderResponse>} - Success response
    * @name createPaymentOrder
    * @summary: Create Order
    * @description: Create an order and payment on the aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createPaymentOrder/).
@@ -895,7 +899,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentOrderDetails().validate(responseData, {
+    } = PaymentPlatformModel.PaymentOrderResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -920,7 +924,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.DeleteRefundAccountDetails>} -
+   * @returns {Promise<PaymentPlatformModel.DeleteRefundAccountResponse>} -
    *   Success response
    * @name deleteBeneficiaryDetails
    * @summary: Delete saved beneficiary details of customers
@@ -977,7 +981,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeleteRefundAccountDetails().validate(
+    } = PaymentPlatformModel.DeleteRefundAccountResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1002,7 +1006,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListDetails>}
+   * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>}
    *   - Success response
    *
    * @name edcAggregatorsAndModelList
@@ -1056,7 +1060,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcAggregatorAndModelListDetails().validate(
+    } = PaymentPlatformModel.EdcAggregatorAndModelListResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1079,7 +1083,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.EdcDeviceListParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcDeviceListDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.EdcDeviceListResponse>} - Success response
    * @name edcDeviceList
    * @summary: List EDC devices
    * @description: Retrieves a list of available Electronic Data Capture (EDC) devices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceList/).
@@ -1150,7 +1154,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcDeviceListDetails().validate(responseData, {
+    } = PaymentPlatformModel.EdcDeviceListResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1173,7 +1177,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.EdcDeviceStatsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsResponse>} - Success response
    * @name edcDeviceStats
    * @summary: EDC device stats.
    * @description: Information about EDC (Electronic Data Capture) devices linked to a specific application within a company. It provides statistics such as the count of active and inactive devices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceStats/).
@@ -1225,7 +1229,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcDeviceStatsDetails().validate(responseData, {
+    } = PaymentPlatformModel.EdcDeviceStatsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1250,7 +1254,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorCredentialRes>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorCredentialResponse>} -
+   *   Success response
    * @name getAggregatorCredential
    * @summary: API to get merchant refund priority
    * @description: API to get merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAggregatorCredential/).
@@ -1310,10 +1315,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorCredentialRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.AggregatorCredentialResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1335,7 +1340,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorHistoryDetails>} -
+   * @returns {Promise<PaymentPlatformModel.AggregatorHistoryResponse>} -
    *   Success response
    * @name getAggregatorCredentialHistory
    * @summary: Get merchant refund priority
@@ -1396,10 +1401,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorHistoryDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.AggregatorHistoryResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1421,7 +1426,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetRefundAccountDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetRefundAccountResponse>} -
+   *   Success response
    * @name getBankAccountDetailsOpenAPI
    * @summary: Get bank account details
    * @description: Retrieve bank account information - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBankAccountDetailsOpenAPI/).
@@ -1483,7 +1489,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetRefundAccountDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetRefundAccountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1508,7 +1514,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>} -
    *   Success response
    * @name getBrandPaymentGatewayConfig
    * @summary: Get secrets for brand payment gateway
@@ -1569,7 +1575,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentGatewayConfigDetails().validate(
+    } = PaymentPlatformModel.PaymentGatewayConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1592,7 +1598,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetDevicesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetDevice>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetDeviceResponse>} - Success response
    * @name getDevices
    * @summary: Get all business units and it's devices.
    * @description: Get all business units and it's devices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getDevices/).
@@ -1642,7 +1648,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetDevice().validate(responseData, {
+    } = PaymentPlatformModel.GetDeviceResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1665,7 +1671,8 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcDeviceDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>} -
+   *   Success response
    * @name getEdcDevice
    * @summary: Get an EDC device
    * @description: Retrieve comprehensive details regarding an Electronic Data Capture (EDC) device associated with a particular terminal unique identifier within a company's application.Upon success, it returns the detailed information of the EDC device, including terminal serial number, EDC device serial number, merchant store POS code, store ID, aggregator ID and name, device tag, activation status, and EDC model. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getEdcDevice/).
@@ -1721,7 +1728,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcDeviceDetails().validate(responseData, {
+    } = PaymentPlatformModel.EdcDeviceDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1746,7 +1753,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorVersionDetails>} -
+   * @returns {Promise<PaymentPlatformModel.AggregatorVersionResponse>} -
    *   Success response
    * @name getMerchantAggregatorAppVersion
    * @summary: Get app version for  Aggregator
@@ -1822,10 +1829,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorVersionDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.AggregatorVersionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1847,7 +1854,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorPlatformPaymentModeDetails>}
+   * @returns {Promise<PaymentPlatformModel.AggregatorPlatformPaymentModeResponse>}
    *   - Success response
    *
    * @name getMerchantAggregatorPaymentModeDetails
@@ -1913,7 +1920,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorPlatformPaymentModeDetails().validate(
+    } = PaymentPlatformModel.AggregatorPlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1938,7 +1945,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PlatformOnlineOfflinePaymentDetails>}
+   * @returns {Promise<PaymentPlatformModel.PlatformOnlineOfflinePaymentResponse>}
    *   - Success response
    *
    * @name getMerchantPaymentOption
@@ -1997,7 +2004,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PlatformOnlineOfflinePaymentDetails().validate(
+    } = PaymentPlatformModel.PlatformOnlineOfflinePaymentResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2022,7 +2029,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundPriorityDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+   *   - Success response
+   *
    * @name getMerchantRefundPriority
    * @summary: Get merchant refund priority
    * @description: Retrieve merchant refund priority configurations, returning the status of the update and the refund sources priority with their descriptions and priorities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantRefundPriority/).
@@ -2080,10 +2089,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundPriorityDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.RefundPriorityResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2105,7 +2114,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorConfigDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorConfigResponse>} -
+   *   Success response
    * @name getPGConfigAggregators
    * @summary: Get merchant aggregator payment mode
    * @description: Get payment gateway and it's payment mode and it's sub payment mode details like for razorpay update active/inactive payment modes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPGConfigAggregators/).
@@ -2157,7 +2167,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorConfigDetails().validate(responseData, {
+    } = PaymentPlatformModel.AggregatorConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2182,7 +2192,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetPaymentCodeDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetPaymentCodeResponse>} - Success response
    * @name getPaymentCodeOption
    * @summary: Get payment mode codes
    * @description: Enables users to retrieve options for payment codes.users can access information such as payment method names, networks, and associated codes, facilitating seamless integration and management of payment modes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentCodeOption/).
@@ -2234,7 +2244,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetPaymentCodeDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetPaymentCodeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2257,7 +2267,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetPaymentLinkParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetPaymentLinkDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
    * @name getPaymentLink
    * @summary: Get payment link
    * @description: Retrieve a payment link for making payments - Payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentLink/).
@@ -2314,7 +2324,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetPaymentLinkDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetPaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2337,7 +2347,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetPaymentLinkIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetPaymentLinkDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
    * @name getPaymentLinkId
    * @summary: Get payment link
    * @description: get a payment link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentLinkId/).
@@ -2396,7 +2406,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetPaymentLinkDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetPaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2421,8 +2431,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PlatformOfflineAdvanceDetails>} -
-   *   Success response
+   * @returns {Promise<PaymentPlatformModel.PlatformOfflineAdvanceResponse>}
+   *   - Success response
+   *
    * @name getPaymentModeControlRoutes
    * @summary: Get offline/advance payment mode
    * @description: Get details of offline / advance payment mode like for cod  offline payment mode get user level cod limit, order level cod limit, cod charge. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeControlRoutes/).
@@ -2478,7 +2489,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PlatformOfflineAdvanceDetails().validate(
+    } = PaymentPlatformModel.PlatformOfflineAdvanceResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2586,13 +2597,13 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentOptionsDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
    * @name getPaymentModeRoutes
    * @summary: Get payment modes
    * @description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
    */
   async getPaymentModeRoutes(
-    { amount, refresh, requestType, orderId, shipmentId, requestHeaders } = {
+    { refresh, requestType, orderId, shipmentId, amount, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -2601,11 +2612,11 @@ class Payment {
       error,
     } = PaymentPlatformApplicationValidator.getPaymentModeRoutes().validate(
       {
-        amount,
         refresh,
         requestType,
         orderId,
         shipmentId,
+        amount,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2618,11 +2629,11 @@ class Payment {
       error: warrning,
     } = PaymentPlatformApplicationValidator.getPaymentModeRoutes().validate(
       {
-        amount,
         refresh,
         requestType,
         orderId,
         shipmentId,
+        amount,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2635,10 +2646,10 @@ class Payment {
 
     const query_params = {};
     query_params["refresh"] = refresh;
-    query_params["amount"] = amount;
     query_params["request_type"] = requestType;
     query_params["order_id"] = orderId;
     query_params["shipment_id"] = shipmentId;
+    query_params["amount"] = amount;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2657,7 +2668,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentOptionsDetails().validate(responseData, {
+    } = PaymentPlatformModel.PaymentOptionsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2682,7 +2693,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentModeDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentModeResponse>} - Success response
    * @name getPaymentModeSequencing
    * @summary: Get details for the active inactive payment modes for merchant
    * @description: get details for the given payment modes and its sequencingfor merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeSequencing/).
@@ -2742,7 +2753,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentModeDetails().validate(responseData, {
+    } = PaymentPlatformModel.PaymentModeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2767,7 +2778,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetPaymentSessionDetails>} -
+   * @returns {Promise<PaymentPlatformModel.GetPaymentSessionResponse>} -
    *   Success response
    * @name getPaymentSession
    * @summary: Get payment session
@@ -2827,10 +2838,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetPaymentSessionDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.GetPaymentSessionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2852,7 +2863,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PennyDropValidationDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PennyDropValidationResponse>} -
    *   Success response
    * @name getPennyDropValidation
    * @summary: pennydrop validation
@@ -2905,7 +2916,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PennyDropValidationDetails().validate(
+    } = PaymentPlatformModel.PennyDropValidationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2930,7 +2941,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentModeRouteDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentModeRouteResponse>} -
+   *   Success response
    * @name getPosPaymentModeRoutes
    * @summary: List POS payment modes
    * @description: Retrieve payment options and aggregator for point-of-sale (POS). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPosPaymentModeRoutes/).
@@ -3034,7 +3046,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentModeRouteDetails().validate(responseData, {
+    } = PaymentPlatformModel.PaymentModeRouteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3059,7 +3071,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SelectedRefundOptionDetails>} -
+   * @returns {Promise<PaymentPlatformModel.SelectedRefundOptionResponse>} -
    *   Success response
    * @name getSelectedRefundOption
    * @summary: get the selected refund options for shipment id
@@ -3120,7 +3132,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SelectedRefundOptionDetails().validate(
+    } = PaymentPlatformModel.SelectedRefundOptionResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3145,8 +3157,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ShipmentBeneficiaryDetailsRes>} -
-   *   Success response
+   * @returns {Promise<PaymentPlatformModel.ShipmentBeneficiaryDetailsResponse>}
+   *   - Success response
+   *
    * @name getShipmentBeneficiary
    * @summary: get beneficiary details
    * @description: get beneficiary details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getShipmentBeneficiary/).
@@ -3202,7 +3215,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ShipmentBeneficiaryDetailsRes().validate(
+    } = PaymentPlatformModel.ShipmentBeneficiaryDetailsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3227,7 +3240,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryFetchResults>} -
+   * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
    *   Success response
    * @name getUserBeneficiaries
    * @summary: Get user beneficiaries.
@@ -3281,10 +3294,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.OrderBeneficiaryFetchResults().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentPlatformModel.OrderBeneficiaryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3396,7 +3409,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetUserCODLimitDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
    * @name getUserCODlimitRoutes
    * @summary: Get user COD.
    * @description: Retrieve user cod limt data of user i.e cod is active or not for user and remaining limit - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserCODlimitRoutes/).
@@ -3456,7 +3469,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetUserCODLimitDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetUserCODLimitResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3481,7 +3494,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryFetchResults>} -
+   * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
    *   Success response
    * @name getUserOrderBeneficiaries
    * @summary: Get user order beneficiaries
@@ -3535,10 +3548,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.OrderBeneficiaryFetchResults().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentPlatformModel.OrderBeneficiaryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3560,7 +3573,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentInitializationDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PaymentInitializationResponse>} -
    *   Success response
    * @name initialisePayment
    * @summary: Start payment process
@@ -3617,7 +3630,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentInitializationDetails().validate(
+    } = PaymentPlatformModel.PaymentInitializationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3642,7 +3655,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingDetails>} -
+   * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingResponse>} -
    *   Success response
    * @name merchantOnBoarding
    * @summary: Merchant onboarding for BNPL.
@@ -3699,7 +3712,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchantOnBoardingDetails().validate(
+    } = PaymentPlatformModel.MerchantOnBoardingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3722,7 +3735,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.OauthGetUrlParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetOauthUrlDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetOauthUrlResponse>} - Success response
    * @name oauthGetUrl
    * @summary: Get OAuth URL.
    * @description: This has been used when merchant is setup their razorpay payment gateway, they will redirect to razorpay site after submitting all their secrets for authetication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/oauthGetUrl/).
@@ -3786,7 +3799,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetOauthUrlDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetOauthUrlResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3811,7 +3824,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name patchMerchantAggregatorPaymentModeDetails
    * @summary: Update merchant aggregator payment mode
@@ -3870,7 +3883,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PlatformPaymentModeDetails().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3895,7 +3908,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PatchPlatformOnlineOfflinePaymentDetails>}
+   * @returns {Promise<PaymentPlatformModel.PatchPlatformOnlineOfflinePaymentResponse>}
    *   - Success response
    *
    * @name patchMerchantPaymentOption
@@ -3953,7 +3966,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PatchPlatformOnlineOfflinePaymentDetails().validate(
+    } = PaymentPlatformModel.PatchPlatformOnlineOfflinePaymentResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3978,7 +3991,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorConfigDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorConfigResponse>} -
+   *   Success response
    * @name patchMerchantPaymentOptionVersion
    * @summary: Update app version required for Aggregator.
    * @description: Update app version required for Payment Mode or sub payment mode for an Aggregator.if merchant required any PG payment mode after certain version for mobile app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantPaymentOptionVersion/).
@@ -4036,7 +4050,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorConfigDetails().validate(responseData, {
+    } = PaymentPlatformModel.AggregatorConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4061,7 +4075,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.AggregatorConfigDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.AggregatorConfigResponse>} -
+   *   Success response
    * @name patchPaymentModeSequencing
    * @summary: Update sequencing of payment modes for the merchant
    * @description: Update sequencing of payment modes for the merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchPaymentModeSequencing/).
@@ -4117,7 +4132,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.AggregatorConfigDetails().validate(responseData, {
+    } = PaymentPlatformModel.AggregatorConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4142,7 +4157,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerDetails>}
+   * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>}
    *   - Success response
    *
    * @name paymentStatusBulk
@@ -4200,7 +4215,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentStatusBulkHandlerDetails().validate(
+    } = PaymentPlatformModel.PaymentStatusBulkHandlerResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4225,7 +4240,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkResponse>} -
    *   Success response
    * @name pollingPaymentLink
    * @summary: Poll status of payment link
@@ -4283,7 +4298,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PollingPaymentLinkDetails().validate(
+    } = PaymentPlatformModel.PollingPaymentLinkResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4306,7 +4321,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.RepaymentDetailsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RepaymentDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RepaymentResponse>} - Success response
    * @name repaymentDetails
    * @summary: Repayment details for BNPL.
    * @description: Retrieve repayment details for Buy Now Pay Later (BNPL) payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/repaymentDetails/).
@@ -4362,7 +4377,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RepaymentDetails().validate(responseData, {
+    } = PaymentPlatformModel.RepaymentResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4387,7 +4402,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentDetails>} -
+   * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>} -
    *   Success response
    * @name resendOrCancelPayment
    * @summary: Resend or cancel payment.
@@ -4444,7 +4459,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ResendOrCancelPaymentDetails().validate(
+    } = PaymentPlatformModel.ResendOrCancelPaymentResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4469,7 +4484,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkDetails>} -
+   * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkResponse>} -
    *   Success response
    * @name resendPaymentLink
    * @summary: Resend payment link
@@ -4526,10 +4541,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ResendPaymentLinkDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.ResendPaymentLinkResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4712,8 +4727,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PlatformOfflineAdvanceDetails>} -
-   *   Success response
+   * @returns {Promise<PaymentPlatformModel.PlatformOfflineAdvanceResponse>}
+   *   - Success response
+   *
    * @name setMerchantModeControlRoutes
    * @summary: Update offline payment mode
    * @description: Update details of offline / advance payment mode like for cod  offline payment mode get user level cod limit, order level cod limit, cod charge. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setMerchantModeControlRoutes/).
@@ -4771,7 +4787,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PlatformOfflineAdvanceDetails().validate(
+    } = PaymentPlatformModel.PlatformOfflineAdvanceResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4881,7 +4897,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ShipmentRefundRes>} - Success response
+   * @returns {Promise<PaymentPlatformModel.ShipmentRefundResponse>} - Success response
    * @name setRefundOptionforShipment
    * @summary: Save refund source against shipment and order
    * @description: Save refund source against shipment and order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setRefundOptionforShipment/).
@@ -4937,7 +4953,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ShipmentRefundRes().validate(responseData, {
+    } = PaymentPlatformModel.ShipmentRefundResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4962,7 +4978,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.GetUserCODLimitDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
    * @name setUserCODlimitRoutes
    * @summary: Set user COD
    * @description: This allows access to seller to enable disable cod of specific user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setUserCODlimitRoutes/).
@@ -5018,7 +5034,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.GetUserCODLimitDetails().validate(responseData, {
+    } = PaymentPlatformModel.GetUserCODLimitResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5043,7 +5059,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PatchAggregatorCredentialDetails>}
+   * @returns {Promise<PaymentPlatformModel.PatchAggregatorCredentialResponse>}
    *   - Success response
    *
    * @name updateAggregatorCredential
@@ -5101,7 +5117,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PatchAggregatorCredentialDetails().validate(
+    } = PaymentPlatformModel.PatchAggregatorCredentialResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5126,7 +5142,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SetDefaultBeneficiaryDetails>} -
+   * @returns {Promise<PaymentPlatformModel.SetDefaultBeneficiaryResponse>} -
    *   Success response
    * @name updateDefaultBeneficiary
    * @summary: Set a default beneficiary for a refund
@@ -5183,7 +5199,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SetDefaultBeneficiaryDetails().validate(
+    } = PaymentPlatformModel.SetDefaultBeneficiaryResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5206,7 +5222,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.UpdateEdcDeviceParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.EdcDeviceAddDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.EdcDeviceAddResponse>} - Success response
    * @name updateEdcDevice
    * @summary: Update EDC device.
    * @description: Enables the modification of settings and details associated with an Electronic Data Capture (EDC) device linked to a specific application within a company. Upon success, it returns the updated information of the EDC device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateEdcDevice/).
@@ -5262,7 +5278,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.EdcDeviceAddDetails().validate(responseData, {
+    } = PaymentPlatformModel.EdcDeviceAddResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5287,7 +5303,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundPriorityDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+   *   - Success response
+   *
    * @name updateMerchantRefundPriority
    * @summary: Update merchant refund priority
    * @description: Update merchant refund priority configurations, with the provided refund sources priority details, and return the status of the operation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateMerchantRefundPriority/).
@@ -5347,10 +5365,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundPriorityDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.RefundPriorityResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5372,8 +5390,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentSessionPutDetails>} -
-   *   Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentSessionResponseSerializer>}
+   *   - Success response
+   *
    * @name updatePaymentSession
    * @summary: Update payment session.
    * @description: Update the details of a payment session associated with a given order ID or transaction ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePaymentSession/).
@@ -5431,10 +5450,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentSessionPutDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.PaymentSessionResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5456,7 +5475,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PennyDropValidationDetails>} -
+   * @returns {Promise<PaymentPlatformModel.PennyDropValidationResponse>} -
    *   Success response
    * @name updatePennyDropValidation
    * @summary: update penny drop validation for application ID
@@ -5513,7 +5532,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PennyDropValidationDetails().validate(
+    } = PaymentPlatformModel.PennyDropValidationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5538,7 +5557,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.RefundSessionDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.RefundSessionResponseSerializer>}
+   *   - Success response
+   *
    * @name updateRefundSession
    * @summary: Update refund session
    * @description: Allows users to update the details of a refund session associated with a specific global identifier (GID) and request ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateRefundSession/).
@@ -5598,10 +5619,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.RefundSessionDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentPlatformModel.RefundSessionResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5623,7 +5644,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ValidateValidateAddressDetails>}
+   * @returns {Promise<PaymentPlatformModel.ValidateValidateAddressResponse>}
    *   - Success response
    *
    * @name validateBeneficiaryAddress
@@ -5681,7 +5702,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ValidateValidateAddressDetails().validate(
+    } = PaymentPlatformModel.ValidateValidateAddressResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5706,7 +5727,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ValidateCustomerDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.ValidateCustomerResponse>} -
+   *   Success response
    * @name verifyCustomerForPayment
    * @summary: Validate customer for paylater
    * @description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyCustomerForPayment/).
@@ -5762,7 +5784,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.ValidateCustomerDetails().validate(responseData, {
+    } = PaymentPlatformModel.ValidateCustomerResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

@@ -4,7 +4,7 @@ export = LogisticsPartnerModel;
  * @property {string} [error]
  */
 /**
- * @typedef BulkRegionServiceabilityTatRequestSchema
+ * @typedef BulkRegionServiceabilityTatRequest
  * @property {string} country
  * @property {string} region
  * @property {string} type
@@ -20,18 +20,18 @@ export = LogisticsPartnerModel;
  * @property {string} [file_path]
  */
 /**
- * @typedef ErrorResponseSchema
+ * @typedef ErrorResponse
  * @property {string} value
  * @property {string} message
  * @property {string} type
  */
 /**
- * @typedef FailureResponseSchema
+ * @typedef FailureResponse
  * @property {boolean} success
- * @property {ErrorResponseSchema[]} error
+ * @property {ErrorResponse[]} error
  */
 /**
- * @typedef BulkRegionServiceabilityTatResponseSchema
+ * @typedef BulkRegionServiceabilityTatResponse
  * @property {BulkRegionServiceabilityTatResponseItemData[]} [items]
  * @property {Page} [page]
  */
@@ -47,7 +47,7 @@ export = LogisticsPartnerModel;
  * @property {number} [total] - Total number of items.
  */
 /**
- * @typedef BulkRegionJobSerializerSchema
+ * @typedef BulkRegionJobSerializer
  * @property {string} [file_path]
  * @property {string} country
  * @property {string} action
@@ -68,7 +68,7 @@ export = LogisticsPartnerModel;
  * @property {string} [error_file_path]
  */
 /**
- * @typedef BulkRegionResponseSchema
+ * @typedef BulkRegionResponse
  * @property {BulkRegionResponseItemData[]} items
  * @property {Page} page
  */
@@ -82,21 +82,21 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_own_account
  */
 /**
- * @typedef CourierPartnerAccountFailureResponseSchema
+ * @typedef CourierPartnerAccountFailureResponse
  * @property {boolean} success
- * @property {ErrorResponseSchema[]} error
+ * @property {ErrorResponse[]} error
  */
 /**
- * @typedef CompanyCourierPartnerAccountListResponseSchema
- * @property {CourierAccountResponseSchema[]} items
+ * @typedef CompanyCourierPartnerAccountListResponse
+ * @property {CourierAccountResponse[]} items
  * @property {Page} page
  */
 /**
- * @typedef CourierAccountSchemeResponseSchema
+ * @typedef CourierAccountSchemeResponse
  * @property {string} [extension_id]
  * @property {string} [scheme_id]
  * @property {string} [name]
- * @property {ArithmeticOperationsV2} [weight]
+ * @property {ArithmeticOperations} [weight]
  * @property {string} [transport_type]
  * @property {string} [region]
  * @property {string} [delivery_type]
@@ -105,7 +105,7 @@ export = LogisticsPartnerModel;
  * @property {CourierPartnerSchemeFeatures} [feature]
  */
 /**
- * @typedef CourierAccountResponseSchema
+ * @typedef CourierAccountResponse
  * @property {number} [company_id]
  * @property {string} [extension_id]
  * @property {string} account_id
@@ -113,14 +113,14 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_self_ship
  * @property {string} stage
  * @property {boolean} is_own_account
- * @property {CourierAccountSchemeResponseSchema} scheme_rules
+ * @property {CourierAccountSchemeResponse} scheme_rules
  */
 /**
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id
  * @property {string} scheme_id
  * @property {string} name
- * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} weight
  * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
@@ -158,16 +158,9 @@ export = LogisticsPartnerModel;
  * @property {number} [gte]
  */
 /**
- * @typedef ArithmeticOperationsV2
- * @property {number} [lt]
- * @property {number} [gt]
- * @property {number} [lte]
- * @property {number} [gte]
- */
-/**
- * @typedef CourierPartnerSchemeUpdateRequestSchema
+ * @typedef CourierPartnerSchemeUpdateRequest
  * @property {string} name
- * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} weight
  * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
@@ -210,16 +203,16 @@ export = LogisticsPartnerModel;
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { ErrorResponseV1, BulkRegionServiceabilityTatRequestSchema, BulkRegionServiceabilityTatResponseItemData, ErrorResponseSchema, FailureResponseSchema, BulkRegionServiceabilityTatResponseSchema, Page, BulkRegionJobSerializerSchema, BulkRegionResponseItemData, BulkRegionResponseSchema, CourierAccount, CourierPartnerAccountFailureResponseSchema, CompanyCourierPartnerAccountListResponseSchema, CourierAccountSchemeResponseSchema, CourierAccountResponseSchema, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, ArithmeticOperationsV2, CourierPartnerSchemeUpdateRequestSchema, CountryHierarchy, CurrencyObject, CountryObject, GetCountries };
+    export { ErrorResponseV1, BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountSchemeResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, CountryHierarchy, CurrencyObject, CountryObject, GetCountries };
 }
 /** @returns {ErrorResponseV1} */
 declare function ErrorResponseV1(): ErrorResponseV1;
 type ErrorResponseV1 = {
     error?: string;
 };
-/** @returns {BulkRegionServiceabilityTatRequestSchema} */
-declare function BulkRegionServiceabilityTatRequestSchema(): BulkRegionServiceabilityTatRequestSchema;
-type BulkRegionServiceabilityTatRequestSchema = {
+/** @returns {BulkRegionServiceabilityTatRequest} */
+declare function BulkRegionServiceabilityTatRequest(): BulkRegionServiceabilityTatRequest;
+type BulkRegionServiceabilityTatRequest = {
     country: string;
     region: string;
     type: string;
@@ -235,22 +228,22 @@ type BulkRegionServiceabilityTatResponseItemData = {
     failed_records?: any[];
     file_path?: string;
 };
-/** @returns {ErrorResponseSchema} */
-declare function ErrorResponseSchema(): ErrorResponseSchema;
-type ErrorResponseSchema = {
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
     value: string;
     message: string;
     type: string;
 };
-/** @returns {FailureResponseSchema} */
-declare function FailureResponseSchema(): FailureResponseSchema;
-type FailureResponseSchema = {
+/** @returns {FailureResponse} */
+declare function FailureResponse(): FailureResponse;
+type FailureResponse = {
     success: boolean;
-    error: ErrorResponseSchema[];
+    error: ErrorResponse[];
 };
-/** @returns {BulkRegionServiceabilityTatResponseSchema} */
-declare function BulkRegionServiceabilityTatResponseSchema(): BulkRegionServiceabilityTatResponseSchema;
-type BulkRegionServiceabilityTatResponseSchema = {
+/** @returns {BulkRegionServiceabilityTatResponse} */
+declare function BulkRegionServiceabilityTatResponse(): BulkRegionServiceabilityTatResponse;
+type BulkRegionServiceabilityTatResponse = {
     items?: BulkRegionServiceabilityTatResponseItemData[];
     page?: Page;
 };
@@ -290,9 +283,9 @@ type Page = {
      */
     total?: number;
 };
-/** @returns {BulkRegionJobSerializerSchema} */
-declare function BulkRegionJobSerializerSchema(): BulkRegionJobSerializerSchema;
-type BulkRegionJobSerializerSchema = {
+/** @returns {BulkRegionJobSerializer} */
+declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
+type BulkRegionJobSerializer = {
     file_path?: string;
     country: string;
     action: string;
@@ -313,9 +306,9 @@ type BulkRegionResponseItemData = {
     total?: number;
     error_file_path?: string;
 };
-/** @returns {BulkRegionResponseSchema} */
-declare function BulkRegionResponseSchema(): BulkRegionResponseSchema;
-type BulkRegionResponseSchema = {
+/** @returns {BulkRegionResponse} */
+declare function BulkRegionResponse(): BulkRegionResponse;
+type BulkRegionResponse = {
     items: BulkRegionResponseItemData[];
     page: Page;
 };
@@ -329,25 +322,25 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
-/** @returns {CourierPartnerAccountFailureResponseSchema} */
-declare function CourierPartnerAccountFailureResponseSchema(): CourierPartnerAccountFailureResponseSchema;
-type CourierPartnerAccountFailureResponseSchema = {
+/** @returns {CourierPartnerAccountFailureResponse} */
+declare function CourierPartnerAccountFailureResponse(): CourierPartnerAccountFailureResponse;
+type CourierPartnerAccountFailureResponse = {
     success: boolean;
-    error: ErrorResponseSchema[];
+    error: ErrorResponse[];
 };
-/** @returns {CompanyCourierPartnerAccountListResponseSchema} */
-declare function CompanyCourierPartnerAccountListResponseSchema(): CompanyCourierPartnerAccountListResponseSchema;
-type CompanyCourierPartnerAccountListResponseSchema = {
-    items: CourierAccountResponseSchema[];
+/** @returns {CompanyCourierPartnerAccountListResponse} */
+declare function CompanyCourierPartnerAccountListResponse(): CompanyCourierPartnerAccountListResponse;
+type CompanyCourierPartnerAccountListResponse = {
+    items: CourierAccountResponse[];
     page: Page;
 };
-/** @returns {CourierAccountSchemeResponseSchema} */
-declare function CourierAccountSchemeResponseSchema(): CourierAccountSchemeResponseSchema;
-type CourierAccountSchemeResponseSchema = {
+/** @returns {CourierAccountSchemeResponse} */
+declare function CourierAccountSchemeResponse(): CourierAccountSchemeResponse;
+type CourierAccountSchemeResponse = {
     extension_id?: string;
     scheme_id?: string;
     name?: string;
-    weight?: ArithmeticOperationsV2;
+    weight?: ArithmeticOperations;
     transport_type?: string;
     region?: string;
     delivery_type?: string;
@@ -355,9 +348,9 @@ type CourierAccountSchemeResponseSchema = {
     stage?: string;
     feature?: CourierPartnerSchemeFeatures;
 };
-/** @returns {CourierAccountResponseSchema} */
-declare function CourierAccountResponseSchema(): CourierAccountResponseSchema;
-type CourierAccountResponseSchema = {
+/** @returns {CourierAccountResponse} */
+declare function CourierAccountResponse(): CourierAccountResponse;
+type CourierAccountResponse = {
     company_id?: number;
     extension_id?: string;
     account_id: string;
@@ -365,7 +358,7 @@ type CourierAccountResponseSchema = {
     is_self_ship: boolean;
     stage: string;
     is_own_account: boolean;
-    scheme_rules: CourierAccountSchemeResponseSchema;
+    scheme_rules: CourierAccountSchemeResponse;
 };
 /** @returns {CourierPartnerSchemeModel} */
 declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
@@ -373,7 +366,7 @@ type CourierPartnerSchemeModel = {
     extension_id: string;
     scheme_id: string;
     name: string;
-    weight: ArithmeticOperationsV2;
+    weight: ArithmeticOperations;
     volumetric_weight?: ArithmeticOperations;
     transport_type: string;
     region: string;
@@ -412,19 +405,11 @@ type ArithmeticOperations = {
     lte?: number;
     gte?: number;
 };
-/** @returns {ArithmeticOperationsV2} */
-declare function ArithmeticOperationsV2(): ArithmeticOperationsV2;
-type ArithmeticOperationsV2 = {
-    lt?: number;
-    gt?: number;
-    lte?: number;
-    gte?: number;
-};
-/** @returns {CourierPartnerSchemeUpdateRequestSchema} */
-declare function CourierPartnerSchemeUpdateRequestSchema(): CourierPartnerSchemeUpdateRequestSchema;
-type CourierPartnerSchemeUpdateRequestSchema = {
+/** @returns {CourierPartnerSchemeUpdateRequest} */
+declare function CourierPartnerSchemeUpdateRequest(): CourierPartnerSchemeUpdateRequest;
+type CourierPartnerSchemeUpdateRequest = {
     name: string;
-    weight: ArithmeticOperationsV2;
+    weight: ArithmeticOperations;
     volumetric_weight?: ArithmeticOperations;
     transport_type: string;
     region: string;

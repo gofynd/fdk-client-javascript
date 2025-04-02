@@ -42,8 +42,7 @@ class Configuration {
    * @param {ConfigurationPublicValidator.CheckVersionIsUpToDateParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPublicModel.VersionResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPublicModel.VersionResponse>} - Success response
    * @name checkVersionIsUpToDate
    * @summary: Check application version
    * @description: Check if the application version is up to date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/checkVersionIsUpToDate/).
@@ -100,10 +99,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.VersionResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPublicModel.VersionResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -203,8 +202,7 @@ class Configuration {
    * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPublicModel.ApplicationResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
    * @name searchApplication
    * @summary: Search application.
    * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
@@ -261,10 +259,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.ApplicationResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPublicModel.ApplicationResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {

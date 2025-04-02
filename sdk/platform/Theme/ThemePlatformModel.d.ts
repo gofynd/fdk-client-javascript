@@ -146,7 +146,7 @@ export = ThemePlatformModel;
  * @property {string} [marketplace_theme_id] - Theme id of the marketplace
  */
 /**
- * @typedef CompanyTheme
+ * @typedef CompanyThemeResponse
  * @property {string} [_id] - The unique identifier for the theme.
  * @property {string} [name] - The name of the theme.
  * @property {string} [marketplace_theme_id]
@@ -216,7 +216,6 @@ export = ThemePlatformModel;
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
- * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 /**
  * @typedef SEObreadcrumb
@@ -358,12 +357,11 @@ export = ThemePlatformModel;
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
- * @property {Object[]} [applied_themes] - Applied themes array
  */
 /**
- * @typedef ThemeUpgradable
+ * @typedef ThemeUpgradableResponse
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
- * @property {Object} [versions] - Information about theme versions.
+ * @property {Object} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
  */
 /**
@@ -625,7 +623,7 @@ export = ThemePlatformModel;
  * @property {string} [applied_theme] - The version of the applied theme
  */
 /**
- * @typedef DummyTheme
+ * @typedef DummyResponse
  * @property {string} [message]
  */
 /**
@@ -711,7 +709,7 @@ export = ThemePlatformModel;
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, CompanyThemeReqSchema, CompanyTheme, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradable, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyTheme, AppliedThemes, CompanyPrivateTheme, Option, ActionPage, PageType };
+    export { MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, CompanyThemeReqSchema, CompanyThemeResponse, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, Option, ActionPage, PageType };
 }
 /** @returns {MarketplaceTheme} */
 declare function MarketplaceTheme(): MarketplaceTheme;
@@ -1026,9 +1024,9 @@ type CompanyThemeReqSchema = {
      */
     marketplace_theme_id?: string;
 };
-/** @returns {CompanyTheme} */
-declare function CompanyTheme(): CompanyTheme;
-type CompanyTheme = {
+/** @returns {CompanyThemeResponse} */
+declare function CompanyThemeResponse(): CompanyThemeResponse;
+type CompanyThemeResponse = {
     /**
      * - The unique identifier for the theme.
      */
@@ -1161,10 +1159,6 @@ declare function SEOSitemap(): SEOSitemap;
 type SEOSitemap = {
     priority?: number;
     frequency?: string;
-    /**
-     * - Timestamp at which the document was last modified on
-     */
-    modified_on?: string;
 };
 /** @returns {SEObreadcrumb} */
 declare function SEObreadcrumb(): SEObreadcrumb;
@@ -1394,21 +1388,14 @@ type ThemesSchema = {
      */
     company_id?: number;
     src?: string;
-    /**
-     * - Applied themes array
-     */
-    applied_themes?: any[];
 };
-/** @returns {ThemeUpgradable} */
-declare function ThemeUpgradable(): ThemeUpgradable;
-type ThemeUpgradable = {
+/** @returns {ThemeUpgradableResponse} */
+declare function ThemeUpgradableResponse(): ThemeUpgradableResponse;
+type ThemeUpgradableResponse = {
     /**
      * - Indicates if the theme is upgradable or not
      */
     upgrade?: boolean;
-    /**
-     * - Information about theme versions.
-     */
     versions?: any;
     /**
      * - A message describing the theme upgrade status
@@ -1939,9 +1926,9 @@ type ThemeVersions = {
      */
     applied_theme?: string;
 };
-/** @returns {DummyTheme} */
-declare function DummyTheme(): DummyTheme;
-type DummyTheme = {
+/** @returns {DummyResponse} */
+declare function DummyResponse(): DummyResponse;
+type DummyResponse = {
     message?: string;
 };
 /** @returns {AppliedThemes} */

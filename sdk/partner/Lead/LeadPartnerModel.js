@@ -44,7 +44,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GeneralConfigResponseSchema
+ * @typedef GeneralConfigResponse
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -286,8 +286,8 @@ class LeadPartnerModel {
     });
   }
 
-  /** @returns {GeneralConfigResponseSchema} */
-  static GeneralConfigResponseSchema() {
+  /** @returns {GeneralConfigResponse} */
+  static GeneralConfigResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       support_communication: Joi.array().items(
@@ -389,12 +389,12 @@ class LeadPartnerModel {
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
-      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      created_by: Joi.any(),
       status: Joi.string().allow(""),
       priority: Joi.string().allow(""),
       category: Joi.string().allow("").required(),
       content: LeadPartnerModel.TicketContent().required(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
     });
   }
 
@@ -426,9 +426,9 @@ class LeadPartnerModel {
   /** @returns {FeedbackForm} */
   static FeedbackForm() {
     return Joi.object({
-      inputs: Joi.object().pattern(/\S/, Joi.any()),
+      inputs: Joi.any(),
       title: Joi.string().allow(""),
-      timestamps: Joi.object().pattern(/\S/, Joi.any()),
+      timestamps: Joi.any(),
     });
   }
 
@@ -471,13 +471,13 @@ class LeadPartnerModel {
       status: LeadPartnerModel.Status().required(),
       priority: LeadPartnerModel.Priority().required(),
       sla: LeadPartnerModel.SLA(),
-      created_by: Joi.object().pattern(/\S/, Joi.any()),
-      assigned_to: Joi.object().pattern(/\S/, Joi.any()),
+      created_by: Joi.any(),
+      assigned_to: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),
       subscribers: Joi.array().items(Joi.string().allow("")),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       is_feedback_pending: Joi.boolean(),
-      integration: Joi.object().pattern(/\S/, Joi.any()),
+      integration: Joi.any(),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

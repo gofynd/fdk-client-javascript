@@ -165,7 +165,7 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {string} attributeDefId - The unique identifier of the attribute
  *   definition to update.
  * @property {string} userId - The unique identifier of the user to update.
- * @property {UserPlatformModel.CreateUserAttributePayload} body
+ * @property {UserPlatformModel.CreateUserAttributeRequest} body
  */
 
 /**
@@ -395,7 +395,7 @@ class UserPlatformApplicationValidator {
       attributeDefId: Joi.string().allow("").required(),
       userId: Joi.string().allow("").required(),
 
-      body: UserPlatformModel.CreateUserAttributePayload().required(),
+      body: UserPlatformModel.CreateUserAttributeRequest().required(),
     }).required();
   }
 

@@ -101,7 +101,7 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema>}
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponse>}
    *   - Success response
    *
    * @name getSampleFileServiceabilityStatus
@@ -166,7 +166,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema().validate(
+    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -269,8 +269,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetBulkTatParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponse>} - Success response
    * @name getBulkTat
    * @summary: Get region tat bulk history
    * @description: Get region tat bulk history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkTat/).
@@ -364,10 +363,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.BulkRegionResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -469,8 +468,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetBulkServiceabilityParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponse>} - Success response
    * @name getBulkServiceability
    * @summary: Get Region Serviceability Bulk History
    * @description: Get Region Serviceability Bulk History - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkServiceability/).
@@ -568,10 +566,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.BulkRegionResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -674,7 +672,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetCourierPartnerAccountsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema>}
+   * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>}
    *   - Success response
    *
    * @name getCourierPartnerAccounts
@@ -759,7 +757,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema().validate(
+    } = LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -867,8 +865,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetCourierPartnerAccountParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
    * @name getCourierPartnerAccount
    * @summary: Getting Courier Account of a company from database.
    * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
@@ -926,10 +923,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.CourierAccountResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1031,7 +1028,7 @@ class Logistics {
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema>}
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequest>}
    *   - Success response
    *
    * @name updateCourierPartnerScheme
@@ -1091,7 +1088,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema().validate(
+    } = LogisticsPartnerModel.CourierPartnerSchemeUpdateRequest().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

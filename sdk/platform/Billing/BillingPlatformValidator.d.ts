@@ -1,28 +1,29 @@
 export = BillingPlatformValidator;
 /**
  * @typedef CancelSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} subscriptionId - The unique identifier of the subscription
+ * @property {string} extensionId - Extension _id
+ * @property {string} subscriptionId - Subscription charge _id
  */
 /**
  * @typedef CreateOneTimeChargeParam
- * @property {string} extensionId - The unique identifier of the extension
+ * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateOneTimeCharge} body
  */
 /**
  * @typedef CreateSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
+ * @property {string} extensionId - Extension Id for which we need to crete new
+ *   subscription
  * @property {BillingPlatformModel.CreateSubscriptionCharge} body
  */
 /**
  * @typedef GetChargeDetailsParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} chargeId - The unique identifier of the entity charge in the system.
+ * @property {string} extensionId - Extension _id
+ * @property {string} chargeId - Standalone charge _id
  */
 /**
  * @typedef GetSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} subscriptionId - The unique identifier of the subscription
+ * @property {string} extensionId - Extension _id
+ * @property {string} subscriptionId - Subscription charge _id
  */
 declare class BillingPlatformValidator {
     /** @returns {CancelSubscriptionChargeParam} */
@@ -41,45 +42,46 @@ declare namespace BillingPlatformValidator {
 }
 type CancelSubscriptionChargeParam = {
     /**
-     * - The unique identifier of the extension
+     * - Extension _id
      */
     extensionId: string;
     /**
-     * - The unique identifier of the subscription
+     * - Subscription charge _id
      */
     subscriptionId: string;
 };
 type CreateOneTimeChargeParam = {
     /**
-     * - The unique identifier of the extension
+     * - Extension _id
      */
     extensionId: string;
     body: BillingPlatformModel.CreateOneTimeCharge;
 };
 type CreateSubscriptionChargeParam = {
     /**
-     * - The unique identifier of the extension
+     * - Extension Id for which we need to crete new
+     * subscription
      */
     extensionId: string;
     body: BillingPlatformModel.CreateSubscriptionCharge;
 };
 type GetChargeDetailsParam = {
     /**
-     * - The unique identifier of the extension
+     * - Extension _id
      */
     extensionId: string;
     /**
-     * - The unique identifier of the entity charge in the system.
+     * - Standalone charge _id
      */
     chargeId: string;
 };
 type GetSubscriptionChargeParam = {
     /**
-     * - The unique identifier of the extension
+     * - Extension _id
      */
     extensionId: string;
     /**
-     * - The unique identifier of the subscription
+     * - Subscription charge _id
      */
     subscriptionId: string;
 };

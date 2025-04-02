@@ -19,7 +19,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.CreateRuleParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleSuccessResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleSuccessResponse>} - Success response
    * @name createRule
    * @summary: Create a new rule
    * @description: Create a new rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createRule/).
@@ -73,7 +73,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleSuccessResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleSuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -96,7 +96,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.DeleteRuleParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleSuccessResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleSuccessResponse>} - Success response
    * @name deleteRule
    * @summary: Delete a specific rule by ID
    * @description: Delete a specific rule by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/deleteRule/).
@@ -150,7 +150,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleSuccessResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleSuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -175,7 +175,7 @@ class Order {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
+   * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
    *   - Success response
    *
    * @name getApplicationShipments
@@ -297,7 +297,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema().validate(
+    } = OrderPlatformModel.ShipmentInternalPlatformViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -322,8 +322,7 @@ class Order {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
    * @name getPlatformShipmentReasons
    * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    * @description: Using action, get reasons behind full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
@@ -379,10 +378,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentReasonsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.ShipmentReasonsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -487,7 +486,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.GetRuleByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleResponse>} - Success response
    * @name getRuleById
    * @summary: Get a specific rule by ID
    * @description: Get a specific rule by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRuleById/).
@@ -541,7 +540,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -564,7 +563,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.GetRuleLaneConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.LaneRuleConfigSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleLaneConfigResponse>} - Success response
    * @name getRuleLaneConfig
    * @summary: Retrieve rule lane configurations
    * @description: Retrieve rule lane configurations - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRuleLaneConfig/).
@@ -621,7 +620,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.LaneRuleConfigSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleLaneConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -644,7 +643,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.GetRuleListParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleListResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleListResponse>} - Success response
    * @name getRuleList
    * @summary: Get a list of rules
    * @description: Get a list of rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRuleList/).
@@ -698,7 +697,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleListResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleListResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -721,8 +720,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.GetRuleParametersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleParametersResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.RuleParametersResponse>} - Success response
    * @name getRuleParameters
    * @summary: Get available rule parameters
    * @description: Get available rule parameters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRuleParameters/).
@@ -774,10 +772,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleParametersResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.RuleParametersResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -801,8 +799,8 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: Retrieve Reasons for Cancellation and Return journey
-   * @description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, lineNumber, bagId, requestHeaders } = { requestHeaders: {} },
@@ -964,7 +962,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.UpdateRuleParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleSuccessResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleSuccessResponse>} - Success response
    * @name updateRule
    * @summary: Update a specific rule by ID
    * @description: Update a specific rule by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateRule/).
@@ -1020,7 +1018,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleSuccessResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleSuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1043,7 +1041,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.UpdateRulePositionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.RuleListResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.RuleListResponse>} - Success response
    * @name updateRulePosition
    * @summary: Update the position of a rule
    * @description: Update the position of a rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateRulePosition/).
@@ -1099,7 +1097,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.RuleListResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.RuleListResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

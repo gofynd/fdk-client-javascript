@@ -15,19 +15,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef CreatePackageMaterialRuleParam
- * @property {ServiceabilityPlatformModel.PackageRuleRequestSchema} body
- */
-
-/**
- * @typedef DeletePackageMaterialRuleParam
- * @property {string} ruleId - A `package_material_rule_id` is a unique
- *   identifier for a Package Material Rule
- */
-
-/**
- * @typedef DeletePackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
  */
 
 /** @typedef GetCompanyConfigurationParam */
@@ -177,7 +165,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef UpdatePackageMaterialRuleParam
  * @property {string} ruleId - A `package_material_rule_id` is a unique
  *   identifier for a Package Material Rule
- * @property {ServiceabilityPlatformModel.PackageRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
  */
 
 /**
@@ -191,7 +179,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef ValidateAddressParam
  * @property {string} countryIsoCode - The ISO code of the country.
  * @property {string} templateName - The type of address form.
- * @property {ServiceabilityPlatformModel.ValidateAddressRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ValidateAddressRequest} body
  */
 
 class ServiceabilityPlatformValidator {
@@ -213,21 +201,7 @@ class ServiceabilityPlatformValidator {
   /** @returns {CreatePackageMaterialRuleParam} */
   static createPackageMaterialRule() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PackageRuleRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {DeletePackageMaterialRuleParam} */
-  static deletePackageMaterialRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeletePackageMaterialsParam} */
-  static deletePackageMaterials() {
-    return Joi.object({
-      packageMaterialId: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.PackageRuleRequest().required(),
     }).required();
   }
 
@@ -401,7 +375,7 @@ class ServiceabilityPlatformValidator {
   static updatePackageMaterialRule() {
     return Joi.object({
       ruleId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.PackageRuleRequestSchema().required(),
+      body: ServiceabilityPlatformModel.PackageRuleRequest().required(),
     }).required();
   }
 
@@ -418,7 +392,7 @@ class ServiceabilityPlatformValidator {
     return Joi.object({
       countryIsoCode: Joi.string().allow("").required(),
       templateName: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.ValidateAddressRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ValidateAddressRequest().required(),
     }).required();
   }
 }

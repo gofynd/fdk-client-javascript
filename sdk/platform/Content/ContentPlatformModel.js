@@ -46,6 +46,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PathSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
+ */
+
+/**
  * @typedef SeoComponent
  * @property {SeoSchema} [seo]
  */
@@ -202,7 +208,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BlogGetResponseSchema
+ * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
  * @property {BlogFilters} [filters]
@@ -301,57 +307,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DefaultSitemapIndividualConfig
- * @property {boolean} [enabled] - Whether sitemap configuration is enabled or
- *   not for this sitemap configuration
- */
-
-/**
- * @typedef DefaultSitemapConfig
- * @property {DefaultSitemapIndividualConfig} [root]
- * @property {DefaultSitemapIndividualConfig} [brand]
- * @property {DefaultSitemapIndividualConfig} [collections]
- * @property {DefaultSitemapIndividualConfig} [category_l1]
- * @property {DefaultSitemapIndividualConfig} [category_l2]
- * @property {DefaultSitemapIndividualConfig} [category_l3]
- * @property {DefaultSitemapIndividualConfig} [pages]
- * @property {DefaultSitemapIndividualConfig} [blog]
- * @property {DefaultSitemapIndividualConfig} [section]
- * @property {DefaultSitemapIndividualConfig} [faq]
- * @property {DefaultSitemapIndividualConfig} [sitemap]
- */
-
-/**
- * @typedef SitemapConfigCreate
- * @property {string} [name] - Unique identifier for the sitemap configuration
- * @property {boolean} [is_active] - Indicates if the sitemap configuration is active
- * @property {string} [sitemap] - XML string containing sitemap data in base64 encoding
- */
-
-/**
- * @typedef SitemapConfig
- * @property {string} [name] - Unique identifier for the sitemap configuration
- * @property {boolean} [is_active] - Indicates if the sitemap configuration is
- *   active or not in storefront
- * @property {string} [sitemap] - XML string containing sitemap data in base64 encoding
- * @property {string} [created_at] - Timestamp when the configuration was created
- * @property {string} [updated_at] - Timestamp when the configuration was last updated
- */
-
-/**
- * @typedef SitemapConfigurationList
- * @property {SitemapConfig[]} [items] - List of all Sitemap configurations
- * @property {Page} [page]
- */
-
-/**
- * @typedef SitemapConfigUpdate
- * @property {boolean} [is_active] - Indicates if the sitemap configuration is active
- * @property {string} [sitemap] - XML string containing sitemap data
- */
-
-/**
- * @typedef BlogRequestSchema
+ * @typedef BlogRequest
  * @property {string} [application]
  * @property {Object} [_custom_json]
  * @property {Author} [author]
@@ -542,7 +498,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TagDeleteSuccessResponseSchema
+ * @typedef TagDeleteSuccessResponse
  * @property {boolean} [success]
  */
 
@@ -555,6 +511,11 @@ const Joi = require("joi");
  * @property {string} [request_id]
  * @property {string} [stack_trace]
  * @property {Object} [meta]
+ */
+
+/**
+ * @typedef CommonError
+ * @property {string} [message]
  */
 
 /**
@@ -670,7 +631,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef LandingPageGetResponseSchema
+ * @typedef LandingPageGetResponse
  * @property {LandingPageSchema[]} [items]
  * @property {Page} [page]
  */
@@ -689,12 +650,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DefaultNavigationResponseSchema
+ * @typedef DefaultNavigationResponse
  * @property {NavigationSchema[]} [items]
  */
 
 /**
- * @typedef NavigationGetResponseSchema
+ * @typedef NavigationGetResponse
  * @property {NavigationSchema[]} [items]
  * @property {Page} [page]
  */
@@ -723,7 +684,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NavigationRequestSchema
+ * @typedef NavigationRequest
  * @property {string} [name]
  * @property {string} [slug]
  * @property {string[]} [platform]
@@ -740,7 +701,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PageGetResponseSchema
+ * @typedef PageGetResponse
  * @property {PageSchema[]} [items]
  * @property {Page} [page]
  */
@@ -818,7 +779,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PageRequestSchema
+ * @typedef PageRequestVisibility
+ * @property {boolean} [test]
+ */
+
+/**
+ * @typedef PageRequest
  * @property {CronSchedule} [_schedule]
  * @property {string} [application]
  * @property {Author} [author]
@@ -848,7 +814,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PagePublishRequestSchema
+ * @typedef PagePublishRequest
  * @property {boolean} [publish]
  */
 
@@ -974,20 +940,56 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FieldDefinitionSchema
+ * @typedef ApplicationFieldDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
  * @property {string} [resource]
  * @property {string} [name]
  * @property {string} [namespace]
- * @property {string} [slug]
+ * @property {string} [key]
  * @property {string} [description]
  * @property {string} [type]
  * @property {boolean} [multi_value]
  * @property {FieldValidations[]} [validations]
  * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
  * @property {boolean} [required]
  * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  * @property {string} [type_name]
  * @property {number} [invalid_fields_count]
+ * @property {string} [application_id]
+ */
+
+/**
+ * @typedef FieldDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [type_name]
+ * @property {number} [invalid_fields_count]
+ */
+
+/**
+ * @typedef ApplicationCustomFieldDefinitionsSchema
+ * @property {ApplicationFieldDefinitionSchema[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -1002,7 +1004,6 @@ const Joi = require("joi");
  * @property {string} [type]
  * @property {string} [key]
  * @property {string} [namespace]
- * @property {string} [slug]
  * @property {boolean} [multi_value]
  * @property {string} [name]
  * @property {string} [description]
@@ -1081,6 +1082,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomFieldsResponseSchema
+ * @property {CustomFieldSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CustomFieldsDeleteSchema
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+
+/**
  * @typedef CustomFieldsResponseByResourceIdSchema
  * @property {CustomFieldSchema[]} [items]
  */
@@ -1092,7 +1105,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomObjectSchema
- * @property {string} [id]
+ * @property {string} [_id]
  * @property {string} [name]
  * @property {string} [creator]
  * @property {string} [company_id]
@@ -1110,19 +1123,83 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomObjectApplicationSchema
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [creator]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {string} [status]
+ * @property {string} [slug]
+ * @property {string} [type]
+ * @property {string} [display_name]
+ * @property {string} [definition_id]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {CustomFieldSchema[]} [fields]
+ */
+
+/**
  * @typedef CustomObjectDefinitionRequestSchema
  * @property {string} [type]
  * @property {string} [description]
- * @property {string} [slug]
  * @property {string} [name]
  * @property {string} [display_name_key]
  * @property {CustomObjectCustomFieldDefinitions[]} [field_definitions]
  */
 
 /**
+ * @typedef CustomObjectCustomFieldDefinitionResSchema
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} type
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [metaobject_definition_id]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [application_id]
+ */
+
+/**
+ * @typedef CustomObjectDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [display_name_key]
+ * @property {string} [description]
+ * @property {string} [creator]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {string} [application_id]
+ * @property {string} [company_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {CustomObjectCustomFieldDefinitionResSchema[]} [field_definitions]
+ */
+
+/**
  * @typedef CustomObjectDefinitionDeleteResponseSchema
  * @property {boolean} [success]
  * @property {string} [message]
+ */
+
+/**
+ * @typedef CustomObjectEntryBulkUploadResponse
+ * @property {string} [message]
+ * @property {string} [task_id]
  */
 
 /**
@@ -1137,7 +1214,6 @@ const Joi = require("joi");
  * @typedef CustomObjectListItemSchema
  * @property {string} [_id]
  * @property {string} [definition_id]
- * @property {string} [type]
  * @property {string} [status]
  * @property {string} [slug]
  * @property {string} [updated_at]
@@ -1153,8 +1229,27 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomObjectFieldSchema
+ * @property {string} [_id]
+ * @property {string} [key]
+ * @property {string} [type]
+ * @property {string} [definition_id]
+ */
+
+/**
  * @typedef MetafieldTypesSchema
  * @property {CustomFieldTypeSchema} [metafield_types]
+ */
+
+/**
+ * @typedef CustomObjectByIdSchema
+ * @property {string} [_id]
+ * @property {string} [status]
+ * @property {string} [slug]
+ * @property {string} [display_name]
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {Object[]} [references]
+ * @property {CustomObjectFieldSchema[]} [fields]
  */
 
 /**
@@ -1193,6 +1288,12 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {string} [application_id]
+ */
+
+/**
+ * @typedef CustomFieldBulkEntry
+ * @property {JobSchema[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -1364,12 +1465,12 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomObjectEntry
+ * @property {string} [_id]
  * @property {string} [name]
  * @property {string} [type]
  * @property {string} [updated_at]
  * @property {number} [entries_count]
  * @property {number} [fields_count]
- * @property {string} [slug]
  */
 
 /**
@@ -1379,90 +1480,22 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomObjectEntryFieldSchema
+ * @property {string} [definition_id]
+ */
+
+/**
+ * @typedef CustomObjectRequestSchema
+ * @property {string} [status]
+ * @property {string} [slug]
+ * @property {string} [definition_id]
+ * @property {CustomObjectEntryFieldSchema[]} [fields]
+ */
+
+/**
  * @typedef CustomObjectBulkSchema
  * @property {string} [url]
  * @property {number} [total_records]
- */
-
-/**
- * @typedef MetaFieldDefinitionDetailResSchema
- * @property {string} [resource] - Resource to which meta field is associated
- * @property {string} [name] - Name of meta field
- * @property {string} [namespace] - Namespace of meta field
- * @property {string} [slug] - Slug of meta field
- * @property {string} [description] - Description regarding meta field
- * @property {string} [type] - Data type of meta field
- * @property {boolean} [multi_value] - Flag to denote whether meta field is
- *   multi valued or not
- * @property {string} [company_id] - Company Identifer
- * @property {string} [application_id] - Sales channel identifier
- * @property {boolean} [required] - Whether the field is required or not
- * @property {boolean} [is_deleted] - Is meta field deleted
- * @property {string} [id] - Unique system generated id
- * @property {Object[]} [validations]
- * @property {string} [created_at] - Date time at which field was created
- * @property {string} [updated_at] - Date time at for a field's last modification
- */
-
-/**
- * @typedef CustomObjectDefinitionSlugSchema
- * @property {string} [id] - Unique system generated custom object definition id
- * @property {string} [name] - Display name of custom object definition
- * @property {string} [type] - Type of custom object definiton
- * @property {string} [slug] - Slug of custom object definiton
- * @property {string} [display_name_key] - Display name of custom object definition
- * @property {string} [description] - Description of custom object definition
- * @property {CustomFieldDefinitionDetailResSchema[]} [field_definitions] -
- *   Custom fields inside custom objects
- */
-
-/**
- * @typedef CustomObjectEntryFieldSchemaWithoutID
- * @property {string} [slug] - Custom fields belonging to a custom object
- */
-
-/**
- * @typedef CustomObjectRequestSchemaWithoutId
- * @property {string} [slug]
- * @property {string} [status] - Status of the custom object entry.
- * @property {CustomObjectEntryFieldSchemaWithoutID[]} [fields] - List of custom fields
- */
-
-/**
- * @typedef CustomObjectListItemDefinitionModel
- * @property {string} [id] - Unique system generated id
- * @property {string} [name] - Name of custom object
- * @property {string} [type] - Type of custom object entry
- */
-
-/**
- * @typedef CustomObjectFieldDefinition
- * @property {string} [id] - Unique system generate id
- * @property {string} [slug] - Slug of custom field definition
- * @property {string} [namespace] - Namespace of custom field definition
- * @property {string} [type] - Data type of the custom field
- */
-
-/**
- * @typedef CustomObjectBySlugSchema
- * @property {string} [id] - Unique system generated identifer for a Custom Object
- * @property {string} [status] - Status of Custom Object
- * @property {string} [display_name] - Display name for the Custom Object
- * @property {CustomObjectListItemDefinitionModel} [definition]
- * @property {Object[]} [references] - Places where the custom object has been
- *   used as a custom field
- * @property {string} [slug] - Slug of custom object entry
- * @property {string} [definition_slug] - Slug of custom object definition
- * @property {CustomObjectFieldDefinition[]} [fields] - List of custom fields
- *   inside the custom object
- */
-
-/**
- * @typedef CustomObjectEntryBulkUploadDetails
- * @property {string} [url] - Signed url of csv
- * @property {number} [total_records] - Total no of records in csv file
- * @property {string} [message]
- * @property {string} [task_id]
  */
 
 /**
@@ -1577,6 +1610,14 @@ class ContentPlatformModel {
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       __v: Joi.number(),
+    });
+  }
+
+  /** @returns {PathSourceSchema} */
+  static PathSourceSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -1776,8 +1817,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {BlogGetResponseSchema} */
-  static BlogGetResponseSchema() {
+  /** @returns {BlogGetResponse} */
+  static BlogGetResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.BlogSchema()),
       page: ContentPlatformModel.Page(),
@@ -1822,7 +1863,7 @@ class ContentPlatformModel {
   static BlogSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       application: Joi.string().allow(""),
       archived: Joi.boolean(),
       author: ContentPlatformModel.Author(),
@@ -1901,71 +1942,11 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {DefaultSitemapIndividualConfig} */
-  static DefaultSitemapIndividualConfig() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-    });
-  }
-
-  /** @returns {DefaultSitemapConfig} */
-  static DefaultSitemapConfig() {
-    return Joi.object({
-      root: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      brand: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      collections: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      category_l1: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      category_l2: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      category_l3: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      pages: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      blog: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      section: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      faq: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-      sitemap: ContentPlatformModel.DefaultSitemapIndividualConfig(),
-    });
-  }
-
-  /** @returns {SitemapConfigCreate} */
-  static SitemapConfigCreate() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      sitemap: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SitemapConfig} */
-  static SitemapConfig() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      sitemap: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SitemapConfigurationList} */
-  static SitemapConfigurationList() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.SitemapConfig()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {SitemapConfigUpdate} */
-  static SitemapConfigUpdate() {
-    return Joi.object({
-      is_active: Joi.boolean(),
-      sitemap: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BlogRequestSchema} */
-  static BlogRequestSchema() {
+  /** @returns {BlogRequest} */
+  static BlogRequest() {
     return Joi.object({
       application: Joi.string().allow(""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       author: ContentPlatformModel.Author(),
       content: Joi.array().items(ContentPlatformModel.ResourceContent()),
       feature_image: ContentPlatformModel.Asset(),
@@ -2101,7 +2082,7 @@ class ContentPlatformModel {
   static HandpickedTagSchema() {
     return Joi.object({
       position: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.any(),
       name: Joi.string().allow(""),
       url: Joi.string().allow(""),
       type: Joi.string().allow(""),
@@ -2126,7 +2107,7 @@ class ContentPlatformModel {
       type: Joi.string().allow(""),
       url: Joi.string().allow(""),
       position: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.any(),
       pages: Joi.array().items(Joi.any()),
       content: Joi.string().allow(""),
     });
@@ -2183,7 +2164,7 @@ class ContentPlatformModel {
   /** @returns {DataLoadersApiSpecSchema} */
   static DataLoadersApiSpecSchema() {
     return Joi.object({
-      info: Joi.object().pattern(/\S/, Joi.any()),
+      info: Joi.any(),
       servers: Joi.array().items(ContentPlatformModel.ServerSchema()),
       tags: Joi.array().items(ContentPlatformModel.TagSpecSchema()),
       openapi: Joi.string().allow(""),
@@ -2198,8 +2179,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {TagDeleteSuccessResponseSchema} */
-  static TagDeleteSuccessResponseSchema() {
+  /** @returns {TagDeleteSuccessResponse} */
+  static TagDeleteSuccessResponse() {
     return Joi.object({
       success: Joi.boolean(),
     });
@@ -2214,7 +2195,14 @@ class ContentPlatformModel {
       exception: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
+    });
+  }
+
+  /** @returns {CommonError} */
+  static CommonError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -2229,7 +2217,7 @@ class ContentPlatformModel {
       slug: Joi.string().allow(""),
       application: Joi.string().allow(""),
       icon_url: Joi.string().allow(""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       __v: Joi.number(),
     });
   }
@@ -2360,8 +2348,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {LandingPageGetResponseSchema} */
-  static LandingPageGetResponseSchema() {
+  /** @returns {LandingPageGetResponse} */
+  static LandingPageGetResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.LandingPageSchema()),
       page: ContentPlatformModel.Page(),
@@ -2378,20 +2366,20 @@ class ContentPlatformModel {
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
       archived: Joi.boolean(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       __v: Joi.number(),
     });
   }
 
-  /** @returns {DefaultNavigationResponseSchema} */
-  static DefaultNavigationResponseSchema() {
+  /** @returns {DefaultNavigationResponse} */
+  static DefaultNavigationResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.NavigationSchema()),
     });
   }
 
-  /** @returns {NavigationGetResponseSchema} */
-  static NavigationGetResponseSchema() {
+  /** @returns {NavigationGetResponse} */
+  static NavigationGetResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.NavigationSchema()),
       page: ContentPlatformModel.Page(),
@@ -2427,8 +2415,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {NavigationRequestSchema} */
-  static NavigationRequestSchema() {
+  /** @returns {NavigationRequest} */
+  static NavigationRequest() {
     return Joi.object({
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
@@ -2450,8 +2438,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {PageGetResponseSchema} */
-  static PageGetResponseSchema() {
+  /** @returns {PageGetResponse} */
+  static PageGetResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.PageSchema()),
       page: ContentPlatformModel.Page(),
@@ -2550,13 +2538,20 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {PageRequestSchema} */
-  static PageRequestSchema() {
+  /** @returns {PageRequestVisibility} */
+  static PageRequestVisibility() {
+    return Joi.object({
+      test: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PageRequest} */
+  static PageRequest() {
     return Joi.object({
       _schedule: ContentPlatformModel.CronSchedule(),
       application: Joi.string().allow(""),
       author: ContentPlatformModel.Author(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       orientation: Joi.string().allow(""),
       content: Joi.array().items(ContentPlatformModel.PageContent()),
       feature_image: ContentPlatformModel.Asset(),
@@ -2569,7 +2564,7 @@ class ContentPlatformModel {
       platform: Joi.string().allow(""),
       type: Joi.string().allow(""),
       description: Joi.string().allow(""),
-      visibility: Joi.object().pattern(/\S/, Joi.any()),
+      visibility: Joi.any(),
     });
   }
 
@@ -2584,8 +2579,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {PagePublishRequestSchema} */
-  static PagePublishRequestSchema() {
+  /** @returns {PagePublishRequest} */
+  static PagePublishRequest() {
     return Joi.object({
       publish: Joi.boolean(),
     });
@@ -2706,7 +2701,7 @@ class ContentPlatformModel {
       sub_type: Joi.string().allow(""),
       _id: Joi.string().allow(""),
       position: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.any(),
       content: Joi.string().allow(""),
       compatible_engines: Joi.array().items(Joi.any()),
       pages: Joi.array().items(Joi.any()),
@@ -2746,22 +2741,64 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {FieldDefinitionSchema} */
-  static FieldDefinitionSchema() {
+  /** @returns {ApplicationFieldDefinitionSchema} */
+  static ApplicationFieldDefinitionSchema() {
     return Joi.object({
+      _id: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
       resource: Joi.string().allow(""),
       name: Joi.string().allow(""),
       namespace: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
+      key: Joi.string().allow(""),
       description: Joi.string().allow(""),
       type: Joi.string().allow(""),
       multi_value: Joi.boolean(),
       validations: Joi.array().items(ContentPlatformModel.FieldValidations()),
       company_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
       required: Joi.boolean(),
       is_deleted: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
       type_name: Joi.string().allow(""),
       invalid_fields_count: Joi.number(),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FieldDefinitionSchema} */
+  static FieldDefinitionSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      multi_value: Joi.boolean(),
+      validations: Joi.array().items(ContentPlatformModel.FieldValidations()),
+      company_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      required: Joi.boolean(),
+      is_deleted: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      type_name: Joi.string().allow(""),
+      invalid_fields_count: Joi.number(),
+    });
+  }
+
+  /** @returns {ApplicationCustomFieldDefinitionsSchema} */
+  static ApplicationCustomFieldDefinitionsSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        ContentPlatformModel.ApplicationFieldDefinitionSchema()
+      ),
+      page: ContentPlatformModel.Page(),
     });
   }
 
@@ -2780,7 +2817,6 @@ class ContentPlatformModel {
       type: Joi.string().allow(""),
       key: Joi.string().allow(""),
       namespace: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
       multi_value: Joi.boolean(),
       name: Joi.string().allow(""),
       description: Joi.string().allow(""),
@@ -2871,6 +2907,22 @@ class ContentPlatformModel {
     });
   }
 
+  /** @returns {CustomFieldsResponseSchema} */
+  static CustomFieldsResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.CustomFieldSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CustomFieldsDeleteSchema} */
+  static CustomFieldsDeleteSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CustomFieldsResponseByResourceIdSchema} */
   static CustomFieldsResponseByResourceIdSchema() {
     return Joi.object({
@@ -2888,10 +2940,32 @@ class ContentPlatformModel {
   /** @returns {CustomObjectSchema} */
   static CustomObjectSchema() {
     return Joi.object({
-      id: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       creator: Joi.string().allow(""),
       company_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+      is_deleted: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      fields: Joi.array().items(ContentPlatformModel.CustomFieldSchema()),
+    });
+  }
+
+  /** @returns {CustomObjectApplicationSchema} */
+  static CustomObjectApplicationSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
       created_by: Joi.string().allow(""),
       updated_by: Joi.string().allow(""),
       status: Joi.string().allow(""),
@@ -2911,11 +2985,55 @@ class ContentPlatformModel {
     return Joi.object({
       type: Joi.string().allow(""),
       description: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
       name: Joi.string().allow(""),
       display_name_key: Joi.string().allow(""),
       field_definitions: Joi.array().items(
         ContentPlatformModel.CustomObjectCustomFieldDefinitions()
+      ),
+    });
+  }
+
+  /** @returns {CustomObjectCustomFieldDefinitionResSchema} */
+  static CustomObjectCustomFieldDefinitionResSchema() {
+    return Joi.object({
+      creator: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      type: Joi.string().allow("").required(),
+      multi_value: Joi.boolean(),
+      validations: Joi.array().items(ContentPlatformModel.FieldValidations()),
+      company_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      metaobject_definition_id: Joi.string().allow(""),
+      required: Joi.boolean(),
+      is_deleted: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectDefinitionSchema} */
+  static CustomObjectDefinitionSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      display_name_key: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      field_definitions: Joi.array().items(
+        ContentPlatformModel.CustomObjectCustomFieldDefinitionResSchema()
       ),
     });
   }
@@ -2925,6 +3043,14 @@ class ContentPlatformModel {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectEntryBulkUploadResponse} */
+  static CustomObjectEntryBulkUploadResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      task_id: Joi.string().allow(""),
     });
   }
 
@@ -2943,7 +3069,6 @@ class ContentPlatformModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       definition_id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -2963,10 +3088,33 @@ class ContentPlatformModel {
     });
   }
 
+  /** @returns {CustomObjectFieldSchema} */
+  static CustomObjectFieldSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {MetafieldTypesSchema} */
   static MetafieldTypesSchema() {
     return Joi.object({
       metafield_types: ContentPlatformModel.CustomFieldTypeSchema(),
+    });
+  }
+
+  /** @returns {CustomObjectByIdSchema} */
+  static CustomObjectByIdSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      definition: ContentPlatformModel.CustomObjectListItemDefinationSchema(),
+      references: Joi.array().items(Joi.any()),
+      fields: Joi.array().items(ContentPlatformModel.CustomObjectFieldSchema()),
     });
   }
 
@@ -3011,6 +3159,14 @@ class ContentPlatformModel {
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomFieldBulkEntry} */
+  static CustomFieldBulkEntry() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.JobSchema()),
+      page: ContentPlatformModel.Page(),
     });
   }
 
@@ -3250,12 +3406,12 @@ class ContentPlatformModel {
   /** @returns {CustomObjectEntry} */
   static CustomObjectEntry() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       type: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       entries_count: Joi.number(),
       fields_count: Joi.number(),
-      slug: Joi.string().allow(""),
     });
   }
 
@@ -3267,110 +3423,30 @@ class ContentPlatformModel {
     });
   }
 
+  /** @returns {CustomObjectEntryFieldSchema} */
+  static CustomObjectEntryFieldSchema() {
+    return Joi.object({
+      definition_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectRequestSchema} */
+  static CustomObjectRequestSchema() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+      fields: Joi.array().items(
+        ContentPlatformModel.CustomObjectEntryFieldSchema()
+      ),
+    });
+  }
+
   /** @returns {CustomObjectBulkSchema} */
   static CustomObjectBulkSchema() {
     return Joi.object({
       url: Joi.string().allow(""),
       total_records: Joi.number(),
-    });
-  }
-
-  /** @returns {MetaFieldDefinitionDetailResSchema} */
-  static MetaFieldDefinitionDetailResSchema() {
-    return Joi.object({
-      resource: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      namespace: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      multi_value: Joi.boolean(),
-      company_id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      required: Joi.boolean(),
-      is_deleted: Joi.boolean(),
-      id: Joi.string().allow(""),
-      validations: Joi.array().items(Joi.any()),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CustomObjectDefinitionSlugSchema} */
-  static CustomObjectDefinitionSlugSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      display_name_key: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      field_definitions: Joi.array().items(
-        ContentPlatformModel.CustomFieldDefinitionDetailResSchema()
-      ),
-    });
-  }
-
-  /** @returns {CustomObjectEntryFieldSchemaWithoutID} */
-  static CustomObjectEntryFieldSchemaWithoutID() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CustomObjectRequestSchemaWithoutId} */
-  static CustomObjectRequestSchemaWithoutId() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      fields: Joi.array().items(
-        ContentPlatformModel.CustomObjectEntryFieldSchemaWithoutID()
-      ),
-    });
-  }
-
-  /** @returns {CustomObjectListItemDefinitionModel} */
-  static CustomObjectListItemDefinitionModel() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CustomObjectFieldDefinition} */
-  static CustomObjectFieldDefinition() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      namespace: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CustomObjectBySlugSchema} */
-  static CustomObjectBySlugSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      definition: ContentPlatformModel.CustomObjectListItemDefinitionModel(),
-      references: Joi.array().items(Joi.any()),
-      slug: Joi.string().allow(""),
-      definition_slug: Joi.string().allow(""),
-      fields: Joi.array().items(
-        ContentPlatformModel.CustomObjectFieldDefinition()
-      ),
-    });
-  }
-
-  /** @returns {CustomObjectEntryBulkUploadDetails} */
-  static CustomObjectEntryBulkUploadDetails() {
-    return Joi.object({
-      url: Joi.string().allow(""),
-      total_records: Joi.number(),
-      message: Joi.string().allow(""),
-      task_id: Joi.string().allow(""),
     });
   }
 
