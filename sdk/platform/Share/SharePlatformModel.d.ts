@@ -1,5 +1,10 @@
 export = SharePlatformModel;
 /**
+ * @typedef ClickStatsResponse
+ * @property {ClickStatsItem[]} click_stats - An array of click statistics for
+ *   the short link.
+ */
+/**
  * @typedef ClickStatsItem
  * @property {string} display - The display name of the click statistic.
  * @property {number} total - The total number of clicks for the statistic.
@@ -53,7 +58,9 @@ export = SharePlatformModel;
  */
 /**
  * @typedef UrlInfo
+ * @property {string} [original]
  * @property {string} [hash]
+ * @property {string} [short_url]
  */
 /**
  * @typedef ShortLinkRes
@@ -87,8 +94,6 @@ export = SharePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
- * @property {number} [page] - Current page number
  */
 /**
  * @typedef ShortLinkList
@@ -102,8 +107,17 @@ export = SharePlatformModel;
 declare class SharePlatformModel {
 }
 declare namespace SharePlatformModel {
-    export { ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
+    export { ClickStatsResponse, ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
 }
+/** @returns {ClickStatsResponse} */
+declare function ClickStatsResponse(): ClickStatsResponse;
+type ClickStatsResponse = {
+    /**
+     * - An array of click statistics for
+     * the short link.
+     */
+    click_stats: ClickStatsItem[];
+};
 /** @returns {ClickStatsItem} */
 declare function ClickStatsItem(): ClickStatsItem;
 type ClickStatsItem = {
@@ -182,7 +196,9 @@ type ShortLinkReq = {
 /** @returns {UrlInfo} */
 declare function UrlInfo(): UrlInfo;
 type UrlInfo = {
+    original?: string;
     hash?: string;
+    short_url?: string;
 };
 /** @returns {ShortLinkRes} */
 declare function ShortLinkRes(): ShortLinkRes;
@@ -242,14 +258,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
-    /**
-     * - Current page number
-     */
-    page?: number;
 };
 /** @returns {ShortLinkList} */
 declare function ShortLinkList(): ShortLinkList;

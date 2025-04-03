@@ -25,7 +25,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef EditTicketParam
+ * @typedef EditNewTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -38,23 +38,23 @@ const LeadPlatformModel = require("./LeadPlatformModel");
 /** @typedef GetCustomFormsParam */
 
 /**
- * @typedef GetTicketParam
+ * @typedef GetNewTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 
 /**
- * @typedef GetTicketHistoryParam
+ * @typedef GetNewTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 
 /**
- * @typedef GetTicketsParam
+ * @typedef GetNewTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {string} [priority] - Filter tickets on priority
+ * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  */
 
@@ -89,8 +89,8 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {EditTicketParam} */
-  static editTicket() {
+  /** @returns {EditNewTicketParam} */
+  static editNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.EditTicketPayload().required(),
@@ -109,28 +109,28 @@ class LeadPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetTicketParam} */
-  static getTicket() {
+  /** @returns {GetNewTicketParam} */
+  static getNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetTicketHistoryParam} */
-  static getTicketHistory() {
+  /** @returns {GetNewTicketHistoryParam} */
+  static getNewTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetTicketsParam} */
-  static getTickets() {
+  /** @returns {GetNewTicketsParam} */
+  static getNewTickets() {
     return Joi.object({
       items: Joi.boolean(),
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: Joi.string().allow(""),
+      priority: LeadPlatformModel.PriorityEnum(),
       category: Joi.string().allow(""),
     }).required();
   }

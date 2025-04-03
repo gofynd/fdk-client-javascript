@@ -9,7 +9,8 @@ export = DiscountPlatformModel;
  * @property {string} name
  * @property {number} company_id
  * @property {boolean} is_active
- * @property {string} app_id
+ * @property {string[]} app_ids
+ * @property {string[]} [extension_ids]
  * @property {string} job_type
  * @property {string} discount_type
  * @property {string} discount_level
@@ -17,7 +18,7 @@ export = DiscountPlatformModel;
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
- * @property {string[]} [factory_type_ids]
+ * @property {string[]} [zone_ids]
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -36,15 +37,15 @@ export = DiscountPlatformModel;
  * @property {string} name
  * @property {number} company_id
  * @property {boolean} is_active
- * @property {string} app_id
- * @property {string} job_type
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
  * @property {string} [discount_type]
- * @property {string} discount_level
+ * @property {string} [discount_level]
  * @property {number} [value]
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
- * @property {string[]} [factory_type_ids]
+ * @property {string[]} [zone_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
  * @property {string} created_on
@@ -58,7 +59,7 @@ export = DiscountPlatformModel;
  * @property {string} [name]
  * @property {number} [company_id]
  * @property {boolean} [is_active]
- * @property {string} [app_id]
+ * @property {string[]} [app_ids]
  * @property {string} [job_type]
  * @property {string} [discount_type]
  * @property {string} [discount_level]
@@ -66,7 +67,8 @@ export = DiscountPlatformModel;
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
- * @property {string[]} [factory_type_ids]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} [validity]
  * @property {string} [created_on]
@@ -85,8 +87,6 @@ export = DiscountPlatformModel;
  * @property {string} [item_code]
  * @property {string} [brand_name]
  * @property {string} [seller_identifier]
- * @property {string} [store_code]
- * @property {string} [price_zone]
  * @property {string} discount_type
  * @property {number} value
  * @property {DiscountMeta} [discount_meta]
@@ -108,6 +108,8 @@ export = DiscountPlatformModel;
  * @property {string} _id - A unique identifier to distinguish and identify a job.
  * @property {string} [file_path]
  * @property {number} [progress]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
  * @property {string} [created_on]
  * @property {string} [modified_on]
  * @property {UserDetails} [created_by]
@@ -117,10 +119,10 @@ export = DiscountPlatformModel;
  * @property {string} name
  * @property {boolean} is_active
  * @property {number} company_id
- * @property {string} app_id
- * @property {string} job_type
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
  * @property {string} [discount_type]
- * @property {string} discount_level
+ * @property {string} [discount_level]
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
@@ -129,7 +131,8 @@ export = DiscountPlatformModel;
  */
 /**
  * @typedef DownloadFileJob
- * @property {string} app_id
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
  */
 /**
  * @typedef CancelJobResponse
@@ -144,7 +147,6 @@ export = DiscountPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef UserDetails
@@ -182,7 +184,8 @@ type CreateUpdateDiscount = {
     name: string;
     company_id: number;
     is_active: boolean;
-    app_id: string;
+    app_ids: string[];
+    extension_ids?: string[];
     job_type: string;
     discount_type: string;
     discount_level: string;
@@ -190,7 +193,7 @@ type CreateUpdateDiscount = {
     file_path?: string;
     brand_ids?: number[];
     store_ids?: number[];
-    factory_type_ids?: string[];
+    zone_ids?: string[];
     validity: ValidityObject;
     discount_meta?: DiscountMeta;
 };
@@ -220,15 +223,15 @@ type DiscountJob = {
     name: string;
     company_id: number;
     is_active: boolean;
-    app_id: string;
-    job_type: string;
+    app_ids?: string[];
+    job_type?: string;
     discount_type?: string;
-    discount_level: string;
+    discount_level?: string;
     value?: number;
     file_path?: string;
     brand_ids?: number[];
     store_ids?: number[];
-    factory_type_ids?: string[];
+    zone_ids?: string[];
     discount_meta?: DiscountMeta;
     validity: ValidityObject;
     created_on: string;
@@ -243,7 +246,7 @@ type FileJobBody = {
     name?: string;
     company_id?: number;
     is_active?: boolean;
-    app_id?: string;
+    app_ids?: string[];
     job_type?: string;
     discount_type?: string;
     discount_level?: string;
@@ -251,7 +254,8 @@ type FileJobBody = {
     file_path?: string;
     brand_ids?: number[];
     store_ids?: number[];
-    factory_type_ids?: string[];
+    extension_ids?: string[];
+    zone_ids?: string[];
     discount_meta?: DiscountMeta;
     validity?: ValidityObject;
     created_on?: string;
@@ -272,8 +276,6 @@ type DiscountItems = {
     item_code?: string;
     brand_name?: string;
     seller_identifier?: string;
-    store_code?: string;
-    price_zone?: string;
     discount_type: string;
     value: number;
     discount_meta?: DiscountMeta;
@@ -300,6 +302,8 @@ type FileJobResponse = {
     _id: string;
     file_path?: string;
     progress?: number;
+    extension_ids?: string[];
+    zone_ids?: string[];
     created_on?: string;
     modified_on?: string;
     created_by?: UserDetails;
@@ -310,10 +314,10 @@ type FileJobRequest = {
     name: string;
     is_active: boolean;
     company_id: number;
-    app_id: string;
-    job_type: string;
+    app_ids?: string[];
+    job_type?: string;
     discount_type?: string;
-    discount_level: string;
+    discount_level?: string;
     file_path?: string;
     brand_ids?: number[];
     store_ids?: number[];
@@ -323,7 +327,8 @@ type FileJobRequest = {
 /** @returns {DownloadFileJob} */
 declare function DownloadFileJob(): DownloadFileJob;
 type DownloadFileJob = {
-    app_id: string;
+    brand_ids?: number[];
+    store_ids?: number[];
 };
 /** @returns {CancelJobResponse} */
 declare function CancelJobResponse(): CancelJobResponse;
@@ -361,10 +366,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
 };
 /** @returns {UserDetails} */
 declare function UserDetails(): UserDetails;

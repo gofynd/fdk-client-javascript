@@ -19,21 +19,15 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef DeleteCustomFieldDefinitionParam
- * @property {string} id
- */
-/**
- * @typedef DeleteCustomFieldsByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
- * @property {string} ids
+ * @property {string} definitionId
  */
 /**
  * @typedef DeleteCustomObjectParam
- * @property {string} id
+ * @property {string} metaobjectId
  */
 /**
  * @typedef DeleteCustomObjectDefinitionParam
- * @property {string} id
+ * @property {string} definitionId
  */
 /**
  * @typedef ExportCustomObjectEntriesParam
@@ -41,22 +35,15 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef GetCustomFieldDefinitionParam
- * @property {string} id
+ * @property {string} definitionId
  */
 /**
  * @typedef GetCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resources]
- * @property {string} [types]
+ * @property {string} [resource]
+ * @property {string} [type]
  * @property {string} [search]
- * @property {string} [slugs]
- */
-/**
- * @typedef GetCustomFieldJobsParam
- * @property {string} page
- * @property {string} pageSize
- * @property {string} actionType
  */
 /** @typedef GetCustomFieldTypesParam */
 /**
@@ -70,11 +57,11 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef GetCustomObjectParam
- * @property {string} id
+ * @property {string} metaobjectId
  */
 /**
  * @typedef GetCustomObjectDefinitionParam
- * @property {string} id
+ * @property {string} definitionId
  */
 /**
  * @typedef GetCustomObjectDefinitionsParam
@@ -105,24 +92,18 @@ export = ContentPlatformValidator;
  * @property {string} definitionId
  */
 /**
- * @typedef UpdateCustomFieldByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
- * @property {ContentPlatformModel.CustomFieldRequestSchema} body
- */
-/**
  * @typedef UpdateCustomFieldDefinitionParam
- * @property {string} id
+ * @property {string} definitionId
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
  * @typedef UpdateCustomObjectParam
- * @property {string} id
+ * @property {string} metaobjectId
  * @property {ContentPlatformModel.CustomObjectRequestSchema} body
  */
 /**
  * @typedef UpdateCustomObjectDefinitionParam
- * @property {string} id
+ * @property {string} definitionId
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 declare class ContentPlatformValidator {
@@ -136,8 +117,6 @@ declare class ContentPlatformValidator {
     static createCustomObjectDefinition(): CreateCustomObjectDefinitionParam;
     /** @returns {DeleteCustomFieldDefinitionParam} */
     static deleteCustomFieldDefinition(): DeleteCustomFieldDefinitionParam;
-    /** @returns {DeleteCustomFieldsByResourceIdParam} */
-    static deleteCustomFieldsByResourceId(): DeleteCustomFieldsByResourceIdParam;
     /** @returns {DeleteCustomObjectParam} */
     static deleteCustomObject(): DeleteCustomObjectParam;
     /** @returns {DeleteCustomObjectDefinitionParam} */
@@ -148,8 +127,6 @@ declare class ContentPlatformValidator {
     static getCustomFieldDefinition(): GetCustomFieldDefinitionParam;
     /** @returns {GetCustomFieldDefinitionsParam} */
     static getCustomFieldDefinitions(): GetCustomFieldDefinitionsParam;
-    /** @returns {GetCustomFieldJobsParam} */
-    static getCustomFieldJobs(): GetCustomFieldJobsParam;
     /** @returns {GetCustomFieldTypesParam} */
     static getCustomFieldTypes(): any;
     /** @returns {GetCustomFieldsParam} */
@@ -172,8 +149,6 @@ declare class ContentPlatformValidator {
     static importCustomObjectEntries(): ImportCustomObjectEntriesParam;
     /** @returns {SampleCustomObjectBulkEntryParam} */
     static sampleCustomObjectBulkEntry(): SampleCustomObjectBulkEntryParam;
-    /** @returns {UpdateCustomFieldByResourceIdParam} */
-    static updateCustomFieldByResourceId(): UpdateCustomFieldByResourceIdParam;
     /** @returns {UpdateCustomFieldDefinitionParam} */
     static updateCustomFieldDefinition(): UpdateCustomFieldDefinitionParam;
     /** @returns {UpdateCustomObjectParam} */
@@ -182,7 +157,7 @@ declare class ContentPlatformValidator {
     static updateCustomObjectDefinition(): UpdateCustomObjectDefinitionParam;
 }
 declare namespace ContentPlatformValidator {
-    export { CreateCustomFieldByResourceIdParam, CreateCustomFieldDefinitionParam, CreateCustomObjectParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionParam, DeleteCustomFieldsByResourceIdParam, DeleteCustomObjectParam, DeleteCustomObjectDefinitionParam, ExportCustomObjectEntriesParam, GetCustomFieldDefinitionParam, GetCustomFieldDefinitionsParam, GetCustomFieldJobsParam, GetCustomFieldTypesParam, GetCustomFieldsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectParam, GetCustomObjectDefinitionParam, GetCustomObjectDefinitionsParam, GetCustomObjectsParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesParam, SampleCustomObjectBulkEntryParam, UpdateCustomFieldByResourceIdParam, UpdateCustomFieldDefinitionParam, UpdateCustomObjectParam, UpdateCustomObjectDefinitionParam };
+    export { CreateCustomFieldByResourceIdParam, CreateCustomFieldDefinitionParam, CreateCustomObjectParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionParam, DeleteCustomObjectParam, DeleteCustomObjectDefinitionParam, ExportCustomObjectEntriesParam, GetCustomFieldDefinitionParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectParam, GetCustomObjectDefinitionParam, GetCustomObjectDefinitionsParam, GetCustomObjectsParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesParam, SampleCustomObjectBulkEntryParam, UpdateCustomFieldDefinitionParam, UpdateCustomObjectParam, UpdateCustomObjectDefinitionParam };
 }
 type CreateCustomFieldByResourceIdParam = {
     resource: string;
@@ -199,37 +174,26 @@ type CreateCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionRequestSchema;
 };
 type DeleteCustomFieldDefinitionParam = {
-    id: string;
-};
-type DeleteCustomFieldsByResourceIdParam = {
-    resource: string;
-    resourceId: string;
-    ids: string;
+    definitionId: string;
 };
 type DeleteCustomObjectParam = {
-    id: string;
+    metaobjectId: string;
 };
 type DeleteCustomObjectDefinitionParam = {
-    id: string;
+    definitionId: string;
 };
 type ExportCustomObjectEntriesParam = {
     definitionId: string;
 };
 type GetCustomFieldDefinitionParam = {
-    id: string;
+    definitionId: string;
 };
 type GetCustomFieldDefinitionsParam = {
     pageNo: string;
     pageSize: string;
-    resources?: string;
-    types?: string;
+    resource?: string;
+    type?: string;
     search?: string;
-    slugs?: string;
-};
-type GetCustomFieldJobsParam = {
-    page: string;
-    pageSize: string;
-    actionType: string;
 };
 type GetCustomFieldsParam = {
     resource: string;
@@ -239,10 +203,10 @@ type GetCustomFieldsByResourceIdParam = {
     resourceId: string;
 };
 type GetCustomObjectParam = {
-    id: string;
+    metaobjectId: string;
 };
 type GetCustomObjectDefinitionParam = {
-    id: string;
+    definitionId: string;
 };
 type GetCustomObjectDefinitionsParam = {
     pageNo: string;
@@ -266,21 +230,16 @@ type ImportCustomObjectEntriesParam = {
 type SampleCustomObjectBulkEntryParam = {
     definitionId: string;
 };
-type UpdateCustomFieldByResourceIdParam = {
-    resource: string;
-    resourceId: string;
-    body: ContentPlatformModel.CustomFieldRequestSchema;
-};
 type UpdateCustomFieldDefinitionParam = {
-    id: string;
+    definitionId: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
 type UpdateCustomObjectParam = {
-    id: string;
+    metaobjectId: string;
     body: ContentPlatformModel.CustomObjectRequestSchema;
 };
 type UpdateCustomObjectDefinitionParam = {
-    id: string;
+    definitionId: string;
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
 type GetCustomFieldTypesParam = any;

@@ -11,13 +11,11 @@ declare class Payment {
         checkAndUpdatePaymentStatus: string;
         checkAndUpdatePaymentStatusPaymentLink: string;
         checkCredit: string;
-        confirmPayment: string;
         createOrderHandlerPaymentLink: string;
         createPaymentLink: string;
         createPaymentOrder: string;
         customerCreditSummary: string;
         customerOnboard: string;
-        deleteBeneficiaryDetails: string;
         deleteUserCard: string;
         delinkWallet: string;
         enableOrDisableRefundTransferMode: string;
@@ -25,19 +23,14 @@ declare class Payment {
         getActiveRefundTransferModes: string;
         getActiveUserCards: string;
         getAggregatorsConfig: string;
-        getBenficiaryOrder: string;
         getEpaylaterBannerDetails: string;
         getOrderBeneficiariesDetail: string;
         getPaymentLink: string;
-        getPaymentLinkId: string;
         getPaymentModeRoutes: string;
         getPaymentModeRoutesPaymentLink: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
-        getSelectedRefundOption: string;
         getUserBeneficiariesDetail: string;
-        getUserBeneficiariesDetailV2: string;
-        getotpOrderBeneficiariesDetail: string;
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
         linkWallet: string;
@@ -48,11 +41,7 @@ declare class Payment {
         renderHTML: string;
         resendOrCancelPayment: string;
         resendPaymentLink: string;
-        setRefundOptionforShipment: string;
-        updateActiveCards: string;
         updateDefaultBeneficiary: string;
-        updateUserCard: string;
-        validateBeneficiaryAddress: string;
         validateVPA: string;
         verifyAndChargePayment: string;
         verifyCustomerForPayment: string;
@@ -75,12 +64,12 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PostAddBeneficiaryDetailsOTPResponse>} - Success response
+     * @returns {Promise<RefundAccountResponse>} - Success response
      * @name addRefundBankAccountUsingOTP
-     * @summary: Save bank details for cancelled/returned order
+     * @summary: Add refund account using OTP verification
      * @description: Add bank account specifically for refunds, employing OTP verification for security. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
      */
-    addRefundBankAccountUsingOTP({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PostAddBeneficiaryDetailsOTPResponse>;
+    addRefundBankAccountUsingOTP({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundAccountResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -122,7 +111,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
      * @name checkAndUpdatePaymentStatusPaymentLink
-     * @summary: Performs continuous polling to check status of payment on the server
+     * @summary: Update payment link status
      * @description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
      */
     checkAndUpdatePaymentStatusPaymentLink({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentStatusUpdateResponse>;
@@ -138,18 +127,9 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentConfirmationResponse>} - Success response
-     * @name confirmPayment
-     * @summary: Confirm payment after successful payment from payment gateway
-     * @description: confirm payment after payment gateway accepted payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/confirmPayment/).
-     */
-    confirmPayment({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentConfirmationResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CreateOrderUserResponse>} - Success response
      * @name createOrderHandlerPaymentLink
-     * @summary: Order via link.
+     * @summary: Create order for payment via link
      * @description: Initiate the creation of an order handler for processing payments through a link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createOrderHandlerPaymentLink/).
      */
     createOrderHandlerPaymentLink({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CreateOrderUserResponse>;
@@ -158,7 +138,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CreatePaymentLinkResponse>} - Success response
      * @name createPaymentLink
-     * @summary: Create payment link.
+     * @summary: Create payment link
      * @description: Create new payment link for transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentLink/).
      */
     createPaymentLink({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CreatePaymentLinkResponse>;
@@ -176,7 +156,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
      * @name customerCreditSummary
-     * @summary: Credit summary.
+     * @summary: Credit summary
      * @description: Get summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerCreditSummary/).
      */
     customerCreditSummary({ aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomerCreditSummaryResponse>;
@@ -189,15 +169,6 @@ declare class Payment {
      * @description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerOnboard/).
      */
     customerOnboard({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomerOnboardingResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<DeleteRefundAccountResponse>} - Success response
-     * @name deleteBeneficiaryDetails
-     * @summary: Delete saved beneficiary details of customers
-     * @description: Use this API to delete the saved beneficiary details provided beneficiary Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteBeneficiaryDetails/).
-     */
-    deleteBeneficiaryDetails({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<DeleteRefundAccountResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -248,7 +219,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ListCardsResponse>} - Success response
      * @name getActiveUserCards
-     * @summary: List user's cards.
+     * @summary: Get customer cards
      * @description: List all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
      */
     getActiveUserCards({ forceRefresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ListCardsResponse>;
@@ -261,15 +232,6 @@ declare class Payment {
      * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
      */
     getAggregatorsConfig({ xApiToken, refresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AggregatorsConfigDetailResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RefundOrderBenResponse>} - Success response
-     * @name getBenficiaryOrder
-     * @summary: Get Payment status and information for a list of order_ids
-     * @description: Use this API to get Payment status and information for a list of order_ids. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getBenficiaryOrder/).
-     */
-    getBenficiaryOrder({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundOrderBenResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -293,19 +255,10 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GetPaymentLinkResponse>} - Success response
      * @name getPaymentLink
-     * @summary: Fetch payment link.
+     * @summary: Get payment link
      * @description: Get a generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLink/).
      */
     getPaymentLink({ paymentLinkId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetPaymentLinkResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetPaymentLinkResponse>} - Success response
-     * @name getPaymentLinkId
-     * @summary: Get payment link
-     * @description: get a payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLinkId/).
-     */
-    getPaymentLinkId({ id, paymentLinkId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetPaymentLinkResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -320,7 +273,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentModeRouteResponse>} - Success response
      * @name getPaymentModeRoutesPaymentLink
-     * @summary: Payment link modes.
+     * @summary: Payment modes for payment link
      * @description: List payment modes available for a given payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutesPaymentLink/).
      */
     getPaymentModeRoutesPaymentLink({ paymentLinkId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteResponse>;
@@ -338,19 +291,10 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<RupifiBannerResponse>} - Success response
      * @name getRupifiBannerDetails
-     * @summary: Rupifi banner info.
+     * @summary: Rupifi banner info
      * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
      */
     getRupifiBannerDetails({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RupifiBannerResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SelectedRefundOptionResponse>} - Success response
-     * @name getSelectedRefundOption
-     * @summary: get the selected refund options for shipment id
-     * @description: get the selected refund options for shipment id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getSelectedRefundOption/).
-     */
-    getSelectedRefundOption({ shipmentId, orderId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SelectedRefundOptionResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -363,27 +307,9 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OrderBeneficiaryResponseSchemaV2>} - Success response
-     * @name getUserBeneficiariesDetailV2
-     * @summary: Retrieve beneficiary details
-     * @description: Get beneficiaries associated with the user for processing refunds, based on the provided order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetailV2/).
-     */
-    getUserBeneficiariesDetailV2({ orderId, shipmentId, mop, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderBeneficiaryResponseSchemaV2>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AddBeneficiaryDetailsOTPResponse>} - Success response
-     * @name getotpOrderBeneficiariesDetail
-     * @summary: Lists the beneficiary of a refund
-     * @description: Get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getotpOrderBeneficiariesDetail/).
-     */
-    getotpOrderBeneficiariesDetail({ orderId, requestHash, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddBeneficiaryDetailsOTPResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentInitializationResponse>} - Success response
      * @name initialisePayment
-     * @summary: Start payment process.
+     * @summary: Start payment process
      * @description: Initiate the payment procedure for an order. Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePayment/).
      */
     initialisePayment({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentInitializationResponse>;
@@ -392,7 +318,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentInitializationResponse>} - Success response
      * @name initialisePaymentPaymentLink
-     * @summary: Initialise link payment.
+     * @summary: Initialize payment link
      * @description: Begin payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
      */
     initialisePaymentPaymentLink({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentInitializationResponse>;
@@ -410,7 +336,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
      * @name outstandingOrderDetails
-     * @summary: Outstanding orders.
+     * @summary: Outstanding orders
      * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
      */
     outstandingOrderDetails({ aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OutstandingOrderDetailsResponse>;
@@ -428,7 +354,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PollingPaymentLinkResponse>} - Success response
      * @name pollingPaymentLink
-     * @summary: Poll payment link.
+     * @summary: Poll status of payment link
      * @description: Get real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/pollingPaymentLink/).
      */
     pollingPaymentLink({ paymentLinkId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PollingPaymentLinkResponse>;
@@ -446,7 +372,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<renderHTMLResponse>} - Success response
      * @name renderHTML
-     * @summary: Render HTML.
+     * @summary: Render HTML
      * @description: Render HTML for a payment aggregator page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
      */
     renderHTML({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<renderHTMLResponse>;
@@ -471,24 +397,6 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ShipmentRefundResponse>} - Success response
-     * @name setRefundOptionforShipment
-     * @summary: Save refund source against shipment and order
-     * @description: Save refund source against shipment and order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/setRefundOptionforShipment/).
-     */
-    setRefundOptionforShipment({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ShipmentRefundResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UpdateCardResponse>} - Success response
-     * @name updateActiveCards
-     * @summary: update a card
-     * @description: Use this API to update a card list added by a user on the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateActiveCards/).
-     */
-    updateActiveCards({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCardResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<SetDefaultBeneficiaryResponse>} - Success response
      * @name updateDefaultBeneficiary
      * @summary: Set default beneficiary for refund
@@ -498,27 +406,9 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UpdateAggregatorCardResponse>} - Success response
-     * @name updateUserCard
-     * @summary: card aggregator
-     * @description: Use this API to get card of user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateUserCard/).
-     */
-    updateUserCard({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateAggregatorCardResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ValidateValidateAddressResponse>} - Success response
-     * @name validateBeneficiaryAddress
-     * @summary: Validate UPI ID and IFSC code
-     * @description: Validate UPI ID and IFSC code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateBeneficiaryAddress/).
-     */
-    validateBeneficiaryAddress({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ValidateValidateAddressResponse>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ValidateVPAResponse>} - Success response
      * @name validateVPA
-     * @summary: Validate VPA.
+     * @summary: Validate VPA
      * @description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
      */
     validateVPA({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ValidateVPAResponse>;
@@ -536,7 +426,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ValidateCustomerResponse>} - Success response
      * @name verifyCustomerForPayment
-     * @summary: Verify payment customer.
+     * @summary: Verify payment customer
      * @description: Verify if the user is eligible for pay-later payment from the payment aggregator side using the customer's phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyCustomerForPayment/).
      */
     verifyCustomerForPayment({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ValidateCustomerResponse>;
@@ -554,7 +444,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<AddBeneficiaryViaOtpVerificationResponse>} - Success response
      * @name verifyOtpAndAddBeneficiaryForBank
-     * @summary: Verify OTP for bank.
+     * @summary: Verify OTP for bank and add beneficiary
      * @description: Verify the OTP provided by the user and adds a bank beneficiary for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForBank/).
      */
     verifyOtpAndAddBeneficiaryForBank({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddBeneficiaryViaOtpVerificationResponse>;
@@ -563,7 +453,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<WalletOtpResponse>} - Success response
      * @name verifyOtpAndAddBeneficiaryForWallet
-     * @summary: Verify OTP for wallet.
+     * @summary: Verify OTP for wallet
      * @description: Verify OTP provided by the user and adds a wallet beneficiary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
      */
     verifyOtpAndAddBeneficiaryForWallet({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<WalletOtpResponse>;

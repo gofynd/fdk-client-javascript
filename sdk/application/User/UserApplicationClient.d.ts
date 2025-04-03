@@ -30,6 +30,7 @@ declare class User {
         sendOTPOnEmail: string;
         sendOTPOnMobile: string;
         sendResetPasswordEmail: string;
+        sendResetPasswordMobile: string;
         sendResetToken: string;
         sendVerificationLinkToEmail: string;
         sendVerificationLinkToMobile: string;
@@ -134,7 +135,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserAttributes>} - Success response
      * @name getUserAttributes
-     * @summary: Get user attributes
+     * @summary: Get User Attributes
      * @description: Get the list of user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
      */
     getUserAttributes({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserAttributes>;
@@ -294,6 +295,15 @@ declare class User {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<any>} - Success response
+     * @name sendResetPasswordMobile
+     * @summary: Reset Password via Mobile
+     * @description: Send a password reset link to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
+     */
+    sendResetPasswordMobile({ body, platform, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<any>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ResetPasswordSuccess>} - Success response
      * @name sendResetToken
      * @summary: Validate Password Reset Code
@@ -359,7 +369,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserAttributes>} - Success response
      * @name updateUserAttributes
-     * @summary: Update user attributes
+     * @summary: Update User Attributes
      * @description: Update user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
      */
     updateUserAttributes({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserAttributes>;
@@ -368,7 +378,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserExistsResponse>} - Success response
      * @name userExists
-     * @summary: Check User Existence
+     * @summary: Chcek User Existence
      * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
      */
     userExists({ q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UserExistsResponse>;

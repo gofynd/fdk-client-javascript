@@ -54,7 +54,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 
 /**
@@ -230,7 +229,6 @@ const Joi = require("joi");
 /**
  * @typedef SubscriberConfigPostRequestV2
  * @property {string} name
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {string} provider
  * @property {Association} association
@@ -245,7 +243,6 @@ const Joi = require("joi");
  * @typedef SubscriberConfigUpdateRequestV2
  * @property {number} id
  * @property {string} [name]
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {string} provider
  * @property {Association} [association]
@@ -259,7 +256,6 @@ const Joi = require("joi");
 /**
  * @typedef SubscriberConfigPost
  * @property {string} name
- * @property {string} [type]
  * @property {string} webhook_url
  * @property {Association} association
  * @property {Object} [custom_headers]
@@ -273,7 +269,6 @@ const Joi = require("joi");
  * @typedef SubscriberConfigUpdate
  * @property {number} id
  * @property {string} [name]
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -375,7 +370,6 @@ class WebhookPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      total: Joi.number(),
     });
   }
 
@@ -589,7 +583,6 @@ class WebhookPlatformModel {
   static SubscriberConfigPostRequestV2() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association().required(),
@@ -606,7 +599,6 @@ class WebhookPlatformModel {
     return Joi.object({
       id: Joi.number().required(),
       name: Joi.string().allow(""),
-      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association(),
@@ -622,7 +614,6 @@ class WebhookPlatformModel {
   static SubscriberConfigPost() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association().required(),
       custom_headers: Joi.any(),
@@ -638,7 +629,6 @@ class WebhookPlatformModel {
     return Joi.object({
       id: Joi.number().required(),
       name: Joi.string().allow(""),
-      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
       custom_headers: Joi.any(),
