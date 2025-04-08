@@ -241,6 +241,11 @@ export = CartPlatformApplicationValidator;
  * @property {CartPlatformModel.PlatformAddCartRequest} body
  */
 /**
+ * @typedef PlatformCheckoutCartParam
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
+ */
+/**
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
@@ -470,6 +475,8 @@ declare class CartPlatformApplicationValidator {
     static overrideCart(): OverrideCartParam;
     /** @returns {PlatformAddItemsParam} */
     static platformAddItems(): PlatformAddItemsParam;
+    /** @returns {PlatformCheckoutCartParam} */
+    static platformCheckoutCart(): PlatformCheckoutCartParam;
     /** @returns {PlatformCheckoutCartV2Param} */
     static platformCheckoutCartV2(): PlatformCheckoutCartV2Param;
     /** @returns {PlatformUpdateCartParam} */
@@ -518,7 +525,7 @@ declare class CartPlatformApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartPlatformApplicationValidator {
-    export { AddAddressParam, AddBulkPriceAdjustmentParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveBulkPriceAdjustmentParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateBulkPriceAdjustmentParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddBulkPriceAdjustmentParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveBulkPriceAdjustmentParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateBulkPriceAdjustmentParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartPlatformModel.PlatformAddress;
@@ -820,6 +827,13 @@ type PlatformAddItemsParam = {
      */
     id?: string;
     body: CartPlatformModel.PlatformAddCartRequest;
+};
+type PlatformCheckoutCartParam = {
+    /**
+     * - The unique identifier of the cart
+     */
+    id?: string;
+    body: CartPlatformModel.PlatformCartCheckoutDetailRequest;
 };
 type PlatformCheckoutCartV2Param = {
     /**

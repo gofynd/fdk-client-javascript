@@ -7,6 +7,7 @@ declare class Cart {
         addItems: string;
         applyCoupon: string;
         applyRewardPoints: string;
+        checkoutCart: string;
         checkoutCartV2: string;
         deleteCart: string;
         getAddressById: string;
@@ -70,6 +71,15 @@ declare class Cart {
      * @description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
      */
     applyRewardPoints({ body, id, i, b, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @name checkoutCart
+     * @summary: Checkout cart
+     * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
+     */
+    checkoutCart({ body, buyNow, cartType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

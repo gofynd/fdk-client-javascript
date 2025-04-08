@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.15-beta.11) - 1.9.4
+# CHANGE LOG (1.4.15-beta.12) - 1.9.4
 
 ## Application Client
 
@@ -4341,6 +4341,8 @@
 	- [Breaking] [Deleted] property <code>error.description</code> of schema <code>ErrorCodeAndDescription</code> in response with status code 500
 
 - ##### What's Changed
+	- [Changed] <code>failure_callback_url</code> made optional in request body
+	- [Changed] <code>success_callback_url</code> made optional in request body
 	- [Breaking] [Changed] <code>error.description</code> made optional in response with status code 500
 	- [Changed] Path From <code>/service/application/payment/v1.0/create-order/link</code> To <code>/service/application/payment/v1.0/create-order/link/</code>
 

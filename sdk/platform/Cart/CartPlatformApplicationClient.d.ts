@@ -422,6 +422,18 @@ declare class Cart {
      */
     platformAddItems({ body, i, b, buyNow, orderType, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResponse>;
     /**
+     * @param {CartPlatformApplicationValidator.PlatformCheckoutCartParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
+     * @name platformCheckoutCart
+     * @summary: Checkout cart
+     * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
+     */
+    platformCheckoutCart({ body, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
+    /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartV2Param} arg
      *   - Arg object
      *

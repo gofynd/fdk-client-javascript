@@ -16,6 +16,7 @@ class Cart {
       addItems: "/service/application/cart/v1.0/detail",
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
+      checkoutCart: "/service/application/cart/v1.0/checkout",
       checkoutCartV2: "/service/application/cart/v2.0/checkout",
       deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
@@ -212,6 +213,45 @@ class Cart {
       "post",
       constructUrl({
         url: this._urls["applyRewardPoints"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @name checkoutCart
+   * @summary: Checkout cart
+   * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
+   */
+  async checkoutCart(
+    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["checkoutCart"],
         params: {},
       }),
       query_params,

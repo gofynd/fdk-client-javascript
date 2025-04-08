@@ -283,6 +283,12 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
+ * @typedef PlatformCheckoutCartParam
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
+ */
+
+/**
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
@@ -798,6 +804,14 @@ class CartPlatformApplicationValidator {
       orderType: Joi.string().allow(""),
       id: Joi.string().allow(""),
       body: CartPlatformModel.PlatformAddCartRequest().required(),
+    }).required();
+  }
+
+  /** @returns {PlatformCheckoutCartParam} */
+  static platformCheckoutCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      body: CartPlatformModel.PlatformCartCheckoutDetailRequest().required(),
     }).required();
   }
 
