@@ -9,7 +9,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -53,7 +53,7 @@ class AnalyticsPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      total: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 

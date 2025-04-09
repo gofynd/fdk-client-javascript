@@ -8,7 +8,7 @@ export = WebhookPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef BroadcasterConfig
@@ -27,9 +27,30 @@ export = WebhookPlatformModel;
  * @property {number} [id] - The unique identifier for the subscriber event mapping.
  * @property {number} [event_id] - The ID of the event associated with the subscriber.
  * @property {number} [subscriber_id] - The ID of the subscriber.
+ * @property {FilterSchema} [filters]
+ * @property {Object} [reducer] - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries. They can
+ *   also create new properties by mapping existing ones. Note that it overrides
+ *   the entire JSON structure of the webhook payload sent via the webhook. See
+ *   the partner documentation's filter and reducer section for details.
  * @property {BroadcasterConfig} [broadcaster_config]
  * @property {string} [created_on] - The date and time when the subscriber event
  *   mapping was created.
+ */
+/**
+ * @typedef FilterSchema
+ * @property {string} [query] - JSONPath expression that specifies the property
+ *   in the webhook payload to filter on. This enables targeting specific data
+ *   within the payload.
+ * @property {string} [condition] - JavaScript function used to evaluate the
+ *   specified property in the webhook payload against a condition. This
+ *   function determines whether the filter passes based on its return value.
+ * @property {string} [logic] - Logical operator used to combine multiple
+ *   conditions in the `conditions` array. Supported values are `AND` and `OR`.
+ * @property {Object[]} [conditions] - An array of filter objects to be
+ *   evaluated using the specified logical operator. This array will contain
+ *   more filters including a combination of single condition mode and logical
+ *   group mode filters.
  */
 /**
  * @typedef EventConfig
@@ -56,7 +77,7 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef EventConfigResult
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 /**
  * @typedef Association
@@ -97,7 +118,7 @@ export = WebhookPlatformModel;
  * @property {string} [created_on] - The date and time when the subscriber was created.
  * @property {string} [type] - The type of subscriber, which can either be passed as null.
  * @property {AuthMeta} [auth_meta]
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 /**
  * @typedef Events
@@ -184,7 +205,7 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef SubscriberConfigList
- * @property {SubscriberDetails[]} [items]
+ * @property {SubscriberDetails[]} [items] - List of subscriber details.
  * @property {Page} [page]
  */
 /**
@@ -200,7 +221,7 @@ export = WebhookPlatformModel;
  * @property {string} type - The type of the configuration.
  * @property {Object} [custom_headers] - Custom headers for the configuration.
  * @property {AuthMeta} [auth_meta]
- * @property {RestEventData[]} events
+ * @property {RestEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef QueueEventData
@@ -212,13 +233,13 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef KafkaConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Kafka configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef PubSubConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Pub/Sub configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef TemporalEventData
@@ -231,8 +252,8 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef TemporalConfig
- * @property {string} [type]
- * @property {TemporalEventData[]} events
+ * @property {string} [type] - Type of Temporal configuration (optional).
+ * @property {TemporalEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef SqsEventData
@@ -244,8 +265,8 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef SqsConfig
- * @property {string} [type]
- * @property {SqsEventData[]} events
+ * @property {string} [type] - Type of SQS configuration (optional).
+ * @property {SqsEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef EventBridgeData
@@ -258,8 +279,9 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef EventBridgeConfig
- * @property {string} [type]
- * @property {EventBridgeData[]} events
+ * @property {string} [type] - Type of event configuration (optional).
+ * @property {EventBridgeData[]} events - List of event data for EventBridge
+ *   configuration.
  */
 /**
  * @typedef EventMapBody
@@ -293,7 +315,7 @@ export = WebhookPlatformModel;
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Page, BroadcasterConfig, SubscriberEventMapping, EventConfig, EventConfigResult, Association, AssociationResp, AuthMeta, SubscriberDetails, Events, SubscriberConfigPostRequestV2, SubscriberConfigUpdateRequestV2, SubscriberConfigPost, SubscriberConfigUpdate, SubscriberConfigResult, SubscriberConfigList, RestEventData, RestConfig, QueueEventData, KafkaConfig, PubSubConfig, TemporalEventData, TemporalConfig, SqsEventData, SqsConfig, EventBridgeData, EventBridgeConfig, EventMapBody, WebhookConfig, UpsertSubscriberConfig, UpsertSubscriberConfigResult, SubscriberStatus };
+    export { Page, BroadcasterConfig, SubscriberEventMapping, FilterSchema, EventConfig, EventConfigResult, Association, AssociationResp, AuthMeta, SubscriberDetails, Events, SubscriberConfigPostRequestV2, SubscriberConfigUpdateRequestV2, SubscriberConfigPost, SubscriberConfigUpdate, SubscriberConfigResult, SubscriberConfigList, RestEventData, RestConfig, QueueEventData, KafkaConfig, PubSubConfig, TemporalEventData, TemporalConfig, SqsEventData, SqsConfig, EventBridgeData, EventBridgeConfig, EventMapBody, WebhookConfig, UpsertSubscriberConfig, UpsertSubscriberConfigResult, SubscriberStatus };
 }
 /** @returns {Page} */
 declare function Page(): Page;
@@ -327,9 +349,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - Total number of items.
+     * - The number of items per page.
      */
-    total?: number;
+    page_size?: number;
 };
 /** @returns {BroadcasterConfig} */
 declare function BroadcasterConfig(): BroadcasterConfig;
@@ -377,12 +399,49 @@ type SubscriberEventMapping = {
      * - The ID of the subscriber.
      */
     subscriber_id?: number;
+    filters?: FilterSchema;
+    /**
+     * - The reducer property allows users to customize
+     * the JSON structure of the webhook payload using JSONPath queries. They can
+     * also create new properties by mapping existing ones. Note that it overrides
+     * the entire JSON structure of the webhook payload sent via the webhook. See
+     * the partner documentation's filter and reducer section for details.
+     */
+    reducer?: any;
     broadcaster_config?: BroadcasterConfig;
     /**
      * - The date and time when the subscriber event
      * mapping was created.
      */
     created_on?: string;
+};
+/** @returns {FilterSchema} */
+declare function FilterSchema(): FilterSchema;
+type FilterSchema = {
+    /**
+     * - JSONPath expression that specifies the property
+     * in the webhook payload to filter on. This enables targeting specific data
+     * within the payload.
+     */
+    query?: string;
+    /**
+     * - JavaScript function used to evaluate the
+     * specified property in the webhook payload against a condition. This
+     * function determines whether the filter passes based on its return value.
+     */
+    condition?: string;
+    /**
+     * - Logical operator used to combine multiple
+     * conditions in the `conditions` array. Supported values are `AND` and `OR`.
+     */
+    logic?: string;
+    /**
+     * - An array of filter objects to be
+     * evaluated using the specified logical operator. This array will contain
+     * more filters including a combination of single condition mode and logical
+     * group mode filters.
+     */
+    conditions?: any[];
 };
 /** @returns {EventConfig} */
 declare function EventConfig(): EventConfig;
@@ -450,6 +509,9 @@ type EventConfig = {
 /** @returns {EventConfigResult} */
 declare function EventConfigResult(): EventConfigResult;
 type EventConfigResult = {
+    /**
+     * - List of event configurations.
+     */
     event_configs?: EventConfig[];
 };
 /** @returns {Association} */
@@ -552,6 +614,9 @@ type SubscriberDetails = {
      */
     type?: string;
     auth_meta?: AuthMeta;
+    /**
+     * - List of event configurations.
+     */
     event_configs?: EventConfig[];
 };
 /** @returns {Events} */
@@ -781,6 +846,9 @@ type SubscriberConfigResult = {
 /** @returns {SubscriberConfigList} */
 declare function SubscriberConfigList(): SubscriberConfigList;
 type SubscriberConfigList = {
+    /**
+     * - List of subscriber details.
+     */
     items?: SubscriberDetails[];
     page?: Page;
 };
@@ -820,6 +888,9 @@ type RestConfig = {
      */
     custom_headers?: any;
     auth_meta?: AuthMeta;
+    /**
+     * - List of event data for configuration.
+     */
     events: RestEventData[];
 };
 /** @returns {QueueEventData} */
@@ -849,13 +920,25 @@ type QueueEventData = {
 /** @returns {KafkaConfig} */
 declare function KafkaConfig(): KafkaConfig;
 type KafkaConfig = {
+    /**
+     * - Type of Kafka configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: QueueEventData[];
 };
 /** @returns {PubSubConfig} */
 declare function PubSubConfig(): PubSubConfig;
 type PubSubConfig = {
+    /**
+     * - Type of Pub/Sub configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: QueueEventData[];
 };
 /** @returns {TemporalEventData} */
@@ -889,7 +972,13 @@ type TemporalEventData = {
 /** @returns {TemporalConfig} */
 declare function TemporalConfig(): TemporalConfig;
 type TemporalConfig = {
+    /**
+     * - Type of Temporal configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: TemporalEventData[];
 };
 /** @returns {SqsEventData} */
@@ -919,7 +1008,13 @@ type SqsEventData = {
 /** @returns {SqsConfig} */
 declare function SqsConfig(): SqsConfig;
 type SqsConfig = {
+    /**
+     * - Type of SQS configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: SqsEventData[];
 };
 /** @returns {EventBridgeData} */
@@ -950,7 +1045,14 @@ type EventBridgeData = {
 /** @returns {EventBridgeConfig} */
 declare function EventBridgeConfig(): EventBridgeConfig;
 type EventBridgeConfig = {
+    /**
+     * - Type of event configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for EventBridge
+     * configuration.
+     */
     events: EventBridgeData[];
 };
 /** @returns {EventMapBody} */

@@ -9,7 +9,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -30,9 +30,31 @@ const Joi = require("joi");
  * @property {number} [id] - The unique identifier for the subscriber event mapping.
  * @property {number} [event_id] - The ID of the event associated with the subscriber.
  * @property {number} [subscriber_id] - The ID of the subscriber.
+ * @property {FilterSchema} [filters]
+ * @property {Object} [reducer] - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries. They can
+ *   also create new properties by mapping existing ones. Note that it overrides
+ *   the entire JSON structure of the webhook payload sent via the webhook. See
+ *   the partner documentation's filter and reducer section for details.
  * @property {BroadcasterConfig} [broadcaster_config]
  * @property {string} [created_on] - The date and time when the subscriber event
  *   mapping was created.
+ */
+
+/**
+ * @typedef FilterSchema
+ * @property {string} [query] - JSONPath expression that specifies the property
+ *   in the webhook payload to filter on. This enables targeting specific data
+ *   within the payload.
+ * @property {string} [condition] - JavaScript function used to evaluate the
+ *   specified property in the webhook payload against a condition. This
+ *   function determines whether the filter passes based on its return value.
+ * @property {string} [logic] - Logical operator used to combine multiple
+ *   conditions in the `conditions` array. Supported values are `AND` and `OR`.
+ * @property {Object[]} [conditions] - An array of filter objects to be
+ *   evaluated using the specified logical operator. This array will contain
+ *   more filters including a combination of single condition mode and logical
+ *   group mode filters.
  */
 
 /**
@@ -61,7 +83,7 @@ const Joi = require("joi");
 
 /**
  * @typedef EventConfigResult
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 
 /**
@@ -106,7 +128,7 @@ const Joi = require("joi");
  * @property {string} [created_on] - The date and time when the subscriber was created.
  * @property {string} [type] - The type of subscriber, which can either be passed as null.
  * @property {AuthMeta} [auth_meta]
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 
 /**
@@ -200,7 +222,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SubscriberConfigList
- * @property {SubscriberDetails[]} [items]
+ * @property {SubscriberDetails[]} [items] - List of subscriber details.
  * @property {Page} [page]
  */
 
@@ -218,7 +240,7 @@ const Joi = require("joi");
  * @property {string} type - The type of the configuration.
  * @property {Object} [custom_headers] - Custom headers for the configuration.
  * @property {AuthMeta} [auth_meta]
- * @property {RestEventData[]} events
+ * @property {RestEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -232,14 +254,14 @@ const Joi = require("joi");
 
 /**
  * @typedef KafkaConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Kafka configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 
 /**
  * @typedef PubSubConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Pub/Sub configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -254,8 +276,8 @@ const Joi = require("joi");
 
 /**
  * @typedef TemporalConfig
- * @property {string} [type]
- * @property {TemporalEventData[]} events
+ * @property {string} [type] - Type of Temporal configuration (optional).
+ * @property {TemporalEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -269,8 +291,8 @@ const Joi = require("joi");
 
 /**
  * @typedef SqsConfig
- * @property {string} [type]
- * @property {SqsEventData[]} events
+ * @property {string} [type] - Type of SQS configuration (optional).
+ * @property {SqsEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -285,8 +307,9 @@ const Joi = require("joi");
 
 /**
  * @typedef EventBridgeConfig
- * @property {string} [type]
- * @property {EventBridgeData[]} events
+ * @property {string} [type] - Type of event configuration (optional).
+ * @property {EventBridgeData[]} events - List of event data for EventBridge
+ *   configuration.
  */
 
 /**
@@ -334,7 +357,7 @@ class WebhookPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      total: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -356,9 +379,21 @@ class WebhookPlatformModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
+      filters: WebhookPlatformModel.FilterSchema(),
+      reducer: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       broadcaster_config: WebhookPlatformModel.BroadcasterConfig(),
       created_on: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {FilterSchema} */
+  static FilterSchema() {
+    return Joi.object({
+      query: Joi.string().allow(""),
+      condition: Joi.string().allow(""),
+      logic: Joi.string().allow(""),
+      conditions: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+    }).allow(null);
   }
 
   /** @returns {EventConfig} */

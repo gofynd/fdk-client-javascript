@@ -239,6 +239,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SdkReadmeSchema
+ * @property {string} [data]
+ */
+
+/**
  * @typedef TagsSchema
  * @property {CustomItemSchema[]} [items]
  * @property {PageSchema} [page]
@@ -298,26 +303,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SDKLinksResponseSchema
- * @property {SDKLinkObjectSchema[]} [readmes]
- */
-
-/**
- * @typedef SDKLinkObjectSchema
- * @property {string} [owner]
- * @property {string} [repo]
- * @property {string} [path]
- * @property {string} [image]
- * @property {string} [name]
- * @property {string} [type]
- */
-
-/**
- * @typedef SDKbyTypeResponseSchema
- * @property {string} [readme_content]
- */
-
-/**
  * @typedef ContentAPIError
  * @property {string} [message]
  * @property {number} [status]
@@ -327,6 +312,58 @@ const Joi = require("joi");
  * @property {string} [request_id]
  * @property {string} [stack_trace]
  * @property {Object} [meta]
+ */
+
+/**
+ * @typedef Language
+ * @property {string} [_id] - Unique identifier for the language entry in the
+ *   system database.
+ * @property {string} locale - Standard language code following ISO 639-1 format
+ *   for language identification.
+ * @property {string} direction - Text direction specification for proper
+ *   content rendering in the language.
+ * @property {string} name - Full name of the language in English for easy
+ *   reference and display at the merchant panel.
+ * @property {string} [display_name] - Translated name of the language in
+ *   English for easy reference and display at the website.
+ */
+
+/**
+ * @typedef Error
+ * @property {string} [error] - Detailed error message explaining the nature of
+ *   the failure or invalid request.
+ */
+
+/**
+ * @typedef TranslatableResource
+ * @property {string} [_id] - Unique identifier for the translatable resource in
+ *   the system.
+ * @property {string} type - Categorization of the resource indicating its
+ *   context and ownership level
+ * @property {string} name - Primary identifier or title of the resource in its
+ *   default language.
+ * @property {string} description - Detailed explanation of the resource's
+ *   purpose and content scope.
+ * @property {Meta} meta
+ */
+
+/**
+ * @typedef Meta
+ * @property {string} [created_by] - ID of the user who initially created the resource.
+ * @property {string} [updated_by] - ID of the user who last modified the resource.
+ * @property {string} [created_at] - Timestamp indicating when the resource was
+ *   first created.
+ * @property {string} [updated_at] - Timestamp indicating when the resource was
+ *   last modified.
+ */
+
+/**
+ * @typedef ResourceTranslation
+ * @property {string} [_id] - Unique identifier for the translation entry in the system.
+ * @property {string} [locale] - Language code indicating the target language of
+ *   the translation.
+ * @property {Object} [value] - Contains the translated content with flexible
+ *   schema based on resource type.
  */
 
 class ContentPublicModel {
@@ -624,6 +661,13 @@ class ContentPublicModel {
     });
   }
 
+  /** @returns {SdkReadmeSchema} */
+  static SdkReadmeSchema() {
+    return Joi.object({
+      data: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {TagsSchema} */
   static TagsSchema() {
     return Joi.object({
@@ -697,32 +741,6 @@ class ContentPublicModel {
     });
   }
 
-  /** @returns {SDKLinksResponseSchema} */
-  static SDKLinksResponseSchema() {
-    return Joi.object({
-      readmes: Joi.array().items(ContentPublicModel.SDKLinkObjectSchema()),
-    });
-  }
-
-  /** @returns {SDKLinkObjectSchema} */
-  static SDKLinkObjectSchema() {
-    return Joi.object({
-      owner: Joi.string().allow(""),
-      repo: Joi.string().allow(""),
-      path: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SDKbyTypeResponseSchema} */
-  static SDKbyTypeResponseSchema() {
-    return Joi.object({
-      readme_content: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {ContentAPIError} */
   static ContentAPIError() {
     return Joi.object({
@@ -734,6 +752,54 @@ class ContentPublicModel {
       request_id: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
       meta: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {Language} */
+  static Language() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      locale: Joi.string().allow("").required(),
+      direction: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Error} */
+  static Error() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TranslatableResource} */
+  static TranslatableResource() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      type: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      meta: ContentPublicModel.Meta().required(),
+    });
+  }
+
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ResourceTranslation} */
+  static ResourceTranslation() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      locale: Joi.string().allow(""),
+      value: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 }

@@ -29,60 +29,19 @@ declare class Serviceability {
      */
     createBulkGeoArea({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreaExportParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PriceGeoAreaExportResult>}
-     *   - Success response
-     *
-     * @name createBulkGeoAreaExport
-     * @summary: Create Bulk Export of Price GeoAreas
-     * @description: Allows to create and manage GeoAreas, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkGeoAreaExport/).
-     */
-    createBulkGeoAreaExport({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreaExportParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PriceGeoAreaExportResult>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreasParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>} -
-     *   Success response
-     * @name createBulkGeoAreas
-     * @summary: Bulk Creation of GeoAreas
-     * @description: Allows to create and manage GeoAreas, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkGeoAreas/).
-     */
-    createBulkGeoAreas({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreasParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.CreateBulkZoneParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CreateBulkZoneResponseSchema>}
-     *   - Success response
-     *
-     * @name createBulkZone
-     * @summary: Create bulk zones.
-     * @description: Creates bulk zones defined at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkZone/).
-     */
-    createBulkZone({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateBulkZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CreateBulkZoneResponseSchema>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
      *   - Success response
      *
      * @name createCourierPartnerRule
      * @summary: Create courier rule
      * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
      */
-    createCourierPartnerRule({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>;
+    createCourierPartnerRule({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.CreateGeoAreaParam} arg
      *   - Arg object
@@ -116,68 +75,39 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResultSchema>} -
+     *   Success response
      * @name createStoreRules
      * @summary: Create store rule
      * @description: Create a rule within the order routing rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
      */
-    createStoreRules({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>;
+    createStoreRules({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleResultSchema>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.CreateZoneParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneResponseV2>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneSchema>} - Success response
      * @name createZone
      * @summary: Create zone
      * @description: Creates a delivery zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
      */
-    createZone({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneResponseV2>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.DeleteCourierPartnerRuleParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleDeleteResponseSchema>}
-     *   - Success response
-     *
-     * @name deleteCourierPartnerRule
-     * @summary: Delete courier rule
-     * @description: Delete a single courier rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteCourierPartnerRule/).
-     */
-    deleteCourierPartnerRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DeleteCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleDeleteResponseSchema>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.DeleteStoreRuleParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDeleteResponseSchema>}
-     *   - Success response
-     *
-     * @name deleteStoreRule
-     * @summary: Delete store rule
-     * @description: Delete a single store rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteStoreRule/).
-     */
-    deleteStoreRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DeleteStoreRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleDeleteResponseSchema>;
+    createZone({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneSchema>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.DeleteZoneParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResult>}
      *   - Success response
      *
      * @name deleteZone
      * @summary: Delete a Specific Zone
      * @description: Delete a Zone under that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteZone/).
      */
-    deleteZone({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DeleteZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResponseSchema>;
+    deleteZone({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DeleteZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.DownloadGeoareaSampleFileParam} arg
      *   - Arg object
@@ -186,22 +116,10 @@ declare class Serviceability {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<string>} - Success response
      * @name downloadGeoareaSampleFile
-     * @summary: Download geoarea sample file.
+     * @summary: Download geoarea sample file
      * @description: Download a sample file for geoarea data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/downloadGeoareaSampleFile/).
      */
     downloadGeoareaSampleFile({ requestHeaders }?: any, { responseHeaders }?: object): Promise<string>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.DownloadZoneSampleFileParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
-     * @name downloadZoneSampleFile
-     * @summary: Download Sample Delivery Zone Product Type file.
-     * @description: Download a sample file for Delivery Zone with specified product type column (i.e. category, department, Item IDs or tags). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/downloadZoneSampleFile/).
-     */
-    downloadZoneSampleFile({ productType, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DownloadZoneSampleFileParam, { responseHeaders }?: object): Promise<string>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigParam} arg
      *   - Arg object
@@ -221,14 +139,14 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigGetResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigGetResult>}
      *   - Success response
      *
      * @name getApplicationConfiguration
      * @summary: Get delivery configuration
      * @description: This API returns all the Application config that has been applied to the given company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
      */
-    getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigGetResponseSchema>;
+    getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigGetResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetBulkExportParam} arg
      *   - Arg object
@@ -248,108 +166,67 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResult>} -
+     *   Success response
      * @name getBulkGeoArea
      * @summary: Get status of GeoAreas created in bulk
      * @description: Allows to Get GeoArea status which is created, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoArea/).
      */
-    getBulkGeoArea({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetBulkGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResponseSchema>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetBulkGeoAreasHistoryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetBulkPriceZoneHistory>}
-     *   - Success response
-     *
-     * @name getBulkGeoAreasHistory
-     * @summary: Get history of the geoarea in bulk job processed
-     * @description: Allows to get the history of geoareas that are uploaded in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoAreasHistory/).
-     */
-    getBulkGeoAreasHistory({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetBulkPriceZoneHistory>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetBulkGeoAreasSampleParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
-     * @name getBulkGeoAreasSample
-     * @summary: Get sample file of a Price Zone
-     * @description: Generates a sample XLSX file containing template data for Price GeoAreas. This sample file provides the required columns and example values needed for bulk uploading Price GeoArea data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoAreasSample/).
-     */
-    getBulkGeoAreasSample({ requestHeaders }?: any, { responseHeaders }?: object): Promise<string>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetBulkZoneParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetBulkZoneHistory>} -
-     *   Success response
-     * @name getBulkZone
-     * @summary: Get bulk zones.
-     * @description: Fetch bulk zones created at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkZone/).
-     */
-    getBulkZone({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetBulkZoneHistory>;
+    getBulkGeoArea({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetBulkGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
      *   - Success response
      *
      * @name getCourierPartnerRule
      * @summary: Get courier rule
      * @description: Retrieves a single rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
      */
-    getCourierPartnerRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleDetailsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseDetailSchema>}
-     *   - Success response
-     *
-     * @name getCourierPartnerRuleDetails
-     * @summary: Get courier rule
-     * @description: Retrieves details for a courier partner rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRuleDetails/).
-     */
-    getCourierPartnerRuleDetails({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleDetailsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseDetailSchema>;
+    getCourierPartnerRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResult>}
      *   - Success response
      *
      * @name getCourierPartnerRules
      * @summary: Get courier rules
      * @description: Retrieve a list of rules within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
      */
-    getCourierPartnerRules({ q, pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponseSchema>;
+    getCourierPartnerRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResult>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnersParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ShipmentCourierPartnerResult>}
+     *   - Success response
+     *
+     * @name getCourierPartners
+     * @summary: Serviceable Courier Partners
+     * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartners/).
+     */
+    getCourierPartners({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnersParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ShipmentCourierPartnerResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreaParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GeoAreaResponseSchema>} -
-     *   Success response
+     * @returns {Promise<ServiceabilityPlatformModel.GeoAreaDetails>} - Success response
      * @name getGeoArea
      * @summary: Get details of the specific geoarea
      * @description: This API Returns the data of the specific GeoArea which exists on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoArea/).
      */
-    getGeoArea({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaResponseSchema>;
+    getGeoArea({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaDetails>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreaExportJobStatusParam} arg
      *   - Arg object
@@ -373,24 +250,10 @@ declare class Serviceability {
      * @returns {Promise<ServiceabilityPlatformModel.GeoAreaGetResponseBody>} -
      *   Success response
      * @name getGeoAreas
-     * @summary: Get all geoareas in the current application.
+     * @summary: Get all geoareas in the current application
      * @description: Retrieves a listing view of created GeoAreas. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoAreas/).
      */
     getGeoAreas({ pageSize, isActive, pageNo, type, q, countryIsoCode, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetGeoAreasParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaGetResponseBody>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreasExportStatusParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetExportPriceZoneHistory>}
-     *   - Success response
-     *
-     * @name getGeoAreasExportStatus
-     * @summary: Get history of the geoarea in bulk job processed
-     * @description: Allows to get the history of geoareas that are uploaded in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoAreasExportStatus/).
-     */
-    getGeoAreasExportStatus({ batchId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetGeoAreasExportStatusParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetExportPriceZoneHistory>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
      *   - Arg object
@@ -405,33 +268,18 @@ declare class Serviceability {
      */
     getStoreRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleDataSchema>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleDetailsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDataDetailsSchema>}
-     *   - Success response
-     *
-     * @name getStoreRuleDetails
-     * @summary: Get store rule Details
-     * @description: Retrieves details of a order routing rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRuleDetails/).
-     */
-    getStoreRuleDetails({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRuleDetailsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleDataDetailsSchema>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetStoreRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResult>} -
+     *   Success response
      * @name getStoreRules
      * @summary: Get store rules
      * @description: Retrieves an existing order routing setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
      */
-    getStoreRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponseSchema>;
+    getStoreRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetStoreRulesApiResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZoneParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -444,30 +292,15 @@ declare class Serviceability {
      */
     getZone({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetZoneDetailsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetZoneByIdDetailsSchema>}
-     *   - Success response
-     *
-     * @name getZoneDetails
-     * @summary: Get details of a delivery zone
-     * @description: Get details of a single delivery zone along with product, store and region details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneDetails/).
-     */
-    getZoneDetails({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneDetailsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneByIdDetailsSchema>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponseV2>} -
-     *   Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewSchema>} - Success response
      * @name getZones
      * @summary: Get zones
      * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
      */
-    getZones({ stage, type, accessLevel, status, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, storeUid, regionUid, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponseV2>;
+    getZones({ stage, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewSchema>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
      *   - Arg object
@@ -487,28 +320,27 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResult>}
      *   - Success response
      *
      * @name patchApplicationConfiguration
-     * @summary: To patch any config which can be applied to application.
+     * @summary: To patch any config which can be applied to application
      * @description: Apply configs to application. Supports patching for buybox rule config and promise config. For reference, refer to examples - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationConfiguration/).
      */
-    patchApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponseSchema>;
+    patchApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPutResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPut>} -
+     *   Success response
      * @name updateApplicationConfiguration
      * @summary: Apply configuration to an application
      * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
      */
-    updateApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPutResponseSchema>;
+    updateApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPut>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateBulkGeoAreaParam} arg
      *   - Arg object
@@ -518,7 +350,7 @@ declare class Serviceability {
      * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>} -
      *   Success response
      * @name updateBulkGeoArea
-     * @summary: Update geoareas and their associated regions in bulk.
+     * @summary: Update geoareas and their associated regions in bulk
      * @description: Update geoarea details and their associated regions through a CSV file in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateBulkGeoArea/).
      */
     updateBulkGeoArea({ geoareaId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateBulkGeoAreaParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>;
@@ -528,28 +360,27 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResult>} -
+     *   Success response
      * @name updateCourierPartnerRulePriority
      * @summary: Update courier partner rule priority
      * @description: Updates a courier partner rule priority for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
      */
-    updateCourierPartnerRulePriority({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierPartnerRulePriorityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>;
+    updateCourierPartnerRulePriority({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierPartnerRulePriorityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.RulePriorityResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
      *   - Success response
      *
      * @name updateCourierRule
      * @summary: Update courier rule
-     * @description: Updates an existing rule within the delivery configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
+     * @description: Updates an existing rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
      */
-    updateCourierRule({ ruleUid, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>;
+    updateCourierRule({ ruleUid, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateGeoAreaParam} arg
      *   - Arg object
@@ -569,84 +400,80 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>}
      *   - Success response
      *
      * @name updatePincodeAuditHistory
      * @summary: Get audit trail
      * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
      */
-    updatePincodeAuditHistory({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>;
+    updatePincodeAuditHistory({ body, pageNumber, pageSize, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResult>} -
+     *   Success response
      * @name updatePincodeBulkView
      * @summary: Bulk update pincode COD support
      * @description: Updates the cash on delivery settings for multiple specified pin codes simultaneously. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
      */
-    updatePincodeBulkView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeBulkViewResponseSchema>;
+    updatePincodeBulkView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeBulkViewResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>}
      *   - Success response
      *
      * @name updatePincodeCoDListing
      * @summary: Get COD enabled pincodes
      * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
      */
-    updatePincodeCoDListing({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponseSchema>;
+    updatePincodeCoDListing({ body, pageNumber, pageSize, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPResult>} - Success response
      * @name updatePincodeMopView
      * @summary: Update pincode COD support
      * @description: Modify and update views related to pincode MOP (Mode of Payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
      */
-    updatePincodeMopView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMOPresponseSchema>;
+    updatePincodeMopView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMOPResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulePriorityParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResult>} -
+     *   Success response
      * @name updateStoreRulePriority
      * @summary: Update Store Rule priority
      * @description: Update Store Rule priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulePriority/).
      */
-    updateStoreRulePriority({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulePriorityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>;
+    updateStoreRulePriority({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulePriorityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.RulePriorityResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResultSchema>}
      *   - Success response
      *
      * @name updateStoreRules
      * @summary: Update store rule
      * @description: Updates an existing rule within the order routing rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRules/).
      */
-    updateStoreRules({ ruleUid, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>;
+    updateStoreRules({ ruleUid, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleUpdateResultSchema>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam} arg
      *   - Arg object
@@ -666,14 +493,14 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResult>}
      *   - Success response
      *
      * @name updateZone
-     * @summary: Update details of a Zone to enable or disable.
+     * @summary: Update details of a Zone to enable or disable
      * @description: Enable or Disable a Zone under that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZone/).
      */
-    updateZone({ zoneId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResponseSchema>;
+    updateZone({ zoneId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResult>;
 }
 import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

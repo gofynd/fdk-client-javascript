@@ -69,6 +69,7 @@ export = SharePlatformModel;
  */
 /**
  * @typedef UrlInfo
+ * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
  * @property {string} [alias]
@@ -105,8 +106,7 @@ export = SharePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
- * @property {number} [page] - Current page number
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef ShortLinkList
@@ -227,6 +227,7 @@ type shortLinkReqMeta = {
 /** @returns {UrlInfo} */
 declare function UrlInfo(): UrlInfo;
 type UrlInfo = {
+    original?: string;
     hash?: string;
     short_url?: string;
     alias?: string;
@@ -290,13 +291,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - Total number of items.
+     * - The number of items per page.
      */
-    total?: number;
-    /**
-     * - Current page number
-     */
-    page?: number;
+    page_size?: number;
 };
 /** @returns {ShortLinkList} */
 declare function ShortLinkList(): ShortLinkList;

@@ -433,7 +433,8 @@ class Webhook {
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigResult>} - Success response
    * @name registerSubscriberToEventV2
    * @summary: Register Subscriber.
-   * @description: Register Subscriber. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEventV2/).
+   * @description: Register Subscriber.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEventV2/).
    */
   async registerSubscriberToEventV2(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -595,7 +596,8 @@ class Webhook {
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigResult>} - Success response
    * @name updateSubscriberV2
    * @summary: Update Subscriber.
-   * @description: Update Subscriber. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberV2/).
+   * @description: Update Subscriber.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberV2/).
    */
   async updateSubscriberV2(
     { body, requestHeaders } = { requestHeaders: {} },

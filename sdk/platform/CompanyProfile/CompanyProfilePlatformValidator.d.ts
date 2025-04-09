@@ -2,7 +2,7 @@ export = CompanyProfilePlatformValidator;
 /** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSchema} body
  */
 /**
  * @typedef CreateCompanyBrandMappingParam
@@ -18,12 +18,12 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef EditBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
+ * @property {string} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSchema} body
  */
 /**
  * @typedef GetBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  */
 /**
  * @typedef GetBrandsParam
@@ -36,17 +36,13 @@ export = CompanyProfilePlatformValidator;
 /** @typedef GetCompanyMetricsParam */
 /**
  * @typedef GetLocationDetailParam
- * @property {number} locationId - Id of the location which you want to view.
+ * @property {string} locationId - Id of the location which you want to view.
  */
 /** @typedef GetLocationTagsParam */
 /**
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
- * @property {string[]} [storeCodes] - List of up to 50 store codes to fetch.
- *   Specify multiple values by repeating the query parameter (e.g.,
- *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
- *   are not supported.
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [stage] - To filter companies on basis of verified or
  *   unverified companies.
@@ -66,7 +62,7 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef UpdateLocationParam
- * @property {number} locationId - Id of the location which you want to edit.
+ * @property {string} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 declare class CompanyProfilePlatformValidator {
@@ -103,7 +99,7 @@ declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema;
+    body: CompanyProfilePlatformModel.CreateBrandRequestSchema;
 };
 type CreateCompanyBrandMappingParam = {
     body: CompanyProfilePlatformModel.CompanyBrandPostRequestSchema;
@@ -118,14 +114,14 @@ type EditBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema;
+    brandId: string;
+    body: CompanyProfilePlatformModel.UpdateBrandRequestSchema;
 };
 type GetBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
+    brandId: string;
 };
 type GetBrandsParam = {
     /**
@@ -147,7 +143,7 @@ type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
-    locationId: number;
+    locationId: string;
 };
 type GetLocationsParam = {
     /**
@@ -155,13 +151,6 @@ type GetLocationsParam = {
      * of location type.
      */
     storeType?: string;
-    /**
-     * - List of up to 50 store codes to fetch.
-     * Specify multiple values by repeating the query parameter (e.g.,
-     * `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
-     * are not supported.
-     */
-    storeCodes?: string[];
     /**
      * - Query that is to be searched.
      */
@@ -203,7 +192,7 @@ type UpdateLocationParam = {
     /**
      * - Id of the location which you want to edit.
      */
-    locationId: number;
+    locationId: string;
     body: CompanyProfilePlatformModel.LocationSchema;
 };
 type CbsOnboardGetParam = any;

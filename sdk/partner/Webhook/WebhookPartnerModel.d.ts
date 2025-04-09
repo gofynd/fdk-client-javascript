@@ -22,7 +22,7 @@ export = WebhookPartnerModel;
 /**
  * @typedef AuthMeta
  * @property {string} [type] - Specifies the type of authentication used.
- * @property {string} [secret] - Contains the secret key or token used for authentication.
+ * @property {string} [secret] - Contains the key or token used for authentication.
  */
 /**
  * @typedef BroadcasterConfig
@@ -44,9 +44,30 @@ export = WebhookPartnerModel;
  *   the subscriber.
  * @property {number} [subscriber_id] - The identifier for the subscriber
  *   involved in the mapping.
+ * @property {FilterSchema} [filters]
+ * @property {Object} [reducer] - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries. They can
+ *   also create new properties by mapping existing ones. Note that it overrides
+ *   the entire JSON structure of the webhook payload sent via the webhook. See
+ *   the partner documentation's filter and reducer section for details.
  * @property {BroadcasterConfig} [broadcaster_config]
  * @property {string} [created_on] - The timestamp indicating when the
  *   subscriber event mapping was created.
+ */
+/**
+ * @typedef FilterSchema
+ * @property {string} [query] - JSONPath expression that specifies the property
+ *   in the webhook payload to filter on. This enables targeting specific data
+ *   within the payload.
+ * @property {string} [condition] - JavaScript function used to evaluate the
+ *   specified property in the webhook payload against a condition. This
+ *   function determines whether the filter passes based on its return value.
+ * @property {string} [logic] - Logical operator used to combine multiple
+ *   conditions in the `conditions` array. Supported values are `AND` and `OR`.
+ * @property {Object[]} [conditions] - An array of filter objects to be
+ *   evaluated using the specified logical operator. This array will contain
+ *   more filters including a combination of single condition mode and logical
+ *   group mode filters.
  */
 /**
  * @typedef EventConfigDetails
@@ -171,7 +192,7 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef DeliveryTsResult
- * @property {DeliveryTsSchema[]} [delivery_ts]
+ * @property {DeliveryTsSchema[]} [delivery_ts] - List of delivery timestamps.
  */
 /**
  * @typedef DeliveryTsSchema
@@ -235,7 +256,7 @@ export = WebhookPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef DeliveryEventLevelSchema
@@ -252,7 +273,8 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef ResponseTimeTs
- * @property {AvgResponseTime[]} [avg_response_time_ts]
+ * @property {AvgResponseTime[]} [avg_response_time_ts] - List of average
+ *   response time timestamps.
  */
 /**
  * @typedef AvgResponseTime
@@ -267,7 +289,8 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef DeliverySummaryResult
- * @property {DeliveryEventLevelSchema[]} [delivery_event_level]
+ * @property {DeliveryEventLevelSchema[]} [delivery_event_level] - List of
+ *   delivery event levels.
  * @property {DeliverySummarySchema} [delivery_summary]
  */
 /**
@@ -299,7 +322,7 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { SubscriberUpdate, SubscriberUpdateResult, Association, AuthMeta, BroadcasterConfig, SubscriberEventMapping, EventConfigDetails, SubscriberConfigDetails, InvalidEventsPayload, InvalidEventsResult, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResult, HistoryPayload, CancelDownloadResult, FilterReportResult, DeliveryTsResult, DeliveryTsSchema, DeliveryDetailsPayload, EventDeliveryDetailSchema, DeliveryDetailsResult, EventProcessReportObject, Page, DeliveryEventLevelSchema, ResponseTimeTs, AvgResponseTime, DeliverySummaryResult, DeliverySummarySchema, ItemSchema };
+    export { SubscriberUpdate, SubscriberUpdateResult, Association, AuthMeta, BroadcasterConfig, SubscriberEventMapping, FilterSchema, EventConfigDetails, SubscriberConfigDetails, InvalidEventsPayload, InvalidEventsResult, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResult, HistoryPayload, CancelDownloadResult, FilterReportResult, DeliveryTsResult, DeliveryTsSchema, DeliveryDetailsPayload, EventDeliveryDetailSchema, DeliveryDetailsResult, EventProcessReportObject, Page, DeliveryEventLevelSchema, ResponseTimeTs, AvgResponseTime, DeliverySummaryResult, DeliverySummarySchema, ItemSchema };
 }
 /** @returns {SubscriberUpdate} */
 declare function SubscriberUpdate(): SubscriberUpdate;
@@ -350,7 +373,7 @@ type AuthMeta = {
      */
     type?: string;
     /**
-     * - Contains the secret key or token used for authentication.
+     * - Contains the key or token used for authentication.
      */
     secret?: string;
 };
@@ -403,12 +426,49 @@ type SubscriberEventMapping = {
      * involved in the mapping.
      */
     subscriber_id?: number;
+    filters?: FilterSchema;
+    /**
+     * - The reducer property allows users to customize
+     * the JSON structure of the webhook payload using JSONPath queries. They can
+     * also create new properties by mapping existing ones. Note that it overrides
+     * the entire JSON structure of the webhook payload sent via the webhook. See
+     * the partner documentation's filter and reducer section for details.
+     */
+    reducer?: any;
     broadcaster_config?: BroadcasterConfig;
     /**
      * - The timestamp indicating when the
      * subscriber event mapping was created.
      */
     created_on?: string;
+};
+/** @returns {FilterSchema} */
+declare function FilterSchema(): FilterSchema;
+type FilterSchema = {
+    /**
+     * - JSONPath expression that specifies the property
+     * in the webhook payload to filter on. This enables targeting specific data
+     * within the payload.
+     */
+    query?: string;
+    /**
+     * - JavaScript function used to evaluate the
+     * specified property in the webhook payload against a condition. This
+     * function determines whether the filter passes based on its return value.
+     */
+    condition?: string;
+    /**
+     * - Logical operator used to combine multiple
+     * conditions in the `conditions` array. Supported values are `AND` and `OR`.
+     */
+    logic?: string;
+    /**
+     * - An array of filter objects to be
+     * evaluated using the specified logical operator. This array will contain
+     * more filters including a combination of single condition mode and logical
+     * group mode filters.
+     */
+    conditions?: any[];
 };
 /** @returns {EventConfigDetails} */
 declare function EventConfigDetails(): EventConfigDetails;
@@ -695,6 +755,9 @@ type FilterReportResult = {
 /** @returns {DeliveryTsResult} */
 declare function DeliveryTsResult(): DeliveryTsResult;
 type DeliveryTsResult = {
+    /**
+     * - List of delivery timestamps.
+     */
     delivery_ts?: DeliveryTsSchema[];
 };
 /** @returns {DeliveryTsSchema} */
@@ -871,9 +934,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - Total number of items.
+     * - The number of items per page.
      */
-    total?: number;
+    page_size?: number;
 };
 /** @returns {DeliveryEventLevelSchema} */
 declare function DeliveryEventLevelSchema(): DeliveryEventLevelSchema;
@@ -913,6 +976,10 @@ type DeliveryEventLevelSchema = {
 /** @returns {ResponseTimeTs} */
 declare function ResponseTimeTs(): ResponseTimeTs;
 type ResponseTimeTs = {
+    /**
+     * - List of average
+     * response time timestamps.
+     */
     avg_response_time_ts?: AvgResponseTime[];
 };
 /** @returns {AvgResponseTime} */
@@ -945,6 +1012,10 @@ type AvgResponseTime = {
 /** @returns {DeliverySummaryResult} */
 declare function DeliverySummaryResult(): DeliverySummaryResult;
 type DeliverySummaryResult = {
+    /**
+     * - List of
+     * delivery event levels.
+     */
     delivery_event_level?: DeliveryEventLevelSchema[];
     delivery_summary?: DeliverySummarySchema;
 };

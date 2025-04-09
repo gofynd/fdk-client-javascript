@@ -9,7 +9,7 @@ const SharePlatformModel = require("./SharePlatformModel");
 
 /**
  * @typedef GetShortLinkByHashParam
- * @property {string} hash
+ * @property {string} hash - Hash of short url
  */
 
 /**
@@ -31,7 +31,7 @@ const SharePlatformModel = require("./SharePlatformModel");
 
 /**
  * @typedef UpdateShortLinkByIdParam
- * @property {string} id - Document Id
+ * @property {string} id - Short link document identifier
  * @property {SharePlatformModel.ShortLinkReq} body
  */
 

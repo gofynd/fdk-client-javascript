@@ -18,7 +18,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.SampleFileServiceabilityParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponseItemData>}
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResultItemData>}
    *   - Success response
    *
    * @name sampleFileServiceability
@@ -62,7 +62,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/localities/bulk-sample`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/localities/bulk-sample`,
       query_params,
       body,
       requestHeaders,
@@ -76,7 +76,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResponseItemData().validate(
+    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResultItemData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -101,7 +101,7 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema>}
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionServiceabilityTatResult>}
    *   - Success response
    *
    * @name getSampleFileServiceabilityStatus
@@ -152,7 +152,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/localities/bulk-sample`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/localities/bulk-sample`,
       query_params,
       undefined,
       requestHeaders,
@@ -166,7 +166,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResponseSchema().validate(
+    } = LogisticsPartnerModel.BulkRegionServiceabilityTatResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -189,7 +189,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.BulkTatParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseItemData>} -
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResultItemData>} -
    *   Success response
    * @name bulkTat
    * @summary: Region TAT Import or Export
@@ -232,7 +232,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
       query_params,
       body,
       requestHeaders,
@@ -246,7 +246,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseItemData().validate(
+    } = LogisticsPartnerModel.BulkRegionResultItemData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -269,8 +269,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetBulkTatParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResult>} - Success response
    * @name getBulkTat
    * @summary: Get region tat bulk history
    * @description: Get region tat bulk history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkTat/).
@@ -350,7 +349,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
       query_params,
       undefined,
       requestHeaders,
@@ -364,10 +363,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.BulkRegionResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -384,10 +383,960 @@ class Logistics {
   }
 
   /**
+   * @param {LogisticsPartnerValidator.CreateDeliveryTimeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionTatResult>} - Success response
+   * @name createDeliveryTime
+   * @summary: Region based delivery time insert
+   * @description: Insert the region based delivery time for a specific region within a courier partner scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createDeliveryTime/).
+   */
+  async createDeliveryTime(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      body,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.createDeliveryTime().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.createDeliveryTime().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > createDeliveryTime \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/delivery-time`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionTatResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > createDeliveryTime \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetDeliveryTimesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionTatItemResult>} - Success response
+   * @name getDeliveryTimes
+   * @summary: Get region based delivery time list
+   * @description: Retrieve a list of delivery time for specific regions within a courier partner scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getDeliveryTimes/).
+   */
+  async getDeliveryTimes(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      pageNo,
+      pageSize,
+      fromCountryCode,
+      fromStateCode,
+      fromCityCode,
+      fromSectorCode,
+      fromPincode,
+      toCountryCode,
+      toStateCode,
+      toCityCode,
+      toSectorCode,
+      toPincode,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getDeliveryTimes().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        fromCountryCode,
+        fromStateCode,
+        fromCityCode,
+        fromSectorCode,
+        fromPincode,
+        toCountryCode,
+        toStateCode,
+        toCityCode,
+        toSectorCode,
+        toPincode,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getDeliveryTimes().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        fromCountryCode,
+        fromStateCode,
+        fromCityCode,
+        fromSectorCode,
+        fromPincode,
+        toCountryCode,
+        toStateCode,
+        toCityCode,
+        toSectorCode,
+        toPincode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getDeliveryTimes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["from_country_code"] = fromCountryCode;
+    query_params["from_state_code"] = fromStateCode;
+    query_params["from_city_code"] = fromCityCode;
+    query_params["from_sector_code"] = fromSectorCode;
+    query_params["from_pincode"] = fromPincode;
+    query_params["to_country_code"] = toCountryCode;
+    query_params["to_state_code"] = toStateCode;
+    query_params["to_city_code"] = toCityCode;
+    query_params["to_sector_code"] = toSectorCode;
+    query_params["to_pincode"] = toPincode;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/delivery-time`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionTatItemResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getDeliveryTimes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetDeliveryTimeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionTatResult>} - Success response
+   * @name getDeliveryTime
+   * @summary: Get region based delivery time for a given identifier
+   * @description: Retrieve the delivery time details for a specific region within a courier partner scheme using the unique delivery time record identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getDeliveryTime/).
+   */
+  async getDeliveryTime(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getDeliveryTime().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getDeliveryTime().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getDeliveryTime \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/delivery-time/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionTatResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getDeliveryTime \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.UpdateDeliveryTimeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionTatResult>} - Success response
+   * @name updateDeliveryTime
+   * @summary: Region based delivery time update
+   * @description: Update the delivery time details for a specific region within a courier partner scheme using the unique delivery time record identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateDeliveryTime/).
+   */
+  async updateDeliveryTime(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      body,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.updateDeliveryTime().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.updateDeliveryTime().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > updateDeliveryTime \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/delivery-time/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionTatResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > updateDeliveryTime \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.DeleteDeliveryTimeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionTatResult>} - Success response
+   * @name deleteDeliveryTime
+   * @summary: Region based delivery time delete
+   * @description: Delete the delivery time record for a specific region within a courier partner scheme using the unique delivery time record identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/deleteDeliveryTime/).
+   */
+  async deleteDeliveryTime(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.deleteDeliveryTime().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.deleteDeliveryTime().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > deleteDeliveryTime \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/delivery-time/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionTatResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > deleteDeliveryTime \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.CreateServiceabilityParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionServiceabilityResult>} -
+   *   Success response
+   * @name createServiceability
+   * @summary: Serviceability insert
+   * @description: Insert the serviceability for a specific region within a courier partner scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createServiceability/).
+   */
+  async createServiceability(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      body,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.createServiceability().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.createServiceability().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > createServiceability \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/serviceability`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionServiceabilityResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > createServiceability \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetServiceabilitiesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionServiceabilityItemResult>}
+   *   - Success response
+   *
+   * @name getServiceabilities
+   * @summary: Get region serviceability list
+   * @description: Retrieve a list of serviceability for specific regions within a courier partner scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getServiceabilities/).
+   */
+  async getServiceabilities(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      pageNo,
+      pageSize,
+      countryCode,
+      stateCode,
+      cityCode,
+      sectorCode,
+      pincode,
+      firstMile,
+      lastMile,
+      doorstepReturn,
+      doorstepQc,
+      installation,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getServiceabilities().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        countryCode,
+        stateCode,
+        cityCode,
+        sectorCode,
+        pincode,
+        firstMile,
+        lastMile,
+        doorstepReturn,
+        doorstepQc,
+        installation,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getServiceabilities().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        countryCode,
+        stateCode,
+        cityCode,
+        sectorCode,
+        pincode,
+        firstMile,
+        lastMile,
+        doorstepReturn,
+        doorstepQc,
+        installation,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getServiceabilities \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["country_code"] = countryCode;
+    query_params["state_code"] = stateCode;
+    query_params["city_code"] = cityCode;
+    query_params["sector_code"] = sectorCode;
+    query_params["pincode"] = pincode;
+    query_params["first_mile"] = firstMile;
+    query_params["last_mile"] = lastMile;
+    query_params["doorstep_return"] = doorstepReturn;
+    query_params["doorstep_qc"] = doorstepQc;
+    query_params["installation"] = installation;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/serviceability`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionServiceabilityItemResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getServiceabilities \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetServiceabilityParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionServiceabilityResult>} -
+   *   Success response
+   * @name getServiceability
+   * @summary: Get region serviceability
+   * @description: Retrieve serviceability for specific region within a courier partner scheme for a given identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getServiceability/).
+   */
+  async getServiceability(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getServiceability().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getServiceability().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getServiceability \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/serviceability/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionServiceabilityResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getServiceability \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.UpdateServiceabilityParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.ServiceabilityDetailsResult>} -
+   *   Success response
+   * @name updateServiceability
+   * @summary: Serviceability update
+   * @description: Update the serviceability for a specific region within a courier partner scheme based on unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateServiceability/).
+   */
+  async updateServiceability(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      body,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.updateServiceability().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.updateServiceability().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > updateServiceability \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/serviceability/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.ServiceabilityDetailsResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > updateServiceability \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.DeleteServiceabilityParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RegionServiceabilityResult>} -
+   *   Success response
+   * @name deleteServiceability
+   * @summary: Serviceability delete
+   * @description: Delete the serviceability for a specific region within a courier partner scheme based on a unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/deleteServiceability/).
+   */
+  async deleteServiceability(
+    {
+      partnerOrgId,
+      courierPartnerExtensionId,
+      schemeId,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.deleteServiceability().validate(
+      {
+        partnerOrgId,
+        courierPartnerExtensionId,
+        schemeId,
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.deleteServiceability().validate(
+      { partnerOrgId, courierPartnerExtensionId, schemeId, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > deleteServiceability \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/partner/logistics/v2.0/organization/${partnerOrgId}/courier-partner/${courierPartnerExtensionId}/scheme/${schemeId}/serviceability/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RegionServiceabilityResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > deleteServiceability \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {LogisticsPartnerValidator.BulkServiceabilityParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseItemData>} -
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResultItemData>} -
    *   Success response
    * @name bulkServiceability
    * @summary: Serviceability Import or Export
@@ -432,7 +1381,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
       query_params,
       body,
       requestHeaders,
@@ -446,7 +1395,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseItemData().validate(
+    } = LogisticsPartnerModel.BulkRegionResultItemData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -469,8 +1418,7 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetBulkServiceabilityParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.BulkRegionResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.BulkRegionResult>} - Success response
    * @name getBulkServiceability
    * @summary: Get Region Serviceability Bulk History
    * @description: Get Region Serviceability Bulk History - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getBulkServiceability/).
@@ -554,7 +1502,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
       query_params,
       undefined,
       requestHeaders,
@@ -568,10 +1516,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.BulkRegionResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.BulkRegionResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -593,10 +1541,11 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
+   *   Success response
    * @name createCourierPartnerAccount
-   * @summary: Creation of Courier Account
-   * @description: This API Creates a new Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
+   * @summary: Create courier account
+   * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
    */
   async createCourierPartnerAccount(
     { companyId, body, requestHeaders } = { requestHeaders: {} },
@@ -651,10 +1600,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccount().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = LogisticsPartnerModel.CourierAccountDetailsBody().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -674,12 +1623,12 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetCourierPartnerAccountsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema>}
+   * @returns {Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResult>}
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Getting Courier Account list of a company.
-   * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
+   * @summary: List courier accounts
+   * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
     {
@@ -690,6 +1639,9 @@ class Logistics {
       paymentMode,
       transportType,
       accountIds,
+      selfShip,
+      ownAccount,
+      q,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -705,6 +1657,9 @@ class Logistics {
         paymentMode,
         transportType,
         accountIds,
+        selfShip,
+        ownAccount,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -724,6 +1679,9 @@ class Logistics {
         paymentMode,
         transportType,
         accountIds,
+        selfShip,
+        ownAccount,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -741,6 +1699,9 @@ class Logistics {
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
     query_params["account_ids"] = accountIds;
+    query_params["self_ship"] = selfShip;
+    query_params["own_account"] = ownAccount;
+    query_params["q"] = q;
 
     const response = await PartnerAPIClient.execute(
       this.config,
@@ -759,7 +1720,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CompanyCourierPartnerAccountListResponseSchema().validate(
+    } = LogisticsPartnerModel.CompanyCourierPartnerAccountListResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -784,10 +1745,11 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
+   *   Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update Courier Account in database.
-   * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
+   * @summary: Update courier account
+   * @description: Updates an existing courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
     { companyId, accountId, body, requestHeaders } = { requestHeaders: {} },
@@ -844,10 +1806,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccount().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = LogisticsPartnerModel.CourierAccountDetailsBody().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -867,11 +1829,10 @@ class Logistics {
    * @param {LogisticsPartnerValidator.GetCourierPartnerAccountParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccountResult>} - Success response
    * @name getCourierPartnerAccount
-   * @summary: Getting Courier Account of a company from database.
-   * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
+   * @summary: Get courier account
+   * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
     { companyId, accountId, requestHeaders } = { requestHeaders: {} },
@@ -926,10 +1887,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.CourierAccountResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -946,177 +1907,12 @@ class Logistics {
   }
 
   /**
-   * @param {LogisticsPartnerValidator.CreateCourierPartnerSchemeParam} arg -
-   *   Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModel>} -
-   *   Success response
-   * @name createCourierPartnerScheme
-   * @summary: Create Scheme for courier partner extension
-   * @description: Create Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerScheme/).
-   */
-  async createCourierPartnerScheme(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LogisticsPartnerValidator.createCourierPartnerScheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticsPartnerValidator.createCourierPartnerScheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for partner > Logistics > createCourierPartnerScheme \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PartnerAPIClient.execute(
-      this.config,
-      "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeModel().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for partner > Logistics > createCourierPartnerScheme \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam} arg -
-   *   Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema>}
-   *   - Success response
-   *
-   * @name updateCourierPartnerScheme
-   * @summary: Update Scheme for courier partner extension
-   * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerScheme/).
-   */
-  async updateCourierPartnerScheme(
-    { schemeId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LogisticsPartnerValidator.updateCourierPartnerScheme().validate(
-      {
-        schemeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticsPartnerValidator.updateCourierPartnerScheme().validate(
-      {
-        schemeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for partner > Logistics > updateCourierPartnerScheme \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PartnerAPIClient.execute(
-      this.config,
-      "put",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeUpdateRequestSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for partner > Logistics > updateCourierPartnerScheme \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LogisticsPartnerValidator.GetCountriesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
    * @name getCountries
-   * @summary: Get all countries and associated data.
+   * @summary: Get all countries and associated data
    * @description: Retrieve a list of countries for logistical purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
   async getCountries(
@@ -1195,6 +1991,344 @@ class Logistics {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Logistics > getCountries \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.CreateCourierPartnerSchemeParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
+   *   - Success response
+   *
+   * @name createCourierPartnerScheme
+   * @summary: Create Scheme for courier partner extension
+   * @description: Create Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerScheme/).
+   */
+  async createCourierPartnerScheme(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.createCourierPartnerScheme().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.createCourierPartnerScheme().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > createCourierPartnerScheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.CourierPartnerSchemeModelSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > createCourierPartnerScheme \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetCourierPartnerSchemesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeList>} -
+   *   Success response
+   * @name getCourierPartnerSchemes
+   * @summary: Get created Schemes for courier partner
+   * @description: Get created Schemes for courier partner - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerSchemes/).
+   */
+  async getCourierPartnerSchemes(
+    { schemeType, paymentMode, capabilities, schemeIds, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
+      {
+        schemeType,
+        paymentMode,
+        capabilities,
+        schemeIds,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
+      {
+        schemeType,
+        paymentMode,
+        capabilities,
+        schemeIds,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getCourierPartnerSchemes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["scheme_type"] = schemeType;
+    query_params["payment_mode"] = paymentMode;
+    query_params["capabilities"] = capabilities;
+    query_params["scheme_ids"] = schemeIds;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.CourierPartnerSchemeList().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getCourierPartnerSchemes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerPutSchema>} -
+   *   Success response
+   * @name updateCourierPartnerScheme
+   * @summary: Update Scheme for courier partner extension
+   * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerScheme/).
+   */
+  async updateCourierPartnerScheme(
+    { schemeId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.updateCourierPartnerScheme().validate(
+      {
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.updateCourierPartnerScheme().validate(
+      {
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > updateCourierPartnerScheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.CourierPartnerPutSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > updateCourierPartnerScheme \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetCourierPartnerSchemeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
+   *   - Success response
+   *
+   * @name getCourierPartnerScheme
+   * @summary: Get Scheme for courier partner extension by Id
+   * @description: Update Scheme for courier partner extension by Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerScheme/).
+   */
+  async getCourierPartnerScheme(
+    { schemeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.getCourierPartnerScheme().validate(
+      {
+        schemeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getCourierPartnerScheme().validate(
+      {
+        schemeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getCourierPartnerScheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.CourierPartnerSchemeModelSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getCourierPartnerScheme \n ${res_error}`,
         });
       }
     }

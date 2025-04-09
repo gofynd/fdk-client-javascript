@@ -13,6 +13,10 @@ export = LeadPlatformValidator;
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
+/**
+ * @typedef GetFeedbacksParam
+ * @property {string} id - Ticket ID for which feedbacks are to be fetched
+ */
 /** @typedef GetGeneralConfigParam */
 /**
  * @typedef GetPlatformTicketParam
@@ -29,12 +33,17 @@ export = LeadPlatformValidator;
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {string} [priority] - Filter tickets on priority
+ * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ */
+/**
+ * @typedef SubmitFeedbackParam
+ * @property {string} id - Ticket ID for which feedback is to be submitted
+ * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 declare class LeadPlatformValidator {
     /** @returns {CreatePlatformTicketHistoryParam} */
@@ -43,6 +52,8 @@ declare class LeadPlatformValidator {
     static createTicket(): CreateTicketParam;
     /** @returns {EditPlatformTicketParam} */
     static editPlatformTicket(): EditPlatformTicketParam;
+    /** @returns {GetFeedbacksParam} */
+    static getFeedbacks(): GetFeedbacksParam;
     /** @returns {GetGeneralConfigParam} */
     static getGeneralConfig(): any;
     /** @returns {GetPlatformTicketParam} */
@@ -51,9 +62,11 @@ declare class LeadPlatformValidator {
     static getPlatformTicketHistory(): GetPlatformTicketHistoryParam;
     /** @returns {GetPlatformTicketsParam} */
     static getPlatformTickets(): GetPlatformTicketsParam;
+    /** @returns {SubmitFeedbackParam} */
+    static submitFeedback(): SubmitFeedbackParam;
 }
 declare namespace LeadPlatformValidator {
-    export { CreatePlatformTicketHistoryParam, CreateTicketParam, EditPlatformTicketParam, GetGeneralConfigParam, GetPlatformTicketParam, GetPlatformTicketHistoryParam, GetPlatformTicketsParam };
+    export { CreatePlatformTicketHistoryParam, CreateTicketParam, EditPlatformTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetPlatformTicketParam, GetPlatformTicketHistoryParam, GetPlatformTicketsParam, SubmitFeedbackParam };
 }
 type CreatePlatformTicketHistoryParam = {
     /**
@@ -71,6 +84,12 @@ type EditPlatformTicketParam = {
      */
     id: string;
     body: LeadPlatformModel.EditTicketPayload;
+};
+type GetFeedbacksParam = {
+    /**
+     * - Ticket ID for which feedbacks are to be fetched
+     */
+    id: string;
 };
 type GetPlatformTicketParam = {
     /**
@@ -105,7 +124,7 @@ type GetPlatformTicketsParam = {
     /**
      * - Filter tickets on priority
      */
-    priority?: string;
+    priority?: LeadPlatformModel.PriorityEnum;
     /**
      * - Filter tickets on category
      */
@@ -120,6 +139,13 @@ type GetPlatformTicketsParam = {
      * Default is 12.
      */
     pageSize?: number;
+};
+type SubmitFeedbackParam = {
+    /**
+     * - Ticket ID for which feedback is to be submitted
+     */
+    id: string;
+    body: LeadPlatformModel.TicketFeedbackPayload;
 };
 type GetGeneralConfigParam = any;
 import LeadPlatformModel = require("./LeadPlatformModel");

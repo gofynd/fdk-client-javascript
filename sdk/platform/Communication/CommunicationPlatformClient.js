@@ -23,11 +23,11 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
    *   Success response
    * @name getSystemNotifications
-   * @summary: Get system notifications.
-   * @description: Retrieve system notifications related to communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
+   * @summary: Get system notifications
+   * @description: Retrieves a list of system notifications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
    */
   async getSystemNotifications(
-    { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -36,8 +36,6 @@ class Communication {
       {
         pageNo,
         pageSize,
-        sort,
-        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -52,8 +50,6 @@ class Communication {
       {
         pageNo,
         pageSize,
-        sort,
-        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -67,15 +63,13 @@ class Communication {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-    query_params["query"] = query;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications/`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -106,37 +100,6 @@ class Communication {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.sort] - To sort based on created_at
-   * @param {string} [arg.query] - To search based on plain text
-   * @returns {Paginator<CommunicationPlatformModel.SystemNotifications>}
-   * @summary: Get system notifications.
-   * @description: Retrieve system notifications related to communication.
-   */
-  getSystemNotificationsPaginator({ pageSize, sort, query } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemNotifications({
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-        query: query,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 }
 

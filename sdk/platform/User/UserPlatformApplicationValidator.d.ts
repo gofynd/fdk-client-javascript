@@ -8,6 +8,14 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.BlockUserRequestSchema} body
  */
 /**
+ * @typedef BulkImportStoreFrontUsersParam
+ * @property {UserPlatformModel.CreateStoreFrontUsersPayload} body
+ */
+/**
+ * @typedef CreateBulkExportUsersParam
+ * @property {UserPlatformModel.BulkUserExportSchema} body
+ */
+/**
  * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
@@ -47,6 +55,26 @@ export = UserPlatformApplicationValidator;
 /**
  * @typedef GetActiveSessionsParam
  * @property {string} id - ID of a customer.
+ */
+/**
+ * @typedef GetBulkExportUsersListParam
+ * @property {string} [pageNo] - Page number for pagination result
+ * @property {string} [pageSize] - Page size for pagination result
+ * @property {string} [fileFormat] - Filter data based on file format eg csv or xlsx
+ * @property {string} [search] - The search queries based on job name.
+ * @property {string} [startDate] - Start date
+ * @property {string} [endDate] - End date
+ * @property {string} [status] - Status of the Import Documents
+ */
+/**
+ * @typedef GetBulkImportUsersListParam
+ * @property {string} [pageNo] - Page number for pagination result
+ * @property {string} [pageSize] - Page size for pagination result
+ * @property {string} [search] - The search queries based on job name.
+ * @property {string} [startDate] - Start date
+ * @property {string} [endDate] - End date
+ * @property {string} [status] - Status of the Import Documents
+ * @property {string} [fileFormat] - Filter data based on file format eg csv or xlsx
  */
 /**
  * @typedef GetCustomersParam
@@ -110,8 +138,13 @@ export = UserPlatformApplicationValidator;
  * @property {number} [groupUid] - To get User Groups with given uid
  */
 /**
- * @typedef GetUsersByByGroupIdParam
- * @property {string} groupId - Numeric ID allotted to a User Group
+ * @typedef GetUserTimelineParam
+ * @property {string} userId - User ID
+ */
+/**
+ * @typedef GetUsersJobByJobIdParam
+ * @property {string} jobId - The unique identifier of the job. This is used to
+ *   fetch the details of the specific job.
  */
 /**
  * @typedef SearchUsersParam
@@ -137,7 +170,7 @@ export = UserPlatformApplicationValidator;
  * @property {string} attributeDefId - The unique identifier of the attribute
  *   definition to update.
  * @property {string} userId - The unique identifier of the user to update.
- * @property {UserPlatformModel.CreateUserAttributePayload} body
+ * @property {UserPlatformModel.CreateUserAttribute} body
  */
 /**
  * @typedef UpdateUserAttributeDefinitionParam
@@ -160,6 +193,10 @@ declare class UserPlatformApplicationValidator {
     static archiveUser(): ArchiveUserParam;
     /** @returns {BlockOrUnblockUsersParam} */
     static blockOrUnblockUsers(): BlockOrUnblockUsersParam;
+    /** @returns {BulkImportStoreFrontUsersParam} */
+    static bulkImportStoreFrontUsers(): BulkImportStoreFrontUsersParam;
+    /** @returns {CreateBulkExportUsersParam} */
+    static createBulkExportUsers(): CreateBulkExportUsersParam;
     /** @returns {CreateUserParam} */
     static createUser(): CreateUserParam;
     /** @returns {CreateUserAttributeDefinitionParam} */
@@ -178,6 +215,10 @@ declare class UserPlatformApplicationValidator {
     static deleteUserAttributeDefinitionById(): DeleteUserAttributeDefinitionByIdParam;
     /** @returns {GetActiveSessionsParam} */
     static getActiveSessions(): GetActiveSessionsParam;
+    /** @returns {GetBulkExportUsersListParam} */
+    static getBulkExportUsersList(): GetBulkExportUsersListParam;
+    /** @returns {GetBulkImportUsersListParam} */
+    static getBulkImportUsersList(): GetBulkImportUsersListParam;
     /** @returns {GetCustomersParam} */
     static getCustomers(): GetCustomersParam;
     /** @returns {GetPlatformConfigParam} */
@@ -196,8 +237,10 @@ declare class UserPlatformApplicationValidator {
     static getUserGroupById(): GetUserGroupByIdParam;
     /** @returns {GetUserGroupsParam} */
     static getUserGroups(): GetUserGroupsParam;
-    /** @returns {GetUsersByByGroupIdParam} */
-    static getUsersByByGroupId(): GetUsersByByGroupIdParam;
+    /** @returns {GetUserTimelineParam} */
+    static getUserTimeline(): GetUserTimelineParam;
+    /** @returns {GetUsersJobByJobIdParam} */
+    static getUsersJobByJobId(): GetUsersJobByJobIdParam;
     /** @returns {SearchUsersParam} */
     static searchUsers(): SearchUsersParam;
     /** @returns {UnDeleteUserParam} */
@@ -216,13 +259,19 @@ declare class UserPlatformApplicationValidator {
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUsersByByGroupIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkImportStoreFrontUsersParam, CreateBulkExportUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetBulkExportUsersListParam, GetBulkImportUsersListParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUserTimelineParam, GetUsersJobByJobIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
 };
 type BlockOrUnblockUsersParam = {
     body: UserPlatformModel.BlockUserRequestSchema;
+};
+type BulkImportStoreFrontUsersParam = {
+    body: UserPlatformModel.CreateStoreFrontUsersPayload;
+};
+type CreateBulkExportUsersParam = {
+    body: UserPlatformModel.BulkUserExportSchema;
 };
 type CreateUserParam = {
     body: UserPlatformModel.CreateUserRequestSchema;
@@ -282,6 +331,66 @@ type GetActiveSessionsParam = {
      * - ID of a customer.
      */
     id: string;
+};
+type GetBulkExportUsersListParam = {
+    /**
+     * - Page number for pagination result
+     */
+    pageNo?: string;
+    /**
+     * - Page size for pagination result
+     */
+    pageSize?: string;
+    /**
+     * - Filter data based on file format eg csv or xlsx
+     */
+    fileFormat?: string;
+    /**
+     * - The search queries based on job name.
+     */
+    search?: string;
+    /**
+     * - Start date
+     */
+    startDate?: string;
+    /**
+     * - End date
+     */
+    endDate?: string;
+    /**
+     * - Status of the Import Documents
+     */
+    status?: string;
+};
+type GetBulkImportUsersListParam = {
+    /**
+     * - Page number for pagination result
+     */
+    pageNo?: string;
+    /**
+     * - Page size for pagination result
+     */
+    pageSize?: string;
+    /**
+     * - The search queries based on job name.
+     */
+    search?: string;
+    /**
+     * - Start date
+     */
+    startDate?: string;
+    /**
+     * - End date
+     */
+    endDate?: string;
+    /**
+     * - Status of the Import Documents
+     */
+    status?: string;
+    /**
+     * - Filter data based on file format eg csv or xlsx
+     */
+    fileFormat?: string;
 };
 type GetCustomersParam = {
     /**
@@ -419,11 +528,18 @@ type GetUserGroupsParam = {
      */
     groupUid?: number;
 };
-type GetUsersByByGroupIdParam = {
+type GetUserTimelineParam = {
     /**
-     * - Numeric ID allotted to a User Group
+     * - User ID
      */
-    groupId: string;
+    userId: string;
+};
+type GetUsersJobByJobIdParam = {
+    /**
+     * - The unique identifier of the job. This is used to
+     * fetch the details of the specific job.
+     */
+    jobId: string;
 };
 type SearchUsersParam = {
     /**
@@ -459,7 +575,7 @@ type UpdateUserAttributeParam = {
      * - The unique identifier of the user to update.
      */
     userId: string;
-    body: UserPlatformModel.CreateUserAttributePayload;
+    body: UserPlatformModel.CreateUserAttribute;
 };
 type UpdateUserAttributeDefinitionParam = {
     /**

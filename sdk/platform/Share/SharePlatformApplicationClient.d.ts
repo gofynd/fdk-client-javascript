@@ -9,7 +9,7 @@ declare class Share {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name createShortLink
-     * @summary: Create short link.
+     * @summary: Create short link
      * @description: Generate a shortened URL link for sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
      */
     createShortLink({ body, requestHeaders }?: SharePlatformApplicationValidator.CreateShortLinkParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
@@ -19,7 +19,7 @@ declare class Share {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name getShortLinkByHash
-     * @summary: Get short link by hash.
+     * @summary: Get short link by hash
      * @description: Retrieve a specific short link by its unique hash. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
      */
     getShortLinkByHash({ hash, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinkByHashParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
@@ -53,7 +53,7 @@ declare class Share {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name updateShortLinkById
-     * @summary: Update short link by ID.
+     * @summary: Update short link
      * @description: Update details of a specific short link by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
      */
     updateShortLinkById({ id, body, requestHeaders }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;

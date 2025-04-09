@@ -12,6 +12,10 @@ class Content {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      fetchResourceTranslations:
+        "/service/application/content/v1.0/resource/translations/{type}/{locale}",
+      fetchResourceTranslationsWithPayload:
+        "/service/application/content/v1.0/resource/translations/{type}/{locale}",
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
       getBlogs: "/service/application/content/v1.0/blogs",
@@ -20,8 +24,6 @@ class Content {
       getCustomObjectBySlug:
         "/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
-      getDefaultSitemapConfig:
-        "/service/application/content/v1.0/seo/sitemap/default",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
       getFaqCategoryBySlug:
@@ -31,16 +33,16 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v2.0/navigations",
+      getNavigations: "/service/application/content/v1.0/navigations",
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
-      getSitemap: "/service/application/content/v1.0/seo/sitemaps/{name}",
-      getSitemaps: "/service/application/content/v1.0/seo/sitemaps",
       getSupportInformation: "/service/application/content/v1.0/support",
+      getSupportedLanguages: "/service/application/content/v1.0/languages",
       getTags: "/service/application/content/v1.0/tags",
-      getWellKnownUrl: "/service/application/content/v1.0/well-known/{slug}",
+      getTranslateUILabels:
+        "/service/application/content/v1.0/translate-ui-labels",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -56,6 +58,100 @@ class Content {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResourceTranslations>} - Success response
+   * @name fetchResourceTranslations
+   * @summary: Get Resource Translations
+   * @description: Fetch translations for specific resource IDs based on type and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslations/).
+   */
+  async fetchResourceTranslations(
+    { type, locale, resourceId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["type", "locale"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["resource_id"] = resourceId;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["fetchResourceTranslations"],
+        params: { type, locale },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResourceTranslations>} - Success response
+   * @name fetchResourceTranslationsWithPayload
+   * @summary: Post Resource Translations
+   * @description: Submit and retrieve translations for resources using payload data and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslationsWithPayload/).
+   */
+  async fetchResourceTranslationsWithPayload(
+    { type, locale, resourceId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["type", "locale"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["resource_id"] = resourceId;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["fetchResourceTranslationsWithPayload"],
+        params: { type, locale },
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
   }
 
   /**
@@ -104,7 +200,7 @@ class Content {
    * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
   async getBlog(
-    { slug, rootId, requestHeaders } = { requestHeaders: {} },
+    { slug, rootId, preview, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["slug"]);
@@ -118,6 +214,7 @@ class Content {
 
     const query_params = {};
     query_params["root_id"] = rootId;
+    query_params["preview"] = preview;
 
     const xHeaders = {};
 
@@ -145,7 +242,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BlogGetResponseSchema>} - Success response
+   * @returns {Promise<BlogGetDetails>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
@@ -302,43 +399,6 @@ class Content {
       "get",
       constructUrl({
         url: this._urls["getDataLoaders"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DefaultSitemapConfig>} - Success response
-   * @name getDefaultSitemapConfig
-   * @summary: Get default sitemap configuration
-   * @description: Retrieves the current default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDefaultSitemapConfig/).
-   */
-  async getDefaultSitemapConfig(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getDefaultSitemapConfig"],
         params: {},
       }),
       query_params,
@@ -573,7 +633,7 @@ class Content {
    * @returns {Promise<LandingPageSchema>} - Success response
    * @name getLandingPage
    * @summary: Get a landing page
-   * @description: Gets the content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
+   * @description: Get content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
    */
   async getLandingPage(
     { requestHeaders } = { requestHeaders: {} },
@@ -644,7 +704,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<NavigationGetResponseSchema>} - Success response
+   * @returns {Promise<NavigationGetDetails>} - Success response
    * @name getNavigations
    * @summary: List navigation items
    * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
@@ -685,8 +745,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PageSchema>} - Success response
    * @name getPage
-   * @summary: Get page by slug
-   * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
+   * @summary: Get a page
+   * @description: Get detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
    */
   async getPage(
     { slug, rootId, requestHeaders } = { requestHeaders: {} },
@@ -730,10 +790,10 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PageGetResponseSchema>} - Success response
+   * @returns {Promise<PageGetDetails>} - Success response
    * @name getPages
    * @summary: Lists pages
-   * @description: Lists all Custom Pages - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
+   * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
    */
   async getPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -845,25 +905,15 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SitemapConfig>} - Success response
-   * @name getSitemap
-   * @summary: Get a specific sitemap configuration
-   * @description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemap/).
+   * @returns {Promise<Support>} - Success response
+   * @name getSupportInformation
+   * @summary: Get customer support information
+   * @description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
    */
-  async getSitemap(
-    { name, requestHeaders } = { requestHeaders: {} },
+  async getSupportInformation(
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], ["name"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -872,51 +922,7 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getSitemap"],
-        params: { name },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SitemapConfigurationList>} - Success response
-   * @name getSitemaps
-   * @summary: List sitemap configurations
-   * @description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemaps/).
-   */
-  async getSitemaps(
-    { pageNo, pageSize, isActive, name, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_active"] = isActive;
-    query_params["name"] = name;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSitemaps"],
+        url: this._urls["getSupportInformation"],
         params: {},
       }),
       query_params,
@@ -936,12 +942,12 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<Support>} - Success response
-   * @name getSupportInformation
-   * @summary: Get customer support information
-   * @description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
+   * @returns {Promise<Object>} - Success response
+   * @name getSupportedLanguages
+   * @summary: List App Languages
+   * @description: Retrieve available languages and their configurations for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportedLanguages/).
    */
-  async getSupportInformation(
+  async getSupportedLanguages(
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
@@ -953,7 +959,7 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getSupportInformation"],
+        url: this._urls["getSupportedLanguages"],
         params: {},
       }),
       query_params,
@@ -1010,25 +1016,23 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<WellKnownResponseSchema>} - Success response
-   * @name getWellKnownUrl
-   * @summary: Get a specific well-known URL
-   * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).
+   * @returns {Promise<TranslateUiLabelsPage>} - Success response
+   * @name getTranslateUILabels
+   * @summary: Get Translate Ui Labels
+   * @description: Retrieve Translate Ui Labels with filtering options for type, template, and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTranslateUILabels/).
    */
-  async getWellKnownUrl(
-    { slug, requestHeaders } = { requestHeaders: {} },
+  async getTranslateUILabels(
+    { template, templateThemeId, themeId, locale, type, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], ["slug"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
+    query_params["template"] = template;
+    query_params["template_theme_id"] = templateThemeId;
+    query_params["theme_id"] = themeId;
+    query_params["locale"] = locale;
+    query_params["type"] = type;
 
     const xHeaders = {};
 
@@ -1036,8 +1040,8 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getWellKnownUrl"],
-        params: { slug },
+        url: this._urls["getTranslateUILabels"],
+        params: {},
       }),
       query_params,
       undefined,

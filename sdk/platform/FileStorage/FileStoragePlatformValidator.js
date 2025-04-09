@@ -23,8 +23,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync] - Determines whether the copy files operation
- *   should run in synchronous mode.
+ * @property {boolean} [sync]
  * @property {FileStoragePlatformModel.CopyFiles} body
  */
 

@@ -179,260 +179,12 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreaExportParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PriceGeoAreaExportResult>}
-   *   - Success response
-   *
-   * @name createBulkGeoAreaExport
-   * @summary: Create Bulk Export of Price GeoAreas
-   * @description: Allows to create and manage GeoAreas, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkGeoAreaExport/).
-   */
-  async createBulkGeoAreaExport(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.createBulkGeoAreaExport().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.createBulkGeoAreaExport().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createBulkGeoAreaExport \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/geoareas/bulk/export`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.PriceGeoAreaExportResult().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createBulkGeoAreaExport \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.CreateBulkGeoAreasParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>} -
-   *   Success response
-   * @name createBulkGeoAreas
-   * @summary: Bulk Creation of GeoAreas
-   * @description: Allows to create and manage GeoAreas, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkGeoAreas/).
-   */
-  async createBulkGeoAreas(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.createBulkGeoAreas().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.createBulkGeoAreas().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createBulkGeoAreas \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/geoareas/bulk`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.BulkGeoAreaResult().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createBulkGeoAreas \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.CreateBulkZoneParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CreateBulkZoneResponseSchema>}
-   *   - Success response
-   *
-   * @name createBulkZone
-   * @summary: Create bulk zones.
-   * @description: Creates bulk zones defined at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createBulkZone/).
-   */
-  async createBulkZone(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.createBulkZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.createBulkZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createBulkZone \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CreateBulkZoneResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createBulkZone \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name createCourierPartnerRule
@@ -490,7 +242,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -680,9 +432,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResultSchema>} -
+   *   Success response
    * @name createStoreRules
    * @summary: Create store rule
    * @description: Create a rule within the order routing rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
@@ -738,7 +489,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.StoreRuleResultSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -763,7 +514,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneResponseV2>} - Success response
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneSchema>} - Success response
    * @name createZone
    * @summary: Create zone
    * @description: Creates a delivery zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
@@ -819,7 +570,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ZoneResponseV2().validate(responseData, {
+    } = ServiceabilityPlatformModel.ZoneSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -839,178 +590,12 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.DeleteCourierPartnerRuleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleDeleteResponseSchema>}
-   *   - Success response
-   *
-   * @name deleteCourierPartnerRule
-   * @summary: Delete courier rule
-   * @description: Delete a single courier rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteCourierPartnerRule/).
-   */
-  async deleteCourierPartnerRule(
-    { ruleUid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.deleteCourierPartnerRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.deleteCourierPartnerRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > deleteCourierPartnerRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules/${ruleUid}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleDeleteResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > deleteCourierPartnerRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.DeleteStoreRuleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDeleteResponseSchema>}
-   *   - Success response
-   *
-   * @name deleteStoreRule
-   * @summary: Delete store rule
-   * @description: Delete a single store rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteStoreRule/).
-   */
-  async deleteStoreRule(
-    { ruleUid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.deleteStoreRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.deleteStoreRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > deleteStoreRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules/${ruleUid}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleDeleteResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > deleteStoreRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.DeleteZoneParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneDeleteSuccessResult>}
    *   - Success response
    *
    * @name deleteZone
@@ -1068,7 +653,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ZoneDeleteSuccessResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ZoneDeleteSuccessResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1095,7 +680,7 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name downloadGeoareaSampleFile
-   * @summary: Download geoarea sample file.
+   * @summary: Download geoarea sample file
    * @description: Download a sample file for geoarea data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/downloadGeoareaSampleFile/).
    */
   async downloadGeoareaSampleFile(
@@ -1154,84 +739,6 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > downloadGeoareaSampleFile \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.DownloadZoneSampleFileParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<string>} - Success response
-   * @name downloadZoneSampleFile
-   * @summary: Download Sample Delivery Zone Product Type file.
-   * @description: Download a sample file for Delivery Zone with specified product type column (i.e. category, department, Item IDs or tags). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/downloadZoneSampleFile/).
-   */
-  async downloadZoneSampleFile(
-    { productType, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.downloadZoneSampleFile().validate(
-      {
-        productType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.downloadZoneSampleFile().validate(
-      {
-        productType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > downloadZoneSampleFile \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/sample/${productType}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > downloadZoneSampleFile \n ${res_error}`,
         });
       }
     }
@@ -1323,7 +830,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigGetResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigGetResult>}
    *   - Success response
    *
    * @name getApplicationConfiguration
@@ -1377,7 +884,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationConfigGetResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ApplicationConfigGetResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1484,9 +991,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaGetResult>} -
+   *   Success response
    * @name getBulkGeoArea
    * @summary: Get status of GeoAreas created in bulk
    * @description: Allows to Get GeoArea status which is created, representing groups of geographic regions in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoArea/).
@@ -1542,7 +1048,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.BulkGeoAreaGetResponseSchema().validate(
+    } = ServiceabilityPlatformModel.BulkGeoAreaGetResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1562,243 +1068,12 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetBulkGeoAreasHistoryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetBulkPriceZoneHistory>}
-   *   - Success response
-   *
-   * @name getBulkGeoAreasHistory
-   * @summary: Get history of the geoarea in bulk job processed
-   * @description: Allows to get the history of geoareas that are uploaded in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoAreasHistory/).
-   */
-  async getBulkGeoAreasHistory(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getBulkGeoAreasHistory().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getBulkGeoAreasHistory().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getBulkGeoAreasHistory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/geoareas/bulk/history`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetBulkPriceZoneHistory().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getBulkGeoAreasHistory \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetBulkGeoAreasSampleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<string>} - Success response
-   * @name getBulkGeoAreasSample
-   * @summary: Get sample file of a Price Zone
-   * @description: Generates a sample XLSX file containing template data for Price GeoAreas. This sample file provides the required columns and example values needed for bulk uploading Price GeoArea data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkGeoAreasSample/).
-   */
-  async getBulkGeoAreasSample(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getBulkGeoAreasSample().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getBulkGeoAreasSample().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getBulkGeoAreasSample \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/geoareas/bulk/sample`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getBulkGeoAreasSample \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetBulkZoneParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetBulkZoneHistory>} -
-   *   Success response
-   * @name getBulkZone
-   * @summary: Get bulk zones.
-   * @description: Fetch bulk zones created at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkZone/).
-   */
-  async getBulkZone(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getBulkZone().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getBulkZone().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getBulkZone \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/history`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetBulkZoneHistory().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getBulkZone \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name getCourierPartnerRule
@@ -1856,7 +1131,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1876,95 +1151,12 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleDetailsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseDetailSchema>}
-   *   - Success response
-   *
-   * @name getCourierPartnerRuleDetails
-   * @summary: Get courier rule
-   * @description: Retrieves details for a courier partner rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRuleDetails/).
-   */
-  async getCourierPartnerRuleDetails(
-    { ruleUid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRuleDetails().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRuleDetails().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getCourierPartnerRuleDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules/${ruleUid}/details`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponseDetailSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getCourierPartnerRuleDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResult>}
    *   - Success response
    *
    * @name getCourierPartnerRules
@@ -1972,14 +1164,13 @@ class Serviceability {
    * @description: Retrieve a list of rules within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
    */
   async getCourierPartnerRules(
-    { q, pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRules().validate(
       {
-        q,
         pageNo,
         pageSize,
         status,
@@ -1995,7 +1186,6 @@ class Serviceability {
       error: warrning,
     } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRules().validate(
       {
-        q,
         pageNo,
         pageSize,
         status,
@@ -2010,7 +1200,6 @@ class Serviceability {
     }
 
     const query_params = {};
-    query_params["q"] = q;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["status"] = status;
@@ -2032,7 +1221,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRulesListResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRulesListResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2052,13 +1241,95 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnersParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ShipmentCourierPartnerResult>}
+   *   - Success response
+   *
+   * @name getCourierPartners
+   * @summary: Serviceable Courier Partners
+   * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartners/).
+   */
+  async getCourierPartners(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getCourierPartners().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getCourierPartners().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getCourierPartners \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment/courier-partners`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.ShipmentCourierPartnerResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getCourierPartners \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreaParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GeoAreaResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.GeoAreaDetails>} - Success response
    * @name getGeoArea
    * @summary: Get details of the specific geoarea
    * @description: This API Returns the data of the specific GeoArea which exists on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoArea/).
@@ -2114,10 +1385,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.GeoAreaResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.GeoAreaDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2225,7 +1496,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.GeoAreaGetResponseBody>} -
    *   Success response
    * @name getGeoAreas
-   * @summary: Get all geoareas in the current application.
+   * @summary: Get all geoareas in the current application
    * @description: Retrieves a listing view of created GeoAreas. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoAreas/).
    */
   async getGeoAreas(
@@ -2339,89 +1610,6 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreasExportStatusParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetExportPriceZoneHistory>}
-   *   - Success response
-   *
-   * @name getGeoAreasExportStatus
-   * @summary: Get history of the geoarea in bulk job processed
-   * @description: Allows to get the history of geoareas that are uploaded in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getGeoAreasExportStatus/).
-   */
-  async getGeoAreasExportStatus(
-    { batchId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getGeoAreasExportStatus().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getGeoAreasExportStatus().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getGeoAreasExportStatus \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/geoareas/export/${batchId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetExportPriceZoneHistory().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getGeoAreasExportStatus \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
    *   - Arg object
    *
@@ -2504,97 +1692,13 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleDetailsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDataDetailsSchema>}
-   *   - Success response
-   *
-   * @name getStoreRuleDetails
-   * @summary: Get store rule Details
-   * @description: Retrieves details of a order routing rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRuleDetails/).
-   */
-  async getStoreRuleDetails(
-    { ruleUid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRuleDetails().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRuleDetails().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getStoreRuleDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules/${ruleUid}/details`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleDataDetailsSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getStoreRuleDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetStoreRulesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResult>} -
+   *   Success response
    * @name getStoreRules
    * @summary: Get store rules
    * @description: Retrieves an existing order routing setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
@@ -2657,7 +1761,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.GetStoreRulesApiResponseSchema().validate(
+    } = ServiceabilityPlatformModel.GetStoreRulesApiResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2757,94 +1861,10 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetZoneDetailsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetZoneByIdDetailsSchema>}
-   *   - Success response
-   *
-   * @name getZoneDetails
-   * @summary: Get details of a delivery zone
-   * @description: Get details of a single delivery zone along with product, store and region details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneDetails/).
-   */
-  async getZoneDetails(
-    { zoneId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getZoneDetails().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getZoneDetails().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getZoneDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/${zoneId}/details`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetZoneByIdDetailsSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getZoneDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponseV2>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewSchema>} - Success response
    * @name getZones
    * @summary: Get zones
    * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
@@ -2852,9 +1872,6 @@ class Serviceability {
   async getZones(
     {
       stage,
-      type,
-      accessLevel,
-      status,
       pageSize,
       pageNo,
       isActive,
@@ -2864,8 +1881,6 @@ class Serviceability {
       state,
       city,
       sector,
-      storeUid,
-      regionUid,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2875,9 +1890,6 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.getZones().validate(
       {
         stage,
-        type,
-        accessLevel,
-        status,
         pageSize,
         pageNo,
         isActive,
@@ -2887,8 +1899,6 @@ class Serviceability {
         state,
         city,
         sector,
-        storeUid,
-        regionUid,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2902,9 +1912,6 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.getZones().validate(
       {
         stage,
-        type,
-        accessLevel,
-        status,
         pageSize,
         pageNo,
         isActive,
@@ -2914,8 +1921,6 @@ class Serviceability {
         state,
         city,
         sector,
-        storeUid,
-        regionUid,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2928,9 +1933,6 @@ class Serviceability {
 
     const query_params = {};
     query_params["stage"] = stage;
-    query_params["type"] = type;
-    query_params["access_level"] = accessLevel;
-    query_params["status"] = status;
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["is_active"] = isActive;
@@ -2940,8 +1942,6 @@ class Serviceability {
     query_params["state"] = state;
     query_params["city"] = city;
     query_params["sector"] = sector;
-    query_params["store_uid"] = storeUid;
-    query_params["region_uid"] = regionUid;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2960,10 +1960,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ListViewResponseV2().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.ListViewSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3067,11 +2067,11 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResult>}
    *   - Success response
    *
    * @name patchApplicationConfiguration
-   * @summary: To patch any config which can be applied to application.
+   * @summary: To patch any config which can be applied to application
    * @description: Apply configs to application. Supports patching for buybox rule config and promise config. For reference, refer to examples - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationConfiguration/).
    */
   async patchApplicationConfiguration(
@@ -3125,7 +2125,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationConfigPatchResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ApplicationConfigPatchResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3150,9 +2150,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPutResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPut>} -
+   *   Success response
    * @name updateApplicationConfiguration
    * @summary: Apply configuration to an application
    * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
@@ -3208,7 +2207,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationConfigPutResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ApplicationConfigPut().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3236,7 +2235,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.BulkGeoAreaResult>} -
    *   Success response
    * @name updateBulkGeoArea
-   * @summary: Update geoareas and their associated regions in bulk.
+   * @summary: Update geoareas and their associated regions in bulk
    * @description: Update geoarea details and their associated regions through a CSV file in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateBulkGeoArea/).
    */
   async updateBulkGeoArea(
@@ -3317,9 +2316,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResult>} -
+   *   Success response
    * @name updateCourierPartnerRulePriority
    * @summary: Update courier partner rule priority
    * @description: Updates a courier partner rule priority for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
@@ -3375,7 +2373,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.RulePriorityResponseSchema().validate(
+    } = ServiceabilityPlatformModel.RulePriorityResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3400,12 +2398,12 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name updateCourierRule
    * @summary: Update courier rule
-   * @description: Updates an existing rule within the delivery configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
+   * @description: Updates an existing rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
    */
   async updateCourierRule(
     { ruleUid, body, requestHeaders } = { requestHeaders: {} },
@@ -3460,7 +2458,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3571,7 +2569,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>}
    *   - Success response
    *
    * @name updatePincodeAuditHistory
@@ -3579,7 +2577,7 @@ class Serviceability {
    * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3587,6 +2585,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3600,6 +2600,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3611,6 +2613,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3629,7 +2633,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData().validate(
+    } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3654,9 +2658,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResult>} -
+   *   Success response
    * @name updatePincodeBulkView
    * @summary: Bulk update pincode COD support
    * @description: Updates the cash on delivery settings for multiple specified pin codes simultaneously. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
@@ -3712,7 +2715,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeBulkViewResponseSchema().validate(
+    } = ServiceabilityPlatformModel.PincodeBulkViewResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3737,7 +2740,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>}
    *   - Success response
    *
    * @name updatePincodeCoDListing
@@ -3745,7 +2748,7 @@ class Serviceability {
    * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3753,6 +2756,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3766,6 +2771,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3777,6 +2784,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3795,7 +2804,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeCodStatusListingResponseSchema().validate(
+    } = ServiceabilityPlatformModel.PincodeCodStatusListingResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3820,9 +2829,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPResult>} - Success response
    * @name updatePincodeMopView
    * @summary: Update pincode COD support
    * @description: Modify and update views related to pincode MOP (Mode of Payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
@@ -3878,10 +2885,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeMOPresponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.PincodeMOPResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3903,9 +2910,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResult>} -
+   *   Success response
    * @name updateStoreRulePriority
    * @summary: Update Store Rule priority
    * @description: Update Store Rule priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulePriority/).
@@ -3961,7 +2967,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.RulePriorityResponseSchema().validate(
+    } = ServiceabilityPlatformModel.RulePriorityResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3986,7 +2992,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResultSchema>}
    *   - Success response
    *
    * @name updateStoreRules
@@ -4046,7 +3052,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema().validate(
+    } = ServiceabilityPlatformModel.StoreRuleUpdateResultSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4153,11 +3159,11 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResult>}
    *   - Success response
    *
    * @name updateZone
-   * @summary: Update details of a Zone to enable or disable.
+   * @summary: Update details of a Zone to enable or disable
    * @description: Enable or Disable a Zone under that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZone/).
    */
   async updateZone(
@@ -4215,7 +3221,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ZoneUpdateSuccessResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ZoneUpdateSuccessResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

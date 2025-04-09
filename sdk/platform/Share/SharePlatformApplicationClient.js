@@ -21,7 +21,7 @@ class Share {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name createShortLink
-   * @summary: Create short link.
+   * @summary: Create short link
    * @description: Generate a shortened URL link for sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
    */
   async createShortLink(
@@ -61,7 +61,7 @@ class Share {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link`,
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
       body,
       requestHeaders,
@@ -100,7 +100,7 @@ class Share {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name getShortLinkByHash
-   * @summary: Get short link by hash.
+   * @summary: Get short link by hash
    * @description: Retrieve a specific short link by its unique hash. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
    */
   async getShortLinkByHash(
@@ -140,7 +140,7 @@ class Share {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}`,
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -325,7 +325,7 @@ class Share {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link`,
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
       undefined,
       requestHeaders,
@@ -366,7 +366,7 @@ class Share {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name updateShortLinkById
-   * @summary: Update short link by ID.
+   * @summary: Update short link
    * @description: Update details of a specific short link by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
    */
   async updateShortLinkById(
@@ -408,7 +408,7 @@ class Share {
     const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}`,
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
       query_params,
       body,
       requestHeaders,

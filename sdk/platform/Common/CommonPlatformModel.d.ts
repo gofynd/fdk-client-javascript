@@ -2,8 +2,8 @@ export = CommonPlatformModel;
 /**
  * @typedef ApplicationResponseSchema
  * @property {Application} [application]
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
+ * @property {string} [_id] - The unique identifier of the current sales channel
+ *   supported currency
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
  * @property {string} [name] - Name of the currency, e.g. Indian Rupee
@@ -15,7 +15,7 @@ export = CommonPlatformModel;
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ?
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  */
 /**
  * @typedef Domain
@@ -24,8 +24,7 @@ export = CommonPlatformModel;
  * @property {boolean} [is_primary] - Indicates domain is primary or not.
  *   Primary domain is the default/main domain.
  * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
+ * @property {string} [_id] - The unique identifier of the domain
  * @property {string} [name]
  * @property {boolean} [is_predefined] - Domain is hosting domain or not
  */
@@ -76,11 +75,9 @@ export = CommonPlatformModel;
  *   internal or not
  * @property {boolean} [is_active] - Indicates whether a sales channel is active
  *   or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
+ * @property {string} [_id] - The unique identifier of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
+ * @property {string} [owner] - The unique identifier of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Randomly generated fixed-length string for sales
@@ -152,8 +149,8 @@ declare function ApplicationResponseSchema(): ApplicationResponseSchema;
 type ApplicationResponseSchema = {
     application?: Application;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the current sales channel supported currency
+     * - The unique identifier of the current sales channel
+     * supported currency
      */
     _id?: string;
     /**
@@ -186,7 +183,7 @@ type ApplicationResponseSchema = {
      */
     decimal_digits?: number;
     /**
-     * - Unique symbol for identifying the currency, e.g. ?
+     * - Unique symbol for identifying the currency, e.g. ₹
      */
     symbol?: string;
 };
@@ -208,8 +205,7 @@ type Domain = {
      */
     is_shortlink?: boolean;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the domain
+     * - The unique identifier of the domain
      */
     _id?: string;
     name?: string;
@@ -315,8 +311,7 @@ type Application = {
      */
     is_active?: boolean;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the sales channel
+     * - The unique identifier of the sales channel
      */
     _id?: string;
     /**
@@ -324,8 +319,7 @@ type Application = {
      */
     name?: string;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of owner who owns the application
+     * - The unique identifier of owner who owns the application
      */
     owner?: string;
     /**

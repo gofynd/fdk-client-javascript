@@ -3,6 +3,16 @@ const Joi = require("joi");
 const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
+ * @typedef AddCompanyLanguageParam
+ * @property {ContentPlatformModel.CompanyLanguageCreate} body
+ */
+
+/**
+ * @typedef CreateCompanyResourceTranslationParam
+ * @property {ContentPlatformModel.ResourceTranslationCreate} body
+ */
+
+/**
  * @typedef CreateCustomFieldDefinitionParam
  * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
@@ -20,10 +30,27 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef DeleteCompanyLanguageParam
+ * @property {string} locale
+ */
+
+/**
+ * @typedef DeleteCompanyResourceTranslationParam
+ * @property {string} id
+ */
+
+/**
  * @typedef DeleteCustomFieldDefinitionBySlugParam
  * @property {string} slug
  * @property {string} resource
  * @property {string} namespace
+ */
+
+/**
+ * @typedef DeleteCustomFieldsByResourceSlugParam
+ * @property {string} resource
+ * @property {string} resourceSlug
+ * @property {string} ids
  */
 
 /**
@@ -40,6 +67,24 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef ExportCustomObjectEntriesBySlugParam
  * @property {string} slug
+ */
+
+/**
+ * @typedef GetAllResourceDefinitionsParam
+ * @property {string} [translatableResourceId]
+ */
+
+/** @typedef GetAllSectionsParam */
+
+/** @typedef GetAllTranslatableResourcesParam */
+
+/** @typedef GetCompanyLanguagesParam */
+
+/**
+ * @typedef GetCompanyResourceTranslationParam
+ * @property {string} locale
+ * @property {string} type
+ * @property {string} resourceId
  */
 
 /**
@@ -106,12 +151,32 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef GetJobsParam
- * @property {string} pageNo
+ * @property {string} page
  * @property {string} pageSize
  * @property {string} actionType
  */
 
+/**
+ * @typedef GetResourceDefinitionByIdParam
+ * @property {string} id
+ */
+
 /** @typedef GetResourcesParam */
+
+/**
+ * @typedef GetSectionByIdParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef GetTranslatableResourceByIdParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef GetTranslatableResourcesBySectionIdParam
+ * @property {string} id
+ */
 
 /**
  * @typedef ImportCustomObjectEntriesBySlugParam
@@ -122,6 +187,18 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef SampleCustomObjectBulkEntryBySlugParam
  * @property {string} slug
+ */
+
+/**
+ * @typedef UpdateCompanyLanguageDefaultParam
+ * @property {string} locale
+ * @property {ContentPlatformModel.CompanyLanguageUpdate} body
+ */
+
+/**
+ * @typedef UpdateCompanyResourceTranslationParam
+ * @property {string} id
+ * @property {ContentPlatformModel.ResourceTranslationUpdate} body
  */
 
 /**
@@ -153,6 +230,20 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 class ContentPlatformValidator {
+  /** @returns {AddCompanyLanguageParam} */
+  static addCompanyLanguage() {
+    return Joi.object({
+      body: ContentPlatformModel.CompanyLanguageCreate().required(),
+    }).required();
+  }
+
+  /** @returns {CreateCompanyResourceTranslationParam} */
+  static createCompanyResourceTranslation() {
+    return Joi.object({
+      body: ContentPlatformModel.ResourceTranslationCreate().required(),
+    }).required();
+  }
+
   /** @returns {CreateCustomFieldDefinitionParam} */
   static createCustomFieldDefinition() {
     return Joi.object({
@@ -176,12 +267,35 @@ class ContentPlatformValidator {
     }).required();
   }
 
+  /** @returns {DeleteCompanyLanguageParam} */
+  static deleteCompanyLanguage() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCompanyResourceTranslationParam} */
+  static deleteCompanyResourceTranslation() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {DeleteCustomFieldDefinitionBySlugParam} */
   static deleteCustomFieldDefinitionBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       resource: Joi.string().allow("").required(),
       namespace: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCustomFieldsByResourceSlugParam} */
+  static deleteCustomFieldsByResourceSlug() {
+    return Joi.object({
+      resource: Joi.string().allow("").required(),
+      resourceSlug: Joi.string().allow("").required(),
+      ids: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -204,6 +318,37 @@ class ContentPlatformValidator {
   static exportCustomObjectEntriesBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetAllResourceDefinitionsParam} */
+  static getAllResourceDefinitions() {
+    return Joi.object({
+      translatableResourceId: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetAllSectionsParam} */
+  static getAllSections() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetAllTranslatableResourcesParam} */
+  static getAllTranslatableResources() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetCompanyLanguagesParam} */
+  static getCompanyLanguages() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetCompanyResourceTranslationParam} */
+  static getCompanyResourceTranslation() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      resourceId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -291,15 +436,43 @@ class ContentPlatformValidator {
   /** @returns {GetJobsParam} */
   static getJobs() {
     return Joi.object({
-      pageNo: Joi.string().allow("").required(),
+      page: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
       actionType: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetResourceDefinitionByIdParam} */
+  static getResourceDefinitionById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
   /** @returns {GetResourcesParam} */
   static getResources() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetSectionByIdParam} */
+  static getSectionById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetTranslatableResourceByIdParam} */
+  static getTranslatableResourceById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetTranslatableResourcesBySectionIdParam} */
+  static getTranslatableResourcesBySectionId() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {ImportCustomObjectEntriesBySlugParam} */
@@ -314,6 +487,22 @@ class ContentPlatformValidator {
   static sampleCustomObjectBulkEntryBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {UpdateCompanyLanguageDefaultParam} */
+  static updateCompanyLanguageDefault() {
+    return Joi.object({
+      locale: Joi.string().allow("").required(),
+      body: ContentPlatformModel.CompanyLanguageUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateCompanyResourceTranslationParam} */
+  static updateCompanyResourceTranslation() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: ContentPlatformModel.ResourceTranslationUpdate().required(),
     }).required();
   }
 

@@ -8,7 +8,7 @@ export = AnalyticsPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef FileDownloadRequestBody
@@ -73,9 +73,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - Total number of items.
+     * - The number of items per page.
      */
-    total?: number;
+    page_size?: number;
 };
 /** @returns {FileDownloadRequestBody} */
 declare function FileDownloadRequestBody(): FileDownloadRequestBody;
