@@ -574,6 +574,7 @@ const Joi = require("joi");
  * @property {string} [updated_at]
  * @property {string} [external_id]
  * @property {string} [rr_id]
+ * @property {UserConsent} [consent]
  */
 
 /**
@@ -599,6 +600,7 @@ const Joi = require("joi");
  * @property {boolean} [archive]
  * @property {string} [status]
  * @property {string} [deleted_on]
+ * @property {UserConsent} [consent]
  */
 
 /**
@@ -616,6 +618,17 @@ const Joi = require("joi");
  * @property {boolean} [active] - Is the email active.
  * @property {boolean} [primary] - Is it a primary email.
  * @property {boolean} [verified] - Is the email verified.
+ */
+
+/**
+ * @typedef UserConsent
+ * @property {PrivacyPolicyConsentSchema} [privacy_policy]
+ */
+
+/**
+ * @typedef PrivacyPolicyConsentSchema
+ * @property {boolean} [value] - Whether the user has consented to the privacy policy
+ * @property {string} [updated_at] - When the consent was last updated
  */
 
 class UserPlatformModel {
@@ -1311,6 +1324,7 @@ class UserPlatformModel {
       updated_at: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
+      consent: UserPlatformModel.UserConsent(),
     });
   }
 
@@ -1338,6 +1352,7 @@ class UserPlatformModel {
       archive: Joi.boolean(),
       status: Joi.string().allow(""),
       deleted_on: Joi.string().allow(""),
+      consent: UserPlatformModel.UserConsent(),
     });
   }
 
@@ -1359,6 +1374,21 @@ class UserPlatformModel {
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
+    });
+  }
+
+  /** @returns {UserConsent} */
+  static UserConsent() {
+    return Joi.object({
+      privacy_policy: UserPlatformModel.PrivacyPolicyConsentSchema(),
+    });
+  }
+
+  /** @returns {PrivacyPolicyConsentSchema} */
+  static PrivacyPolicyConsentSchema() {
+    return Joi.object({
+      value: Joi.boolean(),
+      updated_at: Joi.string().allow(""),
     });
   }
 }

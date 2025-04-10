@@ -7,14 +7,12 @@ const Joi = require("joi");
 
 /**
  * @typedef SaveProxy
- * @property {number} [id]
- * @property {string} [token]
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef ProxyFileData
- * @property {string} [email]
- * @property {string} [password]
+ * @property {string} [name]
  */
 
 /**
@@ -29,8 +27,7 @@ const Joi = require("joi");
 
 /**
  * @typedef FetchProxyDetails
- * @property {Object} [data]
- * @property {Object} [support]
+ * @property {boolean} [success]
  */
 
 /**
@@ -140,16 +137,14 @@ class FileStoragePartnerModel {
   /** @returns {SaveProxy} */
   static SaveProxy() {
     return Joi.object({
-      id: Joi.number(),
-      token: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
   /** @returns {ProxyFileData} */
   static ProxyFileData() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      password: Joi.string().allow(""),
+      name: Joi.string().allow(""),
     });
   }
 
@@ -168,8 +163,7 @@ class FileStoragePartnerModel {
   /** @returns {FetchProxyDetails} */
   static FetchProxyDetails() {
     return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()),
-      support: Joi.object().pattern(/\S/, Joi.any()),
+      success: Joi.boolean(),
     });
   }
 

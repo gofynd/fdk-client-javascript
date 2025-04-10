@@ -3926,7 +3926,9 @@ export = OrderPlatformModel;
  *   a discount when buying in a bundle. - custom- A custom promotion not
  *   covered by other types. - free_gift_items- Free gift items are included
  *   with the purchase. - free_non_sellable_items- Free items that are not for
- *   sale are included with the purchase.
+ *   sale are included with the purchase. - item_based_discount- Specific
+ *   percentage discounts on selected items based on their position after
+ *   sorting by price in descending order.
  * @property {string} [promotion_name] - The name of the promotional campaign or offer.
  * @property {DiscountRules[]} [discount_rules] - A list of rules that define
  *   the conditions under which discounts are applied.
@@ -13084,7 +13086,9 @@ type AppliedPromos = {
      * a discount when buying in a bundle. - custom- A custom promotion not
      * covered by other types. - free_gift_items- Free gift items are included
      * with the purchase. - free_non_sellable_items- Free items that are not for
-     * sale are included with the purchase.
+     * sale are included with the purchase. - item_based_discount- Specific
+     * percentage discounts on selected items based on their position after
+     * sorting by price in descending order.
      */
     promotion_type?: string;
     /**

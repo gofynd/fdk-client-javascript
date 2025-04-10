@@ -507,6 +507,7 @@ export = UserPlatformModel;
  * @property {string} [updated_at]
  * @property {string} [external_id]
  * @property {string} [rr_id]
+ * @property {UserConsent} [consent]
  */
 /**
  * @typedef UserSearchSchema
@@ -531,6 +532,7 @@ export = UserPlatformModel;
  * @property {boolean} [archive]
  * @property {string} [status]
  * @property {string} [deleted_on]
+ * @property {UserConsent} [consent]
  */
 /**
  * @typedef PhoneNumber
@@ -547,10 +549,19 @@ export = UserPlatformModel;
  * @property {boolean} [primary] - Is it a primary email.
  * @property {boolean} [verified] - Is the email verified.
  */
+/**
+ * @typedef UserConsent
+ * @property {PrivacyPolicyConsentSchema} [privacy_policy]
+ */
+/**
+ * @typedef PrivacyPolicyConsentSchema
+ * @property {boolean} [value] - Whether the user has consented to the privacy policy
+ * @property {string} [updated_at] - When the consent was last updated
+ */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
+    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -1364,6 +1375,7 @@ type UserSchema = {
     updated_at?: string;
     external_id?: string;
     rr_id?: string;
+    consent?: UserConsent;
 };
 /** @returns {UserSearchSchema} */
 declare function UserSearchSchema(): UserSearchSchema;
@@ -1389,6 +1401,7 @@ type UserSearchSchema = {
     archive?: boolean;
     status?: string;
     deleted_on?: string;
+    consent?: UserConsent;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
@@ -1433,4 +1446,21 @@ type Email = {
      * - Is the email verified.
      */
     verified?: boolean;
+};
+/** @returns {UserConsent} */
+declare function UserConsent(): UserConsent;
+type UserConsent = {
+    privacy_policy?: PrivacyPolicyConsentSchema;
+};
+/** @returns {PrivacyPolicyConsentSchema} */
+declare function PrivacyPolicyConsentSchema(): PrivacyPolicyConsentSchema;
+type PrivacyPolicyConsentSchema = {
+    /**
+     * - Whether the user has consented to the privacy policy
+     */
+    value?: boolean;
+    /**
+     * - When the consent was last updated
+     */
+    updated_at?: string;
 };

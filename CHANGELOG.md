@@ -1,3 +1,524 @@
+# CHANGE LOG (3.3.0) - 2.6.0
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>available_promotions[].promotion_type</code> of schema <code>PromotionOffer</code> in response with status code 200
+
+
+#### getPromotionPaymentOffers
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotions[].promotion_type</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>order.shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>order.shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipment.bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+### User
+
+
+
+#### loginWithFacebook
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogle
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogleAndroid
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogleIOS
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithAppleIOS
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithEmailAndPassword
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### forgotPassword
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithToken
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### registerWithForm
+
+- ##### What's New
+	- [Added] property <code>consent</code> of schema <code>FormRegisterRequestSchema</code> in request body
+
+
+#### verifyMobileOTP
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### verifyEmailOTP
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### getLoggedInUser
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### updateProfile
+
+- ##### What's New
+	- [Added] property <code>consent</code> of schema <code>EditProfileRequestSchema</code> in request body
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### addMobileNumber
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### deleteMobileNumber
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### setMobileNumberAsPrimary
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### addEmail
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### deleteEmail
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### setEmailAsPrimary
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+## Partner Client
+
+
+
+### FileStorage
+
+
+
+#### fetchProxy
+
+- ##### What's New
+	- [Added] property <code>success</code> of schema <code>FetchProxyDetails</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data</code> of schema <code>FetchProxyDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>support</code> of schema <code>FetchProxyDetails</code> in response with status code 200
+
+
+#### saveProxyDetails
+
+- ##### What's New
+	- [Added] property <code>data.name</code> of schema <code>ProxyFileData</code> in request body
+	- [Added] property <code>success</code> of schema <code>SaveProxy</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.email</code> of schema <code>ProxyFileData</code> in request body
+	- [Breaking] [Deleted] property <code>data.password</code> of schema <code>ProxyFileData</code> in request body
+	- [Breaking] [Deleted] property <code>id</code> of schema <code>SaveProxy</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>token</code> of schema <code>SaveProxy</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getPromotions
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotion_type</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in response with status code 200
+
+
+#### createPromotion
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotion_type</code> of schema <code>PromotionAdd</code> in request body
+	- [Added] Possible values <code>item_based_discount</code> to property <code>discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in request body
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotion_type</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] Possible values <code>item_based_discount</code> to property <code>discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in response with status code 201
+
+
+#### getPromotionById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotion_type</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in response with status code 200
+
+
+#### updatePromotion
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotion_type</code> of schema <code>PromotionUpdate</code> in request body
+	- [Added] Possible values <code>item_based_discount</code> to property <code>discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in request body
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotion_type</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>discount_rules[].discount_type</code> of schema <code>DiscountRule</code> in response with status code 200
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>available_promotions[].promotion_type</code> of schema <code>PromotionOffer</code> in response with status code 200
+
+
+#### getPromotionPaymentOffers
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>promotions[].promotion_type</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Added] Possible values <code>item_based_discount</code> to property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+
+### Order
+
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] Possible values <code>item_based_discount</code> to property <code>items[].shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+
+
+### User
+
+
+
+#### getCustomers
+
+- ##### What's New
+	- [Added] property <code>items[].consent</code> of schema <code>UserSearchSchema</code> in response with status code 200
+
+
+#### searchUsers
+
+- ##### What's New
+	- [Added] property <code>users[].consent</code> of schema <code>UserSearchSchema</code> in response with status code 200
+
+
+#### createUser
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### updateUser
+
+- ##### What's New
+	- [Added] property <code>user.consent</code> of schema <code>UserSchema</code> in response with status code 200
+
+
 # CHANGE LOG (3.2.0) - 2.5.0
 
 # CHANGE LOG (3.1.0) - 2.5.0

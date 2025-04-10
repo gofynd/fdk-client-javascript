@@ -5,13 +5,11 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef SaveProxy
- * @property {number} [id]
- * @property {string} [token]
+ * @property {boolean} [success]
  */
 /**
  * @typedef ProxyFileData
- * @property {string} [email]
- * @property {string} [password]
+ * @property {string} [name]
  */
 /**
  * @typedef ProxyFile
@@ -24,8 +22,7 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef FetchProxyDetails
- * @property {Object} [data]
- * @property {Object} [support]
+ * @property {boolean} [success]
  */
 /**
  * @typedef NamespaceDetails
@@ -127,14 +124,12 @@ type SizeConstraints = {
 /** @returns {SaveProxy} */
 declare function SaveProxy(): SaveProxy;
 type SaveProxy = {
-    id?: number;
-    token?: string;
+    success?: boolean;
 };
 /** @returns {ProxyFileData} */
 declare function ProxyFileData(): ProxyFileData;
 type ProxyFileData = {
-    email?: string;
-    password?: string;
+    name?: string;
 };
 /** @returns {ProxyFile} */
 declare function ProxyFile(): ProxyFile;
@@ -149,8 +144,7 @@ type ProxyFile = {
 /** @returns {FetchProxyDetails} */
 declare function FetchProxyDetails(): FetchProxyDetails;
 type FetchProxyDetails = {
-    data?: any;
-    support?: any;
+    success?: boolean;
 };
 /** @returns {NamespaceDetails} */
 declare function NamespaceDetails(): NamespaceDetails;
