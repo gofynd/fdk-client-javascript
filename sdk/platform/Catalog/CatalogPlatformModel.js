@@ -2893,6 +2893,7 @@ const Joi = require("joi");
  * @property {string[]} [tryouts]
  * @property {string} [type]
  * @property {number} [uid]
+ * @property {ApplicationItemSEO} [seo]
  */
 
 /**
@@ -7178,6 +7179,7 @@ class CatalogPlatformModel {
       tryouts: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.number(),
+      seo: CatalogPlatformModel.ApplicationItemSEO(),
     });
   }
 

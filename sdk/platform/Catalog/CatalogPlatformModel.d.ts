@@ -2611,6 +2611,7 @@ export = CatalogPlatformModel;
  * @property {string[]} [tryouts]
  * @property {string} [type]
  * @property {number} [uid]
+ * @property {ApplicationItemSEO} [seo]
  */
 /**
  * @typedef ProductListingPrice
@@ -7635,6 +7636,7 @@ type ProductListingDetail = {
     tryouts?: string[];
     type?: string;
     uid?: number;
+    seo?: ApplicationItemSEO;
 };
 /** @returns {ProductListingPrice} */
 declare function ProductListingPrice(): ProductListingPrice;
