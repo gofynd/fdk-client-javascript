@@ -12,7 +12,6 @@ declare class PublicClient {
      */
     constructor(config: import("./PublicConfig"));
     config: import("./PublicConfig");
-    catalog: Catalog;
     configuration: Configuration;
     content: Content;
     partner: Partner;
@@ -25,7 +24,6 @@ declare class PublicClient {
      */
     setExtraHeaders(header: object): void;
 }
-import Catalog = require("./Catalog/CatalogPublicClient");
 import Configuration = require("./Configuration/ConfigurationPublicClient");
 import Content = require("./Content/ContentPublicClient");
 import Partner = require("./Partner/PartnerPublicClient");

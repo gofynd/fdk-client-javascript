@@ -12,7 +12,8 @@ const Joi = require("joi");
  * @property {boolean} [is_primary] - Indicates domain is primary or not.
  *   Primary domain is the default/main domain.
  * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [_id] - The unique identifier of the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
  * @property {string} [name]
  * @property {boolean} [is_predefined] - Domain is hosting domain or not
  */
@@ -61,46 +62,46 @@ const Joi = require("joi");
  * @property {ApplicationCors} [cors]
  * @property {ApplicationAuth} [auth]
  * @property {string} [description] - It contains detailed information about the
- *   sales channel
+ *   sales channel.
  * @property {string} [channel_type] - It indicates different channel types like
- *   store, website-and-mobile-apps. Default value is store.
+ *   store, website-and-mobile-apps. Default value is store
  * @property {number} [cache_ttl] - An integer value that specifies the number
  *   of seconds until the key expires
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
- * @property {boolean} [is_active] - Indicates whether a sales channel is active
- *   or not active
- * @property {string} [_id] - The unique identifier of the sales channel
+ * @property {boolean} [is_active] - Indicates sales channel is active or not active
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier of owner who owns the application
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
- * @property {string} [token] - Randomly generated fixed-length string for sales
+ * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
  * @property {ApplicationRedirections[]} [redirections]
  * @property {ApplicationMeta[]} [meta]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {SecureUrl} [banner]
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [favicon]
  * @property {Domain[]} [domains]
- * @property {string} [app_type] - It shows whether application is live or in
- *   development mode
+ * @property {string} [app_type] - It shows application is live or in development mode.
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
+ * @property {string} [mode]
+ * @property {string} [status]
+ * @property {TokenSchema[]} [tokens]
  */
 
 /**
- * @typedef NotFound
- * @property {string} [message] - Response message for not found
- */
-
-/**
- * @typedef BadRequestSchema
- * @property {string} [message] - Failure message (in a string format)
+ * @typedef TokenSchema
+ * @property {string} [token]
+ * @property {Object} [created_by]
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
  */
 
 /**
@@ -140,6 +141,43 @@ const Joi = require("joi");
 /**
  * @typedef Locations
  * @property {LocationCountry[]} [items]
+ */
+
+/**
+ * @typedef VersionApplication
+ * @property {string} [name]
+ * @property {string} [version]
+ */
+
+/**
+ * @typedef VersionDeviceOS
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef VersionDevice
+ * @property {VersionDeviceOS} [os]
+ */
+
+/**
+ * @typedef VersionRequestSchema
+ * @property {VersionApplication} application
+ * @property {VersionDevice} device
+ */
+
+/**
+ * @typedef VersionUpdateDialogue
+ * @property {string} [type]
+ * @property {number} [interval]
+ */
+
+/**
+ * @typedef VersionResponseSchema
+ * @property {string} type
+ * @property {string} title
+ * @property {string} description
+ * @property {VersionUpdateDialogue} update_dialog
+ * @property {boolean} is_app_blocked
  */
 
 class ConfigurationPublicModel {
@@ -229,7 +267,7 @@ class ConfigurationPublicModel {
       ),
       meta: Joi.array().items(ConfigurationPublicModel.ApplicationMeta()),
       created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
       __v: Joi.number(),
       banner: ConfigurationPublicModel.SecureUrl(),
       logo: ConfigurationPublicModel.SecureUrl(),
@@ -239,20 +277,18 @@ class ConfigurationPublicModel {
       mobile_logo: ConfigurationPublicModel.SecureUrl(),
       domain: ConfigurationPublicModel.Domain(),
       slug: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      tokens: Joi.array().items(ConfigurationPublicModel.TokenSchema()),
     });
   }
 
-  /** @returns {NotFound} */
-  static NotFound() {
+  /** @returns {TokenSchema} */
+  static TokenSchema() {
     return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
+      token: Joi.string().allow(""),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      created_at: Joi.string().allow(""),
     });
   }
 
@@ -300,6 +336,55 @@ class ConfigurationPublicModel {
   static Locations() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPublicModel.LocationCountry()),
+    });
+  }
+
+  /** @returns {VersionApplication} */
+  static VersionApplication() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      version: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {VersionDeviceOS} */
+  static VersionDeviceOS() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {VersionDevice} */
+  static VersionDevice() {
+    return Joi.object({
+      os: ConfigurationPublicModel.VersionDeviceOS(),
+    });
+  }
+
+  /** @returns {VersionRequestSchema} */
+  static VersionRequestSchema() {
+    return Joi.object({
+      application: ConfigurationPublicModel.VersionApplication().required(),
+      device: ConfigurationPublicModel.VersionDevice().required(),
+    });
+  }
+
+  /** @returns {VersionUpdateDialogue} */
+  static VersionUpdateDialogue() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      interval: Joi.number(),
+    });
+  }
+
+  /** @returns {VersionResponseSchema} */
+  static VersionResponseSchema() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      title: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      update_dialog: ConfigurationPublicModel.VersionUpdateDialogue().required(),
+      is_app_blocked: Joi.boolean().required(),
     });
   }
 }

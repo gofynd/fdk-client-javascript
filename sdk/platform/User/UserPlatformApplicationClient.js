@@ -172,168 +172,6 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.BulkImportStoreFrontUsersParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-   * @name bulkImportStoreFrontUsers
-   * @summary: Bulk import storefront customers using CSV and XLSX files.
-   * @description: The API allows bulk import of storefront customers using CSV or XLSX files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkImportStoreFrontUsers/).
-   */
-  async bulkImportStoreFrontUsers(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.bulkImportStoreFrontUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.bulkImportStoreFrontUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > bulkImportStoreFrontUsers \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/jobs/import`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.BulkActionModel().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > bulkImportStoreFrontUsers \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {UserPlatformApplicationValidator.CreateBulkExportUsersParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-   * @name createBulkExportUsers
-   * @summary: Bulk export storefront customers using CSV and XLSX files.
-   * @description: This API allows bulk export of storefront users by requesting files in CSV or XLSX format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createBulkExportUsers/).
-   */
-  async createBulkExportUsers(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.createBulkExportUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.createBulkExportUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > createBulkExportUsers \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/jobs/export`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.BulkActionModel().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > createBulkExportUsers \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -416,7 +254,7 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResp>} -
    *   Success response
    * @name createUserAttributeDefinition
    * @summary: Create a User Attribute Definition
@@ -473,10 +311,10 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserAttributeDefinitionDetails().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = UserPlatformModel.UserAttributeDefinitionResp().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1047,228 +885,6 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > User > getActiveSessions \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {UserPlatformApplicationValidator.GetBulkExportUsersListParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.BulkActionPaginationSchema>} - Success response
-   * @name getBulkExportUsersList
-   * @summary: Get Bulk User's Export Lists for a specific Application.
-   * @description: This API allows fetching the list of bulk user exports for a specific application and company.
-   * It supports pagination and filtering based on various parameters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getBulkExportUsersList/).
-   */
-  async getBulkExportUsersList(
-    {
-      pageNo,
-      pageSize,
-      fileFormat,
-      search,
-      startDate,
-      endDate,
-      status,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getBulkExportUsersList().validate(
-      {
-        pageNo,
-        pageSize,
-        fileFormat,
-        search,
-        startDate,
-        endDate,
-        status,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getBulkExportUsersList().validate(
-      {
-        pageNo,
-        pageSize,
-        fileFormat,
-        search,
-        startDate,
-        endDate,
-        status,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getBulkExportUsersList \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["file_format"] = fileFormat;
-    query_params["search"] = search;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
-    query_params["status"] = status;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/jobs/export`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.BulkActionPaginationSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > getBulkExportUsersList \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {UserPlatformApplicationValidator.GetBulkImportUsersListParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.BulkActionPaginationSchema>} - Success response
-   * @name getBulkImportUsersList
-   * @summary: Get Bulk User's Import Lists for a specific Application.
-   * @description: This API allows fetching the list of bulk user imports for a specific application and company.
-   * It supports pagination and filtering based on various parameters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getBulkImportUsersList/).
-   */
-  async getBulkImportUsersList(
-    {
-      pageNo,
-      pageSize,
-      search,
-      startDate,
-      endDate,
-      status,
-      fileFormat,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getBulkImportUsersList().validate(
-      {
-        pageNo,
-        pageSize,
-        search,
-        startDate,
-        endDate,
-        status,
-        fileFormat,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getBulkImportUsersList().validate(
-      {
-        pageNo,
-        pageSize,
-        search,
-        startDate,
-        endDate,
-        status,
-        fileFormat,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getBulkImportUsersList \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["search"] = search;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
-    query_params["status"] = status;
-    query_params["file_format"] = fileFormat;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/jobs/import`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.BulkActionPaginationSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > getBulkImportUsersList \n ${res_error}`,
         });
       }
     }
@@ -2050,23 +1666,23 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetUserTimelineParam} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.GetUserTimeline>} - Success response
-   * @name getUserTimeline
-   * @summary: Get Deleted User Timeline
-   * @description: Fetches the timeline for the user who has made a data erase request. The timeline will show when the request was raised and when the request will be completed. It will also show if request has been cancelled before completion. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserTimeline/).
+   * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
+   * @name getUsersByByGroupId
+   * @summary: Get users belonging to user group by Id
+   * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
    */
-  async getUserTimeline(
-    { userId, requestHeaders } = { requestHeaders: {} },
+  async getUsersByByGroupId(
+    { groupId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = UserPlatformApplicationValidator.getUserTimeline().validate(
+    } = UserPlatformApplicationValidator.getUsersByByGroupId().validate(
       {
-        userId,
+        groupId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2077,16 +1693,16 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserPlatformApplicationValidator.getUserTimeline().validate(
+    } = UserPlatformApplicationValidator.getUsersByByGroupId().validate(
       {
-        userId,
+        groupId,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getUserTimeline \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > User > getUsersByByGroupId \n ${warrning}`,
       });
     }
 
@@ -2095,7 +1711,7 @@ class User {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}/timeline`,
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}/users`,
       query_params,
       undefined,
       requestHeaders,
@@ -2109,7 +1725,7 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.GetUserTimeline().validate(responseData, {
+    } = UserPlatformModel.CustomerListResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2120,87 +1736,7 @@ class User {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > User > getUserTimeline \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {UserPlatformApplicationValidator.GetUsersJobByJobIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-   * @name getUsersJobByJobId
-   * @summary: Retrieve Job Details by Job ID for a Specific Application, Including Both Import and Export Jobs.
-   * @description: This endpoint retrieves the details of a specific user's import and export related jobs associated with a given `job_id`, `application_id`, and `company_id`.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersJobByJobId/).
-   */
-  async getUsersJobByJobId(
-    { jobId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getUsersJobByJobId().validate(
-      {
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getUsersJobByJobId().validate(
-      {
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getUsersJobByJobId \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/jobs/${jobId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserPlatformModel.BulkActionModel().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > User > getUsersJobByJobId \n ${res_error}`,
+          message: `Response Validation Warnings for platform > User > getUsersByByGroupId \n ${res_error}`,
         });
       }
     }

@@ -7,27 +7,36 @@ const Joi = require("joi");
 
 /**
  * @typedef SaveProxy
- * @property {boolean} [success]
+ * @property {number} [id] - Unique identifier assigned to the saved proxy session.
+ * @property {string} [token] - Authentication token generated for the created
+ *   proxy session.
  */
 
 /**
  * @typedef ProxyFileData
- * @property {string} [name]
+ * @property {string} [email] - User email address required for proxy authentication.
+ * @property {string} [password] - Password associated with the email for proxy
+ *   authentication.
  */
 
 /**
  * @typedef ProxyFile
- * @property {number} [id]
- * @property {string} [customer]
- * @property {number} [quantity]
- * @property {number} [price]
+ * @property {number} [id] - Unique identifier for the proxy request, used in
+ *   failure scenarios.
+ * @property {string} [customer] - Name or identifier of the customer associated
+ *   with the proxy file.
+ * @property {number} [quantity] - Number of proxy instances or sessions requested.
+ * @property {number} [price] - Cost of the proxy service, provided in
+ *   applicable currency units.
  * @property {ProxyFileData} [data]
- * @property {string} [url]
+ * @property {string} [url] - Endpoint URL for proxy-related API requests, such
+ *   as user registration or fetching data.
  */
 
 /**
  * @typedef FetchProxyDetails
- * @property {boolean} [success]
+ * @property {Object} [data] - The actual response data
+ * @property {Object} [support] - Support-related information
  */
 
 /**
@@ -41,89 +50,72 @@ const Joi = require("joi");
 
 /**
  * @typedef AllNamespaceDetails
- * @property {NamespaceDetails[]} [items]
+ * @property {NamespaceDetails[]} [items] - An Array of all the existing Namespace
  */
 
 /**
  * @typedef CDN
- * @property {string} url
- * @property {string} absolute_url
- * @property {string} relative_url
+ * @property {string} url - The CDN URL of the file.
+ * @property {string} absolute_url - The absolute URL of the file.
+ * @property {string} relative_url - The relative path of the file within the CDN.
  */
 
 /**
  * @typedef Upload
- * @property {number} expiry
- * @property {string} url
+ * @property {number} expiry - The expiration time of the uploaded file.
+ * @property {string} url - The URL of the uploaded file.
  */
 
 /**
  * @typedef FileUpload
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} [method]
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @property {string} file_name - The name of the uploaded file.
+ * @property {string} file_path - The storage path of the uploaded file.
+ * @property {string} content_type - The MIME type of the uploaded file.
+ * @property {string} [method] - The method used for the upload.
+ * @property {string} namespace - The namespace where the file is stored.
+ * @property {string} operation - The operation type performed on the file.
+ * @property {number} size - The size of the uploaded file in bytes.
  * @property {Upload} upload
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - Tags associated with the uploaded file.
  */
 
 /**
  * @typedef FileUploadStart
- * @property {string} file_name
- * @property {string} content_type
- * @property {number} size
- * @property {string[]} [tags]
- * @property {Object} [params]
+ * @property {string} file_name - The name of the file to be uploaded.
+ * @property {string} content_type - The MIME type of the file.
+ * @property {number} size - The file size in bytes.
+ * @property {string[]} [tags] - Tags associated with the file.
+ * @property {Object} [params] - Additional parameters for file upload.
  */
 
 /**
  * @typedef CreatedBy
- * @property {string} [username]
+ * @property {string} [user_id] - The unique identifier of the user.
+ * @property {string} [username] - The username of the creator.
  */
 
 /**
  * @typedef FileUploadComplete
- * @property {string} _id
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @property {string} _id - The unique identifier of the uploaded file.
+ * @property {string} file_name - The name of the file.
+ * @property {string} file_path - The storage path of the file.
+ * @property {string} content_type - The MIME type of the file.
+ * @property {string} namespace - The namespace where the file is stored.
+ * @property {string} operation - The type of operation performed on the file.
+ * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
  * @property {CDN} cdn
- * @property {boolean} success
- * @property {string[]} [tags]
- * @property {string} created_on
- * @property {string} modified_on
+ * @property {boolean} success - Indicates if the upload was successful.
+ * @property {string[]} [tags] - Tags associated with the file.
+ * @property {string} created_on - The timestamp when the file was created.
+ * @property {string} modified_on - The timestamp when the file was last modified.
  * @property {CreatedBy} [created_by]
  */
 
 /**
  * @typedef FailedBrowseFilesResult
- * @property {string} message
- */
-
-/**
- * @typedef SignedUrl
- * @property {string} url - This is the original asset URL provided in the
- *   request. This is the URL for which a signed URL has been generated.
- * @property {string} signed_url - Generated signed URL.
- * @property {number} expiry - The expiration time for the signed URL in seconds.
- */
-
-/**
- * @typedef SignUrlResult
- * @property {SignedUrl[]} urls - Signed URL object.
- */
-
-/**
- * @typedef SignUrl
- * @property {number} expiry - The expiration time for the signed URL.
- * @property {string[]} urls - List of asset URLs to be signed.
+ * @property {string} message - Message representing the description due to
+ *   which Browse File egte failed
  */
 
 class FileStoragePartnerModel {
@@ -137,14 +129,16 @@ class FileStoragePartnerModel {
   /** @returns {SaveProxy} */
   static SaveProxy() {
     return Joi.object({
-      success: Joi.boolean(),
+      id: Joi.number(),
+      token: Joi.string().allow(""),
     });
   }
 
   /** @returns {ProxyFileData} */
   static ProxyFileData() {
     return Joi.object({
-      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      password: Joi.string().allow(""),
     });
   }
 
@@ -163,7 +157,8 @@ class FileStoragePartnerModel {
   /** @returns {FetchProxyDetails} */
   static FetchProxyDetails() {
     return Joi.object({
-      success: Joi.boolean(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -232,6 +227,7 @@ class FileStoragePartnerModel {
   /** @returns {CreatedBy} */
   static CreatedBy() {
     return Joi.object({
+      user_id: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
   }
@@ -260,30 +256,6 @@ class FileStoragePartnerModel {
   static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {SignedUrl} */
-  static SignedUrl() {
-    return Joi.object({
-      url: Joi.string().allow("").required(),
-      signed_url: Joi.string().allow("").required(),
-      expiry: Joi.number().required(),
-    });
-  }
-
-  /** @returns {SignUrlResult} */
-  static SignUrlResult() {
-    return Joi.object({
-      urls: Joi.array().items(FileStoragePartnerModel.SignedUrl()).required(),
-    });
-  }
-
-  /** @returns {SignUrl} */
-  static SignUrl() {
-    return Joi.object({
-      expiry: Joi.number().required(),
-      urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 }

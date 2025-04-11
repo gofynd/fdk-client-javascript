@@ -24,30 +24,6 @@ declare class User {
      */
     blockOrUnblockUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.BlockOrUnblockUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BlockUserSuccess>;
     /**
-     * @param {UserPlatformApplicationValidator.BulkImportStoreFrontUsersParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-     * @name bulkImportStoreFrontUsers
-     * @summary: Bulk import storefront customers using CSV and XLSX files.
-     * @description: The API allows bulk import of storefront customers using CSV or XLSX files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkImportStoreFrontUsers/).
-     */
-    bulkImportStoreFrontUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.BulkImportStoreFrontUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkActionModel>;
-    /**
-     * @param {UserPlatformApplicationValidator.CreateBulkExportUsersParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-     * @name createBulkExportUsers
-     * @summary: Bulk export storefront customers using CSV and XLSX files.
-     * @description: This API allows bulk export of storefront users by requesting files in CSV or XLSX format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createBulkExportUsers/).
-     */
-    createBulkExportUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateBulkExportUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkActionModel>;
-    /**
      * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -63,13 +39,13 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
+     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResp>} -
      *   Success response
      * @name createUserAttributeDefinition
      * @summary: Create a User Attribute Definition
      * @description: Create a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
      */
-    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionDetails>;
+    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionResp>;
     /**
      * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -147,34 +123,6 @@ declare class User {
      * @description: Retrieve a list of currently active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
      */
     getActiveSessions({ id, requestHeaders }?: UserPlatformApplicationValidator.GetActiveSessionsParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionListResponseSchema>;
-    /**
-     * @param {UserPlatformApplicationValidator.GetBulkExportUsersListParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkActionPaginationSchema>} - Success response
-     * @name getBulkExportUsersList
-     * @summary: Get Bulk User's Export Lists for a specific Application.
-     * @description: This API allows fetching the list of bulk user exports for a specific application and company.
-     * It supports pagination and filtering based on various parameters.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getBulkExportUsersList/).
-     */
-    getBulkExportUsersList({ pageNo, pageSize, fileFormat, search, startDate, endDate, status, requestHeaders, }?: UserPlatformApplicationValidator.GetBulkExportUsersListParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkActionPaginationSchema>;
-    /**
-     * @param {UserPlatformApplicationValidator.GetBulkImportUsersListParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkActionPaginationSchema>} - Success response
-     * @name getBulkImportUsersList
-     * @summary: Get Bulk User's Import Lists for a specific Application.
-     * @description: This API allows fetching the list of bulk user imports for a specific application and company.
-     * It supports pagination and filtering based on various parameters.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getBulkImportUsersList/).
-     */
-    getBulkImportUsersList({ pageNo, pageSize, search, startDate, endDate, status, fileFormat, requestHeaders, }?: UserPlatformApplicationValidator.GetBulkImportUsersListParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkActionPaginationSchema>;
     /**
      * @param {UserPlatformApplicationValidator.GetCustomersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -275,26 +223,15 @@ declare class User {
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetUserTimelineParam} arg - Arg object
+     * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.GetUserTimeline>} - Success response
-     * @name getUserTimeline
-     * @summary: Get Deleted User Timeline
-     * @description: Fetches the timeline for the user who has made a data erase request. The timeline will show when the request was raised and when the request will be completed. It will also show if request has been cancelled before completion. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserTimeline/).
+     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
+     * @name getUsersByByGroupId
+     * @summary: Get users belonging to user group by Id
+     * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
      */
-    getUserTimeline({ userId, requestHeaders }?: UserPlatformApplicationValidator.GetUserTimelineParam, { responseHeaders }?: object): Promise<UserPlatformModel.GetUserTimeline>;
-    /**
-     * @param {UserPlatformApplicationValidator.GetUsersJobByJobIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkActionModel>} - Success response
-     * @name getUsersJobByJobId
-     * @summary: Retrieve Job Details by Job ID for a Specific Application, Including Both Import and Export Jobs.
-     * @description: This endpoint retrieves the details of a specific user's import and export related jobs associated with a given `job_id`, `application_id`, and `company_id`.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersJobByJobId/).
-     */
-    getUsersJobByJobId({ jobId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersJobByJobIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkActionModel>;
+    getUsersByByGroupId({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersByByGroupIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

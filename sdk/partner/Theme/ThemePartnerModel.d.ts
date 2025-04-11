@@ -1,5 +1,22 @@
 export = ThemePartnerModel;
 /**
+ * @typedef DefaultPageSchema
+ * @property {string} [path]
+ * @property {string} [type]
+ * @property {string[]} [sections]
+ * @property {string[]} [sections_meta]
+ * @property {string} [text]
+ * @property {string} [value]
+ * @property {DefaultPageProp[]} [props]
+ */
+/**
+ * @typedef DefaultPageProp
+ * @property {string} [type]
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [info]
+ */
+/**
  * @typedef AvailablePageSchema
  * @property {string} [value]
  * @property {string} [text]
@@ -13,10 +30,15 @@ export = ThemePartnerModel;
  * @property {string} [_id]
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
+ * @property {string} [application] - The application id
+ * @property {number} [__v] - Version of document
  */
 /**
  * @typedef DraftExtensionSection
  * @property {string} [extension_id]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
  * @property {ExtensionSection[]} [sections]
@@ -26,7 +48,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef ExtensionSectionDraft
- * @property {Sections} [sections]
+ * @property {string} [message]
  */
 /**
  * @typedef Sections
@@ -79,6 +101,10 @@ export = ThemePartnerModel;
  * @property {Sections} [sections]
  */
 /**
+ * @typedef PublishExtensionSectionResponseSchema
+ * @property {string} [message]
+ */
+/**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
  */
@@ -88,7 +114,8 @@ export = ThemePartnerModel;
  * @property {string} [description]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
+ * @property {string} [canonical_url]
  * @property {string} [_id]
  */
 /**
@@ -105,6 +132,7 @@ export = ThemePartnerModel;
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
+ * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 /**
  * @typedef SEObreadcrumb
@@ -119,6 +147,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef AvailablePageSchemaSections
+ * @property {string} [_id] - Unique Id for section.
  * @property {string} [name]
  * @property {string} [label]
  * @property {Object} [props]
@@ -175,7 +204,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef MarketplaceThemeSchema
- * @property {MarketplaceTheme[]} [themes]
+ * @property {MarketplaceTheme[]} [items]
  * @property {PaginationSchema} [page]
  */
 /**
@@ -208,6 +237,7 @@ export = ThemePartnerModel;
  * @property {string} [created_at] - Theme creation timestamp
  * @property {string} [updated_at] - Theme update timestamp
  * @property {string} [template_theme_id] - Template theme ID
+ * @property {string} [theme_type] - Theme type
  */
 /**
  * @typedef PaymentInfo
@@ -316,6 +346,7 @@ export = ThemePartnerModel;
 /**
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
+ * @property {string} [level]
  */
 /**
  * @typedef BlitzkriegInternalServerErrorSchema
@@ -343,6 +374,7 @@ export = ThemePartnerModel;
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
+ * @property {Object[]} [global_sections]
  */
 /**
  * @typedef Font
@@ -501,19 +533,11 @@ export = ThemePartnerModel;
  * @property {Object[]} [blocks] - Blocks
  * @property {string} [name] - Name of the section
  * @property {string} [label] - Label for the section
+ * @property {Object} [preset]
  */
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 /**
  * @typedef Preset
@@ -678,8 +702,27 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
+    export { DefaultPageSchema, DefaultPageProp, AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, PublishExtensionSectionResponseSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
+/** @returns {DefaultPageSchema} */
+declare function DefaultPageSchema(): DefaultPageSchema;
+type DefaultPageSchema = {
+    path?: string;
+    type?: string;
+    sections?: string[];
+    sections_meta?: string[];
+    text?: string;
+    value?: string;
+    props?: DefaultPageProp[];
+};
+/** @returns {DefaultPageProp} */
+declare function DefaultPageProp(): DefaultPageProp;
+type DefaultPageProp = {
+    type?: string;
+    id?: string;
+    label?: string;
+    info?: string;
+};
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
 type AvailablePageSchema = {
@@ -701,11 +744,22 @@ type AvailablePageSchema = {
      * - The last update timestamp of the page
      */
     updated_at?: string;
+    /**
+     * - The application id
+     */
+    application?: string;
+    /**
+     * - Version of document
+     */
+    __v?: number;
 };
 /** @returns {DraftExtensionSection} */
 declare function DraftExtensionSection(): DraftExtensionSection;
 type DraftExtensionSection = {
     extension_id?: string;
+    _id?: string;
+    created_at?: string;
+    updated_at?: string;
     bundle_name?: string;
     organization_id?: string;
     sections?: ExtensionSection[];
@@ -716,7 +770,7 @@ type DraftExtensionSection = {
 /** @returns {ExtensionSectionDraft} */
 declare function ExtensionSectionDraft(): ExtensionSectionDraft;
 type ExtensionSectionDraft = {
-    sections?: Sections;
+    message?: string;
 };
 /** @returns {Sections} */
 declare function Sections(): Sections;
@@ -782,6 +836,11 @@ declare function ExtensionSectionPublish(): ExtensionSectionPublish;
 type ExtensionSectionPublish = {
     sections?: Sections;
 };
+/** @returns {PublishExtensionSectionResponseSchema} */
+declare function PublishExtensionSectionResponseSchema(): PublishExtensionSectionResponseSchema;
+type PublishExtensionSectionResponseSchema = {
+    message?: string;
+};
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
 type AvailablePageSectionMetaAttributes = {
@@ -794,7 +853,8 @@ type AvailablePageSeo = {
     description?: string;
     meta_tags?: SEOMetaItem[];
     sitemap?: SEOSitemap;
-    breadcrumb?: SEObreadcrumb[];
+    breadcrumbs?: SEObreadcrumb[];
+    canonical_url?: string;
     _id?: string;
 };
 /** @returns {SEOMetaItem} */
@@ -814,6 +874,10 @@ declare function SEOSitemap(): SEOSitemap;
 type SEOSitemap = {
     priority?: number;
     frequency?: string;
+    /**
+     * - Timestamp at which the document was last modified on
+     */
+    modified_on?: string;
 };
 /** @returns {SEObreadcrumb} */
 declare function SEObreadcrumb(): SEObreadcrumb;
@@ -834,6 +898,10 @@ type Action = {
 /** @returns {AvailablePageSchemaSections} */
 declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
 type AvailablePageSchemaSections = {
+    /**
+     * - Unique Id for section.
+     */
+    _id?: string;
     name?: string;
     label?: string;
     props?: any;
@@ -919,7 +987,7 @@ type AvailablePagePredicate = {
 /** @returns {MarketplaceThemeSchema} */
 declare function MarketplaceThemeSchema(): MarketplaceThemeSchema;
 type MarketplaceThemeSchema = {
-    themes?: MarketplaceTheme[];
+    items?: MarketplaceTheme[];
     page?: PaginationSchema;
 };
 /** @returns {MarketplaceTheme} */
@@ -1001,6 +1069,10 @@ type MarketplaceTheme = {
      * - Template theme ID
      */
     template_theme_id?: string;
+    /**
+     * - Theme type
+     */
+    theme_type?: string;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
@@ -1232,6 +1304,7 @@ type PaginationSchema = {
 declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
+    level?: string;
 };
 /** @returns {BlitzkriegInternalServerErrorSchema} */
 declare function BlitzkriegInternalServerErrorSchema(): BlitzkriegInternalServerErrorSchema;
@@ -1303,6 +1376,7 @@ type ThemesSchema = {
      */
     company_id?: number;
     src?: string;
+    global_sections?: any[];
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -1636,39 +1710,12 @@ type SectionItem = {
      * - Label for the section
      */
     label?: string;
+    preset?: any;
 };
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
-    props?: Prop[];
-};
-/** @returns {Prop} */
-declare function Prop(): Prop;
-type Prop = {
-    /**
-     * - The type of the property
-     */
-    type?: string;
-    /**
-     * - The category of the property
-     */
-    category?: string;
-    /**
-     * - The value of the property
-     */
-    value?: string;
-    /**
-     * - The ID of the property
-     */
-    id?: string;
-    /**
-     * - The label of the property
-     */
-    label?: string;
-    /**
-     * - Additional information about the property
-     */
-    info?: string;
+    props?: any[];
 };
 /** @returns {Preset} */
 declare function Preset(): Preset;
