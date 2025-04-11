@@ -1,4 +1,4 @@
-# CHANGE LOG (0.0.1111-5.beta.1) - 0.0.1111
+# CHANGE LOG (1.10.5-1.beta.1) - 1.10.5
 
 ## Application Client
 
@@ -10,20 +10,26 @@
 
 #### getAllPages
 
+- ##### What's New
+	- [Added] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### getPage
 
+- ##### What's New
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 ## Partner Client
@@ -36,101 +42,83 @@
 
 #### getAllPages
 
+- ##### What's New
+	- [Added] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### createPage
 
+- ##### What's New
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in request body
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### updateMultiplePages
 
+- ##### What's New
+	- [Added] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Added] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in request body
+	- [Breaking] [Deleted] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### getPage
 
+- ##### What's New
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### updatePage
 
+- ##### What's New
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in request body
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 #### deletePage
 
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
-
-
-## Platform Client
-
-
-
-### Payment
-
-
-
-#### getTransactions
+- ##### What's New
+	- [Added] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>getTransactions</code>
+	- [Breaking] [Deleted] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
 
-
-
-### User
-
-
-
-#### bulkUpdateUserAttributes
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>bulkUpdateUserAttributes</code>
-
-
-
-#### bulkUpdatePerUserAttributes
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>bulkUpdatePerUserAttributes</code>
-
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePageSchedulePredicate</code> in response with status code 200
 
 
 # CHANGE LOG (3.3.0) - 2.6.0

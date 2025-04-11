@@ -186,6 +186,16 @@ export = PaymentPlatformApplicationValidator;
  * @property {string} shipmentId - Shipment id
  */
 /**
+ * @typedef GetTransactionsParam
+ * @property {string} [userId] - User ID of the user
+ * @property {number} [pageSize] - Size of the page, default and max value is 10
+ * @property {number} [pageNumber] - Page number, default is 1
+ * @property {string} [orderId] - Order ID for which transaction data is needed
+ * @property {string} [shipmentId] - Shipment ID for which transaction data is needed
+ * @property {string} [transactionId] - Transaction ID for which transaction
+ *   data is needed
+ */
+/**
  * @typedef GetUserBeneficiariesParam
  * @property {string} orderId
  */
@@ -407,6 +417,8 @@ declare class PaymentPlatformApplicationValidator {
     static getSelectedRefundOption(): GetSelectedRefundOptionParam;
     /** @returns {GetShipmentBeneficiaryParam} */
     static getShipmentBeneficiary(): GetShipmentBeneficiaryParam;
+    /** @returns {GetTransactionsParam} */
+    static getTransactions(): GetTransactionsParam;
     /** @returns {GetUserBeneficiariesParam} */
     static getUserBeneficiaries(): GetUserBeneficiariesParam;
     /** @returns {GetUserBeneficiariesDetailV2Param} */
@@ -471,7 +483,7 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddEdcDeviceParam, AddRefundBankAccountParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CopyConfigAggPaymentModesParam, CopyConfigPaymentModesParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, DeleteBeneficiaryDetailsParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetAggregatorCredentialParam, GetAggregatorCredentialHistoryParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetDevicesParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentLinkIdParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentModeSequencingParam, GetPaymentSessionParam, GetPennyDropValidationParam, GetPosPaymentModeRoutesParam, GetSelectedRefundOptionParam, GetShipmentBeneficiaryParam, GetUserBeneficiariesParam, GetUserBeneficiariesDetailV2Param, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PatchPaymentModeSequencingParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetRefundOptionforShipmentParam, SetUserCODlimitRoutesParam, UpdateAggregatorCredentialParam, UpdateDefaultBeneficiaryParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdatePennyDropValidationParam, UpdateRefundSessionParam, ValidateBeneficiaryAddressParam, VerifyCustomerForPaymentParam };
+    export { AddEdcDeviceParam, AddRefundBankAccountParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CopyConfigAggPaymentModesParam, CopyConfigPaymentModesParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, DeleteBeneficiaryDetailsParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetAggregatorCredentialParam, GetAggregatorCredentialHistoryParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetDevicesParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentLinkIdParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentModeSequencingParam, GetPaymentSessionParam, GetPennyDropValidationParam, GetPosPaymentModeRoutesParam, GetSelectedRefundOptionParam, GetShipmentBeneficiaryParam, GetTransactionsParam, GetUserBeneficiariesParam, GetUserBeneficiariesDetailV2Param, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PatchPaymentModeSequencingParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetRefundOptionforShipmentParam, SetUserCODlimitRoutesParam, UpdateAggregatorCredentialParam, UpdateDefaultBeneficiaryParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdatePennyDropValidationParam, UpdateRefundSessionParam, ValidateBeneficiaryAddressParam, VerifyCustomerForPaymentParam };
 }
 type AddEdcDeviceParam = {
     /**
@@ -728,6 +740,33 @@ type GetShipmentBeneficiaryParam = {
      * - Shipment id
      */
     shipmentId: string;
+};
+type GetTransactionsParam = {
+    /**
+     * - User ID of the user
+     */
+    userId?: string;
+    /**
+     * - Size of the page, default and max value is 10
+     */
+    pageSize?: number;
+    /**
+     * - Page number, default is 1
+     */
+    pageNumber?: number;
+    /**
+     * - Order ID for which transaction data is needed
+     */
+    orderId?: string;
+    /**
+     * - Shipment ID for which transaction data is needed
+     */
+    shipmentId?: string;
+    /**
+     * - Transaction ID for which transaction
+     * data is needed
+     */
+    transactionId?: string;
 };
 type GetUserBeneficiariesParam = {
     orderId: string;

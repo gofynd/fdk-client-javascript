@@ -2297,6 +2297,40 @@ export = PaymentPlatformModel;
  * @property {string} [beneficiary_details] - Encrypted beneficiary details
  */
 /**
+ * @typedef TransactionData
+ * @property {string} transaction_id - Unique identifier for the transaction
+ * @property {string} created_on - Date and time when the transaction was created
+ * @property {string} modified_on - Date and time when the transaction was last modified
+ * @property {string} status - Status of the transaction
+ * @property {string} aggregator_name - Name of the payment aggregator
+ * @property {TransactionTypeSchema} transaction_type
+ * @property {string} payment_mode - Payment mode used for the transaction
+ * @property {number} amount - Amount of the transaction
+ * @property {string} message - Message of the tranaction
+ * @property {string} return_shipment_id - Return Shipment ID for the transaction
+ */
+/**
+ * @typedef OrderData
+ * @property {string} created_on - Date and time when the order was created
+ * @property {string} modified_on - Date and time when the order was last modified
+ * @property {StatusSchema} status
+ * @property {number} amount - Total amount of the order
+ * @property {number} paid_amount - Total amount paid for the order
+ * @property {DeviceTypeSchema} device
+ * @property {TransactionData[]} transactions
+ */
+/**
+ * @typedef PageData
+ * @property {number} page_size - Page size of the response.
+ * @property {number} current_page - Current page number of the response.
+ */
+/**
+ * @typedef TransactionsResponseSchema
+ * @property {boolean} success - Indicates whether the request was successful.
+ * @property {Object} orders - Order Data for the order_id.
+ * @property {PageData} page
+ */
+/**
  * @typedef HttpErrorCodeAndMessage
  * @property {string} [message] - Error message
  * @property {string[]} [items] - Return empty array in error response
@@ -2307,12 +2341,34 @@ export = PaymentPlatformModel;
  * @typedef ErrorCodeDescription
  * @property {string} description - Error human understandable description.
  * @property {string} code - Error descrption code.
- * @property {boolean} success - Response is successful or not
+ * @property {boolean} [success] - Response is successful or not
  */
+/**
+ * @typedef {| "started"
+ *   | "completed"
+ *   | "partial_paid"
+ *   | "failed"
+ *   | "pending"
+ *   | "refund_done"
+ *   | "refund_initiated"
+ *   | "partial_refund"
+ *   | "refund_failed"
+ *   | "refund_pending"
+ *   | "refund_acknowledge"} StatusSchema
+ */
+/**
+ * @typedef {| "android"
+ *   | "ios"
+ *   | "desktop"
+ *   | "ios-pos"
+ *   | "android-pos"
+ *   | "desktop-payment_link"} DeviceTypeSchema
+ */
+/** @typedef {"FORWARD" | "REFUND" | "AUTO_REFUND"} TransactionTypeSchema */
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, AggregatorConfig, DisplayDetails, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, RefundErrorCodeAndMessage, PaymentOptionErrorCodeAndMessage, RefundOptionErrorCodeAndMessage, UserCODAdvanceErrorCodeAndMessage, UserCodErrorMessage, RefundOptionMessage, RefundOptionError, PaymentOptionError, PaymentSessionError, PaymentErrorCodeDescription, EDCError, IFSCErrorData, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, Version, VersionDetails, PaymentOptions, PaymentFlowData, PaymentConfig, GatewayData, SDKDetails, SDKConfig, UserData, AggregatorRouteData, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, DeliverySlot, DeliverySlotDetail, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutUserDetails, PayoutCreation, PayoutDetails, PayoutData, BankDetails, UpdatePayoutDetails, Payouts, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, GetRefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, AdvancePaymentLimitConfig, CODLimitConfig, CODPaymentLimitConfig, UserPaymentLimitConfig, GetUserBULimitDetails, GetUserCODLimitDetails, SetAdvanceLimitConfig, SetCODLimitConfig, SetUserPaymentLimitConfig, SetBUPaymentLimit, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, MerchantOnboardingData, ValidateCustomerCreation, MerchantParams, OrderItems, ValidateCustomerDetails, ValidateCustomer, ValidateCustomerData, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, PaymentLinkError, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformOnlineOfflinePaymentDetails, PatchPlatformOnlineOfflinePaymentDetails, PlatformOnlineOfflineItem, OnlinePaymentDetails, OfflinePaymentDetails, CODOffline, AggregatorDetails, CODPaymentMode, PlatformPaymentMode, PlatformPaymentModeDetails, AggregatorPlatformPaymentModeDetails, PlatformOfflineAdvance, PlatformOfflineAdvanceDetails, OfflineAdvanceConfigurationItem, OfflineAdvanceDevice, OfflineAdvanceConfig, PaymentModeItem, MerchantPaymentMode, ModeIsactive, OfferSerializerData, AppliedOfferSerializerData, MerchnatPaymentModeCreation, OrderDetail, AggregatorOrderDetail, GoogleMapPoint, AddressDetail, LatLongDetail, PaymentSessionDetail, RefundDetailsSerializerData, AmountSerializerData, ChargeAmountSerializerData, CartChargesSerializerData, CartDetailsSerializerData, GetPaymentSessionDetails, PaymentSessionCreation, TransactionDetail, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, CustomerDetails, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, DeleteBeneficiary, DeleteRefundAccountDetails, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionDetails, SelectedRefundOptionDetails, TransferMode, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, RefundOptionsLimit, ValidateValidateAddress, VPADetails, ValidateValidateAddressDetails, SetDefaultBeneficiary, SetDefaultBeneficiaryDetails, ShipmentRefundDetailsMeta, ShipmentRefundDetails, ShipmentRefundDetail, ShipmentRefundRes, RefundOptionsPriority, RefundItem, PennyDropValidationDetails, UpdatePennyDropValidation, AggregatorConfigDetails, PaymentModeDetails, PaymentOptionItem, PaymentMode, SubPaymentMode, AggregatorCredentialReq, PatchAggregatorCredentialDetails, AggregatorCredentialRes, AggregatorCredential, AggregatorDisplayItem, GetDevice, BusinessUnitDevice, BusinessUnit, Device, AggregatorHistoryDetails, HistoryItem, CheckoutType, Mode, Country, Currency, RefundTo, PaymentMethodConfigDetails, RequiredSessionPath, SessionItem, PaymentErrorCodeAndMessage, PaymentError, ShipmentBeneficiaryDetailsRes, HttpErrorCodeAndMessage, ErrorCodeDescription };
+    export { PaymentGatewayConfigDetails, AggregatorConfig, DisplayDetails, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, RefundErrorCodeAndMessage, PaymentOptionErrorCodeAndMessage, RefundOptionErrorCodeAndMessage, UserCODAdvanceErrorCodeAndMessage, UserCodErrorMessage, RefundOptionMessage, RefundOptionError, PaymentOptionError, PaymentSessionError, PaymentErrorCodeDescription, EDCError, IFSCErrorData, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, Version, VersionDetails, PaymentOptions, PaymentFlowData, PaymentConfig, GatewayData, SDKDetails, SDKConfig, UserData, AggregatorRouteData, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, DeliverySlot, DeliverySlotDetail, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutUserDetails, PayoutCreation, PayoutDetails, PayoutData, BankDetails, UpdatePayoutDetails, Payouts, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, GetRefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, AdvancePaymentLimitConfig, CODLimitConfig, CODPaymentLimitConfig, UserPaymentLimitConfig, GetUserBULimitDetails, GetUserCODLimitDetails, SetAdvanceLimitConfig, SetCODLimitConfig, SetUserPaymentLimitConfig, SetBUPaymentLimit, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, MerchantOnboardingData, ValidateCustomerCreation, MerchantParams, OrderItems, ValidateCustomerDetails, ValidateCustomer, ValidateCustomerData, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, PaymentLinkError, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformOnlineOfflinePaymentDetails, PatchPlatformOnlineOfflinePaymentDetails, PlatformOnlineOfflineItem, OnlinePaymentDetails, OfflinePaymentDetails, CODOffline, AggregatorDetails, CODPaymentMode, PlatformPaymentMode, PlatformPaymentModeDetails, AggregatorPlatformPaymentModeDetails, PlatformOfflineAdvance, PlatformOfflineAdvanceDetails, OfflineAdvanceConfigurationItem, OfflineAdvanceDevice, OfflineAdvanceConfig, PaymentModeItem, MerchantPaymentMode, ModeIsactive, OfferSerializerData, AppliedOfferSerializerData, MerchnatPaymentModeCreation, OrderDetail, AggregatorOrderDetail, GoogleMapPoint, AddressDetail, LatLongDetail, PaymentSessionDetail, RefundDetailsSerializerData, AmountSerializerData, ChargeAmountSerializerData, CartChargesSerializerData, CartDetailsSerializerData, GetPaymentSessionDetails, PaymentSessionCreation, TransactionDetail, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, CustomerDetails, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, DeleteBeneficiary, DeleteRefundAccountDetails, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionDetails, SelectedRefundOptionDetails, TransferMode, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, RefundOptionsLimit, ValidateValidateAddress, VPADetails, ValidateValidateAddressDetails, SetDefaultBeneficiary, SetDefaultBeneficiaryDetails, ShipmentRefundDetailsMeta, ShipmentRefundDetails, ShipmentRefundDetail, ShipmentRefundRes, RefundOptionsPriority, RefundItem, PennyDropValidationDetails, UpdatePennyDropValidation, AggregatorConfigDetails, PaymentModeDetails, PaymentOptionItem, PaymentMode, SubPaymentMode, AggregatorCredentialReq, PatchAggregatorCredentialDetails, AggregatorCredentialRes, AggregatorCredential, AggregatorDisplayItem, GetDevice, BusinessUnitDevice, BusinessUnit, Device, AggregatorHistoryDetails, HistoryItem, CheckoutType, Mode, Country, Currency, RefundTo, PaymentMethodConfigDetails, RequiredSessionPath, SessionItem, PaymentErrorCodeAndMessage, PaymentError, ShipmentBeneficiaryDetailsRes, TransactionData, OrderData, PageData, TransactionsResponseSchema, HttpErrorCodeAndMessage, ErrorCodeDescription, StatusSchema, DeviceTypeSchema, TransactionTypeSchema };
 }
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
@@ -7288,6 +7344,95 @@ type ShipmentBeneficiaryDetailsRes = {
      */
     beneficiary_details?: string;
 };
+/** @returns {TransactionData} */
+declare function TransactionData(): TransactionData;
+type TransactionData = {
+    /**
+     * - Unique identifier for the transaction
+     */
+    transaction_id: string;
+    /**
+     * - Date and time when the transaction was created
+     */
+    created_on: string;
+    /**
+     * - Date and time when the transaction was last modified
+     */
+    modified_on: string;
+    /**
+     * - Status of the transaction
+     */
+    status: string;
+    /**
+     * - Name of the payment aggregator
+     */
+    aggregator_name: string;
+    transaction_type: TransactionTypeSchema;
+    /**
+     * - Payment mode used for the transaction
+     */
+    payment_mode: string;
+    /**
+     * - Amount of the transaction
+     */
+    amount: number;
+    /**
+     * - Message of the tranaction
+     */
+    message: string;
+    /**
+     * - Return Shipment ID for the transaction
+     */
+    return_shipment_id: string;
+};
+/** @returns {OrderData} */
+declare function OrderData(): OrderData;
+type OrderData = {
+    /**
+     * - Date and time when the order was created
+     */
+    created_on: string;
+    /**
+     * - Date and time when the order was last modified
+     */
+    modified_on: string;
+    status: StatusSchema;
+    /**
+     * - Total amount of the order
+     */
+    amount: number;
+    /**
+     * - Total amount paid for the order
+     */
+    paid_amount: number;
+    device: DeviceTypeSchema;
+    transactions: TransactionData[];
+};
+/** @returns {PageData} */
+declare function PageData(): PageData;
+type PageData = {
+    /**
+     * - Page size of the response.
+     */
+    page_size: number;
+    /**
+     * - Current page number of the response.
+     */
+    current_page: number;
+};
+/** @returns {TransactionsResponseSchema} */
+declare function TransactionsResponseSchema(): TransactionsResponseSchema;
+type TransactionsResponseSchema = {
+    /**
+     * - Indicates whether the request was successful.
+     */
+    success: boolean;
+    /**
+     * - Order Data for the order_id.
+     */
+    orders: any;
+    page: PageData;
+};
 /** @returns {HttpErrorCodeAndMessage} */
 declare function HttpErrorCodeAndMessage(): HttpErrorCodeAndMessage;
 type HttpErrorCodeAndMessage = {
@@ -7319,5 +7464,26 @@ type ErrorCodeDescription = {
     /**
      * - Response is successful or not
      */
-    success: boolean;
+    success?: boolean;
 };
+/**
+ * Enum: StatusSchema Used By: Payment
+ *
+ * @returns {StatusSchema}
+ */
+declare function StatusSchema(): StatusSchema;
+type StatusSchema = "started" | "completed" | "partial_paid" | "failed" | "pending" | "refund_done" | "refund_initiated" | "partial_refund" | "refund_failed" | "refund_pending" | "refund_acknowledge";
+/**
+ * Enum: DeviceTypeSchema Used By: Payment
+ *
+ * @returns {DeviceTypeSchema}
+ */
+declare function DeviceTypeSchema(): DeviceTypeSchema;
+type DeviceTypeSchema = "android" | "ios" | "desktop" | "ios-pos" | "android-pos" | "desktop-payment_link";
+/**
+ * Enum: TransactionTypeSchema Used By: Payment
+ *
+ * @returns {TransactionTypeSchema}
+ */
+declare function TransactionTypeSchema(): TransactionTypeSchema;
+type TransactionTypeSchema = "FORWARD" | "REFUND" | "AUTO_REFUND";

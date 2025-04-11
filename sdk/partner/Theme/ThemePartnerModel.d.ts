@@ -172,8 +172,16 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [authenticated]
- * @property {boolean} [anonymous]
+ * @property {boolean} [authenticated] - Indicates if the predicate applies to
+ *   authenticated users.
+ * @property {boolean} [anonymous] - Indicates if the predicate applies to
+ *   anonymous users.
+ * @property {string} [user_type] - Type of User filter settings applied for section
+ * @property {string[]} [user_groups] - List of the user groups selected as a filter
+ * @property {string} [start] - Timestamp after which the user has created
+ *   account on storefront
+ * @property {string} [end] - Timestamp before which the user has created
+ *   account on storefront
  */
 /**
  * @typedef AvailablePageRoutePredicate
@@ -198,7 +206,7 @@ export = ThemePartnerModel;
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
- * @property {AvailablePageSchedulePredicate} [schedule]
+ * @property {AvailablePageSchedulePredicate[]} [schedule] - Multiple schedule for section
  * @property {AvailablePagePlatformPredicate} [platform]
  * @property {string[]} [zones] - An array of zone ids associated with the section
  */
@@ -938,8 +946,34 @@ type AvailablePageScreenPredicate = {
 /** @returns {AvailablePageUserPredicate} */
 declare function AvailablePageUserPredicate(): AvailablePageUserPredicate;
 type AvailablePageUserPredicate = {
+    /**
+     * - Indicates if the predicate applies to
+     * authenticated users.
+     */
     authenticated?: boolean;
+    /**
+     * - Indicates if the predicate applies to
+     * anonymous users.
+     */
     anonymous?: boolean;
+    /**
+     * - Type of User filter settings applied for section
+     */
+    user_type?: string;
+    /**
+     * - List of the user groups selected as a filter
+     */
+    user_groups?: string[];
+    /**
+     * - Timestamp after which the user has created
+     * account on storefront
+     */
+    start?: string;
+    /**
+     * - Timestamp before which the user has created
+     * account on storefront
+     */
+    end?: string;
 };
 /** @returns {AvailablePageRoutePredicate} */
 declare function AvailablePageRoutePredicate(): AvailablePageRoutePredicate;
@@ -977,7 +1011,10 @@ type AvailablePagePredicate = {
     screen?: AvailablePageScreenPredicate;
     user?: AvailablePageUserPredicate;
     route?: AvailablePageRoutePredicate;
-    schedule?: AvailablePageSchedulePredicate;
+    /**
+     * - Multiple schedule for section
+     */
+    schedule?: AvailablePageSchedulePredicate[];
     platform?: AvailablePagePlatformPredicate;
     /**
      * - An array of zone ids associated with the section

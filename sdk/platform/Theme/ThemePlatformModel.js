@@ -299,7 +299,7 @@ const Joi = require("joi");
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
- * @property {AvailablePageSchedulePredicate} [schedule]
+ * @property {AvailablePageSchedulePredicate[]} [schedule] - Multiple schedule for section
  * @property {AvailablePagePlatformPredicate} [platform]
  * @property {string[]} [zones] - An array of zone ids associated with the section
  */
@@ -313,8 +313,16 @@ const Joi = require("joi");
 
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [authenticated]
- * @property {boolean} [anonymous]
+ * @property {boolean} [authenticated] - Indicates if the predicate applies to
+ *   authenticated users.
+ * @property {boolean} [anonymous] - Indicates if the predicate applies to
+ *   anonymous users.
+ * @property {string} [user_type] - Type of User filter settings applied for section
+ * @property {string[]} [user_groups] - List of the user groups selected as a filter
+ * @property {string} [start] - Timestamp after which the user has created
+ *   account on storefront
+ * @property {string} [end] - Timestamp before which the user has created
+ *   account on storefront
  */
 
 /**
@@ -1177,7 +1185,9 @@ class ThemePlatformModel {
       screen: ThemePlatformModel.AvailablePageScreenPredicate(),
       user: ThemePlatformModel.AvailablePageUserPredicate(),
       route: ThemePlatformModel.AvailablePageRoutePredicate(),
-      schedule: ThemePlatformModel.AvailablePageSchedulePredicate(),
+      schedule: Joi.array().items(
+        ThemePlatformModel.AvailablePageSchedulePredicate()
+      ),
       platform: ThemePlatformModel.AvailablePagePlatformPredicate(),
       zones: Joi.array().items(Joi.string().allow("")),
     });
@@ -1197,6 +1207,10 @@ class ThemePlatformModel {
     return Joi.object({
       authenticated: Joi.boolean(),
       anonymous: Joi.boolean(),
+      user_type: Joi.string().allow(""),
+      user_groups: Joi.array().items(Joi.string().allow("")),
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
     });
   }
 

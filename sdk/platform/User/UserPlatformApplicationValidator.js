@@ -13,6 +13,16 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
+ * @typedef BulkUpdatePerUserAttributesParam
+ * @property {UserPlatformModel.BulkUpdatePerUserAttributesBody} body
+ */
+
+/**
+ * @typedef BulkUpdateUserAttributesParam
+ * @property {UserPlatformModel.BulkUpdateUserAttributesBody} body
+ */
+
+/**
  * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
@@ -199,6 +209,20 @@ class UserPlatformApplicationValidator {
   static blockOrUnblockUsers() {
     return Joi.object({
       body: UserPlatformModel.BlockUserRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {BulkUpdatePerUserAttributesParam} */
+  static bulkUpdatePerUserAttributes() {
+    return Joi.object({
+      body: UserPlatformModel.BulkUpdatePerUserAttributesBody().required(),
+    }).required();
+  }
+
+  /** @returns {BulkUpdateUserAttributesParam} */
+  static bulkUpdateUserAttributes() {
+    return Joi.object({
+      body: UserPlatformModel.BulkUpdateUserAttributesBody().required(),
     }).required();
   }
 
