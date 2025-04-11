@@ -3222,6 +3222,110 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetTransactionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.TransactionsResponseSchema>} -
+   *   Success response
+   * @name getTransactions
+   * @summary: Retrieve transaction history by user or order
+   * @description: Fetches a list of transactions associated with a specific user ID or order ID. Allows filtering and pagination to retrieve specific transaction records. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getTransactions/).
+   */
+  async getTransactions(
+    {
+      userId,
+      pageSize,
+      pageNumber,
+      orderId,
+      shipmentId,
+      transactionId,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getTransactions().validate(
+      {
+        userId,
+        pageSize,
+        pageNumber,
+        orderId,
+        shipmentId,
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getTransactions().validate(
+      {
+        userId,
+        pageSize,
+        pageNumber,
+        orderId,
+        shipmentId,
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getTransactions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["user_id"] = userId;
+    query_params["page_size"] = pageSize;
+    query_params["page_number"] = pageNumber;
+    query_params["order_id"] = orderId;
+    query_params["shipment_id"] = shipmentId;
+    query_params["transaction_id"] = transactionId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/transactions`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.TransactionsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getTransactions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
    *   - Arg object
    *

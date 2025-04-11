@@ -24,6 +24,30 @@ declare class User {
      */
     blockOrUnblockUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.BlockOrUnblockUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BlockUserSuccess>;
     /**
+     * @param {UserPlatformApplicationValidator.BulkUpdatePerUserAttributesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.BulkOperation>} - Success response
+     * @name bulkUpdatePerUserAttributes
+     * @summary: Bulk Update Different Attributes Per User
+     * @description: Update different sets of attributes for different users in a single request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkUpdatePerUserAttributes/).
+     */
+    bulkUpdatePerUserAttributes({ body, requestHeaders }?: UserPlatformApplicationValidator.BulkUpdatePerUserAttributesParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkOperation>;
+    /**
+     * @param {UserPlatformApplicationValidator.BulkUpdateUserAttributesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.BulkOperation>} - Success response
+     * @name bulkUpdateUserAttributes
+     * @summary: Bulk Update User Attributes
+     * @description: Update the same set of attributes for multiple users at once - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkUpdateUserAttributes/).
+     */
+    bulkUpdateUserAttributes({ body, requestHeaders }?: UserPlatformApplicationValidator.BulkUpdateUserAttributesParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkOperation>;
+    /**
      * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

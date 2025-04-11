@@ -2674,6 +2674,7 @@ export = OrderPlatformModel;
  *   - Store_id
  *   - Return_store_id
  *   - Eway_bill_id
+ *   - External_store_id
  *
  * @property {FlagData[]} [allowed_bag_status_updates] - Specifies which fields
  *   are permitted to be updated at the bag status level. Allowed fields are:
@@ -2692,6 +2693,7 @@ export = OrderPlatformModel;
  *   - Return_store_id
  *   - Eway_bill_id
  *   - Logistics_meta
+ *   - External_store_id
  *
  * @property {FlagData[]} [allowed_entity_status_updates] - Specifies which
  *   fields are permitted to be updated at the Entity status level. Allowed fields are:
@@ -10491,6 +10493,7 @@ type Flags = {
      * - Store_id
      * - Return_store_id
      * - Eway_bill_id
+     * - External_store_id
      */
     allowed_bag_updates?: FlagData[];
     /**
@@ -10513,6 +10516,7 @@ type Flags = {
      * - Return_store_id
      * - Eway_bill_id
      * - Logistics_meta
+     * - External_store_id
      */
     allowed_entity_updates?: FlagData[];
     /**

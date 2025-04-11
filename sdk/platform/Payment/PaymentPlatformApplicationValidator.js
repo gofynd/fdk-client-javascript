@@ -227,6 +227,17 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
+ * @typedef GetTransactionsParam
+ * @property {string} [userId] - User ID of the user
+ * @property {number} [pageSize] - Size of the page, default and max value is 10
+ * @property {number} [pageNumber] - Page number, default is 1
+ * @property {string} [orderId] - Order ID for which transaction data is needed
+ * @property {string} [shipmentId] - Shipment ID for which transaction data is needed
+ * @property {string} [transactionId] - Transaction ID for which transaction
+ *   data is needed
+ */
+
+/**
  * @typedef GetUserBeneficiariesParam
  * @property {string} orderId
  */
@@ -692,6 +703,18 @@ class PaymentPlatformApplicationValidator {
   static getShipmentBeneficiary() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetTransactionsParam} */
+  static getTransactions() {
+    return Joi.object({
+      userId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      pageNumber: Joi.number(),
+      orderId: Joi.string().allow(""),
+      shipmentId: Joi.string().allow(""),
+      transactionId: Joi.string().allow(""),
     }).required();
   }
 

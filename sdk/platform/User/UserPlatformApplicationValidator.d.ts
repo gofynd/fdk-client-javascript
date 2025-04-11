@@ -8,6 +8,14 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.BlockUserRequestSchema} body
  */
 /**
+ * @typedef BulkUpdatePerUserAttributesParam
+ * @property {UserPlatformModel.BulkUpdatePerUserAttributesBody} body
+ */
+/**
+ * @typedef BulkUpdateUserAttributesParam
+ * @property {UserPlatformModel.BulkUpdateUserAttributesBody} body
+ */
+/**
  * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
@@ -160,6 +168,10 @@ declare class UserPlatformApplicationValidator {
     static archiveUser(): ArchiveUserParam;
     /** @returns {BlockOrUnblockUsersParam} */
     static blockOrUnblockUsers(): BlockOrUnblockUsersParam;
+    /** @returns {BulkUpdatePerUserAttributesParam} */
+    static bulkUpdatePerUserAttributes(): BulkUpdatePerUserAttributesParam;
+    /** @returns {BulkUpdateUserAttributesParam} */
+    static bulkUpdateUserAttributes(): BulkUpdateUserAttributesParam;
     /** @returns {CreateUserParam} */
     static createUser(): CreateUserParam;
     /** @returns {CreateUserAttributeDefinitionParam} */
@@ -216,13 +228,19 @@ declare class UserPlatformApplicationValidator {
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUsersByByGroupIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkUpdatePerUserAttributesParam, BulkUpdateUserAttributesParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUsersByByGroupIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
 };
 type BlockOrUnblockUsersParam = {
     body: UserPlatformModel.BlockUserRequestSchema;
+};
+type BulkUpdatePerUserAttributesParam = {
+    body: UserPlatformModel.BulkUpdatePerUserAttributesBody;
+};
+type BulkUpdateUserAttributesParam = {
+    body: UserPlatformModel.BulkUpdateUserAttributesBody;
 };
 type CreateUserParam = {
     body: UserPlatformModel.CreateUserRequestSchema;

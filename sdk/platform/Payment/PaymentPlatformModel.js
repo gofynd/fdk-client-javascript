@@ -2563,6 +2563,44 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TransactionData
+ * @property {string} transaction_id - Unique identifier for the transaction
+ * @property {string} created_on - Date and time when the transaction was created
+ * @property {string} modified_on - Date and time when the transaction was last modified
+ * @property {string} status - Status of the transaction
+ * @property {string} aggregator_name - Name of the payment aggregator
+ * @property {TransactionTypeSchema} transaction_type
+ * @property {string} payment_mode - Payment mode used for the transaction
+ * @property {number} amount - Amount of the transaction
+ * @property {string} message - Message of the tranaction
+ * @property {string} return_shipment_id - Return Shipment ID for the transaction
+ */
+
+/**
+ * @typedef OrderData
+ * @property {string} created_on - Date and time when the order was created
+ * @property {string} modified_on - Date and time when the order was last modified
+ * @property {StatusSchema} status
+ * @property {number} amount - Total amount of the order
+ * @property {number} paid_amount - Total amount paid for the order
+ * @property {DeviceTypeSchema} device
+ * @property {TransactionData[]} transactions
+ */
+
+/**
+ * @typedef PageData
+ * @property {number} page_size - Page size of the response.
+ * @property {number} current_page - Current page number of the response.
+ */
+
+/**
+ * @typedef TransactionsResponseSchema
+ * @property {boolean} success - Indicates whether the request was successful.
+ * @property {Object} orders - Order Data for the order_id.
+ * @property {PageData} page
+ */
+
+/**
  * @typedef HttpErrorCodeAndMessage
  * @property {string} [message] - Error message
  * @property {string[]} [items] - Return empty array in error response
@@ -2574,8 +2612,33 @@ const Joi = require("joi");
  * @typedef ErrorCodeDescription
  * @property {string} description - Error human understandable description.
  * @property {string} code - Error descrption code.
- * @property {boolean} success - Response is successful or not
+ * @property {boolean} [success] - Response is successful or not
  */
+
+/**
+ * @typedef {| "started"
+ *   | "completed"
+ *   | "partial_paid"
+ *   | "failed"
+ *   | "pending"
+ *   | "refund_done"
+ *   | "refund_initiated"
+ *   | "partial_refund"
+ *   | "refund_failed"
+ *   | "refund_pending"
+ *   | "refund_acknowledge"} StatusSchema
+ */
+
+/**
+ * @typedef {| "android"
+ *   | "ios"
+ *   | "desktop"
+ *   | "ios-pos"
+ *   | "android-pos"
+ *   | "desktop-payment_link"} DeviceTypeSchema
+ */
+
+/** @typedef {"FORWARD" | "REFUND" | "AUTO_REFUND"} TransactionTypeSchema */
 
 class PaymentPlatformModel {
   /** @returns {PaymentGatewayConfigDetails} */
@@ -5666,6 +5729,56 @@ class PaymentPlatformModel {
     });
   }
 
+  /** @returns {TransactionData} */
+  static TransactionData() {
+    return Joi.object({
+      transaction_id: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      aggregator_name: Joi.string().allow("").required(),
+      transaction_type: PaymentPlatformModel.TransactionTypeSchema().required(),
+      payment_mode: Joi.string().allow("").required(),
+      amount: Joi.number().required(),
+      message: Joi.string().allow("").required(),
+      return_shipment_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OrderData} */
+  static OrderData() {
+    return Joi.object({
+      created_on: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      status: PaymentPlatformModel.StatusSchema().required(),
+      amount: Joi.number().required(),
+      paid_amount: Joi.number().required(),
+      device: PaymentPlatformModel.DeviceTypeSchema().required(),
+      transactions: Joi.array()
+        .items(PaymentPlatformModel.TransactionData())
+        .required(),
+    });
+  }
+
+  /** @returns {PageData} */
+  static PageData() {
+    return Joi.object({
+      page_size: Joi.number().required(),
+      current_page: Joi.number().required(),
+    });
+  }
+
+  /** @returns {TransactionsResponseSchema} */
+  static TransactionsResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      orders: Joi.object()
+        .pattern(/\S/, PaymentPlatformModel.OrderData())
+        .required(),
+      page: PaymentPlatformModel.PageData().required(),
+    });
+  }
+
   /** @returns {HttpErrorCodeAndMessage} */
   static HttpErrorCodeAndMessage() {
     return Joi.object({
@@ -5681,8 +5794,75 @@ class PaymentPlatformModel {
     return Joi.object({
       description: Joi.string().allow("").required(),
       code: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
+      success: Joi.boolean(),
     });
+  }
+
+  /**
+   * Enum: StatusSchema Used By: Payment
+   *
+   * @returns {StatusSchema}
+   */
+  static StatusSchema() {
+    return Joi.string().valid(
+      "started",
+
+      "completed",
+
+      "partial_paid",
+
+      "failed",
+
+      "pending",
+
+      "refund_done",
+
+      "refund_initiated",
+
+      "partial_refund",
+
+      "refund_failed",
+
+      "refund_pending",
+
+      "refund_acknowledge"
+    );
+  }
+
+  /**
+   * Enum: DeviceTypeSchema Used By: Payment
+   *
+   * @returns {DeviceTypeSchema}
+   */
+  static DeviceTypeSchema() {
+    return Joi.string().valid(
+      "android",
+
+      "ios",
+
+      "desktop",
+
+      "ios-pos",
+
+      "android-pos",
+
+      "desktop-payment_link"
+    );
+  }
+
+  /**
+   * Enum: TransactionTypeSchema Used By: Payment
+   *
+   * @returns {TransactionTypeSchema}
+   */
+  static TransactionTypeSchema() {
+    return Joi.string().valid(
+      "FORWARD",
+
+      "REFUND",
+
+      "AUTO_REFUND"
+    );
   }
 }
 module.exports = PaymentPlatformModel;

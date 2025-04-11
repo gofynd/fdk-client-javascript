@@ -465,6 +465,17 @@ declare class Payment {
      */
     getShipmentBeneficiary({ shipmentId, requestHeaders }?: PaymentPlatformApplicationValidator.GetShipmentBeneficiaryParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ShipmentBeneficiaryDetailsRes>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetTransactionsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.TransactionsResponseSchema>} -
+     *   Success response
+     * @name getTransactions
+     * @summary: Retrieve transaction history by user or order
+     * @description: Fetches a list of transactions associated with a specific user ID or order ID. Allows filtering and pagination to retrieve specific transaction records. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getTransactions/).
+     */
+    getTransactions({ userId, pageSize, pageNumber, orderId, shipmentId, transactionId, requestHeaders, }?: PaymentPlatformApplicationValidator.GetTransactionsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.TransactionsResponseSchema>;
+    /**
      * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
      *   - Arg object
      *
