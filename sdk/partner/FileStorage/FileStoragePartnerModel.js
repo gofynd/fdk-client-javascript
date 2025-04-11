@@ -1,70 +1,186 @@
 const Joi = require("joi");
 
 /**
+ * @typedef SizeConstraints
+ * @property {number} [max] - Maximum allowed size (in bytes) for files in the namespace
+ */
+
+/**
+ * @typedef SaveProxy
+ * @property {number} [id] - Unique identifier assigned to the saved proxy session.
+ * @property {string} [token] - Authentication token generated for the created
+ *   proxy session.
+ */
+
+/**
+ * @typedef ProxyFileData
+ * @property {string} [email] - User email address required for proxy authentication.
+ * @property {string} [password] - Password associated with the email for proxy
+ *   authentication.
+ */
+
+/**
+ * @typedef ProxyFile
+ * @property {number} [id] - Unique identifier for the proxy request, used in
+ *   failure scenarios.
+ * @property {string} [customer] - Name or identifier of the customer associated
+ *   with the proxy file.
+ * @property {number} [quantity] - Number of proxy instances or sessions requested.
+ * @property {number} [price] - Cost of the proxy service, provided in
+ *   applicable currency units.
+ * @property {ProxyFileData} [data]
+ * @property {string} [url] - Endpoint URL for proxy-related API requests, such
+ *   as user registration or fetching data.
+ */
+
+/**
+ * @typedef FetchProxyDetails
+ * @property {Object} [data] - The actual response data
+ * @property {Object} [support] - Support-related information
+ */
+
+/**
+ * @typedef NamespaceDetails
+ * @property {string} [namespace] - The namespace identifier
+ * @property {string[]} [valid_content_types] - List of valid content types for
+ *   the namespace
+ * @property {SizeConstraints} [size]
+ * @property {string} [file_acl] - Access control level for files in the namespace
+ */
+
+/**
+ * @typedef AllNamespaceDetails
+ * @property {NamespaceDetails[]} [items] - An Array of all the existing Namespace
+ */
+
+/**
  * @typedef CDN
- * @property {string} url
- * @property {string} absolute_url
- * @property {string} relative_url
+ * @property {string} url - The CDN URL of the file.
+ * @property {string} absolute_url - The absolute URL of the file.
+ * @property {string} relative_url - The relative path of the file within the CDN.
  */
 
 /**
  * @typedef Upload
- * @property {number} expiry
- * @property {string} url
+ * @property {number} expiry - The expiration time of the uploaded file.
+ * @property {string} url - The URL of the uploaded file.
  */
 
 /**
- * @typedef StartResponse
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} [method]
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @typedef FileUpload
+ * @property {string} file_name - The name of the uploaded file.
+ * @property {string} file_path - The storage path of the uploaded file.
+ * @property {string} content_type - The MIME type of the uploaded file.
+ * @property {string} [method] - The method used for the upload.
+ * @property {string} namespace - The namespace where the file is stored.
+ * @property {string} operation - The operation type performed on the file.
+ * @property {number} size - The size of the uploaded file in bytes.
  * @property {Upload} upload
- * @property {CDN} cdn
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - Tags associated with the uploaded file.
  */
 
 /**
- * @typedef StartRequest
- * @property {string} file_name
- * @property {string} content_type
- * @property {number} size
- * @property {string[]} [tags]
- * @property {Object} [params]
+ * @typedef FileUploadStart
+ * @property {string} file_name - The name of the file to be uploaded.
+ * @property {string} content_type - The MIME type of the file.
+ * @property {number} size - The file size in bytes.
+ * @property {string[]} [tags] - Tags associated with the file.
+ * @property {Object} [params] - Additional parameters for file upload.
  */
 
 /**
  * @typedef CreatedBy
- * @property {string} [username]
+ * @property {string} [user_id] - The unique identifier of the user.
+ * @property {string} [username] - The username of the creator.
  */
 
 /**
- * @typedef CompleteResponse
- * @property {string} _id
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @typedef FileUploadComplete
+ * @property {string} _id - The unique identifier of the uploaded file.
+ * @property {string} file_name - The name of the file.
+ * @property {string} file_path - The storage path of the file.
+ * @property {string} content_type - The MIME type of the file.
+ * @property {string} namespace - The namespace where the file is stored.
+ * @property {string} operation - The type of operation performed on the file.
+ * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
  * @property {CDN} cdn
- * @property {boolean} success
- * @property {string[]} [tags]
- * @property {string} created_on
- * @property {string} modified_on
+ * @property {boolean} success - Indicates if the upload was successful.
+ * @property {string[]} [tags] - Tags associated with the file.
+ * @property {string} created_on - The timestamp when the file was created.
+ * @property {string} modified_on - The timestamp when the file was last modified.
  * @property {CreatedBy} [created_by]
  */
 
 /**
- * @typedef FailedResponse
- * @property {string} message
+ * @typedef FailedBrowseFilesResult
+ * @property {string} message - Message representing the description due to
+ *   which Browse File egte failed
  */
 
 class FileStoragePartnerModel {
+  /** @returns {SizeConstraints} */
+  static SizeConstraints() {
+    return Joi.object({
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {SaveProxy} */
+  static SaveProxy() {
+    return Joi.object({
+      id: Joi.number(),
+      token: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProxyFileData} */
+  static ProxyFileData() {
+    return Joi.object({
+      email: Joi.string().allow(""),
+      password: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProxyFile} */
+  static ProxyFile() {
+    return Joi.object({
+      id: Joi.number(),
+      customer: Joi.string().allow(""),
+      quantity: Joi.number(),
+      price: Joi.number(),
+      data: FileStoragePartnerModel.ProxyFileData(),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FetchProxyDetails} */
+  static FetchProxyDetails() {
+    return Joi.object({
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {NamespaceDetails} */
+  static NamespaceDetails() {
+    return Joi.object({
+      namespace: Joi.string().allow(""),
+      valid_content_types: Joi.array()
+        .items(Joi.string().allow(""))
+        .allow(null, ""),
+      size: FileStoragePartnerModel.SizeConstraints(),
+      file_acl: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AllNamespaceDetails} */
+  static AllNamespaceDetails() {
+    return Joi.object({
+      items: Joi.array().items(FileStoragePartnerModel.NamespaceDetails()),
+    });
+  }
+
   /** @returns {CDN} */
   static CDN() {
     return Joi.object({
@@ -82,8 +198,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {StartResponse} */
-  static StartResponse() {
+  /** @returns {FileUpload} */
+  static FileUpload() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -93,13 +209,12 @@ class FileStoragePartnerModel {
       operation: Joi.string().allow("").required(),
       size: Joi.number().required(),
       upload: FileStoragePartnerModel.Upload().required(),
-      cdn: FileStoragePartnerModel.CDN().required(),
       tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
-  /** @returns {StartRequest} */
-  static StartRequest() {
+  /** @returns {FileUploadStart} */
+  static FileUploadStart() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       content_type: Joi.string().allow("").required(),
@@ -112,12 +227,13 @@ class FileStoragePartnerModel {
   /** @returns {CreatedBy} */
   static CreatedBy() {
     return Joi.object({
+      user_id: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CompleteResponse} */
-  static CompleteResponse() {
+  /** @returns {FileUploadComplete} */
+  static FileUploadComplete() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
@@ -136,8 +252,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {FailedResponse} */
-  static FailedResponse() {
+  /** @returns {FailedBrowseFilesResult} */
+  static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
     });

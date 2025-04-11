@@ -6,9 +6,10 @@ declare class Content {
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
-        getCustomFields: string;
-        getCustomObject: string;
+        getCustomFieldsByResourceId: string;
+        getCustomObjectBySlug: string;
         getDataLoaders: string;
+        getDefaultSitemapConfig: string;
         getFaqBySlug: string;
         getFaqCategories: string;
         getFaqCategoryBySlug: string;
@@ -21,10 +22,11 @@ declare class Content {
         getPages: string;
         getSEOConfiguration: string;
         getSEOMarkupSchemas: string;
-        getSlideshow: string;
-        getSlideshows: string;
+        getSitemap: string;
+        getSitemaps: string;
         getSupportInformation: string;
         getTags: string;
+        getWellKnownUrl: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -49,30 +51,30 @@ declare class Content {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<BlogGetResponse>} - Success response
+     * @returns {Promise<BlogGetResponseSchema>} - Success response
      * @name getBlogs
      * @summary: List blogs
      * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<BlogGetResponse>;
+    getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<BlogGetResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CustomFieldsResponseByResourceIdSchema>} - Success response
-     * @name getCustomFields
-     * @summary: Get list of custom fields
-     * @description: List custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+     * @name getCustomFieldsByResourceId
+     * @summary: Get list of custom fields of given resource and resource slug
+     * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
      */
-    getCustomFields({ resource, resourceId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomFieldsResponseByResourceIdSchema>;
+    getCustomFieldsByResourceId({ resource, resourceSlug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomFieldsResponseByResourceIdSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CustomObjectByIdSchema>} - Success response
-     * @name getCustomObject
-     * @summary: Get custom object
-     * @description: Get details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
+     * @name getCustomObjectBySlug
+     * @summary: Get custom object details
+     * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
      */
-    getCustomObject({ metaobjectId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomObjectByIdSchema>;
+    getCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<CustomObjectByIdSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -82,6 +84,15 @@ declare class Content {
      * @description: List all the data loaders that are enabled for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
      */
     getDataLoaders({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<DataLoadersSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<DefaultSitemapConfig>} - Success response
+     * @name getDefaultSitemapConfig
+     * @summary: Get default sitemap configuration
+     * @description: Retrieves the current default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDefaultSitemapConfig/).
+     */
+    getDefaultSitemapConfig({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<DefaultSitemapConfig>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -133,7 +144,7 @@ declare class Content {
      * @returns {Promise<LandingPageSchema>} - Success response
      * @name getLandingPage
      * @summary: Get a landing page
-     * @description: Get content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
+     * @description: Gets the content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
      */
     getLandingPage({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<LandingPageSchema>;
     /**
@@ -148,30 +159,30 @@ declare class Content {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<NavigationGetResponse>} - Success response
+     * @returns {Promise<NavigationGetResponseSchema>} - Success response
      * @name getNavigations
      * @summary: List navigation items
      * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
      */
-    getNavigations({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<NavigationGetResponse>;
+    getNavigations({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<NavigationGetResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PageSchema>} - Success response
      * @name getPage
-     * @summary: Get a page
-     * @description: Get detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
+     * @summary: Get page by slug
+     * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
      */
     getPage({ slug, rootId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PageSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PageGetResponse>} - Success response
+     * @returns {Promise<PageGetResponseSchema>} - Success response
      * @name getPages
      * @summary: Lists pages
-     * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
+     * @description: Lists all Custom Pages - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
      */
-    getPages({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PageGetResponse>;
+    getPages({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PageGetResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -193,31 +204,23 @@ declare class Content {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SlideshowSchema>} - Success response
-     * @name getSlideshow
-     * @summary: Get a Slideshow
-     * @description: Get a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
+     * @returns {Promise<SitemapConfig>} - Success response
+     * @name getSitemap
+     * @summary: Get a specific sitemap configuration
+     * @description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemap/).
      */
-    getSlideshow({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SlideshowSchema>;
+    getSitemap({ name, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SitemapConfig>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SlideshowGetResponse>} - Success response
-     * @name getSlideshows
-     * @summary: List Slideshows
-     * @description: List slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
+     * @returns {Promise<SitemapConfigurationList>} - Success response
+     * @name getSitemaps
+     * @summary: List sitemap configurations
+     * @description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSitemaps/).
      */
-    getSlideshows({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SlideshowGetResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<SlideshowGetResponse>}
-     * @summary: List Slideshows
-     * @description: List slideshows along with their details.
-     */
-    getSlideshowsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator<SlideshowGetResponse>;
+    getSitemaps({ pageNo, pageSize, isActive, name, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SitemapConfigurationList>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -236,5 +239,13 @@ declare class Content {
      * @description: Lists HTML tags to power additional functionalities within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
      */
     getTags({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TagsSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<WellKnownResponseSchema>} - Success response
+     * @name getWellKnownUrl
+     * @summary: Get a specific well-known URL
+     * @description: Retrieves the details of a specific well-known URL by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getWellKnownUrl/).
+     */
+    getWellKnownUrl({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<WellKnownResponseSchema>;
 }
-import Paginator = require("../../common/Paginator");

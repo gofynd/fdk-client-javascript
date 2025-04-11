@@ -1,7 +1,12 @@
 const Joi = require("joi");
 
 /**
- * @typedef BulkRegionServiceabilityTatRequest
+ * @typedef ErrorResponseV1
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef BulkRegionServiceabilityTatRequestSchema
  * @property {string} country
  * @property {string} region
  * @property {string} type
@@ -19,20 +24,20 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} value
  * @property {string} message
  * @property {string} type
  */
 
 /**
- * @typedef FailureResponse
+ * @typedef FailureResponseSchema
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResponseSchema[]} error
  */
 
 /**
- * @typedef BulkRegionServiceabilityTatResponse
+ * @typedef BulkRegionServiceabilityTatResponseSchema
  * @property {BulkRegionServiceabilityTatResponseItemData[]} [items]
  * @property {Page} [page]
  */
@@ -46,10 +51,11 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 
 /**
- * @typedef BulkRegionJobSerializer
+ * @typedef BulkRegionJobSerializerSchema
  * @property {string} [file_path]
  * @property {string} country
  * @property {string} action
@@ -72,7 +78,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRegionResponse
+ * @typedef BulkRegionResponseSchema
  * @property {BulkRegionResponseItemData[]} items
  * @property {Page} page
  */
@@ -88,35 +94,41 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierAccountRequestBody
- * @property {string} extension_id
- * @property {string} [account_id]
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
- */
-
-/**
- * @typedef CourierPartnerAccountFailureResponse
+ * @typedef CourierPartnerAccountFailureResponseSchema
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResponseSchema[]} error
  */
 
 /**
- * @typedef CompanyCourierPartnerAccountListResponse
- * @property {CourierAccountResponse[]} items
+ * @typedef CompanyCourierPartnerAccountListResponseSchema
+ * @property {CourierAccountResponseSchema[]} items
  * @property {Page} page
  */
 
 /**
- * @typedef CourierAccountResponse
+ * @typedef CourierAccountSchemeResponseSchema
+ * @property {string} [extension_id]
+ * @property {string} [scheme_id]
+ * @property {string} [name]
+ * @property {ArithmeticOperationsV2} [weight]
+ * @property {string} [transport_type]
+ * @property {string} [region]
+ * @property {string} [delivery_type]
+ * @property {string[]} [payment_mode]
+ * @property {string} [stage]
+ * @property {CourierPartnerSchemeFeatures} [feature]
+ */
+
+/**
+ * @typedef CourierAccountResponseSchema
+ * @property {number} [company_id]
+ * @property {string} [extension_id]
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
  * @property {string} stage
  * @property {boolean} is_own_account
- * @property {CourierPartnerSchemeModel} scheme_rules
+ * @property {CourierAccountSchemeResponseSchema} scheme_rules
  */
 
 /**
@@ -124,21 +136,8 @@ const Joi = require("joi");
  * @property {string} extension_id
  * @property {string} scheme_id
  * @property {string} name
- * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
- * @property {CourierPartnerSchemeFeatures} feature
- */
-
-/**
- * @typedef CourierPartnerSchemeRequestModel
- * @property {string} extension_id
- * @property {string} [scheme_id]
- * @property {string} name
- * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
  * @property {string} delivery_type
@@ -178,9 +177,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierPartnerSchemeUpdateRequest
+ * @typedef ArithmeticOperationsV2
+ * @property {number} [lt]
+ * @property {number} [gt]
+ * @property {number} [lte]
+ * @property {number} [gte]
+ */
+
+/**
+ * @typedef CourierPartnerSchemeUpdateRequestSchema
  * @property {string} name
- * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
  * @property {string} delivery_type
@@ -190,36 +198,50 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetCountries
- * @property {GetCountriesItems[]} items
- * @property {Page} page
- */
-
-/**
- * @typedef GetCountriesItems
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {HierarchyItems[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [currency]
- * @property {string} [type]
- * @property {string} [latitude]
- * @property {string} [longitude]
- * @property {string} [display_name]
- */
-
-/**
- * @typedef HierarchyItems
+ * @typedef CountryHierarchy
  * @property {string} [display_name]
  * @property {string} [slug]
  */
 
+/**
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ */
+
+/**
+ * @typedef CountryObject
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
+ */
+
 class LogisticsPartnerModel {
-  /** @returns {BulkRegionServiceabilityTatRequest} */
-  static BulkRegionServiceabilityTatRequest() {
+  /** @returns {ErrorResponseV1} */
+  static ErrorResponseV1() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkRegionServiceabilityTatRequestSchema} */
+  static BulkRegionServiceabilityTatRequestSchema() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
@@ -236,12 +258,12 @@ class LogisticsPartnerModel {
       batch_id: Joi.string().allow(""),
       status: Joi.string().allow(""),
       failed_records: Joi.array().items(Joi.any()),
-      file_path: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
     });
   }
 
-  /** @returns {ErrorResponse} */
-  static ErrorResponse() {
+  /** @returns {ErrorResponseSchema} */
+  static ErrorResponseSchema() {
     return Joi.object({
       value: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
@@ -249,18 +271,18 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {FailureResponse} */
-  static FailureResponse() {
+  /** @returns {FailureResponseSchema} */
+  static FailureResponseSchema() {
     return Joi.object({
       success: Joi.boolean().required(),
       error: Joi.array()
-        .items(LogisticsPartnerModel.ErrorResponse())
+        .items(LogisticsPartnerModel.ErrorResponseSchema())
         .required(),
     });
   }
 
-  /** @returns {BulkRegionServiceabilityTatResponse} */
-  static BulkRegionServiceabilityTatResponse() {
+  /** @returns {BulkRegionServiceabilityTatResponseSchema} */
+  static BulkRegionServiceabilityTatResponseSchema() {
     return Joi.object({
       items: Joi.array().items(
         LogisticsPartnerModel.BulkRegionServiceabilityTatResponseItemData()
@@ -279,11 +301,12 @@ class LogisticsPartnerModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      total: Joi.number(),
     });
   }
 
-  /** @returns {BulkRegionJobSerializer} */
-  static BulkRegionJobSerializer() {
+  /** @returns {BulkRegionJobSerializerSchema} */
+  static BulkRegionJobSerializerSchema() {
     return Joi.object({
       file_path: Joi.string().allow(""),
       country: Joi.string().allow("").required(),
@@ -309,8 +332,8 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {BulkRegionResponse} */
-  static BulkRegionResponse() {
+  /** @returns {BulkRegionResponseSchema} */
+  static BulkRegionResponseSchema() {
     return Joi.object({
       items: Joi.array()
         .items(LogisticsPartnerModel.BulkRegionResponseItemData())
@@ -331,47 +354,53 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {CourierAccountRequestBody} */
-  static CourierAccountRequestBody() {
-    return Joi.object({
-      extension_id: Joi.string().allow("").required(),
-      account_id: Joi.string().allow(""),
-      scheme_id: Joi.string().allow("").required(),
-      is_self_ship: Joi.boolean().required(),
-      stage: Joi.string().allow("").required(),
-      is_own_account: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {CourierPartnerAccountFailureResponse} */
-  static CourierPartnerAccountFailureResponse() {
+  /** @returns {CourierPartnerAccountFailureResponseSchema} */
+  static CourierPartnerAccountFailureResponseSchema() {
     return Joi.object({
       success: Joi.boolean().required(),
       error: Joi.array()
-        .items(LogisticsPartnerModel.ErrorResponse())
+        .items(LogisticsPartnerModel.ErrorResponseSchema())
         .required(),
     });
   }
 
-  /** @returns {CompanyCourierPartnerAccountListResponse} */
-  static CompanyCourierPartnerAccountListResponse() {
+  /** @returns {CompanyCourierPartnerAccountListResponseSchema} */
+  static CompanyCourierPartnerAccountListResponseSchema() {
     return Joi.object({
       items: Joi.array()
-        .items(LogisticsPartnerModel.CourierAccountResponse())
+        .items(LogisticsPartnerModel.CourierAccountResponseSchema())
         .required(),
       page: LogisticsPartnerModel.Page().required(),
     });
   }
 
-  /** @returns {CourierAccountResponse} */
-  static CourierAccountResponse() {
+  /** @returns {CourierAccountSchemeResponseSchema} */
+  static CourierAccountSchemeResponseSchema() {
     return Joi.object({
+      extension_id: Joi.string().allow(""),
+      scheme_id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      weight: LogisticsPartnerModel.ArithmeticOperationsV2(),
+      transport_type: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+      delivery_type: Joi.string().allow(""),
+      payment_mode: Joi.array().items(Joi.string().allow("")),
+      stage: Joi.string().allow(""),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures(),
+    });
+  }
+
+  /** @returns {CourierAccountResponseSchema} */
+  static CourierAccountResponseSchema() {
+    return Joi.object({
+      company_id: Joi.number(),
+      extension_id: Joi.string().allow(""),
       account_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
       stage: Joi.string().allow("").required(),
       is_own_account: Joi.boolean().required(),
-      scheme_rules: LogisticsPartnerModel.CourierPartnerSchemeModel().required(),
+      scheme_rules: LogisticsPartnerModel.CourierAccountSchemeResponseSchema().required(),
     });
   }
 
@@ -381,23 +410,8 @@ class LogisticsPartnerModel {
       extension_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
-      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
-      transport_type: Joi.string().allow("").required(),
-      region: Joi.string().allow("").required(),
-      delivery_type: Joi.string().allow("").required(),
-      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
-      stage: Joi.string().allow("").required(),
-      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
-    });
-  }
-
-  /** @returns {CourierPartnerSchemeRequestModel} */
-  static CourierPartnerSchemeRequestModel() {
-    return Joi.object({
-      extension_id: Joi.string().allow("").required(),
-      scheme_id: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      weight: LogisticsPartnerModel.ArithmeticOperationsV2().required(),
+      volumetric_weight: LogisticsPartnerModel.ArithmeticOperations(),
       transport_type: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
       delivery_type: Joi.string().allow("").required(),
@@ -438,14 +452,25 @@ class LogisticsPartnerModel {
       gt: Joi.number().allow(null),
       lte: Joi.number().allow(null),
       gte: Joi.number().allow(null),
+    }).allow(null);
+  }
+
+  /** @returns {ArithmeticOperationsV2} */
+  static ArithmeticOperationsV2() {
+    return Joi.object({
+      lt: Joi.number().allow(null),
+      gt: Joi.number().allow(null),
+      lte: Joi.number().allow(null),
+      gte: Joi.number().allow(null),
     });
   }
 
-  /** @returns {CourierPartnerSchemeUpdateRequest} */
-  static CourierPartnerSchemeUpdateRequest() {
+  /** @returns {CourierPartnerSchemeUpdateRequestSchema} */
+  static CourierPartnerSchemeUpdateRequestSchema() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      weight: LogisticsPartnerModel.ArithmeticOperationsV2().required(),
+      volumetric_weight: LogisticsPartnerModel.ArithmeticOperations(),
       transport_type: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
       delivery_type: Joi.string().allow("").required(),
@@ -455,39 +480,46 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {GetCountries} */
-  static GetCountries() {
-    return Joi.object({
-      items: Joi.array()
-        .items(LogisticsPartnerModel.GetCountriesItems())
-        .required(),
-      page: LogisticsPartnerModel.Page().required(),
-    });
-  }
-
-  /** @returns {GetCountriesItems} */
-  static GetCountriesItems() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      iso2: Joi.string().allow(""),
-      iso3: Joi.string().allow(""),
-      timezones: Joi.array().items(Joi.string().allow("")),
-      hierarchy: Joi.array().items(LogisticsPartnerModel.HierarchyItems()),
-      phone_code: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      latitude: Joi.string().allow(""),
-      longitude: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {HierarchyItems} */
-  static HierarchyItems() {
+  /** @returns {CountryHierarchy} */
+  static CountryHierarchy() {
     return Joi.object({
       display_name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CurrencyObject} */
+  static CurrencyObject() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CountryObject} */
+  static CountryObject() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      hierarchy: Joi.array().items(LogisticsPartnerModel.CountryHierarchy()),
+      phone_code: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      currency: LogisticsPartnerModel.CurrencyObject(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountries} */
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array().items(LogisticsPartnerModel.CountryObject()),
+      page: LogisticsPartnerModel.Page(),
     });
   }
 }

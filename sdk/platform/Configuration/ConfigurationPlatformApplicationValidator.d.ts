@@ -1,11 +1,28 @@
 export = ConfigurationPlatformApplicationValidator;
 /**
  * @typedef AddDomainParam
- * @property {ConfigurationPlatformModel.DomainAddRequest} body
+ * @property {ConfigurationPlatformModel.DomainAddRequestSchema} body
  */
 /**
  * @typedef ChangeDomainTypeParam
- * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
+ * @property {ConfigurationPlatformModel.UpdateDomainTypeRequestSchema} body
+ */
+/**
+ * @typedef CreateAppCurrencyConfigParam
+ * @property {ConfigurationPlatformModel.AppSupportedCurrency} body
+ */
+/** @typedef CreateTokensParam */
+/**
+ * @typedef CreateUrlRedirectionParam
+ * @property {ConfigurationPlatformModel.UrlRedirectionRequestSchema} body
+ */
+/**
+ * @typedef DeleteTokenParam
+ * @property {string} token - Token
+ */
+/**
+ * @typedef DeleteUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
  */
 /** @typedef GetAppApiTokensParam */
 /** @typedef GetAppBasicDetailsParam */
@@ -29,21 +46,29 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /** @typedef GetAppSupportedCurrencyParam */
 /** @typedef GetApplicationByIdParam */
+/** @typedef GetApplicationConfigurationParam */
 /**
- * @typedef GetBuildConfigParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
+ * @typedef GetApplicationDomainAvailibilityParam
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
  */
 /**
  * @typedef GetDomainStatusParam
- * @property {ConfigurationPlatformModel.DomainStatusRequest} body
+ * @property {ConfigurationPlatformModel.DomainStatusRequestSchema} body
  */
 /** @typedef GetDomainsParam */
 /** @typedef GetInventoryConfigParam */
 /** @typedef GetOrderingStoreConfigParam */
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequestSchema} body
+ */
+/**
+ * @typedef GetOrderingStoresParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {string} [q] - Store code or name of the ordering store.
  */
 /**
  * @typedef GetOrderingStoresByFilterParam
@@ -51,12 +76,7 @@ export = ConfigurationPlatformApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.FilterOrderingStoreRequest} body
- */
-/**
- * @typedef GetPreviousVersionsParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
+ * @property {ConfigurationPlatformModel.FilterOrderingStoreRequestSchemaSchema} body
  */
 /**
  * @typedef GetStaffOrderingStoresParam
@@ -67,8 +87,17 @@ export = ConfigurationPlatformApplicationValidator;
  * @property {string} [q] - Store code or name of the ordering store.
  */
 /**
+ * @typedef GetStoreDetailByIdParam
+ * @property {number} storeId - Store uid
+ */
+/**
+ * @typedef GetUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
+ */
+/** @typedef GetUrlRedirectionsParam */
+/**
  * @typedef ModifyAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequest} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
  */
 /**
  * @typedef PartiallyUpdateInventoryConfigParam
@@ -76,12 +105,13 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef RemoveDomainByIdParam
- * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
+ * @property {string} domainId - The unique identifier (24-digit Mongo Object
+ *   ID) of the domain
  */
 /** @typedef RemoveOrderingStoreCookieParam */
 /**
  * @typedef UpdateAppApiTokensParam
- * @property {ConfigurationPlatformModel.TokenResponse} body
+ * @property {ConfigurationPlatformModel.TokenResponseSchema} body
  */
 /**
  * @typedef UpdateAppBasicDetailsParam
@@ -97,13 +127,15 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequest} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
  */
 /**
- * @typedef UpdateBuildConfigParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
- * @property {ConfigurationPlatformModel.MobileAppConfigRequest} body
+ * @typedef UpdateApplicationParam
+ * @property {ConfigurationPlatformModel.Application} body
+ */
+/**
+ * @typedef UpdateApplicationVersionParam
+ * @property {ConfigurationPlatformModel.PlatformVersionRequestSchema} body
  */
 /**
  * @typedef UpdateInventoryConfigParam
@@ -113,11 +145,26 @@ export = ConfigurationPlatformApplicationValidator;
  * @typedef UpdateOrderingStoreConfigParam
  * @property {ConfigurationPlatformModel.OrderingStoreConfig} body
  */
+/**
+ * @typedef UpdateUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
+ * @property {ConfigurationPlatformModel.UrlRedirection} body
+ */
 declare class ConfigurationPlatformApplicationValidator {
     /** @returns {AddDomainParam} */
     static addDomain(): AddDomainParam;
     /** @returns {ChangeDomainTypeParam} */
     static changeDomainType(): ChangeDomainTypeParam;
+    /** @returns {CreateAppCurrencyConfigParam} */
+    static createAppCurrencyConfig(): CreateAppCurrencyConfigParam;
+    /** @returns {CreateTokensParam} */
+    static createTokens(): any;
+    /** @returns {CreateUrlRedirectionParam} */
+    static createUrlRedirection(): CreateUrlRedirectionParam;
+    /** @returns {DeleteTokenParam} */
+    static deleteToken(): DeleteTokenParam;
+    /** @returns {DeleteUrlRedirectionParam} */
+    static deleteUrlRedirection(): DeleteUrlRedirectionParam;
     /** @returns {GetAppApiTokensParam} */
     static getAppApiTokens(): any;
     /** @returns {GetAppBasicDetailsParam} */
@@ -136,8 +183,10 @@ declare class ConfigurationPlatformApplicationValidator {
     static getAppSupportedCurrency(): any;
     /** @returns {GetApplicationByIdParam} */
     static getApplicationById(): any;
-    /** @returns {GetBuildConfigParam} */
-    static getBuildConfig(): GetBuildConfigParam;
+    /** @returns {GetApplicationConfigurationParam} */
+    static getApplicationConfiguration(): any;
+    /** @returns {GetApplicationDomainAvailibilityParam} */
+    static getApplicationDomainAvailibility(): GetApplicationDomainAvailibilityParam;
     /** @returns {GetDomainStatusParam} */
     static getDomainStatus(): GetDomainStatusParam;
     /** @returns {GetDomainsParam} */
@@ -148,12 +197,18 @@ declare class ConfigurationPlatformApplicationValidator {
     static getOrderingStoreConfig(): any;
     /** @returns {GetOrderingStoreCookieParam} */
     static getOrderingStoreCookie(): GetOrderingStoreCookieParam;
+    /** @returns {GetOrderingStoresParam} */
+    static getOrderingStores(): GetOrderingStoresParam;
     /** @returns {GetOrderingStoresByFilterParam} */
     static getOrderingStoresByFilter(): GetOrderingStoresByFilterParam;
-    /** @returns {GetPreviousVersionsParam} */
-    static getPreviousVersions(): GetPreviousVersionsParam;
     /** @returns {GetStaffOrderingStoresParam} */
     static getStaffOrderingStores(): GetStaffOrderingStoresParam;
+    /** @returns {GetStoreDetailByIdParam} */
+    static getStoreDetailById(): GetStoreDetailByIdParam;
+    /** @returns {GetUrlRedirectionParam} */
+    static getUrlRedirection(): GetUrlRedirectionParam;
+    /** @returns {GetUrlRedirectionsParam} */
+    static getUrlRedirections(): any;
     /** @returns {ModifyAppFeaturesParam} */
     static modifyAppFeatures(): ModifyAppFeaturesParam;
     /** @returns {PartiallyUpdateInventoryConfigParam} */
@@ -172,21 +227,43 @@ declare class ConfigurationPlatformApplicationValidator {
     static updateAppCurrencyConfig(): UpdateAppCurrencyConfigParam;
     /** @returns {UpdateAppFeaturesParam} */
     static updateAppFeatures(): UpdateAppFeaturesParam;
-    /** @returns {UpdateBuildConfigParam} */
-    static updateBuildConfig(): UpdateBuildConfigParam;
+    /** @returns {UpdateApplicationParam} */
+    static updateApplication(): UpdateApplicationParam;
+    /** @returns {UpdateApplicationVersionParam} */
+    static updateApplicationVersion(): UpdateApplicationVersionParam;
     /** @returns {UpdateInventoryConfigParam} */
     static updateInventoryConfig(): UpdateInventoryConfigParam;
     /** @returns {UpdateOrderingStoreConfigParam} */
     static updateOrderingStoreConfig(): UpdateOrderingStoreConfigParam;
+    /** @returns {UpdateUrlRedirectionParam} */
+    static updateUrlRedirection(): UpdateUrlRedirectionParam;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
-    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
+    export { AddDomainParam, ChangeDomainTypeParam, CreateAppCurrencyConfigParam, CreateTokensParam, CreateUrlRedirectionParam, DeleteTokenParam, DeleteUrlRedirectionParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetApplicationConfigurationParam, GetApplicationDomainAvailibilityParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresParam, GetOrderingStoresByFilterParam, GetStaffOrderingStoresParam, GetStoreDetailByIdParam, GetUrlRedirectionParam, GetUrlRedirectionsParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateApplicationParam, UpdateApplicationVersionParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam, UpdateUrlRedirectionParam };
 }
 type AddDomainParam = {
-    body: ConfigurationPlatformModel.DomainAddRequest;
+    body: ConfigurationPlatformModel.DomainAddRequestSchema;
 };
 type ChangeDomainTypeParam = {
-    body: ConfigurationPlatformModel.UpdateDomainTypeRequest;
+    body: ConfigurationPlatformModel.UpdateDomainTypeRequestSchema;
+};
+type CreateAppCurrencyConfigParam = {
+    body: ConfigurationPlatformModel.AppSupportedCurrency;
+};
+type CreateUrlRedirectionParam = {
+    body: ConfigurationPlatformModel.UrlRedirectionRequestSchema;
+};
+type DeleteTokenParam = {
+    /**
+     * - Token
+     */
+    token: string;
+};
+type DeleteUrlRedirectionParam = {
+    /**
+     * - Redirection domain id that needs to be fetched
+     */
+    redirectionDomainId: string;
 };
 type GetAppCompaniesParam = {
     /**
@@ -216,18 +293,30 @@ type GetAppStoresParam = {
      */
     pageSize?: number;
 };
-type GetBuildConfigParam = {
-    /**
-     * - The device platform for which the mobile
-     * app is built, e.g. android, ios.
-     */
-    platformType: string;
+type GetApplicationDomainAvailibilityParam = {
+    body: ConfigurationPlatformModel.DomainSuggestionsRequestSchema;
 };
 type GetDomainStatusParam = {
-    body: ConfigurationPlatformModel.DomainStatusRequest;
+    body: ConfigurationPlatformModel.DomainStatusRequestSchema;
 };
 type GetOrderingStoreCookieParam = {
-    body: ConfigurationPlatformModel.OrderingStoreSelectRequest;
+    body: ConfigurationPlatformModel.OrderingStoreSelectRequestSchema;
+};
+type GetOrderingStoresParam = {
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
+    /**
+     * - Store code or name of the ordering store.
+     */
+    q?: string;
 };
 type GetOrderingStoresByFilterParam = {
     /**
@@ -240,14 +329,7 @@ type GetOrderingStoresByFilterParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
-};
-type GetPreviousVersionsParam = {
-    /**
-     * - The device platform for which the mobile
-     * app is built, e.g. android, ios.
-     */
-    platformType: string;
+    body: ConfigurationPlatformModel.FilterOrderingStoreRequestSchemaSchema;
 };
 type GetStaffOrderingStoresParam = {
     /**
@@ -265,20 +347,33 @@ type GetStaffOrderingStoresParam = {
      */
     q?: string;
 };
+type GetStoreDetailByIdParam = {
+    /**
+     * - Store uid
+     */
+    storeId: number;
+};
+type GetUrlRedirectionParam = {
+    /**
+     * - Redirection domain id that needs to be fetched
+     */
+    redirectionDomainId: string;
+};
 type ModifyAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequest;
+    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
 };
 type PartiallyUpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.AppInventoryPartialUpdate;
 };
 type RemoveDomainByIdParam = {
     /**
-     * - The unique identifier (24-digit Mongo Object ID) of the domain
+     * - The unique identifier (24-digit Mongo Object
+     * ID) of the domain
      */
-    id: string;
+    domainId: string;
 };
 type UpdateAppApiTokensParam = {
-    body: ConfigurationPlatformModel.TokenResponse;
+    body: ConfigurationPlatformModel.TokenResponseSchema;
 };
 type UpdateAppBasicDetailsParam = {
     body: ConfigurationPlatformModel.ApplicationDetail;
@@ -290,15 +385,13 @@ type UpdateAppCurrencyConfigParam = {
     body: ConfigurationPlatformModel.AppSupportedCurrency;
 };
 type UpdateAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequest;
+    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
 };
-type UpdateBuildConfigParam = {
-    /**
-     * - The device platform for which the mobile
-     * app is built, e.g. android, ios.
-     */
-    platformType: string;
-    body: ConfigurationPlatformModel.MobileAppConfigRequest;
+type UpdateApplicationParam = {
+    body: ConfigurationPlatformModel.Application;
+};
+type UpdateApplicationVersionParam = {
+    body: ConfigurationPlatformModel.PlatformVersionRequestSchema;
 };
 type UpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.ApplicationInventory;
@@ -306,6 +399,14 @@ type UpdateInventoryConfigParam = {
 type UpdateOrderingStoreConfigParam = {
     body: ConfigurationPlatformModel.OrderingStoreConfig;
 };
+type UpdateUrlRedirectionParam = {
+    /**
+     * - Redirection domain id that needs to be fetched
+     */
+    redirectionDomainId: string;
+    body: ConfigurationPlatformModel.UrlRedirection;
+};
+type CreateTokensParam = any;
 type GetAppApiTokensParam = any;
 type GetAppBasicDetailsParam = any;
 type GetAppContactInfoParam = any;
@@ -313,8 +414,10 @@ type GetAppCurrencyConfigParam = any;
 type GetAppFeaturesParam = any;
 type GetAppSupportedCurrencyParam = any;
 type GetApplicationByIdParam = any;
+type GetApplicationConfigurationParam = any;
 type GetDomainsParam = any;
 type GetInventoryConfigParam = any;
 type GetOrderingStoreConfigParam = any;
+type GetUrlRedirectionsParam = any;
 type RemoveOrderingStoreCookieParam = any;
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

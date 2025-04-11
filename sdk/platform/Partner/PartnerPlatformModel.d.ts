@@ -6,7 +6,7 @@ export = PartnerPlatformModel;
  *   will be generated
  */
 /**
- * @typedef AddProxyResponse
+ * @typedef ExtensionProxyPathCreation
  * @property {string} [_id]
  * @property {string} [attached_path]
  * @property {string} [proxy_url]
@@ -17,7 +17,7 @@ export = PartnerPlatformModel;
  * @property {string} [modified_at]
  */
 /**
- * @typedef RemoveProxyResponse
+ * @typedef ExtensionProxyPathDelete
  * @property {string} [message]
  * @property {Object} [data]
  */
@@ -32,7 +32,7 @@ export = PartnerPlatformModel;
 declare class PartnerPlatformModel {
 }
 declare namespace PartnerPlatformModel {
-    export { AddProxyReq, AddProxyResponse, RemoveProxyResponse, APIError };
+    export { AddProxyReq, ExtensionProxyPathCreation, ExtensionProxyPathDelete, APIError };
 }
 /** @returns {AddProxyReq} */
 declare function AddProxyReq(): AddProxyReq;
@@ -47,9 +47,9 @@ type AddProxyReq = {
      */
     proxy_url?: string;
 };
-/** @returns {AddProxyResponse} */
-declare function AddProxyResponse(): AddProxyResponse;
-type AddProxyResponse = {
+/** @returns {ExtensionProxyPathCreation} */
+declare function ExtensionProxyPathCreation(): ExtensionProxyPathCreation;
+type ExtensionProxyPathCreation = {
     _id?: string;
     attached_path?: string;
     proxy_url?: string;
@@ -59,9 +59,9 @@ type AddProxyResponse = {
     created_at?: string;
     modified_at?: string;
 };
-/** @returns {RemoveProxyResponse} */
-declare function RemoveProxyResponse(): RemoveProxyResponse;
-type RemoveProxyResponse = {
+/** @returns {ExtensionProxyPathDelete} */
+declare function ExtensionProxyPathDelete(): ExtensionProxyPathDelete;
+type ExtensionProxyPathDelete = {
     message?: string;
     data?: any;
 };

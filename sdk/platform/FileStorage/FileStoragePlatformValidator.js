@@ -18,18 +18,19 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartResponse} body
+ * @property {FileStoragePlatformModel.FileUpload} body
  */
 
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync]
+ * @property {boolean} [sync] - Determines whether the copy files operation
+ *   should run in synchronous mode.
  * @property {FileStoragePlatformModel.CopyFiles} body
  */
 
 /**
  * @typedef GetSignUrlsParam
- * @property {FileStoragePlatformModel.SignUrlRequest} body
+ * @property {FileStoragePlatformModel.SignUrl} body
  */
 
 /**
@@ -43,7 +44,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartRequest} body
+ * @property {FileStoragePlatformModel.FileUploadStart} body
  */
 
 class FileStoragePlatformValidator {
@@ -60,7 +61,7 @@ class FileStoragePlatformValidator {
   static completeUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStoragePlatformModel.StartResponse().required(),
+      body: FileStoragePlatformModel.FileUpload().required(),
     }).required();
   }
 
@@ -75,7 +76,7 @@ class FileStoragePlatformValidator {
   /** @returns {GetSignUrlsParam} */
   static getSignUrls() {
     return Joi.object({
-      body: FileStoragePlatformModel.SignUrlRequest().required(),
+      body: FileStoragePlatformModel.SignUrl().required(),
     }).required();
   }
 
@@ -90,7 +91,7 @@ class FileStoragePlatformValidator {
   static startUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStoragePlatformModel.StartRequest().required(),
+      body: FileStoragePlatformModel.FileUploadStart().required(),
     }).required();
   }
 }

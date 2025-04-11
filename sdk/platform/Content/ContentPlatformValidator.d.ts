@@ -1,67 +1,77 @@
 export = ContentPlatformValidator;
 /**
- * @typedef CreateCustomFieldByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
- * @property {ContentPlatformModel.CustomFieldRequestSchema} body
- */
-/**
  * @typedef CreateCustomFieldDefinitionParam
+ * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
- * @typedef CreateCustomObjectParam
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef CreateCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 /**
  * @typedef CreateCustomObjectDefinitionParam
  * @property {ContentPlatformModel.CustomObjectDefinitionRequestSchema} body
  */
 /**
- * @typedef DeleteCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @typedef DeleteCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  */
 /**
- * @typedef DeleteCustomObjectParam
- * @property {string} metaobjectId
+ * @typedef DeleteCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 /**
- * @typedef DeleteCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @typedef DeleteCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 /**
- * @typedef ExportCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ExportCustomObjectEntriesBySlugParam
+ * @property {string} slug
  */
 /**
- * @typedef GetCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @typedef GetCustomFieldDefinitionByResourceParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {string} resource
+ * @property {string} [types]
+ * @property {string} [search]
+ * @property {string} [slugs]
+ * @property {string} [namespaces]
+ */
+/**
+ * @typedef GetCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  */
 /**
  * @typedef GetCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resource]
- * @property {string} [type]
+ * @property {string} [resources]
+ * @property {string} [types]
  * @property {string} [search]
+ * @property {string} [slugs]
+ * @property {string} [namespaces]
  */
 /** @typedef GetCustomFieldTypesParam */
 /**
- * @typedef GetCustomFieldsParam
+ * @typedef GetCustomFieldsByResourceSlugParam
  * @property {string} resource
+ * @property {string} resourceSlug
  */
 /**
- * @typedef GetCustomFieldsByResourceIdParam
- * @property {string} resource
- * @property {string} resourceId
+ * @typedef GetCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 /**
- * @typedef GetCustomObjectParam
- * @property {string} metaobjectId
- */
-/**
- * @typedef GetCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @typedef GetCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  */
 /**
  * @typedef GetCustomObjectDefinitionsParam
@@ -70,176 +80,204 @@ export = ContentPlatformValidator;
  * @property {string} [search]
  */
 /**
- * @typedef GetCustomObjectsParam
- * @property {string} [definitionId]
+ * @typedef GetCustomObjectsBySlugParam
  * @property {string} pageNo
  * @property {string} pageSize
+ * @property {string} definitionSlug
  */
 /**
  * @typedef GetJobsParam
- * @property {string} page
+ * @property {string} pageNo
  * @property {string} pageSize
  * @property {string} actionType
  */
 /** @typedef GetResourcesParam */
 /**
- * @typedef ImportCustomObjectEntriesParam
- * @property {string} definitionId
+ * @typedef ImportCustomObjectEntriesBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectBulkSchema} body
  */
 /**
- * @typedef SampleCustomObjectBulkEntryParam
- * @property {string} definitionId
+ * @typedef SampleCustomObjectBulkEntryBySlugParam
+ * @property {string} slug
  */
 /**
- * @typedef UpdateCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @typedef UpdateCustomFieldByResourceSlugParam
+ * @property {string} resource
+ * @property {string} resourceSlug
+ * @property {ContentPlatformModel.CustomFieldRequestSchema} body
+ */
+/**
+ * @typedef UpdateCustomFieldDefinitionBySlugParam
+ * @property {string} slug
+ * @property {string} resource
+ * @property {string} namespace
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
- * @typedef UpdateCustomObjectParam
- * @property {string} metaobjectId
- * @property {ContentPlatformModel.CustomObjectRequestSchema} body
+ * @typedef UpdateCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
+ * @property {ContentPlatformModel.CustomObjectRequestSchemaWithoutId} body
  */
 /**
- * @typedef UpdateCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @typedef UpdateCustomObjectDefinitionBySlugParam
+ * @property {string} slug
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 declare class ContentPlatformValidator {
-    /** @returns {CreateCustomFieldByResourceIdParam} */
-    static createCustomFieldByResourceId(): CreateCustomFieldByResourceIdParam;
     /** @returns {CreateCustomFieldDefinitionParam} */
     static createCustomFieldDefinition(): CreateCustomFieldDefinitionParam;
-    /** @returns {CreateCustomObjectParam} */
-    static createCustomObject(): CreateCustomObjectParam;
+    /** @returns {CreateCustomObjectBySlugParam} */
+    static createCustomObjectBySlug(): CreateCustomObjectBySlugParam;
     /** @returns {CreateCustomObjectDefinitionParam} */
     static createCustomObjectDefinition(): CreateCustomObjectDefinitionParam;
-    /** @returns {DeleteCustomFieldDefinitionParam} */
-    static deleteCustomFieldDefinition(): DeleteCustomFieldDefinitionParam;
-    /** @returns {DeleteCustomObjectParam} */
-    static deleteCustomObject(): DeleteCustomObjectParam;
-    /** @returns {DeleteCustomObjectDefinitionParam} */
-    static deleteCustomObjectDefinition(): DeleteCustomObjectDefinitionParam;
-    /** @returns {ExportCustomObjectEntriesParam} */
-    static exportCustomObjectEntries(): ExportCustomObjectEntriesParam;
-    /** @returns {GetCustomFieldDefinitionParam} */
-    static getCustomFieldDefinition(): GetCustomFieldDefinitionParam;
+    /** @returns {DeleteCustomFieldDefinitionBySlugParam} */
+    static deleteCustomFieldDefinitionBySlug(): DeleteCustomFieldDefinitionBySlugParam;
+    /** @returns {DeleteCustomObjectBySlugParam} */
+    static deleteCustomObjectBySlug(): DeleteCustomObjectBySlugParam;
+    /** @returns {DeleteCustomObjectDefinitionBySlugParam} */
+    static deleteCustomObjectDefinitionBySlug(): DeleteCustomObjectDefinitionBySlugParam;
+    /** @returns {ExportCustomObjectEntriesBySlugParam} */
+    static exportCustomObjectEntriesBySlug(): ExportCustomObjectEntriesBySlugParam;
+    /** @returns {GetCustomFieldDefinitionByResourceParam} */
+    static getCustomFieldDefinitionByResource(): GetCustomFieldDefinitionByResourceParam;
+    /** @returns {GetCustomFieldDefinitionBySlugParam} */
+    static getCustomFieldDefinitionBySlug(): GetCustomFieldDefinitionBySlugParam;
     /** @returns {GetCustomFieldDefinitionsParam} */
     static getCustomFieldDefinitions(): GetCustomFieldDefinitionsParam;
     /** @returns {GetCustomFieldTypesParam} */
     static getCustomFieldTypes(): any;
-    /** @returns {GetCustomFieldsParam} */
-    static getCustomFields(): GetCustomFieldsParam;
-    /** @returns {GetCustomFieldsByResourceIdParam} */
-    static getCustomFieldsByResourceId(): GetCustomFieldsByResourceIdParam;
-    /** @returns {GetCustomObjectParam} */
-    static getCustomObject(): GetCustomObjectParam;
-    /** @returns {GetCustomObjectDefinitionParam} */
-    static getCustomObjectDefinition(): GetCustomObjectDefinitionParam;
+    /** @returns {GetCustomFieldsByResourceSlugParam} */
+    static getCustomFieldsByResourceSlug(): GetCustomFieldsByResourceSlugParam;
+    /** @returns {GetCustomObjectBySlugParam} */
+    static getCustomObjectBySlug(): GetCustomObjectBySlugParam;
+    /** @returns {GetCustomObjectDefinitionBySlugParam} */
+    static getCustomObjectDefinitionBySlug(): GetCustomObjectDefinitionBySlugParam;
     /** @returns {GetCustomObjectDefinitionsParam} */
     static getCustomObjectDefinitions(): GetCustomObjectDefinitionsParam;
-    /** @returns {GetCustomObjectsParam} */
-    static getCustomObjects(): GetCustomObjectsParam;
+    /** @returns {GetCustomObjectsBySlugParam} */
+    static getCustomObjectsBySlug(): GetCustomObjectsBySlugParam;
     /** @returns {GetJobsParam} */
     static getJobs(): GetJobsParam;
     /** @returns {GetResourcesParam} */
     static getResources(): any;
-    /** @returns {ImportCustomObjectEntriesParam} */
-    static importCustomObjectEntries(): ImportCustomObjectEntriesParam;
-    /** @returns {SampleCustomObjectBulkEntryParam} */
-    static sampleCustomObjectBulkEntry(): SampleCustomObjectBulkEntryParam;
-    /** @returns {UpdateCustomFieldDefinitionParam} */
-    static updateCustomFieldDefinition(): UpdateCustomFieldDefinitionParam;
-    /** @returns {UpdateCustomObjectParam} */
-    static updateCustomObject(): UpdateCustomObjectParam;
-    /** @returns {UpdateCustomObjectDefinitionParam} */
-    static updateCustomObjectDefinition(): UpdateCustomObjectDefinitionParam;
+    /** @returns {ImportCustomObjectEntriesBySlugParam} */
+    static importCustomObjectEntriesBySlug(): ImportCustomObjectEntriesBySlugParam;
+    /** @returns {SampleCustomObjectBulkEntryBySlugParam} */
+    static sampleCustomObjectBulkEntryBySlug(): SampleCustomObjectBulkEntryBySlugParam;
+    /** @returns {UpdateCustomFieldByResourceSlugParam} */
+    static updateCustomFieldByResourceSlug(): UpdateCustomFieldByResourceSlugParam;
+    /** @returns {UpdateCustomFieldDefinitionBySlugParam} */
+    static updateCustomFieldDefinitionBySlug(): UpdateCustomFieldDefinitionBySlugParam;
+    /** @returns {UpdateCustomObjectBySlugParam} */
+    static updateCustomObjectBySlug(): UpdateCustomObjectBySlugParam;
+    /** @returns {UpdateCustomObjectDefinitionBySlugParam} */
+    static updateCustomObjectDefinitionBySlug(): UpdateCustomObjectDefinitionBySlugParam;
 }
 declare namespace ContentPlatformValidator {
-    export { CreateCustomFieldByResourceIdParam, CreateCustomFieldDefinitionParam, CreateCustomObjectParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionParam, DeleteCustomObjectParam, DeleteCustomObjectDefinitionParam, ExportCustomObjectEntriesParam, GetCustomFieldDefinitionParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectParam, GetCustomObjectDefinitionParam, GetCustomObjectDefinitionsParam, GetCustomObjectsParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesParam, SampleCustomObjectBulkEntryParam, UpdateCustomFieldDefinitionParam, UpdateCustomObjectParam, UpdateCustomObjectDefinitionParam };
+    export { CreateCustomFieldDefinitionParam, CreateCustomObjectBySlugParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionBySlugParam, DeleteCustomObjectBySlugParam, DeleteCustomObjectDefinitionBySlugParam, ExportCustomObjectEntriesBySlugParam, GetCustomFieldDefinitionByResourceParam, GetCustomFieldDefinitionBySlugParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsByResourceSlugParam, GetCustomObjectBySlugParam, GetCustomObjectDefinitionBySlugParam, GetCustomObjectDefinitionsParam, GetCustomObjectsBySlugParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesBySlugParam, SampleCustomObjectBulkEntryBySlugParam, UpdateCustomFieldByResourceSlugParam, UpdateCustomFieldDefinitionBySlugParam, UpdateCustomObjectBySlugParam, UpdateCustomObjectDefinitionBySlugParam };
 }
-type CreateCustomFieldByResourceIdParam = {
-    resource: string;
-    resourceId: string;
-    body: ContentPlatformModel.CustomFieldRequestSchema;
-};
 type CreateCustomFieldDefinitionParam = {
+    resource: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
-type CreateCustomObjectParam = {
-    body: ContentPlatformModel.CustomObjectRequestSchema;
+type CreateCustomObjectBySlugParam = {
+    definitionSlug: string;
+    body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId;
 };
 type CreateCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionRequestSchema;
 };
-type DeleteCustomFieldDefinitionParam = {
-    definitionId: string;
+type DeleteCustomFieldDefinitionBySlugParam = {
+    slug: string;
+    resource: string;
+    namespace: string;
 };
-type DeleteCustomObjectParam = {
-    metaobjectId: string;
+type DeleteCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
 };
-type DeleteCustomObjectDefinitionParam = {
-    definitionId: string;
+type DeleteCustomObjectDefinitionBySlugParam = {
+    slug: string;
 };
-type ExportCustomObjectEntriesParam = {
-    definitionId: string;
+type ExportCustomObjectEntriesBySlugParam = {
+    slug: string;
 };
-type GetCustomFieldDefinitionParam = {
-    definitionId: string;
+type GetCustomFieldDefinitionByResourceParam = {
+    pageNo: string;
+    pageSize: string;
+    resource: string;
+    types?: string;
+    search?: string;
+    slugs?: string;
+    namespaces?: string;
+};
+type GetCustomFieldDefinitionBySlugParam = {
+    slug: string;
+    resource: string;
+    namespace: string;
 };
 type GetCustomFieldDefinitionsParam = {
     pageNo: string;
     pageSize: string;
-    resource?: string;
-    type?: string;
+    resources?: string;
+    types?: string;
     search?: string;
+    slugs?: string;
+    namespaces?: string;
 };
-type GetCustomFieldsParam = {
+type GetCustomFieldsByResourceSlugParam = {
     resource: string;
+    resourceSlug: string;
 };
-type GetCustomFieldsByResourceIdParam = {
-    resource: string;
-    resourceId: string;
+type GetCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
 };
-type GetCustomObjectParam = {
-    metaobjectId: string;
-};
-type GetCustomObjectDefinitionParam = {
-    definitionId: string;
+type GetCustomObjectDefinitionBySlugParam = {
+    slug: string;
 };
 type GetCustomObjectDefinitionsParam = {
     pageNo: string;
     pageSize: string;
     search?: string;
 };
-type GetCustomObjectsParam = {
-    definitionId?: string;
+type GetCustomObjectsBySlugParam = {
     pageNo: string;
     pageSize: string;
+    definitionSlug: string;
 };
 type GetJobsParam = {
-    page: string;
+    pageNo: string;
     pageSize: string;
     actionType: string;
 };
-type ImportCustomObjectEntriesParam = {
-    definitionId: string;
+type ImportCustomObjectEntriesBySlugParam = {
+    slug: string;
     body: ContentPlatformModel.CustomObjectBulkSchema;
 };
-type SampleCustomObjectBulkEntryParam = {
-    definitionId: string;
+type SampleCustomObjectBulkEntryBySlugParam = {
+    slug: string;
 };
-type UpdateCustomFieldDefinitionParam = {
-    definitionId: string;
+type UpdateCustomFieldByResourceSlugParam = {
+    resource: string;
+    resourceSlug: string;
+    body: ContentPlatformModel.CustomFieldRequestSchema;
+};
+type UpdateCustomFieldDefinitionBySlugParam = {
+    slug: string;
+    resource: string;
+    namespace: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
-type UpdateCustomObjectParam = {
-    metaobjectId: string;
-    body: ContentPlatformModel.CustomObjectRequestSchema;
+type UpdateCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
+    body: ContentPlatformModel.CustomObjectRequestSchemaWithoutId;
 };
-type UpdateCustomObjectDefinitionParam = {
-    definitionId: string;
+type UpdateCustomObjectDefinitionBySlugParam = {
+    slug: string;
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
 type GetCustomFieldTypesParam = any;

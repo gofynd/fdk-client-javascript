@@ -4,7 +4,7 @@ const LogisticsModel = require("./LogisticsPartnerModel");
 class LogisticsValidator {
   static sampleFileServiceability() {
     return Joi.object({
-      body: LogisticsModel.BulkRegionServiceabilityTatRequest().required(),
+      body: LogisticsModel.BulkRegionServiceabilityTatRequestSchema().required(),
     }).required();
   }
 
@@ -20,7 +20,7 @@ class LogisticsValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.BulkRegionJobSerializer().required(),
+      body: LogisticsModel.BulkRegionJobSerializerSchema().required(),
     }).required();
   }
 
@@ -44,7 +44,7 @@ class LogisticsValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.BulkRegionJobSerializer().required(),
+      body: LogisticsModel.BulkRegionJobSerializerSchema().required(),
     }).required();
   }
 
@@ -67,7 +67,7 @@ class LogisticsValidator {
   static createCourierPartnerAccount() {
     return Joi.object({
       companyId: Joi.number().required(),
-      body: LogisticsModel.CourierAccountRequestBody().required(),
+      body: LogisticsModel.CourierAccount().required(),
     }).required();
   }
 
@@ -79,6 +79,7 @@ class LogisticsValidator {
       stage: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       transportType: Joi.string().allow(""),
+      accountIds: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -99,23 +100,24 @@ class LogisticsValidator {
 
   static createCourierPartnerScheme() {
     return Joi.object({
-      body: LogisticsModel.CourierPartnerSchemeRequestModel().required(),
+      body: LogisticsModel.CourierPartnerSchemeModel().required(),
     }).required();
   }
 
   static updateCourierPartnerScheme() {
     return Joi.object({
       schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.CourierPartnerSchemeUpdateRequest().required(),
+      body: LogisticsModel.CourierPartnerSchemeUpdateRequestSchema().required(),
     }).required();
   }
 
   static getCountries() {
     return Joi.object({
-      onboarding: Joi.boolean(),
+      onboard: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+      hierarchy: Joi.string().allow(""),
     }).required();
   }
 }

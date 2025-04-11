@@ -8,6 +8,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef AddUserViewsParam
+ * @property {OrderPlatformModel.UserViewsResponseSchema} body
+ */
+
+/**
  * @typedef AttachOrderUserParam
  * @property {OrderPlatformModel.AttachOrderUser} body
  */
@@ -36,13 +41,22 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef Click2CallParam
+ * @property {string} caller - Call Number
+ * @property {string} receiver - Receiver Number
+ * @property {string} bagId - Bag Id for the query
+ * @property {string} [callerId] - Caller Id
+ * @property {string} [method] - Provider Method to Call
+ */
+
+/**
  * @typedef CreateOrderParam
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 
 /**
- * @typedef DispatchManifestsParam
- * @property {OrderPlatformModel.DispatchManifest} body
+ * @typedef DeleteUserViewsParam
+ * @property {string} viewId - Comma separated values of view ids
  */
 
 /**
@@ -52,7 +66,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef DownloadLanesReportParam
- * @property {OrderPlatformModel.BulkReportsDownloadRequest} body
+ * @property {OrderPlatformModel.BulkReportsDownloadRequestSchema} body
  */
 
 /**
@@ -66,12 +80,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef FailedOrderLogsParam
- * @property {string} [applicationId] - Application ID
- * @property {number} [pageNo] - Page Number
- * @property {number} [pageSize] - Page Size
- * @property {string} [searchType] - Search type for filter
- * @property {string} [searchValue] - Search value for filter
+ * @typedef FetchCreditBalanceDetailParam
+ * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
 
 /**
@@ -80,21 +90,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef GenerateInvoiceIDParam
- * @property {string} invoiceType - Mention the type of invoice id to generate
- * @property {OrderPlatformModel.GenerateInvoiceIDRequestSchema} body
- */
-
-/**
  * @typedef GeneratePOSReceiptByOrderIdParam
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
- */
-
-/**
- * @typedef GenerateProcessManifestParam
- * @property {OrderPlatformModel.ProcessManifestRequest} body
  */
 
 /**
@@ -108,12 +107,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetAnnouncementsParam
- * @property {string} [date] - Date On which the announcement is Active.
+ * @property {string} [date] - Date On which the announcement is Active (Date
+ *   should in ISO Datetime format IST Time)
  */
 
 /**
  * @typedef GetBagByIdParam
- * @property {string} [bagId] - Id of bag
+ * @property {string} [bagId] - Unique identifier of a bag
  * @property {string} [channelBagId] - Id of application bag
  * @property {string} [channelId] - Id of application
  */
@@ -150,11 +150,24 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetFailedOrderLogsParam
+ * @property {number} [pageNo] - Page Number
+ * @property {number} [pageSize] - Page Size
+ * @property {string} [searchType] - Search type for filter
+ * @property {string} [searchValue] - Search value for filter
+ */
+
+/**
  * @typedef GetFileByStatusParam
  * @property {string} batchId - Batch Id to identify the bulk operation request.
  * @property {string} status - The status of the jobs to filter the results.
- * @property {string} fileType - The type of file to be downloaded.
+ * @property {string} fileType
  * @property {string} [reportType] - The type of report to be downloaded.
+ */
+
+/**
+ * @typedef GetGlobalFiltersParam
+ * @property {string} showIn - Name of view to get filters for
  */
 
 /**
@@ -162,7 +175,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [superLane] - Name of lane for which data is to be fetched
  * @property {string} [groupEntity] - Name of group entity
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
- * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [toDate]
  * @property {string} [startDate] - UTC Start Date in ISO format
  * @property {string} [endDate] - UTC End Date in ISO format
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
@@ -170,42 +183,27 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [salesChannels]
  * @property {string} [paymentMode] - Comma separated values of payment modes
  * @property {string} [bagStatus] - Comma separated values of bag statuses
- * @property {string} [searchType]
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
  * @property {string} [searchValue]
  * @property {string} [tags]
- * @property {number} [timeToDispatch]
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
- * @property {string} [orderType]
- */
-
-/**
- * @typedef GetManifestDetailsParam
- * @property {string} manifestId - The unique identifier assigned to the manifest.
- * @property {string} [dpIds] - Filter shipments with the specific Courier
- *   partner Ids which is a combination of courier partner extension and scheme Ids.
- * @property {string} [endDate] - End date for the shipment search range in manifest.
- * @property {string} [startDate] - Start date for the shipment search range in manifest.
- * @property {number} [pageNo] - Page number for pagination.
- * @property {number} [pageSize] - Number of records per page for pagination.
- */
-
-/**
- * @typedef GetManifestShipmentsParam
- * @property {string} dpIds - Filter shipments with the specific Courier partner
- *   Ids which is a combination of courier partner extension and scheme Ids.
- * @property {number} stores - Filter results based on specific store IDs.
- * @property {string} toDate - End date for the shipment search range.
- * @property {string} fromDate - Start date for the shipment search range.
- * @property {string} [dpName] - Filter results based on specific courier partner name.
- * @property {string} [salesChannels] - Filter results based on comma-separated
- *   list of sales channels.
- * @property {string} [searchType] - Filter results based on search type.
- * @property {string} [searchValue] - Filter results based on the search value.
- * @property {number} [pageNo] - Page number for pagination.
- * @property {number} [pageSize] - Number of records per page for pagination.
+ * @property {string} [orderType] - Defines the specific journey a shipment will
+ *   follow based on the application's operational needs and customer
+ *   preferences. This field categorizes orders into distinct types, each
+ *   associated with a unique processing flow. For example:
+ *
+ *   - "HomeDelivery": The order goes through all the steps needed for delivery,
+ *       from being packed to arriving at the customer’s address.
+ *   - "PickAtStore": The order is prepared for pickup at the store, skipping
+ *       shipping steps to make it ready faster for the customer to collect in person.
+ *   - "Digital": This order type likely refers to orders that involve digital goods
+ *       or services, such as software, digital subscriptions, e-books, online
+ *       courses, or any other item that can be delivered electronically.
  */
 
 /**
@@ -214,28 +212,15 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef GetManifestsParam
- * @property {string} [status] - Filter for the status of manifests.
- * @property {string} [startDate] - The starting date for filtering manifests in
- *   ISO format
- * @property {string} [endDate] - The end date for filtering manifests in ISO format
- * @property {string} [searchType] - Specifies the type of search to perform.
- * @property {number} [storeId] - Filter to fetch manifests for a specific store
- *   by its ID.
- * @property {string} [searchValue] - The value to search for based on the
- *   selected search type.
- * @property {string} [dpIds] - A comma-separated list of courier partner IDs
- *   (DP IDs) to filter the manifests.
- * @property {number} [pageNo] - The number of the page to fetch data.
- * @property {number} [pageSize] - The number of records to return per page for
- *   pagination.
+ * @typedef GetOrderByIdParam
+ * @property {string} orderId - Flag for order id
+ * @property {boolean} [myOrders]
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 
 /**
- * @typedef GetOrderByIdParam
- * @property {string} orderId
- * @property {boolean} [myOrders]
- * @property {boolean} [allowInactive] - Flag to allow inactive shipments
+ * @typedef GetOrderConfigParam
+ * @property {string} appId
  */
 
 /**
@@ -244,53 +229,104 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   assigned, indicating its grouping
  * @property {string} [searchType] - Search_type refers to the field that will
  *   be used as the target for the search operation
- * @property {string} [bagStatus] - Bag_status refers to status of the entity.
- *   Filters orders based on the status.
- * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
- * @property {string} [paymentMethods]
- * @property {string} [tags] - Tags refers to additional descriptive labels
+ * @property {string} [bagStatus] - Bag_status refers to the status of the
+ *   entity. Filters orders based on the status.
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to the
+ *   estimated SLA time.
+ * @property {string} [paymentMethods] - Comma separated values of payment
+ *   methods that were used to place order.
+ * @property {string} [tags] - Tags refer to additional descriptive labels
  *   associated with the order
  * @property {string} [searchValue] - Search_value is matched against the field
  *   specified by the search_type
- * @property {string} [fromDate]
- * @property {string} [toDate]
- * @property {string} [startDate]
- * @property {string} [endDate]
+ * @property {string} [fromDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [toDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [startDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [endDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds] - Delivery Partner IDs to which shipments are assigned.
- * @property {string} [stores]
- * @property {string} [salesChannels]
- * @property {number} [pageNo]
- * @property {number} [pageSize]
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {number} [pageNo] - Specifies the page number for paginated results.
+ * @property {number} [pageSize] - Determines the number of results returned per page.
  * @property {boolean} [isPrioritySort]
- * @property {string} [customMeta]
+ * @property {Object[]} [customMeta]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
- * @property {string} [customerId]
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
  * @property {string} [orderType]
- * @property {boolean} [allowInactive] - Flag indicating whether inactive
- *   shipments are allowed
+ * @property {string} [operationalStatus] - Statuses relating to shipment
+ *   transition in order processing journey. Comma separated values of
+ *   operational statuses.
+ * @property {string} [financialStatus] - Statuses relating to finance related
+ *   operations in the order processing journey. Comma separated values of
+ *   financial statuses.
+ * @property {string} [logisticsStatus] - Statuses relating to delivery and
+ *   pickup related operations in the order processing journey. Comma separated
+ *   values of logistics statuses.
+ * @property {string} [parentViewSlug] - Parent view is used for grouping of
+ *   child views. Slug of parent view.
+ * @property {string} [childViewSlug] - Child view is user configured view,
+ *   which has filters added by the user on which shipments/orders are fetched.
+ *   Slug of child view.
+ * @property {string} [groupEntity] - Defines the grouping criterion for
+ *   retrieving shipments or orders. It specifies whether the results should be
+ *   organized based on shipment groups or order groups. For example, using
+ *   'shipments' groups results by shipment, while an invalid value like 'abcd'
+ *   may not be recognized, leading to errors or default behavior.
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   orders. This is useful when fetching data for a specific date range while
  *   performing searches.
+ */
+
+/**
+ * @typedef GetRefundConfigurationParam
+ * @property {string} appId
+ */
+
+/** @typedef GetRefundEnableStateListParam */
+
+/**
+ * @typedef GetRefundOptionsParam
+ * @property {string} shipmentId - ID of the shipment. An order may contain
+ *   multiple items and may get divided into one or more shipment, each having
+ *   its own ID.
+ * @property {string} [bagIds] - It is the bag_id of the bags with comma separated.
+ * @property {string} [state] - It is the desired state at which refund amount
+ *   needs to be calculated.
+ * @property {string} [optinAppId] - It is affiliate id of the order in case of
+ *   cross selling.
+ * @property {number} [optinCompanyId] - It is company id of the order in case
+ *   of cross selling.
+ * @property {string} [status] - It specifies the desired status to which the
+ *   shipment should be updated. It represents the next step in the shipment's
+ *   lifecycle, such as being cancelled by the customer or moved to another
+ *   status in the shipping process.
+ */
+
+/**
+ * @typedef GetRefundStateConfigurationParam
+ * @property {string} appId
  */
 
 /** @typedef GetRoleBasedActionsParam */
 
 /**
  * @typedef GetShipmentByIdParam
- * @property {string} [channelShipmentId] - App Shipment Id
- * @property {string} [shipmentId] - Shipment Id
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [shipmentId] - The unique identifier for a shipment.
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
  *   deactivated shipments
- * @property {boolean} [allowInactive] - Flag indicating whether inactive
- *   shipments are allowed
  */
 
 /**
  * @typedef GetShipmentHistoryParam
- * @property {string} [shipmentId] - Identifier for the shipment
- * @property {number} [bagId] - Identifier for a bag or product.
+ * @property {string} [shipmentId] - Shipment Id
+ * @property {number} [bagId] - Bag/Product Id
  */
 
 /**
@@ -306,38 +342,74 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
- * @property {string} [bagStatus] - Comma separated values of bag statuses
+ * @property {string} [bagStatus] - Comma separated values of bag statuses.
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
- *   bag_status and override lane
- * @property {number} [timeToDispatch]
- * @property {string} [searchType] - Search type key
- * @property {string} [searchValue] - Search type value
- * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
- * @property {string} [toDate] - End Date in DD-MM-YYYY format
- * @property {string} [startDate] - UTC Start Date in ISO format
- * @property {string} [endDate] - UTC End Date in ISO format
- * @property {string} [dpIds] - Comma separated values of delivery partner ids
- * @property {string} [stores] - Comma separated values of store ids
- * @property {string} [salesChannels] - Comma separated values of sales channel ids
- * @property {number} [pageNo] - Page number for paginated data
- * @property {number} [pageSize] - Page size of data received per page
- * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
- * @property {boolean} [allowInactive] - Flag to allow inactive shipments
- * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
- * @property {string} [paymentMethods] - Comma separated values of payment methods
- * @property {string} [channelShipmentId] - App Shipment Id
- * @property {string} [channelOrderId] - App Order Id
- * @property {string} [customMeta]
- * @property {string} [orderingChannel]
- * @property {string} [companyAffiliateTag]
- * @property {boolean} [myOrders]
- * @property {string} [platformUserId]
- * @property {string} [sortType] - Sort the result data on basis of input
- * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
- *   company order
- * @property {string} [tags] - Comma separated values of tags
- * @property {string} [customerId]
- * @property {string} [orderType]
+ *   bag_status and override lane.
+ * @property {number} [timeToDispatch] - Indicates the time to dispatch.
+ * @property {string} [searchType] - Specifies the key used to determine the
+ *   type of search being performed.
+ * @property {string} [searchValue] - The value corresponding to the search
+ *   type, such as a specific shipment ID or order ID.
+ * @property {string} [startDate] - The UTC start date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [endDate] - The UTC end date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
+ *   to filter results by specific delivery partners.
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {number} [pageNo] - Specifies the page number for paginated results.
+ * @property {number} [pageSize] - Determines the number of results returned per page.
+ * @property {boolean} [fetchActiveShipment] - A boolean flag that indicates
+ *   whether to include only active shipments in the results.
+ * @property {boolean} [allowInactive] - A flag indicating whether to allow the
+ *   inclusion of inactive shipments in the results.
+ * @property {boolean} [excludeLockedShipments] - A flag to specify whether to
+ *   exclude shipments that are locked from the results.
+ * @property {string} [paymentMethods] - A comma-separated list of payment methods.
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [channelOrderId] - The order ID used in the application.
+ * @property {string} [customMeta] - Custom metadata associated with the query,
+ *   allowing for additional filtering or information to be passed.
+ * @property {string} [orderingChannel] - The channel through which the order was placed.
+ * @property {string} [companyAffiliateTag] - A tag used to identify the
+ *   company's affiliation for filtering or reporting purposes.
+ * @property {boolean} [myOrders] - A boolean flag indicating whether the query
+ *   should return only the user's orders.
+ * @property {string} [platformUserId] - The unique identifier of the user on
+ *   the platform, useful for filtering orders related to a specific user.
+ * @property {string} [sortType] - Determines the sorting order of the results
+ *   based on specific criteria.
+ * @property {boolean} [showCrossCompanyData] - A flag indicating whether to
+ *   include data from both cross-company and non-cross-company orders in the results.
+ * @property {string} [tags] - A comma-separated list of tags associated with
+ *   the orders to filter results based on specific characteristics.
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
+ * @property {string} [orderType] - The type of order being queried.
+ * @property {string} [operationalStatus] - Statuses relating to shipment
+ *   transition in order processing journey. Comma separated values of
+ *   operational statuses.
+ * @property {string} [financialStatus] - Statuses relating to finance related
+ *   operations in the order processing journey. Comma separated values of
+ *   financial statuses.
+ * @property {string} [logisticsStatus] - Statuses relating to delivery and
+ *   pickup related operations in the order processing journey. Comma separated
+ *   values of logistics statuses.
+ * @property {string} [parentViewSlug] - Parent view is used for grouping of
+ *   child views. Slug of parent view.
+ * @property {string} [childViewSlug] - Child view is user configured view which
+ *   has filters added by the user on which shipments/orders are fetched. Slug
+ *   of child view.
+ * @property {string} [lockStatus] - Flag to identify if a shipment is locked or not.
+ * @property {string} [groupEntity] - Defines the grouping criterion for
+ *   retrieving shipments or orders. It specifies whether the results should be
+ *   organized based on shipment groups or order groups. For example, using
+ *   'shipments' groups results by shipment, while an invalid value like 'abcd'
+ *   may not be recognized, leading to errors or default behavior.
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   shipments. This is useful when fetching data for a specific date range
  *   while performing searches.
@@ -355,6 +427,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetTemplateParam
  * @property {string} templateName
+ */
+
+/**
+ * @typedef GetUserViewsParam
+ * @property {string} showIn - Name of view to get filters for.
  */
 
 /**
@@ -377,6 +454,18 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef OrderUpdateParam
  * @property {OrderPlatformModel.PlatformOrderUpdate} body
+ */
+
+/**
+ * @typedef PostRefundConfigurationParam
+ * @property {string} appId
+ * @property {OrderPlatformModel.RefundStateConfigurationManualSchema} body
+ */
+
+/**
+ * @typedef PostRefundStateConfigurationParam
+ * @property {string} appId
+ * @property {OrderPlatformModel.PostRefundStateConfiguration} body
  */
 
 /**
@@ -408,24 +497,25 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef UpdateAddressParam
- * @property {string} shipmentId
- * @property {string} [name]
- * @property {string} [address]
- * @property {string} [addressType]
- * @property {string} [pincode]
- * @property {string} [phone]
- * @property {string} [email]
- * @property {string} [landmark]
- * @property {string} addressCategory
- * @property {string} [city]
- * @property {string} [state]
- * @property {string} [country]
+ * @typedef UpdateOrderParam
+ * @property {string} orderId
+ * @property {OrderPlatformModel.OrderUpdatePayload} body
+ */
+
+/**
+ * @typedef UpdateOrderConfigParam
+ * @property {string} appId
+ * @property {OrderPlatformModel.ConfigData} body
  */
 
 /**
  * @typedef UpdatePackagingDimensionsParam
  * @property {OrderPlatformModel.UpdatePackagingDimensionsPayload} body
+ */
+
+/**
+ * @typedef UpdateShipmentParam
+ * @property {OrderPlatformModel.UpdateShipmentActionRequestSchema} body
  */
 
 /**
@@ -444,8 +534,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef UploadConsentsParam
- * @property {OrderPlatformModel.UploadManifestConsent} body
+ * @typedef UpdateUserViewPositionParam
+ * @property {OrderPlatformModel.UserViewPosition} body
+ */
+
+/**
+ * @typedef UpdateUserViewsParam
+ * @property {OrderPlatformModel.UserViewsResponseSchema} body
  */
 
 /**
@@ -458,6 +553,13 @@ class OrderPlatformValidator {
   static addStateManagerConfig() {
     return Joi.object({
       body: OrderPlatformModel.TransitionConfigPayload().required(),
+    }).required();
+  }
+
+  /** @returns {AddUserViewsParam} */
+  static addUserViews() {
+    return Joi.object({
+      body: OrderPlatformModel.UserViewsResponseSchema().required(),
     }).required();
   }
 
@@ -495,6 +597,17 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {Click2CallParam} */
+  static click2Call() {
+    return Joi.object({
+      caller: Joi.string().allow("").required(),
+      receiver: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
+      callerId: Joi.string().allow(""),
+      method: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
@@ -502,10 +615,10 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {DispatchManifestsParam} */
-  static dispatchManifests() {
+  /** @returns {DeleteUserViewsParam} */
+  static deleteUserViews() {
     return Joi.object({
-      body: OrderPlatformModel.DispatchManifest().required(),
+      viewId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -519,7 +632,7 @@ class OrderPlatformValidator {
   /** @returns {DownloadLanesReportParam} */
   static downloadLanesReport() {
     return Joi.object({
-      body: OrderPlatformModel.BulkReportsDownloadRequest().required(),
+      body: OrderPlatformModel.BulkReportsDownloadRequestSchema().required(),
     }).required();
   }
 
@@ -537,14 +650,10 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {FailedOrderLogsParam} */
-  static failedOrderLogs() {
+  /** @returns {FetchCreditBalanceDetailParam} */
+  static fetchCreditBalanceDetail() {
     return Joi.object({
-      applicationId: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
+      body: OrderPlatformModel.FetchCreditBalanceRequestPayload().required(),
     }).required();
   }
 
@@ -555,27 +664,12 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {GenerateInvoiceIDParam} */
-  static generateInvoiceID() {
-    return Joi.object({
-      invoiceType: Joi.string().allow("").required(),
-      body: OrderPlatformModel.GenerateInvoiceIDRequestSchema().required(),
-    }).required();
-  }
-
   /** @returns {GeneratePOSReceiptByOrderIdParam} */
   static generatePOSReceiptByOrderId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow(""),
       documentType: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GenerateProcessManifestParam} */
-  static generateProcessManifest() {
-    return Joi.object({
-      body: OrderPlatformModel.ProcessManifestRequest().required(),
     }).required();
   }
 
@@ -646,6 +740,16 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetFailedOrderLogsParam} */
+  static getFailedOrderLogs() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetFileByStatusParam} */
   static getFileByStatus() {
     return Joi.object({
@@ -653,6 +757,13 @@ class OrderPlatformValidator {
       status: Joi.string().allow("").required(),
       fileType: Joi.string().allow("").required(),
       reportType: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetGlobalFiltersParam} */
+  static getGlobalFilters() {
+    return Joi.object({
+      showIn: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -681,53 +792,10 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetManifestDetailsParam} */
-  static getManifestDetails() {
-    return Joi.object({
-      manifestId: Joi.string().allow("").required(),
-      dpIds: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetManifestShipmentsParam} */
-  static getManifestShipments() {
-    return Joi.object({
-      dpIds: Joi.string().allow("").required(),
-      stores: Joi.number().required(),
-      toDate: Joi.string().allow("").required(),
-      fromDate: Joi.string().allow("").required(),
-      dpName: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
   /** @returns {GetManifestfiltersParam} */
   static getManifestfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetManifestsParam} */
-  static getManifests() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      storeId: Joi.number(),
-      searchValue: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -737,6 +805,13 @@ class OrderPlatformValidator {
       orderId: Joi.string().allow("").required(),
       myOrders: Joi.boolean(),
       allowInactive: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetOrderConfigParam} */
+  static getOrderConfig() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -760,13 +835,49 @@ class OrderPlatformValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
-      customMeta: Joi.string().allow(""),
+      customMeta: Joi.array().items(Joi.any()),
       myOrders: Joi.boolean(),
       showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
-      allowInactive: Joi.boolean(),
+      operationalStatus: Joi.string().allow(""),
+      financialStatus: Joi.string().allow(""),
+      logisticsStatus: Joi.string().allow(""),
+      parentViewSlug: Joi.string().allow(""),
+      childViewSlug: Joi.string().allow(""),
+      groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetRefundConfigurationParam} */
+  static getRefundConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetRefundEnableStateListParam} */
+  static getRefundEnableStateList() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetRefundOptionsParam} */
+  static getRefundOptions() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      bagIds: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      optinAppId: Joi.string().allow(""),
+      optinCompanyId: Joi.number(),
+      status: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetRefundStateConfigurationParam} */
+  static getRefundStateConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -781,7 +892,6 @@ class OrderPlatformValidator {
       channelShipmentId: Joi.string().allow(""),
       shipmentId: Joi.string().allow(""),
       fetchActiveShipment: Joi.boolean(),
-      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -811,8 +921,6 @@ class OrderPlatformValidator {
       timeToDispatch: Joi.number(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
       startDate: Joi.string().allow(""),
       endDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
@@ -836,6 +944,13 @@ class OrderPlatformValidator {
       tags: Joi.string().allow(""),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
+      operationalStatus: Joi.string().allow(""),
+      financialStatus: Joi.string().allow(""),
+      logisticsStatus: Joi.string().allow(""),
+      parentViewSlug: Joi.string().allow(""),
+      childViewSlug: Joi.string().allow(""),
+      lockStatus: Joi.string().allow(""),
+      groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
     }).required();
   }
@@ -858,6 +973,13 @@ class OrderPlatformValidator {
   static getTemplate() {
     return Joi.object({
       templateName: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetUserViewsParam} */
+  static getUserViews() {
+    return Joi.object({
+      showIn: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -887,6 +1009,22 @@ class OrderPlatformValidator {
   static orderUpdate() {
     return Joi.object({
       body: OrderPlatformModel.PlatformOrderUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {PostRefundConfigurationParam} */
+  static postRefundConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.RefundStateConfigurationManualSchema().required(),
+    }).required();
+  }
+
+  /** @returns {PostRefundStateConfigurationParam} */
+  static postRefundStateConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.PostRefundStateConfiguration().required(),
     }).required();
   }
 
@@ -928,21 +1066,19 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {UpdateAddressParam} */
-  static updateAddress() {
+  /** @returns {UpdateOrderParam} */
+  static updateOrder() {
     return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      name: Joi.string().allow(""),
-      address: Joi.string().allow(""),
-      addressType: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      landmark: Joi.string().allow(""),
-      addressCategory: Joi.string().allow("").required(),
-      city: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      country: Joi.string().allow(""),
+      orderId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.OrderUpdatePayload().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateOrderConfigParam} */
+  static updateOrderConfig() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.ConfigData().required(),
     }).required();
   }
 
@@ -950,6 +1086,13 @@ class OrderPlatformValidator {
   static updatePackagingDimensions() {
     return Joi.object({
       body: OrderPlatformModel.UpdatePackagingDimensionsPayload().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateShipmentParam} */
+  static updateShipment() {
+    return Joi.object({
+      body: OrderPlatformModel.UpdateShipmentActionRequestSchema().required(),
     }).required();
   }
 
@@ -974,10 +1117,17 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {UploadConsentsParam} */
-  static uploadConsents() {
+  /** @returns {UpdateUserViewPositionParam} */
+  static updateUserViewPosition() {
     return Joi.object({
-      body: OrderPlatformModel.UploadManifestConsent().required(),
+      body: OrderPlatformModel.UserViewPosition().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateUserViewsParam} */
+  static updateUserViews() {
+    return Joi.object({
+      body: OrderPlatformModel.UserViewsResponseSchema().required(),
     }).required();
   }
 

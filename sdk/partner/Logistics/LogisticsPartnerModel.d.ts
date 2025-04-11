@@ -1,6 +1,10 @@
 export = LogisticsPartnerModel;
 /**
- * @typedef BulkRegionServiceabilityTatRequest
+ * @typedef ErrorResponseV1
+ * @property {string} [error]
+ */
+/**
+ * @typedef BulkRegionServiceabilityTatRequestSchema
  * @property {string} country
  * @property {string} region
  * @property {string} type
@@ -16,18 +20,18 @@ export = LogisticsPartnerModel;
  * @property {string} [file_path]
  */
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} value
  * @property {string} message
  * @property {string} type
  */
 /**
- * @typedef FailureResponse
+ * @typedef FailureResponseSchema
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResponseSchema[]} error
  */
 /**
- * @typedef BulkRegionServiceabilityTatResponse
+ * @typedef BulkRegionServiceabilityTatResponseSchema
  * @property {BulkRegionServiceabilityTatResponseItemData[]} [items]
  * @property {Page} [page]
  */
@@ -40,9 +44,10 @@ export = LogisticsPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
- * @typedef BulkRegionJobSerializer
+ * @typedef BulkRegionJobSerializerSchema
  * @property {string} [file_path]
  * @property {string} country
  * @property {string} action
@@ -63,7 +68,7 @@ export = LogisticsPartnerModel;
  * @property {string} [error_file_path]
  */
 /**
- * @typedef BulkRegionResponse
+ * @typedef BulkRegionResponseSchema
  * @property {BulkRegionResponseItemData[]} items
  * @property {Page} page
  */
@@ -77,52 +82,46 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_own_account
  */
 /**
- * @typedef CourierAccountRequestBody
- * @property {string} extension_id
- * @property {string} [account_id]
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
- */
-/**
- * @typedef CourierPartnerAccountFailureResponse
+ * @typedef CourierPartnerAccountFailureResponseSchema
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResponseSchema[]} error
  */
 /**
- * @typedef CompanyCourierPartnerAccountListResponse
- * @property {CourierAccountResponse[]} items
+ * @typedef CompanyCourierPartnerAccountListResponseSchema
+ * @property {CourierAccountResponseSchema[]} items
  * @property {Page} page
  */
 /**
- * @typedef CourierAccountResponse
+ * @typedef CourierAccountSchemeResponseSchema
+ * @property {string} [extension_id]
+ * @property {string} [scheme_id]
+ * @property {string} [name]
+ * @property {ArithmeticOperationsV2} [weight]
+ * @property {string} [transport_type]
+ * @property {string} [region]
+ * @property {string} [delivery_type]
+ * @property {string[]} [payment_mode]
+ * @property {string} [stage]
+ * @property {CourierPartnerSchemeFeatures} [feature]
+ */
+/**
+ * @typedef CourierAccountResponseSchema
+ * @property {number} [company_id]
+ * @property {string} [extension_id]
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
  * @property {string} stage
  * @property {boolean} is_own_account
- * @property {CourierPartnerSchemeModel} scheme_rules
+ * @property {CourierAccountSchemeResponseSchema} scheme_rules
  */
 /**
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id
  * @property {string} scheme_id
  * @property {string} name
- * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
- * @property {CourierPartnerSchemeFeatures} feature
- */
-/**
- * @typedef CourierPartnerSchemeRequestModel
- * @property {string} extension_id
- * @property {string} [scheme_id]
- * @property {string} name
- * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
  * @property {string} delivery_type
@@ -159,9 +158,17 @@ export = LogisticsPartnerModel;
  * @property {number} [gte]
  */
 /**
- * @typedef CourierPartnerSchemeUpdateRequest
+ * @typedef ArithmeticOperationsV2
+ * @property {number} [lt]
+ * @property {number} [gt]
+ * @property {number} [lte]
+ * @property {number} [gte]
+ */
+/**
+ * @typedef CourierPartnerSchemeUpdateRequestSchema
  * @property {string} name
- * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperationsV2} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
  * @property {string} transport_type
  * @property {string} region
  * @property {string} delivery_type
@@ -170,38 +177,49 @@ export = LogisticsPartnerModel;
  * @property {CourierPartnerSchemeFeatures} feature
  */
 /**
- * @typedef GetCountries
- * @property {GetCountriesItems[]} items
- * @property {Page} page
+ * @typedef CountryHierarchy
+ * @property {string} [display_name]
+ * @property {string} [slug]
  */
 /**
- * @typedef GetCountriesItems
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ */
+/**
+ * @typedef CountryObject
  * @property {string} [id]
  * @property {string} [name]
+ * @property {string} [display_name]
  * @property {string} [iso2]
  * @property {string} [iso3]
  * @property {string[]} [timezones]
- * @property {HierarchyItems[]} [hierarchy]
+ * @property {CountryHierarchy[]} [hierarchy]
  * @property {string} [phone_code]
- * @property {string} [currency]
- * @property {string} [type]
  * @property {string} [latitude]
  * @property {string} [longitude]
- * @property {string} [display_name]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
  */
 /**
- * @typedef HierarchyItems
- * @property {string} [display_name]
- * @property {string} [slug]
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
  */
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierAccountRequestBody, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeRequestModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, GetCountries, GetCountriesItems, HierarchyItems };
+    export { ErrorResponseV1, BulkRegionServiceabilityTatRequestSchema, BulkRegionServiceabilityTatResponseItemData, ErrorResponseSchema, FailureResponseSchema, BulkRegionServiceabilityTatResponseSchema, Page, BulkRegionJobSerializerSchema, BulkRegionResponseItemData, BulkRegionResponseSchema, CourierAccount, CourierPartnerAccountFailureResponseSchema, CompanyCourierPartnerAccountListResponseSchema, CourierAccountSchemeResponseSchema, CourierAccountResponseSchema, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, ArithmeticOperationsV2, CourierPartnerSchemeUpdateRequestSchema, CountryHierarchy, CurrencyObject, CountryObject, GetCountries };
 }
-/** @returns {BulkRegionServiceabilityTatRequest} */
-declare function BulkRegionServiceabilityTatRequest(): BulkRegionServiceabilityTatRequest;
-type BulkRegionServiceabilityTatRequest = {
+/** @returns {ErrorResponseV1} */
+declare function ErrorResponseV1(): ErrorResponseV1;
+type ErrorResponseV1 = {
+    error?: string;
+};
+/** @returns {BulkRegionServiceabilityTatRequestSchema} */
+declare function BulkRegionServiceabilityTatRequestSchema(): BulkRegionServiceabilityTatRequestSchema;
+type BulkRegionServiceabilityTatRequestSchema = {
     country: string;
     region: string;
     type: string;
@@ -217,22 +235,22 @@ type BulkRegionServiceabilityTatResponseItemData = {
     failed_records?: any[];
     file_path?: string;
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
+/** @returns {ErrorResponseSchema} */
+declare function ErrorResponseSchema(): ErrorResponseSchema;
+type ErrorResponseSchema = {
     value: string;
     message: string;
     type: string;
 };
-/** @returns {FailureResponse} */
-declare function FailureResponse(): FailureResponse;
-type FailureResponse = {
+/** @returns {FailureResponseSchema} */
+declare function FailureResponseSchema(): FailureResponseSchema;
+type FailureResponseSchema = {
     success: boolean;
-    error: ErrorResponse[];
+    error: ErrorResponseSchema[];
 };
-/** @returns {BulkRegionServiceabilityTatResponse} */
-declare function BulkRegionServiceabilityTatResponse(): BulkRegionServiceabilityTatResponse;
-type BulkRegionServiceabilityTatResponse = {
+/** @returns {BulkRegionServiceabilityTatResponseSchema} */
+declare function BulkRegionServiceabilityTatResponseSchema(): BulkRegionServiceabilityTatResponseSchema;
+type BulkRegionServiceabilityTatResponseSchema = {
     items?: BulkRegionServiceabilityTatResponseItemData[];
     page?: Page;
 };
@@ -267,10 +285,14 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - Total number of items.
+     */
+    total?: number;
 };
-/** @returns {BulkRegionJobSerializer} */
-declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
-type BulkRegionJobSerializer = {
+/** @returns {BulkRegionJobSerializerSchema} */
+declare function BulkRegionJobSerializerSchema(): BulkRegionJobSerializerSchema;
+type BulkRegionJobSerializerSchema = {
     file_path?: string;
     country: string;
     action: string;
@@ -291,9 +313,9 @@ type BulkRegionResponseItemData = {
     total?: number;
     error_file_path?: string;
 };
-/** @returns {BulkRegionResponse} */
-declare function BulkRegionResponse(): BulkRegionResponse;
-type BulkRegionResponse = {
+/** @returns {BulkRegionResponseSchema} */
+declare function BulkRegionResponseSchema(): BulkRegionResponseSchema;
+type BulkRegionResponseSchema = {
     items: BulkRegionResponseItemData[];
     page: Page;
 };
@@ -307,37 +329,43 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
-/** @returns {CourierAccountRequestBody} */
-declare function CourierAccountRequestBody(): CourierAccountRequestBody;
-type CourierAccountRequestBody = {
-    extension_id: string;
-    account_id?: string;
-    scheme_id: string;
-    is_self_ship: boolean;
-    stage: string;
-    is_own_account: boolean;
-};
-/** @returns {CourierPartnerAccountFailureResponse} */
-declare function CourierPartnerAccountFailureResponse(): CourierPartnerAccountFailureResponse;
-type CourierPartnerAccountFailureResponse = {
+/** @returns {CourierPartnerAccountFailureResponseSchema} */
+declare function CourierPartnerAccountFailureResponseSchema(): CourierPartnerAccountFailureResponseSchema;
+type CourierPartnerAccountFailureResponseSchema = {
     success: boolean;
-    error: ErrorResponse[];
+    error: ErrorResponseSchema[];
 };
-/** @returns {CompanyCourierPartnerAccountListResponse} */
-declare function CompanyCourierPartnerAccountListResponse(): CompanyCourierPartnerAccountListResponse;
-type CompanyCourierPartnerAccountListResponse = {
-    items: CourierAccountResponse[];
+/** @returns {CompanyCourierPartnerAccountListResponseSchema} */
+declare function CompanyCourierPartnerAccountListResponseSchema(): CompanyCourierPartnerAccountListResponseSchema;
+type CompanyCourierPartnerAccountListResponseSchema = {
+    items: CourierAccountResponseSchema[];
     page: Page;
 };
-/** @returns {CourierAccountResponse} */
-declare function CourierAccountResponse(): CourierAccountResponse;
-type CourierAccountResponse = {
+/** @returns {CourierAccountSchemeResponseSchema} */
+declare function CourierAccountSchemeResponseSchema(): CourierAccountSchemeResponseSchema;
+type CourierAccountSchemeResponseSchema = {
+    extension_id?: string;
+    scheme_id?: string;
+    name?: string;
+    weight?: ArithmeticOperationsV2;
+    transport_type?: string;
+    region?: string;
+    delivery_type?: string;
+    payment_mode?: string[];
+    stage?: string;
+    feature?: CourierPartnerSchemeFeatures;
+};
+/** @returns {CourierAccountResponseSchema} */
+declare function CourierAccountResponseSchema(): CourierAccountResponseSchema;
+type CourierAccountResponseSchema = {
+    company_id?: number;
+    extension_id?: string;
     account_id: string;
     scheme_id: string;
     is_self_ship: boolean;
     stage: string;
     is_own_account: boolean;
-    scheme_rules: CourierPartnerSchemeModel;
+    scheme_rules: CourierAccountSchemeResponseSchema;
 };
 /** @returns {CourierPartnerSchemeModel} */
 declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
@@ -345,21 +373,8 @@ type CourierPartnerSchemeModel = {
     extension_id: string;
     scheme_id: string;
     name: string;
-    weight: ArithmeticOperations;
-    transport_type: string;
-    region: string;
-    delivery_type: string;
-    payment_mode: string[];
-    stage: string;
-    feature: CourierPartnerSchemeFeatures;
-};
-/** @returns {CourierPartnerSchemeRequestModel} */
-declare function CourierPartnerSchemeRequestModel(): CourierPartnerSchemeRequestModel;
-type CourierPartnerSchemeRequestModel = {
-    extension_id: string;
-    scheme_id?: string;
-    name: string;
-    weight: ArithmeticOperations;
+    weight: ArithmeticOperationsV2;
+    volumetric_weight?: ArithmeticOperations;
     transport_type: string;
     region: string;
     delivery_type: string;
@@ -397,11 +412,20 @@ type ArithmeticOperations = {
     lte?: number;
     gte?: number;
 };
-/** @returns {CourierPartnerSchemeUpdateRequest} */
-declare function CourierPartnerSchemeUpdateRequest(): CourierPartnerSchemeUpdateRequest;
-type CourierPartnerSchemeUpdateRequest = {
+/** @returns {ArithmeticOperationsV2} */
+declare function ArithmeticOperationsV2(): ArithmeticOperationsV2;
+type ArithmeticOperationsV2 = {
+    lt?: number;
+    gt?: number;
+    lte?: number;
+    gte?: number;
+};
+/** @returns {CourierPartnerSchemeUpdateRequestSchema} */
+declare function CourierPartnerSchemeUpdateRequestSchema(): CourierPartnerSchemeUpdateRequestSchema;
+type CourierPartnerSchemeUpdateRequestSchema = {
     name: string;
-    weight: ArithmeticOperations;
+    weight: ArithmeticOperationsV2;
+    volumetric_weight?: ArithmeticOperations;
     transport_type: string;
     region: string;
     delivery_type: string;
@@ -409,31 +433,38 @@ type CourierPartnerSchemeUpdateRequest = {
     stage: string;
     feature: CourierPartnerSchemeFeatures;
 };
-/** @returns {GetCountries} */
-declare function GetCountries(): GetCountries;
-type GetCountries = {
-    items: GetCountriesItems[];
-    page: Page;
+/** @returns {CountryHierarchy} */
+declare function CountryHierarchy(): CountryHierarchy;
+type CountryHierarchy = {
+    display_name?: string;
+    slug?: string;
 };
-/** @returns {GetCountriesItems} */
-declare function GetCountriesItems(): GetCountriesItems;
-type GetCountriesItems = {
+/** @returns {CurrencyObject} */
+declare function CurrencyObject(): CurrencyObject;
+type CurrencyObject = {
+    code?: string;
+    name?: string;
+    symbol?: string;
+};
+/** @returns {CountryObject} */
+declare function CountryObject(): CountryObject;
+type CountryObject = {
     id?: string;
     name?: string;
+    display_name?: string;
     iso2?: string;
     iso3?: string;
     timezones?: string[];
-    hierarchy?: HierarchyItems[];
+    hierarchy?: CountryHierarchy[];
     phone_code?: string;
-    currency?: string;
-    type?: string;
     latitude?: string;
     longitude?: string;
-    display_name?: string;
+    currency?: CurrencyObject;
+    type?: string;
 };
-/** @returns {HierarchyItems} */
-declare function HierarchyItems(): HierarchyItems;
-type HierarchyItems = {
-    display_name?: string;
-    slug?: string;
+/** @returns {GetCountries} */
+declare function GetCountries(): GetCountries;
+type GetCountries = {
+    items?: CountryObject[];
+    page?: Page;
 };

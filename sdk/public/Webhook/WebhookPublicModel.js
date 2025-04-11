@@ -16,7 +16,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef EventConfigResponse
+ * @typedef EventDetails
  * @property {EventConfig[]} [event_configs]
  */
 
@@ -68,7 +68,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TransformEventRequest
+ * @typedef TransformEventPayload
  * @property {string} event_name
  * @property {string} event_type
  * @property {string} event_category
@@ -77,7 +77,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ValidateSchemaRequest
+ * @typedef ValidateSchemaPayload
  * @property {string} event_name
  * @property {string} event_type
  * @property {string} event_category
@@ -87,13 +87,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ValidateSchemaResponse
+ * @typedef ValidateSchemaResult
  * @property {boolean} [status]
  * @property {string} [message]
  */
 
 /**
- * @typedef TransformEventResponse
+ * @typedef TransformEventResult
  * @property {string[]} [event_trace_id]
  * @property {TransformEventData} [data]
  * @property {string} [event_name]
@@ -122,8 +122,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {EventConfigResponse} */
-  static EventConfigResponse() {
+  /** @returns {EventDetails} */
+  static EventDetails() {
     return Joi.object({
       event_configs: Joi.array().items(WebhookPublicModel.EventConfig()),
     });
@@ -190,8 +190,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {TransformEventRequest} */
-  static TransformEventRequest() {
+  /** @returns {TransformEventPayload} */
+  static TransformEventPayload() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -201,8 +201,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaRequest} */
-  static ValidateSchemaRequest() {
+  /** @returns {ValidateSchemaPayload} */
+  static ValidateSchemaPayload() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -213,16 +213,16 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaResponse} */
-  static ValidateSchemaResponse() {
+  /** @returns {ValidateSchemaResult} */
+  static ValidateSchemaResult() {
     return Joi.object({
       status: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {TransformEventResponse} */
-  static TransformEventResponse() {
+  /** @returns {TransformEventResult} */
+  static TransformEventResult() {
     return Joi.object({
       event_trace_id: Joi.array().items(Joi.string().allow("")),
       data: WebhookPublicModel.TransformEventData(),

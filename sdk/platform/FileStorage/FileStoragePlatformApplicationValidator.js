@@ -8,7 +8,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartResponse} body
+ * @property {FileStoragePlatformModel.FileUpload} body
  */
 
 /**
@@ -23,7 +23,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.StartRequest} body
+ * @property {FileStoragePlatformModel.FileUploadStart} body
  */
 
 /**
@@ -50,33 +50,67 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
+ * @typedef DeletePdfGeneratorConfigParam
+ * @property {string} id - Unique identifier used for operations.
+ */
+
+/**
+ * @typedef FetchPdfDefaultTemplateByIdParam
+ * @property {string} id - Unique identifier for the default PDF template.
+ */
+
+/**
+ * @typedef FetchPdfTypeByIdParam
+ * @property {string} id - Unique identifier for the PDF type.
+ */
+
+/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
  */
 
 /**
- * @typedef GetDefaultHtmlTemplateParam
- * @property {number} pdfTypeId
- * @property {string} format
- * @property {string} [countryCode]
+ * @typedef GetConfigHtmlTemplateByIdParam
+ * @property {string} id - Unique identifier for fetching PDF configuration details.
  */
 
 /**
  * @typedef GetDefaultPdfDataParam
- * @property {number} pdfTypeId
- * @property {string} [countryCode]
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
  */
 
 /**
  * @typedef GetDefaultPdfTemplateParam
- * @property {number} pdfTypeId
- * @property {string} format
- * @property {string} [countryCode]
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} format - Specifies the invoice document format (e.g., A4,
+ *   A6, POS, A3).
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
+ */
+
+/**
+ * @typedef GetHtmlTemplateConfigParam
+ * @property {number} pdfTypeId - Unique identifier for the invoice type.
+ * @property {string} format - Specifies the invoice document format (e.g., A4,
+ *   A6, POS, A3).
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
+ */
+
+/**
+ * @typedef GetPdfPayloadByIdParam
+ * @property {string} id - Unique identifier associated with the PDF payload,
+ *   used for retrieving or processing PDF-related data.
  */
 
 /**
  * @typedef GetPdfTypesParam
- * @property {string} [countryCode]
+ * @property {string} [countryCode] - Country code used to filter data displayed
+ *   on the UI.
+ * @property {boolean} storeOs - Identifies whether the store OS determines the
+ *   PDF generator flow displayed on the UI.
  */
 
 /**
@@ -86,7 +120,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef UpdateHtmlTemplateParam
- * @property {string} id
+ * @property {string} id - Unique identifier used for operations.
  * @property {FileStoragePlatformModel.PdfConfig} body
  */
 
@@ -96,7 +130,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.StartResponse().required(),
+      body: FileStoragePlatformModel.FileUpload().required(),
     }).required();
   }
 
@@ -114,7 +148,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.StartRequest().required(),
+      body: FileStoragePlatformModel.FileUploadStart().required(),
     }).required();
   }
 
@@ -141,6 +175,27 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {DeletePdfGeneratorConfigParam} */
+  static deletePdfGeneratorConfig() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FetchPdfDefaultTemplateByIdParam} */
+  static fetchPdfDefaultTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FetchPdfTypeByIdParam} */
+  static fetchPdfTypeById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GeneratePaymentReceiptParam} */
   static generatePaymentReceipt() {
     return Joi.object({
@@ -148,12 +203,10 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetDefaultHtmlTemplateParam} */
-  static getDefaultHtmlTemplate() {
+  /** @returns {GetConfigHtmlTemplateByIdParam} */
+  static getConfigHtmlTemplateById() {
     return Joi.object({
-      pdfTypeId: Joi.number().required(),
-      format: Joi.string().allow("").required(),
-      countryCode: Joi.string().allow(""),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -174,10 +227,27 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetHtmlTemplateConfigParam} */
+  static getHtmlTemplateConfig() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      format: Joi.string().allow("").required(),
+      countryCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetPdfPayloadByIdParam} */
+  static getPdfPayloadById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetPdfTypesParam} */
   static getPdfTypes() {
     return Joi.object({
       countryCode: Joi.string().allow(""),
+      storeOs: Joi.boolean().required(),
     }).required();
   }
 
