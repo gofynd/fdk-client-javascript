@@ -1,110 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef ZoneBulkErrorResponse
- * @property {string} error
- */
-
-/**
- * @typedef ZoneBulkValidationRequestSchema
- * @property {string} file_url - URL to the CSV file containing bulk zone data
- * @property {string} product_type - Type of product for the zones
- */
-
-/**
- * @typedef BulkZoneOverrideResponseSchema
- * @property {string} [batch_id]
- */
-
-/**
- * @typedef ZoneBulkImportResponse
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {string} [product_type]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {Object} [updated_by]
- * @property {string} [type]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [stage]
- */
-
-/**
- * @typedef ZoneOverrideSchema
- * @property {boolean} allow_override
- */
-
-/**
- * @typedef BulkZoneOverrideSchema
- * @property {boolean} [allow_override]
- * @property {string} [overridding_correction_file_url]
- */
-
-/**
- * @typedef ZoneBulkValidationErrorResponse
- * @property {Object} [error]
- */
-
-/**
- * @typedef ZoneBulkValidationResponse
- * @property {string} [batch_id] - The batch identifier for tracking validation progress
- */
-
-/**
- * @typedef ZoneBulkValidationStatusResponse
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {string} [product_type]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {Object} [updated_by]
- * @property {string} [type]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [file_url]
- * @property {string} [stage]
- */
-
-/**
- * @typedef ZoneOverrideResponseSchema
- * @property {string} [zone_id]
- * @property {boolean} [allow_override]
- */
-
-/**
- * @typedef StandardError
- * @property {string} message - A brief description of the error.
- */
-
-/**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-
-/**
- * @typedef ZoneOverrideStatusResponseSchema
- * @property {string} overriding_process_status
- */
-
-/**
- * @typedef OverrideStatusSchema
- * @property {string} [overriding_process_status]
- */
-
-/**
- * @typedef BulkZoneOverrideStatusSchema
- * @property {OverrideStatusSchema[]} [items]
- */
-
-/**
  * @typedef GetExportPriceZoneHistory
  * @property {string} [batch_id]
  * @property {string} [file_path]
@@ -2504,143 +2400,13 @@ const Joi = require("joi");
  * @property {string[]} [sort]
  */
 
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+
 class ServiceabilityPlatformModel {
-  /** @returns {ZoneBulkErrorResponse} */
-  static ZoneBulkErrorResponse() {
-    return Joi.object({
-      error: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ZoneBulkValidationRequestSchema} */
-  static ZoneBulkValidationRequestSchema() {
-    return Joi.object({
-      file_url: Joi.string().allow("").required(),
-      product_type: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {BulkZoneOverrideResponseSchema} */
-  static BulkZoneOverrideResponseSchema() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ZoneBulkImportResponse} */
-  static ZoneBulkImportResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-      file_path: Joi.string().allow(""),
-      product_type: Joi.string().allow(""),
-      total: Joi.number(),
-      failed: Joi.number(),
-      error_file_url: Joi.string().allow("").allow(null),
-      action: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      updated_by: Joi.any(),
-      type: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      stage: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ZoneOverrideSchema} */
-  static ZoneOverrideSchema() {
-    return Joi.object({
-      allow_override: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {BulkZoneOverrideSchema} */
-  static BulkZoneOverrideSchema() {
-    return Joi.object({
-      allow_override: Joi.boolean(),
-      overridding_correction_file_url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ZoneBulkValidationErrorResponse} */
-  static ZoneBulkValidationErrorResponse() {
-    return Joi.object({
-      error: Joi.any(),
-    });
-  }
-
-  /** @returns {ZoneBulkValidationResponse} */
-  static ZoneBulkValidationResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ZoneBulkValidationStatusResponse} */
-  static ZoneBulkValidationStatusResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-      file_path: Joi.string().allow(""),
-      product_type: Joi.string().allow(""),
-      total: Joi.number(),
-      failed: Joi.number(),
-      error_file_url: Joi.string().allow("").allow(null),
-      action: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      updated_by: Joi.any(),
-      type: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      file_url: Joi.string().allow(""),
-      stage: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ZoneOverrideResponseSchema} */
-  static ZoneOverrideResponseSchema() {
-    return Joi.object({
-      zone_id: Joi.string().allow(""),
-      allow_override: Joi.boolean(),
-    });
-  }
-
-  /** @returns {StandardError} */
-  static StandardError() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ValidationError} */
-  static ValidationError() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      field: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ZoneOverrideStatusResponseSchema} */
-  static ZoneOverrideStatusResponseSchema() {
-    return Joi.object({
-      overriding_process_status: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {OverrideStatusSchema} */
-  static OverrideStatusSchema() {
-    return Joi.object({
-      overriding_process_status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BulkZoneOverrideStatusSchema} */
-  static BulkZoneOverrideStatusSchema() {
-    return Joi.object({
-      items: Joi.array().items(
-        ServiceabilityPlatformModel.OverrideStatusSchema()
-      ),
-    });
-  }
-
   /** @returns {GetExportPriceZoneHistory} */
   static GetExportPriceZoneHistory() {
     return Joi.object({
@@ -5689,6 +5455,14 @@ class ServiceabilityPlatformModel {
   static CompanyConfigurationShema() {
     return Joi.object({
       sort: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
     });
   }
 }

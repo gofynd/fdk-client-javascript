@@ -266,34 +266,6 @@ declare class Serviceability {
      */
     getBulkZone({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetBulkZoneHistory>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetBulkZoneOverrideStatusParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.BulkZoneOverrideStatusSchema>}
-     *   - Success response
-     *
-     * @name getBulkZoneOverrideStatus
-     * @summary: Bulk Zone Override Status.
-     * @description: Get status multiple zone conflicts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkZoneOverrideStatus/).
-     */
-    getBulkZoneOverrideStatus({ batchId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetBulkZoneOverrideStatusParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkZoneOverrideStatusSchema>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetBulkZoneValidationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneBulkValidationStatusResponse>}
-     *   - Success response
-     *
-     * @name getBulkZoneValidation
-     * @summary: Get bulk zone validation status.
-     * @description: Fetch the validation status and results for a specific bulk zone validation batch. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkZoneValidation/).
-     */
-    getBulkZoneValidation({ batchId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetBulkZoneValidationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneBulkValidationStatusResponse>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam} arg
      *   - Arg object
      *
@@ -455,20 +427,6 @@ declare class Serviceability {
      */
     getZoneDetails({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneDetailsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneByIdDetailsSchema>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetZoneOverrideStatusParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneOverrideStatusResponseSchema>}
-     *   - Success response
-     *
-     * @name getZoneOverrideStatus
-     * @summary: Zone conflict override status.
-     * @description: Get current status of zone conflict override process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneOverrideStatus/).
-     */
-    getZoneOverrideStatus({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneOverrideStatusParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneOverrideStatusResponseSchema>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -479,19 +437,6 @@ declare class Serviceability {
      * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
      */
     getZones({ stage, type, accessLevel, status, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponseV2>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.ImportBulkZoneParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneBulkImportResponse>} -
-     *   Success response
-     * @name importBulkZone
-     * @summary: Import validated bulk zones.
-     * @description: Imports previously validated bulk zones into the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/importBulkZone/).
-     */
-    importBulkZone({ batchId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.ImportBulkZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneBulkImportResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
      *   - Arg object
@@ -505,34 +450,6 @@ declare class Serviceability {
      * @description: Creates a order routing setup for an application, which involves updating sorting settings or rule priorities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
      */
     insertApplicationConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.OverrideBulkZoneParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.BulkZoneOverrideResponseSchema>}
-     *   - Success response
-     *
-     * @name overrideBulkZone
-     * @summary: Bulk Zone Override.
-     * @description: Resolve multiple zone conflicts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/overrideBulkZone/).
-     */
-    overrideBulkZone({ batchId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.OverrideBulkZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkZoneOverrideResponseSchema>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.OverrideZoneByIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneOverrideResponseSchema>}
-     *   - Success response
-     *
-     * @name overrideZoneById
-     * @summary: Resolves Given Zone Conflicts.
-     * @description: Resolves the conflicts in the current zone with or without existing zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/overrideZoneById/).
-     */
-    overrideZoneById({ zoneId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.OverrideZoneByIdParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneOverrideResponseSchema>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam} arg
      *   - Arg object
@@ -723,20 +640,6 @@ declare class Serviceability {
      * @description: Enable or Disable a Zone under that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZone/).
      */
     updateZone({ zoneId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneUpdateSuccessResponse>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.ValidateBulkZoneParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneBulkValidationResponse>}
-     *   - Success response
-     *
-     * @name validateBulkZone
-     * @summary: Validate bulk zones.
-     * @description: Validates the bulk zones data before import. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/validateBulkZone/).
-     */
-    validateBulkZone({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.ValidateBulkZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneBulkValidationResponse>;
 }
 import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

@@ -38,11 +38,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef ConsolidateShipmentsParam
- * @property {OrderPlatformModel.ConsolidateShipmentPayload} body
- */
-
-/**
  * @typedef CreateOrderParam
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
@@ -518,13 +513,6 @@ class OrderPlatformValidator {
       bagId: Joi.string().allow("").required(),
       callerId: Joi.string().allow(""),
       method: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {ConsolidateShipmentsParam} */
-  static consolidateShipments() {
-    return Joi.object({
-      body: OrderPlatformModel.ConsolidateShipmentPayload().required(),
     }).required();
   }
 

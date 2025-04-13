@@ -364,7 +364,6 @@ export = CompanyProfilePlatformModel;
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
- * @property {boolean} [is_hyperlocal_active]
  */
 /**
  * @typedef LocationListSerializer
@@ -417,8 +416,6 @@ export = CompanyProfilePlatformModel;
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
- * @property {boolean} [is_hyperlocal_active] - Indicates if the store has opted
- *   for hyperlocal delivery
  */
 /**
  * @typedef BulkLocationSerializer
@@ -866,7 +863,6 @@ type GetLocationSerializer = {
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
-    is_hyperlocal_active?: boolean;
 };
 /** @returns {LocationListSerializer} */
 declare function LocationListSerializer(): LocationListSerializer;
@@ -928,11 +924,6 @@ type LocationSerializer = {
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
-    /**
-     * - Indicates if the store has opted
-     * for hyperlocal delivery
-     */
-    is_hyperlocal_active?: boolean;
 };
 /** @returns {BulkLocationSerializer} */
 declare function BulkLocationSerializer(): BulkLocationSerializer;

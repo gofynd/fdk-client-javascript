@@ -2436,40 +2436,6 @@ export = OrderPlatformModel;
  * @property {string} [stack_trace] - The stack trace from the server for the error.
  */
 /**
- * @typedef ProductDetails
- * @property {string} [identifier] - Unique identifier for the product.
- * @property {number} [quantity] - Quantity of the product.
- * @property {number} [line_number] - Line number associated with the product in
- *   the shipment.
- * @property {string} [shipment_id] - The ID of the shipment containing the product.
- */
-/**
- * @typedef RePromise
- * @property {string} [min] - Minimum promise date.
- * @property {string} [max] - Maximum promise date.
- */
-/**
- * @typedef PackagingDimensions
- * @property {number} [width] - Width of the package.
- * @property {number} [height] - Height of the package.
- * @property {number} [length] - Length of the package.
- * @property {number} [weight] - Weight of the package.
- * @property {string} [packaging_type] - Type of packaging used.
- */
-/**
- * @typedef ConsolidateShipmentPayload
- * @property {string} [consolidated_shipment_id] - The ID of the consolidated shipment.
- * @property {ProductDetails[]} [products] - List of products to be included in
- *   the consolidated shipment.
- * @property {RePromise} [revise_promise]
- * @property {PackagingDimensions} [packaging_dimensions]
- */
-/**
- * @typedef ConsolidateShipmentResponse
- * @property {string} [message] - Response message for the shipment consolidation.
- * @property {Object} [data]
- */
-/**
  * @typedef Page
  * @property {number} [item_total] - The total number of items on the page.
  * @property {string} [next_id] - The identifier for the next page.
@@ -4201,7 +4167,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, UpdatePackingErrorResponse, ErrorResponse, LogErrorResponse, QuestionErrorResponse, RefundStateConfigurationByPaymentType, PostRefundStateConfiguration, PostRefundStateConfigurationResponse, GetRefundStateConfigurationResponse, RefundStates, GetRefundStates, RefundStateManualWithoutMessage, RefundStateManualWithMessage, RefundStateManualWithMessageData, RefundStateConfigurationManualSchema, RefundStateConfigurationManualSchemaResponse, RefundSubOption, RefundBreakup, RefundOptionShipmentResponse, CurrencySchema, RefundOptionsSchemaResponse, StoreReassign, StoreReassignResponse, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, Click2CallResponse, BaseResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, RepricedProductsDataUpdates, DataUpdates, TransitionComments, ShipmentsRequest, StatuesRequest, ActionRequest, UpdateShipmentStatusRequestSchema, UpdateShipmentActionRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, DPConfiguration, PaymentConfig, CreateOrderConfig, CreateOrderResponse, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponse, RefundInformation, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponse, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, CurrencyValueSchema, AmountSchema, DynamicChargeTaxSchema, RuleConditionsSchema, RuleSchema, DistributionSchema, DistributionLogicSchema, DynamicChargeSchema, LineItem, ProcessingDates, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CurrencyInfoCurrency, CurrencyInfoConversionRate, CurrencyInfo, ConfigPayment, ConfigDpConfiguration, ConfigApplication, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, UploadManifestConsent, PlatformOrderUpdate, ResponseDetail, OrderData, OrderUpdatePayload, OrderUpdateResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfoFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, AttachOrderUserErrorResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, VerifyOtpErrorResponseData, VerifyOtpErrorResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, APIFailedResponse, BulkFailedResponse, BulkStateTransistionRequestSchema, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, OptionItem, SuperLaneItem, RuleLaneConfigResponse, RuleLaneConfigResponseSchema, RuleLaneConfigErrorResponse, QuestionSetItem, GenerateInvoiceIDRequestSchema, Reason, RuleRequest, RuleResponse, RuleUpdateRequest, Condition, RuleMeta, RuleAction, Department, L3, Error, RuleSuccessResponse, UpdateRulePositionRequest, RuleListResponse, RuleItem, RuleParametersResponse, ParameterResponse, RuleListRequest, ErrorGenericWithStatus, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponse, RuleListItem, RuleError, RuleErrorResponse, PageInfo, ConfigData, ConfigUpdatedResponse, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, CommonErrorResponse, ExceptionErrorResponse, ProductDetails, RePromise, PackagingDimensions, ConsolidateShipmentPayload, ConsolidateShipmentResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateConfig, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, ShipmentPaymentInfoData, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FilterOptions, FiltersList, GlobalFiltersResponse, ViewDetails, ParentViews, UserViewsResponse, UserViewPosition, CreateUpdateDeleteResponse, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, ShipmentDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, CDN, Upload, TemplateDownloadResponse };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, UpdatePackingErrorResponse, ErrorResponse, LogErrorResponse, QuestionErrorResponse, RefundStateConfigurationByPaymentType, PostRefundStateConfiguration, PostRefundStateConfigurationResponse, GetRefundStateConfigurationResponse, RefundStates, GetRefundStates, RefundStateManualWithoutMessage, RefundStateManualWithMessage, RefundStateManualWithMessageData, RefundStateConfigurationManualSchema, RefundStateConfigurationManualSchemaResponse, RefundSubOption, RefundBreakup, RefundOptionShipmentResponse, CurrencySchema, RefundOptionsSchemaResponse, StoreReassign, StoreReassignResponse, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, Click2CallResponse, BaseResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, RepricedProductsDataUpdates, DataUpdates, TransitionComments, ShipmentsRequest, StatuesRequest, ActionRequest, UpdateShipmentStatusRequestSchema, UpdateShipmentActionRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, DPConfiguration, PaymentConfig, CreateOrderConfig, CreateOrderResponse, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponse, RefundInformation, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponse, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, CurrencyValueSchema, AmountSchema, DynamicChargeTaxSchema, RuleConditionsSchema, RuleSchema, DistributionSchema, DistributionLogicSchema, DynamicChargeSchema, LineItem, ProcessingDates, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CurrencyInfoCurrency, CurrencyInfoConversionRate, CurrencyInfo, ConfigPayment, ConfigDpConfiguration, ConfigApplication, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, UploadManifestConsent, PlatformOrderUpdate, ResponseDetail, OrderData, OrderUpdatePayload, OrderUpdateResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfoFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, AttachOrderUserErrorResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, VerifyOtpErrorResponseData, VerifyOtpErrorResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, APIFailedResponse, BulkFailedResponse, BulkStateTransistionRequestSchema, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, OptionItem, SuperLaneItem, RuleLaneConfigResponse, RuleLaneConfigResponseSchema, RuleLaneConfigErrorResponse, QuestionSetItem, GenerateInvoiceIDRequestSchema, Reason, RuleRequest, RuleResponse, RuleUpdateRequest, Condition, RuleMeta, RuleAction, Department, L3, Error, RuleSuccessResponse, UpdateRulePositionRequest, RuleListResponse, RuleItem, RuleParametersResponse, ParameterResponse, RuleListRequest, ErrorGenericWithStatus, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponse, RuleListItem, RuleError, RuleErrorResponse, PageInfo, ConfigData, ConfigUpdatedResponse, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, CommonErrorResponse, ExceptionErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateConfig, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, ShipmentPaymentInfoData, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FilterOptions, FiltersList, GlobalFiltersResponse, ViewDetails, ParentViews, UserViewsResponse, UserViewPosition, CreateUpdateDeleteResponse, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, ShipmentDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, CDN, Upload, TemplateDownloadResponse };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -8873,87 +8839,6 @@ type ExceptionErrorResponse = {
      * - The stack trace from the server for the error.
      */
     stack_trace?: string;
-};
-/** @returns {ProductDetails} */
-declare function ProductDetails(): ProductDetails;
-type ProductDetails = {
-    /**
-     * - Unique identifier for the product.
-     */
-    identifier?: string;
-    /**
-     * - Quantity of the product.
-     */
-    quantity?: number;
-    /**
-     * - Line number associated with the product in
-     * the shipment.
-     */
-    line_number?: number;
-    /**
-     * - The ID of the shipment containing the product.
-     */
-    shipment_id?: string;
-};
-/** @returns {RePromise} */
-declare function RePromise(): RePromise;
-type RePromise = {
-    /**
-     * - Minimum promise date.
-     */
-    min?: string;
-    /**
-     * - Maximum promise date.
-     */
-    max?: string;
-};
-/** @returns {PackagingDimensions} */
-declare function PackagingDimensions(): PackagingDimensions;
-type PackagingDimensions = {
-    /**
-     * - Width of the package.
-     */
-    width?: number;
-    /**
-     * - Height of the package.
-     */
-    height?: number;
-    /**
-     * - Length of the package.
-     */
-    length?: number;
-    /**
-     * - Weight of the package.
-     */
-    weight?: number;
-    /**
-     * - Type of packaging used.
-     */
-    packaging_type?: string;
-};
-/** @returns {ConsolidateShipmentPayload} */
-declare function ConsolidateShipmentPayload(): ConsolidateShipmentPayload;
-type ConsolidateShipmentPayload = {
-    /**
-     * - The ID of the consolidated shipment.
-     */
-    consolidated_shipment_id?: string;
-    /**
-     * - List of products to be included in
-     * the consolidated shipment.
-     */
-    products?: ProductDetails[];
-    revise_promise?: RePromise;
-    packaging_dimensions?: PackagingDimensions;
-};
-/** @returns {ConsolidateShipmentResponse} */
-declare function ConsolidateShipmentResponse(): ConsolidateShipmentResponse;
-type ConsolidateShipmentResponse = {
-    /**
-     * - Response message for the shipment consolidation.
-     */
-    message?: string;
-    data?: any;
 };
 /** @returns {Page} */
 declare function Page(): Page;

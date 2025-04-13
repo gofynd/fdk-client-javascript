@@ -1405,10 +1405,6 @@ const Joi = require("joi");
  * @property {boolean} [auto_add_to_cart] - In case of bundle product this
  *   product is automatically added with parent product if true.
  * @property {DiscountMeta} [discount_meta]
- * @property {JourneyPromiseObject[]} [journey_wise_promise] - A list of journey
- *   wise promises for each journey in the shipment.
- * @property {number} [distance] - Distance between location and customer
- *   location in kilometers.
  */
 
 /**
@@ -2285,10 +2281,6 @@ const Joi = require("joi");
  * @property {ShipmentMeta} [meta]
  * @property {ShipmentLogisticsMeta} [logistics_meta]
  * @property {ShipmentError} [error]
- * @property {JourneyPromiseObject[]} [journey_wise_promise] - A list of journey
- *   wise promises for each journey in the shipment.
- * @property {number} [distance] - Distance between location and customer
- *   location in kilometers.
  */
 
 /**
@@ -2855,19 +2847,6 @@ const Joi = require("joi");
  * @property {PlatformAddress[]} [address]
  * @property {boolean} [pii_masking]
  * @property {ValidationConfig} [validation_config]
- */
-
-/**
- * @typedef DeliveryPromiseObject
- * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
- * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
- * @property {string} [message] - The message of the promised delivery time.
- */
-
-/**
- * @typedef JourneyPromiseObject
- * @property {string} [journey] - Type of journey.
- * @property {DeliveryPromiseObject} [delivery_promise]
  */
 
 /**
@@ -4482,10 +4461,6 @@ class CartPlatformModel {
       allow_remove: Joi.boolean(),
       auto_add_to_cart: Joi.boolean(),
       discount_meta: CartPlatformModel.DiscountMeta(),
-      journey_wise_promise: Joi.array().items(
-        CartPlatformModel.JourneyPromiseObject()
-      ),
-      distance: Joi.number().allow(null),
     });
   }
 
@@ -5450,10 +5425,6 @@ class CartPlatformModel {
       meta: CartPlatformModel.ShipmentMeta(),
       logistics_meta: CartPlatformModel.ShipmentLogisticsMeta(),
       error: CartPlatformModel.ShipmentError(),
-      journey_wise_promise: Joi.array().items(
-        CartPlatformModel.JourneyPromiseObject()
-      ),
-      distance: Joi.number().allow(null),
     });
   }
 
@@ -6112,23 +6083,6 @@ class CartPlatformModel {
       address: Joi.array().items(CartPlatformModel.PlatformAddress()),
       pii_masking: Joi.boolean(),
       validation_config: CartPlatformModel.ValidationConfig(),
-    });
-  }
-
-  /** @returns {DeliveryPromiseObject} */
-  static DeliveryPromiseObject() {
-    return Joi.object({
-      min: Joi.string().allow(""),
-      max: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {JourneyPromiseObject} */
-  static JourneyPromiseObject() {
-    return Joi.object({
-      journey: Joi.string().allow(""),
-      delivery_promise: CartPlatformModel.DeliveryPromiseObject(),
     });
   }
 

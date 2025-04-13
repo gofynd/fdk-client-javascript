@@ -2685,45 +2685,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductDetails
- * @property {string} [identifier] - Unique identifier for the product.
- * @property {number} [quantity] - Quantity of the product.
- * @property {number} [line_number] - Line number associated with the product in
- *   the shipment.
- * @property {string} [shipment_id] - The ID of the shipment containing the product.
- */
-
-/**
- * @typedef RePromise
- * @property {string} [min] - Minimum promise date.
- * @property {string} [max] - Maximum promise date.
- */
-
-/**
- * @typedef PackagingDimensions
- * @property {number} [width] - Width of the package.
- * @property {number} [height] - Height of the package.
- * @property {number} [length] - Length of the package.
- * @property {number} [weight] - Weight of the package.
- * @property {string} [packaging_type] - Type of packaging used.
- */
-
-/**
- * @typedef ConsolidateShipmentPayload
- * @property {string} [consolidated_shipment_id] - The ID of the consolidated shipment.
- * @property {ProductDetails[]} [products] - List of products to be included in
- *   the consolidated shipment.
- * @property {RePromise} [revise_promise]
- * @property {PackagingDimensions} [packaging_dimensions]
- */
-
-/**
- * @typedef ConsolidateShipmentResponse
- * @property {string} [message] - Response message for the shipment consolidation.
- * @property {Object} [data]
- */
-
-/**
  * @typedef Page
  * @property {number} [item_total] - The total number of items on the page.
  * @property {string} [next_id] - The identifier for the next page.
@@ -7313,53 +7274,6 @@ class OrderPlatformModel {
       message: Joi.string().allow(""),
       exception: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ProductDetails} */
-  static ProductDetails() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      quantity: Joi.number(),
-      line_number: Joi.number(),
-      shipment_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RePromise} */
-  static RePromise() {
-    return Joi.object({
-      min: Joi.string().allow(""),
-      max: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PackagingDimensions} */
-  static PackagingDimensions() {
-    return Joi.object({
-      width: Joi.number(),
-      height: Joi.number(),
-      length: Joi.number(),
-      weight: Joi.number(),
-      packaging_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ConsolidateShipmentPayload} */
-  static ConsolidateShipmentPayload() {
-    return Joi.object({
-      consolidated_shipment_id: Joi.string().allow(""),
-      products: Joi.array().items(OrderPlatformModel.ProductDetails()),
-      revise_promise: OrderPlatformModel.RePromise(),
-      packaging_dimensions: OrderPlatformModel.PackagingDimensions(),
-    });
-  }
-
-  /** @returns {ConsolidateShipmentResponse} */
-  static ConsolidateShipmentResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      data: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

@@ -30,10 +30,6 @@ export = OrderPlatformValidator;
  * @property {string} [method] - Provider Method to Call
  */
 /**
- * @typedef ConsolidateShipmentsParam
- * @property {OrderPlatformModel.ConsolidateShipmentPayload} body
- */
-/**
  * @typedef CreateOrderParam
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
@@ -424,8 +420,6 @@ declare class OrderPlatformValidator {
     static bulkStateTransistion(): BulkStateTransistionParam;
     /** @returns {Click2CallParam} */
     static click2Call(): Click2CallParam;
-    /** @returns {ConsolidateShipmentsParam} */
-    static consolidateShipments(): ConsolidateShipmentsParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
     /** @returns {DeleteUserViewsParam} */
@@ -534,7 +528,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddUserViewsParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, Click2CallParam, ConsolidateShipmentsParam, CreateOrderParam, DeleteUserViewsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetFailedOrderLogsParam, GetFileByStatusParam, GetGlobalFiltersParam, GetLaneConfigParam, GetManifestfiltersParam, GetOrderByIdParam, GetOrdersParam, GetRefundConfigurationParam, GetRefundEnableStateListParam, GetRefundOptionsParam, GetRefundStateConfigurationParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetUserViewsParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostRefundConfigurationParam, PostRefundStateConfigurationParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateOrderParam, UpdatePackagingDimensionsParam, UpdateShipmentParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateUserViewPositionParam, UpdateUserViewsParam, VerifyMobileOTPParam };
+    export { AddUserViewsParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, Click2CallParam, CreateOrderParam, DeleteUserViewsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetFailedOrderLogsParam, GetFileByStatusParam, GetGlobalFiltersParam, GetLaneConfigParam, GetManifestfiltersParam, GetOrderByIdParam, GetOrdersParam, GetRefundConfigurationParam, GetRefundEnableStateListParam, GetRefundOptionsParam, GetRefundStateConfigurationParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetUserViewsParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostRefundConfigurationParam, PostRefundStateConfigurationParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateOrderParam, UpdatePackagingDimensionsParam, UpdateShipmentParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateUserViewPositionParam, UpdateUserViewsParam, VerifyMobileOTPParam };
 }
 type AddUserViewsParam = {
     body: OrderPlatformModel.UserViewsResponse;
@@ -596,9 +590,6 @@ type Click2CallParam = {
      * - Provider Method to Call
      */
     method?: string;
-};
-type ConsolidateShipmentsParam = {
-    body: OrderPlatformModel.ConsolidateShipmentPayload;
 };
 type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;

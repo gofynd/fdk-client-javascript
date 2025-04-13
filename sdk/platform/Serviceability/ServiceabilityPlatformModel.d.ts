@@ -1,94 +1,5 @@
 export = ServiceabilityPlatformModel;
 /**
- * @typedef ZoneBulkErrorResponse
- * @property {string} error
- */
-/**
- * @typedef ZoneBulkValidationRequestSchema
- * @property {string} file_url - URL to the CSV file containing bulk zone data
- * @property {string} product_type - Type of product for the zones
- */
-/**
- * @typedef BulkZoneOverrideResponseSchema
- * @property {string} [batch_id]
- */
-/**
- * @typedef ZoneBulkImportResponse
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {string} [product_type]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {Object} [updated_by]
- * @property {string} [type]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [stage]
- */
-/**
- * @typedef ZoneOverrideSchema
- * @property {boolean} allow_override
- */
-/**
- * @typedef BulkZoneOverrideSchema
- * @property {boolean} [allow_override]
- * @property {string} [overridding_correction_file_url]
- */
-/**
- * @typedef ZoneBulkValidationErrorResponse
- * @property {Object} [error]
- */
-/**
- * @typedef ZoneBulkValidationResponse
- * @property {string} [batch_id] - The batch identifier for tracking validation progress
- */
-/**
- * @typedef ZoneBulkValidationStatusResponse
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {string} [product_type]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {Object} [updated_by]
- * @property {string} [type]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [file_url]
- * @property {string} [stage]
- */
-/**
- * @typedef ZoneOverrideResponseSchema
- * @property {string} [zone_id]
- * @property {boolean} [allow_override]
- */
-/**
- * @typedef StandardError
- * @property {string} message - A brief description of the error.
- */
-/**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-/**
- * @typedef ZoneOverrideStatusResponseSchema
- * @property {string} overriding_process_status
- */
-/**
- * @typedef OverrideStatusSchema
- * @property {string} [overriding_process_status]
- */
-/**
- * @typedef BulkZoneOverrideStatusSchema
- * @property {OverrideStatusSchema[]} [items]
- */
-/**
  * @typedef GetExportPriceZoneHistory
  * @property {string} [batch_id]
  * @property {string} [file_path]
@@ -2226,133 +2137,16 @@ export = ServiceabilityPlatformModel;
  * @typedef CompanyConfigurationShema
  * @property {string[]} [sort]
  */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { ZoneBulkErrorResponse, ZoneBulkValidationRequestSchema, BulkZoneOverrideResponseSchema, ZoneBulkImportResponse, ZoneOverrideSchema, BulkZoneOverrideSchema, ZoneBulkValidationErrorResponse, ZoneBulkValidationResponse, ZoneBulkValidationStatusResponse, ZoneOverrideResponseSchema, StandardError, ValidationError, ZoneOverrideStatusResponseSchema, OverrideStatusSchema, BulkZoneOverrideStatusSchema, GetExportPriceZoneHistory, PriceBulkGeoAreaExportRequestPayload, GetBulkPriceZoneHistory, Pagination, BulkPriceZoneItem, PriceBulkGeoAreaPayload, RuleConditionIntegerDetail, RuleConditionStringDetail, RuleResponseIntegerDetail, RuleResponseStringDetail, CourierPartnerRuleResponseDetailConditions, CourierPartnerRuleResponseDetailSchema, StoreLocationDetail, StoreRuleLocationDetailSchema, StoreRuleConditionDetailSchema, StoreRuleDataDetailsSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse, ArticleAssignment, OptimalLocationsArticles, ServiceabilityLocation, LocationDetailsServiceability, OptimlLocationsRequestSchema, ErrorResponseV3, ErrorObject, ValidateAddressRequest, CountryObject, GetCountries, CurrencyObject, CountryHierarchy, GetCountry, GetCountryFields, GetCountryFieldsAddressTemplate, FieldValidation, FieldValidationRegex, LengthValidation, GetOneOrAllQuery, GetOneOrAllPath, GetOneOrAllParams, GetOneOrAll, GetCountryFieldsAddressValues, GetCountryFieldsAddress, PincodeLatLongData, Localities, GetLocalities, LocalityParent, GetLocality, ApplicationConfigPutResponse, PromiseType, BuyboxRuleConfig, CourierPartnerConfig, ZoneConfig, ApplicationConfigGetResponse, ApplicationConfigPutRequest, InstallCourierPartnerItemsSchema, InstallCourierPartnerResponseSchema, UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ProductSchema, ProductDetailsSchema, StoresSchema, StoresDetailsSchema, DetailsSchema, StoreValueDetailsSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponse, ListViewResponseV2, ListViewItemsV2, SummaryRegions, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponse, ZoneDeleteSuccessResponse, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, GetZoneByIdDetailsSchema, GeoAreaDetailsSchema, CreateZoneV2Data, ZoneBulkExport, GetZoneBulkExport, ZoneBulkItem, CreateBulkZoneData, ZoneStores, ZoneProduct, ZoneResponseV2, CreateBulkZoneResponse, GetBulkZoneHistory, BulkZoneItems, PageV2, BulkCreateZoneExport, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ServiceabilityZoneErrorResult, ServiceabilityZoneNonMarketplaceErrorResult, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, MoPCommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodDataSchema, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, BulkGeoAreaDetails, BulkGeoAreaResult, PriceGeoAreaExportResult, BulkGeoAreaGetResponse, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, ErrorResponseItem, ConflictingArea, GeoAreaResponseDetail, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponse, GeoAreaGetResponseBody, GeoAreaItemResponse, ErrorResponseV2, ErrorResponse, PackageMaterialNotFound, PackageMaterialsErrorResponse, CourierPartnerAccountFailureResponse, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRuleValuesV2, LocationRule, LocationRuleV2, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRuleResponseConditions, CourierPartnerRule, CourierPartnerRuleResponse, CourierPartnerRuleResponseSchema, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierAccountSchemeResponse, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageMpStores, PackageRuleRequest, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageRuleProductAttributes, PackageRuleDepartmentId, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, CompanySelfShip, ArithmeticOperationsV2, CompanyConfigurationShema };
+    export { GetExportPriceZoneHistory, PriceBulkGeoAreaExportRequestPayload, GetBulkPriceZoneHistory, Pagination, BulkPriceZoneItem, PriceBulkGeoAreaPayload, RuleConditionIntegerDetail, RuleConditionStringDetail, RuleResponseIntegerDetail, RuleResponseStringDetail, CourierPartnerRuleResponseDetailConditions, CourierPartnerRuleResponseDetailSchema, StoreLocationDetail, StoreRuleLocationDetailSchema, StoreRuleConditionDetailSchema, StoreRuleDataDetailsSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse, ArticleAssignment, OptimalLocationsArticles, ServiceabilityLocation, LocationDetailsServiceability, OptimlLocationsRequestSchema, ErrorResponseV3, ErrorObject, ValidateAddressRequest, CountryObject, GetCountries, CurrencyObject, CountryHierarchy, GetCountry, GetCountryFields, GetCountryFieldsAddressTemplate, FieldValidation, FieldValidationRegex, LengthValidation, GetOneOrAllQuery, GetOneOrAllPath, GetOneOrAllParams, GetOneOrAll, GetCountryFieldsAddressValues, GetCountryFieldsAddress, PincodeLatLongData, Localities, GetLocalities, LocalityParent, GetLocality, ApplicationConfigPutResponse, PromiseType, BuyboxRuleConfig, CourierPartnerConfig, ZoneConfig, ApplicationConfigGetResponse, ApplicationConfigPutRequest, InstallCourierPartnerItemsSchema, InstallCourierPartnerResponseSchema, UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ProductSchema, ProductDetailsSchema, StoresSchema, StoresDetailsSchema, DetailsSchema, StoreValueDetailsSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponse, ListViewResponseV2, ListViewItemsV2, SummaryRegions, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponse, ZoneDeleteSuccessResponse, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, GetZoneByIdDetailsSchema, GeoAreaDetailsSchema, CreateZoneV2Data, ZoneBulkExport, GetZoneBulkExport, ZoneBulkItem, CreateBulkZoneData, ZoneStores, ZoneProduct, ZoneResponseV2, CreateBulkZoneResponse, GetBulkZoneHistory, BulkZoneItems, PageV2, BulkCreateZoneExport, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ServiceabilityZoneErrorResult, ServiceabilityZoneNonMarketplaceErrorResult, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, MoPCommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodDataSchema, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, BulkGeoAreaDetails, BulkGeoAreaResult, PriceGeoAreaExportResult, BulkGeoAreaGetResponse, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, ErrorResponseItem, ConflictingArea, GeoAreaResponseDetail, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponse, GeoAreaGetResponseBody, GeoAreaItemResponse, ErrorResponseV2, ErrorResponse, PackageMaterialNotFound, PackageMaterialsErrorResponse, CourierPartnerAccountFailureResponse, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRuleValuesV2, LocationRule, LocationRuleV2, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRuleResponseConditions, CourierPartnerRule, CourierPartnerRuleResponse, CourierPartnerRuleResponseSchema, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierAccountSchemeResponse, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageMpStores, PackageRuleRequest, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageRuleProductAttributes, PackageRuleDepartmentId, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, CompanySelfShip, ArithmeticOperationsV2, CompanyConfigurationShema, ValidationError };
 }
-/** @returns {ZoneBulkErrorResponse} */
-declare function ZoneBulkErrorResponse(): ZoneBulkErrorResponse;
-type ZoneBulkErrorResponse = {
-    error: string;
-};
-/** @returns {ZoneBulkValidationRequestSchema} */
-declare function ZoneBulkValidationRequestSchema(): ZoneBulkValidationRequestSchema;
-type ZoneBulkValidationRequestSchema = {
-    /**
-     * - URL to the CSV file containing bulk zone data
-     */
-    file_url: string;
-    /**
-     * - Type of product for the zones
-     */
-    product_type: string;
-};
-/** @returns {BulkZoneOverrideResponseSchema} */
-declare function BulkZoneOverrideResponseSchema(): BulkZoneOverrideResponseSchema;
-type BulkZoneOverrideResponseSchema = {
-    batch_id?: string;
-};
-/** @returns {ZoneBulkImportResponse} */
-declare function ZoneBulkImportResponse(): ZoneBulkImportResponse;
-type ZoneBulkImportResponse = {
-    batch_id?: string;
-    file_path?: string;
-    product_type?: string;
-    total?: number;
-    failed?: number;
-    error_file_url?: string;
-    action?: string;
-    updated_at?: string;
-    updated_by?: any;
-    type?: string;
-    company_id?: string;
-    application_id?: string;
-    stage?: string;
-};
-/** @returns {ZoneOverrideSchema} */
-declare function ZoneOverrideSchema(): ZoneOverrideSchema;
-type ZoneOverrideSchema = {
-    allow_override: boolean;
-};
-/** @returns {BulkZoneOverrideSchema} */
-declare function BulkZoneOverrideSchema(): BulkZoneOverrideSchema;
-type BulkZoneOverrideSchema = {
-    allow_override?: boolean;
-    overridding_correction_file_url?: string;
-};
-/** @returns {ZoneBulkValidationErrorResponse} */
-declare function ZoneBulkValidationErrorResponse(): ZoneBulkValidationErrorResponse;
-type ZoneBulkValidationErrorResponse = {
-    error?: any;
-};
-/** @returns {ZoneBulkValidationResponse} */
-declare function ZoneBulkValidationResponse(): ZoneBulkValidationResponse;
-type ZoneBulkValidationResponse = {
-    /**
-     * - The batch identifier for tracking validation progress
-     */
-    batch_id?: string;
-};
-/** @returns {ZoneBulkValidationStatusResponse} */
-declare function ZoneBulkValidationStatusResponse(): ZoneBulkValidationStatusResponse;
-type ZoneBulkValidationStatusResponse = {
-    batch_id?: string;
-    file_path?: string;
-    product_type?: string;
-    total?: number;
-    failed?: number;
-    error_file_url?: string;
-    action?: string;
-    updated_at?: string;
-    updated_by?: any;
-    type?: string;
-    company_id?: string;
-    application_id?: string;
-    file_url?: string;
-    stage?: string;
-};
-/** @returns {ZoneOverrideResponseSchema} */
-declare function ZoneOverrideResponseSchema(): ZoneOverrideResponseSchema;
-type ZoneOverrideResponseSchema = {
-    zone_id?: string;
-    allow_override?: boolean;
-};
-/** @returns {StandardError} */
-declare function StandardError(): StandardError;
-type StandardError = {
-    /**
-     * - A brief description of the error.
-     */
-    message: string;
-};
-/** @returns {ValidationError} */
-declare function ValidationError(): ValidationError;
-type ValidationError = {
-    /**
-     * - A brief description of the error encountered.
-     */
-    message: string;
-    /**
-     * - The field in the request that caused the error.
-     */
-    field: string;
-};
-/** @returns {ZoneOverrideStatusResponseSchema} */
-declare function ZoneOverrideStatusResponseSchema(): ZoneOverrideStatusResponseSchema;
-type ZoneOverrideStatusResponseSchema = {
-    overriding_process_status: string;
-};
-/** @returns {OverrideStatusSchema} */
-declare function OverrideStatusSchema(): OverrideStatusSchema;
-type OverrideStatusSchema = {
-    overriding_process_status?: string;
-};
-/** @returns {BulkZoneOverrideStatusSchema} */
-declare function BulkZoneOverrideStatusSchema(): BulkZoneOverrideStatusSchema;
-type BulkZoneOverrideStatusSchema = {
-    items?: OverrideStatusSchema[];
-};
 /** @returns {GetExportPriceZoneHistory} */
 declare function GetExportPriceZoneHistory(): GetExportPriceZoneHistory;
 type GetExportPriceZoneHistory = {
@@ -5079,4 +4873,16 @@ type ArithmeticOperationsV2 = {
 declare function CompanyConfigurationShema(): CompanyConfigurationShema;
 type CompanyConfigurationShema = {
     sort?: string[];
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
 };

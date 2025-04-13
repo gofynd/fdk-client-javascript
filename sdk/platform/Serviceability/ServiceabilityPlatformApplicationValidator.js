@@ -85,17 +85,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /** @typedef GetBulkZoneParam */
 
 /**
- * @typedef GetBulkZoneOverrideStatusParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- */
-
-/**
- * @typedef GetBulkZoneValidationParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/**
  * @typedef GetCourierPartnerRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
@@ -172,11 +161,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetZoneOverrideStatusParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- */
-
-/**
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {string} [type] - Using type, you can filter custom or default zones
@@ -196,26 +180,8 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef ImportBulkZoneParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
- */
-
-/**
- * @typedef OverrideBulkZoneParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- * @property {ServiceabilityPlatformModel.BulkZoneOverrideSchema} body
- */
-
-/**
- * @typedef OverrideZoneByIdParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- * @property {ServiceabilityPlatformModel.ZoneOverrideSchema} body
  */
 
 /**
@@ -292,11 +258,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef UpdateZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
  * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
- */
-
-/**
- * @typedef ValidateBulkZoneParam
- * @property {ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema} body
  */
 
 class ServiceabilityPlatformApplicationValidator {
@@ -428,20 +389,6 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetBulkZoneOverrideStatusParam} */
-  static getBulkZoneOverrideStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBulkZoneValidationParam} */
-  static getBulkZoneValidation() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetCourierPartnerRuleParam} */
   static getCourierPartnerRule() {
     return Joi.object({
@@ -539,13 +486,6 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetZoneOverrideStatusParam} */
-  static getZoneOverrideStatus() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetZonesParam} */
   static getZones() {
     return Joi.object({
@@ -565,33 +505,10 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {ImportBulkZoneParam} */
-  static importBulkZone() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {InsertApplicationConfigParam} */
   static insertApplicationConfig() {
     return Joi.object({
       body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
-    }).required();
-  }
-
-  /** @returns {OverrideBulkZoneParam} */
-  static overrideBulkZone() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkZoneOverrideSchema().required(),
-    }).required();
-  }
-
-  /** @returns {OverrideZoneByIdParam} */
-  static overrideZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.ZoneOverrideSchema().required(),
     }).required();
   }
 
@@ -697,13 +614,6 @@ class ServiceabilityPlatformApplicationValidator {
       zoneId: Joi.string().allow("").required(),
 
       body: ServiceabilityPlatformModel.UpdateZoneDataV2().required(),
-    }).required();
-  }
-
-  /** @returns {ValidateBulkZoneParam} */
-  static validateBulkZone() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema().required(),
     }).required();
   }
 }

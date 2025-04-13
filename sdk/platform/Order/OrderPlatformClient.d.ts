@@ -56,17 +56,6 @@ declare class Order {
      */
     click2Call({ caller, receiver, bagId, callerId, method, requestHeaders }?: OrderPlatformValidator.Click2CallParam, { responseHeaders }?: object): Promise<OrderPlatformModel.Click2CallResponse>;
     /**
-     * @param {OrderPlatformValidator.ConsolidateShipmentsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.ConsolidateShipmentResponse>} -
-     *   Success response
-     * @name consolidateShipments
-     * @summary: Consolidates multiple shipments into a single shipment, optimizing logistics and delivery handling.
-     * @description: Consolidates multiple shipments into a single shipment, allowing for optimized logistics and delivery handling. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/consolidateShipments/).
-     */
-    consolidateShipments({ body, requestHeaders }?: OrderPlatformValidator.ConsolidateShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ConsolidateShipmentResponse>;
-    /**
      * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

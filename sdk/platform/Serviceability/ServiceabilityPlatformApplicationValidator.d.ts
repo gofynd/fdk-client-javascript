@@ -62,15 +62,6 @@ export = ServiceabilityPlatformApplicationValidator;
 /** @typedef GetBulkGeoAreasSampleParam */
 /** @typedef GetBulkZoneParam */
 /**
- * @typedef GetBulkZoneOverrideStatusParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- */
-/**
- * @typedef GetBulkZoneValidationParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-/**
  * @typedef GetCourierPartnerRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
@@ -135,10 +126,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} zoneId - Unique identifier of a particular zone
  */
 /**
- * @typedef GetZoneOverrideStatusParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- */
-/**
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {string} [type] - Using type, you can filter custom or default zones
@@ -157,23 +144,8 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} [sector] - Sector name of mentioned address.
  */
 /**
- * @typedef ImportBulkZoneParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
- */
-/**
- * @typedef OverrideBulkZoneParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- * @property {ServiceabilityPlatformModel.BulkZoneOverrideSchema} body
- */
-/**
- * @typedef OverrideZoneByIdParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- * @property {ServiceabilityPlatformModel.ZoneOverrideSchema} body
  */
 /**
  * @typedef PatchApplicationConfigurationParam
@@ -237,10 +209,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} zoneId - Unique identifier for a particular zone
  * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
  */
-/**
- * @typedef ValidateBulkZoneParam
- * @property {ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema} body
- */
 declare class ServiceabilityPlatformApplicationValidator {
     /** @returns {CreateBulkExportParam} */
     static createBulkExport(): CreateBulkExportParam;
@@ -282,10 +250,6 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getBulkGeoAreasSample(): any;
     /** @returns {GetBulkZoneParam} */
     static getBulkZone(): any;
-    /** @returns {GetBulkZoneOverrideStatusParam} */
-    static getBulkZoneOverrideStatus(): GetBulkZoneOverrideStatusParam;
-    /** @returns {GetBulkZoneValidationParam} */
-    static getBulkZoneValidation(): GetBulkZoneValidationParam;
     /** @returns {GetCourierPartnerRuleParam} */
     static getCourierPartnerRule(): GetCourierPartnerRuleParam;
     /** @returns {GetCourierPartnerRuleDetailsParam} */
@@ -310,18 +274,10 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getZone(): GetZoneParam;
     /** @returns {GetZoneDetailsParam} */
     static getZoneDetails(): GetZoneDetailsParam;
-    /** @returns {GetZoneOverrideStatusParam} */
-    static getZoneOverrideStatus(): GetZoneOverrideStatusParam;
     /** @returns {GetZonesParam} */
     static getZones(): GetZonesParam;
-    /** @returns {ImportBulkZoneParam} */
-    static importBulkZone(): ImportBulkZoneParam;
     /** @returns {InsertApplicationConfigParam} */
     static insertApplicationConfig(): InsertApplicationConfigParam;
-    /** @returns {OverrideBulkZoneParam} */
-    static overrideBulkZone(): OverrideBulkZoneParam;
-    /** @returns {OverrideZoneByIdParam} */
-    static overrideZoneById(): OverrideZoneByIdParam;
     /** @returns {PatchApplicationConfigurationParam} */
     static patchApplicationConfiguration(): PatchApplicationConfigurationParam;
     /** @returns {UpdateApplicationConfigurationParam} */
@@ -350,11 +306,9 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateStoreRulesConfig(): UpdateStoreRulesConfigParam;
     /** @returns {UpdateZoneParam} */
     static updateZone(): UpdateZoneParam;
-    /** @returns {ValidateBulkZoneParam} */
-    static validateBulkZone(): ValidateBulkZoneParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateBulkGeoAreaExportParam, CreateBulkGeoAreasParam, CreateBulkZoneParam, CreateCourierPartnerRuleParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateStoreRulesParam, CreateZoneParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, DownloadZoneSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkGeoAreaParam, GetBulkGeoAreasHistoryParam, GetBulkGeoAreasSampleParam, GetBulkZoneParam, GetBulkZoneOverrideStatusParam, GetBulkZoneValidationParam, GetCourierPartnerRuleParam, GetCourierPartnerRuleDetailsParam, GetCourierPartnerRulesParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetGeoAreasExportStatusParam, GetStoreRuleParam, GetStoreRuleDetailsParam, GetStoreRulesParam, GetZoneParam, GetZoneDetailsParam, GetZoneOverrideStatusParam, GetZonesParam, ImportBulkZoneParam, InsertApplicationConfigParam, OverrideBulkZoneParam, OverrideZoneByIdParam, PatchApplicationConfigurationParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, ValidateBulkZoneParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateBulkGeoAreaExportParam, CreateBulkGeoAreasParam, CreateBulkZoneParam, CreateCourierPartnerRuleParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateStoreRulesParam, CreateZoneParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, DownloadZoneSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkGeoAreaParam, GetBulkGeoAreasHistoryParam, GetBulkGeoAreasSampleParam, GetBulkZoneParam, GetCourierPartnerRuleParam, GetCourierPartnerRuleDetailsParam, GetCourierPartnerRulesParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetGeoAreasExportStatusParam, GetStoreRuleParam, GetStoreRuleDetailsParam, GetStoreRulesParam, GetZoneParam, GetZoneDetailsParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -412,19 +366,6 @@ type GetBulkGeoAreaParam = {
      * - A unique identifier for the GeoArea.
      */
     geoareaId: string;
-};
-type GetBulkZoneOverrideStatusParam = {
-    /**
-     * - The unique identifier for current batch of zones
-     * to be updated.
-     */
-    batchId: string;
-};
-type GetBulkZoneValidationParam = {
-    /**
-     * - The batch identifier returned from validation request.
-     */
-    batchId: string;
 };
 type GetCourierPartnerRuleParam = {
     /**
@@ -544,12 +485,6 @@ type GetZoneDetailsParam = {
      */
     zoneId: string;
 };
-type GetZoneOverrideStatusParam = {
-    /**
-     * - The unique identifier of the delivery zone.
-     */
-    zoneId: string;
-};
 type GetZonesParam = {
     /**
      * - Identifies the specific stage of zone bing requested.
@@ -606,29 +541,8 @@ type GetZonesParam = {
      */
     sector?: string;
 };
-type ImportBulkZoneParam = {
-    /**
-     * - The batch identifier returned from validation request.
-     */
-    batchId: string;
-};
 type InsertApplicationConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;
-};
-type OverrideBulkZoneParam = {
-    /**
-     * - The unique identifier for current batch of zones
-     * to be updated.
-     */
-    batchId: string;
-    body: ServiceabilityPlatformModel.BulkZoneOverrideSchema;
-};
-type OverrideZoneByIdParam = {
-    /**
-     * - The unique identifier of the delivery zone.
-     */
-    zoneId: string;
-    body: ServiceabilityPlatformModel.ZoneOverrideSchema;
 };
 type PatchApplicationConfigurationParam = {
     body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest;
@@ -692,9 +606,6 @@ type UpdateZoneParam = {
      */
     zoneId: string;
     body: ServiceabilityPlatformModel.UpdateZoneDataV2;
-};
-type ValidateBulkZoneParam = {
-    body: ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema;
 };
 type DownloadGeoareaSampleFileParam = any;
 type GetApplicationConfigParam = any;

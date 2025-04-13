@@ -402,7 +402,6 @@ const Joi = require("joi");
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
- * @property {boolean} [is_hyperlocal_active]
  */
 
 /**
@@ -458,8 +457,6 @@ const Joi = require("joi");
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
- * @property {boolean} [is_hyperlocal_active] - Indicates if the store has opted
- *   for hyperlocal delivery
  */
 
 /**
@@ -981,7 +978,6 @@ class CompanyProfilePlatformModel {
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
       auto_assign_courier_partner: Joi.boolean(),
-      is_hyperlocal_active: Joi.boolean(),
     });
   }
 
@@ -1053,7 +1049,6 @@ class CompanyProfilePlatformModel {
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
       auto_assign_courier_partner: Joi.boolean(),
-      is_hyperlocal_active: Joi.boolean(),
     });
   }
 

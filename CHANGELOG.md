@@ -1,4 +1,4 @@
-# CHANGE LOG (1.10.3-1) - 1.10.3
+# CHANGE LOG (1.10.2-1) - 1.10.2
 
 ## Application Client
 
@@ -16,8 +16,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -40,8 +38,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
 
@@ -66,8 +62,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
 
@@ -100,8 +94,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -124,8 +116,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -148,8 +138,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -200,8 +188,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -226,8 +212,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -250,14 +234,10 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
@@ -293,14 +273,10 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
@@ -357,16 +333,10 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>ShipmentResponse</code> in response with status code 200
-	- [Added] property <code>shipments[].distance</code> of schema <code>ShipmentResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartShipmentsResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -398,8 +368,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -423,8 +391,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -1127,25 +1093,10 @@
 #### getOrders
 
 - ##### What's New
-	- [Added] property <code>items[].shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>items[].shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>items[].shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>items[].shipments[].charges[].distribution_logic</code> made required in response with status code 200
 	- [Added] property <code>items[].shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
-	- [Added] property <code>items[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>items[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>items[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>items[].charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>items[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
 	- [Added] Response with status 500
 
 - ##### What's Deprecated
@@ -1170,30 +1121,16 @@
 	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>items[].shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].custom_json</code> of schema <code>OrderSchema</code> in response with status code 200
 
 
 #### getOrderById
 
 - ##### What's New
-	- [Added] property <code>order.shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
-	- [Added] property <code>order.shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.shipments[].charges[].distribution_logic</code> made required in response with status code 200
 	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
-	- [Added] property <code>order.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>order.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
 	- [Added] Response with status 500
 
 - ##### What's Deprecated
@@ -1218,30 +1155,16 @@
 	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.custom_json</code> of schema <code>OrderSchema</code> in response with status code 200
 
 
 #### getPosOrderById
 
 - ##### What's New
-	- [Added] property <code>order.shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
-	- [Added] property <code>order.shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.shipments[].charges[].distribution_logic</code> made required in response with status code 200
 	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
-	- [Added] property <code>order.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>order.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>order.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>order.charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>order.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
 	- [Added] Response with status 500
 
 - ##### What's Deprecated
@@ -1266,22 +1189,13 @@
 	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.custom_json</code> of schema <code>OrderSchema</code> in response with status code 200
 
 
 #### getShipmentById
 
 - ##### What's New
-	- [Added] property <code>shipment.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
-	- [Added] property <code>shipment.fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
-	- [Added] property <code>shipment.bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>shipment.bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>shipment.bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>shipment.bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>shipment.bags[].charges[].distribution_logic</code> made required in response with status code 200
-	- [Added] property <code>shipment.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
-	- [Added] property <code>shipment.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>shipment.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
-	- [Added] property <code>shipment.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
 	- [Added] <code>shipment.charges[].distribution_logic</code> made required in response with status code 200
 	- [Added] property <code>shipment.is_active</code> of schema <code>Shipments</code> in response with status code 200
 	- [Added] Response with status 500
@@ -3422,8 +3336,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>OpenapiCartDetailsResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3444,8 +3356,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>OpenApiCartServiceabilityResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3466,8 +3376,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3488,8 +3396,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
 
@@ -3512,8 +3418,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
 
@@ -3561,14 +3465,10 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
@@ -3600,14 +3500,10 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
@@ -3645,8 +3541,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3670,8 +3564,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
 
@@ -3693,8 +3585,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3716,8 +3606,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
 
@@ -3747,8 +3635,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3769,8 +3655,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3821,8 +3705,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3845,16 +3727,10 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
-	- [Added] property <code>shipments[].distance</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3883,16 +3759,10 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
-	- [Added] property <code>shipments[].distance</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3922,8 +3792,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].article_id</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
@@ -3961,8 +3829,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -3990,8 +3856,6 @@
 	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].article_id</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
 	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
@@ -4034,8 +3898,6 @@
 	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
-	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
-	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
 
 - ##### What's Deprecated
@@ -6320,17 +6182,11 @@
 
 #### createLocation
 
-- ##### What's New
-	- [Added] property <code>is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
-
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>store_type</code> of schema <code>LocationSchema</code> in request body
 
 
 #### getLocationDetail
-
-- ##### What's New
-	- [Added] property <code>is_hyperlocal_active</code> of schema <code>GetLocationSerializer</code> in response with status code 200
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>verified_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
@@ -6348,17 +6204,11 @@
 
 #### updateLocation
 
-- ##### What's New
-	- [Added] property <code>is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
-
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>store_type</code> of schema <code>LocationSchema</code> in request body
 
 
 #### createLocationBulk
-
-- ##### What's New
-	- [Added] property <code>data[].is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>data[].store_type</code> of schema <code>LocationSchema</code> in request body
@@ -8305,55 +8155,6 @@
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>InstallCourierPartnerItemsSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>InstallCourierPartnerItemsSchema</code> in response with status code 200
-
-
-#### validateBulkZone
-
-- ##### What's New
-	- [Added] method <code>validateBulkZone</code>
-
-
-
-#### getBulkZoneValidation
-
-- ##### What's New
-	- [Added] method <code>getBulkZoneValidation</code>
-
-
-
-#### importBulkZone
-
-- ##### What's New
-	- [Added] method <code>importBulkZone</code>
-
-
-
-#### overrideZoneById
-
-- ##### What's New
-	- [Added] method <code>overrideZoneById</code>
-
-
-
-#### getZoneOverrideStatus
-
-- ##### What's New
-	- [Added] method <code>getZoneOverrideStatus</code>
-
-
-
-#### overrideBulkZone
-
-- ##### What's New
-	- [Added] method <code>overrideBulkZone</code>
-
-
-
-#### getBulkZoneOverrideStatus
-
-- ##### What's New
-	- [Added] method <code>getBulkZoneOverrideStatus</code>
-
 
 
 ### Order
@@ -10304,13 +10105,6 @@
 
 - ##### What's New
 	- [Added] method <code>invalidateShipmentCache</code>
-
-
-
-#### consolidateShipments
-
-- ##### What's New
-	- [Added] method <code>consolidateShipments</code>
 
 
 
