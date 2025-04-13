@@ -34,7 +34,7 @@ const RewardsPlatformModel = require("./RewardsPlatformModel");
 
 /**
  * @typedef SetRewardsConfigurationParam
- * @property {RewardsPlatformModel.SetConfiguration} body
+ * @property {RewardsPlatformModel.ConfigurationRequest} body
  */
 
 /**
@@ -110,7 +110,7 @@ class RewardsPlatformApplicationValidator {
   /** @returns {SetRewardsConfigurationParam} */
   static setRewardsConfiguration() {
     return Joi.object({
-      body: RewardsPlatformModel.SetConfiguration().required(),
+      body: RewardsPlatformModel.ConfigurationRequest().required(),
     }).required();
   }
 

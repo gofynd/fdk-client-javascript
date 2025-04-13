@@ -103,7 +103,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
    *   - Success response
    *
    * @name createPackageMaterial
@@ -166,7 +166,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponseSchema().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -262,176 +262,6 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > createPackageMaterialRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformValidator.DeletePackageMaterialRuleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>}
-   *   - Success response
-   *
-   * @name deletePackageMaterialRule
-   * @summary: Delete packaging material rule
-   * @description: Delete a single packaging material rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deletePackageMaterialRule/).
-   */
-  async deletePackageMaterialRule(
-    { ruleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformValidator.deletePackageMaterialRule().validate(
-      {
-        ruleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.deletePackageMaterialRule().validate(
-      {
-        ruleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > deletePackageMaterialRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/packaging-material/rules/${ruleId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > deletePackageMaterialRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformValidator.DeletePackageMaterialsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>}
-   *   - Success response
-   *
-   * @name deletePackageMaterials
-   * @summary: Delete packaging material
-   * @description: Delete a single packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deletePackageMaterials/).
-   */
-  async deletePackageMaterials(
-    { packageMaterialId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformValidator.deletePackageMaterials().validate(
-      {
-        packageMaterialId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.deletePackageMaterials().validate(
-      {
-        packageMaterialId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > deletePackageMaterials \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/packaging-material/${packageMaterialId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > deletePackageMaterials \n ${res_error}`,
         });
       }
     }
@@ -774,9 +604,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
+   *   Success response
    * @name getCourierPartnerAccount
    * @summary: Get courier account
    * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccount/).
@@ -834,7 +663,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierAccountResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CourierAccountResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -859,7 +688,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>}
    *   - Success response
    *
    * @name getCourierPartnerAccounts
@@ -955,7 +784,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponseSchema().validate(
+    } = ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1534,7 +1363,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
    *   - Success response
    *
    * @name getOptimalLocations
@@ -1594,7 +1423,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.OptimalLocationsResponseSchema().validate(
+    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1895,7 +1724,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetPackageMaterialsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
    *   - Success response
    *
    * @name getPackageMaterials
@@ -1955,7 +1784,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponseSchema().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2317,7 +2146,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
    *   - Success response
    *
    * @name updatePackageMaterials
@@ -2379,7 +2208,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponseSchema().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2402,9 +2231,8 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.ValidateAddressParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ValidateAddressRequestSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.ValidateAddressRequest>} -
+   *   Success response
    * @name validateAddress
    * @summary: Validate given address wrt template
    * @description: Validate given address wrt template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/validateAddress/).
@@ -2468,7 +2296,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ValidateAddressRequestSchema().validate(
+    } = ServiceabilityPlatformModel.ValidateAddressRequest().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

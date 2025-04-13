@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef GeneralConfigResponseSchema
+ * @typedef GeneralConfigResponse
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -115,6 +115,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef NotifyUser
+ * @property {string} country_code - Country code
+ * @property {string} phone_number - Phone number
+ */
+
+/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -195,6 +201,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TicketFeedbackList
+ * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
+ */
+
+/**
+ * @typedef TicketFeedbackPayload
+ * @property {Object} [form_response] - Key-value pairs of all the form fields
+ *   and their response
+ */
+
+/**
  * @typedef SubmitButton
  * @property {string} title - Title for submit button
  * @property {string} title_color - Title color submit button
@@ -254,6 +271,19 @@ const Joi = require("joi");
  * @typedef FeedbackResponseItem
  * @property {string} display - Question/Title of the form field
  * @property {string} key - Key of the form field
+ */
+
+/**
+ * @typedef TicketFeedback
+ * @property {string} _id - Unique identifier for the feedback
+ * @property {string} ticket_id - Readable ticket number
+ * @property {string} company_id - Company id for which ticket was raised
+ * @property {FeedbackResponseItem[]} response
+ * @property {string} [category] - Category of the ticket
+ * @property {Object} [user] - User who submitted the feedback
+ * @property {string} [updated_at] - Time when the feedback was last updated
+ * @property {string} [created_at] - Time when the feedback was created
+ * @property {number} [__v]
  */
 
 /**
@@ -330,8 +360,8 @@ const Joi = require("joi");
 /** @typedef {"platform_panel" | "sales_channel" | "partner_panel"} TicketSourceEnum */
 
 class LeadPlatformModel {
-  /** @returns {GeneralConfigResponseSchema} */
-  static GeneralConfigResponseSchema() {
+  /** @returns {GeneralConfigResponse} */
+  static GeneralConfigResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       support_communication: Joi.array().items(
@@ -466,6 +496,14 @@ class LeadPlatformModel {
     });
   }
 
+  /** @returns {NotifyUser} */
+  static NotifyUser() {
+    return Joi.object({
+      country_code: Joi.string().allow("").required(),
+      phone_number: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {Filter} */
   static Filter() {
     return Joi.object({
@@ -531,7 +569,7 @@ class LeadPlatformModel {
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
-      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      created_by: Joi.any(),
       status: Joi.string().allow(""),
       priority: LeadPlatformModel.PriorityEnum(),
       category: Joi.string().allow("").required(),
@@ -539,7 +577,7 @@ class LeadPlatformModel {
         LeadPlatformModel.AdditionalInfoSchema()
       ),
       content: LeadPlatformModel.TicketContent().required(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       subscribers: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -566,6 +604,20 @@ class LeadPlatformModel {
       key: Joi.string().allow("").required(),
       display: Joi.string().allow("").required(),
       color: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TicketFeedbackList} */
+  static TicketFeedbackList() {
+    return Joi.object({
+      items: Joi.array().items(LeadPlatformModel.TicketFeedback()),
+    });
+  }
+
+  /** @returns {TicketFeedbackPayload} */
+  static TicketFeedbackPayload() {
+    return Joi.object({
+      form_response: Joi.any(),
     });
   }
 
@@ -615,9 +667,9 @@ class LeadPlatformModel {
   /** @returns {FeedbackForm} */
   static FeedbackForm() {
     return Joi.object({
-      inputs: Joi.object().pattern(/\S/, Joi.any()),
+      inputs: Joi.any(),
       title: Joi.string().allow(""),
-      timestamps: Joi.object().pattern(/\S/, Joi.any()),
+      timestamps: Joi.any(),
     });
   }
 
@@ -637,6 +689,23 @@ class LeadPlatformModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TicketFeedback} */
+  static TicketFeedback() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      ticket_id: Joi.string().allow("").required(),
+      company_id: Joi.string().allow("").required(),
+      response: Joi.array()
+        .items(LeadPlatformModel.FeedbackResponseItem())
+        .required(),
+      category: Joi.string().allow(""),
+      user: Joi.any(),
+      updated_at: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -668,12 +737,12 @@ class LeadPlatformModel {
       status: LeadPlatformModel.Status().required(),
       priority: LeadPlatformModel.Priority().required(),
       sla: LeadPlatformModel.SLA(),
-      created_by: Joi.object().pattern(/\S/, Joi.any()),
-      assigned_to: Joi.object().pattern(/\S/, Joi.any()),
+      created_by: Joi.any(),
+      assigned_to: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       is_feedback_pending: Joi.boolean(),
-      integration: Joi.object().pattern(/\S/, Joi.any()),
+      integration: Joi.any(),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

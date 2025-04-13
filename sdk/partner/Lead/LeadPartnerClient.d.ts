@@ -91,12 +91,12 @@ declare class Lead {
      * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LeadPartnerModel.GeneralConfigResponseSchema>} - Success response
+     * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general support configuration.
      * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigResponseSchema>;
+    getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigResponse>;
 }
 import LeadPartnerModel = require("./LeadPartnerModel");
 import Paginator = require("../../common/Paginator");

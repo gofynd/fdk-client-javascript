@@ -174,90 +174,12 @@ class Share {
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<SharePlatformModel.ClickStatsResult>} - Success response
-   * @name getShortLinkClickStats
-   * @summary: Get short link click statistics
-   * @description: Retrieve statistics and analytics for clicks on a short link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
-   */
-  async getShortLinkClickStats(
-    { surlId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.getShortLinkClickStats().validate(
-      { surlId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = SharePlatformApplicationValidator.getShortLinkClickStats().validate(
-      { surlId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > getShortLinkClickStats \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["surl_id"] = surlId;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/click-stats`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = SharePlatformModel.ClickStatsResult().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Share > getShortLinkClickStats \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
    * @name getShortLinks
-   * @summary: Get short links
+   * @summary: Get short links.
    * @description: Retrieve a list of all generated short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
    */
   async getShortLinks(

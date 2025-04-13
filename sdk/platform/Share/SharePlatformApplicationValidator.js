@@ -13,15 +13,9 @@ const SharePlatformModel = require("./SharePlatformModel");
  */
 
 /**
- * @typedef GetShortLinkClickStatsParam
- * @property {string} surlId - Short link ID for which click statistics are to
- *   be retrieved.
- */
-
-/**
  * @typedef GetShortLinksParam
  * @property {number} [pageNo] - Current page number
- * @property {number} [pageSize] - Current page size
+ * @property {number} [pageSize] - Number of items displayed per page
  * @property {string} [createdBy] - Short link creator
  * @property {string} [active] - Short link active status
  * @property {string} [shortUrl] - Search for short url
@@ -47,13 +41,6 @@ class SharePlatformApplicationValidator {
   static getShortLinkByHash() {
     return Joi.object({
       hash: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetShortLinkClickStatsParam} */
-  static getShortLinkClickStats() {
-    return Joi.object({
-      surlId: Joi.string().allow("").required(),
     }).required();
   }
 

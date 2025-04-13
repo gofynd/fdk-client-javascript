@@ -8,7 +8,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 
 /**
@@ -23,7 +23,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 
 /**
@@ -51,17 +51,17 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef DeletePdfGeneratorConfigParam
- * @property {string} id - Unique identifier used for operations.
+ * @property {string} id
  */
 
 /**
  * @typedef FetchPdfDefaultTemplateByIdParam
- * @property {string} id - Unique identifier for the default PDF template.
+ * @property {string} id
  */
 
 /**
  * @typedef FetchPdfTypeByIdParam
- * @property {string} id - Unique identifier for the PDF type.
+ * @property {string} id
  */
 
 /**
@@ -71,46 +71,38 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef GetConfigHtmlTemplateByIdParam
- * @property {string} id - Unique identifier for fetching PDF configuration details.
+ * @property {string} id
  */
 
 /**
  * @typedef GetDefaultPdfDataParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} [countryCode]
  */
 
 /**
  * @typedef GetDefaultPdfTemplateParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} format - Specifies the invoice document format (e.g., A4,
- *   A6, POS, A3).
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
  */
 
 /**
  * @typedef GetHtmlTemplateConfigParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} format - Specifies the invoice document format (e.g., A4,
- *   A6, POS, A3).
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
  */
 
 /**
  * @typedef GetPdfPayloadByIdParam
- * @property {string} id - Unique identifier associated with the PDF payload,
- *   used for retrieving or processing PDF-related data.
+ * @property {string} id
  */
 
 /**
  * @typedef GetPdfTypesParam
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
- * @property {boolean} storeOs - Identifies whether the store OS determines the
- *   PDF generator flow displayed on the UI.
+ * @property {string} [countryCode]
+ * @property {boolean} storeOs
  */
 
 /**
@@ -120,7 +112,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef UpdateHtmlTemplateParam
- * @property {string} id - Unique identifier used for operations.
+ * @property {string} id
  * @property {FileStoragePlatformModel.PdfConfig} body
  */
 
@@ -130,7 +122,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUpload().required(),
+      body: FileStoragePlatformModel.StartResponse().required(),
     }).required();
   }
 
@@ -148,7 +140,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUploadStart().required(),
+      body: FileStoragePlatformModel.StartRequest().required(),
     }).required();
   }
 

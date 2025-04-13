@@ -13,18 +13,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyListSchema
+ * @typedef CompanyListSerializer
  * @property {Page} [page]
- * @property {CompanySchema[]} [items]
+ * @property {CompanySerializer[]} [items]
  */
 
 /**
- * @typedef CompaniesSchema
- * @property {CompanySchema[]} [items]
+ * @typedef CompaniesSerializer
+ * @property {CompanySerializer[]} [items]
  */
 
 /**
- * @typedef ErrorResponseSchema
+ * @typedef ErrorResponse
  * @property {string} [code]
  * @property {Object} [error]
  * @property {string} [message]
@@ -38,19 +38,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanySchema
+ * @typedef CompanySerializer
  * @property {number} [uid]
  * @property {string} [created_on]
  * @property {string} [modified_on]
  * @property {string} [verified_on]
- * @property {UserSchema} [verified_by]
- * @property {UserSchema} [modified_by]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [verified_by]
+ * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [name]
  * @property {string} company_type
  * @property {string} business_type
  * @property {CompanyDetails} [details]
- * @property {GetAddressSchema[]} [addresses]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {string[]} [market_channels]
  * @property {string[]} [notification_emails]
  * @property {string} [reject_reason]
@@ -60,7 +60,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetAddressSchema
+ * @typedef GetAddressSerializer
  * @property {string} [address1]
  * @property {string} [address2]
  * @property {string} [address_type]
@@ -90,7 +90,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserSchema
+ * @typedef UserSerializer
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -125,28 +125,28 @@ class CatalogPartnerModel {
     });
   }
 
-  /** @returns {CompanyListSchema} */
-  static CompanyListSchema() {
+  /** @returns {CompanyListSerializer} */
+  static CompanyListSerializer() {
     return Joi.object({
       page: CatalogPartnerModel.Page(),
-      items: Joi.array().items(CatalogPartnerModel.CompanySchema()),
+      items: Joi.array().items(CatalogPartnerModel.CompanySerializer()),
     });
   }
 
-  /** @returns {CompaniesSchema} */
-  static CompaniesSchema() {
+  /** @returns {CompaniesSerializer} */
+  static CompaniesSerializer() {
     return Joi.object({
-      items: Joi.array().items(CatalogPartnerModel.CompanySchema()),
+      items: Joi.array().items(CatalogPartnerModel.CompanySerializer()),
     });
   }
 
-  /** @returns {ErrorResponseSchema} */
-  static ErrorResponseSchema() {
+  /** @returns {ErrorResponse} */
+  static ErrorResponse() {
     return Joi.object({
       code: Joi.string().allow(""),
       error: Joi.object().pattern(/\S/, Joi.any()),
       message: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       status: Joi.number(),
     });
   }
@@ -158,32 +158,32 @@ class CatalogPartnerModel {
     });
   }
 
-  /** @returns {CompanySchema} */
-  static CompanySchema() {
+  /** @returns {CompanySerializer} */
+  static CompanySerializer() {
     return Joi.object({
       uid: Joi.number(),
       created_on: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
       verified_on: Joi.string().allow(""),
-      verified_by: CatalogPartnerModel.UserSchema(),
-      modified_by: CatalogPartnerModel.UserSchema(),
-      created_by: CatalogPartnerModel.UserSchema(),
+      verified_by: CatalogPartnerModel.UserSerializer(),
+      modified_by: CatalogPartnerModel.UserSerializer(),
+      created_by: CatalogPartnerModel.UserSerializer(),
       name: Joi.string().allow(""),
       company_type: Joi.string().allow("").required(),
       business_type: Joi.string().allow("").required(),
       details: CatalogPartnerModel.CompanyDetails(),
-      addresses: Joi.array().items(CatalogPartnerModel.GetAddressSchema()),
+      addresses: Joi.array().items(CatalogPartnerModel.GetAddressSerializer()),
       market_channels: Joi.array().items(Joi.string().allow("")),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.any(),
       business_country_info: CatalogPartnerModel.BusinessCountryInfo(),
     });
   }
 
-  /** @returns {GetAddressSchema} */
-  static GetAddressSchema() {
+  /** @returns {GetAddressSerializer} */
+  static GetAddressSerializer() {
     return Joi.object({
       address1: Joi.string().allow(""),
       address2: Joi.string().allow(""),
@@ -218,8 +218,8 @@ class CatalogPartnerModel {
     });
   }
 
-  /** @returns {UserSchema} */
-  static UserSchema() {
+  /** @returns {UserSerializer} */
+  static UserSerializer() {
     return Joi.object({
       _id: Joi.string().allow(""),
       contact: Joi.string().allow(""),

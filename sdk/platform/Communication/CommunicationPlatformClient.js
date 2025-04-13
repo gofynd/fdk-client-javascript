@@ -138,6 +138,272 @@ class Communication {
     paginator.setCallback(callback.bind(this));
     return paginator;
   }
+
+  /**
+   * @param {CommunicationPlatformValidator.SenByCompanyCommunicationAsynchronouslyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+   * @name senByCompanyCommunicationAsynchronously
+   * @summary: Send communication asynchronously.
+   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/senByCompanyCommunicationAsynchronously/).
+   */
+  async senByCompanyCommunicationAsynchronously(
+    { xApplicationId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformValidator.senByCompanyCommunicationAsynchronously().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformValidator.senByCompanyCommunicationAsynchronously().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > senByCompanyCommunicationAsynchronously \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+    xHeaders["x-application-id"] = xApplicationId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/engine/send-async`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > senByCompanyCommunicationAsynchronously \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformValidator.SendByCompanyCommunicationInstantlyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
+   * @name sendByCompanyCommunicationInstantly
+   * @summary: Send communication synchronously.
+   * @description: Initiate and send communication in real-time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendByCompanyCommunicationInstantly/).
+   */
+  async sendByCompanyCommunicationInstantly(
+    { xApplicationId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformValidator.sendByCompanyCommunicationInstantly().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformValidator.sendByCompanyCommunicationInstantly().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > sendByCompanyCommunicationInstantly \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+    xHeaders["x-application-id"] = xApplicationId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/engine/send-instant`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > sendByCompanyCommunicationInstantly \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformValidator.SendByCompanyCommunicationSynchronouslyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
+   * @name sendByCompanyCommunicationSynchronously
+   * @summary: Send communication asynchronously.
+   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendByCompanyCommunicationSynchronously/).
+   */
+  async sendByCompanyCommunicationSynchronously(
+    { xApplicationId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformValidator.sendByCompanyCommunicationSynchronously().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformValidator.sendByCompanyCommunicationSynchronously().validate(
+      {
+        xApplicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > sendByCompanyCommunicationSynchronously \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+    xHeaders["x-application-id"] = xApplicationId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/engine/send-sync`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > sendByCompanyCommunicationSynchronously \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
 }
 
 module.exports = Communication;

@@ -18,8 +18,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.CreateApplicationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CreateAppResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
    * @name createApplication
    * @summary: Create application.
    * @description: Generate and add a new application. Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createApplication/).
@@ -77,10 +76,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.CreateAppResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.CreateAppResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -179,9 +178,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetApplicationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
+   *   Success response
    * @name getApplications
    * @summary: Get applications.
    * @description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplications/).
@@ -244,7 +242,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.ApplicationsResponseSchema().validate(
+    } = ConfigurationPlatformModel.ApplicationsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -267,7 +265,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] - Search param by name or domain
-   * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponseSchema>}
+   * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponse>}
    * @summary: Get applications.
    * @description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
    */
@@ -296,9 +294,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
+   *   Success response
    * @name getBrandsByCompany
    * @summary: Get brands by company.
    * @description: Retrieve all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBrandsByCompany/).
@@ -357,7 +354,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.BrandsByCompanyResponseSchema().validate(
+    } = ConfigurationPlatformModel.BrandsByCompanyResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -380,9 +377,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetCompanyByBrandsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
+   *   Success response
    * @name getCompanyByBrands
    * @summary: Get company by brands.
    * @description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCompanyByBrands/).
@@ -446,7 +442,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.CompanyByBrandsResponseSchema().validate(
+    } = ConfigurationPlatformModel.CompanyByBrandsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -469,8 +465,8 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {ConfigurationPlatformModel.CompanyByBrandsRequestSchema} arg.body
-   * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponseSchema>}
+   * @param {ConfigurationPlatformModel.CompanyByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>}
    * @summary: Get company by brands.
    * @description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
    */
@@ -499,9 +495,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
+   *   Success response
    * @name getCurrencies
    * @summary: Get currencies.
    * @description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCurrencies/).
@@ -553,10 +548,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.CurrenciesResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.CurrenciesResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -652,107 +647,10 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.GetCurrencyExchangeRatesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CurrencyExchangeResponseV2>}
-   *   - Success response
-   *
-   * @name getCurrencyExchangeRates
-   * @summary: Get currency exchange rates
-   * @description: Retrieve a list of currency exchange rates, relative to a provided currency. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCurrencyExchangeRates/).
-   */
-  async getCurrencyExchangeRates(
-    {
-      currencyCode,
-      exchangeCurrencyCode,
-      exchangeCountryCode,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ConfigurationPlatformValidator.getCurrencyExchangeRates().validate(
-      {
-        currencyCode,
-        exchangeCurrencyCode,
-        exchangeCountryCode,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationPlatformValidator.getCurrencyExchangeRates().validate(
-      {
-        currencyCode,
-        exchangeCurrencyCode,
-        exchangeCountryCode,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Configuration > getCurrencyExchangeRates \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["currency_code"] = currencyCode;
-    query_params["exchange_currency_code"] = exchangeCurrencyCode;
-    query_params["exchange_country_code"] = exchangeCountryCode;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v2.0/company/${this.config.companyId}/currency-exchange`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ConfigurationPlatformModel.CurrencyExchangeResponseV2().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Configuration > getCurrencyExchangeRates \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ConfigurationPlatformValidator.GetDomainAvailibilityParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponseSchema>}
+   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
    *   - Success response
    *
    * @name getDomainAvailibility
@@ -812,7 +710,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainSuggestionsResponseSchema().validate(
+    } = ConfigurationPlatformModel.DomainSuggestionsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -835,9 +733,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetDomainOptionsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainOptionsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.DomainOptionsResponse>} -
+   *   Success response
    * @name getDomainOptions
    * @summary: Get domain options
    * @description: Fetches the list of available domain types and network information - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainOptions/).
@@ -891,7 +788,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainOptionsResponseSchema().validate(
+    } = ConfigurationPlatformModel.DomainOptionsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -999,7 +896,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponseSchema>}
+   * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
    *   - Success response
    *
    * @name getOtherSellerApplicationById
@@ -1059,7 +956,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.OptedApplicationResponseSchema().validate(
+    } = ConfigurationPlatformModel.OptedApplicationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1198,9 +1095,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
+   *   Success response
    * @name getStoreByBrands
    * @summary: Get stores by brand uids for the current company
    * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
@@ -1264,7 +1160,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.StoreByBrandsResponseSchema().validate(
+    } = ConfigurationPlatformModel.StoreByBrandsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1287,8 +1183,8 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {ConfigurationPlatformModel.StoreByBrandsRequestSchema} arg.body
-   * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponseSchema>}
+   * @param {ConfigurationPlatformModel.StoreByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>}
    * @summary: Get stores by brand uids for the current company
    * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
    */
@@ -1317,9 +1213,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetStoresForACompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.ListStoreResponseSchemaSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.ListStoreResponse>} - Success response
    * @name getStoresForACompany
    * @summary: Get stores by company
    * @description: Retrieves All the stores that belong to a particular company with desired pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoresForACompany/).
@@ -1377,10 +1271,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.ListStoreResponseSchemaSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.ListStoreResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1400,9 +1294,8 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name optOutFromApplication
    * @summary: Opt out from an application.
    * @description: Choose to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/optOutFromApplication/).
@@ -1462,7 +1355,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

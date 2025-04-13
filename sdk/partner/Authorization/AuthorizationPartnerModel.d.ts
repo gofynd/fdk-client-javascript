@@ -22,7 +22,7 @@ export = AuthorizationPartnerModel;
  * @property {string} [user_id] - ID of the user associated with the client.
  */
 /**
- * @typedef ClientResponseSchema
+ * @typedef ClientResponse
  * @property {number} [company_id] - The ID of the company associated with the client.
  * @property {string} [client_id] - The unique identifier for the client.
  * @property {string[]} [secret] - List of secrets associated with the client.
@@ -46,7 +46,7 @@ export = AuthorizationPartnerModel;
  */
 /**
  * @typedef ClientListSchema
- * @property {ClientResponseSchema[]} [items] - List of client responses.
+ * @property {ClientResponse[]} [items] - List of client responses.
  * @property {Page} [page]
  */
 /**
@@ -63,7 +63,7 @@ export = AuthorizationPartnerModel;
 declare class AuthorizationPartnerModel {
 }
 declare namespace AuthorizationPartnerModel {
-    export { ClientData, ClientScopes, UpdateClient, ClientMeta, ClientResponseSchema, ClientListSchema, Page };
+    export { ClientData, ClientScopes, UpdateClient, ClientMeta, ClientResponse, ClientListSchema, Page };
 }
 /** @returns {ClientData} */
 declare function ClientData(): ClientData;
@@ -112,9 +112,9 @@ type ClientMeta = {
      */
     user_id?: string;
 };
-/** @returns {ClientResponseSchema} */
-declare function ClientResponseSchema(): ClientResponseSchema;
-type ClientResponseSchema = {
+/** @returns {ClientResponse} */
+declare function ClientResponse(): ClientResponse;
+type ClientResponse = {
     /**
      * - The ID of the company associated with the client.
      */
@@ -190,7 +190,7 @@ type ClientListSchema = {
     /**
      * - List of client responses.
      */
-    items?: ClientResponseSchema[];
+    items?: ClientResponse[];
     page?: Page;
 };
 /** @returns {Page} */

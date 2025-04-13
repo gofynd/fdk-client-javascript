@@ -13,6 +13,7 @@ declare class Logistic {
         getLocalitiesByPrefix: string;
         getLocality: string;
         getPincodeCity: string;
+        getQCPromise: string;
         getZones: string;
         validateAddress: string;
     };
@@ -21,22 +22,21 @@ declare class Logistic {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GenerateShipmentsAndCourierPartnerResponseSchema>} -
-     *   Success response
+     * @returns {Promise<GenerateShipmentsAndCourierPartnerResponse>} - Success response
      * @name createShipments
      * @summary: Create and return shipments.
      * @description: Create and return shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/createShipments/).
      */
-    createShipments({ companyId, applicationId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GenerateShipmentsAndCourierPartnerResponseSchema>;
+    createShipments({ companyId, applicationId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GenerateShipmentsAndCourierPartnerResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CountryListResponseSchema>} - Success response
+     * @returns {Promise<CountryListResponse>} - Success response
      * @name getAllCountries
      * @summary: Get deliverable countries
      * @description: Get a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
      */
-    getAllCountries({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CountryListResponseSchema>;
+    getAllCountries({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CountryListResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -134,16 +134,18 @@ declare class Logistic {
      * @summary: Get Localities by Name Prefix
      * @description: Get localities that start with a specified prefix. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalitiesByPrefix/).
      */
-    getLocalitiesByPrefix({ pageNo, pageSize, q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetLocalities>;
+    getLocalitiesByPrefix({ companyId, pageNo, pageSize, q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocalities>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - The unique identifier of the company.
      * @param {number} [arg.pageSize] - Number of items per page.
      * @param {string} [arg.q] - Localities starting with the specified prefix.
      * @returns {Paginator<GetLocalities>}
      * @summary: Get Localities by Name Prefix
      * @description: Get localities that start with a specified prefix.
      */
-    getLocalitiesByPrefixPaginator({ pageSize, q }?: {
+    getLocalitiesByPrefixPaginator({ companyId, pageSize, q }?: {
+        companyId: number;
         pageSize?: number;
         q?: string;
     }): Paginator<GetLocalities>;
@@ -159,29 +161,38 @@ declare class Logistic {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PincodeApiResponseSchema>} - Success response
+     * @returns {Promise<PincodeApiResponse>} - Success response
      * @name getPincodeCity
      * @summary: Get Pincode API
      * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
      */
-    getPincodeCity({ pincode, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PincodeApiResponseSchema>;
+    getPincodeCity({ pincode, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PincodeApiResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ListViewResponseSchemaV2>} - Success response
+     * @returns {Promise<GetQCPromiseDetails>} - Success response
+     * @name getQCPromise
+     * @summary: Get QC promise
+     * @description: Get QC promises for the pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getQCPromise/).
+     */
+    getQCPromise({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetQCPromiseDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ListViewResponseV2>} - Success response
      * @name getZones
      * @summary: Shows zones defined at the application level
      * @description: Displays the list of zones defined at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getZones/).
      */
-    getZones({ companyId, applicationId, stage, type, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, storeUid, regionUid, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ListViewResponseSchemaV2>;
+    getZones({ companyId, applicationId, stage, type, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ListViewResponseV2>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ValidateAddressRequestSchema>} - Success response
+     * @returns {Promise<ValidateAddressRequest>} - Success response
      * @name validateAddress
      * @summary: Validate address
      * @description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/validateAddress/).
      */
-    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ValidateAddressRequestSchema>;
+    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ValidateAddressRequest>;
 }
 import Paginator = require("../../common/Paginator");

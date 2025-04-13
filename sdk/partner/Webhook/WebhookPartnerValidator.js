@@ -21,7 +21,7 @@ class WebhookValidator {
   static getDeliveryDetailInsights() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: WebhookModel.DeliveryDetailsPayload().required(),
+      body: WebhookModel.DeliveryDetailsRequest().required(),
     }).required();
   }
 
@@ -60,7 +60,7 @@ class WebhookValidator {
   static getInvalidEventList() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: WebhookModel.InvalidEventsPayload().required(),
+      body: WebhookModel.InvalidEventsRequest().required(),
     }).required();
   }
 
@@ -74,7 +74,7 @@ class WebhookValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       subscriberId: Joi.number().required(),
-      body: WebhookModel.SubscriberUpdate().required(),
+      body: WebhookModel.UpdateSubscriberRequest().required(),
     }).required();
   }
 }

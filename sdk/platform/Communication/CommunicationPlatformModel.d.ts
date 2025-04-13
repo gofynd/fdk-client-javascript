@@ -9,19 +9,19 @@ export = CommunicationPlatformModel;
  * @property {AppProvidersGlobalProviderRequestObjProvider} [otp]
  */
 /**
- * @typedef AppProvidersGlobalProviderReq
+ * @typedef AppProvidersGlobalProviderRequest
  * @property {AppProvidersGlobalProviderRequestObj} [email]
  * @property {AppProvidersGlobalProviderRequestObj} [sms]
  */
 /**
- * @typedef UpdateAppProvidersGlobalProviderResEmailSmsObj
+ * @typedef UpdateAppProvidersGlobalProviderResponseEmailSmsObj
  * @property {string} [default_provider]
  * @property {string} [otp_provider]
  */
 /**
- * @typedef UpdateAppProvidersGlobalProviderRes
- * @property {UpdateAppProvidersGlobalProviderResEmailSmsObj} [email]
- * @property {UpdateAppProvidersGlobalProviderResEmailSmsObj} [sms]
+ * @typedef UpdateAppProvidersGlobalProviderResponse
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [email]
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [sms]
  * @property {string} [_id]
  * @property {string} [slug]
  */
@@ -61,7 +61,7 @@ export = CommunicationPlatformModel;
  * @property {string} [expired_at]
  */
 /**
- * @typedef SendInstantRes
+ * @typedef SendInstantResponse
  * @property {boolean} [success]
  * @property {string} [provider]
  * @property {boolean} [response]
@@ -108,26 +108,26 @@ export = CommunicationPlatformModel;
  * @property {string} [to]
  */
 /**
- * @typedef SendSyncReq
+ * @typedef SendSyncRequest
  * @property {SendSyncData[]} [data]
  * @property {PayloadEmailStructure} [email]
  * @property {PayloadSmsStructure} [sms]
  */
 /**
- * @typedef EngineReq
- * @property {SendSyncReq} [payload]
+ * @typedef EngineRequest
+ * @property {SendSyncRequest} [payload]
  * @property {MetaStructure} [meta]
  */
 /**
- * @typedef EngineRes
+ * @typedef EngineResponse
  * @property {boolean} [success]
  */
 /**
- * @typedef EventSubscriptionsBulkUpdateReq
+ * @typedef EventSubscriptionsBulkUpdateRequest
  * @property {SubscriptionsObject[]} [subscriptions]
  */
 /**
- * @typedef EventSubscriptionsBulkUpdateRes
+ * @typedef EventSubscriptionsBulkUpdateResponse
  * @property {EventSubscriptionTemplate} [template]
  * @property {string} [_id]
  * @property {string} [application]
@@ -139,7 +139,7 @@ export = CommunicationPlatformModel;
  * @property {number} [__v]
  */
 /**
- * @typedef SubscriptionsObjectReq
+ * @typedef SubscriptionsObjectRequest
  * @property {string} [event]
  * @property {string} [slug]
  * @property {TemplateObject} [template]
@@ -575,20 +575,20 @@ export = CommunicationPlatformModel;
  * @property {Page} [page]
  */
 /**
- * @typedef TriggerJobRes
+ * @typedef TriggerJobResponse
  * @property {number} [status]
  */
 /**
- * @typedef TriggerJobReq
+ * @typedef TriggerJobRequest
  * @property {string} [job_id]
  */
 /**
- * @typedef GlobalVariablesGetRes
+ * @typedef GlobalVariablesGetResponse
  * @property {Object} [read_only]
  * @property {Object} [editable]
  */
 /**
- * @typedef GlobalVariablesPostRes
+ * @typedef GlobalVariablesPostResponse
  * @property {string} [_id]
  * @property {string} [category]
  * @property {string} [application]
@@ -974,7 +974,7 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { AppProvidersGlobalProviderRequestObjProvider, AppProvidersGlobalProviderRequestObj, AppProvidersGlobalProviderReq, UpdateAppProvidersGlobalProviderResEmailSmsObj, UpdateAppProvidersGlobalProviderRes, DefaultEmailProvidersFromAddresses, DefaultEmailProviders, PushtokenReq, PushtokenRes, SendInstantRes, MetaStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsStructure, SendSyncData, SendSyncReq, EngineReq, EngineRes, EventSubscriptionsBulkUpdateReq, EventSubscriptionsBulkUpdateRes, SubscriptionsObjectReq, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, TemplateKeys, EmailTemplate, SystemEmailTemplate, EmailTemplates, SubscribedSmsTemplates, SubscribedEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplatePushnotification, EventSubscriptionTemplate, EventSubscription, EventSubscriptionTemplateSmsObj, EventSubscriptionTemplateEmailObj, EventSubscriptionTemplateObj, EventSubscriptionObj, EventSubscriptions, TriggerJobRes, TriggerJobReq, GlobalVariablesGetRes, GlobalVariablesPostRes, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogSms, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, metaObj, SmsTemplateReq, Notification, SystemNotificationSetting, SystemNotificationUser, SystemNotification, SystemNotifications, Page, BasicDelete, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfigRateLimit, OtpConfiguration };
+    export { AppProvidersGlobalProviderRequestObjProvider, AppProvidersGlobalProviderRequestObj, AppProvidersGlobalProviderRequest, UpdateAppProvidersGlobalProviderResponseEmailSmsObj, UpdateAppProvidersGlobalProviderResponse, DefaultEmailProvidersFromAddresses, DefaultEmailProviders, PushtokenReq, PushtokenRes, SendInstantResponse, MetaStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsStructure, SendSyncData, SendSyncRequest, EngineRequest, EngineResponse, EventSubscriptionsBulkUpdateRequest, EventSubscriptionsBulkUpdateResponse, SubscriptionsObjectRequest, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, TemplateKeys, EmailTemplate, SystemEmailTemplate, EmailTemplates, SubscribedSmsTemplates, SubscribedEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplatePushnotification, EventSubscriptionTemplate, EventSubscription, EventSubscriptionTemplateSmsObj, EventSubscriptionTemplateEmailObj, EventSubscriptionTemplateObj, EventSubscriptionObj, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogSms, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, metaObj, SmsTemplateReq, Notification, SystemNotificationSetting, SystemNotificationUser, SystemNotification, SystemNotifications, Page, BasicDelete, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfigRateLimit, OtpConfiguration };
 }
 /** @returns {AppProvidersGlobalProviderRequestObjProvider} */
 declare function AppProvidersGlobalProviderRequestObjProvider(): AppProvidersGlobalProviderRequestObjProvider;
@@ -987,23 +987,23 @@ type AppProvidersGlobalProviderRequestObj = {
     transaction?: AppProvidersGlobalProviderRequestObjProvider;
     otp?: AppProvidersGlobalProviderRequestObjProvider;
 };
-/** @returns {AppProvidersGlobalProviderReq} */
-declare function AppProvidersGlobalProviderReq(): AppProvidersGlobalProviderReq;
-type AppProvidersGlobalProviderReq = {
+/** @returns {AppProvidersGlobalProviderRequest} */
+declare function AppProvidersGlobalProviderRequest(): AppProvidersGlobalProviderRequest;
+type AppProvidersGlobalProviderRequest = {
     email?: AppProvidersGlobalProviderRequestObj;
     sms?: AppProvidersGlobalProviderRequestObj;
 };
-/** @returns {UpdateAppProvidersGlobalProviderResEmailSmsObj} */
-declare function UpdateAppProvidersGlobalProviderResEmailSmsObj(): UpdateAppProvidersGlobalProviderResEmailSmsObj;
-type UpdateAppProvidersGlobalProviderResEmailSmsObj = {
+/** @returns {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} */
+declare function UpdateAppProvidersGlobalProviderResponseEmailSmsObj(): UpdateAppProvidersGlobalProviderResponseEmailSmsObj;
+type UpdateAppProvidersGlobalProviderResponseEmailSmsObj = {
     default_provider?: string;
     otp_provider?: string;
 };
-/** @returns {UpdateAppProvidersGlobalProviderRes} */
-declare function UpdateAppProvidersGlobalProviderRes(): UpdateAppProvidersGlobalProviderRes;
-type UpdateAppProvidersGlobalProviderRes = {
-    email?: UpdateAppProvidersGlobalProviderResEmailSmsObj;
-    sms?: UpdateAppProvidersGlobalProviderResEmailSmsObj;
+/** @returns {UpdateAppProvidersGlobalProviderResponse} */
+declare function UpdateAppProvidersGlobalProviderResponse(): UpdateAppProvidersGlobalProviderResponse;
+type UpdateAppProvidersGlobalProviderResponse = {
+    email?: UpdateAppProvidersGlobalProviderResponseEmailSmsObj;
+    sms?: UpdateAppProvidersGlobalProviderResponseEmailSmsObj;
     _id?: string;
     slug?: string;
 };
@@ -1046,9 +1046,9 @@ type PushtokenRes = {
     updated_at?: string;
     expired_at?: string;
 };
-/** @returns {SendInstantRes} */
-declare function SendInstantRes(): SendInstantRes;
-type SendInstantRes = {
+/** @returns {SendInstantResponse} */
+declare function SendInstantResponse(): SendInstantResponse;
+type SendInstantResponse = {
     success?: boolean;
     provider?: string;
     response?: boolean;
@@ -1102,32 +1102,32 @@ type SendSyncData = {
     country_code?: string;
     to?: string;
 };
-/** @returns {SendSyncReq} */
-declare function SendSyncReq(): SendSyncReq;
-type SendSyncReq = {
+/** @returns {SendSyncRequest} */
+declare function SendSyncRequest(): SendSyncRequest;
+type SendSyncRequest = {
     data?: SendSyncData[];
     email?: PayloadEmailStructure;
     sms?: PayloadSmsStructure;
 };
-/** @returns {EngineReq} */
-declare function EngineReq(): EngineReq;
-type EngineReq = {
-    payload?: SendSyncReq;
+/** @returns {EngineRequest} */
+declare function EngineRequest(): EngineRequest;
+type EngineRequest = {
+    payload?: SendSyncRequest;
     meta?: MetaStructure;
 };
-/** @returns {EngineRes} */
-declare function EngineRes(): EngineRes;
-type EngineRes = {
+/** @returns {EngineResponse} */
+declare function EngineResponse(): EngineResponse;
+type EngineResponse = {
     success?: boolean;
 };
-/** @returns {EventSubscriptionsBulkUpdateReq} */
-declare function EventSubscriptionsBulkUpdateReq(): EventSubscriptionsBulkUpdateReq;
-type EventSubscriptionsBulkUpdateReq = {
+/** @returns {EventSubscriptionsBulkUpdateRequest} */
+declare function EventSubscriptionsBulkUpdateRequest(): EventSubscriptionsBulkUpdateRequest;
+type EventSubscriptionsBulkUpdateRequest = {
     subscriptions?: SubscriptionsObject[];
 };
-/** @returns {EventSubscriptionsBulkUpdateRes} */
-declare function EventSubscriptionsBulkUpdateRes(): EventSubscriptionsBulkUpdateRes;
-type EventSubscriptionsBulkUpdateRes = {
+/** @returns {EventSubscriptionsBulkUpdateResponse} */
+declare function EventSubscriptionsBulkUpdateResponse(): EventSubscriptionsBulkUpdateResponse;
+type EventSubscriptionsBulkUpdateResponse = {
     template?: EventSubscriptionTemplate;
     _id?: string;
     application?: string;
@@ -1138,9 +1138,9 @@ type EventSubscriptionsBulkUpdateRes = {
     updated_at?: string;
     __v?: number;
 };
-/** @returns {SubscriptionsObjectReq} */
-declare function SubscriptionsObjectReq(): SubscriptionsObjectReq;
-type SubscriptionsObjectReq = {
+/** @returns {SubscriptionsObjectRequest} */
+declare function SubscriptionsObjectRequest(): SubscriptionsObjectRequest;
+type SubscriptionsObjectRequest = {
     event?: string;
     slug?: string;
     template?: TemplateObject;
@@ -1640,25 +1640,25 @@ type EventSubscriptions = {
     items?: EventSubscriptionObj[];
     page?: Page;
 };
-/** @returns {TriggerJobRes} */
-declare function TriggerJobRes(): TriggerJobRes;
-type TriggerJobRes = {
+/** @returns {TriggerJobResponse} */
+declare function TriggerJobResponse(): TriggerJobResponse;
+type TriggerJobResponse = {
     status?: number;
 };
-/** @returns {TriggerJobReq} */
-declare function TriggerJobReq(): TriggerJobReq;
-type TriggerJobReq = {
+/** @returns {TriggerJobRequest} */
+declare function TriggerJobRequest(): TriggerJobRequest;
+type TriggerJobRequest = {
     job_id?: string;
 };
-/** @returns {GlobalVariablesGetRes} */
-declare function GlobalVariablesGetRes(): GlobalVariablesGetRes;
-type GlobalVariablesGetRes = {
+/** @returns {GlobalVariablesGetResponse} */
+declare function GlobalVariablesGetResponse(): GlobalVariablesGetResponse;
+type GlobalVariablesGetResponse = {
     read_only?: any;
     editable?: any;
 };
-/** @returns {GlobalVariablesPostRes} */
-declare function GlobalVariablesPostRes(): GlobalVariablesPostRes;
-type GlobalVariablesPostRes = {
+/** @returns {GlobalVariablesPostResponse} */
+declare function GlobalVariablesPostResponse(): GlobalVariablesPostResponse;
+type GlobalVariablesPostResponse = {
     _id?: string;
     category?: string;
     application?: string;

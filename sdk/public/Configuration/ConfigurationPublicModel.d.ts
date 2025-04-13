@@ -1,6 +1,6 @@
 export = ConfigurationPublicModel;
 /**
- * @typedef ApplicationResponseSchema
+ * @typedef ApplicationResponse
  * @property {Application} [application]
  */
 /**
@@ -142,7 +142,7 @@ export = ConfigurationPublicModel;
  * @property {VersionDeviceOS} [os]
  */
 /**
- * @typedef VersionRequestSchema
+ * @typedef VersionRequest
  * @property {VersionApplication} application
  * @property {VersionDevice} device
  */
@@ -152,7 +152,7 @@ export = ConfigurationPublicModel;
  * @property {number} [interval]
  */
 /**
- * @typedef VersionResponseSchema
+ * @typedef VersionResponse
  * @property {string} type
  * @property {string} title
  * @property {string} description
@@ -162,11 +162,11 @@ export = ConfigurationPublicModel;
 declare class ConfigurationPublicModel {
 }
 declare namespace ConfigurationPublicModel {
-    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, VersionApplication, VersionDeviceOS, VersionDevice, VersionRequestSchema, VersionUpdateDialogue, VersionResponseSchema };
+    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, VersionApplication, VersionDeviceOS, VersionDevice, VersionRequest, VersionUpdateDialogue, VersionResponse };
 }
-/** @returns {ApplicationResponseSchema} */
-declare function ApplicationResponseSchema(): ApplicationResponseSchema;
-type ApplicationResponseSchema = {
+/** @returns {ApplicationResponse} */
+declare function ApplicationResponse(): ApplicationResponse;
+type ApplicationResponse = {
     application?: Application;
 };
 /** @returns {Domain} */
@@ -410,9 +410,9 @@ declare function VersionDevice(): VersionDevice;
 type VersionDevice = {
     os?: VersionDeviceOS;
 };
-/** @returns {VersionRequestSchema} */
-declare function VersionRequestSchema(): VersionRequestSchema;
-type VersionRequestSchema = {
+/** @returns {VersionRequest} */
+declare function VersionRequest(): VersionRequest;
+type VersionRequest = {
     application: VersionApplication;
     device: VersionDevice;
 };
@@ -422,9 +422,9 @@ type VersionUpdateDialogue = {
     type?: string;
     interval?: number;
 };
-/** @returns {VersionResponseSchema} */
-declare function VersionResponseSchema(): VersionResponseSchema;
-type VersionResponseSchema = {
+/** @returns {VersionResponse} */
+declare function VersionResponse(): VersionResponse;
+type VersionResponse = {
     type: string;
     title: string;
     description: string;

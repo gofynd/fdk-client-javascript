@@ -20,8 +20,7 @@ class Authorization {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<AuthorizationPartnerModel.ClientResponseSchema>} -
-   *   Success response
+   * @returns {Promise<AuthorizationPartnerModel.ClientResponse>} - Success response
    * @name createOrganizationClient
    * @summary: Create a new client for a specific organization
    * @description: Use this Api to create a new client for an organization - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/authorization/createOrganizationClient/).
@@ -77,10 +76,10 @@ class Authorization {
 
     const {
       error: res_error,
-    } = AuthorizationPartnerModel.ClientResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = AuthorizationPartnerModel.ClientResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -190,8 +189,7 @@ class Authorization {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<AuthorizationPartnerModel.ClientResponseSchema>} -
-   *   Success response
+   * @returns {Promise<AuthorizationPartnerModel.ClientResponse>} - Success response
    * @name getOrganizationClientById
    * @summary: Get organization OAuth client
    * @description: Get the organization oauth client by cliend id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/authorization/getOrganizationClientById/).
@@ -247,10 +245,10 @@ class Authorization {
 
     const {
       error: res_error,
-    } = AuthorizationPartnerModel.ClientResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = AuthorizationPartnerModel.ClientResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -272,8 +270,7 @@ class Authorization {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<AuthorizationPartnerModel.ClientResponseSchema>} -
-   *   Success response
+   * @returns {Promise<AuthorizationPartnerModel.ClientResponse>} - Success response
    * @name updateOrganizationClientById
    * @summary: Update Specific Oauth client of organization
    * @description: Use this Api to Update OAuth Client name and tags description - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/authorization/updateOrganizationClientById/).
@@ -331,10 +328,10 @@ class Authorization {
 
     const {
       error: res_error,
-    } = AuthorizationPartnerModel.ClientResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = AuthorizationPartnerModel.ClientResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -356,8 +353,7 @@ class Authorization {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<AuthorizationPartnerModel.ClientResponseSchema>} -
-   *   Success response
+   * @returns {Promise<AuthorizationPartnerModel.ClientResponse>} - Success response
    * @name deleteOrganizationOAuthClientById
    * @summary: Delete Organization OAuth client
    * @description: This endpoint allows you to delete a specific Organization OAuth client. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/authorization/deleteOrganizationOAuthClientById/).
@@ -413,10 +409,10 @@ class Authorization {
 
     const {
       error: res_error,
-    } = AuthorizationPartnerModel.ClientResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = AuthorizationPartnerModel.ClientResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

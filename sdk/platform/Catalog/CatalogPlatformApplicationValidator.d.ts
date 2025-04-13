@@ -7,7 +7,7 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef AddProductsInPriceFactoryByZoneIdParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreatePriceFactoryProductRequestSchema} body
+ * @property {CatalogPlatformModel.CreatePriceFactoryProductRequest} body
  */
 /**
  * @typedef ClearCollectionItemsPriorityParam
@@ -78,13 +78,13 @@ export = CatalogPlatformApplicationValidator;
  * @typedef CreateMerchandisingRuleHideActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequestSchema} body
+ * @property {CatalogPlatformModel.HideRequest} body
  */
 /**
  * @typedef CreateMerchandisingRulePinActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequestSchema} body
+ * @property {CatalogPlatformModel.PinRequest} body
  */
 /**
  * @typedef CreateMerchandisingRuleQueryParam
@@ -93,15 +93,15 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef CreateProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
  */
 /**
  * @typedef CreateSearchRerankParam
- * @property {CatalogPlatformModel.CreateSearchRerankRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchRerankRequest} body
  */
 /**
  * @typedef CreateSynonymsParam
@@ -168,7 +168,7 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef ExportProductsInPriceFactoryParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest} body
  */
 /** @typedef ExportSynonymsParam */
 /**
@@ -303,7 +303,7 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 /**
@@ -311,7 +311,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -329,8 +329,8 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationDepartmentListingParam
@@ -338,32 +338,31 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  */
 /**
  * @typedef GetApplicationFilterValuesParam
  * @property {string} filterKey - A `filter_key` is a filter key for a for which
  *   all the available filter values will returned. channel.
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  * @property {string} [collectionId] - A `collection_id` is a unique identifier
  *   for a particular collection. channel.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {string} [q] - The `q` parameter allows you to search and filter
- *   specific data within the filter options. It acts as a query keyword that
- *   can refine the results by matching relevant filter values, such as a
- *   category name or any other applicable filter criteria.
+ * @property {string} [q] - Get Values filtered by q string
  */
 /**
  * @typedef GetApplicationProductsParam
@@ -373,8 +372,9 @@ export = CatalogPlatformApplicationValidator;
  *   filtered from filter parameters will be passed in **f** parameter in this
  *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
  *   details. This flag is used to fetch all filters
  * @property {boolean} [isDependent] - This query parameter is used to get the
@@ -421,14 +421,14 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetCatalogConfigurationParam */
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 /**
  * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 /**
  * @typedef GetCollectionDetailParam
@@ -545,7 +545,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   "v1.0/products/"
+ *   **v1.0/products/**
  */
 /**
  * @typedef GetProductsInPriceFactoryByZoneIdParam
@@ -605,7 +605,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef ProcessProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
  * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 /**
  * @typedef SampleBulkSynonymsFileParam
@@ -619,7 +619,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
+ * @property {CatalogPlatformModel.AllowSingleRequest} body
  */
 /**
  * @typedef UpdateAppBrandParam
@@ -628,7 +628,8 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppCategoryParam
- * @property {number} categoryUid - Category id for which the custom_json is associated.
+ * @property {number} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
@@ -674,7 +675,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
+ * @property {CatalogPlatformModel.DefaultKeyRequest} body
  */
 /**
  * @typedef UpdateGroupConfigurationParam
@@ -690,7 +691,7 @@ export = CatalogPlatformApplicationValidator;
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
- * @property {CatalogPlatformModel.AppConfigurationsFilterResponseSchema} body
+ * @property {CatalogPlatformModel.AppConfigurationsFilterResponse} body
  */
 /**
  * @typedef UpdateMerchandisingRuleBoostActionParam
@@ -708,13 +709,13 @@ export = CatalogPlatformApplicationValidator;
  * @typedef UpdateMerchandisingRuleHideActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequestSchema} body
+ * @property {CatalogPlatformModel.HideRequest} body
  */
 /**
  * @typedef UpdateMerchandisingRulePinActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequestSchema} body
+ * @property {CatalogPlatformModel.PinRequest} body
  */
 /**
  * @typedef UpdateMerchandisingRuleQueryParam
@@ -724,7 +725,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
  */
 /**
  * @typedef UpdateSearchKeywordsParam
@@ -736,7 +737,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef UpdateSearchRerankConfigurationParam
  * @property {string} id - An `id` is the identifier for a particular search
  *   rerank configuration. channel.
- * @property {CatalogPlatformModel.UpdateSearchRerankRequestSchema} body
+ * @property {CatalogPlatformModel.UpdateSearchRerankRequest} body
  */
 /**
  * @typedef UpdateSynonymsParam
@@ -756,7 +757,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef ValidateProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
  * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 declare class CatalogPlatformApplicationValidator {
     /** @returns {AddCollectionItemsParam} */
@@ -1017,7 +1018,7 @@ type AddProductsInPriceFactoryByZoneIdParam = {
      * - An `id` is a unique identifier for a particular price factory.
      */
     id: string;
-    body: CatalogPlatformModel.CreatePriceFactoryProductRequestSchema;
+    body: CatalogPlatformModel.CreatePriceFactoryProductRequest;
 };
 type ClearCollectionItemsPriorityParam = {
     /**
@@ -1094,7 +1095,7 @@ type CreateMerchandisingRuleHideActionParam = {
      * unique identifier for a particular merchandising rule.
      */
     merchandisingRuleId: string;
-    body: CatalogPlatformModel.HideRequestSchema;
+    body: CatalogPlatformModel.HideRequest;
 };
 type CreateMerchandisingRulePinActionParam = {
     /**
@@ -1102,7 +1103,7 @@ type CreateMerchandisingRulePinActionParam = {
      * unique identifier for a particular merchandising rule.
      */
     merchandisingRuleId: string;
-    body: CatalogPlatformModel.PinRequestSchema;
+    body: CatalogPlatformModel.PinRequest;
 };
 type CreateMerchandisingRuleQueryParam = {
     body: CatalogPlatformModel.MerchandisingRuleQueryPost;
@@ -1112,13 +1113,13 @@ type CreateProductPriceFactoryBulkJobParam = {
      * - An `id` is a unique identifier for a particular price factory.
      */
     id: string;
-    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema;
+    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest;
 };
 type CreateSearchConfigurationParam = {
-    body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema;
+    body: CatalogPlatformModel.CreateSearchConfigurationRequest;
 };
 type CreateSearchRerankParam = {
-    body: CatalogPlatformModel.CreateSearchRerankRequestSchema;
+    body: CatalogPlatformModel.CreateSearchRerankRequest;
 };
 type CreateSynonymsParam = {
     body: CatalogPlatformModel.SynonymCreateRequestSchema;
@@ -1210,7 +1211,7 @@ type ExportProductsInPriceFactoryParam = {
      * - An `id` is a unique identifier for a particular price factory.
      */
     id: string;
-    body: CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequestSchema;
+    body: CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest;
 };
 type GetAllCollectionsParam = {
     /**
@@ -1512,7 +1513,7 @@ type GetApplicationBrandListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
+     * - Search query with brand name. Use this parameter to
      * search brands by brand name.
      */
     q?: string;
@@ -1522,7 +1523,7 @@ type GetApplicationBrandsParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
     /**
@@ -1563,8 +1564,8 @@ type GetApplicationCategoryListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search brands by brand name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
@@ -1580,16 +1581,17 @@ type GetApplicationDepartmentListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search department by name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
 type GetApplicationFilterKeysParam = {
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in "c"
-     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      */
     c?: string;
 };
@@ -1601,8 +1603,9 @@ type GetApplicationFilterValuesParam = {
     filterKey: string;
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in "c"
-     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      */
     c?: string;
     /**
@@ -1621,10 +1624,7 @@ type GetApplicationFilterValuesParam = {
      */
     pageSize?: number;
     /**
-     * - The `q` parameter allows you to search and filter
-     * specific data within the filter options. It acts as a query keyword that
-     * can refine the results by matching relevant filter values, such as a
-     * category name or any other applicable filter criteria.
+     * - Get Values filtered by q string
      */
     q?: string;
 };
@@ -1642,8 +1642,9 @@ type GetApplicationProductsParam = {
     f?: string;
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in "c"
-     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      */
     c?: string;
     /**
@@ -1744,7 +1745,7 @@ type GetAutocompletePreviewParam = {
 };
 type GetCatalogInsightsParam = {
     /**
-     * - Brand slug
+     * - Brand slug that is to be searched.
      */
     brand?: string;
 };
@@ -1753,7 +1754,7 @@ type GetCategoriesParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
 };
@@ -1963,7 +1964,7 @@ type GetProductDetailBySlugParam = {
     /**
      * - The unique identifier of a product. i.e; `slug` of
      * a product. You can retrieve these from the APIs that list products like
-     * "v1.0/products/"
+     * **v1.0/products/**
      */
     slug: string;
 };
@@ -2082,7 +2083,7 @@ type ProcessProductPriceFactoryBulkJobParam = {
      * - A `job_id` is a unique identifier for a particular bulk job.
      */
     jobId: string;
-    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema;
+    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest;
 };
 type SampleBulkSynonymsFileParam = {
     /**
@@ -2099,7 +2100,7 @@ type SaveMerchandisingRulesParam = {
     body: CatalogPlatformModel.MerchandisingRuleSave;
 };
 type UpdateAllowSingleParam = {
-    body: CatalogPlatformModel.AllowSingleRequestSchema;
+    body: CatalogPlatformModel.AllowSingleRequest;
 };
 type UpdateAppBrandParam = {
     /**
@@ -2110,7 +2111,8 @@ type UpdateAppBrandParam = {
 };
 type UpdateAppCategoryParam = {
     /**
-     * - Category id for which the custom_json is associated.
+     * - A `category id` is a unique identifier for a
+     * particular category.
      */
     categoryUid: number;
     body: CatalogPlatformModel.ApplicationCategoryJson;
@@ -2167,7 +2169,7 @@ type UpdateCollectionParam = {
     body: CatalogPlatformModel.UpdateCollection;
 };
 type UpdateDefaultSortParam = {
-    body: CatalogPlatformModel.DefaultKeyRequestSchema;
+    body: CatalogPlatformModel.DefaultKeyRequest;
 };
 type UpdateGroupConfigurationParam = {
     /**
@@ -2193,7 +2195,7 @@ type UpdateListingConfigurationParam = {
      * particular configuration.
      */
     configId: string;
-    body: CatalogPlatformModel.AppConfigurationsFilterResponseSchema;
+    body: CatalogPlatformModel.AppConfigurationsFilterResponse;
 };
 type UpdateMerchandisingRuleBoostActionParam = {
     /**
@@ -2217,7 +2219,7 @@ type UpdateMerchandisingRuleHideActionParam = {
      * unique identifier for a particular merchandising rule.
      */
     merchandisingRuleId: string;
-    body: CatalogPlatformModel.HideRequestSchema;
+    body: CatalogPlatformModel.HideRequest;
 };
 type UpdateMerchandisingRulePinActionParam = {
     /**
@@ -2225,7 +2227,7 @@ type UpdateMerchandisingRulePinActionParam = {
      * unique identifier for a particular merchandising rule.
      */
     merchandisingRuleId: string;
-    body: CatalogPlatformModel.PinRequestSchema;
+    body: CatalogPlatformModel.PinRequest;
 };
 type UpdateMerchandisingRuleQueryParam = {
     /**
@@ -2236,7 +2238,7 @@ type UpdateMerchandisingRuleQueryParam = {
     body: CatalogPlatformModel.MerchandisingRuleQueryPost;
 };
 type UpdateSearchConfigurationParam = {
-    body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema;
+    body: CatalogPlatformModel.UpdateSearchConfigurationRequest;
 };
 type UpdateSearchKeywordsParam = {
     /**
@@ -2252,7 +2254,7 @@ type UpdateSearchRerankConfigurationParam = {
      * rerank configuration. channel.
      */
     id: string;
-    body: CatalogPlatformModel.UpdateSearchRerankRequestSchema;
+    body: CatalogPlatformModel.UpdateSearchRerankRequest;
 };
 type UpdateSynonymsParam = {
     /**
@@ -2277,7 +2279,7 @@ type ValidateProductPriceFactoryBulkJobParam = {
      * - A `job_id` is a unique identifier for a particular bulk job.
      */
     jobId: string;
-    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema;
+    body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest;
 };
 type DeleteSearchConfigurationParam = any;
 type ExportSynonymsParam = any;

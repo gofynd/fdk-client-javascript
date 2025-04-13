@@ -1,29 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef CurrencyExchangeResponseV2
- * @property {string} base - The 3-letter ISO 4217 code representing the base currency.
- * @property {string} base_currency_name - The name of the base currency.
- * @property {number} ttl_seconds - Time in seconds for which the exchange rates
- *   are valid.
- * @property {CurrencyExchangeItem[]} items - List of exchange rates and currency details.
- * @property {number} total - Total number of currency exchange items.
- */
-
-/**
- * @typedef CurrencyExchangeItem
- * @property {string} currency_code - 3-letter ISO 4217 exchange currency code.
- * @property {string} name - Name of the exchange currency
- * @property {number} rate - Exchange rate of the currency with respect to the
- *   base currency.
- * @property {string} country_code - ISO 3166 country code.
- * @property {string} country_name - Name of the country using this currency.
- * @property {string} subunit - The name of the subunit for the currency.
- * @property {number} decimal_digits - Number of decimal digits the currency supports.
- * @property {string} symbol - The symbol of the currency.
- */
-
-/**
  * @typedef ApplicationInventory
  * @property {AppInventoryConfig} [inventory]
  * @property {AuthenticationConfig} [authentication]
@@ -88,6 +65,10 @@ const Joi = require("joi");
  * @property {number[]} [company_store] - List of selling locations whose
  *   inventory is available to the sales channel for displaying on the website
  * @property {number} [company_id]
+ * @property {boolean} [enable_zone_overlapping] - Power product listing with
+ *   overlapping zones
+ * @property {boolean} [sort_popular_first] - Give preference to popularity over
+ *   score in product listing sort
  */
 
 /**
@@ -295,19 +276,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyByBrandsRequestSchema
+ * @typedef CompanyByBrandsRequest
  * @property {number} brands - Brand UID
  * @property {string} [search_text] - A search field for finding a company by its name
  */
 
 /**
- * @typedef CompanyByBrandsResponseSchema
+ * @typedef CompanyByBrandsResponse
  * @property {BrandCompanyInfo[]} [items]
  * @property {Page} [page]
  */
 
 /**
- * @typedef StoreByBrandsRequestSchema
+ * @typedef StoreByBrandsRequest
  * @property {number} [company_id] - Current company ID for current company
  *   stores only. Don't send in case cross-selling (franchise) is enabled.
  * @property {number} brands - Brand UID
@@ -315,7 +296,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreByBrandsResponseSchema
+ * @typedef StoreByBrandsResponse
  * @property {BrandStoreInfo[]} [items]
  * @property {Page} [page]
  */
@@ -343,12 +324,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BrandsByCompanyResponseSchema
+ * @typedef BrandsByCompanyResponse
  * @property {CompanyBrandInfo[]} [brands]
  */
 
 /**
- * @typedef ValidationFailedResponseSchema
+ * @typedef ValidationFailedResponse
  * @property {string} [message] - Response message for failed validation
  * @property {Object[]} [errors] - Response message for failed validation
  */
@@ -383,22 +364,88 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateApplicationRequestSchema
+ * @typedef CreateApplicationRequest
  * @property {App} [app]
  * @property {ApplicationInventory} [configuration]
  * @property {AppDomain} [domain]
  */
 
 /**
- * @typedef CreateAppResponseSchema
+ * @typedef CreateAppResponse
  * @property {Application} [app]
  * @property {ApplicationInventory} [configuration]
  */
 
 /**
- * @typedef ApplicationsResponseSchema
+ * @typedef ApplicationsResponse
  * @property {Application[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef MobileAppConfiguration
+ * @property {boolean} [is_active] - Indicates the availability of the mobile build
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for mobile application configuration
+ * @property {string} [app_name] - Name of the mobile app
+ * @property {LandingImage} [landing_image]
+ * @property {SplashImage} [splash_image]
+ * @property {string} [application] - Application ID of the current sales channel
+ * @property {string} [platform_type] - Device platform for which the mobile app
+ *   was built, e.g. android, ios.
+ * @property {string} [created_at] - ISO 8601 timestamp of application
+ *   configuration creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ * @property {string} [package_name] - Shows bundle identifier if device
+ *   platform is iOS, and directory of the app if device platform is Android
+ */
+
+/**
+ * @typedef LandingImage
+ * @property {string} [aspect_ratio] - Width-to-height ratio of landing image
+ * @property {string} [secure_url] - URL where the landing image is hosted
+ */
+
+/**
+ * @typedef SplashImage
+ * @property {string} [aspect_ratio] - Width-to-height ratio of splash image
+ * @property {string} [secure_url] - URL where the splash image is hosted
+ */
+
+/**
+ * @typedef MobileAppConfigRequest
+ * @property {string} [app_name] - Name of the mobile app
+ * @property {LandingImage} [landing_image]
+ * @property {SplashImage} [splash_image]
+ * @property {boolean} [is_active] - Shows update in mobile app config is active or not
+ */
+
+/**
+ * @typedef BuildVersionHistory
+ * @property {BuildVersion[]} [versions]
+ * @property {string} [latest_available_version_name] - Latest version number of
+ *   the mobile build, in dot-decimal notation
+ */
+
+/**
+ * @typedef BuildVersion
+ * @property {string} [_id] - 24-digit Mongo Object ID
+ * @property {string} [application] - Application ID of the sales channel
+ * @property {string} [platform_type] - Device platform for which the mobile app
+ *   was built, e.g. android, ios.
+ * @property {string} [build_status] - Current progress of the mobile build,
+ *   e.g. pending, cancelled, failed, success
+ * @property {string} [version_name] - Version number of the mobile build, in
+ *   dot-decimal notation
+ * @property {number} [version_code] - A positive integer used as an internal
+ *   version number
+ * @property {LandingImage} [download_url]
+ * @property {string} [created_at] - ISO 8601 timestamp of app creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  */
 
 /**
@@ -440,7 +487,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainAddRequestSchema
+ * @typedef DomainAddRequest
  * @property {DomainAdd} [domain]
  */
 
@@ -459,7 +506,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainsResponseSchema
+ * @typedef DomainsResponse
  * @property {Domain[]} [domains]
  */
 
@@ -477,14 +524,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateDomainTypeRequestSchema
+ * @typedef UpdateDomainTypeRequest
  * @property {UpdateDomain} [domain]
  * @property {string} [action] - Shows domain is made primary domain for the
  *   sales channel or shorlink is created for the sales channel domain
  */
 
 /**
- * @typedef DomainStatusRequestSchema
+ * @typedef DomainStatusRequest
  * @property {string} [domain_url] - URL of the domain, e.g. uniket.hostx0.de
  */
 
@@ -496,17 +543,15 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainStatusResponseSchema
+ * @typedef DomainStatusResponse
  * @property {boolean} [connected] - Check if domain is live and mapped to
  *   appropriate IP of Fynd Servers
  * @property {DomainStatus[]} [status]
  */
 
 /**
- * @typedef DomainSuggestionsRequestSchema
+ * @typedef DomainSuggestionsRequest
  * @property {string} [domain_url] - Domain url
- * @property {boolean} [is_custom_domain] - Get suggestions for custom domains
- *   or Fynd domains
  */
 
 /**
@@ -521,18 +566,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainSuggestionsResponseSchema
+ * @typedef DomainSuggestionsResponse
  * @property {DomainSuggestion[]} [domains] - Domain URL
  */
 
 /**
- * @typedef SuccessMessageResponseSchema
+ * @typedef SuccessMessageResponse
  * @property {boolean} [success] - Shows whether domain was deleted successfully
  * @property {string} [message] - Success message shown to the user (in a string format)
  */
 
 /**
- * @typedef GetIntegrationsOptInsResponseSchema
+ * @typedef GetIntegrationsOptInsResponse
  * @property {IntegrationOptIn[]} [items]
  * @property {Page} [page]
  */
@@ -616,6 +661,37 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Integration
+ * @property {Validators} [validators]
+ * @property {string} [description] - Basic description about the integration
+ * @property {string} [description_html] - Basic HTML description about the integration
+ * @property {Object} [constants]
+ * @property {string[]} [companies]
+ * @property {string[]} [support]
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the integration
+ * @property {string} [name] - Name of the integration, e.g. SAP RBL Integration
+ * @property {string} [slug] - Name of the integration, e.g. SAP RBL Integration
+ * @property {IntegrationMeta[]} [meta]
+ * @property {string} [icon] - Hosted URL of the icon image
+ * @property {boolean} [hidden]
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of the user who created the integration
+ * @property {string} [created_at] - ISO 8601 timestamp of integration creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of integration updation
+ * @property {string} [token] - Randomly generated fixed-length string for opted
+ *   integration. It is auto-generated. It would never change once it is generated.
+ * @property {string} [secret] - Randomly generated fixed-length string for
+ *   opted integration. It is auto-generated. It would never change once it is generated.
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ */
+
+/**
+ * @typedef IntegrationConfigResponse
+ * @property {IntegrationLevel[]} [items]
+ */
+
+/**
  * @typedef IntegrationLevel
  * @property {boolean} [opted] - Shows this integration is opted or not opted
  *   for the current company
@@ -642,7 +718,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateIntegrationLevelRequestSchema
+ * @typedef UpdateIntegrationLevelRequest
  * @property {IntegrationLevel[]} [items]
  */
 
@@ -727,7 +803,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompaniesResponseSchema
+ * @typedef CompaniesResponse
  * @property {AppInventoryCompanies[]} [items]
  * @property {Page} [page]
  */
@@ -741,14 +817,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoresResponseSchema
+ * @typedef StoresResponse
  * @property {AppInventoryStores[]} [items]
  * @property {Page} [page]
  */
 
 /**
- * @typedef ListStoreResponseSchemaSchema
+ * @typedef ListStoreResponse
  * @property {AppInventoryStores[]} [stores]
+ */
+
+/**
+ * @typedef ArrayStoreResponse
+ * @property {AppInventoryStores[]} [data]
  */
 
 /**
@@ -773,7 +854,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FilterOrderingStoreRequestSchemaSchema
+ * @typedef FilterOrderingStoreRequest
  * @property {boolean} [all_stores] - Allow all stores from the ordering stores
  * @property {number[]} [deployed_stores]
  * @property {string} [q] - Store code or name of the ordering store
@@ -800,7 +881,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderingStoreSelectRequestSchema
+ * @typedef OrderingStoreSelectRequest
  * @property {OrderingStoreSelect} ordering_store
  */
 
@@ -834,7 +915,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OptedApplicationResponseSchema
+ * @typedef OptedApplicationResponse
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
@@ -891,7 +972,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TokenResponseSchema
+ * @typedef TokenResponse
  * @property {Tokens} [tokens]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the token
@@ -1246,12 +1327,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppFeatureRequestSchema
+ * @typedef AppFeatureRequest
  * @property {AppFeature} [feature]
  */
 
 /**
- * @typedef AppFeatureResponseSchema
+ * @typedef AppFeatureResponse
  * @property {AppFeature} [feature]
  */
 
@@ -1270,9 +1351,8 @@ const Joi = require("joi");
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. â‚¹
  * @property {string} [country_name]
- * @property {string} [subunit]
  * @property {string} [country_code]
  */
 
@@ -1364,7 +1444,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvalidPayloadRequestSchema
+ * @typedef InvalidPayloadRequest
  * @property {string} [message] - Error message when request body payload is improper
  * @property {boolean} [success] - Flag for required not successfull.
  * @property {Object} [domain] - All errors related to domin
@@ -1607,12 +1687,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CurrenciesResponseSchema
+ * @typedef CurrenciesResponse
  * @property {Currency[]} [items]
  */
 
 /**
- * @typedef AppCurrencyResponseSchema
+ * @typedef AppCurrencyResponse
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the currency configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
@@ -1685,7 +1765,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PlatformVersionRequestSchema
+ * @typedef PlatformVersionRequest
  * @property {string} app_code_name
  * @property {string} app_name
  * @property {string} force_version
@@ -1711,7 +1791,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderingStoresResponseSchema
+ * @typedef OrderingStoresResponse
  * @property {Page} [page]
  * @property {OrderingStore[]} [items]
  */
@@ -1756,12 +1836,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UrlRedirectionResponseSchema
+ * @typedef UrlRedirectionResponse
  * @property {UrlRedirection[]} [redirections]
  */
 
 /**
- * @typedef UrlRedirectionRequestSchema
+ * @typedef UrlRedirectionRequest
  * @property {UrlRedirection} [redirection]
  */
 
@@ -1774,12 +1854,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreForConfigurationRequestSchema
+ * @typedef StoreForConfigurationRequest
  * @property {AppStoreRules[]} [conf]
  */
 
 /**
- * @typedef DomainOptionsResponseSchema
+ * @typedef DomainOptionsResponse
  * @property {DomainType[]} [domain_types]
  * @property {string[]} [network_ips]
  * @property {string[]} [network_cnames]
@@ -1799,49 +1879,16 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreRequestSchema
+ * @typedef StoreRequest
  * @property {number[]} [companies]
  */
 
 /**
- * @typedef StoreResponseSchema
+ * @typedef StoreResponse
  * @property {number[]} [data]
  */
 
-/**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-
 class ConfigurationPlatformModel {
-  /** @returns {CurrencyExchangeResponseV2} */
-  static CurrencyExchangeResponseV2() {
-    return Joi.object({
-      base: Joi.string().allow("").required(),
-      base_currency_name: Joi.string().allow("").required(),
-      ttl_seconds: Joi.number().required(),
-      items: Joi.array()
-        .items(ConfigurationPlatformModel.CurrencyExchangeItem())
-        .required(),
-      total: Joi.number().required(),
-    });
-  }
-
-  /** @returns {CurrencyExchangeItem} */
-  static CurrencyExchangeItem() {
-    return Joi.object({
-      currency_code: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      rate: Joi.number().required(),
-      country_code: Joi.string().allow("").required(),
-      country_name: Joi.string().allow("").required(),
-      subunit: Joi.string().allow("").required(),
-      decimal_digits: Joi.number().required(),
-      symbol: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ApplicationInventory} */
   static ApplicationInventory() {
     return Joi.object({
@@ -1906,6 +1953,8 @@ class ConfigurationPlatformModel {
       image: Joi.array().items(Joi.string().allow("")),
       company_store: Joi.array().items(Joi.number()),
       company_id: Joi.number(),
+      enable_zone_overlapping: Joi.boolean(),
+      sort_popular_first: Joi.boolean(),
     });
   }
 
@@ -2140,24 +2189,24 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CompanyByBrandsRequestSchema} */
-  static CompanyByBrandsRequestSchema() {
+  /** @returns {CompanyByBrandsRequest} */
+  static CompanyByBrandsRequest() {
     return Joi.object({
       brands: Joi.number().required(),
       search_text: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CompanyByBrandsResponseSchema} */
-  static CompanyByBrandsResponseSchema() {
+  /** @returns {CompanyByBrandsResponse} */
+  static CompanyByBrandsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.BrandCompanyInfo()),
       page: ConfigurationPlatformModel.Page(),
     });
   }
 
-  /** @returns {StoreByBrandsRequestSchema} */
-  static StoreByBrandsRequestSchema() {
+  /** @returns {StoreByBrandsRequest} */
+  static StoreByBrandsRequest() {
     return Joi.object({
       company_id: Joi.number(),
       brands: Joi.number().required(),
@@ -2165,8 +2214,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoreByBrandsResponseSchema} */
-  static StoreByBrandsResponseSchema() {
+  /** @returns {StoreByBrandsResponse} */
+  static StoreByBrandsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.BrandStoreInfo()),
       page: ConfigurationPlatformModel.Page(),
@@ -2196,15 +2245,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {BrandsByCompanyResponseSchema} */
-  static BrandsByCompanyResponseSchema() {
+  /** @returns {BrandsByCompanyResponse} */
+  static BrandsByCompanyResponse() {
     return Joi.object({
       brands: Joi.array().items(ConfigurationPlatformModel.CompanyBrandInfo()),
     });
   }
 
-  /** @returns {ValidationFailedResponseSchema} */
-  static ValidationFailedResponseSchema() {
+  /** @returns {ValidationFailedResponse} */
+  static ValidationFailedResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
       errors: Joi.array().items(Joi.any()),
@@ -2246,8 +2295,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CreateApplicationRequestSchema} */
-  static CreateApplicationRequestSchema() {
+  /** @returns {CreateApplicationRequest} */
+  static CreateApplicationRequest() {
     return Joi.object({
       app: ConfigurationPlatformModel.App(),
       configuration: ConfigurationPlatformModel.ApplicationInventory(),
@@ -2255,19 +2304,86 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CreateAppResponseSchema} */
-  static CreateAppResponseSchema() {
+  /** @returns {CreateAppResponse} */
+  static CreateAppResponse() {
     return Joi.object({
       app: ConfigurationPlatformModel.Application(),
       configuration: ConfigurationPlatformModel.ApplicationInventory(),
     });
   }
 
-  /** @returns {ApplicationsResponseSchema} */
-  static ApplicationsResponseSchema() {
+  /** @returns {ApplicationsResponse} */
+  static ApplicationsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.Application()),
       page: ConfigurationPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {MobileAppConfiguration} */
+  static MobileAppConfiguration() {
+    return Joi.object({
+      is_active: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      app_name: Joi.string().allow(""),
+      landing_image: ConfigurationPlatformModel.LandingImage(),
+      splash_image: ConfigurationPlatformModel.SplashImage(),
+      application: Joi.string().allow(""),
+      platform_type: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      __v: Joi.number(),
+      package_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {LandingImage} */
+  static LandingImage() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SplashImage} */
+  static SplashImage() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MobileAppConfigRequest} */
+  static MobileAppConfigRequest() {
+    return Joi.object({
+      app_name: Joi.string().allow(""),
+      landing_image: ConfigurationPlatformModel.LandingImage(),
+      splash_image: ConfigurationPlatformModel.SplashImage(),
+      is_active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BuildVersionHistory} */
+  static BuildVersionHistory() {
+    return Joi.object({
+      versions: Joi.array().items(ConfigurationPlatformModel.BuildVersion()),
+      latest_available_version_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BuildVersion} */
+  static BuildVersion() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      platform_type: Joi.string().allow(""),
+      build_status: Joi.string().allow(""),
+      version_name: Joi.string().allow(""),
+      version_code: Joi.number(),
+      download_url: ConfigurationPlatformModel.LandingImage(),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -2304,8 +2420,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainAddRequestSchema} */
-  static DomainAddRequestSchema() {
+  /** @returns {DomainAddRequest} */
+  static DomainAddRequest() {
     return Joi.object({
       domain: ConfigurationPlatformModel.DomainAdd(),
     });
@@ -2324,8 +2440,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainsResponseSchema} */
-  static DomainsResponseSchema() {
+  /** @returns {DomainsResponse} */
+  static DomainsResponse() {
     return Joi.object({
       domains: Joi.array().items(ConfigurationPlatformModel.Domain()),
     });
@@ -2342,16 +2458,16 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {UpdateDomainTypeRequestSchema} */
-  static UpdateDomainTypeRequestSchema() {
+  /** @returns {UpdateDomainTypeRequest} */
+  static UpdateDomainTypeRequest() {
     return Joi.object({
       domain: ConfigurationPlatformModel.UpdateDomain(),
       action: Joi.string().allow(""),
     });
   }
 
-  /** @returns {DomainStatusRequestSchema} */
-  static DomainStatusRequestSchema() {
+  /** @returns {DomainStatusRequest} */
+  static DomainStatusRequest() {
     return Joi.object({
       domain_url: Joi.string().allow(""),
     });
@@ -2365,19 +2481,18 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainStatusResponseSchema} */
-  static DomainStatusResponseSchema() {
+  /** @returns {DomainStatusResponse} */
+  static DomainStatusResponse() {
     return Joi.object({
       connected: Joi.boolean(),
       status: Joi.array().items(ConfigurationPlatformModel.DomainStatus()),
     });
   }
 
-  /** @returns {DomainSuggestionsRequestSchema} */
-  static DomainSuggestionsRequestSchema() {
+  /** @returns {DomainSuggestionsRequest} */
+  static DomainSuggestionsRequest() {
     return Joi.object({
       domain_url: Joi.string().allow(""),
-      is_custom_domain: Joi.boolean(),
     });
   }
 
@@ -2392,23 +2507,23 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainSuggestionsResponseSchema} */
-  static DomainSuggestionsResponseSchema() {
+  /** @returns {DomainSuggestionsResponse} */
+  static DomainSuggestionsResponse() {
     return Joi.object({
       domains: Joi.array().items(ConfigurationPlatformModel.DomainSuggestion()),
     });
   }
 
-  /** @returns {SuccessMessageResponseSchema} */
-  static SuccessMessageResponseSchema() {
+  /** @returns {SuccessMessageResponse} */
+  static SuccessMessageResponse() {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {GetIntegrationsOptInsResponseSchema} */
-  static GetIntegrationsOptInsResponseSchema() {
+  /** @returns {GetIntegrationsOptInsResponse} */
+  static GetIntegrationsOptInsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.IntegrationOptIn()),
       page: ConfigurationPlatformModel.Page(),
@@ -2501,6 +2616,37 @@ class ConfigurationPlatformModel {
     });
   }
 
+  /** @returns {Integration} */
+  static Integration() {
+    return Joi.object({
+      validators: ConfigurationPlatformModel.Validators(),
+      description: Joi.string().allow(""),
+      description_html: Joi.string().allow(""),
+      constants: Joi.any(),
+      companies: Joi.array().items(Joi.string().allow("")),
+      support: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      meta: Joi.array().items(ConfigurationPlatformModel.IntegrationMeta()),
+      icon: Joi.string().allow(""),
+      hidden: Joi.boolean(),
+      owner: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      token: Joi.string().allow(""),
+      secret: Joi.string().allow(""),
+      __v: Joi.number(),
+    });
+  }
+
+  /** @returns {IntegrationConfigResponse} */
+  static IntegrationConfigResponse() {
+    return Joi.object({
+      items: Joi.array().items(ConfigurationPlatformModel.IntegrationLevel()),
+    });
+  }
+
   /** @returns {IntegrationLevel} */
   static IntegrationLevel() {
     return Joi.object({
@@ -2517,14 +2663,14 @@ class ConfigurationPlatformModel {
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
       __v: Joi.number(),
-      data: Joi.object().pattern(/\S/, Joi.any()),
+      data: Joi.any(),
       success: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {UpdateIntegrationLevelRequestSchema} */
-  static UpdateIntegrationLevelRequestSchema() {
+  /** @returns {UpdateIntegrationLevelRequest} */
+  static UpdateIntegrationLevelRequest() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.IntegrationLevel()),
     });
@@ -2614,8 +2760,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CompaniesResponseSchema} */
-  static CompaniesResponseSchema() {
+  /** @returns {CompaniesResponse} */
+  static CompaniesResponse() {
     return Joi.object({
       items: Joi.array().items(
         ConfigurationPlatformModel.AppInventoryCompanies()
@@ -2633,20 +2779,27 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoresResponseSchema} */
-  static StoresResponseSchema() {
+  /** @returns {StoresResponse} */
+  static StoresResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.AppInventoryStores()),
       page: ConfigurationPlatformModel.Page(),
     });
   }
 
-  /** @returns {ListStoreResponseSchemaSchema} */
-  static ListStoreResponseSchemaSchema() {
+  /** @returns {ListStoreResponse} */
+  static ListStoreResponse() {
     return Joi.object({
       stores: Joi.array().items(
         ConfigurationPlatformModel.AppInventoryStores()
       ),
+    });
+  }
+
+  /** @returns {ArrayStoreResponse} */
+  static ArrayStoreResponse() {
+    return Joi.object({
+      data: Joi.array().items(ConfigurationPlatformModel.AppInventoryStores()),
     });
   }
 
@@ -2666,8 +2819,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {FilterOrderingStoreRequestSchemaSchema} */
-  static FilterOrderingStoreRequestSchemaSchema() {
+  /** @returns {FilterOrderingStoreRequest} */
+  static FilterOrderingStoreRequest() {
     return Joi.object({
       all_stores: Joi.boolean(),
       deployed_stores: Joi.array().items(Joi.number()),
@@ -2695,8 +2848,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OrderingStoreSelectRequestSchema} */
-  static OrderingStoreSelectRequestSchema() {
+  /** @returns {OrderingStoreSelectRequest} */
+  static OrderingStoreSelectRequest() {
     return Joi.object({
       ordering_store: ConfigurationPlatformModel.OrderingStoreSelect().required(),
     });
@@ -2739,8 +2892,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OptedApplicationResponseSchema} */
-  static OptedApplicationResponseSchema() {
+  /** @returns {OptedApplicationResponse} */
+  static OptedApplicationResponse() {
     return Joi.object({
       name: Joi.string().allow(""),
       description: Joi.string().allow(""),
@@ -2800,8 +2953,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {TokenResponseSchema} */
-  static TokenResponseSchema() {
+  /** @returns {TokenResponse} */
+  static TokenResponse() {
     return Joi.object({
       tokens: ConfigurationPlatformModel.Tokens(),
       _id: Joi.string().allow(""),
@@ -3007,8 +3160,8 @@ class ConfigurationPlatformModel {
   static LaunchPage() {
     return Joi.object({
       page_type: Joi.string().allow(""),
-      params: Joi.object().pattern(/\S/, Joi.any()),
-      query: Joi.object().pattern(/\S/, Joi.any()),
+      params: Joi.any(),
+      query: Joi.any(),
     });
   }
 
@@ -3185,15 +3338,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {AppFeatureRequestSchema} */
-  static AppFeatureRequestSchema() {
+  /** @returns {AppFeatureRequest} */
+  static AppFeatureRequest() {
     return Joi.object({
       feature: ConfigurationPlatformModel.AppFeature(),
     });
   }
 
-  /** @returns {AppFeatureResponseSchema} */
-  static AppFeatureResponseSchema() {
+  /** @returns {AppFeatureResponse} */
+  static AppFeatureResponse() {
     return Joi.object({
       feature: ConfigurationPlatformModel.AppFeature(),
     });
@@ -3211,7 +3364,6 @@ class ConfigurationPlatformModel {
       decimal_digits: Joi.number(),
       symbol: Joi.string().allow(""),
       country_name: Joi.string().allow(""),
-      subunit: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
     });
   }
@@ -3309,12 +3461,12 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {InvalidPayloadRequestSchema} */
-  static InvalidPayloadRequestSchema() {
+  /** @returns {InvalidPayloadRequest} */
+  static InvalidPayloadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
-      domain: Joi.object().pattern(/\S/, Joi.any()),
+      domain: Joi.any(),
     });
   }
 
@@ -3603,15 +3755,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CurrenciesResponseSchema} */
-  static CurrenciesResponseSchema() {
+  /** @returns {CurrenciesResponse} */
+  static CurrenciesResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.Currency()),
     });
   }
 
-  /** @returns {AppCurrencyResponseSchema} */
-  static AppCurrencyResponseSchema() {
+  /** @returns {AppCurrencyResponse} */
+  static AppCurrencyResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
@@ -3687,8 +3839,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {PlatformVersionRequestSchema} */
-  static PlatformVersionRequestSchema() {
+  /** @returns {PlatformVersionRequest} */
+  static PlatformVersionRequest() {
     return Joi.object({
       app_code_name: Joi.string().allow("").required(),
       app_name: Joi.string().allow("").required(),
@@ -3715,8 +3867,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OrderingStoresResponseSchema} */
-  static OrderingStoresResponseSchema() {
+  /** @returns {OrderingStoresResponse} */
+  static OrderingStoresResponse() {
     return Joi.object({
       page: ConfigurationPlatformModel.Page(),
       items: Joi.array().items(ConfigurationPlatformModel.OrderingStore()),
@@ -3770,8 +3922,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {UrlRedirectionResponseSchema} */
-  static UrlRedirectionResponseSchema() {
+  /** @returns {UrlRedirectionResponse} */
+  static UrlRedirectionResponse() {
     return Joi.object({
       redirections: Joi.array().items(
         ConfigurationPlatformModel.UrlRedirection()
@@ -3779,8 +3931,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {UrlRedirectionRequestSchema} */
-  static UrlRedirectionRequestSchema() {
+  /** @returns {UrlRedirectionRequest} */
+  static UrlRedirectionRequest() {
     return Joi.object({
       redirection: ConfigurationPlatformModel.UrlRedirection(),
     });
@@ -3796,15 +3948,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoreForConfigurationRequestSchema} */
-  static StoreForConfigurationRequestSchema() {
+  /** @returns {StoreForConfigurationRequest} */
+  static StoreForConfigurationRequest() {
     return Joi.object({
       conf: Joi.array().items(ConfigurationPlatformModel.AppStoreRules()),
     });
   }
 
-  /** @returns {DomainOptionsResponseSchema} */
-  static DomainOptionsResponseSchema() {
+  /** @returns {DomainOptionsResponse} */
+  static DomainOptionsResponse() {
     return Joi.object({
       domain_types: Joi.array().items(ConfigurationPlatformModel.DomainType()),
       network_ips: Joi.array().items(Joi.string().allow("")),
@@ -3829,25 +3981,17 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoreRequestSchema} */
-  static StoreRequestSchema() {
+  /** @returns {StoreRequest} */
+  static StoreRequest() {
     return Joi.object({
       companies: Joi.array().items(Joi.number()),
     });
   }
 
-  /** @returns {StoreResponseSchema} */
-  static StoreResponseSchema() {
+  /** @returns {StoreResponse} */
+  static StoreResponse() {
     return Joi.object({
       data: Joi.array().items(Joi.number()),
-    });
-  }
-
-  /** @returns {ValidationError} */
-  static ValidationError() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      field: Joi.string().allow("").required(),
     });
   }
 }

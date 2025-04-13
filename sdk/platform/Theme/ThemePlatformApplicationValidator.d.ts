@@ -73,7 +73,6 @@ export = ThemePlatformApplicationValidator;
  * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
- * @property {string} socketId - Unique socket id for websocket
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 /**
@@ -253,10 +252,6 @@ type UpdatePageParam = {
      * - Value of the page to be updated
      */
     pageValue: string;
-    /**
-     * - Unique socket id for websocket
-     */
-    socketId: string;
     body: ThemePlatformModel.AvailablePageSchema;
 };
 type UpdateThemeParam = {

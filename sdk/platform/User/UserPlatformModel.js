@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef SuccessMessage
+ * @typedef SuccessMessageResponse
  * @property {string} [success]
  */
 
@@ -26,7 +26,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeDefinitionResp
+ * @typedef UserAttributeDefinitionResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -54,7 +54,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttribute
+ * @typedef UserAttributeResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
@@ -66,7 +66,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateUserAttributePayload
+ * @typedef CreateUserAttributeRequest
  * @property {boolean} [customer_overriden]
  * @property {Object} [attribute]
  */
@@ -213,7 +213,6 @@ const Joi = require("joi");
  * @property {string} [type]
  * @property {number} [uid]
  * @property {string} [application_id]
- * @property {string[]} [tags]
  * @property {string} [created_at]
  * @property {string} [modified_at]
  * @property {number} [__v]
@@ -559,10 +558,6 @@ const Joi = require("joi");
 
 /**
  * @typedef UserSearchSchema
- * @property {number} [__v] - Version indicator.
- * @property {boolean} [has_old_password_hash] - Indicates if record contains
- *   old password hash.
- * @property {DebugInfo} [debug]
  * @property {string} [application_id]
  * @property {string} [user_id]
  * @property {string} [first_name]
@@ -586,12 +581,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DebugInfo
- * @property {string} [source] - Source service name.
- * @property {string} [platform] - Platform type(eg; platform, partner).
- */
-
-/**
  * @typedef PhoneNumber
  * @property {string} [phone] - Phone number of the user.
  * @property {number} [country_code] - Country code for mobile number.
@@ -608,71 +597,9 @@ const Joi = require("joi");
  * @property {boolean} [verified] - Is the email verified.
  */
 
-/**
- * @typedef BulkUpdateUserAttributesBody
- * @property {string[]} [users] - Array of user IDs to update (required unless
- *   user_file_url is provided)
- * @property {string} [user_file_url] - URL to a CSV file containing user IDs
- *   (required unless users array is provided)
- * @property {BulkUpdateUserSameAttributes[]} [attribute] - Array of attribute
- *   key-value pairs to update for all users
- */
-
-/**
- * @typedef BulkUpdateUserSameAttributes
- * @property {string} key - Slug of the attribute definition
- * @property {Object} value - Value to set for all users (type depends on the
- *   attribute type)
- */
-
-/**
- * @typedef BulkUpdatePerUserAttributesBody
- * @property {UserDetailAttributes[]} user_detail_attributes - Object with user
- *   IDs and attribute arrays
- */
-
-/**
- * @typedef UserDetailAttributes
- * @property {string} [user_id] - Unique identifier of user.
- * @property {BulkUpdatePerUserAttributes[]} [attributes] - Array of attribute
- *   key-value pairs to update for this user
- */
-
-/**
- * @typedef BulkUpdatePerUserAttributes
- * @property {string} key - Slug of the attribute definition
- * @property {Object} value - Value to set (type depends on the attribute type)
- */
-
-/**
- * @typedef BulkOperation
- * @property {boolean} [success] - Whether the operation was successful
- * @property {number} [total] - Total number of users to process
- * @property {number} [processed] - Number of users successfully processed
- * @property {number} [errors_count] - Number of errors encountered
- * @property {BulkOperationError[]} [errors] - Array of errors encountered
- *   during processing
- * @property {string} [processing_type] - Type of processing used (synchronous
- *   or asynchronous)
- * @property {Object} [error_summary] - Contains key indicating reason of error
- */
-
-/**
- * @typedef BulkOperationError
- * @property {string} [user_id] - ID of the user for which the error occurred
- * @property {string} [error] - Error message
- */
-
-/**
- * @typedef BulkOperationAsync
- * @property {boolean} [success] - Whether the request was accepted for processing
- * @property {string} [request_id] - ID of the request that can be used to check status
- * @property {string} [processing_type] - Type of processing being used
- */
-
 class UserPlatformModel {
-  /** @returns {SuccessMessage} */
-  static SuccessMessage() {
+  /** @returns {SuccessMessageResponse} */
+  static SuccessMessageResponse() {
     return Joi.object({
       success: Joi.string().allow(""),
     });
@@ -700,8 +627,8 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeDefinitionResp} */
-  static UserAttributeDefinitionResp() {
+  /** @returns {UserAttributeDefinitionResponse} */
+  static UserAttributeDefinitionResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -733,8 +660,8 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttribute} */
-  static UserAttribute() {
+  /** @returns {UserAttributeResponse} */
+  static UserAttributeResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -742,16 +669,16 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       customer_overriden: Joi.boolean(),
-      attribute: Joi.object().pattern(/\S/, Joi.any()),
+      attribute: Joi.any(),
       updated_by: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CreateUserAttributePayload} */
-  static CreateUserAttributePayload() {
+  /** @returns {CreateUserAttributeRequest} */
+  static CreateUserAttributeRequest() {
     return Joi.object({
       customer_overriden: Joi.boolean(),
-      attribute: Joi.object().pattern(/\S/, Joi.any()),
+      attribute: Joi.any(),
     });
   }
 
@@ -767,7 +694,7 @@ class UserPlatformModel {
       encrypted: Joi.boolean(),
       pinned: Joi.boolean(),
       pin_order: Joi.number(),
-      default_value: Joi.object().pattern(/\S/, Joi.any()),
+      default_value: Joi.any(),
       validations: Joi.array().items(Joi.any()),
     });
   }
@@ -875,7 +802,7 @@ class UserPlatformModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       error: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       authenticated: Joi.boolean(),
     });
   }
@@ -897,7 +824,7 @@ class UserPlatformModel {
     return Joi.object({
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      value: Joi.object().pattern(/\S/, Joi.any()),
+      value: Joi.any(),
       key: Joi.string().allow(""),
     });
   }
@@ -925,7 +852,6 @@ class UserPlatformModel {
       type: Joi.string().allow(""),
       uid: Joi.number(),
       application_id: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
       __v: Joi.number(),
@@ -945,7 +871,7 @@ class UserPlatformModel {
     return Joi.object({
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      value: Joi.object().pattern(/\S/, Joi.any()),
+      value: Joi.any(),
     });
   }
 
@@ -970,7 +896,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       username: Joi.string().allow("").required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
     });
@@ -1283,7 +1209,7 @@ class UserPlatformModel {
       gender: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       phone_numbers: Joi.array().items(UserPlatformModel.UserPhoneNumbers()),
       emails: Joi.array().items(UserPlatformModel.UserEmails()),
     });
@@ -1328,7 +1254,7 @@ class UserPlatformModel {
         UserPlatformModel.UserPasswordHistory()
       ),
       first_name: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
@@ -1349,13 +1275,10 @@ class UserPlatformModel {
   /** @returns {UserSearchSchema} */
   static UserSearchSchema() {
     return Joi.object({
-      __v: Joi.number(),
-      has_old_password_hash: Joi.boolean(),
-      debug: UserPlatformModel.DebugInfo(),
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
@@ -1372,14 +1295,6 @@ class UserPlatformModel {
       rr_id: Joi.string().allow(""),
       archive: Joi.boolean(),
       status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DebugInfo} */
-  static DebugInfo() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
     });
   }
 
@@ -1401,82 +1316,6 @@ class UserPlatformModel {
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {BulkUpdateUserAttributesBody} */
-  static BulkUpdateUserAttributesBody() {
-    return Joi.object({
-      users: Joi.array().items(Joi.string().allow("")),
-      user_file_url: Joi.string().allow(""),
-      attribute: Joi.array().items(
-        UserPlatformModel.BulkUpdateUserSameAttributes()
-      ),
-    });
-  }
-
-  /** @returns {BulkUpdateUserSameAttributes} */
-  static BulkUpdateUserSameAttributes() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-      value: Joi.any().required(),
-    });
-  }
-
-  /** @returns {BulkUpdatePerUserAttributesBody} */
-  static BulkUpdatePerUserAttributesBody() {
-    return Joi.object({
-      user_detail_attributes: Joi.array()
-        .items(UserPlatformModel.UserDetailAttributes())
-        .required(),
-    });
-  }
-
-  /** @returns {UserDetailAttributes} */
-  static UserDetailAttributes() {
-    return Joi.object({
-      user_id: Joi.string().allow(""),
-      attributes: Joi.array().items(
-        UserPlatformModel.BulkUpdatePerUserAttributes()
-      ),
-    });
-  }
-
-  /** @returns {BulkUpdatePerUserAttributes} */
-  static BulkUpdatePerUserAttributes() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-      value: Joi.any().required(),
-    });
-  }
-
-  /** @returns {BulkOperation} */
-  static BulkOperation() {
-    return Joi.object({
-      success: Joi.boolean(),
-      total: Joi.number(),
-      processed: Joi.number(),
-      errors_count: Joi.number(),
-      errors: Joi.array().items(UserPlatformModel.BulkOperationError()),
-      processing_type: Joi.string().allow(""),
-      error_summary: Joi.object().pattern(/\S/, Joi.any()),
-    });
-  }
-
-  /** @returns {BulkOperationError} */
-  static BulkOperationError() {
-    return Joi.object({
-      user_id: Joi.string().allow(""),
-      error: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BulkOperationAsync} */
-  static BulkOperationAsync() {
-    return Joi.object({
-      success: Joi.boolean(),
-      request_id: Joi.string().allow(""),
-      processing_type: Joi.string().allow(""),
     });
   }
 }

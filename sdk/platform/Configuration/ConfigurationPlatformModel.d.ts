@@ -1,26 +1,5 @@
 export = ConfigurationPlatformModel;
 /**
- * @typedef CurrencyExchangeResponseV2
- * @property {string} base - The 3-letter ISO 4217 code representing the base currency.
- * @property {string} base_currency_name - The name of the base currency.
- * @property {number} ttl_seconds - Time in seconds for which the exchange rates
- *   are valid.
- * @property {CurrencyExchangeItem[]} items - List of exchange rates and currency details.
- * @property {number} total - Total number of currency exchange items.
- */
-/**
- * @typedef CurrencyExchangeItem
- * @property {string} currency_code - 3-letter ISO 4217 exchange currency code.
- * @property {string} name - Name of the exchange currency
- * @property {number} rate - Exchange rate of the currency with respect to the
- *   base currency.
- * @property {string} country_code - ISO 3166 country code.
- * @property {string} country_name - Name of the country using this currency.
- * @property {string} subunit - The name of the subunit for the currency.
- * @property {number} decimal_digits - Number of decimal digits the currency supports.
- * @property {string} symbol - The symbol of the currency.
- */
-/**
  * @typedef ApplicationInventory
  * @property {AppInventoryConfig} [inventory]
  * @property {AuthenticationConfig} [authentication]
@@ -81,6 +60,10 @@ export = ConfigurationPlatformModel;
  * @property {number[]} [company_store] - List of selling locations whose
  *   inventory is available to the sales channel for displaying on the website
  * @property {number} [company_id]
+ * @property {boolean} [enable_zone_overlapping] - Power product listing with
+ *   overlapping zones
+ * @property {boolean} [sort_popular_first] - Give preference to popularity over
+ *   score in product listing sort
  */
 /**
  * @typedef InventoryBrand
@@ -263,24 +246,24 @@ export = ConfigurationPlatformModel;
  * @property {number} [company_id] - Numeric ID allotted to a business account
  */
 /**
- * @typedef CompanyByBrandsRequestSchema
+ * @typedef CompanyByBrandsRequest
  * @property {number} brands - Brand UID
  * @property {string} [search_text] - A search field for finding a company by its name
  */
 /**
- * @typedef CompanyByBrandsResponseSchema
+ * @typedef CompanyByBrandsResponse
  * @property {BrandCompanyInfo[]} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef StoreByBrandsRequestSchema
+ * @typedef StoreByBrandsRequest
  * @property {number} [company_id] - Current company ID for current company
  *   stores only. Don't send in case cross-selling (franchise) is enabled.
  * @property {number} brands - Brand UID
  * @property {string} [search_text] - Search store by its name or store code
  */
 /**
- * @typedef StoreByBrandsResponseSchema
+ * @typedef StoreByBrandsResponse
  * @property {BrandStoreInfo[]} [items]
  * @property {Page} [page]
  */
@@ -305,11 +288,11 @@ export = ConfigurationPlatformModel;
  *   portrait banner
  */
 /**
- * @typedef BrandsByCompanyResponseSchema
+ * @typedef BrandsByCompanyResponse
  * @property {CompanyBrandInfo[]} [brands]
  */
 /**
- * @typedef ValidationFailedResponseSchema
+ * @typedef ValidationFailedResponse
  * @property {string} [message] - Response message for failed validation
  * @property {Object[]} [errors] - Response message for failed validation
  */
@@ -339,20 +322,80 @@ export = ConfigurationPlatformModel;
  *   amount pan card number is expected from customer for order
  */
 /**
- * @typedef CreateApplicationRequestSchema
+ * @typedef CreateApplicationRequest
  * @property {App} [app]
  * @property {ApplicationInventory} [configuration]
  * @property {AppDomain} [domain]
  */
 /**
- * @typedef CreateAppResponseSchema
+ * @typedef CreateAppResponse
  * @property {Application} [app]
  * @property {ApplicationInventory} [configuration]
  */
 /**
- * @typedef ApplicationsResponseSchema
+ * @typedef ApplicationsResponse
  * @property {Application[]} [items]
  * @property {Page} [page]
+ */
+/**
+ * @typedef MobileAppConfiguration
+ * @property {boolean} [is_active] - Indicates the availability of the mobile build
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for mobile application configuration
+ * @property {string} [app_name] - Name of the mobile app
+ * @property {LandingImage} [landing_image]
+ * @property {SplashImage} [splash_image]
+ * @property {string} [application] - Application ID of the current sales channel
+ * @property {string} [platform_type] - Device platform for which the mobile app
+ *   was built, e.g. android, ios.
+ * @property {string} [created_at] - ISO 8601 timestamp of application
+ *   configuration creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ * @property {string} [package_name] - Shows bundle identifier if device
+ *   platform is iOS, and directory of the app if device platform is Android
+ */
+/**
+ * @typedef LandingImage
+ * @property {string} [aspect_ratio] - Width-to-height ratio of landing image
+ * @property {string} [secure_url] - URL where the landing image is hosted
+ */
+/**
+ * @typedef SplashImage
+ * @property {string} [aspect_ratio] - Width-to-height ratio of splash image
+ * @property {string} [secure_url] - URL where the splash image is hosted
+ */
+/**
+ * @typedef MobileAppConfigRequest
+ * @property {string} [app_name] - Name of the mobile app
+ * @property {LandingImage} [landing_image]
+ * @property {SplashImage} [splash_image]
+ * @property {boolean} [is_active] - Shows update in mobile app config is active or not
+ */
+/**
+ * @typedef BuildVersionHistory
+ * @property {BuildVersion[]} [versions]
+ * @property {string} [latest_available_version_name] - Latest version number of
+ *   the mobile build, in dot-decimal notation
+ */
+/**
+ * @typedef BuildVersion
+ * @property {string} [_id] - 24-digit Mongo Object ID
+ * @property {string} [application] - Application ID of the sales channel
+ * @property {string} [platform_type] - Device platform for which the mobile app
+ *   was built, e.g. android, ios.
+ * @property {string} [build_status] - Current progress of the mobile build,
+ *   e.g. pending, cancelled, failed, success
+ * @property {string} [version_name] - Version number of the mobile build, in
+ *   dot-decimal notation
+ * @property {number} [version_code] - A positive integer used as an internal
+ *   version number
+ * @property {LandingImage} [download_url]
+ * @property {string} [created_at] - ISO 8601 timestamp of app creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  */
 /**
  * @typedef AppSupportedCurrency
@@ -390,7 +433,7 @@ export = ConfigurationPlatformModel;
  * @property {string[]} [txt_records]
  */
 /**
- * @typedef DomainAddRequestSchema
+ * @typedef DomainAddRequest
  * @property {DomainAdd} [domain]
  */
 /**
@@ -407,7 +450,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [message]
  */
 /**
- * @typedef DomainsResponseSchema
+ * @typedef DomainsResponse
  * @property {Domain[]} [domains]
  */
 /**
@@ -423,13 +466,13 @@ export = ConfigurationPlatformModel;
  *   domain (short URL e.g. bit.ly)
  */
 /**
- * @typedef UpdateDomainTypeRequestSchema
+ * @typedef UpdateDomainTypeRequest
  * @property {UpdateDomain} [domain]
  * @property {string} [action] - Shows domain is made primary domain for the
  *   sales channel or shorlink is created for the sales channel domain
  */
 /**
- * @typedef DomainStatusRequestSchema
+ * @typedef DomainStatusRequest
  * @property {string} [domain_url] - URL of the domain, e.g. uniket.hostx0.de
  */
 /**
@@ -439,16 +482,14 @@ export = ConfigurationPlatformModel;
  *   domain are correctly propagating via DNS servers
  */
 /**
- * @typedef DomainStatusResponseSchema
+ * @typedef DomainStatusResponse
  * @property {boolean} [connected] - Check if domain is live and mapped to
  *   appropriate IP of Fynd Servers
  * @property {DomainStatus[]} [status]
  */
 /**
- * @typedef DomainSuggestionsRequestSchema
+ * @typedef DomainSuggestionsRequest
  * @property {string} [domain_url] - Domain url
- * @property {boolean} [is_custom_domain] - Get suggestions for custom domains
- *   or Fynd domains
  */
 /**
  * @typedef DomainSuggestion
@@ -461,16 +502,16 @@ export = ConfigurationPlatformModel;
  * @property {string} [currency] - Custom domain currency. Not present for Fynd domains.
  */
 /**
- * @typedef DomainSuggestionsResponseSchema
+ * @typedef DomainSuggestionsResponse
  * @property {DomainSuggestion[]} [domains] - Domain URL
  */
 /**
- * @typedef SuccessMessageResponseSchema
+ * @typedef SuccessMessageResponse
  * @property {boolean} [success] - Shows whether domain was deleted successfully
  * @property {string} [message] - Success message shown to the user (in a string format)
  */
 /**
- * @typedef GetIntegrationsOptInsResponseSchema
+ * @typedef GetIntegrationsOptInsResponse
  * @property {IntegrationOptIn[]} [items]
  * @property {Page} [page]
  */
@@ -545,6 +586,35 @@ export = ConfigurationPlatformModel;
  * @property {string} [value] - Value related to integration meta name, e.g. store
  */
 /**
+ * @typedef Integration
+ * @property {Validators} [validators]
+ * @property {string} [description] - Basic description about the integration
+ * @property {string} [description_html] - Basic HTML description about the integration
+ * @property {Object} [constants]
+ * @property {string[]} [companies]
+ * @property {string[]} [support]
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the integration
+ * @property {string} [name] - Name of the integration, e.g. SAP RBL Integration
+ * @property {string} [slug] - Name of the integration, e.g. SAP RBL Integration
+ * @property {IntegrationMeta[]} [meta]
+ * @property {string} [icon] - Hosted URL of the icon image
+ * @property {boolean} [hidden]
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of the user who created the integration
+ * @property {string} [created_at] - ISO 8601 timestamp of integration creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of integration updation
+ * @property {string} [token] - Randomly generated fixed-length string for opted
+ *   integration. It is auto-generated. It would never change once it is generated.
+ * @property {string} [secret] - Randomly generated fixed-length string for
+ *   opted integration. It is auto-generated. It would never change once it is generated.
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ */
+/**
+ * @typedef IntegrationConfigResponse
+ * @property {IntegrationLevel[]} [items]
+ */
+/**
  * @typedef IntegrationLevel
  * @property {boolean} [opted] - Shows this integration is opted or not opted
  *   for the current company
@@ -570,7 +640,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [message]
  */
 /**
- * @typedef UpdateIntegrationLevelRequestSchema
+ * @typedef UpdateIntegrationLevelRequest
  * @property {IntegrationLevel[]} [items]
  */
 /**
@@ -646,7 +716,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [name] - Domain URL of current sales channel, e.g. zenz.com
  */
 /**
- * @typedef CompaniesResponseSchema
+ * @typedef CompaniesResponse
  * @property {AppInventoryCompanies[]} [items]
  * @property {Page} [page]
  */
@@ -658,13 +728,17 @@ export = ConfigurationPlatformModel;
  *   franchisee, distributor, etc.
  */
 /**
- * @typedef StoresResponseSchema
+ * @typedef StoresResponse
  * @property {AppInventoryStores[]} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef ListStoreResponseSchemaSchema
+ * @typedef ListStoreResponse
  * @property {AppInventoryStores[]} [stores]
+ */
+/**
+ * @typedef ArrayStoreResponse
+ * @property {AppInventoryStores[]} [data]
  */
 /**
  * @typedef AppInventoryStores
@@ -687,7 +761,7 @@ export = ConfigurationPlatformModel;
  * @property {Object} [integration_type]
  */
 /**
- * @typedef FilterOrderingStoreRequestSchemaSchema
+ * @typedef FilterOrderingStoreRequest
  * @property {boolean} [all_stores] - Allow all stores from the ordering stores
  * @property {number[]} [deployed_stores]
  * @property {string} [q] - Store code or name of the ordering store
@@ -711,7 +785,7 @@ export = ConfigurationPlatformModel;
  * @property {DeploymentMeta} [deployment_meta]
  */
 /**
- * @typedef OrderingStoreSelectRequestSchema
+ * @typedef OrderingStoreSelectRequest
  * @property {OrderingStoreSelect} ordering_store
  */
 /**
@@ -740,7 +814,7 @@ export = ConfigurationPlatformModel;
  * @property {Page} [page]
  */
 /**
- * @typedef OptedApplicationResponseSchema
+ * @typedef OptedApplicationResponse
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
@@ -791,7 +865,7 @@ export = ConfigurationPlatformModel;
  *   of other seller's application
  */
 /**
- * @typedef TokenResponseSchema
+ * @typedef TokenResponse
  * @property {Tokens} [tokens]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the token
@@ -1102,11 +1176,11 @@ export = ConfigurationPlatformModel;
  *   indicates store listing.
  */
 /**
- * @typedef AppFeatureRequestSchema
+ * @typedef AppFeatureRequest
  * @property {AppFeature} [feature]
  */
 /**
- * @typedef AppFeatureResponseSchema
+ * @typedef AppFeatureResponse
  * @property {AppFeature} [feature]
  */
 /**
@@ -1124,9 +1198,8 @@ export = ConfigurationPlatformModel;
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. â‚¹
  * @property {string} [country_name]
- * @property {string} [subunit]
  * @property {string} [country_code]
  */
 /**
@@ -1209,7 +1282,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [created_at] - ISO 8601 timestamp of when token created
  */
 /**
- * @typedef InvalidPayloadRequestSchema
+ * @typedef InvalidPayloadRequest
  * @property {string} [message] - Error message when request body payload is improper
  * @property {boolean} [success] - Flag for required not successfull.
  * @property {Object} [domain] - All errors related to domin
@@ -1422,11 +1495,11 @@ export = ConfigurationPlatformModel;
  * @property {number} [company_id]
  */
 /**
- * @typedef CurrenciesResponseSchema
+ * @typedef CurrenciesResponse
  * @property {Currency[]} [items]
  */
 /**
- * @typedef AppCurrencyResponseSchema
+ * @typedef AppCurrencyResponse
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the currency configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
@@ -1493,7 +1566,7 @@ export = ConfigurationPlatformModel;
  * @property {number} [interval]
  */
 /**
- * @typedef PlatformVersionRequestSchema
+ * @typedef PlatformVersionRequest
  * @property {string} app_code_name
  * @property {string} app_name
  * @property {string} force_version
@@ -1517,7 +1590,7 @@ export = ConfigurationPlatformModel;
  * @property {number} [__v]
  */
 /**
- * @typedef OrderingStoresResponseSchema
+ * @typedef OrderingStoresResponse
  * @property {Page} [page]
  * @property {OrderingStore[]} [items]
  */
@@ -1557,11 +1630,11 @@ export = ConfigurationPlatformModel;
  * @property {LocationCountry[]} [items]
  */
 /**
- * @typedef UrlRedirectionResponseSchema
+ * @typedef UrlRedirectionResponse
  * @property {UrlRedirection[]} [redirections]
  */
 /**
- * @typedef UrlRedirectionRequestSchema
+ * @typedef UrlRedirectionRequest
  * @property {UrlRedirection} [redirection]
  */
 /**
@@ -1572,11 +1645,11 @@ export = ConfigurationPlatformModel;
  * @property {string} [_id]
  */
 /**
- * @typedef StoreForConfigurationRequestSchema
+ * @typedef StoreForConfigurationRequest
  * @property {AppStoreRules[]} [conf]
  */
 /**
- * @typedef DomainOptionsResponseSchema
+ * @typedef DomainOptionsResponse
  * @property {DomainType[]} [domain_types]
  * @property {string[]} [network_ips]
  * @property {string[]} [network_cnames]
@@ -1593,85 +1666,18 @@ export = ConfigurationPlatformModel;
  * @property {string} [text]
  */
 /**
- * @typedef StoreRequestSchema
+ * @typedef StoreRequest
  * @property {number[]} [companies]
  */
 /**
- * @typedef StoreResponseSchema
+ * @typedef StoreResponse
  * @property {number[]} [data]
- */
-/**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
  */
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, OwnerAppInventoryConfig, OwnerAppConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, GetIntegrationsOptInsResponseSchema, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, IntegrationLevel, UpdateIntegrationLevelRequestSchema, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, InventoryConfig, AppInventory, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, ListStoreResponseSchemaSchema, AppInventoryStores, FilterOrderingStoreRequestSchemaSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, BuyboxFeature, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, InvalidPayloadRequestSchema, InventoryBrandRule, PricingStrategy, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, UpdateDiealog, PlatformVersionRequestSchema, PlatformVersion, OrderingStoresResponseSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, UrlRedirectionResponseSchema, UrlRedirectionRequestSchema, UrlRedirection, StoreForConfigurationRequestSchema, DomainOptionsResponseSchema, DomainType, DomainValue, StoreRequestSchema, StoreResponseSchema, ValidationError };
+    export { ApplicationInventory, PiiMasking, OwnerAppInventoryConfig, OwnerAppConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, ValidationFailedResponse, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequest, Domain, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, SuccessMessageResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, UpdateIntegrationLevelRequest, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, InventoryConfig, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, ListStoreResponse, ArrayStoreResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequest, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, BuyboxFeature, AppFeatureRequest, AppFeatureResponse, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, InvalidPayloadRequest, InventoryBrandRule, PricingStrategy, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, UpdateDiealog, PlatformVersionRequest, PlatformVersion, OrderingStoresResponse, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, UrlRedirectionResponse, UrlRedirectionRequest, UrlRedirection, StoreForConfigurationRequest, DomainOptionsResponse, DomainType, DomainValue, StoreRequest, StoreResponse };
 }
-/** @returns {CurrencyExchangeResponseV2} */
-declare function CurrencyExchangeResponseV2(): CurrencyExchangeResponseV2;
-type CurrencyExchangeResponseV2 = {
-    /**
-     * - The 3-letter ISO 4217 code representing the base currency.
-     */
-    base: string;
-    /**
-     * - The name of the base currency.
-     */
-    base_currency_name: string;
-    /**
-     * - Time in seconds for which the exchange rates
-     * are valid.
-     */
-    ttl_seconds: number;
-    /**
-     * - List of exchange rates and currency details.
-     */
-    items: CurrencyExchangeItem[];
-    /**
-     * - Total number of currency exchange items.
-     */
-    total: number;
-};
-/** @returns {CurrencyExchangeItem} */
-declare function CurrencyExchangeItem(): CurrencyExchangeItem;
-type CurrencyExchangeItem = {
-    /**
-     * - 3-letter ISO 4217 exchange currency code.
-     */
-    currency_code: string;
-    /**
-     * - Name of the exchange currency
-     */
-    name: string;
-    /**
-     * - Exchange rate of the currency with respect to the
-     * base currency.
-     */
-    rate: number;
-    /**
-     * - ISO 3166 country code.
-     */
-    country_code: string;
-    /**
-     * - Name of the country using this currency.
-     */
-    country_name: string;
-    /**
-     * - The name of the subunit for the currency.
-     */
-    subunit: string;
-    /**
-     * - Number of decimal digits the currency supports.
-     */
-    decimal_digits: number;
-    /**
-     * - The symbol of the currency.
-     */
-    symbol: string;
-};
 /** @returns {ApplicationInventory} */
 declare function ApplicationInventory(): ApplicationInventory;
 type ApplicationInventory = {
@@ -1774,6 +1780,16 @@ type AppInventoryConfig = {
      */
     company_store?: number[];
     company_id?: number;
+    /**
+     * - Power product listing with
+     * overlapping zones
+     */
+    enable_zone_overlapping?: boolean;
+    /**
+     * - Give preference to popularity over
+     * score in product listing sort
+     */
+    sort_popular_first?: boolean;
 };
 /** @returns {InventoryBrand} */
 declare function InventoryBrand(): InventoryBrand;
@@ -2120,9 +2136,9 @@ type BrandCompanyInfo = {
      */
     company_id?: number;
 };
-/** @returns {CompanyByBrandsRequestSchema} */
-declare function CompanyByBrandsRequestSchema(): CompanyByBrandsRequestSchema;
-type CompanyByBrandsRequestSchema = {
+/** @returns {CompanyByBrandsRequest} */
+declare function CompanyByBrandsRequest(): CompanyByBrandsRequest;
+type CompanyByBrandsRequest = {
     /**
      * - Brand UID
      */
@@ -2132,15 +2148,15 @@ type CompanyByBrandsRequestSchema = {
      */
     search_text?: string;
 };
-/** @returns {CompanyByBrandsResponseSchema} */
-declare function CompanyByBrandsResponseSchema(): CompanyByBrandsResponseSchema;
-type CompanyByBrandsResponseSchema = {
+/** @returns {CompanyByBrandsResponse} */
+declare function CompanyByBrandsResponse(): CompanyByBrandsResponse;
+type CompanyByBrandsResponse = {
     items?: BrandCompanyInfo[];
     page?: Page;
 };
-/** @returns {StoreByBrandsRequestSchema} */
-declare function StoreByBrandsRequestSchema(): StoreByBrandsRequestSchema;
-type StoreByBrandsRequestSchema = {
+/** @returns {StoreByBrandsRequest} */
+declare function StoreByBrandsRequest(): StoreByBrandsRequest;
+type StoreByBrandsRequest = {
     /**
      * - Current company ID for current company
      * stores only. Don't send in case cross-selling (franchise) is enabled.
@@ -2155,9 +2171,9 @@ type StoreByBrandsRequestSchema = {
      */
     search_text?: string;
 };
-/** @returns {StoreByBrandsResponseSchema} */
-declare function StoreByBrandsResponseSchema(): StoreByBrandsResponseSchema;
-type StoreByBrandsResponseSchema = {
+/** @returns {StoreByBrandsResponse} */
+declare function StoreByBrandsResponse(): StoreByBrandsResponse;
+type StoreByBrandsResponse = {
     items?: BrandStoreInfo[];
     page?: Page;
 };
@@ -2210,14 +2226,14 @@ type CompanyBrandInfo = {
      */
     brand_banner_portrait_url?: string;
 };
-/** @returns {BrandsByCompanyResponseSchema} */
-declare function BrandsByCompanyResponseSchema(): BrandsByCompanyResponseSchema;
-type BrandsByCompanyResponseSchema = {
+/** @returns {BrandsByCompanyResponse} */
+declare function BrandsByCompanyResponse(): BrandsByCompanyResponse;
+type BrandsByCompanyResponse = {
     brands?: CompanyBrandInfo[];
 };
-/** @returns {ValidationFailedResponseSchema} */
-declare function ValidationFailedResponseSchema(): ValidationFailedResponseSchema;
-type ValidationFailedResponseSchema = {
+/** @returns {ValidationFailedResponse} */
+declare function ValidationFailedResponse(): ValidationFailedResponse;
+type ValidationFailedResponse = {
     /**
      * - Response message for failed validation
      */
@@ -2280,24 +2296,165 @@ type PanCardConfig = {
      */
     online_threshold_amount?: number;
 };
-/** @returns {CreateApplicationRequestSchema} */
-declare function CreateApplicationRequestSchema(): CreateApplicationRequestSchema;
-type CreateApplicationRequestSchema = {
+/** @returns {CreateApplicationRequest} */
+declare function CreateApplicationRequest(): CreateApplicationRequest;
+type CreateApplicationRequest = {
     app?: App;
     configuration?: ApplicationInventory;
     domain?: AppDomain;
 };
-/** @returns {CreateAppResponseSchema} */
-declare function CreateAppResponseSchema(): CreateAppResponseSchema;
-type CreateAppResponseSchema = {
+/** @returns {CreateAppResponse} */
+declare function CreateAppResponse(): CreateAppResponse;
+type CreateAppResponse = {
     app?: Application;
     configuration?: ApplicationInventory;
 };
-/** @returns {ApplicationsResponseSchema} */
-declare function ApplicationsResponseSchema(): ApplicationsResponseSchema;
-type ApplicationsResponseSchema = {
+/** @returns {ApplicationsResponse} */
+declare function ApplicationsResponse(): ApplicationsResponse;
+type ApplicationsResponse = {
     items?: Application[];
     page?: Page;
+};
+/** @returns {MobileAppConfiguration} */
+declare function MobileAppConfiguration(): MobileAppConfiguration;
+type MobileAppConfiguration = {
+    /**
+     * - Indicates the availability of the mobile build
+     */
+    is_active?: boolean;
+    /**
+     * - The unique identifier (24-digit Mongo Object ID)
+     * for mobile application configuration
+     */
+    _id?: string;
+    /**
+     * - Name of the mobile app
+     */
+    app_name?: string;
+    landing_image?: LandingImage;
+    splash_image?: SplashImage;
+    /**
+     * - Application ID of the current sales channel
+     */
+    application?: string;
+    /**
+     * - Device platform for which the mobile app
+     * was built, e.g. android, ios.
+     */
+    platform_type?: string;
+    /**
+     * - ISO 8601 timestamp of application
+     * configuration creation
+     */
+    created_at?: string;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the app build
+     */
+    modified_at?: string;
+    /**
+     * - Version key for tracking revisions. Default value is zero.
+     */
+    __v?: number;
+    /**
+     * - Shows bundle identifier if device
+     * platform is iOS, and directory of the app if device platform is Android
+     */
+    package_name?: string;
+};
+/** @returns {LandingImage} */
+declare function LandingImage(): LandingImage;
+type LandingImage = {
+    /**
+     * - Width-to-height ratio of landing image
+     */
+    aspect_ratio?: string;
+    /**
+     * - URL where the landing image is hosted
+     */
+    secure_url?: string;
+};
+/** @returns {SplashImage} */
+declare function SplashImage(): SplashImage;
+type SplashImage = {
+    /**
+     * - Width-to-height ratio of splash image
+     */
+    aspect_ratio?: string;
+    /**
+     * - URL where the splash image is hosted
+     */
+    secure_url?: string;
+};
+/** @returns {MobileAppConfigRequest} */
+declare function MobileAppConfigRequest(): MobileAppConfigRequest;
+type MobileAppConfigRequest = {
+    /**
+     * - Name of the mobile app
+     */
+    app_name?: string;
+    landing_image?: LandingImage;
+    splash_image?: SplashImage;
+    /**
+     * - Shows update in mobile app config is active or not
+     */
+    is_active?: boolean;
+};
+/** @returns {BuildVersionHistory} */
+declare function BuildVersionHistory(): BuildVersionHistory;
+type BuildVersionHistory = {
+    versions?: BuildVersion[];
+    /**
+     * - Latest version number of
+     * the mobile build, in dot-decimal notation
+     */
+    latest_available_version_name?: string;
+};
+/** @returns {BuildVersion} */
+declare function BuildVersion(): BuildVersion;
+type BuildVersion = {
+    /**
+     * - 24-digit Mongo Object ID
+     */
+    _id?: string;
+    /**
+     * - Application ID of the sales channel
+     */
+    application?: string;
+    /**
+     * - Device platform for which the mobile app
+     * was built, e.g. android, ios.
+     */
+    platform_type?: string;
+    /**
+     * - Current progress of the mobile build,
+     * e.g. pending, cancelled, failed, success
+     */
+    build_status?: string;
+    /**
+     * - Version number of the mobile build, in
+     * dot-decimal notation
+     */
+    version_name?: string;
+    /**
+     * - A positive integer used as an internal
+     * version number
+     */
+    version_code?: number;
+    download_url?: LandingImage;
+    /**
+     * - ISO 8601 timestamp of app creation
+     */
+    created_at?: string;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the app build
+     */
+    modified_at?: string;
+    /**
+     * - Version key for tracking revisions. Default value is zero.
+     */
+    __v?: number;
 };
 /** @returns {AppSupportedCurrency} */
 declare function AppSupportedCurrency(): AppSupportedCurrency;
@@ -2373,9 +2530,9 @@ type DomainAdd = {
     message?: string;
     txt_records?: string[];
 };
-/** @returns {DomainAddRequestSchema} */
-declare function DomainAddRequestSchema(): DomainAddRequestSchema;
-type DomainAddRequestSchema = {
+/** @returns {DomainAddRequest} */
+declare function DomainAddRequest(): DomainAddRequest;
+type DomainAddRequest = {
     domain?: DomainAdd;
 };
 /** @returns {Domain} */
@@ -2410,9 +2567,9 @@ type Domain = {
     is_predefined?: boolean;
     message?: string;
 };
-/** @returns {DomainsResponseSchema} */
-declare function DomainsResponseSchema(): DomainsResponseSchema;
-type DomainsResponseSchema = {
+/** @returns {DomainsResponse} */
+declare function DomainsResponse(): DomainsResponse;
+type DomainsResponse = {
     domains?: Domain[];
 };
 /** @returns {UpdateDomain} */
@@ -2443,9 +2600,9 @@ type UpdateDomain = {
      */
     is_shortlink?: boolean;
 };
-/** @returns {UpdateDomainTypeRequestSchema} */
-declare function UpdateDomainTypeRequestSchema(): UpdateDomainTypeRequestSchema;
-type UpdateDomainTypeRequestSchema = {
+/** @returns {UpdateDomainTypeRequest} */
+declare function UpdateDomainTypeRequest(): UpdateDomainTypeRequest;
+type UpdateDomainTypeRequest = {
     domain?: UpdateDomain;
     /**
      * - Shows domain is made primary domain for the
@@ -2453,9 +2610,9 @@ type UpdateDomainTypeRequestSchema = {
      */
     action?: string;
 };
-/** @returns {DomainStatusRequestSchema} */
-declare function DomainStatusRequestSchema(): DomainStatusRequestSchema;
-type DomainStatusRequestSchema = {
+/** @returns {DomainStatusRequest} */
+declare function DomainStatusRequest(): DomainStatusRequest;
+type DomainStatusRequest = {
     /**
      * - URL of the domain, e.g. uniket.hostx0.de
      */
@@ -2474,9 +2631,9 @@ type DomainStatus = {
      */
     status?: boolean;
 };
-/** @returns {DomainStatusResponseSchema} */
-declare function DomainStatusResponseSchema(): DomainStatusResponseSchema;
-type DomainStatusResponseSchema = {
+/** @returns {DomainStatusResponse} */
+declare function DomainStatusResponse(): DomainStatusResponse;
+type DomainStatusResponse = {
     /**
      * - Check if domain is live and mapped to
      * appropriate IP of Fynd Servers
@@ -2484,18 +2641,13 @@ type DomainStatusResponseSchema = {
     connected?: boolean;
     status?: DomainStatus[];
 };
-/** @returns {DomainSuggestionsRequestSchema} */
-declare function DomainSuggestionsRequestSchema(): DomainSuggestionsRequestSchema;
-type DomainSuggestionsRequestSchema = {
+/** @returns {DomainSuggestionsRequest} */
+declare function DomainSuggestionsRequest(): DomainSuggestionsRequest;
+type DomainSuggestionsRequest = {
     /**
      * - Domain url
      */
     domain_url?: string;
-    /**
-     * - Get suggestions for custom domains
-     * or Fynd domains
-     */
-    is_custom_domain?: boolean;
 };
 /** @returns {DomainSuggestion} */
 declare function DomainSuggestion(): DomainSuggestion;
@@ -2523,17 +2675,17 @@ type DomainSuggestion = {
      */
     currency?: string;
 };
-/** @returns {DomainSuggestionsResponseSchema} */
-declare function DomainSuggestionsResponseSchema(): DomainSuggestionsResponseSchema;
-type DomainSuggestionsResponseSchema = {
+/** @returns {DomainSuggestionsResponse} */
+declare function DomainSuggestionsResponse(): DomainSuggestionsResponse;
+type DomainSuggestionsResponse = {
     /**
      * - Domain URL
      */
     domains?: DomainSuggestion[];
 };
-/** @returns {SuccessMessageResponseSchema} */
-declare function SuccessMessageResponseSchema(): SuccessMessageResponseSchema;
-type SuccessMessageResponseSchema = {
+/** @returns {SuccessMessageResponse} */
+declare function SuccessMessageResponse(): SuccessMessageResponse;
+type SuccessMessageResponse = {
     /**
      * - Shows whether domain was deleted successfully
      */
@@ -2543,9 +2695,9 @@ type SuccessMessageResponseSchema = {
      */
     message?: string;
 };
-/** @returns {GetIntegrationsOptInsResponseSchema} */
-declare function GetIntegrationsOptInsResponseSchema(): GetIntegrationsOptInsResponseSchema;
-type GetIntegrationsOptInsResponseSchema = {
+/** @returns {GetIntegrationsOptInsResponse} */
+declare function GetIntegrationsOptInsResponse(): GetIntegrationsOptInsResponse;
+type GetIntegrationsOptInsResponse = {
     items?: IntegrationOptIn[];
     page?: Page;
 };
@@ -2696,6 +2848,73 @@ type IntegrationMeta = {
      */
     value?: string;
 };
+/** @returns {Integration} */
+declare function Integration(): Integration;
+type Integration = {
+    validators?: Validators;
+    /**
+     * - Basic description about the integration
+     */
+    description?: string;
+    /**
+     * - Basic HTML description about the integration
+     */
+    description_html?: string;
+    constants?: any;
+    companies?: string[];
+    support?: string[];
+    /**
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the integration
+     */
+    _id?: string;
+    /**
+     * - Name of the integration, e.g. SAP RBL Integration
+     */
+    name?: string;
+    /**
+     * - Name of the integration, e.g. SAP RBL Integration
+     */
+    slug?: string;
+    meta?: IntegrationMeta[];
+    /**
+     * - Hosted URL of the icon image
+     */
+    icon?: string;
+    hidden?: boolean;
+    /**
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the user who created the integration
+     */
+    owner?: string;
+    /**
+     * - ISO 8601 timestamp of integration creation
+     */
+    created_at?: string;
+    /**
+     * - ISO 8601 timestamp of integration updation
+     */
+    modified_at?: string;
+    /**
+     * - Randomly generated fixed-length string for opted
+     * integration. It is auto-generated. It would never change once it is generated.
+     */
+    token?: string;
+    /**
+     * - Randomly generated fixed-length string for
+     * opted integration. It is auto-generated. It would never change once it is generated.
+     */
+    secret?: string;
+    /**
+     * - Version key for tracking revisions. Default value is zero.
+     */
+    __v?: number;
+};
+/** @returns {IntegrationConfigResponse} */
+declare function IntegrationConfigResponse(): IntegrationConfigResponse;
+type IntegrationConfigResponse = {
+    items?: IntegrationLevel[];
+};
 /** @returns {IntegrationLevel} */
 declare function IntegrationLevel(): IntegrationLevel;
 type IntegrationLevel = {
@@ -2755,9 +2974,9 @@ type IntegrationLevel = {
     success?: boolean;
     message?: string;
 };
-/** @returns {UpdateIntegrationLevelRequestSchema} */
-declare function UpdateIntegrationLevelRequestSchema(): UpdateIntegrationLevelRequestSchema;
-type UpdateIntegrationLevelRequestSchema = {
+/** @returns {UpdateIntegrationLevelRequest} */
+declare function UpdateIntegrationLevelRequest(): UpdateIntegrationLevelRequest;
+type UpdateIntegrationLevelRequest = {
     items?: IntegrationLevel[];
 };
 /** @returns {OptedStoreIntegration} */
@@ -2897,9 +3116,9 @@ type AppDomain = {
      */
     name?: string;
 };
-/** @returns {CompaniesResponseSchema} */
-declare function CompaniesResponseSchema(): CompaniesResponseSchema;
-type CompaniesResponseSchema = {
+/** @returns {CompaniesResponse} */
+declare function CompaniesResponse(): CompaniesResponse;
+type CompaniesResponse = {
     items?: AppInventoryCompanies[];
     page?: Page;
 };
@@ -2920,16 +3139,21 @@ type AppInventoryCompanies = {
      */
     company_type?: string;
 };
-/** @returns {StoresResponseSchema} */
-declare function StoresResponseSchema(): StoresResponseSchema;
-type StoresResponseSchema = {
+/** @returns {StoresResponse} */
+declare function StoresResponse(): StoresResponse;
+type StoresResponse = {
     items?: AppInventoryStores[];
     page?: Page;
 };
-/** @returns {ListStoreResponseSchemaSchema} */
-declare function ListStoreResponseSchemaSchema(): ListStoreResponseSchemaSchema;
-type ListStoreResponseSchemaSchema = {
+/** @returns {ListStoreResponse} */
+declare function ListStoreResponse(): ListStoreResponse;
+type ListStoreResponse = {
     stores?: AppInventoryStores[];
+};
+/** @returns {ArrayStoreResponse} */
+declare function ArrayStoreResponse(): ArrayStoreResponse;
+type ArrayStoreResponse = {
+    data?: AppInventoryStores[];
 };
 /** @returns {AppInventoryStores} */
 declare function AppInventoryStores(): AppInventoryStores;
@@ -2976,9 +3200,9 @@ type AppInventoryStores = {
     address?: any;
     integration_type?: any;
 };
-/** @returns {FilterOrderingStoreRequestSchemaSchema} */
-declare function FilterOrderingStoreRequestSchemaSchema(): FilterOrderingStoreRequestSchemaSchema;
-type FilterOrderingStoreRequestSchemaSchema = {
+/** @returns {FilterOrderingStoreRequest} */
+declare function FilterOrderingStoreRequest(): FilterOrderingStoreRequest;
+type FilterOrderingStoreRequest = {
     /**
      * - Allow all stores from the ordering stores
      */
@@ -3024,9 +3248,9 @@ declare function OrderingStoreConfig(): OrderingStoreConfig;
 type OrderingStoreConfig = {
     deployment_meta?: DeploymentMeta;
 };
-/** @returns {OrderingStoreSelectRequestSchema} */
-declare function OrderingStoreSelectRequestSchema(): OrderingStoreSelectRequestSchema;
-type OrderingStoreSelectRequestSchema = {
+/** @returns {OrderingStoreSelectRequest} */
+declare function OrderingStoreSelectRequest(): OrderingStoreSelectRequest;
+type OrderingStoreSelectRequest = {
     ordering_store: OrderingStoreSelect;
 };
 /** @returns {OrderingStoreSelect} */
@@ -3082,9 +3306,9 @@ type OtherSellerApplications = {
     items?: OtherSellerApplication[];
     page?: Page;
 };
-/** @returns {OptedApplicationResponseSchema} */
-declare function OptedApplicationResponseSchema(): OptedApplicationResponseSchema;
-type OptedApplicationResponseSchema = {
+/** @returns {OptedApplicationResponse} */
+declare function OptedApplicationResponse(): OptedApplicationResponse;
+type OptedApplicationResponse = {
     /**
      * - Name of the other seller's sales channel
      */
@@ -3196,9 +3420,9 @@ type OptOutInventory = {
      */
     company: number[];
 };
-/** @returns {TokenResponseSchema} */
-declare function TokenResponseSchema(): TokenResponseSchema;
-type TokenResponseSchema = {
+/** @returns {TokenResponse} */
+declare function TokenResponse(): TokenResponse;
+type TokenResponse = {
     tokens?: Tokens;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
@@ -3782,14 +4006,14 @@ type BuyboxFeature = {
      */
     is_seller_buybox_enabled?: boolean;
 };
-/** @returns {AppFeatureRequestSchema} */
-declare function AppFeatureRequestSchema(): AppFeatureRequestSchema;
-type AppFeatureRequestSchema = {
+/** @returns {AppFeatureRequest} */
+declare function AppFeatureRequest(): AppFeatureRequest;
+type AppFeatureRequest = {
     feature?: AppFeature;
 };
-/** @returns {AppFeatureResponseSchema} */
-declare function AppFeatureResponseSchema(): AppFeatureResponseSchema;
-type AppFeatureResponseSchema = {
+/** @returns {AppFeatureResponse} */
+declare function AppFeatureResponse(): AppFeatureResponse;
+type AppFeatureResponse = {
     feature?: AppFeature;
 };
 /** @returns {Currency} */
@@ -3830,11 +4054,10 @@ type Currency = {
      */
     decimal_digits?: number;
     /**
-     * - Unique symbol for identifying the currency, e.g. ₹
+     * - Unique symbol for identifying the currency, e.g. â‚¹
      */
     symbol?: string;
     country_name?: string;
-    subunit?: string;
     country_code?: string;
 };
 /** @returns {ApplicationWebsite} */
@@ -3996,9 +4219,9 @@ type TokenSchema = {
      */
     created_at?: string;
 };
-/** @returns {InvalidPayloadRequestSchema} */
-declare function InvalidPayloadRequestSchema(): InvalidPayloadRequestSchema;
-type InvalidPayloadRequestSchema = {
+/** @returns {InvalidPayloadRequest} */
+declare function InvalidPayloadRequest(): InvalidPayloadRequest;
+type InvalidPayloadRequest = {
     /**
      * - Error message when request body payload is improper
      */
@@ -4467,14 +4690,14 @@ type ApplicationDetail = {
     slug?: string;
     company_id?: number;
 };
-/** @returns {CurrenciesResponseSchema} */
-declare function CurrenciesResponseSchema(): CurrenciesResponseSchema;
-type CurrenciesResponseSchema = {
+/** @returns {CurrenciesResponse} */
+declare function CurrenciesResponse(): CurrenciesResponse;
+type CurrenciesResponse = {
     items?: Currency[];
 };
-/** @returns {AppCurrencyResponseSchema} */
-declare function AppCurrencyResponseSchema(): AppCurrencyResponseSchema;
-type AppCurrencyResponseSchema = {
+/** @returns {AppCurrencyResponse} */
+declare function AppCurrencyResponse(): AppCurrencyResponse;
+type AppCurrencyResponse = {
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * of the currency configuration supported by the application
@@ -4632,9 +4855,9 @@ type UpdateDiealog = {
     type: string;
     interval?: number;
 };
-/** @returns {PlatformVersionRequestSchema} */
-declare function PlatformVersionRequestSchema(): PlatformVersionRequestSchema;
-type PlatformVersionRequestSchema = {
+/** @returns {PlatformVersionRequest} */
+declare function PlatformVersionRequest(): PlatformVersionRequest;
+type PlatformVersionRequest = {
     app_code_name: string;
     app_name: string;
     force_version: string;
@@ -4664,9 +4887,9 @@ type PlatformVersion = {
     created_at?: string;
     __v?: number;
 };
-/** @returns {OrderingStoresResponseSchema} */
-declare function OrderingStoresResponseSchema(): OrderingStoresResponseSchema;
-type OrderingStoresResponseSchema = {
+/** @returns {OrderingStoresResponse} */
+declare function OrderingStoresResponse(): OrderingStoresResponse;
+type OrderingStoresResponse = {
     page?: Page;
     items?: OrderingStore[];
 };
@@ -4709,14 +4932,14 @@ declare function Locations(): Locations;
 type Locations = {
     items?: LocationCountry[];
 };
-/** @returns {UrlRedirectionResponseSchema} */
-declare function UrlRedirectionResponseSchema(): UrlRedirectionResponseSchema;
-type UrlRedirectionResponseSchema = {
+/** @returns {UrlRedirectionResponse} */
+declare function UrlRedirectionResponse(): UrlRedirectionResponse;
+type UrlRedirectionResponse = {
     redirections?: UrlRedirection[];
 };
-/** @returns {UrlRedirectionRequestSchema} */
-declare function UrlRedirectionRequestSchema(): UrlRedirectionRequestSchema;
-type UrlRedirectionRequestSchema = {
+/** @returns {UrlRedirectionRequest} */
+declare function UrlRedirectionRequest(): UrlRedirectionRequest;
+type UrlRedirectionRequest = {
     redirection?: UrlRedirection;
 };
 /** @returns {UrlRedirection} */
@@ -4727,14 +4950,14 @@ type UrlRedirection = {
     type?: string;
     _id?: string;
 };
-/** @returns {StoreForConfigurationRequestSchema} */
-declare function StoreForConfigurationRequestSchema(): StoreForConfigurationRequestSchema;
-type StoreForConfigurationRequestSchema = {
+/** @returns {StoreForConfigurationRequest} */
+declare function StoreForConfigurationRequest(): StoreForConfigurationRequest;
+type StoreForConfigurationRequest = {
     conf?: AppStoreRules[];
 };
-/** @returns {DomainOptionsResponseSchema} */
-declare function DomainOptionsResponseSchema(): DomainOptionsResponseSchema;
-type DomainOptionsResponseSchema = {
+/** @returns {DomainOptionsResponse} */
+declare function DomainOptionsResponse(): DomainOptionsResponse;
+type DomainOptionsResponse = {
     domain_types?: DomainType[];
     network_ips?: string[];
     network_cnames?: string[];
@@ -4752,25 +4975,13 @@ type DomainValue = {
     value?: string;
     text?: string;
 };
-/** @returns {StoreRequestSchema} */
-declare function StoreRequestSchema(): StoreRequestSchema;
-type StoreRequestSchema = {
+/** @returns {StoreRequest} */
+declare function StoreRequest(): StoreRequest;
+type StoreRequest = {
     companies?: number[];
 };
-/** @returns {StoreResponseSchema} */
-declare function StoreResponseSchema(): StoreResponseSchema;
-type StoreResponseSchema = {
+/** @returns {StoreResponse} */
+declare function StoreResponse(): StoreResponse;
+type StoreResponse = {
     data?: number[];
-};
-/** @returns {ValidationError} */
-declare function ValidationError(): ValidationError;
-type ValidationError = {
-    /**
-     * - A brief description of the error encountered.
-     */
-    message: string;
-    /**
-     * - The field in the request that caused the error.
-     */
-    field: string;
 };

@@ -12,21 +12,21 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppProvidersGlobalProviderReq
+ * @typedef AppProvidersGlobalProviderRequest
  * @property {AppProvidersGlobalProviderRequestObj} [email]
  * @property {AppProvidersGlobalProviderRequestObj} [sms]
  */
 
 /**
- * @typedef UpdateAppProvidersGlobalProviderResEmailSmsObj
+ * @typedef UpdateAppProvidersGlobalProviderResponseEmailSmsObj
  * @property {string} [default_provider]
  * @property {string} [otp_provider]
  */
 
 /**
- * @typedef UpdateAppProvidersGlobalProviderRes
- * @property {UpdateAppProvidersGlobalProviderResEmailSmsObj} [email]
- * @property {UpdateAppProvidersGlobalProviderResEmailSmsObj} [sms]
+ * @typedef UpdateAppProvidersGlobalProviderResponse
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [email]
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [sms]
  * @property {string} [_id]
  * @property {string} [slug]
  */
@@ -71,7 +71,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SendInstantRes
+ * @typedef SendInstantResponse
  * @property {boolean} [success]
  * @property {string} [provider]
  * @property {boolean} [response]
@@ -127,30 +127,30 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SendSyncReq
+ * @typedef SendSyncRequest
  * @property {SendSyncData[]} [data]
  * @property {PayloadEmailStructure} [email]
  * @property {PayloadSmsStructure} [sms]
  */
 
 /**
- * @typedef EngineReq
- * @property {SendSyncReq} [payload]
+ * @typedef EngineRequest
+ * @property {SendSyncRequest} [payload]
  * @property {MetaStructure} [meta]
  */
 
 /**
- * @typedef EngineRes
+ * @typedef EngineResponse
  * @property {boolean} [success]
  */
 
 /**
- * @typedef EventSubscriptionsBulkUpdateReq
+ * @typedef EventSubscriptionsBulkUpdateRequest
  * @property {SubscriptionsObject[]} [subscriptions]
  */
 
 /**
- * @typedef EventSubscriptionsBulkUpdateRes
+ * @typedef EventSubscriptionsBulkUpdateResponse
  * @property {EventSubscriptionTemplate} [template]
  * @property {string} [_id]
  * @property {string} [application]
@@ -163,7 +163,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SubscriptionsObjectReq
+ * @typedef SubscriptionsObjectRequest
  * @property {string} [event]
  * @property {string} [slug]
  * @property {TemplateObject} [template]
@@ -656,23 +656,23 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TriggerJobRes
+ * @typedef TriggerJobResponse
  * @property {number} [status]
  */
 
 /**
- * @typedef TriggerJobReq
+ * @typedef TriggerJobRequest
  * @property {string} [job_id]
  */
 
 /**
- * @typedef GlobalVariablesGetRes
+ * @typedef GlobalVariablesGetResponse
  * @property {Object} [read_only]
  * @property {Object} [editable]
  */
 
 /**
- * @typedef GlobalVariablesPostRes
+ * @typedef GlobalVariablesPostResponse
  * @property {string} [_id]
  * @property {string} [category]
  * @property {string} [application]
@@ -1119,27 +1119,27 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {AppProvidersGlobalProviderReq} */
-  static AppProvidersGlobalProviderReq() {
+  /** @returns {AppProvidersGlobalProviderRequest} */
+  static AppProvidersGlobalProviderRequest() {
     return Joi.object({
       email: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObj(),
       sms: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObj(),
     });
   }
 
-  /** @returns {UpdateAppProvidersGlobalProviderResEmailSmsObj} */
-  static UpdateAppProvidersGlobalProviderResEmailSmsObj() {
+  /** @returns {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} */
+  static UpdateAppProvidersGlobalProviderResponseEmailSmsObj() {
     return Joi.object({
       default_provider: Joi.string().allow("").allow(null),
       otp_provider: Joi.string().allow("").allow(null),
     });
   }
 
-  /** @returns {UpdateAppProvidersGlobalProviderRes} */
-  static UpdateAppProvidersGlobalProviderRes() {
+  /** @returns {UpdateAppProvidersGlobalProviderResponse} */
+  static UpdateAppProvidersGlobalProviderResponse() {
     return Joi.object({
-      email: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResEmailSmsObj(),
-      sms: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResEmailSmsObj(),
+      email: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponseEmailSmsObj(),
+      sms: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponseEmailSmsObj(),
       _id: Joi.string().allow(""),
       slug: Joi.string().allow(""),
     });
@@ -1194,8 +1194,8 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {SendInstantRes} */
-  static SendInstantRes() {
+  /** @returns {SendInstantResponse} */
+  static SendInstantResponse() {
     return Joi.object({
       success: Joi.boolean(),
       provider: Joi.string().allow("").allow(null),
@@ -1268,8 +1268,8 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {SendSyncReq} */
-  static SendSyncReq() {
+  /** @returns {SendSyncRequest} */
+  static SendSyncRequest() {
     return Joi.object({
       data: Joi.array().items(CommunicationPlatformModel.SendSyncData()),
       email: CommunicationPlatformModel.PayloadEmailStructure(),
@@ -1277,23 +1277,23 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {EngineReq} */
-  static EngineReq() {
+  /** @returns {EngineRequest} */
+  static EngineRequest() {
     return Joi.object({
-      payload: CommunicationPlatformModel.SendSyncReq(),
+      payload: CommunicationPlatformModel.SendSyncRequest(),
       meta: CommunicationPlatformModel.MetaStructure(),
     });
   }
 
-  /** @returns {EngineRes} */
-  static EngineRes() {
+  /** @returns {EngineResponse} */
+  static EngineResponse() {
     return Joi.object({
       success: Joi.boolean(),
     });
   }
 
-  /** @returns {EventSubscriptionsBulkUpdateReq} */
-  static EventSubscriptionsBulkUpdateReq() {
+  /** @returns {EventSubscriptionsBulkUpdateRequest} */
+  static EventSubscriptionsBulkUpdateRequest() {
     return Joi.object({
       subscriptions: Joi.array().items(
         CommunicationPlatformModel.SubscriptionsObject()
@@ -1301,8 +1301,8 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {EventSubscriptionsBulkUpdateRes} */
-  static EventSubscriptionsBulkUpdateRes() {
+  /** @returns {EventSubscriptionsBulkUpdateResponse} */
+  static EventSubscriptionsBulkUpdateResponse() {
     return Joi.object({
       template: CommunicationPlatformModel.EventSubscriptionTemplate(),
       _id: Joi.string().allow(""),
@@ -1316,8 +1316,8 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {SubscriptionsObjectReq} */
-  static SubscriptionsObjectReq() {
+  /** @returns {SubscriptionsObjectRequest} */
+  static SubscriptionsObjectRequest() {
     return Joi.object({
       event: Joi.string().allow(""),
       slug: Joi.string().allow(""),
@@ -1722,7 +1722,7 @@ class CommunicationPlatformModel {
       reply_to: Joi.string().allow(""),
       priority: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       published: Joi.boolean(),
       subject: CommunicationPlatformModel.TemplateAndType(),
       html: CommunicationPlatformModel.TemplateAndType(),
@@ -1774,7 +1774,7 @@ class CommunicationPlatformModel {
       html: CommunicationPlatformModel.TemplateAndType(),
       url_shorten: CommunicationPlatformModel.EnabledObj(),
       priority: Joi.string().allow(""),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       published: Joi.boolean(),
       category: Joi.string().allow(""),
       _id: Joi.string().allow(""),
@@ -1806,7 +1806,7 @@ class CommunicationPlatformModel {
       html: CommunicationPlatformModel.TemplateAndType(),
       url_shorten: CommunicationPlatformModel.EnabledObj(),
       priority: Joi.string().allow(""),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       published: Joi.boolean(),
       category: Joi.string().allow(""),
       _id: Joi.string().allow(""),
@@ -1896,7 +1896,7 @@ class CommunicationPlatformModel {
   static EventSubscriptionTemplateSmsObj() {
     return Joi.object({
       subscribed: Joi.boolean(),
-      template: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      template: Joi.any().allow(null),
     });
   }
 
@@ -1943,35 +1943,35 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {TriggerJobRes} */
-  static TriggerJobRes() {
+  /** @returns {TriggerJobResponse} */
+  static TriggerJobResponse() {
     return Joi.object({
       status: Joi.number(),
     });
   }
 
-  /** @returns {TriggerJobReq} */
-  static TriggerJobReq() {
+  /** @returns {TriggerJobRequest} */
+  static TriggerJobRequest() {
     return Joi.object({
       job_id: Joi.string().allow(""),
     });
   }
 
-  /** @returns {GlobalVariablesGetRes} */
-  static GlobalVariablesGetRes() {
+  /** @returns {GlobalVariablesGetResponse} */
+  static GlobalVariablesGetResponse() {
     return Joi.object({
-      read_only: Joi.object().pattern(/\S/, Joi.any()),
-      editable: Joi.object().pattern(/\S/, Joi.any()),
+      read_only: Joi.any(),
+      editable: Joi.any(),
     });
   }
 
-  /** @returns {GlobalVariablesPostRes} */
-  static GlobalVariablesPostRes() {
+  /** @returns {GlobalVariablesPostResponse} */
+  static GlobalVariablesPostResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       category: Joi.string().allow(""),
       application: Joi.string().allow(""),
-      global_variables: Joi.object().pattern(/\S/, Joi.any()),
+      global_variables: Joi.any(),
       created_at: Joi.string().allow(""),
     });
   }
@@ -1979,7 +1979,7 @@ class CommunicationPlatformModel {
   /** @returns {GlobalVariablesReq} */
   static GlobalVariablesReq() {
     return Joi.object({
-      global_variables: Joi.object().pattern(/\S/, Joi.any()),
+      global_variables: Joi.any(),
     });
   }
 
@@ -2321,7 +2321,7 @@ class CommunicationPlatformModel {
       message: CommunicationPlatformModel.SmsTemplateMessage(),
       priority: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       template_id: Joi.string().allow(""),
       published: Joi.boolean(),
       category: Joi.string().allow(""),
@@ -2344,7 +2344,7 @@ class CommunicationPlatformModel {
       message: CommunicationPlatformModel.SmsTemplateMessage(),
       priority: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       template_id: Joi.string().allow(""),
       published: Joi.boolean(),
       category: Joi.string().allow(""),
@@ -2372,7 +2372,7 @@ class CommunicationPlatformModel {
       priority: Joi.string().allow(""),
       template_id: Joi.string().allow(""),
       meta: CommunicationPlatformModel.metaObj(),
-      template_variables: Joi.object().pattern(/\S/, Joi.any()),
+      template_variables: Joi.any(),
       published: Joi.boolean(),
       message: CommunicationPlatformModel.SmsTemplateMessage(),
     });
