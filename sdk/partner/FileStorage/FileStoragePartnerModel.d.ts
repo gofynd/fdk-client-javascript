@@ -69,7 +69,6 @@ export = FileStoragePartnerModel;
  * @property {number} size
  * @property {string[]} [tags]
  * @property {Object} [params]
- * @property {string} [enc_key]
  */
 /**
  * @typedef CreatedBy
@@ -194,7 +193,6 @@ type FileUploadStart = {
     size: number;
     tags?: string[];
     params?: any;
-    enc_key?: string;
 };
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;

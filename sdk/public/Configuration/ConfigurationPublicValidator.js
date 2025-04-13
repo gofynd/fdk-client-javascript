@@ -3,11 +3,6 @@ const Joi = require("joi");
 const ConfigurationPublicModel = require("./ConfigurationPublicModel");
 
 /**
- * @typedef CheckVersionIsUpToDateParam
- * @property {ConfigurationPublicModel.VersionRequest} body
- */
-
-/**
  * @typedef GetLocationsParam
  * @property {string} [locationType] - Provide location type to query on.
  *   Possible values : country, state, city
@@ -23,13 +18,6 @@ const ConfigurationPublicModel = require("./ConfigurationPublicModel");
  */
 
 class ConfigurationPublicValidator {
-  /** @returns {CheckVersionIsUpToDateParam} */
-  static checkVersionIsUpToDate() {
-    return Joi.object({
-      body: ConfigurationPublicModel.VersionRequest().required(),
-    }).required();
-  }
-
   /** @returns {GetLocationsParam} */
   static getLocations() {
     return Joi.object({

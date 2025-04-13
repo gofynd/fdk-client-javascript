@@ -5,12 +5,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.UpdatePayoutRequest} body
- */
-
-/**
- * @typedef ActivateAndDectivatePayoutsParam
- * @property {PaymentPlatformModel.UpdatePayoutRequest} body
+ * @property {PaymentPlatformModel.UpdatePayoutCreation} body
  */
 
 /**
@@ -19,14 +14,9 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
- * @typedef DeletePayoutsParam
- * @property {string} uniqueTransferNo - Unique transfer id
- */
-
-/**
- * @typedef GetAllPayoutParam
- * @property {string} uniqueTransferNo - Unique transfer id
- * @property {string} [uniqueExternalId] - Fetch payouts using unique external id
+ * @typedef DeleteSubscriptionPaymentMethodParam
+ * @property {string} uniqueExternalId
+ * @property {string} paymentMethodId
  */
 
 /**
@@ -34,28 +24,27 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {string} [uniqueExternalId] - Fetch payouts using unique external id
  */
 
-/** @typedef GetPaymentMethodConfigParam */
+/** @typedef GetSubscriptionConfigParam */
 
 /**
- * @typedef SavePayoutParam
- * @property {PaymentPlatformModel.PayoutRequest} body
+ * @typedef GetSubscriptionPaymentMethodParam
+ * @property {string} [uniqueExternalId] - Unique external id
  */
 
 /**
- * @typedef SavePayoutsParam
- * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutRequest} body
+ * @typedef SavePayoutParam
+ * @property {PaymentPlatformModel.PayoutCreation} body
+ */
+
+/**
+ * @typedef SaveSubscriptionSetupIntentParam
+ * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentCreation} body
  */
 
 /**
  * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutRequest} body
- */
-
-/**
- * @typedef UpdatePayoutsParam
- * @property {PaymentPlatformModel.PayoutRequest} body
+ * @property {PaymentPlatformModel.PayoutCreation} body
  */
 
 /**
@@ -68,14 +57,7 @@ class PaymentPlatformValidator {
   static activateAndDectivatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
-    }).required();
-  }
-
-  /** @returns {ActivateAndDectivatePayoutsParam} */
-  static activateAndDectivatePayouts() {
-    return Joi.object({
-      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
+      body: PaymentPlatformModel.UpdatePayoutCreation().required(),
     }).required();
   }
 
@@ -86,18 +68,11 @@ class PaymentPlatformValidator {
     }).required();
   }
 
-  /** @returns {DeletePayoutsParam} */
-  static deletePayouts() {
+  /** @returns {DeleteSubscriptionPaymentMethodParam} */
+  static deleteSubscriptionPaymentMethod() {
     return Joi.object({
-      uniqueTransferNo: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetAllPayoutParam} */
-  static getAllPayout() {
-    return Joi.object({
-      uniqueTransferNo: Joi.string().allow("").required(),
-      uniqueExternalId: Joi.string().allow(""),
+      uniqueExternalId: Joi.string().allow("").required(),
+      paymentMethodId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -108,23 +83,29 @@ class PaymentPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetPaymentMethodConfigParam} */
-  static getPaymentMethodConfig() {
+  /** @returns {GetSubscriptionConfigParam} */
+  static getSubscriptionConfig() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetSubscriptionPaymentMethodParam} */
+  static getSubscriptionPaymentMethod() {
+    return Joi.object({
+      uniqueExternalId: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {SavePayoutParam} */
   static savePayout() {
     return Joi.object({
-      body: PaymentPlatformModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutCreation().required(),
     }).required();
   }
 
-  /** @returns {SavePayoutsParam} */
-  static savePayouts() {
+  /** @returns {SaveSubscriptionSetupIntentParam} */
+  static saveSubscriptionSetupIntent() {
     return Joi.object({
-      uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.SaveSubscriptionSetupIntentCreation().required(),
     }).required();
   }
 
@@ -132,14 +113,7 @@ class PaymentPlatformValidator {
   static updatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PayoutRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdatePayoutsParam} */
-  static updatePayouts() {
-    return Joi.object({
-      body: PaymentPlatformModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutCreation().required(),
     }).required();
   }
 

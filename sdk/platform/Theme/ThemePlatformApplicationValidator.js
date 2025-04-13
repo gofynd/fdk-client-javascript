@@ -3,6 +3,11 @@ const Joi = require("joi");
 const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
+ * @typedef AddThemeToApplicationParam
+ * @property {ThemePlatformModel.ThemeReq} body
+ */
+
+/**
  * @typedef ApplyThemeParam
  * @property {string} themeId - The ID of the apply
  */
@@ -11,11 +16,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @typedef CreatePageParam
  * @property {string} themeId - ID of the theme
  * @property {ThemePlatformModel.AvailablePageSchema} body
- */
-
-/**
- * @typedef CreateThemeParam
- * @property {ThemePlatformModel.CompanyThemeReqSchema} body
  */
 
 /**
@@ -53,13 +53,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /** @typedef GetFontsParam */
 
-/** @typedef GetFontsV2Param */
-
-/**
- * @typedef GetLatestVersionOfThemeBySlugParam
- * @property {string} slugName - Slug of theme
- */
-
 /**
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
@@ -96,13 +89,14 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
+ * @property {string} socketId - Unique socket id for websocket
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 
 /**
  * @typedef UpdateThemeParam
  * @property {string} themeId - The ID of the theme.
- * @property {ThemePlatformModel.ThemesSchema} body
+ * @property {ThemePlatformModel.UpdateThemeRequestBody} body
  */
 
 /**
@@ -117,6 +111,13 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 class ThemePlatformApplicationValidator {
+  /** @returns {AddThemeToApplicationParam} */
+  static addThemeToApplication() {
+    return Joi.object({
+      body: ThemePlatformModel.ThemeReq().required(),
+    }).required();
+  }
+
   /** @returns {ApplyThemeParam} */
   static applyTheme() {
     return Joi.object({
@@ -129,13 +130,6 @@ class ThemePlatformApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       body: ThemePlatformModel.AvailablePageSchema().required(),
-    }).required();
-  }
-
-  /** @returns {CreateThemeParam} */
-  static createTheme() {
-    return Joi.object({
-      body: ThemePlatformModel.CompanyThemeReqSchema().required(),
     }).required();
   }
 
@@ -196,18 +190,6 @@ class ThemePlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetFontsV2Param} */
-  static getFontsV2() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetLatestVersionOfThemeBySlugParam} */
-  static getLatestVersionOfThemeBySlug() {
-    return Joi.object({
-      slugName: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
@@ -257,6 +239,7 @@ class ThemePlatformApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       pageValue: Joi.string().allow("").required(),
+      socketId: Joi.string().allow("").required(),
       body: ThemePlatformModel.AvailablePageSchema().required(),
     }).required();
   }
@@ -265,7 +248,7 @@ class ThemePlatformApplicationValidator {
   static updateTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
-      body: ThemePlatformModel.ThemesSchema().required(),
+      body: ThemePlatformModel.UpdateThemeRequestBody().required(),
     }).required();
   }
 

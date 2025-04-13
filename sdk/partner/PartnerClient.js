@@ -1,14 +1,8 @@
-const Authorization = require("./Authorization/AuthorizationPartnerClient");
-
-const Catalog = require("./Catalog/CatalogPartnerClient");
-
 const FileStorage = require("./FileStorage/FileStoragePartnerClient");
 
 const Lead = require("./Lead/LeadPartnerClient");
 
 const Logistics = require("./Logistics/LogisticsPartnerClient");
-
-const Payment = require("./Payment/PaymentPartnerClient");
 
 const Theme = require("./Theme/ThemePartnerClient");
 
@@ -31,12 +25,9 @@ class PartnerClient {
    */
   constructor(config) {
     this.config = config;
-    this.authorization = new Authorization(config);
-    this.catalog = new Catalog(config);
     this.fileStorage = new FileStorage(config);
     this.lead = new Lead(config);
     this.logistics = new Logistics(config);
-    this.payment = new Payment(config);
     this.theme = new Theme(config);
     this.webhook = new Webhook(config);
   }

@@ -80,7 +80,6 @@ const Joi = require("joi");
  * @property {number} size
  * @property {string[]} [tags]
  * @property {Object} [params]
- * @property {string} [enc_key]
  */
 
 /**
@@ -214,7 +213,6 @@ class FileStoragePartnerModel {
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
       params: Joi.object().pattern(/\S/, Joi.any()),
-      enc_key: Joi.string().allow(""),
     });
   }
 
