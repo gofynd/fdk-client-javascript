@@ -14,17 +14,16 @@ export = FileStoragePlatformValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync] - Determines whether the copy files operation
- *   should run in synchronous mode.
+ * @property {boolean} [sync]
  * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
  * @typedef GetSignUrlsParam
- * @property {FileStoragePlatformModel.SignUrl} body
+ * @property {FileStoragePlatformModel.SignUrlRequest} body
  */
 /**
  * @typedef ProxyParam
@@ -36,7 +35,7 @@ export = FileStoragePlatformValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 declare class FileStoragePlatformValidator {
     /** @returns {BrowseParam} */
@@ -80,18 +79,14 @@ type CompleteUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUpload;
+    body: FileStoragePlatformModel.StartResponse;
 };
 type CopyFilesParam = {
-    /**
-     * - Determines whether the copy files operation
-     * should run in synchronous mode.
-     */
     sync?: boolean;
     body: FileStoragePlatformModel.CopyFiles;
 };
 type GetSignUrlsParam = {
-    body: FileStoragePlatformModel.SignUrl;
+    body: FileStoragePlatformModel.SignUrlRequest;
 };
 type ProxyParam = {
     /**
@@ -107,6 +102,6 @@ type StartUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUploadStart;
+    body: FileStoragePlatformModel.StartRequest;
 };
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");

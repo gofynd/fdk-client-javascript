@@ -14,7 +14,7 @@ export = WebhookPublicModel;
  * @property {string} [group]
  */
 /**
- * @typedef EventDetails
+ * @typedef EventConfigResponse
  * @property {EventConfig[]} [event_configs]
  */
 /**
@@ -58,7 +58,7 @@ export = WebhookPublicModel;
  * @property {number} [company_id]
  */
 /**
- * @typedef TransformEventPayload
+ * @typedef TransformEventRequest
  * @property {string} event_name
  * @property {string} event_type
  * @property {string} event_category
@@ -66,7 +66,7 @@ export = WebhookPublicModel;
  * @property {EventSchema} event
  */
 /**
- * @typedef ValidateSchemaPayload
+ * @typedef ValidateSchemaRequest
  * @property {string} event_name
  * @property {string} event_type
  * @property {string} event_category
@@ -75,12 +75,12 @@ export = WebhookPublicModel;
  * @property {Object} event_schema
  */
 /**
- * @typedef ValidateSchemaResult
+ * @typedef ValidateSchemaResponse
  * @property {boolean} [status]
  * @property {string} [message]
  */
 /**
- * @typedef TransformEventResult
+ * @typedef TransformEventResponse
  * @property {string[]} [event_trace_id]
  * @property {TransformEventData} [data]
  * @property {string} [event_name]
@@ -93,7 +93,7 @@ export = WebhookPublicModel;
 declare class WebhookPublicModel {
 }
 declare namespace WebhookPublicModel {
-    export { EventConfig, EventDetails, EventConfigBase, EventNotifier, EventSchema, InternalTransformEvent, TransformEventData, TransformEventServiceMeta, TransformEventAssociation, TransformEventPayload, ValidateSchemaPayload, ValidateSchemaResult, TransformEventResult };
+    export { EventConfig, EventConfigResponse, EventConfigBase, EventNotifier, EventSchema, InternalTransformEvent, TransformEventData, TransformEventServiceMeta, TransformEventAssociation, TransformEventRequest, ValidateSchemaRequest, ValidateSchemaResponse, TransformEventResponse };
 }
 /** @returns {EventConfig} */
 declare function EventConfig(): EventConfig;
@@ -110,9 +110,9 @@ type EventConfig = {
     updated_on?: string;
     group?: string;
 };
-/** @returns {EventDetails} */
-declare function EventDetails(): EventDetails;
-type EventDetails = {
+/** @returns {EventConfigResponse} */
+declare function EventConfigResponse(): EventConfigResponse;
+type EventConfigResponse = {
     event_configs?: EventConfig[];
 };
 /** @returns {EventConfigBase} */
@@ -162,18 +162,18 @@ declare function TransformEventAssociation(): TransformEventAssociation;
 type TransformEventAssociation = {
     company_id?: number;
 };
-/** @returns {TransformEventPayload} */
-declare function TransformEventPayload(): TransformEventPayload;
-type TransformEventPayload = {
+/** @returns {TransformEventRequest} */
+declare function TransformEventRequest(): TransformEventRequest;
+type TransformEventRequest = {
     event_name: string;
     event_type: string;
     event_category: string;
     event_version: string;
     event: EventSchema;
 };
-/** @returns {ValidateSchemaPayload} */
-declare function ValidateSchemaPayload(): ValidateSchemaPayload;
-type ValidateSchemaPayload = {
+/** @returns {ValidateSchemaRequest} */
+declare function ValidateSchemaRequest(): ValidateSchemaRequest;
+type ValidateSchemaRequest = {
     event_name: string;
     event_type: string;
     event_category: string;
@@ -181,15 +181,15 @@ type ValidateSchemaPayload = {
     event: EventSchema;
     event_schema: any;
 };
-/** @returns {ValidateSchemaResult} */
-declare function ValidateSchemaResult(): ValidateSchemaResult;
-type ValidateSchemaResult = {
+/** @returns {ValidateSchemaResponse} */
+declare function ValidateSchemaResponse(): ValidateSchemaResponse;
+type ValidateSchemaResponse = {
     status?: boolean;
     message?: string;
 };
-/** @returns {TransformEventResult} */
-declare function TransformEventResult(): TransformEventResult;
-type TransformEventResult = {
+/** @returns {TransformEventResponse} */
+declare function TransformEventResponse(): TransformEventResponse;
+type TransformEventResponse = {
     event_trace_id?: string[];
     data?: TransformEventData;
     event_name?: string;

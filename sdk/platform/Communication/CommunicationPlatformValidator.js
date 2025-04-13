@@ -10,6 +10,24 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {string} [query] - To search based on plain text
  */
 
+/**
+ * @typedef SenByCompanyCommunicationAsynchronouslyParam
+ * @property {string} xApplicationId - Application id
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+
+/**
+ * @typedef SendByCompanyCommunicationInstantlyParam
+ * @property {string} xApplicationId - Application id
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+
+/**
+ * @typedef SendByCompanyCommunicationSynchronouslyParam
+ * @property {string} xApplicationId - Application id
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+
 class CommunicationPlatformValidator {
   /** @returns {GetSystemNotificationsParam} */
   static getSystemNotifications() {
@@ -18,6 +36,30 @@ class CommunicationPlatformValidator {
       pageSize: Joi.number(),
       sort: Joi.string().allow(""),
       query: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {SenByCompanyCommunicationAsynchronouslyParam} */
+  static senByCompanyCommunicationAsynchronously() {
+    return Joi.object({
+      xApplicationId: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
+    }).required();
+  }
+
+  /** @returns {SendByCompanyCommunicationInstantlyParam} */
+  static sendByCompanyCommunicationInstantly() {
+    return Joi.object({
+      xApplicationId: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
+    }).required();
+  }
+
+  /** @returns {SendByCompanyCommunicationSynchronouslyParam} */
+  static sendByCompanyCommunicationSynchronously() {
+    return Joi.object({
+      xApplicationId: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 }

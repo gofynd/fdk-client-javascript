@@ -18,7 +18,7 @@ class Catalog {
    * @param {CatalogPartnerValidator.PartnerCompanyDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<CatalogPartnerModel.CompaniesSchema>} - Success response
+   * @returns {Promise<CatalogPartnerModel.CompaniesSerializer>} - Success response
    * @name partnerCompanyDetails
    * @summary: Fetch partner company details
    * @description: This API helps in fetch details of partner companies with the help of uid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/catalog/partnerCompanyDetails/).
@@ -72,7 +72,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPartnerModel.CompaniesSchema().validate(responseData, {
+    } = CatalogPartnerModel.CompaniesSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -95,7 +95,7 @@ class Catalog {
    * @param {CatalogPartnerValidator.GetCompaniesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<CatalogPartnerModel.CompanyListSchema>} - Success response
+   * @returns {Promise<CatalogPartnerModel.CompanyListSerializer>} - Success response
    * @name getCompanies
    * @summary: Get company profile
    * @description: This API allows to view the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/catalog/getCompanies/).
@@ -151,7 +151,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPartnerModel.CompanyListSchema().validate(responseData, {
+    } = CatalogPartnerModel.CompanyListSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

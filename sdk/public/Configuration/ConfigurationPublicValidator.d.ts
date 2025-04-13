@@ -1,7 +1,7 @@
 export = ConfigurationPublicValidator;
 /**
  * @typedef CheckVersionIsUpToDateParam
- * @property {ConfigurationPublicModel.VersionRequestSchema} body
+ * @property {ConfigurationPublicModel.VersionRequest} body
  */
 /**
  * @typedef GetLocationsParam
@@ -28,7 +28,7 @@ declare namespace ConfigurationPublicValidator {
     export { CheckVersionIsUpToDateParam, GetLocationsParam, SearchApplicationParam };
 }
 type CheckVersionIsUpToDateParam = {
-    body: ConfigurationPublicModel.VersionRequestSchema;
+    body: ConfigurationPublicModel.VersionRequest;
 };
 type GetLocationsParam = {
     /**

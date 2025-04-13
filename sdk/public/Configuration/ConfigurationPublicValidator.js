@@ -4,7 +4,7 @@ const ConfigurationPublicModel = require("./ConfigurationPublicModel");
 
 /**
  * @typedef CheckVersionIsUpToDateParam
- * @property {ConfigurationPublicModel.VersionRequestSchema} body
+ * @property {ConfigurationPublicModel.VersionRequest} body
  */
 
 /**
@@ -26,7 +26,7 @@ class ConfigurationPublicValidator {
   /** @returns {CheckVersionIsUpToDateParam} */
   static checkVersionIsUpToDate() {
     return Joi.object({
-      body: ConfigurationPublicModel.VersionRequestSchema().required(),
+      body: ConfigurationPublicModel.VersionRequest().required(),
     }).required();
   }
 

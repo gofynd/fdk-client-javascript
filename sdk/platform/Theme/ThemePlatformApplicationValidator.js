@@ -96,7 +96,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
- * @property {string} socketId - Unique socket id for websocket
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 
@@ -258,7 +257,6 @@ class ThemePlatformApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       pageValue: Joi.string().allow("").required(),
-      socketId: Joi.string().allow("").required(),
       body: ThemePlatformModel.AvailablePageSchema().required(),
     }).required();
   }

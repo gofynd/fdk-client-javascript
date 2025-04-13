@@ -5,12 +5,12 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.UpdatePayoutCreation} body
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 
 /**
  * @typedef ActivateAndDectivatePayoutsParam
- * @property {PaymentPlatformModel.UpdatePayoutCreation} body
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 
 /**
@@ -38,24 +38,24 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef SavePayoutParam
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
  * @typedef SavePayoutsParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
  * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
  * @typedef UpdatePayoutsParam
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
@@ -68,14 +68,14 @@ class PaymentPlatformValidator {
   static activateAndDectivatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.UpdatePayoutCreation().required(),
+      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
     }).required();
   }
 
   /** @returns {ActivateAndDectivatePayoutsParam} */
   static activateAndDectivatePayouts() {
     return Joi.object({
-      body: PaymentPlatformModel.UpdatePayoutCreation().required(),
+      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
     }).required();
   }
 
@@ -116,7 +116,7 @@ class PaymentPlatformValidator {
   /** @returns {SavePayoutParam} */
   static savePayout() {
     return Joi.object({
-      body: PaymentPlatformModel.PayoutCreation().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 
@@ -124,7 +124,7 @@ class PaymentPlatformValidator {
   static savePayouts() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PayoutCreation().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 
@@ -132,14 +132,14 @@ class PaymentPlatformValidator {
   static updatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PayoutCreation().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 
   /** @returns {UpdatePayoutsParam} */
   static updatePayouts() {
     return Joi.object({
-      body: PaymentPlatformModel.PayoutCreation().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 

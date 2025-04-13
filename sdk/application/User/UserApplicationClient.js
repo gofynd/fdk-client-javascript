@@ -760,7 +760,7 @@ class User {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SendOtp>} - Success response
+   * @returns {Promise<SendOtpResponse>} - Success response
    * @name loginWithOTP
    * @summary: Login with Mobile OTP
    * @description: Allow users to log in using a one-time password sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
@@ -1436,7 +1436,7 @@ class User {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserExists>} - Success response
+   * @returns {Promise<UserExistsResponse>} - Success response
    * @name userExists
    * @summary: Check User Existence
    * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).

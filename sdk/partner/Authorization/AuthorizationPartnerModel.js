@@ -27,7 +27,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ClientResponseSchema
+ * @typedef ClientResponse
  * @property {number} [company_id] - The ID of the company associated with the client.
  * @property {string} [client_id] - The unique identifier for the client.
  * @property {string[]} [secret] - List of secrets associated with the client.
@@ -52,7 +52,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ClientListSchema
- * @property {ClientResponseSchema[]} [items] - List of client responses.
+ * @property {ClientResponse[]} [items] - List of client responses.
  * @property {Page} [page]
  */
 
@@ -103,8 +103,8 @@ class AuthorizationPartnerModel {
     });
   }
 
-  /** @returns {ClientResponseSchema} */
-  static ClientResponseSchema() {
+  /** @returns {ClientResponse} */
+  static ClientResponse() {
     return Joi.object({
       company_id: Joi.number(),
       client_id: Joi.string().allow(""),
@@ -116,7 +116,7 @@ class AuthorizationPartnerModel {
       access_token_lifetime: Joi.number(),
       refresh_token_lifetime: Joi.number(),
       meta: AuthorizationPartnerModel.ClientMeta(),
-      author: Joi.object().pattern(/\S/, Joi.any()),
+      author: Joi.any(),
       is_active: Joi.boolean(),
       client_type: Joi.string().allow(""),
       organization_id: Joi.string().allow(""),
@@ -130,9 +130,7 @@ class AuthorizationPartnerModel {
   /** @returns {ClientListSchema} */
   static ClientListSchema() {
     return Joi.object({
-      items: Joi.array().items(
-        AuthorizationPartnerModel.ClientResponseSchema()
-      ),
+      items: Joi.array().items(AuthorizationPartnerModel.ClientResponse()),
       page: AuthorizationPartnerModel.Page(),
     });
   }

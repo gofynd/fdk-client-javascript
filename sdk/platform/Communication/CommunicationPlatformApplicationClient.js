@@ -16,6 +16,87 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.CreateAppPushtokenParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.PushtokenRes>} - Success response
+   * @name createAppPushtoken
+   * @summary: Create app push token.
+   * @description: Create the push token of the user.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAppPushtoken/).
+   */
+  async createAppPushtoken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createAppPushtoken().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createAppPushtoken().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createAppPushtoken \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pn/tokens`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.PushtokenRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > createAppPushtoken \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
    *   - Arg object
    *
@@ -340,13 +421,94 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.CreateEventSubscriptionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+   * @name createEventSubscriptions
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptions/).
+   */
+  async createEventSubscriptions(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createEventSubscriptions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createEventSubscriptions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createEventSubscriptions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > createEventSubscriptions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.CreateEventSubscriptionsByBulkParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<
-   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateRes[]
+   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse[]
    * >}
    *   - Success response
    *
@@ -404,7 +566,7 @@ class Communication {
     }
 
     const { error: res_error } = Joi.array()
-      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateRes())
+      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -414,6 +576,85 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > createEventSubscriptionsByBulk \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.CreateJobsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.CreateJobsRes>} - Success response
+   * @name createJobs
+   * @summary: Create jobs
+   * @description: Create jobs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createJobs/).
+   */
+  async createJobs(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createJobs().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createJobs().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createJobs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.CreateJobsRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > createJobs \n ${res_error}`,
         });
       }
     }
@@ -584,6 +825,251 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteAudienceByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+   * @name deleteAudienceById
+   * @summary: Delete audience by ID.
+   * @description: Remove a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
+   */
+  async deleteAudienceById(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteAudienceById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteAudienceById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteCampaignByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+   * @name deleteCampaignById
+   * @summary: Update campaign by ID.
+   * @description: Modify the settings of a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteCampaignById/).
+   */
+  async deleteCampaignById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteCampaignById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteCampaignById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteCampaignById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteCampaignById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteEmailProviderByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+   * @name deleteEmailProviderById
+   * @summary: Delete email provider by ID.
+   * @description: Remove a specific email communication provider from the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailProviderById/).
+   */
+  async deleteEmailProviderById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteEmailProviderById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteEmailProviderById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam} arg
    *   - Arg object
    *
@@ -665,6 +1151,168 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteEventSubscriptionsByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+   * @name deleteEventSubscriptionsById
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEventSubscriptionsById/).
+   */
+  async deleteEventSubscriptionsById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteEventSubscriptionsById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteEventSubscriptionsById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteEventSubscriptionsById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteEventSubscriptionsById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteSmsProviderByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+   * @name deleteSmsProviderById
+   * @summary: Delete SMS provider by ID.
+   * @description: Remove a specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsProviderById/).
+   */
+  async deleteSmsProviderById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteSmsProviderById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteSmsProviderById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam} arg
    *   - Arg object
    *
@@ -738,6 +1386,89 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > deleteSmsTemplateById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.EditEventSubscriptionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+   * @name editEventSubscriptions
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/editEventSubscriptions/).
+   */
+  async editEventSubscriptions(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.editEventSubscriptions().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.editEventSubscriptions().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > editEventSubscriptions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > editEventSubscriptions \n ${res_error}`,
         });
       }
     }
@@ -1490,6 +2221,164 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.GetDummyDatasourcesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DummyDatasources[]>} -
+   *   Success response
+   * @name getDummyDatasources
+   * @summary: Get dummy data sources.
+   * @description: Retrieve a list of dummy data sources for testing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasources/).
+   */
+  async getDummyDatasources(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasources().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasources().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDummyDatasources \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasource/dummy-data-sources`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.DummyDatasources())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getDummyDatasources \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetDummyDatasourcesMetaParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DummyDatasourcesMeta>} -
+   *   Success response
+   * @name getDummyDatasourcesMeta
+   * @summary: Get dummy data sources metadata.
+   * @description: Retrieve metadata information about dummy data sources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasourcesMeta/).
+   */
+  async getDummyDatasourcesMeta(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasourcesMeta().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasourcesMeta().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDummyDatasourcesMeta \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasource/dummy-data-source-meta`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.DummyDatasourcesMeta().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getDummyDatasourcesMeta \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam} arg
    *   - Arg object
    *
@@ -2043,6 +2932,90 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
+   * @name getEventSubscriptionsById
+   * @summary: Get event subscriptions by id
+   * @description: Get event subscriptions by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptionsById/).
+   */
+  async getEventSubscriptionsById(
+    { id, populate, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEventSubscriptionsById().validate(
+      {
+        id,
+        populate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getEventSubscriptionsById().validate(
+      {
+        id,
+        populate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getEventSubscriptionsById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["populate"] = populate;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getEventSubscriptionsById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetGlobalProvidersParam} arg
    *   - Arg object
    *
@@ -2125,8 +3098,9 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetRes>} -
-   *   Success response
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+   *   - Success response
+   *
    * @name getGlobalVariables
    * @summary: Get global variables.
    * @description: Retrieve global variables used in communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
@@ -2178,7 +3152,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GlobalVariablesGetRes().validate(
+    } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2525,6 +3499,94 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > getNSampleRecordsFromCsv \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvByGetParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
+   * @name getNSampleRecordsFromCsvByGet
+   * @summary: Get N sample records in CSV
+   * @description: Retrieve a specified number of sample records from a CSV data source using a GET request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
+   */
+  async getNSampleRecordsFromCsvByGet(
+    { count, header, url, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
+      {
+        count,
+        header,
+        url,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
+      {
+        count,
+        header,
+        url,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getNSampleRecordsFromCsvByGet \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["count"] = count;
+    query_params["header"] = header;
+    query_params["url"] = url;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getNSampleRecordsFromCsvByGet \n ${res_error}`,
         });
       }
     }
@@ -3410,8 +4472,9 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostRes>} -
-   *   Success response
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+   *   - Success response
+   *
    * @name postGlobalVariables
    * @summary: Post global variables.
    * @description: Update and post global variables for communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
@@ -3467,7 +4530,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GlobalVariablesPostRes().validate(
+    } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3492,7 +4555,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EngineRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
    * @name sendCommunicationAsynchronously
    * @summary: Send communication asynchronously.
    * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
@@ -3548,7 +4611,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineRes().validate(responseData, {
+    } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3573,7 +4636,8 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SendInstantRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
    * @name sendCommunicationSynchronously
    * @summary: Send communication synchronously.
    * @description: Initiate and send communication in real-time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
@@ -3629,10 +4693,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SendInstantRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3641,6 +4705,88 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > sendCommunicationSynchronously \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.SendEngineCommunicationSynchronouslyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
+   * @name sendEngineCommunicationSynchronously
+   * @summary: Send communication asynchronously.
+   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendEngineCommunicationSynchronously/).
+   */
+  async sendEngineCommunicationSynchronously(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.sendEngineCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.sendEngineCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > sendEngineCommunicationSynchronously \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-sync`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > sendEngineCommunicationSynchronously \n ${res_error}`,
         });
       }
     }
@@ -3736,7 +4882,8 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.TriggerJobRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
+   *   Success response
    * @name triggerCampaignJob
    * @summary: Trigger campaign job.
    * @description: Initiate a job to execute a communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
@@ -3792,7 +4939,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.TriggerJobRes().validate(responseData, {
+    } = CommunicationPlatformModel.TriggerJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3885,6 +5032,172 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > updateAppProviders \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersGlobalProviderParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse>}
+   *   - Success response
+   *
+   * @name updateAppProvidersGlobalProvider
+   * @summary: Get global app providers.
+   * @description: Retrieve a list of global app  providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProvidersGlobalProvider/).
+   */
+  async updateAppProvidersGlobalProvider(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAppProvidersGlobalProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.updateAppProvidersGlobalProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > updateAppProvidersGlobalProvider \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/global-providers`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > updateAppProvidersGlobalProvider \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+   * @name updateAudienceById
+   * @summary: Update audience by ID.
+   * @description: Modify the settings of a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
+   */
+  async updateAudienceById(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > updateAudienceById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.Audience().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > updateAudienceById \n ${res_error}`,
         });
       }
     }

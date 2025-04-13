@@ -58,7 +58,7 @@ export = PaymentPartnerModel;
  *   originally used by the user for the payment.
  */
 /**
- * @typedef PaymentConfigDetails
+ * @typedef PaymentConfigResponse
  * @property {boolean} [success]
  * @property {RefundTo} [refund_to]
  * @property {PaymentMethod[]} [payment_methods]
@@ -70,7 +70,7 @@ export = PaymentPartnerModel;
  * @property {Currency[]} [currency]
  */
 /**
- * @typedef PostPayoutDetails
+ * @typedef PostPayoutResponse
  * @property {boolean} [success]
  * @property {Users} [users]
  * @property {boolean} [is_active]
@@ -84,7 +84,7 @@ export = PaymentPartnerModel;
  * @property {boolean} [updated]
  */
 /**
- * @typedef PostPayout
+ * @typedef PostPayoutRequest
  * @property {string} [unique_external_id]
  * @property {Users} [users]
  * @property {boolean} [is_active]
@@ -126,12 +126,12 @@ export = PaymentPartnerModel;
  * @property {string} description - Error human understandable description.
  */
 /**
- * @typedef HttpErrorCodeAndMessage
+ * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} [error]
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef PayoutDetails
+ * @typedef PayoutResponse
  * @property {PayoutItem[]} [items]
  * @property {boolean} [success]
  */
@@ -174,7 +174,7 @@ export = PaymentPartnerModel;
 declare class PaymentPartnerModel {
 }
 declare namespace PaymentPartnerModel {
-    export { SubPaymentMode, PaymentMethod, Logos, SessionPath, RequiredSessionPath, CheckoutType, Mode, Country, Currency, RefundTo, PaymentConfigDetails, PostPayoutDetails, PostPayout, Users, BankDetails, Payouts, ErrorCodeAndDescription, HttpErrorCodeAndMessage, PayoutDetails, MoreAttributes, Customers, PayoutsAggregator, PayoutItem };
+    export { SubPaymentMode, PaymentMethod, Logos, SessionPath, RequiredSessionPath, CheckoutType, Mode, Country, Currency, RefundTo, PaymentConfigResponse, PostPayoutResponse, PostPayoutRequest, Users, BankDetails, Payouts, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PayoutResponse, MoreAttributes, Customers, PayoutsAggregator, PayoutItem };
 }
 /** @returns {SubPaymentMode} */
 declare function SubPaymentMode(): SubPaymentMode;
@@ -250,9 +250,9 @@ type RefundTo = {
      */
     others?: string;
 };
-/** @returns {PaymentConfigDetails} */
-declare function PaymentConfigDetails(): PaymentConfigDetails;
-type PaymentConfigDetails = {
+/** @returns {PaymentConfigResponse} */
+declare function PaymentConfigResponse(): PaymentConfigResponse;
+type PaymentConfigResponse = {
     success?: boolean;
     refund_to?: RefundTo;
     payment_methods?: PaymentMethod[];
@@ -263,9 +263,9 @@ type PaymentConfigDetails = {
     country?: Country[];
     currency?: Currency[];
 };
-/** @returns {PostPayoutDetails} */
-declare function PostPayoutDetails(): PostPayoutDetails;
-type PostPayoutDetails = {
+/** @returns {PostPayoutResponse} */
+declare function PostPayoutResponse(): PostPayoutResponse;
+type PostPayoutResponse = {
     success?: boolean;
     users?: Users;
     is_active?: boolean;
@@ -278,9 +278,9 @@ type PostPayoutDetails = {
     payment_status?: string;
     updated?: boolean;
 };
-/** @returns {PostPayout} */
-declare function PostPayout(): PostPayout;
-type PostPayout = {
+/** @returns {PostPayoutRequest} */
+declare function PostPayoutRequest(): PostPayoutRequest;
+type PostPayoutRequest = {
     unique_external_id?: string;
     users?: Users;
     is_active?: boolean;
@@ -331,18 +331,18 @@ type ErrorCodeAndDescription = {
      */
     description: string;
 };
-/** @returns {HttpErrorCodeAndMessage} */
-declare function HttpErrorCodeAndMessage(): HttpErrorCodeAndMessage;
-type HttpErrorCodeAndMessage = {
+/** @returns {HttpErrorCodeAndResponse} */
+declare function HttpErrorCodeAndResponse(): HttpErrorCodeAndResponse;
+type HttpErrorCodeAndResponse = {
     error?: ErrorCodeAndDescription;
     /**
      * - Response is successful or not
      */
     success: boolean;
 };
-/** @returns {PayoutDetails} */
-declare function PayoutDetails(): PayoutDetails;
-type PayoutDetails = {
+/** @returns {PayoutResponse} */
+declare function PayoutResponse(): PayoutResponse;
+type PayoutResponse = {
     items?: PayoutItem[];
     success?: boolean;
 };

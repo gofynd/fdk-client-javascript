@@ -53,17 +53,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef DeleteCourierPartnerRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
- */
-
-/**
- * @typedef DeleteStoreRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
- *   particular rule object.
- */
-
-/**
  * @typedef DeleteZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
  */
@@ -96,6 +85,17 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /** @typedef GetBulkZoneParam */
 
 /**
+ * @typedef GetBulkZoneOverrideStatusParam
+ * @property {string} batchId - The unique identifier for current batch of zones
+ *   to be updated.
+ */
+
+/**
+ * @typedef GetBulkZoneValidationParam
+ * @property {string} batchId - The batch identifier returned from validation request.
+ */
+
+/**
  * @typedef GetCourierPartnerRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
@@ -108,7 +108,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetCourierPartnerRulesParam
- * @property {string} [q] - Courier-partner rules starting with the specified prefix q
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [status] - Filter rules based on rule status
@@ -173,6 +172,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetZoneOverrideStatusParam
+ * @property {string} zoneId - The unique identifier of the delivery zone.
+ */
+
+/**
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {string} [type] - Using type, you can filter custom or default zones
@@ -189,8 +193,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} [state] - State of the country.
  * @property {string} [city] - City of the country.
  * @property {string} [sector] - Sector name of mentioned address.
- * @property {number} [storeUid] - Unique identifier for a specific store.
- * @property {string} [regionUid] - Unique identifier for a geographical region.
+ */
+
+/**
+ * @typedef ImportBulkZoneParam
+ * @property {string} batchId - The batch identifier returned from validation request.
  */
 
 /**
@@ -199,13 +206,26 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef OverrideBulkZoneParam
+ * @property {string} batchId - The unique identifier for current batch of zones
+ *   to be updated.
+ * @property {ServiceabilityPlatformModel.BulkZoneOverrideSchema} body
+ */
+
+/**
+ * @typedef OverrideZoneByIdParam
+ * @property {string} zoneId - The unique identifier of the delivery zone.
+ * @property {ServiceabilityPlatformModel.ZoneOverrideSchema} body
+ */
+
+/**
  * @typedef PatchApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
  */
 
 /**
  * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequest} body
  */
 
 /**
@@ -216,7 +236,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequestSchema} body
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
  */
 
 /**
@@ -233,7 +253,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeAuditHistoryParam
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
  */
 
 /**
@@ -243,7 +263,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeCoDListingParam
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
  */
 
 /**
@@ -253,7 +273,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateStoreRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequestSchema} body
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
  */
 
 /**
@@ -272,6 +292,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef UpdateZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
  * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
+ */
+
+/**
+ * @typedef ValidateBulkZoneParam
+ * @property {ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema} body
  */
 
 class ServiceabilityPlatformApplicationValidator {
@@ -345,20 +370,6 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteCourierPartnerRuleParam} */
-  static deleteCourierPartnerRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteStoreRuleParam} */
-  static deleteStoreRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {DeleteZoneParam} */
   static deleteZone() {
     return Joi.object({
@@ -417,6 +428,20 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetBulkZoneOverrideStatusParam} */
+  static getBulkZoneOverrideStatus() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetBulkZoneValidationParam} */
+  static getBulkZoneValidation() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetCourierPartnerRuleParam} */
   static getCourierPartnerRule() {
     return Joi.object({
@@ -434,7 +459,6 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {GetCourierPartnerRulesParam} */
   static getCourierPartnerRules() {
     return Joi.object({
-      q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       status: Joi.string().allow(""),
@@ -515,6 +539,13 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetZoneOverrideStatusParam} */
+  static getZoneOverrideStatus() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetZonesParam} */
   static getZones() {
     return Joi.object({
@@ -531,8 +562,13 @@ class ServiceabilityPlatformApplicationValidator {
       state: Joi.string().allow(""),
       city: Joi.string().allow(""),
       sector: Joi.string().allow(""),
-      storeUid: Joi.number(),
-      regionUid: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {ImportBulkZoneParam} */
+  static importBulkZone() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -543,17 +579,33 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {OverrideBulkZoneParam} */
+  static overrideBulkZone() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.BulkZoneOverrideSchema().required(),
+    }).required();
+  }
+
+  /** @returns {OverrideZoneByIdParam} */
+  static overrideZoneById() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.ZoneOverrideSchema().required(),
+    }).required();
+  }
+
   /** @returns {PatchApplicationConfigurationParam} */
   static patchApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest().required(),
     }).required();
   }
 
   /** @returns {UpdateApplicationConfigurationParam} */
   static updateApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPutRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPutRequest().required(),
     }).required();
   }
 
@@ -568,7 +620,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateCourierPartnerRulePriorityParam} */
   static updateCourierPartnerRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequestSchema().required(),
+      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
     }).required();
   }
 
@@ -592,7 +644,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequestSchema().required(),
+      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
@@ -606,7 +658,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequestSchema().required(),
+      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
@@ -620,7 +672,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateStoreRulePriorityParam} */
   static updateStoreRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequestSchema().required(),
+      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
     }).required();
   }
 
@@ -645,6 +697,13 @@ class ServiceabilityPlatformApplicationValidator {
       zoneId: Joi.string().allow("").required(),
 
       body: ServiceabilityPlatformModel.UpdateZoneDataV2().required(),
+    }).required();
+  }
+
+  /** @returns {ValidateBulkZoneParam} */
+  static validateBulkZone() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema().required(),
     }).required();
   }
 }

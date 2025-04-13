@@ -167,7 +167,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyTheme
+ * @typedef CompanyThemeResponse
  * @property {string} [_id] - The unique identifier for the theme.
  * @property {string} [name] - The name of the theme.
  * @property {string} [marketplace_theme_id]
@@ -246,7 +246,6 @@ const Joi = require("joi");
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
- * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 
 /**
@@ -299,7 +298,7 @@ const Joi = require("joi");
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
- * @property {AvailablePageSchedulePredicate[]} [schedule] - Multiple schedule for section
+ * @property {AvailablePageSchedulePredicate} [schedule]
  * @property {AvailablePagePlatformPredicate} [platform]
  * @property {string[]} [zones] - An array of zone ids associated with the section
  */
@@ -313,16 +312,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [authenticated] - Indicates if the predicate applies to
- *   authenticated users.
- * @property {boolean} [anonymous] - Indicates if the predicate applies to
- *   anonymous users.
- * @property {string} [user_type] - Type of User filter settings applied for section
- * @property {string[]} [user_groups] - List of the user groups selected as a filter
- * @property {string} [start] - Timestamp after which the user has created
- *   account on storefront
- * @property {string} [end] - Timestamp before which the user has created
- *   account on storefront
+ * @property {boolean} [authenticated]
+ * @property {boolean} [anonymous]
  */
 
 /**
@@ -415,13 +406,12 @@ const Joi = require("joi");
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
- * @property {Object[]} [applied_themes] - Applied themes array
  */
 
 /**
- * @typedef ThemeUpgradable
+ * @typedef ThemeUpgradableResponse
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
- * @property {Object} [versions] - Information about theme versions.
+ * @property {Object} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
  */
 
@@ -725,7 +715,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DummyTheme
+ * @typedef DummyResponse
  * @property {string} [message]
  */
 
@@ -1020,8 +1010,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {CompanyTheme} */
-  static CompanyTheme() {
+  /** @returns {CompanyThemeResponse} */
+  static CompanyThemeResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -1097,7 +1087,7 @@ class ThemePlatformModel {
   /** @returns {AvailablePageSectionMetaAttributes} */
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.any(),
     });
   }
 
@@ -1122,7 +1112,6 @@ class ThemePlatformModel {
     return Joi.object({
       priority: Joi.number(),
       frequency: Joi.string().allow(""),
-      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -1162,9 +1151,9 @@ class ThemePlatformModel {
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      props: Joi.object().pattern(/\S/, Joi.any()),
+      props: Joi.any(),
       blocks: Joi.array().items(Joi.any()),
-      preset: Joi.object().pattern(/\S/, Joi.any()),
+      preset: Joi.any(),
       predicate: ThemePlatformModel.AvailablePagePredicate(),
       __source: ThemePlatformModel.SectionSource(),
     });
@@ -1185,9 +1174,7 @@ class ThemePlatformModel {
       screen: ThemePlatformModel.AvailablePageScreenPredicate(),
       user: ThemePlatformModel.AvailablePageUserPredicate(),
       route: ThemePlatformModel.AvailablePageRoutePredicate(),
-      schedule: Joi.array().items(
-        ThemePlatformModel.AvailablePageSchedulePredicate()
-      ),
+      schedule: ThemePlatformModel.AvailablePageSchedulePredicate(),
       platform: ThemePlatformModel.AvailablePagePlatformPredicate(),
       zones: Joi.array().items(Joi.string().allow("")),
     });
@@ -1207,10 +1194,6 @@ class ThemePlatformModel {
     return Joi.object({
       authenticated: Joi.boolean(),
       anonymous: Joi.boolean(),
-      user_type: Joi.string().allow(""),
-      user_groups: Joi.array().items(Joi.string().allow("")),
-      start: Joi.string().allow(""),
-      end: Joi.string().allow(""),
     });
   }
 
@@ -1219,7 +1202,7 @@ class ThemePlatformModel {
     return Joi.object({
       selected: Joi.string().allow(""),
       exact_url: Joi.string().allow(""),
-      query: Joi.object().pattern(/\S/, Joi.any()),
+      query: Joi.any(),
     });
   }
 
@@ -1316,7 +1299,7 @@ class ThemePlatformModel {
       name: Joi.string().allow(""),
       template_theme_id: Joi.string().allow(""),
       version: Joi.string().allow(""),
-      styles: Joi.object().pattern(/\S/, Joi.any()),
+      styles: Joi.any(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       global_sections: Joi.array().items(Joi.any()),
@@ -1325,15 +1308,14 @@ class ThemePlatformModel {
       theme_type: Joi.string().allow(""),
       company_id: Joi.number(),
       src: Joi.string().allow(""),
-      applied_themes: Joi.array().items(Joi.any()),
     });
   }
 
-  /** @returns {ThemeUpgradable} */
-  static ThemeUpgradable() {
+  /** @returns {ThemeUpgradableResponse} */
+  static ThemeUpgradableResponse() {
     return Joi.object({
       upgrade: Joi.boolean(),
-      versions: Joi.object().pattern(/\S/, Joi.any()),
+      versions: Joi.any(),
       message: Joi.string().allow(""),
     });
   }
@@ -1388,7 +1370,7 @@ class ThemePlatformModel {
         .items(ThemePlatformModel.ThemeConfiguration())
         .required(),
       global_schema: ThemePlatformModel.GlobalSchema(),
-      preset: Joi.object().pattern(/\S/, Joi.any()),
+      preset: Joi.any(),
     });
   }
 
@@ -1396,7 +1378,7 @@ class ThemePlatformModel {
   static ThemeConfiguration() {
     return Joi.object({
       name: Joi.string().allow(""),
-      global_config: Joi.object().pattern(/\S/, Joi.any()),
+      global_config: Joi.any(),
       page: Joi.array().items(ThemePlatformModel.ThemeConfigListPage()),
     });
   }
@@ -1448,7 +1430,7 @@ class ThemePlatformModel {
   /** @returns {ThemeConfigListPageSettingsProps} */
   static ThemeConfigListPageSettingsProps() {
     return Joi.object({
-      props: Joi.object().pattern(/\S/, Joi.any()),
+      props: Joi.any(),
     });
   }
 
@@ -1716,8 +1698,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {DummyTheme} */
-  static DummyTheme() {
+  /** @returns {DummyResponse} */
+  static DummyResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

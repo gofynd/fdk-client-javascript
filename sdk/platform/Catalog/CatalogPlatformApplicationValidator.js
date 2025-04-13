@@ -11,7 +11,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef AddProductsInPriceFactoryByZoneIdParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreatePriceFactoryProductRequestSchema} body
+ * @property {CatalogPlatformModel.CreatePriceFactoryProductRequest} body
  */
 
 /**
@@ -97,14 +97,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef CreateMerchandisingRuleHideActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequestSchema} body
+ * @property {CatalogPlatformModel.HideRequest} body
  */
 
 /**
  * @typedef CreateMerchandisingRulePinActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequestSchema} body
+ * @property {CatalogPlatformModel.PinRequest} body
  */
 
 /**
@@ -115,17 +115,17 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef CreateProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
  */
 
 /**
  * @typedef CreateSearchRerankParam
- * @property {CatalogPlatformModel.CreateSearchRerankRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchRerankRequest} body
  */
 
 /**
@@ -206,7 +206,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef ExportProductsInPriceFactoryParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest} body
  */
 
 /** @typedef ExportSynonymsParam */
@@ -355,7 +355,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 
@@ -364,7 +364,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -383,8 +383,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
@@ -393,15 +393,16 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  */
 
 /**
@@ -409,18 +410,16 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} filterKey - A `filter_key` is a filter key for a for which
  *   all the available filter values will returned. channel.
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  * @property {string} [collectionId] - A `collection_id` is a unique identifier
  *   for a particular collection. channel.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {string} [q] - The `q` parameter allows you to search and filter
- *   specific data within the filter options. It acts as a query keyword that
- *   can refine the results by matching relevant filter values, such as a
- *   category name or any other applicable filter criteria.
+ * @property {string} [q] - Get Values filtered by q string
  */
 
 /**
@@ -431,8 +430,9 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   filtered from filter parameters will be passed in **f** parameter in this
  *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
  *   details. This flag is used to fetch all filters
  * @property {boolean} [isDependent] - This query parameter is used to get the
@@ -485,7 +485,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 
 /**
@@ -493,7 +493,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 
 /**
@@ -628,7 +628,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   "v1.0/products/"
+ *   **v1.0/products/**
  */
 
 /**
@@ -700,7 +700,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef ProcessProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
  * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 
 /**
@@ -717,7 +717,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
+ * @property {CatalogPlatformModel.AllowSingleRequest} body
  */
 
 /**
@@ -728,7 +728,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppCategoryParam
- * @property {number} categoryUid - Category id for which the custom_json is associated.
+ * @property {number} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 
@@ -783,7 +784,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
+ * @property {CatalogPlatformModel.DefaultKeyRequest} body
  */
 
 /**
@@ -801,7 +802,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
- * @property {CatalogPlatformModel.AppConfigurationsFilterResponseSchema} body
+ * @property {CatalogPlatformModel.AppConfigurationsFilterResponse} body
  */
 
 /**
@@ -822,14 +823,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef UpdateMerchandisingRuleHideActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequestSchema} body
+ * @property {CatalogPlatformModel.HideRequest} body
  */
 
 /**
  * @typedef UpdateMerchandisingRulePinActionParam
  * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
  *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequestSchema} body
+ * @property {CatalogPlatformModel.PinRequest} body
  */
 
 /**
@@ -841,7 +842,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
  */
 
 /**
@@ -855,7 +856,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef UpdateSearchRerankConfigurationParam
  * @property {string} id - An `id` is the identifier for a particular search
  *   rerank configuration. channel.
- * @property {CatalogPlatformModel.UpdateSearchRerankRequestSchema} body
+ * @property {CatalogPlatformModel.UpdateSearchRerankRequest} body
  */
 
 /**
@@ -879,7 +880,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef ValidateProductPriceFactoryBulkJobParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
  * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema} body
+ * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 
 class CatalogPlatformApplicationValidator {
@@ -895,7 +896,7 @@ class CatalogPlatformApplicationValidator {
   static addProductsInPriceFactoryByZoneId() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreatePriceFactoryProductRequestSchema().required(),
+      body: CatalogPlatformModel.CreatePriceFactoryProductRequest().required(),
     }).required();
   }
 
@@ -1006,7 +1007,7 @@ class CatalogPlatformApplicationValidator {
   static createMerchandisingRuleHideAction() {
     return Joi.object({
       merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.HideRequestSchema().required(),
+      body: CatalogPlatformModel.HideRequest().required(),
     }).required();
   }
 
@@ -1014,7 +1015,7 @@ class CatalogPlatformApplicationValidator {
   static createMerchandisingRulePinAction() {
     return Joi.object({
       merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PinRequestSchema().required(),
+      body: CatalogPlatformModel.PinRequest().required(),
     }).required();
   }
 
@@ -1029,21 +1030,21 @@ class CatalogPlatformApplicationValidator {
   static createProductPriceFactoryBulkJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema().required(),
+      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
     }).required();
   }
 
   /** @returns {CreateSearchConfigurationParam} */
   static createSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema().required(),
+      body: CatalogPlatformModel.CreateSearchConfigurationRequest().required(),
     }).required();
   }
 
   /** @returns {CreateSearchRerankParam} */
   static createSearchRerank() {
     return Joi.object({
-      body: CatalogPlatformModel.CreateSearchRerankRequestSchema().required(),
+      body: CatalogPlatformModel.CreateSearchRerankRequest().required(),
     }).required();
   }
 
@@ -1143,7 +1144,7 @@ class CatalogPlatformApplicationValidator {
   static exportProductsInPriceFactory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequestSchema().required(),
+      body: CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest().required(),
     }).required();
   }
 
@@ -1642,7 +1643,7 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       jobId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema().required(),
+      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
     }).required();
   }
 
@@ -1664,7 +1665,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAllowSingleParam} */
   static updateAllowSingle() {
     return Joi.object({
-      body: CatalogPlatformModel.AllowSingleRequestSchema().required(),
+      body: CatalogPlatformModel.AllowSingleRequest().required(),
     }).required();
   }
 
@@ -1749,7 +1750,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateDefaultSortParam} */
   static updateDefaultSort() {
     return Joi.object({
-      body: CatalogPlatformModel.DefaultKeyRequestSchema().required(),
+      body: CatalogPlatformModel.DefaultKeyRequest().required(),
     }).required();
   }
 
@@ -1767,7 +1768,7 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.AppConfigurationsFilterResponseSchema().required(),
+      body: CatalogPlatformModel.AppConfigurationsFilterResponse().required(),
     }).required();
   }
 
@@ -1791,7 +1792,7 @@ class CatalogPlatformApplicationValidator {
   static updateMerchandisingRuleHideAction() {
     return Joi.object({
       merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.HideRequestSchema().required(),
+      body: CatalogPlatformModel.HideRequest().required(),
     }).required();
   }
 
@@ -1799,7 +1800,7 @@ class CatalogPlatformApplicationValidator {
   static updateMerchandisingRulePinAction() {
     return Joi.object({
       merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PinRequestSchema().required(),
+      body: CatalogPlatformModel.PinRequest().required(),
     }).required();
   }
 
@@ -1814,7 +1815,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateSearchConfigurationParam} */
   static updateSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema().required(),
+      body: CatalogPlatformModel.UpdateSearchConfigurationRequest().required(),
     }).required();
   }
 
@@ -1830,7 +1831,7 @@ class CatalogPlatformApplicationValidator {
   static updateSearchRerankConfiguration() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateSearchRerankRequestSchema().required(),
+      body: CatalogPlatformModel.UpdateSearchRerankRequest().required(),
     }).required();
   }
 
@@ -1861,7 +1862,7 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       jobId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequestSchema().required(),
+      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
     }).required();
   }
 }

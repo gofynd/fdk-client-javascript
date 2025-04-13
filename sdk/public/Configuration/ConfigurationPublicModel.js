@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationResponseSchema
+ * @typedef ApplicationResponse
  * @property {Application} [application]
  */
 
@@ -160,7 +160,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef VersionRequestSchema
+ * @typedef VersionRequest
  * @property {VersionApplication} application
  * @property {VersionDevice} device
  */
@@ -172,7 +172,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef VersionResponseSchema
+ * @typedef VersionResponse
  * @property {string} type
  * @property {string} title
  * @property {string} description
@@ -181,8 +181,8 @@ const Joi = require("joi");
  */
 
 class ConfigurationPublicModel {
-  /** @returns {ApplicationResponseSchema} */
-  static ApplicationResponseSchema() {
+  /** @returns {ApplicationResponse} */
+  static ApplicationResponse() {
     return Joi.object({
       application: ConfigurationPublicModel.Application(),
     });
@@ -361,8 +361,8 @@ class ConfigurationPublicModel {
     });
   }
 
-  /** @returns {VersionRequestSchema} */
-  static VersionRequestSchema() {
+  /** @returns {VersionRequest} */
+  static VersionRequest() {
     return Joi.object({
       application: ConfigurationPublicModel.VersionApplication().required(),
       device: ConfigurationPublicModel.VersionDevice().required(),
@@ -377,8 +377,8 @@ class ConfigurationPublicModel {
     });
   }
 
-  /** @returns {VersionResponseSchema} */
-  static VersionResponseSchema() {
+  /** @returns {VersionResponse} */
+  static VersionResponse() {
     return Joi.object({
       type: Joi.string().allow("").required(),
       title: Joi.string().allow("").required(),

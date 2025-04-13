@@ -12,12 +12,14 @@ class Communication {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      createAppPushtoken: "/service/application/communication/v1.0/tokens",
       getCommunicationConsent:
         "/service/application/communication/v1.0/consent",
       getCurrentCommunicationConsent:
         "/service/application/communication/v1.0/current/communication/consent",
       getOtpConfiguration:
         "/service/application/communication/v1.0/otp/otp-configuration",
+      upsertAppPushtoken: "/service/application/communication/v1.0/pn-token",
       upsertCommunicationConsent:
         "/service/application/communication/v1.0/consent",
       upsertCurrentCommunicationConsent:
@@ -37,6 +39,43 @@ class Communication {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PushtokenRes>} - Success response
+   * @name createAppPushtoken
+   * @summary: Create app push token.
+   * @description: Create the push token of the user. . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/createAppPushtoken/).
+   */
+  async createAppPushtoken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createAppPushtoken"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
   }
 
   /**
@@ -138,6 +177,43 @@ class Communication {
       }),
       query_params,
       undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PushtokenRes>} - Success response
+   * @name upsertAppPushtoken
+   * @summary: Updates or adds app push token.
+   * @description: Update or inserts the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
+   */
+  async upsertAppPushtoken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["upsertAppPushtoken"],
+        params: {},
+      }),
+      query_params,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

@@ -3,14 +3,25 @@ declare class Communication {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
+        createAppPushtoken: string;
         getCommunicationConsent: string;
         getCurrentCommunicationConsent: string;
         getOtpConfiguration: string;
+        upsertAppPushtoken: string;
         upsertCommunicationConsent: string;
         upsertCurrentCommunicationConsent: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PushtokenRes>} - Success response
+     * @name createAppPushtoken
+     * @summary: Create app push token.
+     * @description: Create the push token of the user. . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/createAppPushtoken/).
+     */
+    createAppPushtoken({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PushtokenRes>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -38,6 +49,15 @@ declare class Communication {
      * @description: Get otp-configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getOtpConfiguration/).
      */
     getOtpConfiguration({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OtpConfiguration>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PushtokenRes>} - Success response
+     * @name upsertAppPushtoken
+     * @summary: Updates or adds app push token.
+     * @description: Update or inserts the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
+     */
+    upsertAppPushtoken({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PushtokenRes>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

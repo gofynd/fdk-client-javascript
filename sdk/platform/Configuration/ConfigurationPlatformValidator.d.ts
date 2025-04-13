@@ -1,7 +1,7 @@
 export = ConfigurationPlatformValidator;
 /**
  * @typedef CreateApplicationParam
- * @property {ConfigurationPlatformModel.CreateApplicationRequestSchema} body
+ * @property {ConfigurationPlatformModel.CreateApplicationRequest} body
  */
 /**
  * @typedef CreateCurrencyParam
@@ -23,7 +23,7 @@ export = ConfigurationPlatformValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.CompanyByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.CompanyByBrandsRequest} body
  */
 /** @typedef GetCurrenciesParam */
 /**
@@ -31,17 +31,8 @@ export = ConfigurationPlatformValidator;
  * @property {string} id - Unique object Id of the curreny
  */
 /**
- * @typedef GetCurrencyExchangeRatesParam
- * @property {string} [currencyCode] - The 3-letter ISO 4217 code representing
- *   the base currency for the exchange rates. Defaults to "INR" if not specified.
- * @property {string} [exchangeCurrencyCode] - A 3-letter ISO 4217 currency code
- *   for which exchange rates against the base currency are requested.
- * @property {string} [exchangeCountryCode] - The country code for which
- *   exchange rates against the base currency are requested.
- */
-/**
  * @typedef GetDomainAvailibilityParam
- * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 /** @typedef GetDomainOptionsParam */
 /**
@@ -69,7 +60,7 @@ export = ConfigurationPlatformValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.StoreByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.StoreByBrandsRequest} body
  */
 /**
  * @typedef GetStoresForACompanyParam
@@ -101,8 +92,6 @@ declare class ConfigurationPlatformValidator {
     static getCurrencies(): any;
     /** @returns {GetCurrencyParam} */
     static getCurrency(): GetCurrencyParam;
-    /** @returns {GetCurrencyExchangeRatesParam} */
-    static getCurrencyExchangeRates(): GetCurrencyExchangeRatesParam;
     /** @returns {GetDomainAvailibilityParam} */
     static getDomainAvailibility(): GetDomainAvailibilityParam;
     /** @returns {GetDomainOptionsParam} */
@@ -123,10 +112,10 @@ declare class ConfigurationPlatformValidator {
     static updateCurrency(): UpdateCurrencyParam;
 }
 declare namespace ConfigurationPlatformValidator {
-    export { CreateApplicationParam, CreateCurrencyParam, GetApplicationsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetCurrencyParam, GetCurrencyExchangeRatesParam, GetDomainAvailibilityParam, GetDomainOptionsParam, GetLocationsParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetStoreByBrandsParam, GetStoresForACompanyParam, OptOutFromApplicationParam, UpdateCurrencyParam };
+    export { CreateApplicationParam, CreateCurrencyParam, GetApplicationsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetCurrencyParam, GetDomainAvailibilityParam, GetDomainOptionsParam, GetLocationsParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetStoreByBrandsParam, GetStoresForACompanyParam, OptOutFromApplicationParam, UpdateCurrencyParam };
 }
 type CreateApplicationParam = {
-    body: ConfigurationPlatformModel.CreateApplicationRequestSchema;
+    body: ConfigurationPlatformModel.CreateApplicationRequest;
 };
 type CreateCurrencyParam = {
     body: ConfigurationPlatformModel.Currency;
@@ -156,7 +145,7 @@ type GetCompanyByBrandsParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.CompanyByBrandsRequestSchema;
+    body: ConfigurationPlatformModel.CompanyByBrandsRequest;
 };
 type GetCurrencyParam = {
     /**
@@ -164,25 +153,8 @@ type GetCurrencyParam = {
      */
     id: string;
 };
-type GetCurrencyExchangeRatesParam = {
-    /**
-     * - The 3-letter ISO 4217 code representing
-     * the base currency for the exchange rates. Defaults to "INR" if not specified.
-     */
-    currencyCode?: string;
-    /**
-     * - A 3-letter ISO 4217 currency code
-     * for which exchange rates against the base currency are requested.
-     */
-    exchangeCurrencyCode?: string;
-    /**
-     * - The country code for which
-     * exchange rates against the base currency are requested.
-     */
-    exchangeCountryCode?: string;
-};
 type GetDomainAvailibilityParam = {
-    body: ConfigurationPlatformModel.DomainSuggestionsRequestSchema;
+    body: ConfigurationPlatformModel.DomainSuggestionsRequest;
 };
 type GetLocationsParam = {
     /**
@@ -226,7 +198,7 @@ type GetStoreByBrandsParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.StoreByBrandsRequestSchema;
+    body: ConfigurationPlatformModel.StoreByBrandsRequest;
 };
 type GetStoresForACompanyParam = {
     /**

@@ -106,7 +106,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreatePriceFactoryProductResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreatePriceFactoryProductResponse>}
    *   - Success response
    *
    * @name addProductsInPriceFactoryByZoneId
@@ -166,7 +166,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreatePriceFactoryProductResponseSchema().validate(
+    } = CatalogPlatformModel.CreatePriceFactoryProductResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -274,7 +274,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name createAppCategoryReturnConfiguration
    * @summary: Create Category level Application Return Configuration setttings
    * @description: Create Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppCategoryReturnConfiguration/).
@@ -330,7 +330,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -355,9 +355,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryResponse>} -
+   *   Success response
    * @name createAppPriceFactory
    * @summary: Create price factory
    * @description: This API allows to create price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppPriceFactory/).
@@ -413,7 +412,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -438,7 +437,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name createAppReturnConfiguration
    * @summary: Create Return configuration level set for an application
    * @description: Create Return configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
@@ -494,7 +493,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -600,9 +599,8 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CollectionCreateResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.CollectionCreateResponse>} -
+   *   Success response
    * @name createCollection
    * @summary: Add a Collection
    * @description: Create a collection to the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
@@ -658,10 +656,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CollectionCreateResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.CollectionCreateResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -849,7 +847,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAutocompleteWordsResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAutocompleteWordsResponse>}
    *   - Success response
    *
    * @name createCustomAutocompleteRule
@@ -907,7 +905,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAutocompleteWordsResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAutocompleteWordsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1096,7 +1094,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
    *   - Success response
    *
    * @name createListingConfiguration
@@ -1156,7 +1154,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppConfigurationsFilterResponseSchema().validate(
+    } = CatalogPlatformModel.AppConfigurationsFilterResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1517,9 +1515,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.MerchandiseQueryResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.MerchandiseQueryResponse>} -
+   *   Success response
    * @name createMerchandisingRuleQuery
    * @summary: Create a Merchandising Rule's query
    * @description: This allows you to Create a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleQuery/).
@@ -1575,10 +1572,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.MerchandiseQueryResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.MerchandiseQueryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1600,7 +1597,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
    *   - Success response
    *
    * @name createProductPriceFactoryBulkJob
@@ -1660,7 +1657,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1685,7 +1682,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateSearchConfigurationResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>}
    *   - Success response
    *
    * @name createSearchConfiguration
@@ -1743,7 +1740,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateSearchConfigurationResponseSchema().validate(
+    } = CatalogPlatformModel.CreateSearchConfigurationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1768,9 +1765,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateSearchRerankResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.CreateSearchRerankResponse>} -
+   *   Success response
    * @name createSearchRerank
    * @summary: Create search rerank for an application
    * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchRerank/).
@@ -1826,7 +1822,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateSearchRerankResponseSchema().validate(
+    } = CatalogPlatformModel.CreateSearchRerankResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1931,7 +1927,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name deleteAppCategoryReturnConfiguration
    * @summary: Delete Category level Application Return Configuration setttings
    * @description: Delete Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAppCategoryReturnConfiguration/).
@@ -1987,7 +1983,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2012,7 +2008,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DeleteResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteAutocompleteKeyword
    * @summary: Delete autocomplete keywords.
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAutocompleteKeyword/).
@@ -2068,7 +2064,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.DeleteResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2254,8 +2250,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name deleteListingConfiguration
    * @summary: Delete listing configuration.
    * @description: Remove a specific listing configuration from the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
@@ -2313,10 +2308,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ConfigSuccessResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2502,7 +2497,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DeleteSearchConfigurationResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.DeleteSearchConfigurationResponse>}
    *   - Success response
    *
    * @name deleteSearchConfiguration
@@ -2556,7 +2551,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.DeleteSearchConfigurationResponseSchema().validate(
+    } = CatalogPlatformModel.DeleteSearchConfigurationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2581,7 +2576,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DeleteResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteSearchKeywords
    * @summary: Delete search keywords.
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchKeywords/).
@@ -2637,7 +2632,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.DeleteResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2662,7 +2657,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DeleteSearchRerankConfigurationResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.DeleteSearchRerankConfigurationResponse>}
    *   - Success response
    *
    * @name deleteSearchRerankConfiguration
@@ -2720,7 +2715,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.DeleteSearchRerankConfigurationResponseSchema().validate(
+    } = CatalogPlatformModel.DeleteSearchRerankConfigurationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2743,9 +2738,8 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.DeleteSynonymParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SynonymDeleteResponseSchemaSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.SynonymDeleteResponseSchema>} -
+   *   Success response
    * @name deleteSynonym
    * @summary: Delete synonym for an application.
    * @description: This view allows you to delete synonym for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSynonym/).
@@ -2802,7 +2796,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SynonymDeleteResponseSchemaSchema().validate(
+    } = CatalogPlatformModel.SynonymDeleteResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2910,7 +2904,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductExportJobResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductExportJobResponse>}
    *   - Success response
    *
    * @name exportProductsInPriceFactory
@@ -2970,7 +2964,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductExportJobResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductExportJobResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3071,9 +3065,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponse>} -
+   *   Success response
    * @name getAllCollections
    * @summary: Retrieve all collections.
    * @description: A Collection allows you to organize your products into hierarchical groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
@@ -3157,7 +3150,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetCollectionListingResponseSchema().validate(
+    } = CatalogPlatformModel.GetCollectionListingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3182,8 +3175,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponse>} - Success response
    * @name getAllSearchKeyword
    * @summary: Get all search keywords.
    * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
@@ -3249,10 +3241,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetSearchWordsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.GetSearchWordsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3274,7 +3266,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.BaseAppCategoryReturnConfigResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.BaseAppCategoryReturnConfigResponse>}
    *   - Success response
    *
    * @name getAppCategoryReturnConfig
@@ -3339,7 +3331,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.BaseAppCategoryReturnConfigResponseSchema().validate(
+    } = CatalogPlatformModel.BaseAppCategoryReturnConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3362,11 +3354,10 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppInventoryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.InventoryStockResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.InventoryStockResponse>} - Success response
    * @name getAppInventory
    * @summary: Get application inventory.
-   * @description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
+   * @description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
    */
   async getAppInventory(
     {
@@ -3467,10 +3458,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.InventoryStockResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.InventoryStockResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3490,10 +3481,10 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.LocationListSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.LocationListSerializer>} - Success response
    * @name getAppLocations
    * @summary: Get application locations.
-   * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
+   * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
    */
   async getAppLocations(
     {
@@ -3582,7 +3573,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.LocationListSchema().validate(responseData, {
+    } = CatalogPlatformModel.LocationListSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3603,10 +3594,9 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
+   * @param {number} arg.companyId - Id of the company whose locations are to fetched
+   * @param {string} arg.applicationId - Id of the application whose locations
+   *   are to fetched
    * @param {string} [arg.storeType] - Helps to sort the location list on the
    *   basis of location type.
    * @param {number[]} [arg.uid] - Helps to sort the location list on the
@@ -3620,9 +3610,9 @@ class Catalog {
    * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
    * @param {number[]} [arg.companyUids] - Filter stores by company IDs
    *   available in the application.
-   * @returns {Paginator<CatalogPlatformModel.LocationListSchema>}
+   * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
    * @summary: Get application locations.
-   * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
+   * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
    */
   getAppLocationsPaginator({
     companyId,
@@ -3668,8 +3658,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppPriceByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppPriceByIdResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.AppPriceByIdResponse>} - Success response
    * @name getAppPriceById
    * @summary: Get pricing of a product
    * @description: Retrieve the discounted price of a specific product for a given application. This endpoint allows filtering by stores, factory types, and sellers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceById/).
@@ -3736,10 +3725,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppPriceByIdResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.AppPriceByIdResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3761,9 +3750,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAppPriceFactoryResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetAppPriceFactoryResponse>} -
+   *   Success response
    * @name getAppPriceFactories
    * @summary: Get price factory
    * @description: This API allows to get price factories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceFactories/).
@@ -3834,7 +3822,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetAppPriceFactoryResponseSchema().validate(
+    } = CatalogPlatformModel.GetAppPriceFactoryResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3938,8 +3926,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponse>} - Success response
    * @name getAppProduct
    * @summary: Retrieve application product data.
    * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProduct/).
@@ -3995,10 +3982,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.OwnerAppItemResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.OwnerAppItemResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4111,9 +4098,8 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppProductsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.RawProductListingResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.RawProductListingResponse>} -
+   *   Success response
    * @name getAppProducts
    * @summary: Get application products.
    * @description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
@@ -4201,7 +4187,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.RawProductListingResponseSchema().validate(
+    } = CatalogPlatformModel.RawProductListingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4226,8 +4212,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppReturnConfigResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.AppReturnConfigResponse>} - Success response
    * @name getAppReturnConfiguration
    * @summary: Get Return configuration level set for an application
    * @description: Get Product Return configuration set at an application level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppReturnConfiguration/).
@@ -4279,10 +4264,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppReturnConfigResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.AppReturnConfigResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4395,8 +4380,8 @@ class Catalog {
    *   identifier for a particular sale channel.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
+   * @param {string} [arg.q] - Search query with brand name. Use this
+   *   parameter to search brands by brand name.
    * @returns {Paginator<CatalogPlatformModel.ApplicationBrandListingSchema>}
    * @summary: Get application brand listing.
    * @description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
@@ -4435,8 +4420,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.BrandListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
    * @name getApplicationBrands
    * @summary: Get application brands.
    * @description: List all the brands. A brand is the name under which a product is being sold. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
@@ -4507,10 +4491,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.BrandListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.BrandListingResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4535,14 +4519,14 @@ class Catalog {
    * @param {string} [arg.department] - The name of the department. Use this
    *   parameter to filter products by a particular department. See below the
    *   list of available departments. You can retrieve available departments
-   *   from the **v1.0/departments/** API
+   *   from the "v1.0/departments/" API
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
    * @param {string} [arg.q] - Search query with brand name.Use this parameter
    *   to search brands by brand name.
    * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
    *   basis of uid list.
-   * @returns {Paginator<CatalogPlatformModel.BrandListingResponseSchema>}
+   * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
    * @summary: Get application brands.
    * @description: List all the brands. A brand is the name under which a product is being sold.
    */
@@ -4683,8 +4667,8 @@ class Catalog {
    *   identifier for a particular department.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
+   * @param {string} [arg.q] - A search query string. Use this parameter to
+   *   filter results based on a keyword or specific value.
    * @returns {Paginator<CatalogPlatformModel.ApplicationCategoryListingSchema>}
    * @summary: Get application category listing.
    * @description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
@@ -4725,7 +4709,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ApplicationDepartmentListingResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
    *   - Success response
    *
    * @name getApplicationDepartmentListing
@@ -4790,7 +4774,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ApplicationDepartmentListingResponseSchema().validate(
+    } = CatalogPlatformModel.ApplicationDepartmentListingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4817,9 +4801,9 @@ class Catalog {
    *   identifier for a particular sale channel.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search department by name.
-   * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponseSchema>}
+   * @param {string} [arg.q] - A search query string. Use this parameter to
+   *   filter results based on a keyword or specific value.
+   * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
    * @summary: Get application department listing.
    * @description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
    */
@@ -4857,9 +4841,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersKeysResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>} -
+   *   Success response
    * @name getApplicationFilterKeys
    * @summary: Get filters keys of the filter options.
    * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterKeys/).
@@ -4916,7 +4899,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetQueryFiltersKeysResponseSchema().validate(
+    } = CatalogPlatformModel.GetQueryFiltersKeysResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4941,9 +4924,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersValuesResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>} -
+   *   Success response
    * @name getApplicationFilterValues
    * @summary: Get values of the selected value for the filter options.
    * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterValues/).
@@ -5016,7 +4998,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetQueryFiltersValuesResponseSchema().validate(
+    } = CatalogPlatformModel.GetQueryFiltersValuesResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5041,7 +5023,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponse>}
    *   - Success response
    *
    * @name getApplicationProducts
@@ -5143,7 +5125,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ApplicationProductListingResponseSchema().validate(
+    } = CatalogPlatformModel.ApplicationProductListingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5175,8 +5157,8 @@ class Catalog {
    *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
    * @param {string} [arg.c] - The search filter parameters for collection
    *   items. All the parameter filtered from filter parameters will be passed
-   *   in "c" parameter in this format.
-   *   "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+   *   in **c** parameter in this format.
+   *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
    * @param {boolean} [arg.isDependent] - This query parameter is used to get
@@ -5188,7 +5170,7 @@ class Catalog {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
    * @param {string[]} [arg.itemIds] - Item Ids of product
-   * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponseSchema>}
+   * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
    * @summary: Get application products.
    * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
    */
@@ -5240,9 +5222,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
+   *   Success response
    * @name getAutocompleteConfig
    * @summary: Get autocomplete configuration.
    * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
@@ -5308,7 +5289,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetAutocompleteWordsResponseSchema().validate(
+    } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -5679,8 +5660,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CatalogInsightResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.CatalogInsightResponse>} - Success response
    * @name getCatalogInsights
    * @summary: Get catalog insights.
    * @description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
@@ -5737,10 +5717,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CatalogInsightResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.CatalogInsightResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5760,8 +5740,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetCategoriesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CategoryListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.CategoryListingResponse>} - Success response
    * @name getCategories
    * @summary: Get categories.
    * @description: Retrieve a list of categories. Optionally pass filter the brands by the department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
@@ -5818,10 +5797,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CategoryListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.CategoryListingResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5843,9 +5822,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetCollectionDetailResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetCollectionDetailResponse>} -
+   *   Success response
    * @name getCollectionDetail
    * @summary: Get collection details.
    * @description: Get the details of a collection by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionDetail/).
@@ -5901,7 +5879,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetCollectionDetailResponseSchema().validate(
+    } = CatalogPlatformModel.GetCollectionDetailResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -6119,9 +6097,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponse>} -
+   *   Success response
    * @name getConfigurationMetadata
    * @summary: Retrieve configuration metadata.
    * @description: Retrieve the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
@@ -6180,7 +6157,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetConfigMetadataResponseSchema().validate(
+    } = CatalogPlatformModel.GetConfigMetadataResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -6283,7 +6260,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.FilterResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.FilterResponse>} - Success response
    * @name getConfigurationsFilterMetadata
    * @summary: Get filter details for application
    * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationsFilterMetadata/).
@@ -6339,7 +6316,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.FilterResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.FilterResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6362,8 +6339,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetDepartmentsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DepartmentResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.DepartmentResponse>} - Success response
    * @name getDepartments
    * @summary: Get departments.
    * @description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
@@ -6415,7 +6391,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.DepartmentResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.DepartmentResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6440,7 +6416,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated>}
+   * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
    *   - Success response
    *
    * @name getDiscountedInventoryBySizeIdentifier
@@ -6516,7 +6492,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated().validate(
+    } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -6541,7 +6517,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetConfigResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
    * @name getGroupConfigurations
    * @summary: Retrieve group configurations.
    * @description: Retrieve the details of the application configured configurations of group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
@@ -6611,7 +6587,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetConfigResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.GetConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6636,9 +6612,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetListingConfigResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetListingConfigResponse>} -
+   *   Success response
    * @name getListingConfigurations
    * @summary: Retrieve listing configurations.
    * @description: Retrieve the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
@@ -6708,10 +6683,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetListingConfigResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.GetListingConfigResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -6731,8 +6706,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetLivePreviewParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ProductListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
    * @name getLivePreview
    * @summary: Get live preview of a Merchandising Rule
    * @description: This allows you to get live preview of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getLivePreview/).
@@ -6793,10 +6767,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ProductListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7065,7 +7039,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.HideResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.HideResponse>} - Success response
    * @name getMerchandisingRuleHideAction
    * @summary: Get Merchandising Rule's Hide action details
    * @description: This allows you to get details of hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleHideAction/).
@@ -7121,7 +7095,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.HideResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.HideResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -7146,7 +7120,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.PinResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.PinResponse>} - Success response
    * @name getMerchandisingRulePinAction
    * @summary: Get Merchandising Rule's action details
    * @description: This allows you to get details of pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRulePinAction/).
@@ -7202,7 +7176,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.PinResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.PinResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -7393,7 +7367,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>}
    *   - Success response
    *
    * @name getProductsInPriceFactoryByZoneId
@@ -7468,7 +7442,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductsResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -7491,8 +7465,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersResponse>} - Success response
    * @name getQueryFilters
    * @summary: Retrieve query filters.
    * @description: Retrieve query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
@@ -7544,10 +7517,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetQueryFiltersResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.GetQueryFiltersResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7569,7 +7542,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchConfigurationResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.GetSearchConfigurationResponse>}
    *   - Success response
    *
    * @name getSearchConfiguration
@@ -7623,7 +7596,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetSearchConfigurationResponseSchema().validate(
+    } = CatalogPlatformModel.GetSearchConfigurationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -7727,8 +7700,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetSearchRerankParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchRerankResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.GetSearchRerankResponse>} - Success response
    * @name getSearchRerank
    * @summary: Get search rerank for an application
    * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerank/).
@@ -7780,10 +7752,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetSearchRerankResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.GetSearchRerankResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7805,9 +7777,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchRerankDetailResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.GetSearchRerankDetailResponse>} -
+   *   Success response
    * @name getSearchRerankDetail
    * @summary: Get search rerank for an application
    * @description: This view allows you to retrieve search rerank attribute detail for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerankDetail/).
@@ -7863,7 +7834,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetSearchRerankDetailResponseSchema().validate(
+    } = CatalogPlatformModel.GetSearchRerankDetailResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -8055,7 +8026,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductExportJobPollResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductExportJobPollResponse>}
    *   - Success response
    *
    * @name pollPriceFactoryJobs
@@ -8133,7 +8104,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductExportJobPollResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductExportJobPollResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -8158,7 +8129,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse>}
    *   - Success response
    *
    * @name pollProductPriceFactoryBulkJob
@@ -8218,7 +8189,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -8326,7 +8297,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
    *   - Success response
    *
    * @name processProductPriceFactoryBulkJob
@@ -8388,7 +8359,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -8572,8 +8543,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateAllowSingle
    * @summary: Update 'Allow Single' setting.
    * @description: Modify allow single flag for filters of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
@@ -8629,10 +8599,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ConfigSuccessResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -8652,10 +8622,10 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.UpdateAppBrandParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppBrand
    * @summary: Update application brand.
-   * @description: Modify data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
+   * @description: Modify data associated to the brand for that particular sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
    */
   async updateAppBrand(
     { brandUid, body, requestHeaders } = { requestHeaders: {} },
@@ -8710,7 +8680,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8735,7 +8705,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppCategory
    * @summary: Update application category.
    * @description: Modify category data related to the application. Helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
@@ -8793,7 +8763,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8818,7 +8788,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name updateAppCategoryReturnConfiguration
    * @summary: Update Category level Application Return Configuration setttings
    * @description: Update Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategoryReturnConfiguration/).
@@ -8874,7 +8844,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8899,7 +8869,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppDepartment
    * @summary: Update application department.
    * @description: Modify department data related to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
@@ -8957,7 +8927,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8982,7 +8952,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppLocation
    * @summary: Update application location.
    * @description: Modify location data related to the application. Helps to update data associated to a item custom meta - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
@@ -9040,7 +9010,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -9063,10 +9033,10 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.UpdateAppProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppProduct
    * @summary: Update application product data.
-   * @description: Allows to update data associated to a item by its item_id for a sales - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
+   * @description: Allows to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
    */
   async updateAppProduct(
     { itemId, body, requestHeaders } = { requestHeaders: {} },
@@ -9121,7 +9091,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -9146,7 +9116,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1Schema>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name updateAppReturnConfiguration
    * @summary: Update Return configuration level set for an application
    * @description: Update Return configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppReturnConfiguration/).
@@ -9202,7 +9172,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1Schema().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -9477,8 +9447,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateDefaultSort
    * @summary: Update default sorting.
    * @description: Modify the default sort key configuration for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
@@ -9534,10 +9503,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ConfigSuccessResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -9644,7 +9613,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
    *   - Success response
    *
    * @name updateListingConfiguration
@@ -9706,7 +9675,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppConfigurationsFilterResponseSchema().validate(
+    } = CatalogPlatformModel.AppConfigurationsFilterResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -10151,7 +10120,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.UpdateSearchConfigurationResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.UpdateSearchConfigurationResponse>}
    *   - Success response
    *
    * @name updateSearchConfiguration
@@ -10209,7 +10178,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.UpdateSearchConfigurationResponseSchema().validate(
+    } = CatalogPlatformModel.UpdateSearchConfigurationResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -10317,9 +10286,8 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.UpdateSearchRerankResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.UpdateSearchRerankResponse>} -
+   *   Success response
    * @name updateSearchRerankConfiguration
    * @summary: Update search rerank for an application
    * @description: This view allows you to update search rerank attribute for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchRerankConfiguration/).
@@ -10377,7 +10345,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.UpdateSearchRerankResponseSchema().validate(
+    } = CatalogPlatformModel.UpdateSearchRerankResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -10647,7 +10615,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobValidateResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobValidateResponse>}
    *   - Success response
    *
    * @name validateProductPriceFactoryBulkJob
@@ -10709,7 +10677,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobValidateResponseSchema().validate(
+    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobValidateResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

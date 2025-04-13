@@ -2,54 +2,54 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef AddEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
- * @property {PaymentPlatformModel.EdcUpdate} body
+ * @property {PaymentPlatformModel.EdcUpdateRequest} body
  */
 /**
  * @typedef AddRefundBankAccountParam
- * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation} body
+ * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest} body
  */
 /**
  * @typedef AddRefundBankAccountUsingOTPParam
- * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation} body
+ * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest} body
  */
 /**
  * @typedef CancelPaymentLinkParam
- * @property {PaymentPlatformModel.CancelOrResendPaymentLinkCreation} body
+ * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
  * @typedef CheckAndUpdatePaymentStatusParam
- * @property {PaymentPlatformModel.PaymentStatusUpdateCreation} body
+ * @property {PaymentPlatformModel.PaymentStatusUpdateRequest} body
  */
 /**
  * @typedef ConfirmPaymentParam
- * @property {PaymentPlatformModel.PaymentConfirmationCreation} body
+ * @property {PaymentPlatformModel.PaymentConfirmationRequest} body
  */
 /**
  * @typedef CopyConfigAggPaymentModesParam
  * @property {string} aggregatorId - Aggregator Id
- * @property {PaymentPlatformModel.PlatformPaymentModeCopyConfigCreation} body
+ * @property {PaymentPlatformModel.PlatformPaymentModeCopyConfigRequest} body
  */
 /**
  * @typedef CopyConfigPaymentModesParam
- * @property {PaymentPlatformModel.PlatformPaymentModeCopyConfigCreation} body
+ * @property {PaymentPlatformModel.PlatformPaymentModeCopyConfigRequest} body
  */
 /**
  * @typedef CreateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
  * @property {string} businessUnit - Business unit storefront or pos
- * @property {PaymentPlatformModel.RefundPriorityCreation} body
+ * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 /**
  * @typedef CreatePaymentLinkParam
- * @property {PaymentPlatformModel.CreatePaymentLinkCreation} body
+ * @property {PaymentPlatformModel.CreatePaymentLinkRequest} body
  */
 /**
  * @typedef CreatePaymentOrderParam
- * @property {PaymentPlatformModel.PaymentOrderCreation} body
+ * @property {PaymentPlatformModel.PaymentOrderRequest} body
  */
 /**
  * @typedef DeleteBeneficiaryDetailsParam
- * @property {PaymentPlatformModel.DeleteBeneficiary} body
+ * @property {PaymentPlatformModel.DeleteBeneficiaryRequest} body
  */
 /** @typedef EdcAggregatorsAndModelListParam */
 /**
@@ -135,10 +135,10 @@ export = PaymentPlatformApplicationValidator;
  * @typedef GetPaymentModeRoutesParam
  * @property {boolean} [refresh] - Flag to refresh the cache and retrieve the
  *   updated payment option
- * @property {number} amount
  * @property {string} [requestType] - Type of payment request, i.e. self
  * @property {string} [orderId] - Order id for the payment
  * @property {string} [shipmentId] - Shipment id for the payment
+ * @property {number} [amount] - Amount for the payment
  */
 /**
  * @typedef GetPaymentModeSequencingParam
@@ -186,16 +186,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {string} shipmentId - Shipment id
  */
 /**
- * @typedef GetTransactionsParam
- * @property {string} [userId] - User ID of the user
- * @property {number} [pageSize] - Size of the page, default and max value is 10
- * @property {number} [pageNumber] - Page number, default is 1
- * @property {string} [orderId] - Order ID for which transaction data is needed
- * @property {string} [shipmentId] - Shipment ID for which transaction data is needed
- * @property {string} [transactionId] - Transaction ID for which transaction
- *   data is needed
- */
-/**
  * @typedef GetUserBeneficiariesParam
  * @property {string} orderId
  */
@@ -218,11 +208,11 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef InitialisePaymentParam
- * @property {PaymentPlatformModel.PaymentInitializationCreation} body
+ * @property {PaymentPlatformModel.PaymentInitializationRequest} body
  */
 /**
  * @typedef MerchantOnBoardingParam
- * @property {PaymentPlatformModel.MerchantOnBoardingCreation} body
+ * @property {PaymentPlatformModel.MerchantOnBoardingRequest} body
  */
 /**
  * @typedef OauthGetUrlParam
@@ -233,24 +223,24 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef PatchMerchantAggregatorPaymentModeDetailsParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.PlatformPaymentMode} body
+ * @property {PaymentPlatformModel.PlatformPaymentModeRequest} body
  */
 /**
  * @typedef PatchMerchantPaymentOptionParam
- * @property {PaymentPlatformModel.MerchnatPaymentModeCreation} body
+ * @property {PaymentPlatformModel.MerchantPaymentModeRequest} body
  */
 /**
  * @typedef PatchMerchantPaymentOptionVersionParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.PatchAggregatorControl} body
+ * @property {PaymentPlatformModel.AggregatorControlRequest} body
  */
 /**
  * @typedef PatchPaymentModeSequencingParam
- * @property {PaymentPlatformModel.PlatformPaymentMode} body
+ * @property {PaymentPlatformModel.PlatformPaymentModeRequest} body
  */
 /**
  * @typedef PaymentStatusBulkParam
- * @property {PaymentPlatformModel.PaymentStatusBulkHandlerCreation} body
+ * @property {PaymentPlatformModel.PaymentStatusBulkHandlerRequest} body
  */
 /**
  * @typedef PollingPaymentLinkParam
@@ -262,11 +252,11 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef ResendOrCancelPaymentParam
- * @property {PaymentPlatformModel.ResendOrCancelPaymentCreation} body
+ * @property {PaymentPlatformModel.ResendOrCancelPaymentRequest} body
  */
 /**
  * @typedef ResendPaymentLinkParam
- * @property {PaymentPlatformModel.CancelOrResendPaymentLinkCreation} body
+ * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
  * @typedef RevokeOauthTokenParam
@@ -274,12 +264,12 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef SaveBrandPaymentGatewayConfigParam
- * @property {PaymentPlatformModel.PaymentGatewayConfigCreation} body
+ * @property {PaymentPlatformModel.PaymentGatewayConfigRequest} body
  */
 /**
  * @typedef SetMerchantModeControlRoutesParam
  * @property {string} mode - Offline / advance modes to get the payment modes
- * @property {PaymentPlatformModel.PlatformOfflineAdvance} body
+ * @property {PaymentPlatformModel.PlatformOfflineAdvanceRequest} body
  */
 /**
  * @typedef SetPaymentModeCustomConfigParam
@@ -288,40 +278,40 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef SetRefundOptionforShipmentParam
- * @property {PaymentPlatformModel.ShipmentRefundDetails} body
+ * @property {PaymentPlatformModel.ShipmentRefundRequest} body
  */
 /**
  * @typedef SetUserCODlimitRoutesParam
- * @property {PaymentPlatformModel.SetCODForUserCreation} body
+ * @property {PaymentPlatformModel.SetCODForUserRequest} body
  */
 /**
  * @typedef UpdateAggregatorCredentialParam
- * @property {PaymentPlatformModel.AggregatorCredentialReq} body
+ * @property {PaymentPlatformModel.AggregatorCredentialRequest} body
  */
 /**
  * @typedef UpdateDefaultBeneficiaryParam
- * @property {PaymentPlatformModel.SetDefaultBeneficiary} body
+ * @property {PaymentPlatformModel.SetDefaultBeneficiaryRequest} body
  */
 /**
  * @typedef UpdateEdcDeviceParam
- * @property {PaymentPlatformModel.EdcAddCreation} body
+ * @property {PaymentPlatformModel.EdcAddRequest} body
  */
 /**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
  * @property {string} businessUnit - Business unit storefront or pos
- * @property {PaymentPlatformModel.RefundPriorityCreation} body
+ * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 /**
  * @typedef UpdatePaymentSessionParam
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {PaymentPlatformModel.PaymentSessionCreation} body
+ * @property {PaymentPlatformModel.PaymentSessionRequestSerializer} body
  */
 /**
  * @typedef UpdatePennyDropValidationParam
- * @property {PaymentPlatformModel.UpdatePennyDropValidation} body
+ * @property {PaymentPlatformModel.UpdatePennyDropValidationRequest} body
  */
 /**
  * @typedef UpdateRefundSessionParam
@@ -330,15 +320,15 @@ export = PaymentPlatformApplicationValidator;
  *   Fynd payments platform and is unique.
  * @property {string} requestId - A unique id that was used to initiate a refund
  *   session. This is generated by Fynd platform and is usually shipment_id.
- * @property {PaymentPlatformModel.RefundSessionCreation} body
+ * @property {PaymentPlatformModel.RefundSessionRequestSerializer} body
  */
 /**
  * @typedef ValidateBeneficiaryAddressParam
- * @property {PaymentPlatformModel.ValidateValidateAddress} body
+ * @property {PaymentPlatformModel.ValidateValidateAddressRequest} body
  */
 /**
  * @typedef VerifyCustomerForPaymentParam
- * @property {PaymentPlatformModel.ValidateCustomerCreation} body
+ * @property {PaymentPlatformModel.ValidateCustomerRequest} body
  */
 declare class PaymentPlatformApplicationValidator {
     /** @returns {AddEdcDeviceParam} */
@@ -417,8 +407,6 @@ declare class PaymentPlatformApplicationValidator {
     static getSelectedRefundOption(): GetSelectedRefundOptionParam;
     /** @returns {GetShipmentBeneficiaryParam} */
     static getShipmentBeneficiary(): GetShipmentBeneficiaryParam;
-    /** @returns {GetTransactionsParam} */
-    static getTransactions(): GetTransactionsParam;
     /** @returns {GetUserBeneficiariesParam} */
     static getUserBeneficiaries(): GetUserBeneficiariesParam;
     /** @returns {GetUserBeneficiariesDetailV2Param} */
@@ -483,39 +471,39 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddEdcDeviceParam, AddRefundBankAccountParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CopyConfigAggPaymentModesParam, CopyConfigPaymentModesParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, DeleteBeneficiaryDetailsParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetAggregatorCredentialParam, GetAggregatorCredentialHistoryParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetDevicesParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentLinkIdParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentModeSequencingParam, GetPaymentSessionParam, GetPennyDropValidationParam, GetPosPaymentModeRoutesParam, GetSelectedRefundOptionParam, GetShipmentBeneficiaryParam, GetTransactionsParam, GetUserBeneficiariesParam, GetUserBeneficiariesDetailV2Param, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PatchPaymentModeSequencingParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetRefundOptionforShipmentParam, SetUserCODlimitRoutesParam, UpdateAggregatorCredentialParam, UpdateDefaultBeneficiaryParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdatePennyDropValidationParam, UpdateRefundSessionParam, ValidateBeneficiaryAddressParam, VerifyCustomerForPaymentParam };
+    export { AddEdcDeviceParam, AddRefundBankAccountParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CopyConfigAggPaymentModesParam, CopyConfigPaymentModesParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, DeleteBeneficiaryDetailsParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetAggregatorCredentialParam, GetAggregatorCredentialHistoryParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetDevicesParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentLinkIdParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentModeSequencingParam, GetPaymentSessionParam, GetPennyDropValidationParam, GetPosPaymentModeRoutesParam, GetSelectedRefundOptionParam, GetShipmentBeneficiaryParam, GetUserBeneficiariesParam, GetUserBeneficiariesDetailV2Param, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PatchPaymentModeSequencingParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetRefundOptionforShipmentParam, SetUserCODlimitRoutesParam, UpdateAggregatorCredentialParam, UpdateDefaultBeneficiaryParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdatePennyDropValidationParam, UpdateRefundSessionParam, ValidateBeneficiaryAddressParam, VerifyCustomerForPaymentParam };
 }
 type AddEdcDeviceParam = {
     /**
      * - Terminal unique identifier
      */
     terminalUniqueIdentifier: string;
-    body: PaymentPlatformModel.EdcUpdate;
+    body: PaymentPlatformModel.EdcUpdateRequest;
 };
 type AddRefundBankAccountParam = {
-    body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
+    body: PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest;
 };
 type AddRefundBankAccountUsingOTPParam = {
-    body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
+    body: PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest;
 };
 type CancelPaymentLinkParam = {
-    body: PaymentPlatformModel.CancelOrResendPaymentLinkCreation;
+    body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest;
 };
 type CheckAndUpdatePaymentStatusParam = {
-    body: PaymentPlatformModel.PaymentStatusUpdateCreation;
+    body: PaymentPlatformModel.PaymentStatusUpdateRequest;
 };
 type ConfirmPaymentParam = {
-    body: PaymentPlatformModel.PaymentConfirmationCreation;
+    body: PaymentPlatformModel.PaymentConfirmationRequest;
 };
 type CopyConfigAggPaymentModesParam = {
     /**
      * - Aggregator Id
      */
     aggregatorId: string;
-    body: PaymentPlatformModel.PlatformPaymentModeCopyConfigCreation;
+    body: PaymentPlatformModel.PlatformPaymentModeCopyConfigRequest;
 };
 type CopyConfigPaymentModesParam = {
-    body: PaymentPlatformModel.PlatformPaymentModeCopyConfigCreation;
+    body: PaymentPlatformModel.PlatformPaymentModeCopyConfigRequest;
 };
 type CreateMerchantRefundPriorityParam = {
     /**
@@ -526,16 +514,16 @@ type CreateMerchantRefundPriorityParam = {
      * - Business unit storefront or pos
      */
     businessUnit: string;
-    body: PaymentPlatformModel.RefundPriorityCreation;
+    body: PaymentPlatformModel.RefundPriorityRequestSerializer;
 };
 type CreatePaymentLinkParam = {
-    body: PaymentPlatformModel.CreatePaymentLinkCreation;
+    body: PaymentPlatformModel.CreatePaymentLinkRequest;
 };
 type CreatePaymentOrderParam = {
-    body: PaymentPlatformModel.PaymentOrderCreation;
+    body: PaymentPlatformModel.PaymentOrderRequest;
 };
 type DeleteBeneficiaryDetailsParam = {
-    body: PaymentPlatformModel.DeleteBeneficiary;
+    body: PaymentPlatformModel.DeleteBeneficiaryRequest;
 };
 type EdcDeviceListParam = {
     pageNo?: number;
@@ -643,7 +631,6 @@ type GetPaymentModeRoutesParam = {
      * updated payment option
      */
     refresh?: boolean;
-    amount: number;
     /**
      * - Type of payment request, i.e. self
      */
@@ -656,6 +643,10 @@ type GetPaymentModeRoutesParam = {
      * - Shipment id for the payment
      */
     shipmentId?: string;
+    /**
+     * - Amount for the payment
+     */
+    amount?: number;
 };
 type GetPaymentModeSequencingParam = {
     businessUnit: string;
@@ -741,33 +732,6 @@ type GetShipmentBeneficiaryParam = {
      */
     shipmentId: string;
 };
-type GetTransactionsParam = {
-    /**
-     * - User ID of the user
-     */
-    userId?: string;
-    /**
-     * - Size of the page, default and max value is 10
-     */
-    pageSize?: number;
-    /**
-     * - Page number, default is 1
-     */
-    pageNumber?: number;
-    /**
-     * - Order ID for which transaction data is needed
-     */
-    orderId?: string;
-    /**
-     * - Shipment ID for which transaction data is needed
-     */
-    shipmentId?: string;
-    /**
-     * - Transaction ID for which transaction
-     * data is needed
-     */
-    transactionId?: string;
-};
 type GetUserBeneficiariesParam = {
     orderId: string;
 };
@@ -795,10 +759,10 @@ type GetUserOrderBeneficiariesParam = {
     orderId: string;
 };
 type InitialisePaymentParam = {
-    body: PaymentPlatformModel.PaymentInitializationCreation;
+    body: PaymentPlatformModel.PaymentInitializationRequest;
 };
 type MerchantOnBoardingParam = {
-    body: PaymentPlatformModel.MerchantOnBoardingCreation;
+    body: PaymentPlatformModel.MerchantOnBoardingRequest;
 };
 type OauthGetUrlParam = {
     /**
@@ -813,23 +777,23 @@ type PatchMerchantAggregatorPaymentModeDetailsParam = {
      * - Aggregators Id
      */
     aggregatorId: number;
-    body: PaymentPlatformModel.PlatformPaymentMode;
+    body: PaymentPlatformModel.PlatformPaymentModeRequest;
 };
 type PatchMerchantPaymentOptionParam = {
-    body: PaymentPlatformModel.MerchnatPaymentModeCreation;
+    body: PaymentPlatformModel.MerchantPaymentModeRequest;
 };
 type PatchMerchantPaymentOptionVersionParam = {
     /**
      * - Aggregators Id
      */
     aggregatorId: number;
-    body: PaymentPlatformModel.PatchAggregatorControl;
+    body: PaymentPlatformModel.AggregatorControlRequest;
 };
 type PatchPaymentModeSequencingParam = {
-    body: PaymentPlatformModel.PlatformPaymentMode;
+    body: PaymentPlatformModel.PlatformPaymentModeRequest;
 };
 type PaymentStatusBulkParam = {
-    body: PaymentPlatformModel.PaymentStatusBulkHandlerCreation;
+    body: PaymentPlatformModel.PaymentStatusBulkHandlerRequest;
 };
 type PollingPaymentLinkParam = {
     paymentLinkId: string;
@@ -838,10 +802,10 @@ type RepaymentDetailsParam = {
     body: PaymentPlatformModel.RepaymentDetailsSerialiserPayAll;
 };
 type ResendOrCancelPaymentParam = {
-    body: PaymentPlatformModel.ResendOrCancelPaymentCreation;
+    body: PaymentPlatformModel.ResendOrCancelPaymentRequest;
 };
 type ResendPaymentLinkParam = {
-    body: PaymentPlatformModel.CancelOrResendPaymentLinkCreation;
+    body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest;
 };
 type RevokeOauthTokenParam = {
     /**
@@ -850,14 +814,14 @@ type RevokeOauthTokenParam = {
     aggregator: string;
 };
 type SaveBrandPaymentGatewayConfigParam = {
-    body: PaymentPlatformModel.PaymentGatewayConfigCreation;
+    body: PaymentPlatformModel.PaymentGatewayConfigRequest;
 };
 type SetMerchantModeControlRoutesParam = {
     /**
      * - Offline / advance modes to get the payment modes
      */
     mode: string;
-    body: PaymentPlatformModel.PlatformOfflineAdvance;
+    body: PaymentPlatformModel.PlatformOfflineAdvanceRequest;
 };
 type SetPaymentModeCustomConfigParam = {
     /**
@@ -867,19 +831,19 @@ type SetPaymentModeCustomConfigParam = {
     body: PaymentPlatformModel.PaymentCustomConfigRequestSchema;
 };
 type SetRefundOptionforShipmentParam = {
-    body: PaymentPlatformModel.ShipmentRefundDetails;
+    body: PaymentPlatformModel.ShipmentRefundRequest;
 };
 type SetUserCODlimitRoutesParam = {
-    body: PaymentPlatformModel.SetCODForUserCreation;
+    body: PaymentPlatformModel.SetCODForUserRequest;
 };
 type UpdateAggregatorCredentialParam = {
-    body: PaymentPlatformModel.AggregatorCredentialReq;
+    body: PaymentPlatformModel.AggregatorCredentialRequest;
 };
 type UpdateDefaultBeneficiaryParam = {
-    body: PaymentPlatformModel.SetDefaultBeneficiary;
+    body: PaymentPlatformModel.SetDefaultBeneficiaryRequest;
 };
 type UpdateEdcDeviceParam = {
-    body: PaymentPlatformModel.EdcAddCreation;
+    body: PaymentPlatformModel.EdcAddRequest;
 };
 type UpdateMerchantRefundPriorityParam = {
     /**
@@ -890,7 +854,7 @@ type UpdateMerchantRefundPriorityParam = {
      * - Business unit storefront or pos
      */
     businessUnit: string;
-    body: PaymentPlatformModel.RefundPriorityCreation;
+    body: PaymentPlatformModel.RefundPriorityRequestSerializer;
 };
 type UpdatePaymentSessionParam = {
     /**
@@ -899,10 +863,10 @@ type UpdatePaymentSessionParam = {
      * Fynd payments platform and is unique.
      */
     gid: string;
-    body: PaymentPlatformModel.PaymentSessionCreation;
+    body: PaymentPlatformModel.PaymentSessionRequestSerializer;
 };
 type UpdatePennyDropValidationParam = {
-    body: PaymentPlatformModel.UpdatePennyDropValidation;
+    body: PaymentPlatformModel.UpdatePennyDropValidationRequest;
 };
 type UpdateRefundSessionParam = {
     /**
@@ -916,13 +880,13 @@ type UpdateRefundSessionParam = {
      * session. This is generated by Fynd platform and is usually shipment_id.
      */
     requestId: string;
-    body: PaymentPlatformModel.RefundSessionCreation;
+    body: PaymentPlatformModel.RefundSessionRequestSerializer;
 };
 type ValidateBeneficiaryAddressParam = {
-    body: PaymentPlatformModel.ValidateValidateAddress;
+    body: PaymentPlatformModel.ValidateValidateAddressRequest;
 };
 type VerifyCustomerForPaymentParam = {
-    body: PaymentPlatformModel.ValidateCustomerCreation;
+    body: PaymentPlatformModel.ValidateCustomerRequest;
 };
 type EdcAggregatorsAndModelListParam = any;
 type EdcDeviceStatsParam = any;

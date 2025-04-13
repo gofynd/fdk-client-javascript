@@ -20,14 +20,14 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
      *   - Success response
      *
      * @name createPackageMaterial
      * @summary: Create packaging material
      * @description: Creates a packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterial/).
      */
-    createPackageMaterial({ body, pageNo, requestHeaders }?: ServiceabilityPlatformValidator.CreatePackageMaterialParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>;
+    createPackageMaterial({ body, pageNo, requestHeaders }?: ServiceabilityPlatformValidator.CreatePackageMaterialParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.CreatePackageMaterialRuleParam} arg
      *   - Arg object
@@ -41,34 +41,6 @@ declare class Serviceability {
      * @description: Creates a packaging rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterialRule/).
      */
     createPackageMaterialRule({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreatePackageMaterialRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageRuleResult>;
-    /**
-     * @param {ServiceabilityPlatformValidator.DeletePackageMaterialRuleParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>}
-     *   - Success response
-     *
-     * @name deletePackageMaterialRule
-     * @summary: Delete packaging material rule
-     * @description: Delete a single packaging material rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deletePackageMaterialRule/).
-     */
-    deletePackageMaterialRule({ ruleId, requestHeaders }?: ServiceabilityPlatformValidator.DeletePackageMaterialRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>;
-    /**
-     * @param {ServiceabilityPlatformValidator.DeletePackageMaterialsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>}
-     *   - Success response
-     *
-     * @name deletePackageMaterials
-     * @summary: Delete packaging material
-     * @description: Delete a single packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deletePackageMaterials/).
-     */
-    deletePackageMaterials({ packageMaterialId, requestHeaders }?: ServiceabilityPlatformValidator.DeletePackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialDeleteResponseSchema>;
     /**
      * @param {ServiceabilityPlatformValidator.GetCompanyConfigurationParam} arg
      *   - Arg object
@@ -117,28 +89,27 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
+     *   Success response
      * @name getCourierPartnerAccount
      * @summary: Get courier account
      * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccount/).
      */
-    getCourierPartnerAccount({ accountId, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierAccountResponseSchema>;
+    getCourierPartnerAccount({ accountId, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierAccountResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>}
      *   - Success response
      *
      * @name getCourierPartnerAccounts
      * @summary: List courier accounts
      * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
      */
-    getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, accountIds, selfShip, ownAccount, q, requestHeaders, }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponseSchema>;
+    getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, accountIds, selfShip, ownAccount, q, requestHeaders, }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetInstalledCourierPartnerExtensionsParam} arg
      *   - Arg object
@@ -241,14 +212,14 @@ declare class Serviceability {
      * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
      *   - Success response
      *
      * @name getOptimalLocations
      * @summary: Get selling locations
      * @description: Retrieves a list selling locations which are best suited to fullfil an order for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
      */
-    getOptimalLocations({ body, requestHeaders }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.OptimalLocationsResponseSchema>;
+    getOptimalLocations({ body, requestHeaders }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetPackageMaterialListParam} arg
      *   - Arg object
@@ -292,14 +263,14 @@ declare class Serviceability {
      * @param {ServiceabilityPlatformValidator.GetPackageMaterialsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
      *   - Success response
      *
      * @name getPackageMaterials
      * @summary: Get packaging material
      * @description: Retrieve a single packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterials/).
      */
-    getPackageMaterials({ packageMaterialId, requestHeaders }?: ServiceabilityPlatformValidator.GetPackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>;
+    getPackageMaterials({ packageMaterialId, requestHeaders }?: ServiceabilityPlatformValidator.GetPackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.UpdateCompanyConfigurationParam} arg
      *   - Arg object
@@ -355,26 +326,25 @@ declare class Serviceability {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>}
+     * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
      *   - Success response
      *
      * @name updatePackageMaterials
      * @summary: Update packaging material
      * @description: Update an existing packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterials/).
      */
-    updatePackageMaterials({ packageMaterialId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdatePackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponseSchema>;
+    updatePackageMaterials({ packageMaterialId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdatePackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.ValidateAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ValidateAddressRequestSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.ValidateAddressRequest>} -
+     *   Success response
      * @name validateAddress
      * @summary: Validate given address wrt template
      * @description: Validate given address wrt template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/validateAddress/).
      */
-    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: ServiceabilityPlatformValidator.ValidateAddressParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ValidateAddressRequestSchema>;
+    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: ServiceabilityPlatformValidator.ValidateAddressParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ValidateAddressRequest>;
 }
 import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

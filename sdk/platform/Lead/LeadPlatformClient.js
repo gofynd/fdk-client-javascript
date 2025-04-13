@@ -259,8 +259,7 @@ class Lead {
    * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.GeneralConfigResponseSchema>} -
-   *   Success response
+   * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
    * @name getGeneralConfig
    * @summary: Get general configuration
    * @description: Get general configuration settings related to support system for company tickets. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
@@ -312,7 +311,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPlatformModel.GeneralConfigResponseSchema().validate(responseData, {
+    } = LeadPlatformModel.GeneralConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

@@ -10,17 +10,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef CreatePackageMaterialRuleParam
- * @property {ServiceabilityPlatformModel.PackageRuleRequestSchema} body
- */
-/**
- * @typedef DeletePackageMaterialRuleParam
- * @property {string} ruleId - A `package_material_rule_id` is a unique
- *   identifier for a Package Material Rule
- */
-/**
- * @typedef DeletePackageMaterialsParam
- * @property {string} packageMaterialId - A `package_material_id` is a unique
- *   identifier for a Package Material
+ * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
  */
 /** @typedef GetCompanyConfigurationParam */
 /** @typedef GetCompanySelfShipParam */
@@ -150,7 +140,7 @@ export = ServiceabilityPlatformValidator;
  * @typedef UpdatePackageMaterialRuleParam
  * @property {string} ruleId - A `package_material_rule_id` is a unique
  *   identifier for a Package Material Rule
- * @property {ServiceabilityPlatformModel.PackageRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.PackageRuleRequest} body
  */
 /**
  * @typedef UpdatePackageMaterialsParam
@@ -162,7 +152,7 @@ export = ServiceabilityPlatformValidator;
  * @typedef ValidateAddressParam
  * @property {string} countryIsoCode - The ISO code of the country.
  * @property {string} templateName - The type of address form.
- * @property {ServiceabilityPlatformModel.ValidateAddressRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ValidateAddressRequest} body
  */
 declare class ServiceabilityPlatformValidator {
     /** @returns {CreateCourierPartnerAccountParam} */
@@ -171,10 +161,6 @@ declare class ServiceabilityPlatformValidator {
     static createPackageMaterial(): CreatePackageMaterialParam;
     /** @returns {CreatePackageMaterialRuleParam} */
     static createPackageMaterialRule(): CreatePackageMaterialRuleParam;
-    /** @returns {DeletePackageMaterialRuleParam} */
-    static deletePackageMaterialRule(): DeletePackageMaterialRuleParam;
-    /** @returns {DeletePackageMaterialsParam} */
-    static deletePackageMaterials(): DeletePackageMaterialsParam;
     /** @returns {GetCompanyConfigurationParam} */
     static getCompanyConfiguration(): any;
     /** @returns {GetCompanySelfShipParam} */
@@ -221,7 +207,7 @@ declare class ServiceabilityPlatformValidator {
     static validateAddress(): ValidateAddressParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, DeletePackageMaterialRuleParam, DeletePackageMaterialsParam, GetCompanyConfigurationParam, GetCompanySelfShipParam, GetCountriesParam, GetCountryParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetInstalledCourierPartnerExtensionsParam, GetListPackageMaterialRuleDetailsParam, GetLocalitiesParam, GetLocalitiesByPrefixParam, GetLocalityParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRuleDetailsParam, GetPackageMaterialsParam, UpdateCompanyConfigurationParam, UpdateCompanySelfShipParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, ValidateAddressParam };
+    export { CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetCompanyConfigurationParam, GetCompanySelfShipParam, GetCountriesParam, GetCountryParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetInstalledCourierPartnerExtensionsParam, GetListPackageMaterialRuleDetailsParam, GetLocalitiesParam, GetLocalitiesByPrefixParam, GetLocalityParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRuleDetailsParam, GetPackageMaterialsParam, UpdateCompanyConfigurationParam, UpdateCompanySelfShipParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, ValidateAddressParam };
 }
 type CreateCourierPartnerAccountParam = {
     body: ServiceabilityPlatformModel.CourierAccount;
@@ -234,21 +220,7 @@ type CreatePackageMaterialParam = {
     body: ServiceabilityPlatformModel.PackageMaterial;
 };
 type CreatePackageMaterialRuleParam = {
-    body: ServiceabilityPlatformModel.PackageRuleRequestSchema;
-};
-type DeletePackageMaterialRuleParam = {
-    /**
-     * - A `package_material_rule_id` is a unique
-     * identifier for a Package Material Rule
-     */
-    ruleId: string;
-};
-type DeletePackageMaterialsParam = {
-    /**
-     * - A `package_material_id` is a unique
-     * identifier for a Package Material
-     */
-    packageMaterialId: string;
+    body: ServiceabilityPlatformModel.PackageRuleRequest;
 };
 type GetCountriesParam = {
     /**
@@ -511,7 +483,7 @@ type UpdatePackageMaterialRuleParam = {
      * identifier for a Package Material Rule
      */
     ruleId: string;
-    body: ServiceabilityPlatformModel.PackageRuleRequestSchema;
+    body: ServiceabilityPlatformModel.PackageRuleRequest;
 };
 type UpdatePackageMaterialsParam = {
     /**
@@ -530,7 +502,7 @@ type ValidateAddressParam = {
      * - The type of address form.
      */
     templateName: string;
-    body: ServiceabilityPlatformModel.ValidateAddressRequestSchema;
+    body: ServiceabilityPlatformModel.ValidateAddressRequest;
 };
 type GetCompanyConfigurationParam = any;
 type GetCompanySelfShipParam = any;

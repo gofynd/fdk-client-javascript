@@ -36,13 +36,12 @@ declare class Lead {
      * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GeneralConfigResponseSchema>} -
-     *   Success response
+     * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general configuration
      * @description: Get general configuration settings related to support system for company tickets. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.GeneralConfigResponseSchema>;
+    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.GeneralConfigResponse>;
     /**
      * @param {LeadPlatformValidator.GetPlatformTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -1451,7 +1451,8 @@ class Theme {
    * @param {ThemePartnerValidator.CreateExtensionSectionDraftParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.ExtensionSectionDraft>} - Success response
+   * @returns {Promise<ThemePartnerModel.DraftExtensionSectionResponse>} -
+   *   Success response
    * @name createExtensionSectionDraft
    * @summary: Draft extension section
    * @description: Create a new draft for an extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createExtensionSectionDraft/).
@@ -1509,10 +1510,10 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePartnerModel.ExtensionSectionDraft().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ThemePartnerModel.DraftExtensionSectionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1532,7 +1533,7 @@ class Theme {
    * @param {ThemePartnerValidator.GetExtensionbindingParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.DraftExtensionSection>} - Success response
+   * @returns {Promise<ThemePartnerModel.ExtensionBinding>} - Success response
    * @name getExtensionbinding
    * @summary: Get extension binding
    * @description: Get the details for extension binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getExtensionbinding/).
@@ -1591,7 +1592,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePartnerModel.DraftExtensionSection().validate(responseData, {
+    } = ThemePartnerModel.ExtensionBinding().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1614,9 +1615,8 @@ class Theme {
    * @param {ThemePartnerValidator.PublishExtensionSectionsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.PublishExtensionSectionResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ThemePartnerModel.PublishExtensionSectionResponse>} -
+   *   Success response
    * @name publishExtensionSections
    * @summary: Publish an extension section
    * @description: Publish a draft extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/publishExtensionSections/).
@@ -1672,7 +1672,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePartnerModel.PublishExtensionSectionResponseSchema().validate(
+    } = ThemePartnerModel.PublishExtensionSectionResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1695,7 +1695,7 @@ class Theme {
    * @param {ThemePartnerValidator.ApplyExtensionPreviewParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.ExtensionPreview>} - Success response
+   * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
    * @name applyExtensionPreview
    * @summary: Start a Preview of Extension Section
    * @description: Use this API to start a local session for previewing the extension section binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/applyExtensionPreview/).
@@ -1751,7 +1751,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePartnerModel.ExtensionPreview().validate(responseData, {
+    } = ThemePartnerModel.ExtensionPreviewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1774,7 +1774,7 @@ class Theme {
    * @param {ThemePartnerValidator.RemoveExtensionPreviewParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.ExtensionPreview>} - Success response
+   * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
    * @name removeExtensionPreview
    * @summary: Close a Preview of Extension Section
    * @description: Use this API to close a local session for previewing the extension section binding - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/removeExtensionPreview/).
@@ -1830,7 +1830,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePartnerModel.ExtensionPreview().validate(responseData, {
+    } = ThemePartnerModel.ExtensionPreviewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

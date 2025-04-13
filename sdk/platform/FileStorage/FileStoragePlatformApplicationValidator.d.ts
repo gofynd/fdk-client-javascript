@@ -5,7 +5,7 @@ export = FileStoragePlatformApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 /**
  * @typedef AppCopyFilesParam
@@ -18,7 +18,7 @@ export = FileStoragePlatformApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 /**
  * @typedef AppbrowseParam
@@ -43,15 +43,15 @@ export = FileStoragePlatformApplicationValidator;
  */
 /**
  * @typedef DeletePdfGeneratorConfigParam
- * @property {string} id - Unique identifier used for operations.
+ * @property {string} id
  */
 /**
  * @typedef FetchPdfDefaultTemplateByIdParam
- * @property {string} id - Unique identifier for the default PDF template.
+ * @property {string} id
  */
 /**
  * @typedef FetchPdfTypeByIdParam
- * @property {string} id - Unique identifier for the PDF type.
+ * @property {string} id
  */
 /**
  * @typedef GeneratePaymentReceiptParam
@@ -59,41 +59,33 @@ export = FileStoragePlatformApplicationValidator;
  */
 /**
  * @typedef GetConfigHtmlTemplateByIdParam
- * @property {string} id - Unique identifier for fetching PDF configuration details.
+ * @property {string} id
  */
 /**
  * @typedef GetDefaultPdfDataParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} [countryCode]
  */
 /**
  * @typedef GetDefaultPdfTemplateParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} format - Specifies the invoice document format (e.g., A4,
- *   A6, POS, A3).
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
  */
 /**
  * @typedef GetHtmlTemplateConfigParam
- * @property {number} pdfTypeId - Unique identifier for the invoice type.
- * @property {string} format - Specifies the invoice document format (e.g., A4,
- *   A6, POS, A3).
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
  */
 /**
  * @typedef GetPdfPayloadByIdParam
- * @property {string} id - Unique identifier associated with the PDF payload,
- *   used for retrieving or processing PDF-related data.
+ * @property {string} id
  */
 /**
  * @typedef GetPdfTypesParam
- * @property {string} [countryCode] - Country code used to filter data displayed
- *   on the UI.
- * @property {boolean} storeOs - Identifies whether the store OS determines the
- *   PDF generator flow displayed on the UI.
+ * @property {string} [countryCode]
+ * @property {boolean} storeOs
  */
 /**
  * @typedef SaveHtmlTemplateParam
@@ -101,7 +93,7 @@ export = FileStoragePlatformApplicationValidator;
  */
 /**
  * @typedef UpdateHtmlTemplateParam
- * @property {string} id - Unique identifier used for operations.
+ * @property {string} id
  * @property {FileStoragePlatformModel.PdfConfig} body
  */
 declare class FileStoragePlatformApplicationValidator {
@@ -151,7 +143,7 @@ type AppCompleteUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUpload;
+    body: FileStoragePlatformModel.StartResponse;
 };
 type AppCopyFilesParam = {
     /**
@@ -168,7 +160,7 @@ type AppStartUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUploadStart;
+    body: FileStoragePlatformModel.StartRequest;
 };
 type AppbrowseParam = {
     /**
@@ -214,101 +206,45 @@ type BrowsefilesParam = {
     body: FileStoragePlatformModel.ExtensionSlug;
 };
 type DeletePdfGeneratorConfigParam = {
-    /**
-     * - Unique identifier used for operations.
-     */
     id: string;
 };
 type FetchPdfDefaultTemplateByIdParam = {
-    /**
-     * - Unique identifier for the default PDF template.
-     */
     id: string;
 };
 type FetchPdfTypeByIdParam = {
-    /**
-     * - Unique identifier for the PDF type.
-     */
     id: string;
 };
 type GeneratePaymentReceiptParam = {
     body: FileStoragePlatformModel.PaymentReceiptRequestBody;
 };
 type GetConfigHtmlTemplateByIdParam = {
-    /**
-     * - Unique identifier for fetching PDF configuration details.
-     */
     id: string;
 };
 type GetDefaultPdfDataParam = {
-    /**
-     * - Unique identifier for the invoice type.
-     */
     pdfTypeId: number;
-    /**
-     * - Country code used to filter data displayed
-     * on the UI.
-     */
     countryCode?: string;
 };
 type GetDefaultPdfTemplateParam = {
-    /**
-     * - Unique identifier for the invoice type.
-     */
     pdfTypeId: number;
-    /**
-     * - Specifies the invoice document format (e.g., A4,
-     * A6, POS, A3).
-     */
     format: string;
-    /**
-     * - Country code used to filter data displayed
-     * on the UI.
-     */
     countryCode?: string;
 };
 type GetHtmlTemplateConfigParam = {
-    /**
-     * - Unique identifier for the invoice type.
-     */
     pdfTypeId: number;
-    /**
-     * - Specifies the invoice document format (e.g., A4,
-     * A6, POS, A3).
-     */
     format: string;
-    /**
-     * - Country code used to filter data displayed
-     * on the UI.
-     */
     countryCode?: string;
 };
 type GetPdfPayloadByIdParam = {
-    /**
-     * - Unique identifier associated with the PDF payload,
-     * used for retrieving or processing PDF-related data.
-     */
     id: string;
 };
 type GetPdfTypesParam = {
-    /**
-     * - Country code used to filter data displayed
-     * on the UI.
-     */
     countryCode?: string;
-    /**
-     * - Identifies whether the store OS determines the
-     * PDF generator flow displayed on the UI.
-     */
     storeOs: boolean;
 };
 type SaveHtmlTemplateParam = {
     body: FileStoragePlatformModel.PdfConfig;
 };
 type UpdateHtmlTemplateParam = {
-    /**
-     * - Unique identifier used for operations.
-     */
     id: string;
     body: FileStoragePlatformModel.PdfConfig;
 };

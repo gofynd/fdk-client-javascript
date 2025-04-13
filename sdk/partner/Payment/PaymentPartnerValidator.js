@@ -14,19 +14,19 @@ class PaymentValidator {
 
   static postPayout() {
     return Joi.object({
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 
   static updatePayout() {
     return Joi.object({
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 
   static putPayout() {
     return Joi.object({
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 
@@ -46,21 +46,21 @@ class PaymentValidator {
   static postPayouts() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 
   static updatePayouts() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 
   static putPayouts() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.PostPayout().required(),
+      body: PaymentModel.PostPayoutRequest().required(),
     }).required();
   }
 

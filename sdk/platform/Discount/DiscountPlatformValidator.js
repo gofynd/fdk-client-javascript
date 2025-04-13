@@ -67,7 +67,7 @@ const DiscountPlatformModel = require("./DiscountPlatformModel");
 /**
  * @typedef ValidateDiscountFileParam
  * @property {string} [discount] - Discount
- * @property {DiscountPlatformModel.FileJobRequestSchema} body
+ * @property {DiscountPlatformModel.FileJobRequest} body
  */
 
 class DiscountPlatformValidator {
@@ -156,7 +156,7 @@ class DiscountPlatformValidator {
   static validateDiscountFile() {
     return Joi.object({
       discount: Joi.string().allow(""),
-      body: DiscountPlatformModel.FileJobRequestSchema().required(),
+      body: DiscountPlatformModel.FileJobRequest().required(),
     }).required();
   }
 }
