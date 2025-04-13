@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationResponseSchema
+ * @typedef ApplicationResponse
  * @property {Application} [application]
  */
 
@@ -102,7 +102,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequestSchema
+ * @typedef BadRequest
  * @property {string} [message] - Failure message (in a string format)
  */
 
@@ -146,8 +146,8 @@ const Joi = require("joi");
  */
 
 class ConfigurationPublicModel {
-  /** @returns {ApplicationResponseSchema} */
-  static ApplicationResponseSchema() {
+  /** @returns {ApplicationResponse} */
+  static ApplicationResponse() {
     return Joi.object({
       application: ConfigurationPublicModel.Application(),
     });
@@ -252,8 +252,8 @@ class ConfigurationPublicModel {
     });
   }
 
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
+  /** @returns {BadRequest} */
+  static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

@@ -21,7 +21,7 @@ class Analytics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AnalyticsPlatformModel.JobStatus>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name checkJobStatusByNameV2
    * @summary: Checks download job status
    * @description: Takes job name in path param to check the status of job Returns file URL if downloading is done else returns status of job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/analytics/checkJobStatusByNameV2/).
@@ -75,12 +75,9 @@ class Analytics {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = AnalyticsPlatformModel.JobStatus().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const { error: res_error } = Joi.object()
+      .pattern(/\S/, Joi.any())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -102,7 +99,7 @@ class Analytics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AnalyticsPlatformModel.JobExecutionResult>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name executeJobForProvidedParametersV2
    * @summary: Executes given sql(Base64 Encoded) query
    * @description: Query click events data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/analytics/executeJobForProvidedParametersV2/).
@@ -156,12 +153,9 @@ class Analytics {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = AnalyticsPlatformModel.JobExecutionResult().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const { error: res_error } = Joi.object()
+      .pattern(/\S/, Joi.any())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

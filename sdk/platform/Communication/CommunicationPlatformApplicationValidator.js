@@ -35,7 +35,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef CreateEventSubscriptionsByBulkParam
- * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdatePayload} body
+ * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest} body
  */
 
 /**
@@ -271,12 +271,12 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef SendCommunicationAsynchronouslyParam
- * @property {CommunicationPlatformModel.EnginePayload} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
  * @typedef SendCommunicationSynchronouslyParam
- * @property {CommunicationPlatformModel.EnginePayload} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
@@ -286,7 +286,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef TriggerCampaignJobParam
- * @property {CommunicationPlatformModel.TriggerJobPayload} body
+ * @property {CommunicationPlatformModel.TriggerJobRequest} body
  */
 
 /**
@@ -391,7 +391,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {CreateEventSubscriptionsByBulkParam} */
   static createEventSubscriptionsByBulk() {
     return Joi.object({
-      body: CommunicationPlatformModel.EventSubscriptionsBulkUpdatePayload().required(),
+      body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest().required(),
     }).required();
   }
 
@@ -729,14 +729,14 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {SendCommunicationAsynchronouslyParam} */
   static sendCommunicationAsynchronously() {
     return Joi.object({
-      body: CommunicationPlatformModel.EnginePayload().required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
   /** @returns {SendCommunicationSynchronouslyParam} */
   static sendCommunicationSynchronously() {
     return Joi.object({
-      body: CommunicationPlatformModel.EnginePayload().required(),
+      body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
@@ -750,7 +750,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {TriggerCampaignJobParam} */
   static triggerCampaignJob() {
     return Joi.object({
-      body: CommunicationPlatformModel.TriggerJobPayload().required(),
+      body: CommunicationPlatformModel.TriggerJobRequest().required(),
     }).required();
   }
 
