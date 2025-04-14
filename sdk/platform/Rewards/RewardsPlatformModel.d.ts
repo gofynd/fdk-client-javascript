@@ -7,7 +7,7 @@ export = RewardsPlatformModel;
  * @property {string} [message]
  */
 /**
- * @typedef GiveawayResponse
+ * @typedef ListGiveaway
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
  */
@@ -57,6 +57,7 @@ export = RewardsPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef Offer
@@ -158,14 +159,14 @@ export = RewardsPlatformModel;
  * @property {boolean} [success]
  */
 /**
- * @typedef ConfigurationRequest
+ * @typedef SetConfiguration
  * @property {string[]} [valid_android_packages]
  * @property {string} [terms_conditions_link]
  */
 declare class RewardsPlatformModel {
 }
 declare namespace RewardsPlatformModel {
-    export { E, GiveawayResponse, Giveaway, Schedule, RewardsAudience, Asset, RewardsRule, Page, Offer, ShareMessages, UserRes, Points, RewardUser, Referral, AppUser, HistoryRes, PointsHistory, ConfigurationRes, SetConfigurationRes, ConfigurationRequest };
+    export { E, ListGiveaway, Giveaway, Schedule, RewardsAudience, Asset, RewardsRule, Page, Offer, ShareMessages, UserRes, Points, RewardUser, Referral, AppUser, HistoryRes, PointsHistory, ConfigurationRes, SetConfigurationRes, SetConfiguration };
 }
 /** @returns {E} */
 declare function E(): E;
@@ -175,9 +176,9 @@ type E = {
     info?: string;
     message?: string;
 };
-/** @returns {GiveawayResponse} */
-declare function GiveawayResponse(): GiveawayResponse;
-type GiveawayResponse = {
+/** @returns {ListGiveaway} */
+declare function ListGiveaway(): ListGiveaway;
+type ListGiveaway = {
     items?: Giveaway[];
     page?: Page;
 };
@@ -254,6 +255,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {Offer} */
 declare function Offer(): Offer;
@@ -374,9 +379,9 @@ declare function SetConfigurationRes(): SetConfigurationRes;
 type SetConfigurationRes = {
     success?: boolean;
 };
-/** @returns {ConfigurationRequest} */
-declare function ConfigurationRequest(): ConfigurationRequest;
-type ConfigurationRequest = {
+/** @returns {SetConfiguration} */
+declare function SetConfiguration(): SetConfiguration;
+type SetConfiguration = {
     valid_android_packages?: string[];
     terms_conditions_link?: string;
 };

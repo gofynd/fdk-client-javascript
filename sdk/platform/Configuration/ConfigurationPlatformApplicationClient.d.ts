@@ -19,24 +19,26 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
+     *   Success response
      * @name changeDomainType
      * @summary: Update domain
      * @description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
      */
-    changeDomainType({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainsResponse>;
+    changeDomainType({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainsResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppApiTokensParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
+     *   Success response
      * @name getAppApiTokens
      * @summary: Get sales channel API tokens
-     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
+     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
      */
-    getAppApiTokens({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponse>;
+    getAppApiTokens({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppBasicDetailsParam} arg
      *   - Arg object
@@ -55,12 +57,13 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.CompaniesResponseSchema>} -
+     *   Success response
      * @name getAppCompanies
      * @summary: List sales channel companies
      * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
      */
-    getAppCompanies({ uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppCompaniesParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.CompaniesResponse>;
+    getAppCompanies({ uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppCompaniesParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.CompaniesResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
      *   - Arg object
@@ -93,38 +96,41 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponseSchema>}
+     *   - Success response
+     *
      * @name getAppFeatures
      * @summary: Get sales channel
      * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
      */
-    getAppFeatures({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.AppFeatureResponse>;
+    getAppFeatures({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.AppFeatureResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppStoresParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.StoresResponseSchema>} -
+     *   Success response
      * @name getAppStores
      * @summary: list sales channel stores
      * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
      */
-    getAppStores({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.StoresResponse>;
+    getAppStores({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.StoresResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponseSchema>}
+     *   - Success response
+     *
      * @name getAppSupportedCurrency
      * @summary: List supported currencies
      * @description: Retrieve a list of supported currencies for the sales channel. A list of currencies allowed in the current sales channel. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
      */
-    getAppSupportedCurrency({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.AppCurrencyResponse>;
+    getAppSupportedCurrency({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.AppCurrencyResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetApplicationByIdParam} arg
      *   - Arg object
@@ -156,23 +162,25 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponseSchema>}
+     *   - Success response
+     *
      * @name getDomainStatus
      * @summary: Get domain status
      * @description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
      */
-    getDomainStatus({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetDomainStatusParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainStatusResponse>;
+    getDomainStatus({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetDomainStatusParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainStatusResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
+     *   Success response
      * @name getDomains
      * @summary: List domains
-     * @description: Retrieve a list of existing domains by its sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
+     * @description: Retrieve a list of existing domains by its sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
      */
-    getDomains({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainsResponse>;
+    getDomains({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainsResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetInventoryConfigParam} arg
      *   - Arg object
@@ -205,13 +213,14 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
+     *   - Success response
+     *
      * @name getOrderingStoreCookie
      * @summary: Get ordering store signed cookie
      * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreCookie/).
      */
-    getOrderingStoreCookie({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetOrderingStoreCookieParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    getOrderingStoreCookie({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetOrderingStoreCookieParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
      *   - Arg object
@@ -243,13 +252,14 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
+     *   - Success response
+     *
      * @name getStaffOrderingStores
      * @summary: Get staff ordering stores
      * @description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the sales channel will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
      */
-    getStaffOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoresResponse>;
+    getStaffOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoresResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
      *   - Arg object
@@ -281,38 +291,41 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
+     *   - Success response
+     *
      * @name removeDomainById
      * @summary: Remove domain
      * @description: Delete a specific domain from the sales channel. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
      */
-    removeDomainById({ id, requestHeaders }?: ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    removeDomainById({ id, requestHeaders }?: ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.RemoveOrderingStoreCookieParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
+     *   - Success response
+     *
      * @name removeOrderingStoreCookie
      * @summary: Delete Ordering Store signed cookie
      * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeOrderingStoreCookie/).
      */
-    removeOrderingStoreCookie({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    removeOrderingStoreCookie({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
+     *   Success response
      * @name updateAppApiTokens
      * @summary: Update sales channel API tokens
      * @description: Add and edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
      */
-    updateAppApiTokens({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponse>;
+    updateAppApiTokens({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponseSchema>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam} arg
      *   - Arg object
