@@ -29,12 +29,12 @@ declare class Share {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SharePlatformModel.ClickStatsResult>} - Success response
+     * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
      * @name getShortLinkClickStats
      * @summary: Get short link click statistics
      * @description: Retrieve statistics and analytics for clicks on a short link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
      */
-    getShortLinkClickStats({ surlId, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinkClickStatsParam, { responseHeaders }?: object): Promise<SharePlatformModel.ClickStatsResult>;
+    getShortLinkClickStats({ surlId, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinkClickStatsParam, { responseHeaders }?: object): Promise<SharePlatformModel.ClickStatsResponse>;
     /**
      * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

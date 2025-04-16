@@ -12,17 +12,13 @@ class Content {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      fetchResourceTranslations:
-        "/service/application/content/v1.0/resource/translations/{type}/{locale}",
-      fetchResourceTranslationsWithPayload:
-        "/service/application/content/v1.0/resource/translations/{type}/{locale}",
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
-      getBlogs: "/service/application/content/v1.0/blogs",
-      getCustomFieldsByResourceId:
-        "/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}",
-      getCustomObjectBySlug:
-        "/service/application/content/v2.0/customobjects/definition/{definition_slug}/entries/{slug}",
+      getBlogs: "/service/application/content/v1.0/blogs/",
+      getCustomFields:
+        "/service/application/content/v1.0/metafields/{resource}/{resource_id}",
+      getCustomObject:
+        "/service/application/content/v1.0/metaobjects/{metaobject_id}",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
@@ -33,16 +29,15 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v1.0/navigations",
+      getNavigations: "/service/application/content/v1.0/navigations/",
       getPage: "/service/application/content/v2.0/pages/{slug}",
-      getPages: "/service/application/content/v2.0/pages",
+      getPages: "/service/application/content/v2.0/pages/",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
       getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
+      getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
+      getSlideshows: "/service/application/content/v1.0/slideshow/",
       getSupportInformation: "/service/application/content/v1.0/support",
-      getSupportedLanguages: "/service/application/content/v1.0/languages",
       getTags: "/service/application/content/v1.0/tags",
-      getTranslateUILabels:
-        "/service/application/content/v1.0/translate-ui-labels",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -58,100 +53,6 @@ class Content {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ResourceTranslations>} - Success response
-   * @name fetchResourceTranslations
-   * @summary: Get Resource Translations
-   * @description: Fetch translations for specific resource IDs based on type and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslations/).
-   */
-  async fetchResourceTranslations(
-    { type, locale, resourceId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["type", "locale"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["resource_id"] = resourceId;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["fetchResourceTranslations"],
-        params: { type, locale },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ResourceTranslations>} - Success response
-   * @name fetchResourceTranslationsWithPayload
-   * @summary: Post Resource Translations
-   * @description: Submit and retrieve translations for resources using payload data and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/fetchResourceTranslationsWithPayload/).
-   */
-  async fetchResourceTranslationsWithPayload(
-    { type, locale, resourceId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["type", "locale"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["resource_id"] = resourceId;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["fetchResourceTranslationsWithPayload"],
-        params: { type, locale },
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
   }
 
   /**
@@ -200,7 +101,7 @@ class Content {
    * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
   async getBlog(
-    { slug, rootId, preview, requestHeaders } = { requestHeaders: {} },
+    { slug, rootId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["slug"]);
@@ -214,7 +115,6 @@ class Content {
 
     const query_params = {};
     query_params["root_id"] = rootId;
-    query_params["preview"] = preview;
 
     const xHeaders = {};
 
@@ -242,7 +142,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BlogGetDetails>} - Success response
+   * @returns {Promise<BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
@@ -284,17 +184,17 @@ class Content {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CustomFieldsResponseByResourceIdSchema>} - Success response
-   * @name getCustomFieldsByResourceId
-   * @summary: Get list of custom fields of given resource and resource slug
-   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
+   * @name getCustomFields
+   * @summary: Get list of custom fields
+   * @description: List custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
    */
-  async getCustomFieldsByResourceId(
-    { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
+  async getCustomFields(
+    { resource, resourceId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], [
       "resource",
-      "resourceSlug",
+      "resourceId",
     ]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
@@ -312,8 +212,8 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomFieldsByResourceId"],
-        params: { resource, resourceSlug },
+        url: this._urls["getCustomFields"],
+        params: { resource, resourceId },
       }),
       query_params,
       undefined,
@@ -333,18 +233,15 @@ class Content {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CustomObjectByIdSchema>} - Success response
-   * @name getCustomObjectBySlug
-   * @summary: Get custom object details
-   * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
+   * @name getCustomObject
+   * @summary: Get custom object
+   * @description: Get details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
    */
-  async getCustomObjectBySlug(
-    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
+  async getCustomObject(
+    { metaobjectId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], [
-      "definitionSlug",
-      "slug",
-    ]);
+    const errors = validateRequiredParams(arguments[0], ["metaobjectId"]);
     if (errors.length > 0) {
       const error = new FDKClientValidationError({
         message: "Missing required field",
@@ -361,8 +258,8 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCustomObjectBySlug"],
-        params: { definitionSlug, slug },
+        url: this._urls["getCustomObject"],
+        params: { metaobjectId },
       }),
       query_params,
       undefined,
@@ -704,7 +601,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<NavigationGetDetails>} - Success response
+   * @returns {Promise<NavigationGetResponse>} - Success response
    * @name getNavigations
    * @summary: List navigation items
    * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
@@ -790,7 +687,7 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PageGetDetails>} - Success response
+   * @returns {Promise<PageGetResponse>} - Success response
    * @name getPages
    * @summary: Lists pages
    * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
@@ -905,6 +802,118 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SlideshowSchema>} - Success response
+   * @name getSlideshow
+   * @summary: Get a Slideshow
+   * @description: Get a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
+   */
+  async getSlideshow(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSlideshow"],
+        params: { slug },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SlideshowGetResponse>} - Success response
+   * @name getSlideshows
+   * @summary: List Slideshows
+   * @description: List slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
+   */
+  async getSlideshows(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSlideshows"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<SlideshowGetResponse>}
+   * @summary: List Slideshows
+   * @description: List slideshows along with their details.
+   */
+  getSlideshowsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSlideshows({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<Support>} - Success response
    * @name getSupportInformation
    * @summary: Get customer support information
@@ -942,43 +951,6 @@ class Content {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getSupportedLanguages
-   * @summary: List App Languages
-   * @description: Retrieve available languages and their configurations for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportedLanguages/).
-   */
-  async getSupportedLanguages(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSupportedLanguages"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<TagsSchema>} - Success response
    * @name getTags
    * @summary: Get HTML tags
@@ -997,50 +969,6 @@ class Content {
       "get",
       constructUrl({
         url: this._urls["getTags"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<TranslateUiLabelsPage>} - Success response
-   * @name getTranslateUILabels
-   * @summary: Get Translate Ui Labels
-   * @description: Retrieve Translate Ui Labels with filtering options for type, template, and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTranslateUILabels/).
-   */
-  async getTranslateUILabels(
-    { template, templateThemeId, themeId, locale, type, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["template"] = template;
-    query_params["template_theme_id"] = templateThemeId;
-    query_params["theme_id"] = themeId;
-    query_params["locale"] = locale;
-    query_params["type"] = type;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getTranslateUILabels"],
         params: {},
       }),
       query_params,

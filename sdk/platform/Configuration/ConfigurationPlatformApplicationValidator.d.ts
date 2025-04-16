@@ -1,11 +1,11 @@
 export = ConfigurationPlatformApplicationValidator;
 /**
  * @typedef AddDomainParam
- * @property {ConfigurationPlatformModel.DomainAddRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainAddRequest} body
  */
 /**
  * @typedef ChangeDomainTypeParam
- * @property {ConfigurationPlatformModel.UpdateDomainTypeRequestSchema} body
+ * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
  */
 /** @typedef GetAppApiTokensParam */
 /** @typedef GetAppBasicDetailsParam */
@@ -36,14 +36,14 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef GetDomainStatusParam
- * @property {ConfigurationPlatformModel.DomainStatusRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainStatusRequest} body
  */
 /** @typedef GetDomainsParam */
 /** @typedef GetInventoryConfigParam */
 /** @typedef GetOrderingStoreConfigParam */
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationPlatformModel.OrderingStoreSelectRequestSchema} body
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
  */
 /**
  * @typedef GetOrderingStoresByFilterParam
@@ -51,7 +51,7 @@ export = ConfigurationPlatformApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.FilterOrderingStoreRequestSchema} body
+ * @property {ConfigurationPlatformModel.FilterOrderingStoreRequest} body
  */
 /**
  * @typedef GetPreviousVersionsParam
@@ -68,7 +68,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef ModifyAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
  * @typedef PartiallyUpdateInventoryConfigParam
@@ -76,12 +76,12 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef RemoveDomainByIdParam
- * @property {string} id - The unique identifier of the domain
+ * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
 /** @typedef RemoveOrderingStoreCookieParam */
 /**
  * @typedef UpdateAppApiTokensParam
- * @property {ConfigurationPlatformModel.TokenResponseSchema} body
+ * @property {ConfigurationPlatformModel.TokenResponse} body
  */
 /**
  * @typedef UpdateAppBasicDetailsParam
@@ -97,13 +97,13 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
  * @typedef UpdateBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
- * @property {ConfigurationPlatformModel.MobileAppConfigRequestSchema} body
+ * @property {ConfigurationPlatformModel.MobileAppConfigRequest} body
  */
 /**
  * @typedef UpdateInventoryConfigParam
@@ -183,10 +183,10 @@ declare namespace ConfigurationPlatformApplicationValidator {
     export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
 }
 type AddDomainParam = {
-    body: ConfigurationPlatformModel.DomainAddRequestSchema;
+    body: ConfigurationPlatformModel.DomainAddRequest;
 };
 type ChangeDomainTypeParam = {
-    body: ConfigurationPlatformModel.UpdateDomainTypeRequestSchema;
+    body: ConfigurationPlatformModel.UpdateDomainTypeRequest;
 };
 type GetAppCompaniesParam = {
     /**
@@ -224,10 +224,10 @@ type GetBuildConfigParam = {
     platformType: string;
 };
 type GetDomainStatusParam = {
-    body: ConfigurationPlatformModel.DomainStatusRequestSchema;
+    body: ConfigurationPlatformModel.DomainStatusRequest;
 };
 type GetOrderingStoreCookieParam = {
-    body: ConfigurationPlatformModel.OrderingStoreSelectRequestSchema;
+    body: ConfigurationPlatformModel.OrderingStoreSelectRequest;
 };
 type GetOrderingStoresByFilterParam = {
     /**
@@ -240,7 +240,7 @@ type GetOrderingStoresByFilterParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.FilterOrderingStoreRequestSchema;
+    body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
 };
 type GetPreviousVersionsParam = {
     /**
@@ -266,19 +266,19 @@ type GetStaffOrderingStoresParam = {
     q?: string;
 };
 type ModifyAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
+    body: ConfigurationPlatformModel.AppFeatureRequest;
 };
 type PartiallyUpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.AppInventoryPartialUpdate;
 };
 type RemoveDomainByIdParam = {
     /**
-     * - The unique identifier of the domain
+     * - The unique identifier (24-digit Mongo Object ID) of the domain
      */
     id: string;
 };
 type UpdateAppApiTokensParam = {
-    body: ConfigurationPlatformModel.TokenResponseSchema;
+    body: ConfigurationPlatformModel.TokenResponse;
 };
 type UpdateAppBasicDetailsParam = {
     body: ConfigurationPlatformModel.ApplicationDetail;
@@ -290,7 +290,7 @@ type UpdateAppCurrencyConfigParam = {
     body: ConfigurationPlatformModel.AppSupportedCurrency;
 };
 type UpdateAppFeaturesParam = {
-    body: ConfigurationPlatformModel.AppFeatureRequestSchema;
+    body: ConfigurationPlatformModel.AppFeatureRequest;
 };
 type UpdateBuildConfigParam = {
     /**
@@ -298,7 +298,7 @@ type UpdateBuildConfigParam = {
      * app is built, e.g. android, ios.
      */
     platformType: string;
-    body: ConfigurationPlatformModel.MobileAppConfigRequestSchema;
+    body: ConfigurationPlatformModel.MobileAppConfigRequest;
 };
 type UpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.ApplicationInventory;

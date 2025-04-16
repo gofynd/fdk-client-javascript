@@ -1,31 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef CurrencyExchangeResponseV2
- * @property {string} base - The 3-letter ISO 4217 code representing the base currency.
- * @property {string} base_currency_name - The name of the base currency.
- * @property {number} ttl_seconds - Time in seconds for which the exchange rates
- *   are valid.
- * @property {CurrencyExchangeItem[]} items - List of exchange rates and currency details.
- * @property {number} total - Total number of currency exchange items.
- */
-
-/**
- * @typedef CurrencyExchangeItem
- * @property {string} currency_code - 3-letter ISO 4217 exchange currency code.
- * @property {string} name - Name of the exchange currency
- * @property {number} rate - Exchange rate of the currency with respect to the
- *   base currency.
- * @property {string} country_code - ISO 3166 country code.
- * @property {string} country_name - Name of the country using this currency.
- * @property {string} subunit - The name of the subunit for the currency.
- * @property {number} decimal_digits - Number of decimal digits the currency supports.
- * @property {string} symbol - The symbol of the currency.
- */
-
-/**
  * @typedef ApplicationInventory
- * @property {SearchConfig} [search]
  * @property {AppInventoryConfig} [inventory]
  * @property {AuthenticationConfig} [authentication]
  * @property {ArticleAssignmentConfig} [article_assignment]
@@ -43,7 +19,8 @@ const Joi = require("joi");
  *   or not for sales channel inventory
  * @property {CommunicationConfig} [communication]
  * @property {string[]} [platforms]
- * @property {string} [_id] - The unique identifier of the sales channel inventory
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel inventory
  * @property {LoyaltyPointsConfig} [loyalty_points]
  * @property {string} [app] - Current sales channel ID
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel
@@ -60,29 +37,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FstIdentification
- * @property {boolean} [enabled] - Indicates whether search query interpretation
- *   is enabled for the application.
- */
-
-/**
- * @typedef QuerySuggestions
- * @property {boolean} [enabled] - Indicates whether to enable or disable query
- *   suggestions powered by the GPT model using the current live catalog within
- *   the application.
- * @property {number} [max_limit] - Specifies the maximum number of query
- *   suggestions that can be returned.
- */
-
-/**
- * @typedef SearchConfig
- * @property {FstIdentification} [fst_identification]
- * @property {QuerySuggestions} [query_suggestions]
- */
-
-/**
  * @typedef AppInventoryConfig
- * @property {DeliveryStrategy} [delivery_strategy]
  * @property {InventoryBrand} [brand]
  * @property {InventoryStore} [store]
  * @property {InventoryCategory} [category]
@@ -99,6 +54,10 @@ const Joi = require("joi");
  * @property {Object[]} [company_store] - List of selling locations whose
  *   inventory is available to the sales channel for displaying on the website
  * @property {number} [company_id]
+ * @property {boolean} [enable_zone_overlapping] - Power product listing with
+ *   overlapping zones
+ * @property {boolean} [sort_popular_first] - Give preference to popularity over
+ *   score in product listing sort
  */
 
 /**
@@ -290,7 +249,6 @@ const Joi = require("joi");
 
 /**
  * @typedef AppInventoryPartialUpdate
- * @property {SearchConfig} [search]
  * @property {RewardPointsConfig} [reward_points]
  * @property {AppCartConfig} [cart]
  * @property {AppPaymentConfig} [payment]
@@ -307,19 +265,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyByBrandsRequestSchema
+ * @typedef CompanyByBrandsRequest
  * @property {number} brands - Brand UID
  * @property {string} [search_text] - A search field for finding a company by its name
  */
 
 /**
- * @typedef CompanyByBrandsResponseSchema
+ * @typedef CompanyByBrandsResponse
  * @property {BrandCompanyInfo[]} [items]
  * @property {Page} [page]
  */
 
 /**
- * @typedef StoreByBrandsRequestSchema
+ * @typedef StoreByBrandsRequest
  * @property {number} [company_id] - Current company ID for current company
  *   stores only. Don't send in case cross-selling (franchise) is enabled.
  * @property {number} brands - Brand UID
@@ -327,7 +285,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreByBrandsResponseSchema
+ * @typedef StoreByBrandsResponse
  * @property {BrandStoreInfo[]} [items]
  * @property {Page} [page]
  */
@@ -355,12 +313,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BrandsByCompanyResponseSchema
+ * @typedef BrandsByCompanyResponse
  * @property {CompanyBrandInfo[]} [brands]
  */
 
 /**
- * @typedef ValidationFailedResponseSchema
+ * @typedef ValidationFailedResponse
  * @property {string} [message] - Response message for failed validation
  */
 
@@ -392,20 +350,20 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateApplicationRequestSchema
+ * @typedef CreateApplicationRequest
  * @property {App} [app]
  * @property {ApplicationInventory} [configuration]
  * @property {AppDomain} [domain]
  */
 
 /**
- * @typedef CreateAppResponseSchema
+ * @typedef CreateAppResponse
  * @property {Application} [app]
  * @property {ApplicationInventory} [configuration]
  */
 
 /**
- * @typedef ApplicationsResponseSchema
+ * @typedef ApplicationsResponse
  * @property {Application[]} [items]
  * @property {Page} [page]
  */
@@ -413,7 +371,8 @@ const Joi = require("joi");
 /**
  * @typedef MobileAppConfiguration
  * @property {boolean} [is_active] - Indicates the availability of the mobile build
- * @property {string} [_id] - The unique identifier for mobile application configuration
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for mobile application configuration
  * @property {string} [app_name] - Name of the mobile app
  * @property {LandingImage} [landing_image]
  * @property {SplashImage} [splash_image]
@@ -442,7 +401,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef MobileAppConfigRequestSchema
+ * @typedef MobileAppConfigRequest
  * @property {string} [app_name] - Name of the mobile app
  * @property {LandingImage} [landing_image]
  * @property {SplashImage} [splash_image]
@@ -458,7 +417,7 @@ const Joi = require("joi");
 
 /**
  * @typedef BuildVersion
- * @property {string} [_id] - Primary Identifier of the build version.
+ * @property {string} [_id] - 24-digit Mongo Object ID
  * @property {string} [application] - Application ID of the sales channel
  * @property {string} [platform_type] - Device platform for which the mobile app
  *   was built, e.g. android, ios.
@@ -477,8 +436,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AppSupportedCurrency
- * @property {string} [_id] - The unique identifier of the currency
- *   configuration supported by the application
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the currency configuration supported by the application
  * @property {string[]} [supported_currency]
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account.
@@ -491,7 +450,8 @@ const Joi = require("joi");
 
 /**
  * @typedef DefaultCurrency
- * @property {string} [ref] - The unique identifier of the default currency
+ * @property {string} [ref] - The unique identifier (24-digit Mongo Object ID)
+ *   of the default currency
  * @property {string} [code] - 3-character code of the default currency, e.g.
  *   INR, EUR, USD
  */
@@ -499,7 +459,8 @@ const Joi = require("joi");
 /**
  * @typedef DomainAdd
  * @property {string} [name] - Full domain name, e.g. uniket.hostx0.de
- * @property {string} [_id] - The unique identifier of the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -512,14 +473,15 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainAddRequestSchema
+ * @typedef DomainAddRequest
  * @property {DomainAdd} [domain]
  */
 
 /**
  * @typedef Domain
  * @property {string} [name] - Full domain name, e.g. newton.com
- * @property {string} [_id] - The unique identifier of the sales channel domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel domain
  * @property {boolean} [verified] - Domain is verified or not. TXT and A records
  *   should propagate correctly.
  * @property {boolean} [is_primary] - Domain is primary or not. Primary domain
@@ -530,14 +492,15 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainsResponseSchema
+ * @typedef DomainsResponse
  * @property {Domain[]} [domains]
  */
 
 /**
  * @typedef UpdateDomain
  * @property {string} [name] - Full domain name, e.g. zenz.com
- * @property {string} [_id] - The unique identifier of the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -547,14 +510,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateDomainTypeRequestSchema
+ * @typedef UpdateDomainTypeRequest
  * @property {UpdateDomain} [domain]
  * @property {string} [action] - Shows domain is made primary domain for the
  *   sales channel or shorlink is created for the sales channel domain
  */
 
 /**
- * @typedef DomainStatusRequestSchema
+ * @typedef DomainStatusRequest
  * @property {string} [domain_url] - URL of the domain, e.g. uniket.hostx0.de
  */
 
@@ -566,17 +529,16 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainStatusResponseSchema
+ * @typedef DomainStatusResponse
  * @property {boolean} [connected] - Check if domain is live and mapped to
  *   appropriate IP of Fynd Servers
  * @property {DomainStatus[]} [status]
  */
 
 /**
- * @typedef DomainSuggestionsRequestSchema
+ * @typedef DomainSuggestionsRequest
  * @property {string} [domain_url] - Domain url
- * @property {boolean} [custom_domain] - Get suggestions for custom domains or
- *   Fynd domains
+ * @property {boolean} [custom] - Get suggestions for custom domains or Fynd domains
  */
 
 /**
@@ -591,12 +553,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DomainSuggestionsResponseSchema
+ * @typedef DomainSuggestionsResponse
  * @property {DomainSuggestion[]} [domains] - Domain URL
  */
 
 /**
- * @typedef SuccessMessageResponseSchema
+ * @typedef SuccessMessageResponse
  * @property {boolean} [success] - Shows whether domain was deleted successfully
  * @property {string} [message] - Success message shown to the user (in a string format)
  */
@@ -618,7 +580,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompaniesResponseSchema
+ * @typedef CompaniesResponse
  * @property {AppInventoryCompanies[]} [items]
  * @property {Page} [page]
  */
@@ -632,15 +594,15 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoresResponseSchema
+ * @typedef StoresResponse
  * @property {AppInventoryStores[]} [items]
  * @property {Page} [page]
  */
 
 /**
  * @typedef AppInventoryStores
- * @property {string} [_id] - The unique identifier of the store in the sales
- *   channel inventory
+ * @property {string} [_id] - The unique identifier of the store (24-digit Mongo
+ *   Object ID) in the sales channel inventory
  * @property {string} [modified_on] - ISO 8601 timestamp of last known updation
  *   to the stores in sales channel inventory
  * @property {number} [uid] - Sales channel inventory store UID
@@ -659,7 +621,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FilterOrderingStoreRequestSchema
+ * @typedef FilterOrderingStoreRequest
  * @property {boolean} [all_stores] - Allow all stores from the ordering stores
  * @property {number[]} [deployed_stores]
  * @property {string} [q] - Store code or name of the ordering store
@@ -673,7 +635,8 @@ const Joi = require("joi");
  * @property {string} [type] - Permitted values are 'hard' and 'soft'. For hard
  *   type delivery, store selection is compulsory. For soft type, delivery store
  *   selection is optional.
- * @property {string} [_id] - The unique identifier of the ordering stores
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering stores
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v]
@@ -685,7 +648,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderingStoreSelectRequestSchema
+ * @typedef OrderingStoreSelectRequest
  * @property {OrderingStoreSelect} ordering_store
  */
 
@@ -704,7 +667,8 @@ const Joi = require("joi");
  * @typedef OtherSellerApplication
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OtherSellerCompany} [company]
  * @property {string} [opt_type] - Inventory opted by the other seller's sales
@@ -718,10 +682,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OptedApplicationResponseSchema
+ * @typedef OptedApplicationResponse
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OptedCompany} [company]
  * @property {OptedInventory} [opted_inventory]
@@ -774,9 +739,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TokenResponseSchema
+ * @typedef TokenResponse
  * @property {Tokens} [tokens]
- * @property {string} [_id] - The unique identifier of the token
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the token
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
@@ -986,22 +952,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BuyboxFeature
- * @property {boolean} [show_name] - Allow users to see seller/stores name on
- *   PDP (product detail page).
- * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
- *   PDP (product detail page).
- * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
- *   between sellers and stores. True indicates seller listing, while False
- *   indicates store listing.
- */
-
-/**
- * @typedef DeliveryStrategy
- * @property {string} [value] - Indicates the delivery strategy value.
- */
-
-/**
  * @typedef AppFeature
  * @property {ProductDetailFeature} [product_detail]
  * @property {LandingPageFeature} [landing_page]
@@ -1012,9 +962,8 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
- * @property {BuyboxFeature} [buybox]
- * @property {DeliveryStrategy} [delivery_strategy]
- * @property {string} [_id] - The unique identifier for the sales channel features
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
  * @property {string} [created_at] - ISO 8601 timestamp showing the date when
  *   the features were configured
@@ -1132,19 +1081,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppFeatureRequestSchema
+ * @typedef AppFeatureRequest
  * @property {AppFeature} [feature]
  */
 
 /**
- * @typedef AppFeatureResponseSchema
+ * @typedef AppFeatureResponse
  * @property {AppFeature} [feature]
  */
 
 /**
  * @typedef Currency
- * @property {string} [_id] - The unique identifier of the current sales channel
- *   supported currency
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the current sales channel supported currency
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
@@ -1213,9 +1162,11 @@ const Joi = require("joi");
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier of the sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier of owner who owns the application
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1253,9 +1204,11 @@ const Joi = require("joi");
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier of the sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier of owner who owns the application
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1294,7 +1247,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvalidPayloadRequestSchema
+ * @typedef InvalidPayloadRequest
  * @property {string} [message] - Error message when request body payload is improper
  * @property {boolean} [success] - Flag for required not successfull.
  */
@@ -1308,7 +1261,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -1319,7 +1271,8 @@ const Joi = require("joi");
  * @property {Links[]} [links]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
- * @property {string} [_id] - Unique identifier of the application information
+ * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
+ *   the application information
  * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
@@ -1456,7 +1409,8 @@ const Joi = require("joi");
 
 /**
  * @typedef BusinessHighlights
- * @property {string} [_id] - Unique identifier of the related business
+ * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
+ *   the related business
  * @property {string} [title] - Title of the business highlight, e.g. Superfast Delivery
  * @property {string} [icon] - Hosted URL of icon image representing the
  *   business highlight
@@ -1474,20 +1428,21 @@ const Joi = require("joi");
  * @property {SecureUrl} [banner]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {string} [_id] - The unique identifier for the sales channel details
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for the sales channel details
  * @property {string} [slug]
  * @property {number} [company_id]
  */
 
 /**
- * @typedef CurrenciesResponseSchema
+ * @typedef CurrenciesResponse
  * @property {Currency[]} [items]
  */
 
 /**
- * @typedef AppCurrencyResponseSchema
- * @property {string} [_id] - The unique identifier of the currency
- *   configuration supported by the application
+ * @typedef AppCurrencyResponse
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the currency configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
  * @property {DefaultCurrency} [default_currency]
@@ -1510,7 +1465,7 @@ const Joi = require("joi");
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {string} [pincode] - 6-digit PIN code of the opted store location
+ * @property {number} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  * @property {string} [sector] - Sector for the opted store.
@@ -1521,14 +1476,15 @@ const Joi = require("joi");
 /**
  * @typedef OrderingStore
  * @property {OptedStoreAddress} [address]
- * @property {string} [_id] - The unique identifier of the ordering store
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering store
  * @property {number} [uid] - Ordering store UID
  * @property {string} [name] - Store name of the ordering store
  * @property {string} [display_name] - Display name of the ordering store
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 
@@ -1541,7 +1497,8 @@ const Joi = require("joi");
  * @property {boolean} [enabled] - Allow ordering stores for current sales channel
  * @property {string} [type] - For hard type delivery, store selection is
  *   compulsory. For soft type, delivery store selection is optional.
- * @property {string} [_id] - The unique identifier of the ordering store
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering store
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v] - Version key for tracking ordering stores. Default
@@ -1549,54 +1506,15 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderingStoresResponseSchema
+ * @typedef OrderingStoresResponse
  * @property {Page} [page]
  * @property {OrderingStore[]} [items]
  */
 
-/**
- * @typedef ValidationErrors
- * @property {ValidationError[]} errors - A list of validation errors in the request.
- */
-
-/**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-
 class ConfigurationPlatformModel {
-  /** @returns {CurrencyExchangeResponseV2} */
-  static CurrencyExchangeResponseV2() {
-    return Joi.object({
-      base: Joi.string().allow("").required(),
-      base_currency_name: Joi.string().allow("").required(),
-      ttl_seconds: Joi.number().required(),
-      items: Joi.array()
-        .items(ConfigurationPlatformModel.CurrencyExchangeItem())
-        .required(),
-      total: Joi.number().required(),
-    });
-  }
-
-  /** @returns {CurrencyExchangeItem} */
-  static CurrencyExchangeItem() {
-    return Joi.object({
-      currency_code: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      rate: Joi.number().required(),
-      country_code: Joi.string().allow("").required(),
-      country_name: Joi.string().allow("").required(),
-      subunit: Joi.string().allow("").required(),
-      decimal_digits: Joi.number().required(),
-      symbol: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ApplicationInventory} */
   static ApplicationInventory() {
     return Joi.object({
-      search: ConfigurationPlatformModel.SearchConfig(),
       inventory: ConfigurationPlatformModel.AppInventoryConfig(),
       authentication: ConfigurationPlatformModel.AuthenticationConfig(),
       article_assignment: ConfigurationPlatformModel.ArticleAssignmentConfig(),
@@ -1628,33 +1546,9 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {FstIdentification} */
-  static FstIdentification() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-    });
-  }
-
-  /** @returns {QuerySuggestions} */
-  static QuerySuggestions() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-      max_limit: Joi.number(),
-    });
-  }
-
-  /** @returns {SearchConfig} */
-  static SearchConfig() {
-    return Joi.object({
-      fst_identification: ConfigurationPlatformModel.FstIdentification(),
-      query_suggestions: ConfigurationPlatformModel.QuerySuggestions(),
-    });
-  }
-
   /** @returns {AppInventoryConfig} */
   static AppInventoryConfig() {
     return Joi.object({
-      delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
       brand: ConfigurationPlatformModel.InventoryBrand(),
       store: ConfigurationPlatformModel.InventoryStore(),
       category: ConfigurationPlatformModel.InventoryCategory(),
@@ -1667,6 +1561,8 @@ class ConfigurationPlatformModel {
       image: Joi.array().items(Joi.string().allow("")),
       company_store: Joi.array().items(Joi.any()),
       company_id: Joi.number(),
+      enable_zone_overlapping: Joi.boolean(),
+      sort_popular_first: Joi.boolean(),
     });
   }
 
@@ -1884,7 +1780,6 @@ class ConfigurationPlatformModel {
   /** @returns {AppInventoryPartialUpdate} */
   static AppInventoryPartialUpdate() {
     return Joi.object({
-      search: ConfigurationPlatformModel.SearchConfig(),
       reward_points: ConfigurationPlatformModel.RewardPointsConfig(),
       cart: ConfigurationPlatformModel.AppCartConfig(),
       payment: ConfigurationPlatformModel.AppPaymentConfig(),
@@ -1902,24 +1797,24 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CompanyByBrandsRequestSchema} */
-  static CompanyByBrandsRequestSchema() {
+  /** @returns {CompanyByBrandsRequest} */
+  static CompanyByBrandsRequest() {
     return Joi.object({
       brands: Joi.number().required(),
       search_text: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CompanyByBrandsResponseSchema} */
-  static CompanyByBrandsResponseSchema() {
+  /** @returns {CompanyByBrandsResponse} */
+  static CompanyByBrandsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.BrandCompanyInfo()),
       page: ConfigurationPlatformModel.Page(),
     });
   }
 
-  /** @returns {StoreByBrandsRequestSchema} */
-  static StoreByBrandsRequestSchema() {
+  /** @returns {StoreByBrandsRequest} */
+  static StoreByBrandsRequest() {
     return Joi.object({
       company_id: Joi.number(),
       brands: Joi.number().required(),
@@ -1927,8 +1822,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoreByBrandsResponseSchema} */
-  static StoreByBrandsResponseSchema() {
+  /** @returns {StoreByBrandsResponse} */
+  static StoreByBrandsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.BrandStoreInfo()),
       page: ConfigurationPlatformModel.Page(),
@@ -1958,15 +1853,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {BrandsByCompanyResponseSchema} */
-  static BrandsByCompanyResponseSchema() {
+  /** @returns {BrandsByCompanyResponse} */
+  static BrandsByCompanyResponse() {
     return Joi.object({
       brands: Joi.array().items(ConfigurationPlatformModel.CompanyBrandInfo()),
     });
   }
 
-  /** @returns {ValidationFailedResponseSchema} */
-  static ValidationFailedResponseSchema() {
+  /** @returns {ValidationFailedResponse} */
+  static ValidationFailedResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
@@ -2005,8 +1900,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CreateApplicationRequestSchema} */
-  static CreateApplicationRequestSchema() {
+  /** @returns {CreateApplicationRequest} */
+  static CreateApplicationRequest() {
     return Joi.object({
       app: ConfigurationPlatformModel.App(),
       configuration: ConfigurationPlatformModel.ApplicationInventory(),
@@ -2014,16 +1909,16 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CreateAppResponseSchema} */
-  static CreateAppResponseSchema() {
+  /** @returns {CreateAppResponse} */
+  static CreateAppResponse() {
     return Joi.object({
       app: ConfigurationPlatformModel.Application(),
       configuration: ConfigurationPlatformModel.ApplicationInventory(),
     });
   }
 
-  /** @returns {ApplicationsResponseSchema} */
-  static ApplicationsResponseSchema() {
+  /** @returns {ApplicationsResponse} */
+  static ApplicationsResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.Application()),
       page: ConfigurationPlatformModel.Page(),
@@ -2063,8 +1958,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {MobileAppConfigRequestSchema} */
-  static MobileAppConfigRequestSchema() {
+  /** @returns {MobileAppConfigRequest} */
+  static MobileAppConfigRequest() {
     return Joi.object({
       app_name: Joi.string().allow(""),
       landing_image: ConfigurationPlatformModel.LandingImage(),
@@ -2130,8 +2025,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainAddRequestSchema} */
-  static DomainAddRequestSchema() {
+  /** @returns {DomainAddRequest} */
+  static DomainAddRequest() {
     return Joi.object({
       domain: ConfigurationPlatformModel.DomainAdd(),
     });
@@ -2150,8 +2045,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainsResponseSchema} */
-  static DomainsResponseSchema() {
+  /** @returns {DomainsResponse} */
+  static DomainsResponse() {
     return Joi.object({
       domains: Joi.array().items(ConfigurationPlatformModel.Domain()),
     });
@@ -2168,16 +2063,16 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {UpdateDomainTypeRequestSchema} */
-  static UpdateDomainTypeRequestSchema() {
+  /** @returns {UpdateDomainTypeRequest} */
+  static UpdateDomainTypeRequest() {
     return Joi.object({
       domain: ConfigurationPlatformModel.UpdateDomain(),
       action: Joi.string().allow(""),
     });
   }
 
-  /** @returns {DomainStatusRequestSchema} */
-  static DomainStatusRequestSchema() {
+  /** @returns {DomainStatusRequest} */
+  static DomainStatusRequest() {
     return Joi.object({
       domain_url: Joi.string().allow(""),
     });
@@ -2191,19 +2086,19 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainStatusResponseSchema} */
-  static DomainStatusResponseSchema() {
+  /** @returns {DomainStatusResponse} */
+  static DomainStatusResponse() {
     return Joi.object({
       connected: Joi.boolean(),
       status: Joi.array().items(ConfigurationPlatformModel.DomainStatus()),
     });
   }
 
-  /** @returns {DomainSuggestionsRequestSchema} */
-  static DomainSuggestionsRequestSchema() {
+  /** @returns {DomainSuggestionsRequest} */
+  static DomainSuggestionsRequest() {
     return Joi.object({
       domain_url: Joi.string().allow(""),
-      custom_domain: Joi.boolean(),
+      custom: Joi.boolean(),
     });
   }
 
@@ -2218,15 +2113,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {DomainSuggestionsResponseSchema} */
-  static DomainSuggestionsResponseSchema() {
+  /** @returns {DomainSuggestionsResponse} */
+  static DomainSuggestionsResponse() {
     return Joi.object({
       domains: Joi.array().items(ConfigurationPlatformModel.DomainSuggestion()),
     });
   }
 
-  /** @returns {SuccessMessageResponseSchema} */
-  static SuccessMessageResponseSchema() {
+  /** @returns {SuccessMessageResponse} */
+  static SuccessMessageResponse() {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
@@ -2251,8 +2146,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CompaniesResponseSchema} */
-  static CompaniesResponseSchema() {
+  /** @returns {CompaniesResponse} */
+  static CompaniesResponse() {
     return Joi.object({
       items: Joi.array().items(
         ConfigurationPlatformModel.AppInventoryCompanies()
@@ -2270,8 +2165,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {StoresResponseSchema} */
-  static StoresResponseSchema() {
+  /** @returns {StoresResponse} */
+  static StoresResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.AppInventoryStores()),
       page: ConfigurationPlatformModel.Page(),
@@ -2294,8 +2189,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {FilterOrderingStoreRequestSchema} */
-  static FilterOrderingStoreRequestSchema() {
+  /** @returns {FilterOrderingStoreRequest} */
+  static FilterOrderingStoreRequest() {
     return Joi.object({
       all_stores: Joi.boolean(),
       deployed_stores: Joi.array().items(Joi.number()),
@@ -2323,8 +2218,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OrderingStoreSelectRequestSchema} */
-  static OrderingStoreSelectRequestSchema() {
+  /** @returns {OrderingStoreSelectRequest} */
+  static OrderingStoreSelectRequest() {
     return Joi.object({
       ordering_store: ConfigurationPlatformModel.OrderingStoreSelect().required(),
     });
@@ -2367,8 +2262,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OptedApplicationResponseSchema} */
-  static OptedApplicationResponseSchema() {
+  /** @returns {OptedApplicationResponse} */
+  static OptedApplicationResponse() {
     return Joi.object({
       name: Joi.string().allow(""),
       description: Joi.string().allow(""),
@@ -2428,8 +2323,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {TokenResponseSchema} */
-  static TokenResponseSchema() {
+  /** @returns {TokenResponse} */
+  static TokenResponse() {
     return Joi.object({
       tokens: ConfigurationPlatformModel.Tokens(),
       _id: Joi.string().allow(""),
@@ -2635,8 +2530,8 @@ class ConfigurationPlatformModel {
   static LaunchPage() {
     return Joi.object({
       page_type: Joi.string().allow(""),
-      params: Joi.object().pattern(/\S/, Joi.any()),
-      query: Joi.object().pattern(/\S/, Joi.any()),
+      params: Joi.any(),
+      query: Joi.any(),
     });
   }
 
@@ -2665,22 +2560,6 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {BuyboxFeature} */
-  static BuyboxFeature() {
-    return Joi.object({
-      show_name: Joi.boolean(),
-      enable_selection: Joi.boolean(),
-      is_seller_buybox_enabled: Joi.boolean(),
-    });
-  }
-
-  /** @returns {DeliveryStrategy} */
-  static DeliveryStrategy() {
-    return Joi.object({
-      value: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {AppFeature} */
   static AppFeature() {
     return Joi.object({
@@ -2693,8 +2572,6 @@ class ConfigurationPlatformModel {
       qr: ConfigurationPlatformModel.QrFeature(),
       pcr: ConfigurationPlatformModel.PcrFeature(),
       order: ConfigurationPlatformModel.OrderFeature(),
-      buybox: ConfigurationPlatformModel.BuyboxFeature(),
-      delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -2820,15 +2697,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {AppFeatureRequestSchema} */
-  static AppFeatureRequestSchema() {
+  /** @returns {AppFeatureRequest} */
+  static AppFeatureRequest() {
     return Joi.object({
       feature: ConfigurationPlatformModel.AppFeature(),
     });
   }
 
-  /** @returns {AppFeatureResponseSchema} */
-  static AppFeatureResponseSchema() {
+  /** @returns {AppFeatureResponse} */
+  static AppFeatureResponse() {
     return Joi.object({
       feature: ConfigurationPlatformModel.AppFeature(),
     });
@@ -2990,8 +2867,8 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {InvalidPayloadRequestSchema} */
-  static InvalidPayloadRequestSchema() {
+  /** @returns {InvalidPayloadRequest} */
+  static InvalidPayloadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
@@ -3008,7 +2885,6 @@ class ConfigurationPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 
@@ -3220,15 +3096,15 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CurrenciesResponseSchema} */
-  static CurrenciesResponseSchema() {
+  /** @returns {CurrenciesResponse} */
+  static CurrenciesResponse() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.Currency()),
     });
   }
 
-  /** @returns {AppCurrencyResponseSchema} */
-  static AppCurrencyResponseSchema() {
+  /** @returns {AppCurrencyResponse} */
+  static AppCurrencyResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
@@ -3256,7 +3132,7 @@ class ConfigurationPlatformModel {
       address1: Joi.string().allow(""),
       lat_long: ConfigurationPlatformModel.StoreLatLong(),
       address2: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number(),
       country: Joi.string().allow(""),
       city: Joi.string().allow(""),
       sector: Joi.string().allow(""),
@@ -3275,7 +3151,7 @@ class ConfigurationPlatformModel {
       display_name: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number(),
       code: Joi.string().allow(""),
     });
   }
@@ -3295,28 +3171,11 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {OrderingStoresResponseSchema} */
-  static OrderingStoresResponseSchema() {
+  /** @returns {OrderingStoresResponse} */
+  static OrderingStoresResponse() {
     return Joi.object({
       page: ConfigurationPlatformModel.Page(),
       items: Joi.array().items(ConfigurationPlatformModel.OrderingStore()),
-    });
-  }
-
-  /** @returns {ValidationErrors} */
-  static ValidationErrors() {
-    return Joi.object({
-      errors: Joi.array()
-        .items(ConfigurationPlatformModel.ValidationError())
-        .required(),
-    });
-  }
-
-  /** @returns {ValidationError} */
-  static ValidationError() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      field: Joi.string().allow("").required(),
     });
   }
 }

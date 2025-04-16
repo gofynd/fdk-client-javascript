@@ -1,6 +1,6 @@
 {
   "name": "@gofynd/fdk-client-javascript",
-  "version": "3.3.1",
+  "version": "1.9.4-2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "webpack",
     "prettier": "npx prettier -w ./sdk ./tests && npx tsc"
   },
-  "author": "Jigar Dafda",
+  "author": "Jigar Dafda<jigar.dafda@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.4",

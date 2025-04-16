@@ -2,109 +2,104 @@ const Joi = require("joi");
 
 /**
  * @typedef EventConfig
- * @property {number} [id] - The unique identifier for the event configuration.
- * @property {string} [event_name] - The name of the event.
- * @property {string} [event_type] - The type of the event.
- * @property {string} [event_category] - The category of the event.
- * @property {Object} [event_schema] - The schema defining the event data structure.
- * @property {string} [version] - The version of the event configuration.
- * @property {string} [display_name] - A user-friendly name for the event.
- * @property {string} [description] - A detailed description of the event.
- * @property {string} [created_on] - The timestamp when the event configuration
- *   was created.
- * @property {string} [updated_on] - The timestamp when the event configuration
- *   was last updated.
- * @property {string} [group] - The group to which the event belongs.
+ * @property {number} [id]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [event_category]
+ * @property {Object} [event_schema]
+ * @property {string} [version]
+ * @property {string} [display_name]
+ * @property {string} [description]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {string} [group]
  */
 
 /**
- * @typedef EventDetails
- * @property {EventConfig[]} [event_configs] - A list of event configuration details.
+ * @typedef EventConfigResponse
+ * @property {EventConfig[]} [event_configs]
  */
 
 /**
  * @typedef EventConfigBase
- * @property {string} [event_name] - The name of the event.
- * @property {string} [event_type] - The type of the event.
- * @property {string} [event_category] - The category of the event.
- * @property {string} [version] - The version of the event configuration.
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [event_category]
+ * @property {string} [version]
  */
 
 /**
  * @typedef EventNotifier
- * @property {string} [message] - The message to be sent in the notification.
- * @property {string[]} [emails] - List of email addresses to notify.
+ * @property {string} [message]
+ * @property {string[]} [emails]
  */
 
 /**
  * @typedef EventSchema
- * @property {Object} [payload] - The event data payload.
- * @property {Object} [meta] - Metadata related to the event.
+ * @property {Object} [payload]
+ * @property {Object} [meta]
  */
 
 /**
  * @typedef InternalTransformEvent
- * @property {string[]} [trace_id] - List of trace IDs related to the event.
- * @property {string} [name] - The name of the transformation event.
- * @property {string} [type] - The type of the transformation event.
- * @property {string} [version] - The version of the transformation event.
- * @property {number} [created_timestamp] - The timestamp when the event was created.
+ * @property {string[]} [trace_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [version]
+ * @property {number} [created_timestamp]
  */
 
 /**
  * @typedef TransformEventData
  * @property {InternalTransformEvent} [event]
- * @property {number} [company_id] - The company ID associated with the event.
- * @property {string[]} [contains] - List of strings related to the event.
- * @property {Object} [payload] - Event data payload.
+ * @property {number} [company_id]
+ * @property {string[]} [contains]
+ * @property {Object} [payload]
  */
 
 /**
  * @typedef TransformEventServiceMeta
- * @property {string} [name] - The name of the transformation service.
+ * @property {string} [name]
  */
 
 /**
  * @typedef TransformEventAssociation
- * @property {number} [company_id] - The company ID associated with the event.
+ * @property {number} [company_id]
  */
 
 /**
- * @typedef TransformEventPayload
- * @property {string} event_name - The name of the event.
- * @property {string} event_type - The type of the event.
- * @property {string} event_category - The category of the event.
- * @property {string} event_version - The version of the event.
+ * @typedef TransformEventRequest
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
  * @property {EventSchema} event
  */
 
 /**
- * @typedef ValidateSchemaPayload
- * @property {string} event_name - The name of the event to validate.
- * @property {string} event_type - The type of the event.
- * @property {string} event_category - The category of the event.
- * @property {string} event_version - The version of the event to validate.
+ * @typedef ValidateSchemaRequest
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
  * @property {EventSchema} event
- * @property {Object} event_schema - The schema defining the structure of the event.
+ * @property {Object} event_schema
  */
 
 /**
- * @typedef ValidateSchemaResult
- * @property {boolean} [status] - Indicates whether the schema is valid (true)
- *   or invalid (false).
- * @property {string} [message] - A message providing additional details about
- *   the validation result.
+ * @typedef ValidateSchemaResponse
+ * @property {boolean} [status]
+ * @property {string} [message]
  */
 
 /**
- * @typedef TransformEventResult
- * @property {string[]} [event_trace_id] - List of trace IDs related to the
- *   transformation event.
+ * @typedef TransformEventResponse
+ * @property {string[]} [event_trace_id]
  * @property {TransformEventData} [data]
- * @property {string} [event_name] - The name of the transformation event.
- * @property {string} [version] - The version of the transformation event.
- * @property {boolean} [status] - The status of the event processing.
- * @property {string} [event_type] - The type of the transformation event.
+ * @property {string} [event_name]
+ * @property {string} [version]
+ * @property {boolean} [status]
+ * @property {string} [event_type]
  * @property {TransformEventServiceMeta} [service_meta]
  * @property {TransformEventAssociation} [association]
  */
@@ -127,8 +122,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {EventDetails} */
-  static EventDetails() {
+  /** @returns {EventConfigResponse} */
+  static EventConfigResponse() {
     return Joi.object({
       event_configs: Joi.array().items(WebhookPublicModel.EventConfig()),
     });
@@ -195,8 +190,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {TransformEventPayload} */
-  static TransformEventPayload() {
+  /** @returns {TransformEventRequest} */
+  static TransformEventRequest() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -206,8 +201,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaPayload} */
-  static ValidateSchemaPayload() {
+  /** @returns {ValidateSchemaRequest} */
+  static ValidateSchemaRequest() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -218,16 +213,16 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaResult} */
-  static ValidateSchemaResult() {
+  /** @returns {ValidateSchemaResponse} */
+  static ValidateSchemaResponse() {
     return Joi.object({
       status: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {TransformEventResult} */
-  static TransformEventResult() {
+  /** @returns {TransformEventResponse} */
+  static TransformEventResponse() {
     return Joi.object({
       event_trace_id: Joi.array().items(Joi.string().allow("")),
       data: WebhookPublicModel.TransformEventData(),

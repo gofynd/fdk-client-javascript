@@ -8,7 +8,13 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
+ */
+
+/**
+ * @typedef AppCopyFilesParam
+ * @property {boolean} [sync] - Sync
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 
 /**
@@ -17,7 +23,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 
 /**
@@ -43,13 +49,63 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  * @property {FileStoragePlatformModel.ExtensionSlug} body
  */
 
+/**
+ * @typedef GeneratePaymentReceiptParam
+ * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
+ */
+
+/**
+ * @typedef GetDefaultHtmlTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
+ */
+
+/**
+ * @typedef GetDefaultPdfDataParam
+ * @property {number} pdfTypeId
+ * @property {string} [countryCode]
+ */
+
+/**
+ * @typedef GetDefaultPdfTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
+ */
+
+/**
+ * @typedef GetPdfTypesParam
+ * @property {string} [countryCode]
+ */
+
+/**
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.PdfConfig} body
+ */
+
+/**
+ * @typedef UpdateHtmlTemplateParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.PdfConfig} body
+ */
+
 class FileStoragePlatformApplicationValidator {
   /** @returns {AppCompleteUploadParam} */
   static appCompleteUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUpload().required(),
+      body: FileStoragePlatformModel.StartResponse().required(),
+    }).required();
+  }
+
+  /** @returns {AppCopyFilesParam} */
+  static appCopyFiles() {
+    return Joi.object({
+      sync: Joi.boolean(),
+
+      body: FileStoragePlatformModel.CopyFiles().required(),
     }).required();
   }
 
@@ -58,7 +114,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      body: FileStoragePlatformModel.FileUploadStart().required(),
+      body: FileStoragePlatformModel.StartRequest().required(),
     }).required();
   }
 
@@ -82,6 +138,61 @@ class FileStoragePlatformApplicationValidator {
       limit: Joi.number(),
       search: Joi.string().allow(""),
       body: FileStoragePlatformModel.ExtensionSlug().required(),
+    }).required();
+  }
+
+  /** @returns {GeneratePaymentReceiptParam} */
+  static generatePaymentReceipt() {
+    return Joi.object({
+      body: FileStoragePlatformModel.PaymentReceiptRequestBody().required(),
+    }).required();
+  }
+
+  /** @returns {GetDefaultHtmlTemplateParam} */
+  static getDefaultHtmlTemplate() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      format: Joi.string().allow("").required(),
+      countryCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetDefaultPdfDataParam} */
+  static getDefaultPdfData() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      countryCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetDefaultPdfTemplateParam} */
+  static getDefaultPdfTemplate() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      format: Joi.string().allow("").required(),
+      countryCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetPdfTypesParam} */
+  static getPdfTypes() {
+    return Joi.object({
+      countryCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {SaveHtmlTemplateParam} */
+  static saveHtmlTemplate() {
+    return Joi.object({
+      body: FileStoragePlatformModel.PdfConfig().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateHtmlTemplateParam} */
+  static updateHtmlTemplate() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: FileStoragePlatformModel.PdfConfig().required(),
     }).required();
   }
 }

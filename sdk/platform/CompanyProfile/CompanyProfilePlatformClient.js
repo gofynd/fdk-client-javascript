@@ -18,7 +18,7 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponseSchema>}
+   * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
    *   - Success response
    *
    * @name cbsOnboardGet
@@ -58,7 +58,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -72,7 +72,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetCompanyProfileSerializerResponseSchema().validate(
+    } = CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -95,9 +95,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name createBrand
    * @summary: Create brand
    * @description: Allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
@@ -153,7 +152,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -178,9 +177,8 @@ class CompanyProfile {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name createCompanyBrandMapping
    * @summary: Create company-brand mapping
    * @description: Establish a mapping between a company and a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
@@ -224,7 +222,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -238,7 +236,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -261,9 +259,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name createLocation
    * @summary: Create company stores
    * @description: Create a new location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
@@ -305,7 +302,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -319,7 +316,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -342,9 +339,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name createLocationBulk
    * @summary: Bulk create company stores
    * @description: Allows to create locations in bulk at once associated to a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
@@ -402,7 +398,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -425,9 +421,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name editBrand
    * @summary: update brand
    * @description: Modify brand details and meta of a specific brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
@@ -485,7 +480,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -508,8 +503,9 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSchema>} -
-   *   Success response
+   * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
+   *   - Success response
+   *
    * @name getBrand
    * @summary: Get a brand
    * @description: Retrieve detailed information about a specific brand associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
@@ -565,7 +561,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetBrandResponseSchema().validate(
+    } = CompanyProfilePlatformModel.GetBrandResponseSerializer().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -588,8 +584,9 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSchema>} -
-   *   Success response
+   * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
+   *   - Success response
+   *
    * @name getBrands
    * @summary: list company brands
    * @description: Retrieve a list of available brands associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
@@ -638,7 +635,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -652,7 +649,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.CompanyBrandListSchema().validate(
+    } = CompanyProfilePlatformModel.CompanyBrandListSerializer().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -676,7 +673,7 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {string} [arg.q] - Search term for name.
-   * @returns {Paginator<CompanyProfilePlatformModel.CompanyBrandListSchema>}
+   * @returns {Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
    * @summary: list company brands
    * @description: Retrieve a list of available brands associated to a company.
    */
@@ -705,7 +702,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.MetricsSchema>} - Success response
+   * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
+   *   Success response
    * @name getCompanyMetrics
    * @summary: Get company metrics
    * @description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
@@ -759,7 +757,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.MetricsSchema().validate(responseData, {
+    } = CompanyProfilePlatformModel.MetricsSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -782,7 +780,7 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.GetLocationSchema>} -
+   * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
    *   Success response
    * @name getLocationDetail
    * @summary: Get company stores
@@ -827,7 +825,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/location/${locationId}`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -841,10 +839,10 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetLocationSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CompanyProfilePlatformModel.GetLocationSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -943,7 +941,7 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.LocationListSchema>} -
+   * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
    *   Success response
    * @name getLocations
    * @summary: Get company specific stores
@@ -1018,7 +1016,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1032,7 +1030,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.LocationListSchema().validate(
+    } = CompanyProfilePlatformModel.LocationListSerializer().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1052,12 +1050,63 @@ class CompanyProfile {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.storeType] - Helps to sort the location list on the
+   *   basis of location type.
+   * @param {string} [arg.q] - Query that is to be searched.
+   * @param {string} [arg.stage] - To filter companies on basis of verified or
+   *   unverified companies.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+   * @param {string[]} [arg.types] - Helps to get the location list on the
+   *   basis of multiple location type.
+   * @param {string[]} [arg.tags] - Helps to get the location list on the
+   *   basis of multiple location tag.
+   * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
+   * @summary: Get company specific stores
+   * @description: Retrieve a list of locations associated with the company.
+   */
+  getLocationsPaginator({
+    storeType,
+    q,
+    stage,
+    pageSize,
+    locationIds,
+    types,
+    tags,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getLocations({
+        storeType: storeType,
+        q: q,
+        stage: stage,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        locationIds: locationIds,
+        types: types,
+        tags: tags,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name updateCompany
    * @summary: Update company profile
    * @description: Allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
@@ -1099,7 +1148,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1113,7 +1162,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1136,9 +1185,8 @@ class CompanyProfile {
    * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
+   *   Success response
    * @name updateLocation
    * @summary: Update company stores
    * @description: Allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
@@ -1182,7 +1230,7 @@ class CompanyProfile {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/company-profile/v2.0/company/${this.config.companyId}/location/${locationId}`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1196,7 +1244,7 @@ class CompanyProfile {
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponseSchema().validate(
+    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

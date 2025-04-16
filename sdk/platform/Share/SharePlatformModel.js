@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ClickStatsResult
+ * @typedef ClickStatsResponse
  * @property {ClickStatsItem[]} click_stats - An array of click statistics for
  *   the short link.
  */
@@ -64,18 +64,6 @@ const Joi = require("joi");
  * @property {Attribution} [attribution]
  * @property {SocialMediaTags} [social_media_tags]
  * @property {number} [count]
- * @property {shortLinkReqMeta} [meta]
- */
-
-/**
- * @typedef shortLinkReqMeta
- * @property {boolean} [for_sms] - For_sms flag specifies that the short-link
- *   will be used in SMS communication and based on TRAI (Indian) guidelines,
- *   the generated short-link must contain an active SMS HEADER; ex. DLFYND, GOFYND.
- * @property {string} [sms_header] - This field is used to override the sms
- *   header to be used to generate a short-link for SMS communication in
- *   compliance with TRAI guidelines, this should be used in conjunction with
- *   for_sms flag set to true.
  */
 
 /**
@@ -83,7 +71,6 @@ const Joi = require("joi");
  * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
- * @property {string} [alias]
  */
 
 /**
@@ -119,7 +106,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -134,8 +120,8 @@ const Joi = require("joi");
  */
 
 class SharePlatformModel {
-  /** @returns {ClickStatsResult} */
-  static ClickStatsResult() {
+  /** @returns {ClickStatsResponse} */
+  static ClickStatsResponse() {
     return Joi.object({
       click_stats: Joi.array()
         .items(SharePlatformModel.ClickStatsItem())
@@ -216,15 +202,6 @@ class SharePlatformModel {
       attribution: SharePlatformModel.Attribution(),
       social_media_tags: SharePlatformModel.SocialMediaTags(),
       count: Joi.number(),
-      meta: SharePlatformModel.shortLinkReqMeta(),
-    });
-  }
-
-  /** @returns {shortLinkReqMeta} */
-  static shortLinkReqMeta() {
-    return Joi.object({
-      for_sms: Joi.boolean(),
-      sms_header: Joi.string().allow(""),
     });
   }
 
@@ -234,7 +211,6 @@ class SharePlatformModel {
       original: Joi.string().allow(""),
       hash: Joi.string().allow(""),
       short_url: Joi.string().allow(""),
-      alias: Joi.string().allow(""),
     });
   }
 
@@ -253,7 +229,7 @@ class SharePlatformModel {
       application: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       updated_at: Joi.string().allow(""),
       personalized: Joi.boolean(),
       campaign: SharePlatformModel.CampaignShortLink(),
@@ -274,7 +250,6 @@ class SharePlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 

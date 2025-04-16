@@ -24,7 +24,7 @@ export = CommunicationPlatformApplicationValidator;
  */
 /**
  * @typedef CreateEventSubscriptionsByBulkParam
- * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdatePayload} body
+ * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest} body
  */
 /**
  * @typedef CreateJobsParam
@@ -214,11 +214,11 @@ export = CommunicationPlatformApplicationValidator;
  */
 /**
  * @typedef SendCommunicationAsynchronouslyParam
- * @property {CommunicationPlatformModel.EnginePayload} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 /**
  * @typedef SendCommunicationSynchronouslyParam
- * @property {CommunicationPlatformModel.EnginePayload} body
+ * @property {CommunicationPlatformModel.EngineRequest} body
  */
 /**
  * @typedef SendOtpParam
@@ -226,7 +226,7 @@ export = CommunicationPlatformApplicationValidator;
  */
 /**
  * @typedef TriggerCampaignJobParam
- * @property {CommunicationPlatformModel.TriggerJobPayload} body
+ * @property {CommunicationPlatformModel.TriggerJobRequest} body
  */
 /**
  * @typedef UpdateAppProvidersParam
@@ -422,7 +422,7 @@ type CreateEventSubscriptionsParam = {
     body: CommunicationPlatformModel.SubscriptionsObject;
 };
 type CreateEventSubscriptionsByBulkParam = {
-    body: CommunicationPlatformModel.EventSubscriptionsBulkUpdatePayload;
+    body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest;
 };
 type CreateJobsParam = {
     body: CommunicationPlatformModel.CreateJobsReq;
@@ -755,16 +755,16 @@ type PostGlobalVariablesParam = {
     body: CommunicationPlatformModel.GlobalVariablesReq;
 };
 type SendCommunicationAsynchronouslyParam = {
-    body: CommunicationPlatformModel.EnginePayload;
+    body: CommunicationPlatformModel.EngineRequest;
 };
 type SendCommunicationSynchronouslyParam = {
-    body: CommunicationPlatformModel.EnginePayload;
+    body: CommunicationPlatformModel.EngineRequest;
 };
 type SendOtpParam = {
     body: CommunicationPlatformModel.SendOtpCommsReq;
 };
 type TriggerCampaignJobParam = {
-    body: CommunicationPlatformModel.TriggerJobPayload;
+    body: CommunicationPlatformModel.TriggerJobRequest;
 };
 type UpdateAppProvidersParam = {
     body: CommunicationPlatformModel.AppProviderReq;
