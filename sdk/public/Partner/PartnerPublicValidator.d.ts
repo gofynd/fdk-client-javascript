@@ -1,7 +1,7 @@
 export = PartnerPublicValidator;
 /**
  * @typedef GetPanelExtensionDetailsParam
- * @property {string} slug - Pass the slug of the extension
+ * @property {string} slug - Slug of the extension
  */
 declare class PartnerPublicValidator {
     /** @returns {GetPanelExtensionDetailsParam} */
@@ -12,7 +12,7 @@ declare namespace PartnerPublicValidator {
 }
 type GetPanelExtensionDetailsParam = {
     /**
-     * - Pass the slug of the extension
+     * - Slug of the extension
      */
     slug: string;
 };
