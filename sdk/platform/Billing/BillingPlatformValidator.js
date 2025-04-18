@@ -4,32 +4,33 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /**
  * @typedef CancelSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} subscriptionId - The unique identifier of the subscription
+ * @property {string} extensionId - Extension _id
+ * @property {string} subscriptionId - Subscription charge _id
  */
 
 /**
  * @typedef CreateOneTimeChargeParam
- * @property {string} extensionId - The unique identifier of the extension
+ * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateOneTimeCharge} body
  */
 
 /**
  * @typedef CreateSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
+ * @property {string} extensionId - Extension Id for which we need to crete new
+ *   subscription
  * @property {BillingPlatformModel.CreateSubscriptionCharge} body
  */
 
 /**
  * @typedef GetChargeDetailsParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} chargeId - The unique identifier of the entity charge in the system.
+ * @property {string} extensionId - Extension _id
+ * @property {string} chargeId - Standalone charge _id
  */
 
 /**
  * @typedef GetSubscriptionChargeParam
- * @property {string} extensionId - The unique identifier of the extension
- * @property {string} subscriptionId - The unique identifier of the subscription
+ * @property {string} extensionId - Extension _id
+ * @property {string} subscriptionId - Subscription charge _id
  */
 
 class BillingPlatformValidator {

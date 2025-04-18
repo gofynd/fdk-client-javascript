@@ -25,21 +25,21 @@ declare class Configuration {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AppCurrencyResponseSchema>} - Success response
+     * @returns {Promise<AppCurrencyResponse>} - Success response
      * @name getAppCurrencies
-     * @summary: Get currency configuration
+     * @summary: Retrieves app-specific currencies.
      * @description: Get currency configuration of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
      */
-    getAppCurrencies({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppCurrencyResponseSchema>;
+    getAppCurrencies({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppCurrencyResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AppStaffListResponseSchema>} - Success response
+     * @returns {Promise<AppStaffListResponse>} - Success response
      * @name getAppStaffList
-     * @summary: List staff members
+     * @summary: Lists app staff members.
      * @description: List all staff members of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffListResponseSchema>;
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -50,8 +50,8 @@ declare class Configuration {
      * @param {string} [arg.user] - ID of the staff. Helps in retrieving the
      *   details of a particular staff member.
      * @param {string} [arg.userName] - Username of the member.
-     * @returns {Paginator<AppStaffListResponseSchema>}
-     * @summary: List staff members
+     * @returns {Paginator<AppStaffListResponse>}
+     * @summary: Lists app staff members.
      * @description: List all staff members of the sales channel.
      */
     getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, userName, }?: {
@@ -60,22 +60,22 @@ declare class Configuration {
         orderingStore?: number;
         user?: string;
         userName?: string;
-    }): Paginator<AppStaffListResponseSchema>;
+    }): Paginator<AppStaffListResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AppStaffResponseSchema>} - Success response
+     * @returns {Promise<AppStaffResponse>} - Success response
      * @name getAppStaffs
-     * @summary: Get staff member
+     * @summary: Fetches detailed staff info.
      * @description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
      */
-    getAppStaffs({ orderIncent, orderingStore, user, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffResponseSchema>;
+    getAppStaffs({ orderIncent, orderingStore, user, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<Application>} - Success response
      * @name getApplication
-     * @summary: Get sales channel
+     * @summary: Fetches application details.
      * @description: Get details of the current sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
      */
     getApplication({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Application>;
@@ -84,7 +84,7 @@ declare class Configuration {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ApplicationDetail>} - Success response
      * @name getBasicDetails
-     * @summary: Get Sales channel
+     * @summary: Retrieves basic app info.
      * @description: Get basic details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
      */
     getBasicDetails({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ApplicationDetail>;
@@ -93,99 +93,112 @@ declare class Configuration {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ApplicationInformation>} - Success response
      * @name getContactInfo
-     * @summary: Get sales channel contact
+     * @summary: Retrieves contact details.
      * @description: Get contact details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
      */
     getContactInfo({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ApplicationInformation>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CurrenciesResponseSchema>} - Success response
+     * @returns {Promise<CurrenciesResponse>} - Success response
      * @name getCurrencies
-     * @summary: List currencies
+     * @summary: Lists supported currencies.
      * @description: List available currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
      */
-    getCurrencies({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CurrenciesResponseSchema>;
+    getCurrencies({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CurrenciesResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<Currency>} - Success response
      * @name getCurrencyById
-     * @summary: Get a currency
+     * @summary: Fetches currency by ID.
      * @description: Get details of the currency. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
      */
     getCurrencyById({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<Currency>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AppFeatureResponseSchema>} - Success response
+     * @returns {Promise<AppFeatureResponse>} - Success response
      * @name getFeatures
-     * @summary: Get sales channel features
+     * @summary: Fetches app features.
      * @description: Get configuration of the features of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
      */
-    getFeatures({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppFeatureResponseSchema>;
+    getFeatures({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppFeatureResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AppTokenResponseSchema>} - Success response
+     * @returns {Promise<AppTokenResponse>} - Success response
      * @name getIntegrationTokens
-     * @summary: Get API tokens
+     * @summary: Fetches API tokens.
      * @description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
      */
-    getIntegrationTokens({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppTokenResponseSchema>;
+    getIntegrationTokens({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppTokenResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LanguageResponseSchema>} - Success response
+     * @returns {Promise<LanguageResponse>} - Success response
      * @name getLanguages
-     * @summary: List languages
+     * @summary: Lists available languages.
      * @description: List available languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
      */
-    getLanguages({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<LanguageResponseSchema>;
+    getLanguages({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<LanguageResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SuccessMessageResponseSchema>} - Success response
+     * @returns {Promise<SuccessMessageResponse>} - Success response
      * @name getOrderingStoreCookie
-     * @summary: Create cookies
+     * @summary: Retrieves store selection cookie.
      * @description: Reset cookie of ordering store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
      */
-    getOrderingStoreCookie({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SuccessMessageResponseSchema>;
+    getOrderingStoreCookie({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SuccessMessageResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<OrderingStores>} - Success response
      * @name getOrderingStores
-     * @summary: List order-enabled selling locations
+     * @summary: Get all deployment stores
      * @description: Get details of all the deployment store locations where the sales channel will be used for order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
      */
     getOrderingStores({ pageNo, pageSize, q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderingStores>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {string} [arg.q] - Store code or name of the ordering store.
+     * @returns {Paginator<OrderingStores>}
+     * @summary: Get all deployment stores
+     * @description: Get details of all the deployment store locations where the sales channel will be used for order placement.
+     */
+    getOrderingStoresPaginator({ pageSize, q }?: {
+        pageSize?: number;
+        q?: string;
+    }): Paginator<OrderingStores>;
+    /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ApplicationAboutResponseSchema>} - Success response
+     * @returns {Promise<ApplicationAboutResponse>} - Success response
      * @name getOwnerInfo
-     * @summary: Get sales channel owner
+     * @summary: Get sales channel, owner and seller information
      * @description: Get details of the sales channel owner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
      */
-    getOwnerInfo({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ApplicationAboutResponseSchema>;
+    getOwnerInfo({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ApplicationAboutResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<OrderingStore>} - Success response
      * @name getStoreDetailById
-     * @summary: Get a selling location
+     * @summary: Get ordering store details
      * @description: Get details of a selling location (store) by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
      */
     getStoreDetailById({ storeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<OrderingStore>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SuccessMessageResponseSchema>} - Success response
+     * @returns {Promise<SuccessMessageResponse>} - Success response
      * @name removeOrderingStoreCookie
-     * @summary: Delete store cookie
+     * @summary: Deletes store cookie.
      * @description: Delete store cookie. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
      */
-    removeOrderingStoreCookie({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SuccessMessageResponseSchema>;
+    removeOrderingStoreCookie({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SuccessMessageResponse>;
 }
 import Paginator = require("../../common/Paginator");

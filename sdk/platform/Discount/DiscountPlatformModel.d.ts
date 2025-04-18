@@ -1,25 +1,23 @@
 export = DiscountPlatformModel;
 /**
  * @typedef ValidityObject
- * @property {string} start - The start date and time of the discount period.
- * @property {string} end - The end date and time of the discount period.
+ * @property {string} start
+ * @property {string} end
  */
 /**
  * @typedef CreateUpdateDiscount
- * @property {string} name - The name of the discount.
- * @property {number} company_id - The unique identifier for the company.
- * @property {boolean} is_active - Indicates if the discount is currently active.
- * @property {string[]} app_ids - List of application IDs associated with the discount.
- * @property {string[]} [extension_ids] - List of extension IDs associated with
- *   the discount.
- * @property {string} job_type - The type of job associated with the discount.
- * @property {string} discount_type - The type of discount being offered.
- * @property {string} discount_level - The level at which the discount is applied.
- * @property {number} [value] - The value of the discount.
- * @property {string} [file_path] - The file path for discount file.
- * @property {number[]} [brand_ids] - List of brand IDs associated with the discount.
- * @property {number[]} [store_ids] - List of store IDs associated with the discount.
- * @property {string[]} [zone_ids] - List of zone IDs associated with the discount.
+ * @property {string} name
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string} app_id
+ * @property {string} job_type
+ * @property {string} discount_type
+ * @property {string} discount_level
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [factory_type_ids]
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -34,112 +32,108 @@ export = DiscountPlatformModel;
  */
 /**
  * @typedef DiscountJob
- * @property {string} _id - The unique identifier for the discount job.
- * @property {string} name - The name of the discount job.
- * @property {number} company_id - The unique identifier for the company.
- * @property {boolean} is_active - Indicates if the discount job is currently active.
- * @property {string[]} app_ids - List of application IDs associated with the
- *   discount job.
- * @property {string} job_type - The type of job associated with the discount job.
- * @property {string} [discount_type] - The type of discount being offered.
- * @property {string} discount_level - The level at which the discount is applied.
- * @property {number} [value] - The value of the discount.
- * @property {string} [file_path] - The file path for discount file.
- * @property {number[]} [brand_ids] - List of brand IDs associated with the discount job.
- * @property {number[]} [store_ids] - List of store IDs associated with the discount job.
- * @property {string[]} [zone_ids] - List of zone IDs associated with the discount job.
+ * @property {string} _id
+ * @property {string} name
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string} app_id
+ * @property {string} job_type
+ * @property {string} [discount_type]
+ * @property {string} discount_level
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [factory_type_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
- * @property {string} created_on - The date and time when the discount job was created.
- * @property {string} modified_on - The date and time when the discount job was
- *   last modified.
+ * @property {string} created_on
+ * @property {string} modified_on
  * @property {UserDetails} created_by
  * @property {UserDetails} modified_by
- * @property {Object} [meta] - Additional metadata for the discount job.
+ * @property {Object} [meta]
  */
 /**
  * @typedef FileJobBody
- * @property {string} [name] - The name of the job.
- * @property {number} [company_id] - Unique identifier for the company.
- * @property {boolean} [is_active] - Indicates if the job is active.
- * @property {string[]} [app_ids] - List of application identifiers.
- * @property {string} [job_type] - Type of job being processed.
- * @property {string} [discount_type] - Type of discount applied.
- * @property {string} [discount_level] - Level at which the discount is applied.
- * @property {number} [value] - Value of the discount.
- * @property {string} [file_path] - Path to the discount file associated with the job.
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
- * @property {string[]} [extension_ids] - List of extension identifiers.
- * @property {string[]} [zone_ids] - List of zone identifiers.
+ * @property {string} [name]
+ * @property {number} [company_id]
+ * @property {boolean} [is_active]
+ * @property {string} [app_id]
+ * @property {string} [job_type]
+ * @property {string} [discount_type]
+ * @property {string} [discount_level]
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [factory_type_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} [validity]
- * @property {string} [created_on] - Timestamp when the job was created.
- * @property {string} [modified_on] - Timestamp when the job was last modified.
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  * @property {UserDetails} [created_by]
  * @property {UserDetails} [modified_by]
- * @property {Object} [meta] - Additional metadata for the job.
+ * @property {Object} [meta]
  */
 /**
  * @typedef ListOrCalender
- * @property {DiscountJob[]} items - List of discount jobs.
+ * @property {DiscountJob[]} items
  * @property {Page} page
  */
 /**
  * @typedef DiscountItems
- * @property {string} [item_code] - Unique code for the item.
- * @property {string} [brand_name] - Name of the brand.
- * @property {string} [seller_identifier] - Unique Identifier for the size.
- * @property {string} discount_type - Type of discount applied.
- * @property {number} value - Value of the discount.
+ * @property {string} [item_code]
+ * @property {string} [brand_name]
+ * @property {string} [seller_identifier]
+ * @property {string} [store_code]
+ * @property {string} [price_zone]
+ * @property {string} discount_type
+ * @property {number} value
  * @property {DiscountMeta} [discount_meta]
  */
 /**
  * @typedef BulkDiscount
- * @property {number} company_id - Uinque Identifier for the company.
- * @property {DiscountItems[]} items - List of discount items.
+ * @property {number} company_id
+ * @property {DiscountItems[]} items
  */
 /**
- * @typedef FileJobResponseSchema
- * @property {string} stage - Current stage of the file job.
- * @property {number} total - Total number of items processed.
- * @property {number} failed - Number of items that failed processing.
- * @property {number} company_id - Identifier for the company.
+ * @typedef FileJobResponse
+ * @property {string} stage
+ * @property {number} total
+ * @property {number} failed
+ * @property {number} company_id
  * @property {FileJobBody} [body]
- * @property {string} type - Type of file job.
- * @property {string} [file_type] - Type of file being processed.
+ * @property {string} type
+ * @property {string} [file_type]
  * @property {string} _id - A unique identifier to distinguish and identify a job.
- * @property {string} [file_path] - Path to the disocunt file.
- * @property {number} [progress] - Progress of the file job.
- * @property {string[]} [extension_ids] - List of extension identifiers.
- * @property {string[]} [zone_ids] - List of zone identifiers.
- * @property {string} [created_on] - Timestamp when the job was created.
- * @property {string} [modified_on] - Timestamp when the job was last modified.
+ * @property {string} [file_path]
+ * @property {number} [progress]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  * @property {UserDetails} [created_by]
  */
 /**
- * @typedef FileJobRequestSchema
- * @property {string} name - Name of the file job.
- * @property {boolean} is_active - Indicates if the job is active.
- * @property {number} company_id - Unique Identifier for the company.
- * @property {string[]} app_ids - List of application identifiers.
- * @property {string} job_type - Type of job.
- * @property {string} [discount_type] - Type of discount.
- * @property {string} discount_level - Level at which the discount is applied.
- * @property {string} [file_path] - Path to the disocunt file.
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
+ * @typedef FileJobRequest
+ * @property {string} name
+ * @property {boolean} is_active
+ * @property {number} company_id
+ * @property {string} app_id
+ * @property {string} job_type
+ * @property {string} [discount_type]
+ * @property {string} discount_level
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
- * @property {Object} [meta] - Additional metadata for the disocunt.
+ * @property {Object} [meta]
  */
 /**
  * @typedef DownloadFileJob
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
+ * @property {string} app_id
  */
 /**
- * @typedef CancelJobResponseSchema
- * @property {boolean} success - Indicates if the job cancellation was successful.
+ * @typedef CancelJobResponse
+ * @property {boolean} success
  */
 /**
  * @typedef Page
@@ -150,100 +144,53 @@ export = DiscountPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef UserDetails
- * @property {string} username - Username of the user.
- * @property {string} user_id - Unique identifier for the user.
+ * @property {string} username
+ * @property {string} user_id
  */
 /**
  * @typedef BadRequestObject
- * @property {string} message - A brief description of the error encountered.
+ * @property {string} message
  */
 /**
  * @typedef BadRequestData
- * @property {string} [message] - Detailed information about the error.
+ * @property {string} [message]
  */
 /**
  * @typedef BadRequestObjectGet
- * @property {string} [message] - A brief description of the error encountered.
- * @property {string} [error] - Specific error code or identifier.
+ * @property {string} [message]
+ * @property {string} [error]
  * @property {BadRequestData} [data]
  */
 declare class DiscountPlatformModel {
 }
 declare namespace DiscountPlatformModel {
-    export { ValidityObject, CreateUpdateDiscount, DiscountMeta, DiscountJob, FileJobBody, ListOrCalender, DiscountItems, BulkDiscount, FileJobResponseSchema, FileJobRequestSchema, DownloadFileJob, CancelJobResponseSchema, Page, UserDetails, BadRequestObject, BadRequestData, BadRequestObjectGet };
+    export { ValidityObject, CreateUpdateDiscount, DiscountMeta, DiscountJob, FileJobBody, ListOrCalender, DiscountItems, BulkDiscount, FileJobResponse, FileJobRequest, DownloadFileJob, CancelJobResponse, Page, UserDetails, BadRequestObject, BadRequestData, BadRequestObjectGet };
 }
 /** @returns {ValidityObject} */
 declare function ValidityObject(): ValidityObject;
 type ValidityObject = {
-    /**
-     * - The start date and time of the discount period.
-     */
     start: string;
-    /**
-     * - The end date and time of the discount period.
-     */
     end: string;
 };
 /** @returns {CreateUpdateDiscount} */
 declare function CreateUpdateDiscount(): CreateUpdateDiscount;
 type CreateUpdateDiscount = {
-    /**
-     * - The name of the discount.
-     */
     name: string;
-    /**
-     * - The unique identifier for the company.
-     */
     company_id: number;
-    /**
-     * - Indicates if the discount is currently active.
-     */
     is_active: boolean;
-    /**
-     * - List of application IDs associated with the discount.
-     */
-    app_ids: string[];
-    /**
-     * - List of extension IDs associated with
-     * the discount.
-     */
-    extension_ids?: string[];
-    /**
-     * - The type of job associated with the discount.
-     */
+    app_id: string;
     job_type: string;
-    /**
-     * - The type of discount being offered.
-     */
     discount_type: string;
-    /**
-     * - The level at which the discount is applied.
-     */
     discount_level: string;
-    /**
-     * - The value of the discount.
-     */
     value?: number;
-    /**
-     * - The file path for discount file.
-     */
     file_path?: string;
-    /**
-     * - List of brand IDs associated with the discount.
-     */
     brand_ids?: number[];
-    /**
-     * - List of store IDs associated with the discount.
-     */
     store_ids?: number[];
-    /**
-     * - List of zone IDs associated with the discount.
-     */
-    zone_ids?: string[];
+    factory_type_ids?: string[];
     validity: ValidityObject;
     discount_meta?: DiscountMeta;
 };
@@ -269,320 +216,118 @@ type DiscountMeta = {
 /** @returns {DiscountJob} */
 declare function DiscountJob(): DiscountJob;
 type DiscountJob = {
-    /**
-     * - The unique identifier for the discount job.
-     */
     _id: string;
-    /**
-     * - The name of the discount job.
-     */
     name: string;
-    /**
-     * - The unique identifier for the company.
-     */
     company_id: number;
-    /**
-     * - Indicates if the discount job is currently active.
-     */
     is_active: boolean;
-    /**
-     * - List of application IDs associated with the
-     * discount job.
-     */
-    app_ids: string[];
-    /**
-     * - The type of job associated with the discount job.
-     */
+    app_id: string;
     job_type: string;
-    /**
-     * - The type of discount being offered.
-     */
     discount_type?: string;
-    /**
-     * - The level at which the discount is applied.
-     */
     discount_level: string;
-    /**
-     * - The value of the discount.
-     */
     value?: number;
-    /**
-     * - The file path for discount file.
-     */
     file_path?: string;
-    /**
-     * - List of brand IDs associated with the discount job.
-     */
     brand_ids?: number[];
-    /**
-     * - List of store IDs associated with the discount job.
-     */
     store_ids?: number[];
-    /**
-     * - List of zone IDs associated with the discount job.
-     */
-    zone_ids?: string[];
+    factory_type_ids?: string[];
     discount_meta?: DiscountMeta;
     validity: ValidityObject;
-    /**
-     * - The date and time when the discount job was created.
-     */
     created_on: string;
-    /**
-     * - The date and time when the discount job was
-     * last modified.
-     */
     modified_on: string;
     created_by: UserDetails;
     modified_by: UserDetails;
-    /**
-     * - Additional metadata for the discount job.
-     */
     meta?: any;
 };
 /** @returns {FileJobBody} */
 declare function FileJobBody(): FileJobBody;
 type FileJobBody = {
-    /**
-     * - The name of the job.
-     */
     name?: string;
-    /**
-     * - Unique identifier for the company.
-     */
     company_id?: number;
-    /**
-     * - Indicates if the job is active.
-     */
     is_active?: boolean;
-    /**
-     * - List of application identifiers.
-     */
-    app_ids?: string[];
-    /**
-     * - Type of job being processed.
-     */
+    app_id?: string;
     job_type?: string;
-    /**
-     * - Type of discount applied.
-     */
     discount_type?: string;
-    /**
-     * - Level at which the discount is applied.
-     */
     discount_level?: string;
-    /**
-     * - Value of the discount.
-     */
     value?: number;
-    /**
-     * - Path to the discount file associated with the job.
-     */
     file_path?: string;
-    /**
-     * - List of brand identifiers.
-     */
     brand_ids?: number[];
-    /**
-     * - List of store identifiers.
-     */
     store_ids?: number[];
-    /**
-     * - List of extension identifiers.
-     */
-    extension_ids?: string[];
-    /**
-     * - List of zone identifiers.
-     */
-    zone_ids?: string[];
+    factory_type_ids?: string[];
     discount_meta?: DiscountMeta;
     validity?: ValidityObject;
-    /**
-     * - Timestamp when the job was created.
-     */
     created_on?: string;
-    /**
-     * - Timestamp when the job was last modified.
-     */
     modified_on?: string;
     created_by?: UserDetails;
     modified_by?: UserDetails;
-    /**
-     * - Additional metadata for the job.
-     */
     meta?: any;
 };
 /** @returns {ListOrCalender} */
 declare function ListOrCalender(): ListOrCalender;
 type ListOrCalender = {
-    /**
-     * - List of discount jobs.
-     */
     items: DiscountJob[];
     page: Page;
 };
 /** @returns {DiscountItems} */
 declare function DiscountItems(): DiscountItems;
 type DiscountItems = {
-    /**
-     * - Unique code for the item.
-     */
     item_code?: string;
-    /**
-     * - Name of the brand.
-     */
     brand_name?: string;
-    /**
-     * - Unique Identifier for the size.
-     */
     seller_identifier?: string;
-    /**
-     * - Type of discount applied.
-     */
+    store_code?: string;
+    price_zone?: string;
     discount_type: string;
-    /**
-     * - Value of the discount.
-     */
     value: number;
     discount_meta?: DiscountMeta;
 };
 /** @returns {BulkDiscount} */
 declare function BulkDiscount(): BulkDiscount;
 type BulkDiscount = {
-    /**
-     * - Uinque Identifier for the company.
-     */
     company_id: number;
-    /**
-     * - List of discount items.
-     */
     items: DiscountItems[];
 };
-/** @returns {FileJobResponseSchema} */
-declare function FileJobResponseSchema(): FileJobResponseSchema;
-type FileJobResponseSchema = {
-    /**
-     * - Current stage of the file job.
-     */
+/** @returns {FileJobResponse} */
+declare function FileJobResponse(): FileJobResponse;
+type FileJobResponse = {
     stage: string;
-    /**
-     * - Total number of items processed.
-     */
     total: number;
-    /**
-     * - Number of items that failed processing.
-     */
     failed: number;
-    /**
-     * - Identifier for the company.
-     */
     company_id: number;
     body?: FileJobBody;
-    /**
-     * - Type of file job.
-     */
     type: string;
-    /**
-     * - Type of file being processed.
-     */
     file_type?: string;
     /**
      * - A unique identifier to distinguish and identify a job.
      */
     _id: string;
-    /**
-     * - Path to the disocunt file.
-     */
     file_path?: string;
-    /**
-     * - Progress of the file job.
-     */
     progress?: number;
-    /**
-     * - List of extension identifiers.
-     */
-    extension_ids?: string[];
-    /**
-     * - List of zone identifiers.
-     */
-    zone_ids?: string[];
-    /**
-     * - Timestamp when the job was created.
-     */
     created_on?: string;
-    /**
-     * - Timestamp when the job was last modified.
-     */
     modified_on?: string;
     created_by?: UserDetails;
 };
-/** @returns {FileJobRequestSchema} */
-declare function FileJobRequestSchema(): FileJobRequestSchema;
-type FileJobRequestSchema = {
-    /**
-     * - Name of the file job.
-     */
+/** @returns {FileJobRequest} */
+declare function FileJobRequest(): FileJobRequest;
+type FileJobRequest = {
     name: string;
-    /**
-     * - Indicates if the job is active.
-     */
     is_active: boolean;
-    /**
-     * - Unique Identifier for the company.
-     */
     company_id: number;
-    /**
-     * - List of application identifiers.
-     */
-    app_ids: string[];
-    /**
-     * - Type of job.
-     */
+    app_id: string;
     job_type: string;
-    /**
-     * - Type of discount.
-     */
     discount_type?: string;
-    /**
-     * - Level at which the discount is applied.
-     */
     discount_level: string;
-    /**
-     * - Path to the disocunt file.
-     */
     file_path?: string;
-    /**
-     * - List of brand identifiers.
-     */
     brand_ids?: number[];
-    /**
-     * - List of store identifiers.
-     */
     store_ids?: number[];
     validity: ValidityObject;
-    /**
-     * - Additional metadata for the disocunt.
-     */
     meta?: any;
 };
 /** @returns {DownloadFileJob} */
 declare function DownloadFileJob(): DownloadFileJob;
 type DownloadFileJob = {
-    /**
-     * - List of brand identifiers.
-     */
-    brand_ids?: number[];
-    /**
-     * - List of store identifiers.
-     */
-    store_ids?: number[];
+    app_id: string;
 };
-/** @returns {CancelJobResponseSchema} */
-declare function CancelJobResponseSchema(): CancelJobResponseSchema;
-type CancelJobResponseSchema = {
-    /**
-     * - Indicates if the job cancellation was successful.
-     */
+/** @returns {CancelJobResponse} */
+declare function CancelJobResponse(): CancelJobResponse;
+type CancelJobResponse = {
     success: boolean;
 };
 /** @returns {Page} */
@@ -617,48 +362,30 @@ type Page = {
      */
     size?: number;
     /**
-     * - The number of items per page.
+     * - Total number of items.
      */
-    page_size?: number;
+    total?: number;
 };
 /** @returns {UserDetails} */
 declare function UserDetails(): UserDetails;
 type UserDetails = {
-    /**
-     * - Username of the user.
-     */
     username: string;
-    /**
-     * - Unique identifier for the user.
-     */
     user_id: string;
 };
 /** @returns {BadRequestObject} */
 declare function BadRequestObject(): BadRequestObject;
 type BadRequestObject = {
-    /**
-     * - A brief description of the error encountered.
-     */
     message: string;
 };
 /** @returns {BadRequestData} */
 declare function BadRequestData(): BadRequestData;
 type BadRequestData = {
-    /**
-     * - Detailed information about the error.
-     */
     message?: string;
 };
 /** @returns {BadRequestObjectGet} */
 declare function BadRequestObjectGet(): BadRequestObjectGet;
 type BadRequestObjectGet = {
-    /**
-     * - A brief description of the error encountered.
-     */
     message?: string;
-    /**
-     * - Specific error code or identifier.
-     */
     error?: string;
     data?: BadRequestData;
 };

@@ -21,8 +21,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
    * @name addDomain
-   * @summary: Create domain
-   * @description: Creates a domain for an sales channel. Note - Only 15 domains can be added to the sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
+   * @summary: Add domain.
+   * @description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
    */
   async addDomain(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -100,10 +100,9 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name changeDomainType
-   * @summary: Update domain
+   * @summary: Change domain type.
    * @description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
    */
   async changeDomainType(
@@ -157,10 +156,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -177,15 +176,413 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.CreateAppCurrencyConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
+   *   Success response
+   * @name createAppCurrencyConfig
+   * @summary: Update application currency configuration.
+   * @description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createAppCurrencyConfig/).
+   */
+  async createAppCurrencyConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.createAppCurrencyConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.createAppCurrencyConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > createAppCurrencyConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.AppSupportedCurrency().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > createAppCurrencyConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.CreateTokensParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
+   * @name createTokens
+   * @summary: Create tokens for application
+   * @description: Create new tokens for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createTokens/).
+   */
+  async createTokens(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.createTokens().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.createTokens().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > createTokens \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tokens`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.Application().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > createTokens \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.CreateUrlRedirectionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.UrlRedirection>} - Success response
+   * @name createUrlRedirection
+   * @summary: Create a URL redirection
+   * @description: Creates a new URL redirection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createUrlRedirection/).
+   */
+  async createUrlRedirection(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.createUrlRedirection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.createUrlRedirection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > createUrlRedirection \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/url-redirection`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.UrlRedirection().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > createUrlRedirection \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.DeleteTokenParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
+   * @name deleteToken
+   * @summary: Delete tokens for application
+   * @description: Delete new tokens for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/deleteToken/).
+   */
+  async deleteToken(
+    { token, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.deleteToken().validate(
+      {
+        token,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.deleteToken().validate(
+      {
+        token,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > deleteToken \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tokens/${token}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.Application().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > deleteToken \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.DeleteUrlRedirectionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
+   * @name deleteUrlRedirection
+   * @summary: Delete a URL redirection
+   * @description: Delete a URL redirection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/deleteUrlRedirection/).
+   */
+  async deleteUrlRedirection(
+    { redirectionDomainId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.deleteUrlRedirection().validate(
+      { redirectionDomainId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.deleteUrlRedirection().validate(
+      { redirectionDomainId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > deleteUrlRedirection \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/url-redirection/${redirectionDomainId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > deleteUrlRedirection \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.GetAppApiTokensParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name getAppApiTokens
-   * @summary: Get sales channel API tokens
+   * @summary: Get application API tokens.
    * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
    */
   async getAppApiTokens(
@@ -235,10 +632,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.TokenResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -262,7 +659,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name getAppBasicDetails
-   * @summary: Get sales channel
+   * @summary: Get application basic details.
    * @description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppBasicDetails/).
    */
   async getAppBasicDetails(
@@ -337,11 +734,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.CompaniesResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
    * @name getAppCompanies
-   * @summary: List sales channel companies
-   * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
+   * @summary: Get application companies.
+   * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
    */
   async getAppCompanies(
     { uid, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -401,10 +797,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.CompaniesResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.CompaniesResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -421,6 +817,42 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.uid] - UID of companies to be fetched
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponse>}
+   * @summary: Get application companies.
+   * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+   */
+  getAppCompaniesPaginator({ companyId, applicationId, uid, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppCompanies({
+        companyId: companyId,
+        applicationId: applicationId,
+        uid: uid,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
    *   - Arg object
    *
@@ -429,8 +861,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
    * @name getAppContactInfo
-   * @summary: Get sales channel contact
-   * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppContactInfo/).
+   * @summary: Get application contact information.
+   * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppContactInfo/).
    */
   async getAppContactInfo(
     { requestHeaders } = { requestHeaders: {} },
@@ -507,8 +939,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
    * @name getAppCurrencyConfig
-   * @summary: Get sales channel currency configuration
-   * @description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
+   * @summary: Get application currency configuration.
+   * @description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
    */
   async getAppCurrencyConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -582,11 +1014,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
+   *   Success response
    * @name getAppFeatures
-   * @summary: Get sales channel
+   * @summary: Get application features.
    * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
    */
   async getAppFeatures(
@@ -636,10 +1067,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.AppFeatureResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.AppFeatureResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -661,11 +1092,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.StoresResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
    * @name getAppStores
-   * @summary: list sales channel stores
-   * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
+   * @summary: Get application stores.
+   * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
    */
   async getAppStores(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -722,10 +1152,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.StoresResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.StoresResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -742,17 +1172,50 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.StoresResponse>}
+   * @summary: Get application stores.
+   * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+   */
+  getAppStoresPaginator({ companyId, applicationId, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppStores({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
+   *   Success response
    * @name getAppSupportedCurrency
-   * @summary: List supported currencies
-   * @description: Retrieve a list of supported currencies for the sales channel. A list of currencies allowed in the current sales channel. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
+   * @summary: Get supported currencies.
+   * @description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
    */
   async getAppSupportedCurrency(
     { requestHeaders } = { requestHeaders: {} },
@@ -801,7 +1264,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.AppCurrencyResponseSchema().validate(
+    } = ConfigurationPlatformModel.AppCurrencyResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -826,10 +1289,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.ApplicationById>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
    * @name getApplicationById
-   * @summary: Get sales channel by id
-   * @description: Retrieve detailed information about a specific sales channel. Use sales channel ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
+   * @summary: Get application by ID.
+   * @description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
    */
   async getApplicationById(
     { requestHeaders } = { requestHeaders: {} },
@@ -878,7 +1341,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.ApplicationById().validate(responseData, {
+    } = ConfigurationPlatformModel.Application().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -898,27 +1361,24 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetApplicationConfigurationParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
-   *   Success response
-   * @name getBuildConfig
-   * @summary: Get Build Configuration
-   * @description: Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBuildConfig/).
+   * @returns {Promise<ConfigurationPlatformModel.OwnerAppConfig>} - Success response
+   * @name getApplicationConfiguration
+   * @summary: Get Application configuration.
+   * @description: Retrieve configuration details of inventory pricing_strategy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationConfiguration/).
    */
-  async getBuildConfig(
-    { platformType, requestHeaders } = { requestHeaders: {} },
+  async getApplicationConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ConfigurationPlatformApplicationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
+    } = ConfigurationPlatformApplicationValidator.getApplicationConfiguration().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -928,16 +1388,14 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationPlatformApplicationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
+    } = ConfigurationPlatformApplicationValidator.getApplicationConfiguration().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Configuration > getBuildConfig \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Configuration > getApplicationConfiguration \n ${warrning}`,
       });
     }
 
@@ -946,7 +1404,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/owner-application/${this.applicationId}/configuration`,
       query_params,
       undefined,
       requestHeaders,
@@ -960,7 +1418,90 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.MobileAppConfiguration().validate(
+    } = ConfigurationPlatformModel.OwnerAppConfig().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getApplicationConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.GetApplicationDomainAvailibilityParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
+   *   - Success response
+   *
+   * @name getApplicationDomainAvailibility
+   * @summary: Get domain availability.
+   * @description: Check the availability of a specific domain. Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationDomainAvailibility/).
+   */
+  async getApplicationDomainAvailibility(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getApplicationDomainAvailibility().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getApplicationDomainAvailibility().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getApplicationDomainAvailibility \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/suggestions`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.DomainSuggestionsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -971,7 +1512,7 @@ class Configuration {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Configuration > getBuildConfig \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Configuration > getApplicationDomainAvailibility \n ${res_error}`,
         });
       }
     }
@@ -985,11 +1526,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
+   *   Success response
    * @name getDomainStatus
-   * @summary: Get domain status
+   * @summary: Get domain status.
    * @description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
    */
   async getDomainStatus(
@@ -1043,7 +1583,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainStatusResponseSchema().validate(
+    } = ConfigurationPlatformModel.DomainStatusResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1066,11 +1606,10 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.DomainsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name getDomains
-   * @summary: List domains
-   * @description: Retrieve a list of existing domains by its sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
+   * @summary: Get domains.
+   * @description: Get list of domains.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
    */
   async getDomains(
     { requestHeaders } = { requestHeaders: {} },
@@ -1119,10 +1658,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.DomainsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1147,7 +1686,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name getInventoryConfig
-   * @summary: Get inventory configuration
+   * @summary: Get inventory configuration.
    * @description: Retrieve configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getInventoryConfig/).
    */
   async getInventoryConfig(
@@ -1225,8 +1764,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.OrderingStoreConfig>} -
    *   Success response
    * @name getOrderingStoreConfig
-   * @summary: Get ordering store configuration
-   * @description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
+   * @summary: Get ordering store configuration.
+   * @description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
    */
   async getOrderingStoreConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -1300,11 +1839,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name getOrderingStoreCookie
-   * @summary: Get ordering store signed cookie
+   * @summary: Get an Ordering Store signed cookie on selection of ordering store.
    * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreCookie/).
    */
   async getOrderingStoreCookie(
@@ -1358,7 +1896,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1378,6 +1916,130 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
+   * @name getOrderingStores
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStores/).
+   */
+  async getOrderingStores(
+    { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getOrderingStores().validate(
+      {
+        pageNo,
+        pageSize,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getOrderingStores().validate(
+      {
+        pageNo,
+        pageSize,
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getOrderingStores \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.OrderingStores().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getOrderingStores \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStores>}
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+   */
+  getOrderingStoresPaginator({ companyId, applicationId, pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrderingStores({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
    *   - Arg object
    *
@@ -1385,8 +2047,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
    * @name getOrderingStoresByFilter
-   * @summary: List ordering stores
-   * @description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
+   * @summary: Get ordering store by filter
+   * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
    */
   async getOrderingStoresByFilter(
     { body, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -1465,85 +2127,44 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
-   *   Success response
-   * @name getPreviousVersions
-   * @summary: Get previous versions
-   * @description: Retrieve version details of the app, this includes the build status, build date, version name, latest version, and a lot more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getPreviousVersions/).
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {ConfigurationPlatformModel.FilterOrderingStoreRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStores>}
+   * @summary: Get ordering store by filter
+   * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
    */
-  async getPreviousVersions(
-    { platformType, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ConfigurationPlatformApplicationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationPlatformApplicationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Configuration > getPreviousVersions \n ${warrning}`,
+  getOrderingStoresByFilterPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    body,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrderingStoresByFilter({
+        companyId: companyId,
+        applicationId: applicationId,
+        body: body,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ConfigurationPlatformModel.BuildVersionHistory().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Configuration > getPreviousVersions \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1552,12 +2173,11 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
+   *   Success response
    * @name getStaffOrderingStores
-   * @summary: Get staff ordering stores
-   * @description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the sales channel will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
+   * @summary: Get deployment stores
+   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
    */
   async getStaffOrderingStores(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -1617,7 +2237,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.OrderingStoresResponseSchema().validate(
+    } = ConfigurationPlatformModel.OrderingStoresResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1637,6 +2257,287 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponse>}
+   * @summary: Get deployment stores
+   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+   */
+  getStaffOrderingStoresPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    q,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getStaffOrderingStores({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.GetStoreDetailByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStore>} - Success response
+   * @name getStoreDetailById
+   * @summary: Get ordering store details
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreDetailById/).
+   */
+  async getStoreDetailById(
+    { storeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getStoreDetailById().validate(
+      {
+        storeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getStoreDetailById().validate(
+      {
+        storeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getStoreDetailById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/${storeId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.OrderingStore().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getStoreDetailById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.GetUrlRedirectionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.UrlRedirection>} - Success response
+   * @name getUrlRedirection
+   * @summary: Get URL redirections
+   * @description: Retrieves the URL redirections for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getUrlRedirection/).
+   */
+  async getUrlRedirection(
+    { redirectionDomainId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getUrlRedirection().validate(
+      {
+        redirectionDomainId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getUrlRedirection().validate(
+      {
+        redirectionDomainId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getUrlRedirection \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/url-redirection/${redirectionDomainId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.UrlRedirection().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getUrlRedirection \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.GetUrlRedirectionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.UrlRedirectionResponse>} -
+   *   Success response
+   * @name getUrlRedirections
+   * @summary: Get URL redirections
+   * @description: Retrieves the URL redirections for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getUrlRedirections/).
+   */
+  async getUrlRedirections(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getUrlRedirections().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getUrlRedirections().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getUrlRedirections \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/url-redirection`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.UrlRedirectionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getUrlRedirections \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
    *   - Arg object
    *
@@ -1644,8 +2545,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name modifyAppFeatures
-   * @summary: update sales channel features
-   * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/modifyAppFeatures/).
+   * @summary: Modify application features.
+   * @description: Update features of application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/modifyAppFeatures/).
    */
   async modifyAppFeatures(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1726,8 +2627,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name partiallyUpdateInventoryConfig
-   * @summary: Partially update inventory configuration
-   * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/partiallyUpdateInventoryConfig/).
+   * @summary: Partially update inventory configuration.
+   * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/partiallyUpdateInventoryConfig/).
    */
   async partiallyUpdateInventoryConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1805,22 +2706,21 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name removeDomainById
-   * @summary: Remove domain
-   * @description: Delete a specific domain from the sales channel. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
+   * @summary: Remove domain by ID.
+   * @description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
    */
   async removeDomainById(
-    { id, requestHeaders } = { requestHeaders: {} },
+    { domainId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.removeDomainById().validate(
       {
-        id,
+        domainId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1833,7 +2733,7 @@ class Configuration {
       error: warrning,
     } = ConfigurationPlatformApplicationValidator.removeDomainById().validate(
       {
-        id,
+        domainId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1849,7 +2749,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${domainId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -1863,7 +2763,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1888,11 +2788,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
    * @name removeOrderingStoreCookie
-   * @summary: Delete Ordering Store signed cookie
+   * @summary: Unset the Ordering Store signed cookie.
    * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeOrderingStoreCookie/).
    */
   async removeOrderingStoreCookie(
@@ -1942,7 +2841,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.SuccessMessageResponseSchema().validate(
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1967,11 +2866,10 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.TokenResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name updateAppApiTokens
-   * @summary: Update sales channel API tokens
-   * @description: Add and edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
+   * @summary: Update application API tokens.
+   * @description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
    */
   async updateAppApiTokens(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2024,10 +2922,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.TokenResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2051,7 +2949,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name updateAppBasicDetails
-   * @summary: Update sales channel basic details
+   * @summary: Update application basic details.
    * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppBasicDetails/).
    */
   async updateAppBasicDetails(
@@ -2133,8 +3031,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
    * @name updateAppContactInfo
-   * @summary: Update sales channel contact
-   * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppContactInfo/).
+   * @summary: Update application contact information.
+   * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppContactInfo/).
    */
   async updateAppContactInfo(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2215,8 +3113,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
    * @name updateAppCurrencyConfig
-   * @summary: Update sales channel currency configuration
-   * @description: Modify currency configuration settings for the sales channel. Add and edit the currencies supported in the sales channel. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
+   * @summary: Update application currency configuration.
+   * @description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
    */
   async updateAppCurrencyConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2254,7 +3152,7 @@ class Configuration {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
+      "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
       query_params,
       body,
@@ -2296,7 +3194,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name updateAppFeatures
-   * @summary: Update sales channel
+   * @summary: Update application features.
    * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppFeatures/).
    */
   async updateAppFeatures(
@@ -2370,26 +3268,24 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateApplicationParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
-   *   Success response
-   * @name updateBuildConfig
-   * @summary: Update build configuration
-   * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateBuildConfig/).
+   * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
+   * @name updateApplication
+   * @summary: Get application by ID.
+   * @description: Update detailed information about a specific application. Use application ID to update the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateApplication/).
    */
-  async updateBuildConfig(
-    { platformType, body, requestHeaders } = { requestHeaders: {} },
+  async updateApplication(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ConfigurationPlatformApplicationValidator.updateBuildConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateApplication().validate(
       {
-        platformType,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2401,9 +3297,8 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationPlatformApplicationValidator.updateBuildConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateApplication().validate(
       {
-        platformType,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2411,7 +3306,7 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Configuration > updateBuildConfig \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Configuration > updateApplication \n ${warrning}`,
       });
     }
 
@@ -2420,7 +3315,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
       query_params,
       body,
       requestHeaders,
@@ -2434,10 +3329,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPlatformModel.MobileAppConfiguration().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPlatformModel.Application().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2445,7 +3340,88 @@ class Configuration {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Configuration > updateBuildConfig \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Configuration > updateApplication \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.UpdateApplicationVersionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.PlatformVersion>} - Success response
+   * @name updateApplicationVersion
+   * @summary: Update Application Version
+   * @description: Updates the version details of an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateApplicationVersion/).
+   */
+  async updateApplicationVersion(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateApplicationVersion().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.updateApplicationVersion().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > updateApplicationVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/version`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.PlatformVersion().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > updateApplicationVersion \n ${res_error}`,
         });
       }
     }
@@ -2462,7 +3438,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name updateInventoryConfig
-   * @summary: Update inventory configuration
+   * @summary: Update inventory configuration.
    * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateInventoryConfig/).
    */
   async updateInventoryConfig(
@@ -2543,8 +3519,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response
    * @name updateOrderingStoreConfig
-   * @summary: Update ordering store configuration
-   * @description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
+   * @summary: Update ordering store configuration.
+   * @description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
    */
   async updateOrderingStoreConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2609,6 +3585,91 @@ class Configuration {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Configuration > updateOrderingStoreConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ConfigurationPlatformApplicationValidator.UpdateUrlRedirectionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.UrlRedirection>} - Success response
+   * @name updateUrlRedirection
+   * @summary: Update a URL redirection
+   * @description: Update a new URL redirection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateUrlRedirection/).
+   */
+  async updateUrlRedirection(
+    { redirectionDomainId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateUrlRedirection().validate(
+      {
+        redirectionDomainId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.updateUrlRedirection().validate(
+      {
+        redirectionDomainId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > updateUrlRedirection \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/url-redirection/${redirectionDomainId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.UrlRedirection().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > updateUrlRedirection \n ${res_error}`,
         });
       }
     }

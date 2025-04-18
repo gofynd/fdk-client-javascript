@@ -16,85 +16,6 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.AddApplicationLanguageParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name addApplicationLanguage
-   * @summary: Add app language
-   * @description: Add new languages to application's supported language list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addApplicationLanguage/).
-   */
-  async addApplicationLanguage(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.addApplicationLanguage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.addApplicationLanguage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > addApplicationLanguage \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > addApplicationLanguage \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -260,7 +181,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name addInjectableTag
    * @summary: Create HTML tag
-   * @description: Create and add a new injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
+   * @description: Create and add a new injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
    */
   async addInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -338,7 +259,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
    * @name addPathRedirectionRules
    * @summary: Create path redirection rules
    * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
@@ -394,7 +315,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.CreatePathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -406,85 +327,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > addPathRedirectionRules \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name bulkUnPublishApplicationLanguage
-   * @summary: Unpublish all languages of sales channel.
-   * @description: Unpublish all application's published languages of specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/bulkUnPublishApplicationLanguage/).
-   */
-  async bulkUnPublishApplicationLanguage(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.bulkUnPublishApplicationLanguage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.bulkUnPublishApplicationLanguage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > bulkUnPublishApplicationLanguage \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > bulkUnPublishApplicationLanguage \n ${res_error}`,
         });
       }
     }
@@ -575,6 +417,93 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldByResourceIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
+   *   - Success response
+   *
+   * @name createAppCustomFieldByResourceId
+   * @summary: Create custom field entries for gives resource and resource_id
+   * @description: You can add a custom field using this endpoint to any resource by providing the resource ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldByResourceId/).
+   */
+  async createAppCustomFieldByResourceId(
+    { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createAppCustomFieldByResourceId().validate(
+      {
+        resource,
+        resourceId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createAppCustomFieldByResourceId().validate(
+      {
+        resource,
+        resourceId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createAppCustomFieldByResourceId \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/${resource}/${resourceId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.CustomFieldsResponseByResourceIdSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createAppCustomFieldByResourceId \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam} arg
    *   - Arg object
    *
@@ -584,18 +513,17 @@ class Content {
    *   - Success response
    *
    * @name createAppCustomFieldDefinition
-   * @summary: Create custom field definition for a given resource type
+   * @summary: Create custom field definition
    * @description: You can create custom fields definition to any resource so you can extend property of resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldDefinition/).
    */
   async createAppCustomFieldDefinition(
-    { resource, body, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createAppCustomFieldDefinition().validate(
       {
-        resource,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -609,7 +537,6 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.createAppCustomFieldDefinition().validate(
       {
-        resource,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -626,7 +553,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/definition`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/definitions`,
       query_params,
       body,
       requestHeaders,
@@ -660,25 +587,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
-   * @name createAppCustomObjectBySlug
+   * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
+   *   Success response
+   * @name createAppCustomObject
    * @summary: Create custom object entries
-   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectBySlug/).
+   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
    */
-  async createAppCustomObjectBySlug(
-    { definitionSlug, body, requestHeaders } = { requestHeaders: {} },
+  async createAppCustomObject(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.createAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.createAppCustomObject().validate(
       {
-        definitionSlug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -690,9 +617,8 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.createAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.createAppCustomObject().validate(
       {
-        definitionSlug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -700,7 +626,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createAppCustomObjectBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > createAppCustomObject \n ${warrning}`,
       });
     }
 
@@ -709,7 +635,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${definitionSlug}/entries`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects`,
       query_params,
       body,
       requestHeaders,
@@ -723,10 +649,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.CustomObjectApplicationSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -734,7 +660,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createAppCustomObjectBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > createAppCustomObject \n ${res_error}`,
         });
       }
     }
@@ -748,9 +674,8 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
+   *   Success response
    * @name createAppCustomObjectDefinition
    * @summary: Create custom object definition
    * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectDefinition/).
@@ -792,7 +717,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/definitions`,
       query_params,
       body,
       requestHeaders,
@@ -806,7 +731,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
+    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -818,87 +743,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > createAppCustomObjectDefinition \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-   * @name createApplicationResourceTranslation
-   * @summary: Add app translation
-   * @description: Create new translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createApplicationResourceTranslation/).
-   */
-  async createApplicationResourceTranslation(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createApplicationResourceTranslation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createApplicationResourceTranslation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createApplicationResourceTranslation \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.ResourceTranslation().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createApplicationResourceTranslation \n ${res_error}`,
         });
       }
     }
@@ -950,7 +794,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs`,
       query_params,
       body,
       requestHeaders,
@@ -1065,6 +909,87 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.CreateInjectableTagParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
+   * @name createInjectableTag
+   * @summary: Create HTML tags
+   * @description: Use this API to create HTML tags. This includes a list of tags with name, tag type (css/js), url and position of the tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createInjectableTag/).
+   */
+  async createInjectableTag(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createInjectableTag().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createInjectableTag().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createInjectableTag \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TagsSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createInjectableTag \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
    *   - Arg object
    *
@@ -1112,7 +1037,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page`,
       query_params,
       body,
       requestHeaders,
@@ -1191,7 +1116,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations`,
       query_params,
       body,
       requestHeaders,
@@ -1268,7 +1193,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages`,
       query_params,
       body,
       requestHeaders,
@@ -1294,6 +1219,87 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > createPage \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
+   * @name createPagePreview
+   * @summary: Create page preview
+   * @description: Generate and add a new page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
+   */
+  async createPagePreview(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createPagePreview().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createPagePreview().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createPagePreview \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.PageSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createPagePreview \n ${res_error}`,
         });
       }
     }
@@ -1383,26 +1389,24 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateTranslateUILabelsParam} arg
+   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-   * @name createTranslateUILabels
-   * @summary: Add Translate Ui Labels
-   * @description: Creates a new Translate Ui Labels entry with specified configuration and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createTranslateUILabels/).
+   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
+   * @name deleteAllInjectableTags
+   * @summary: Delete HTML tags in application
+   * @description: Use this API to delete all the existing tags at once - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
    */
-  async createTranslateUILabels(
-    { body, requestHeaders } = { requestHeaders: {} },
+  async deleteAllInjectableTags(
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.createTranslateUILabels().validate(
-      {
-        body,
-      },
+    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1412,16 +1416,14 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.createTranslateUILabels().validate(
-      {
-        body,
-      },
+    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createTranslateUILabels \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteAllInjectableTags \n ${warrning}`,
       });
     }
 
@@ -1429,10 +1431,10 @@ class Content {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels`,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
-      body,
+      undefined,
       requestHeaders,
       { responseHeaders }
     );
@@ -1444,7 +1446,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
+    } = ContentPlatformModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1455,7 +1457,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createTranslateUILabels \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteAllInjectableTags \n ${res_error}`,
         });
       }
     }
@@ -1546,27 +1548,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-   * @name deleteAppCustomFieldDefinitionBySlug
+   * @name deleteAppCustomFieldDefinition
    * @summary: Delete custom fields definition
-   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinitionBySlug/).
+   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinition/).
    */
-  async deleteAppCustomFieldDefinitionBySlug(
-    { slug, resource, namespace, requestHeaders } = { requestHeaders: {} },
+  async deleteAppCustomFieldDefinition(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.deleteAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1577,18 +1577,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomFieldDefinitionBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomFieldDefinition \n ${warrning}`,
       });
     }
 
@@ -1597,7 +1595,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/definitions/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -1622,7 +1620,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteAppCustomFieldDefinitionBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteAppCustomFieldDefinition \n ${res_error}`,
         });
       }
     }
@@ -1631,26 +1629,112 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldsByResourceIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.CustomFieldsDeleteSchema>} -
+   *   Success response
+   * @name deleteAppCustomFieldsByResourceId
+   * @summary: delete custom fields of given resource and resource id
+   * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldsByResourceId/).
+   */
+  async deleteAppCustomFieldsByResourceId(
+    { resource, resourceId, ids, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.deleteAppCustomFieldsByResourceId().validate(
+      {
+        resource,
+        resourceId,
+        ids,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.deleteAppCustomFieldsByResourceId().validate(
+      {
+        resource,
+        resourceId,
+        ids,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomFieldsByResourceId \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["ids"] = ids;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/${resource}/${resourceId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.CustomFieldsDeleteSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteAppCustomFieldsByResourceId \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-   * @name deleteAppCustomObjectBySlug
+   * @name deleteAppCustomObject
    * @summary: Delete custom object
-   * @description: A Custom object entry can be deleted by providing the custom object definition slug and custom object entry slug using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectBySlug/).
+   * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObject/).
    */
-  async deleteAppCustomObjectBySlug(
-    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
+  async deleteAppCustomObject(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.deleteAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1661,17 +1745,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomObjectBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomObject \n ${warrning}`,
       });
     }
 
@@ -1680,7 +1763,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -1705,7 +1788,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteAppCustomObjectBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteAppCustomObject \n ${res_error}`,
         });
       }
     }
@@ -1714,7 +1797,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1722,19 +1805,19 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>}
    *   - Success response
    *
-   * @name deleteAppCustomObjectDefinitionBySlug
+   * @name deleteAppCustomObjectDefinition
    * @summary: Delete custom object definition
-   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinitionBySlug/).
+   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinition/).
    */
-  async deleteAppCustomObjectDefinitionBySlug(
-    { slug, requestHeaders } = { requestHeaders: {} },
+  async deleteAppCustomObjectDefinition(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.deleteAppCustomObjectDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomObjectDefinition().validate(
       {
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1745,16 +1828,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAppCustomObjectDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.deleteAppCustomObjectDefinition().validate(
       {
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomObjectDefinitionBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > deleteAppCustomObjectDefinition \n ${warrning}`,
       });
     }
 
@@ -1763,7 +1846,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/definitions/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -1788,169 +1871,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteAppCustomObjectDefinitionBySlug \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.DeleteApplicationLanguageParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-   * @name deleteApplicationLanguage
-   * @summary: Remove app language
-   * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
-   */
-  async deleteApplicationLanguage(
-    { locale, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteApplicationLanguage().validate(
-      {
-        locale,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteApplicationLanguage().validate(
-      {
-        locale,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteApplicationLanguage \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages/${locale}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteApplicationLanguage \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-   * @name deleteApplicationResourceTranslation
-   * @summary: Remove app translation
-   * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
-   */
-  async deleteApplicationResourceTranslation(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteApplicationResourceTranslation().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteApplicationResourceTranslation().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteApplicationResourceTranslation \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.OperationResponseSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteApplicationResourceTranslation \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > deleteAppCustomObjectDefinition \n ${res_error}`,
         });
       }
     }
@@ -2200,7 +2121,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name deleteFaqCategory
    * @summary: Delete FAQ category
    * @description: Remove a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
@@ -2256,7 +2177,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.FaqSchema().validate(responseData, {
+    } = ContentPlatformModel.CreateFaqCategorySchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2518,7 +2439,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
    * @name deletePathRedirectionRules
    * @summary: Delete path redirection rule
    * @description: Remove specific path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
@@ -2572,7 +2493,9 @@ class Content {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = ContentPlatformModel.DeletPathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2603,14 +2526,14 @@ class Content {
    * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
    */
   async deleteSEOMarkupSchema(
-    { id, requestHeaders } = { requestHeaders: {} },
+    { schemaId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2623,7 +2546,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.deleteSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2639,7 +2562,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -2763,7 +2686,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name editInjectableTag
    * @summary: Update HTML tag
-   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
+   * @description: Modify an injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
    */
   async editInjectableTag(
     { tagId, body, requestHeaders } = { requestHeaders: {} },
@@ -2845,18 +2768,18 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name editSEOMarkupSchema
-   * @summary: Get SEO Markup Schema
-   * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
+   * @summary: Edit SEO Markup Schema
+   * @description: Use this API to edit SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
    */
   async editSEOMarkupSchema(
-    { id, body, requestHeaders } = { requestHeaders: {} },
+    { schemaId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.editSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2870,7 +2793,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.editSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2887,7 +2810,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
       query_params,
       body,
       requestHeaders,
@@ -2921,7 +2844,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -2929,19 +2852,19 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>}
    *   - Success response
    *
-   * @name exportAppCustomObjectEntriesBySlug
+   * @name exportAppCustomObjectEntries
    * @summary: Initiate download for bulk custom object entries
-   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntriesBySlug/).
+   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntries/).
    */
-  async exportAppCustomObjectEntriesBySlug(
-    { slug, requestHeaders } = { requestHeaders: {} },
+  async exportAppCustomObjectEntries(
+    { definitionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.exportAppCustomObjectEntriesBySlug().validate(
+    } = ContentPlatformApplicationValidator.exportAppCustomObjectEntries().validate(
       {
-        slug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2952,16 +2875,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.exportAppCustomObjectEntriesBySlug().validate(
+    } = ContentPlatformApplicationValidator.exportAppCustomObjectEntries().validate(
       {
-        slug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > exportAppCustomObjectEntriesBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > exportAppCustomObjectEntries \n ${warrning}`,
       });
     }
 
@@ -2970,7 +2893,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}/bulk/download`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/bulk/${definitionId}/download`,
       query_params,
       undefined,
       requestHeaders,
@@ -2995,7 +2918,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > exportAppCustomObjectEntriesBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > exportAppCustomObjectEntries \n ${res_error}`,
         });
       }
     }
@@ -3252,138 +3175,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionByResourceParam} arg
+   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>} -
-   *   Success response
-   * @name getAppCustomFieldDefinitionByResource
-   * @summary: Get custom fields definitions for a given resource type
-   * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitionByResource/).
-   */
-  async getAppCustomFieldDefinitionByResource(
-    {
-      pageNo,
-      pageSize,
-      resource,
-      types,
-      search,
-      slugs,
-      namespaces,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinitionByResource().validate(
-      {
-        pageNo,
-        pageSize,
-        resource,
-        types,
-        search,
-        slugs,
-        namespaces,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinitionByResource().validate(
-      {
-        pageNo,
-        pageSize,
-        resource,
-        types,
-        search,
-        slugs,
-        namespaces,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldDefinitionByResource \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["types"] = types;
-    query_params["search"] = search;
-    query_params["slugs"] = slugs;
-    query_params["namespaces"] = namespaces;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/definition`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.CustomFieldDefinitionsSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomFieldDefinitionByResource \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionBySlugParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.MetaFieldDefinitionDetailResSchema>}
+   * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
    *   - Success response
    *
-   * @name getAppCustomFieldDefinitionBySlug
-   * @summary: Get custom fields definition by resource, slug and namespace
-   * @description: Custom field definitions can be retrived from this using its slug, namespace and resource - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitionBySlug/).
+   * @name getAppCustomFieldDefinition
+   * @summary: Get custom fields definition by id
+   * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinition/).
    */
-  async getAppCustomFieldDefinitionBySlug(
-    { slug, resource, namespace, requestHeaders } = { requestHeaders: {} },
+  async getAppCustomFieldDefinition(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3394,18 +3206,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldDefinitionBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldDefinition \n ${warrning}`,
       });
     }
 
@@ -3414,7 +3224,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/definitions/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -3428,7 +3238,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.MetaFieldDefinitionDetailResSchema().validate(
+    } = ContentPlatformModel.CustomFieldDefinitionDetailResSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3439,7 +3249,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomFieldDefinitionBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getAppCustomFieldDefinition \n ${res_error}`,
         });
       }
     }
@@ -3453,23 +3263,17 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>} -
-   *   Success response
+   * @returns {Promise<ContentPlatformModel.ApplicationCustomFieldDefinitionsSchema>}
+   *   - Success response
+   *
    * @name getAppCustomFieldDefinitions
    * @summary: Get custom fields definitions
    * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitions/).
    */
   async getAppCustomFieldDefinitions(
-    {
-      pageNo,
-      pageSize,
-      resources,
-      types,
-      search,
-      slugs,
-      namespaces,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { pageNo, pageSize, resources, types, search, slugs, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3482,7 +3286,6 @@ class Content {
         types,
         search,
         slugs,
-        namespaces,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3501,7 +3304,6 @@ class Content {
         types,
         search,
         slugs,
-        namespaces,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3519,12 +3321,11 @@ class Content {
     query_params["types"] = types;
     query_params["search"] = search;
     query_params["slugs"] = slugs;
-    query_params["namespaces"] = namespaces;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/definition`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/definitions`,
       query_params,
       undefined,
       requestHeaders,
@@ -3538,7 +3339,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomFieldDefinitionsSchema().validate(
+    } = ContentPlatformModel.ApplicationCustomFieldDefinitionsSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3550,6 +3351,94 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getAppCustomFieldDefinitions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldJobsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.CustomFieldBulkEntry>} - Success response
+   * @name getAppCustomFieldJobs
+   * @summary: Fetch bulk import and export job list.
+   * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldJobs/).
+   */
+  async getAppCustomFieldJobs(
+    { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getAppCustomFieldJobs().validate(
+      {
+        page,
+        pageSize,
+        actionType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getAppCustomFieldJobs().validate(
+      {
+        page,
+        pageSize,
+        actionType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldJobs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page"] = page;
+    query_params["page_size"] = pageSize;
+    query_params["action_type"] = actionType;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/jobs`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.CustomFieldBulkEntry().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getAppCustomFieldJobs \n ${res_error}`,
         });
       }
     }
@@ -3635,28 +3524,26 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceSlugParam} arg
+   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
-   *   - Success response
-   *
-   * @name getAppCustomFieldsByResourceSlug
-   * @summary: Get list of custom fields of given resource and resource slug
-   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceSlug/).
+   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseSchema>} -
+   *   Success response
+   * @name getAppCustomFields
+   * @summary: Get list of custom fields of gives resource
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFields/).
    */
-  async getAppCustomFieldsByResourceSlug(
-    { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
+  async getAppCustomFields(
+    { resource, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldsByResourceSlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomFields().validate(
       {
         resource,
-        resourceSlug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3667,17 +3554,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomFieldsByResourceSlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomFields().validate(
       {
         resource,
-        resourceSlug,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldsByResourceSlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomFields \n ${warrning}`,
       });
     }
 
@@ -3686,7 +3572,92 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/${resourceSlug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/${resource}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.CustomFieldsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getAppCustomFields \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
+   *   - Success response
+   *
+   * @name getAppCustomFieldsByResourceId
+   * @summary: Get list of custom fields of given resource and resource id
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceId/).
+   */
+  async getAppCustomFieldsByResourceId(
+    { resource, resourceId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getAppCustomFieldsByResourceId().validate(
+      {
+        resource,
+        resourceId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getAppCustomFieldsByResourceId().validate(
+      {
+        resource,
+        resourceId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomFieldsByResourceId \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/${resource}/${resourceId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -3711,7 +3682,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomFieldsByResourceSlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getAppCustomFieldsByResourceId \n ${res_error}`,
         });
       }
     }
@@ -3720,27 +3691,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
-   *   Success response
-   * @name getAppCustomObjectBySlug
+   * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
+   * @name getAppCustomObject
    * @summary: Get custom object details
-   * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectBySlug/).
+   * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObject/).
    */
-  async getAppCustomObjectBySlug(
-    { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
+  async getAppCustomObject(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3751,17 +3720,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomObjectBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomObject \n ${warrning}`,
       });
     }
 
@@ -3770,7 +3738,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -3784,7 +3752,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectBySlugSchema().validate(responseData, {
+    } = ContentPlatformModel.CustomObjectByIdSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3795,7 +3763,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomObjectBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getAppCustomObject \n ${res_error}`,
         });
       }
     }
@@ -3804,27 +3772,26 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
-   *   - Success response
-   *
-   * @name getAppCustomObjectDefinitionBySlug
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
+   *   Success response
+   * @name getAppCustomObjectDefinition
    * @summary: Get custom object definition
-   * @description: Custom object definitions can be fetched using their custom object definition slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinitionBySlug/).
+   * @description: Custom object definitions can be fetched using their definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinition/).
    */
-  async getAppCustomObjectDefinitionBySlug(
-    { slug, requestHeaders } = { requestHeaders: {} },
+  async getAppCustomObjectDefinition(
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObjectDefinition().validate(
       {
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3835,16 +3802,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObjectDefinition().validate(
       {
-        slug,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomObjectDefinitionBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomObjectDefinition \n ${warrning}`,
       });
     }
 
@@ -3853,7 +3820,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/definitions/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -3867,7 +3834,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
+    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3878,7 +3845,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomObjectDefinitionBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getAppCustomObjectDefinition \n ${res_error}`,
         });
       }
     }
@@ -3942,7 +3909,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/definitions`,
       query_params,
       undefined,
       requestHeaders,
@@ -3976,29 +3943,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectsBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.GetAppCustomObjectsParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectsSchema>} - Success response
-   * @name getAppCustomObjectsBySlug
+   * @name getAppCustomObjects
    * @summary: Get list of custom objects
-   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectsBySlug/).
+   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjects/).
    */
-  async getAppCustomObjectsBySlug(
-    { pageNo, pageSize, definitionSlug, requestHeaders } = {
-      requestHeaders: {},
-    },
+  async getAppCustomObjects(
+    { pageNo, pageSize, definitionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectsBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObjects().validate(
       {
         pageNo,
         pageSize,
-        definitionSlug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4009,29 +3974,30 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAppCustomObjectsBySlug().validate(
+    } = ContentPlatformApplicationValidator.getAppCustomObjects().validate(
       {
         pageNo,
         pageSize,
-        definitionSlug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAppCustomObjectsBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > getAppCustomObjects \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["definition_id"] = definitionId;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${definitionSlug}/entries`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects`,
       query_params,
       undefined,
       requestHeaders,
@@ -4056,7 +4022,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getAppCustomObjectsBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > getAppCustomObjects \n ${res_error}`,
         });
       }
     }
@@ -4224,173 +4190,12 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetApplicationLanguagesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getApplicationLanguages
-   * @summary: Get app languages
-   * @description: Fetch all languages configured for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationLanguages/).
-   */
-  async getApplicationLanguages(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getApplicationLanguages().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getApplicationLanguages().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getApplicationLanguages \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getApplicationLanguages \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getApplicationResourceTranslations
-   * @summary: Get app translations
-   * @description: Fetch translations for application-level resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationResourceTranslations/).
-   */
-  async getApplicationResourceTranslations(
-    { locale, type, resourceId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getApplicationResourceTranslations().validate(
-      {
-        locale,
-        type,
-        resourceId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getApplicationResourceTranslations().validate(
-      {
-        locale,
-        type,
-        resourceId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getApplicationResourceTranslations \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["locale"] = locale;
-    query_params["type"] = type;
-    query_params["resource_id"] = resourceId;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getApplicationResourceTranslations \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getBlogBySlug
-   * @summary: Get blog by slug
+   * @summary: Get blog by slug.
    * @description: Retrieve detailed information about a specific blog using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
    */
   async getBlogBySlug(
@@ -4467,7 +4272,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.BlogGetDetails>} - Success response
+   * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
@@ -4528,7 +4333,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs`,
       query_params,
       undefined,
       requestHeaders,
@@ -4542,7 +4347,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogGetDetails().validate(responseData, {
+    } = ContentPlatformModel.BlogGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4554,6 +4359,168 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getBlogs \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
+   * @name getComponentById
+   * @summary: Get component
+   * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
+   */
+  async getComponentById(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getComponentById().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getComponentById().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getComponentById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.BlogSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getComponentById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetDataLoaderApiSpecsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.DataLoadersApiSpecSchema>} -
+   *   Success response
+   * @name getDataLoaderApiSpecs
+   * @summary: Get data loaders api specs.
+   * @description: Retrieve a list of data loaders api specs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaderApiSpecs/).
+   */
+  async getDataLoaderApiSpecs(
+    { dataLoader, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getDataLoaderApiSpecs().validate(
+      {
+        dataLoader,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getDataLoaderApiSpecs().validate(
+      {
+        dataLoader,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getDataLoaderApiSpecs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["data_loader"] = dataLoader;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/api-spec`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.DataLoadersApiSpecSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getDataLoaderApiSpecs \n ${res_error}`,
         });
       }
     }
@@ -4642,7 +4609,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
+   * @returns {Promise<ContentPlatformModel.DataLoaderItemsResponseSchema>} -
    *   Success response
    * @name getDataLoadersByService
    * @summary: List all data loaders
@@ -4699,10 +4666,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResponseSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.DataLoaderItemsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4724,7 +4691,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DefaultNavigationDetails>} -
+   * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
    *   Success response
    * @name getDefaultNavigations
    * @summary: Get default navigations
@@ -4777,10 +4744,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DefaultNavigationDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.DefaultNavigationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5203,19 +5170,17 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
-   * @summary: Get all HTML tags
-   * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+   * @summary: Get all the tags in an application
+   * @description: Use this API to retrieve all HTML Tags - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
-    { all, requestHeaders } = { requestHeaders: {} },
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {
-        all,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -5226,9 +5191,7 @@ class Content {
     const {
       error: warrning,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {
-        all,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -5239,7 +5202,6 @@ class Content {
     }
 
     const query_params = {};
-    query_params["all"] = all;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -5281,7 +5243,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.LandingPageGetDetails>} - Success response
+   * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
    * @name getLandingPages
    * @summary: Get landing pages
    * @description: Lists a list landing pages as per device types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
@@ -5327,7 +5289,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page`,
       query_params,
       undefined,
       requestHeaders,
@@ -5341,7 +5303,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageGetDetails().validate(responseData, {
+    } = ContentPlatformModel.LandingPageGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5525,7 +5487,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.NavigationGetDetails>} - Success response
+   * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
    * @name getNavigations
    * @summary: Get navigation items
    * @description: Retrieve a list of navigational elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
@@ -5576,7 +5538,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations`,
       query_params,
       undefined,
       requestHeaders,
@@ -5590,7 +5552,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationGetDetails().validate(responseData, {
+    } = ContentPlatformModel.NavigationGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5616,7 +5578,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
    * @summary: Get page by slug
-   * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+   * @description: Get detailed information about a specific page using its slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
    */
   async getPageBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -5842,9 +5804,9 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PageGetDetails>} - Success response
+   * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
    * @name getPages
-   * @summary: Get pages
+   * @summary: Get pages.
    * @description: Retrieve a list of available pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
    */
   async getPages(
@@ -5886,7 +5848,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages`,
       query_params,
       undefined,
       requestHeaders,
@@ -5900,7 +5862,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageGetDetails().validate(responseData, {
+    } = ContentPlatformModel.PageGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5920,12 +5882,46 @@ class Content {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Numeric ID allotted to an application
+   *   created within a business account.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ContentPlatformModel.PageGetResponse>}
+   * @summary: Get pages.
+   * @description: Retrieve a list of available pages.
+   */
+  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getPages({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
    * @name getPathRedirectionRule
    * @summary: Get Path Redirection Rule
    * @description: Use this API to Get detailed information about a specific path redirection rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
@@ -5981,7 +5977,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.DeletPathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6006,7 +6002,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.GetAllPathMappingSchema>} - Success response
    * @name getPathRedirectionRules
    * @summary: List Path Redirection Rules
    * @description: Use this API to List Path Redirection Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
@@ -6066,7 +6062,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.GetAllPathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6174,14 +6170,14 @@ class Content {
    * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchema/).
    */
   async getSEOMarkupSchema(
-    { id, requestHeaders } = { requestHeaders: {} },
+    { schemaId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -6194,7 +6190,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.getSEOMarkupSchema().validate(
       {
-        id,
+        schemaId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -6210,7 +6206,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -6414,201 +6410,27 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsParam} arg
+   * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TranslateUiLabelsPage>} - Success response
-   * @name getTranslateUILabels
-   * @summary: Get Translate Ui Labels
-   * @description: Retrieves Translate Ui Labels with optional filtering by type, application, and company identifiers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabels/).
-   */
-  async getTranslateUILabels(
-    { templateThemeId, themeId, locale, type, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getTranslateUILabels().validate(
-      {
-        templateThemeId,
-        themeId,
-        locale,
-        type,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getTranslateUILabels().validate(
-      {
-        templateThemeId,
-        themeId,
-        locale,
-        type,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getTranslateUILabels \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["template_theme_id"] = templateThemeId;
-    query_params["theme_id"] = themeId;
-    query_params["locale"] = locale;
-    query_params["type"] = type;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.TranslateUiLabelsPage().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getTranslateUILabels \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-   * @name getTranslateUILabelsById
-   * @summary: Get Resource Detail
-   * @description: Fetches detailed information for a specific Translate Ui Labels using its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabelsById/).
-   */
-  async getTranslateUILabelsById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getTranslateUILabelsById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getTranslateUILabelsById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getTranslateUILabelsById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getTranslateUILabelsById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesBySlugParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadDetails>}
+   * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadResponse>}
    *   - Success response
    *
-   * @name importAppCustomObjectEntriesBySlug
+   * @name importAppCustomObjectEntries
    * @summary: Bulk custom object entries upload
-   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntriesBySlug/).
+   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntries/).
    */
-  async importAppCustomObjectEntriesBySlug(
-    { slug, body, requestHeaders } = { requestHeaders: {} },
+  async importAppCustomObjectEntries(
+    { definitionId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.importAppCustomObjectEntriesBySlug().validate(
+    } = ContentPlatformApplicationValidator.importAppCustomObjectEntries().validate(
       {
-        slug,
+        definitionId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -6620,9 +6442,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.importAppCustomObjectEntriesBySlug().validate(
+    } = ContentPlatformApplicationValidator.importAppCustomObjectEntries().validate(
       {
-        slug,
+        definitionId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -6630,7 +6452,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > importAppCustomObjectEntriesBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > importAppCustomObjectEntries \n ${warrning}`,
       });
     }
 
@@ -6639,7 +6461,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}/bulk/upload`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/bulk/${definitionId}/upload`,
       query_params,
       body,
       requestHeaders,
@@ -6653,7 +6475,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectEntryBulkUploadDetails().validate(
+    } = ContentPlatformModel.CustomObjectEntryBulkUploadResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -6664,7 +6486,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > importAppCustomObjectEntriesBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > importAppCustomObjectEntries \n ${res_error}`,
         });
       }
     }
@@ -6678,7 +6500,8 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TagDeleteSuccessDetails>} - Success response
+   * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
+   *   Success response
    * @name removeInjectableTag
    * @summary: Remove HTML tag
    * @description: Delete a specific injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
@@ -6734,7 +6557,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagDeleteSuccessDetails().validate(responseData, {
+    } = ContentPlatformModel.TagDeleteSuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6836,25 +6659,25 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
-   * @name sampleAppCustomObjectBulkEntryBySlug
+   * @name sampleAppCustomObjectBulkEntry
    * @summary: Download sample for custom object bulk entry
-   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntryBySlug/).
+   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntry/).
    */
-  async sampleAppCustomObjectBulkEntryBySlug(
-    { slug, requestHeaders } = { requestHeaders: {} },
+  async sampleAppCustomObjectBulkEntry(
+    { definitionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.sampleAppCustomObjectBulkEntryBySlug().validate(
+    } = ContentPlatformApplicationValidator.sampleAppCustomObjectBulkEntry().validate(
       {
-        slug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -6865,16 +6688,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.sampleAppCustomObjectBulkEntryBySlug().validate(
+    } = ContentPlatformApplicationValidator.sampleAppCustomObjectBulkEntry().validate(
       {
-        slug,
+        definitionId,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > sampleAppCustomObjectBulkEntryBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > sampleAppCustomObjectBulkEntry \n ${warrning}`,
       });
     }
 
@@ -6883,7 +6706,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}/bulk/sample`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/bulk/${definitionId}/sample`,
       query_params,
       undefined,
       requestHeaders,
@@ -6905,7 +6728,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > sampleAppCustomObjectBulkEntryBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > sampleAppCustomObjectBulkEntry \n ${res_error}`,
         });
       }
     }
@@ -7162,7 +6985,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldByResourceSlugParam} arg
+   * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldByResourceIdParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -7170,20 +6993,20 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
    *   - Success response
    *
-   * @name updateAppCustomFieldByResourceSlug
-   * @summary: Create custom field entries for gives resource and resource slug
-   * @description: You can add a custom field using this endpoint to any resource by providing the resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldByResourceSlug/).
+   * @name updateAppCustomFieldByResourceId
+   * @summary: Create custom field entries for gives resource and resource_id
+   * @description: Use this API to create the custom field entry for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldByResourceId/).
    */
-  async updateAppCustomFieldByResourceSlug(
-    { resource, resourceSlug, body, requestHeaders } = { requestHeaders: {} },
+  async updateAppCustomFieldByResourceId(
+    { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.updateAppCustomFieldByResourceSlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomFieldByResourceId().validate(
       {
         resource,
-        resourceSlug,
+        resourceId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -7195,10 +7018,10 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateAppCustomFieldByResourceSlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomFieldByResourceId().validate(
       {
         resource,
-        resourceSlug,
+        resourceId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -7206,7 +7029,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAppCustomFieldByResourceSlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateAppCustomFieldByResourceId \n ${warrning}`,
       });
     }
 
@@ -7215,7 +7038,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/${resourceSlug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/${resource}/${resourceId}`,
       query_params,
       body,
       requestHeaders,
@@ -7240,7 +7063,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateAppCustomFieldByResourceSlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateAppCustomFieldByResourceId \n ${res_error}`,
         });
       }
     }
@@ -7249,7 +7072,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -7257,23 +7080,19 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
    *   - Success response
    *
-   * @name updateAppCustomFieldDefinitionBySlug
+   * @name updateAppCustomFieldDefinition
    * @summary: Update custom field definition
-   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinitionBySlug/).
+   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinition/).
    */
-  async updateAppCustomFieldDefinitionBySlug(
-    { slug, resource, namespace, body, requestHeaders } = {
-      requestHeaders: {},
-    },
+  async updateAppCustomFieldDefinition(
+    { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.updateAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -7285,11 +7104,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateAppCustomFieldDefinitionBySlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomFieldDefinition().validate(
       {
-        slug,
-        resource,
-        namespace,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -7297,7 +7114,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAppCustomFieldDefinitionBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateAppCustomFieldDefinition \n ${warrning}`,
       });
     }
 
@@ -7306,7 +7123,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customfields/resource/${resource}/namespace/${namespace}/definition/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metafields/definitions/${id}`,
       query_params,
       body,
       requestHeaders,
@@ -7331,7 +7148,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateAppCustomFieldDefinitionBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateAppCustomFieldDefinition \n ${res_error}`,
         });
       }
     }
@@ -7340,27 +7157,26 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectBySlugParam} arg
+   * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
+   * @returns {Promise<ContentPlatformModel.CustomObjectApplicationSchema>} -
    *   Success response
-   * @name updateAppCustomObjectBySlug
+   * @name updateAppCustomObject
    * @summary: Update custom object details
-   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectBySlug/).
+   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
    */
-  async updateAppCustomObjectBySlug(
-    { definitionSlug, slug, body, requestHeaders } = { requestHeaders: {} },
+  async updateAppCustomObject(
+    { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.updateAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -7372,10 +7188,9 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateAppCustomObjectBySlug().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomObject().validate(
       {
-        definitionSlug,
-        slug,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -7383,7 +7198,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAppCustomObjectBySlug \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateAppCustomObject \n ${warrning}`,
       });
     }
 
@@ -7392,7 +7207,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${definitionSlug}/entries/${slug}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/${id}`,
       query_params,
       body,
       requestHeaders,
@@ -7406,92 +7221,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CustomObjectBySlugSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateAppCustomObjectBySlug \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionBySlugParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
-   *   - Success response
-   *
-   * @name updateAppCustomObjectDefinitionBySlug
-   * @summary: Update custom object definition
-   * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinitionBySlug/).
-   */
-  async updateAppCustomObjectDefinitionBySlug(
-    { slug, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateAppCustomObjectDefinitionBySlug().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateAppCustomObjectDefinitionBySlug().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAppCustomObjectDefinitionBySlug \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/customobjects/definition/${slug}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.CustomObjectDefinitionSlugSchema().validate(
+    } = ContentPlatformModel.CustomObjectApplicationSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -7502,7 +7232,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateAppCustomObjectDefinitionBySlug \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateAppCustomObject \n ${res_error}`,
         });
       }
     }
@@ -7511,106 +7241,24 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam} arg
+   * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.ApplicationLanguage>} - Success response
-   * @name updateApplicationLanguageStatus
-   * @summary: Set app language
-   * @description: Update language status and settings for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationLanguageStatus/).
+   * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
+   *   Success response
+   * @name updateAppCustomObjectDefinition
+   * @summary: Update custom object definition
+   * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinition/).
    */
-  async updateApplicationLanguageStatus(
-    { locale, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateApplicationLanguageStatus().validate(
-      {
-        locale,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateApplicationLanguageStatus().validate(
-      {
-        locale,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateApplicationLanguageStatus \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/languages/${locale}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.ApplicationLanguage().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateApplicationLanguageStatus \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-   * @name updateApplicationResourceTranslation
-   * @summary: Update app translation
-   * @description: Update existing translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationResourceTranslation/).
-   */
-  async updateApplicationResourceTranslation(
+  async updateAppCustomObjectDefinition(
     { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.updateApplicationResourceTranslation().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomObjectDefinition().validate(
       {
         id,
         body,
@@ -7624,7 +7272,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateApplicationResourceTranslation().validate(
+    } = ContentPlatformApplicationValidator.updateAppCustomObjectDefinition().validate(
       {
         id,
         body,
@@ -7634,7 +7282,7 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateApplicationResourceTranslation \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > updateAppCustomObjectDefinition \n ${warrning}`,
       });
     }
 
@@ -7643,7 +7291,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/${id}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/metaobjects/definitions/${id}`,
       query_params,
       body,
       requestHeaders,
@@ -7657,10 +7305,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.ResourceTranslation().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ContentPlatformModel.CustomObjectDefinitionSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7668,7 +7316,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateApplicationResourceTranslation \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > updateAppCustomObjectDefinition \n ${res_error}`,
         });
       }
     }
@@ -7927,8 +7575,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
-   * @summary: Update HTML tag
-   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+   * @summary: Update HTML Tags
+   * @description: Use this API to edit all HTML Tags present - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
    */
   async updateInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -8413,7 +8061,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
    * @name updatePathRedirectionRules
    * @summary: Update path redirection rule
    * @description: Modify settings for path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
@@ -8471,7 +8119,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.CreatePathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8645,173 +8293,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > updateSupportInformation \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-   * @name updateTranslateUILabels
-   * @summary: Update Resource Detail
-   * @description: Modifies existing Translate Ui Labels properties including locale, type, and associated configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateTranslateUILabels/).
-   */
-  async updateTranslateUILabels(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateTranslateUILabels().validate(
-      {
-        id,
-
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateTranslateUILabels().validate(
-      {
-        id,
-
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateTranslateUILabels \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/translate-ui-labels/${id}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.TranslateUiLabels().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > updateTranslateUILabels \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>} -
-   *   Success response
-   * @name upsertApplicationResourceTranslationInBulk
-   * @summary: Bulk update translations
-   * @description: Create or update multiple translations in a single request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/upsertApplicationResourceTranslationInBulk/).
-   */
-  async upsertApplicationResourceTranslationInBulk(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.upsertApplicationResourceTranslationInBulk().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.upsertApplicationResourceTranslationInBulk().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > upsertApplicationResourceTranslationInBulk \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resource/translations/bulk`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.ResourceTranslationBulkUpsert().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > upsertApplicationResourceTranslationInBulk \n ${res_error}`,
         });
       }
     }

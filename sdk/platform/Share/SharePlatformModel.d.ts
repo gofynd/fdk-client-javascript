@@ -1,10 +1,5 @@
 export = SharePlatformModel;
 /**
- * @typedef ClickStatsResult
- * @property {ClickStatsItem[]} click_stats - An array of click statistics for
- *   the short link.
- */
-/**
  * @typedef ClickStatsItem
  * @property {string} display - The display name of the click statistic.
  * @property {number} total - The total number of clicks for the statistic.
@@ -55,24 +50,10 @@ export = SharePlatformModel;
  * @property {Attribution} [attribution]
  * @property {SocialMediaTags} [social_media_tags]
  * @property {number} [count]
- * @property {shortLinkReqMeta} [meta]
- */
-/**
- * @typedef shortLinkReqMeta
- * @property {boolean} [for_sms] - For_sms flag specifies that the short-link
- *   will be used in SMS communication and based on TRAI (Indian) guidelines,
- *   the generated short-link must contain an active SMS HEADER; ex. DLFYND, GOFYND.
- * @property {string} [sms_header] - This field is used to override the sms
- *   header to be used to generate a short-link for SMS communication in
- *   compliance with TRAI guidelines, this should be used in conjunction with
- *   for_sms flag set to true.
  */
 /**
  * @typedef UrlInfo
- * @property {string} [original]
  * @property {string} [hash]
- * @property {string} [short_url]
- * @property {string} [alias]
  */
 /**
  * @typedef ShortLinkRes
@@ -106,7 +87,8 @@ export = SharePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
+ * @property {number} [page] - Current page number
  */
 /**
  * @typedef ShortLinkList
@@ -120,17 +102,8 @@ export = SharePlatformModel;
 declare class SharePlatformModel {
 }
 declare namespace SharePlatformModel {
-    export { ClickStatsResult, ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, shortLinkReqMeta, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
+    export { ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
 }
-/** @returns {ClickStatsResult} */
-declare function ClickStatsResult(): ClickStatsResult;
-type ClickStatsResult = {
-    /**
-     * - An array of click statistics for
-     * the short link.
-     */
-    click_stats: ClickStatsItem[];
-};
 /** @returns {ClickStatsItem} */
 declare function ClickStatsItem(): ClickStatsItem;
 type ClickStatsItem = {
@@ -205,32 +178,11 @@ type ShortLinkReq = {
     attribution?: Attribution;
     social_media_tags?: SocialMediaTags;
     count?: number;
-    meta?: shortLinkReqMeta;
-};
-/** @returns {shortLinkReqMeta} */
-declare function shortLinkReqMeta(): shortLinkReqMeta;
-type shortLinkReqMeta = {
-    /**
-     * - For_sms flag specifies that the short-link
-     * will be used in SMS communication and based on TRAI (Indian) guidelines,
-     * the generated short-link must contain an active SMS HEADER; ex. DLFYND, GOFYND.
-     */
-    for_sms?: boolean;
-    /**
-     * - This field is used to override the sms
-     * header to be used to generate a short-link for SMS communication in
-     * compliance with TRAI guidelines, this should be used in conjunction with
-     * for_sms flag set to true.
-     */
-    sms_header?: string;
 };
 /** @returns {UrlInfo} */
 declare function UrlInfo(): UrlInfo;
 type UrlInfo = {
-    original?: string;
     hash?: string;
-    short_url?: string;
-    alias?: string;
 };
 /** @returns {ShortLinkRes} */
 declare function ShortLinkRes(): ShortLinkRes;
@@ -291,9 +243,13 @@ type Page = {
      */
     size?: number;
     /**
-     * - The number of items per page.
+     * - Total number of items.
      */
-    page_size?: number;
+    total?: number;
+    /**
+     * - Current page number
+     */
+    page?: number;
 };
 /** @returns {ShortLinkList} */
 declare function ShortLinkList(): ShortLinkList;

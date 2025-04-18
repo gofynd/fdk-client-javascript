@@ -26,6 +26,8 @@ module.exports = {
 
     FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
 
+    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
+
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
 
     ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
