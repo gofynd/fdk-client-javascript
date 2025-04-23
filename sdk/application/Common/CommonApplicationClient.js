@@ -37,7 +37,7 @@ class Common {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<Locations>} - Success response
    * @name getLocations
-   * @summary: Fetches available locations.
+   * @summary: Get a location
    * @description: Get countries , state , cities data associated with the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
    */
   async getLocations(
@@ -76,7 +76,7 @@ class Common {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ApplicationResponse>} - Success response
    * @name searchApplication
-   * @summary: Searches through applications.
+   * @summary: Get sales channel
    * @description: Get an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
    */
   async searchApplication(

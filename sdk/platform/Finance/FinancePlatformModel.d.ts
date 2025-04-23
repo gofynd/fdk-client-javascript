@@ -44,7 +44,6 @@ export = FinancePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef Currency
@@ -994,10 +993,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
 };
 /** @returns {Currency} */
 declare function Currency(): Currency;

@@ -48,7 +48,6 @@ export = WebhookPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef PingWebhook
@@ -202,7 +201,6 @@ export = WebhookPlatformModel;
 /**
  * @typedef SubscriberConfigPostRequestV2
  * @property {string} name
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {string} provider
  * @property {Association} association
@@ -216,7 +214,6 @@ export = WebhookPlatformModel;
  * @typedef SubscriberConfigUpdateRequestV2
  * @property {number} id
  * @property {string} [name]
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {string} provider
  * @property {Association} [association]
@@ -229,7 +226,6 @@ export = WebhookPlatformModel;
 /**
  * @typedef SubscriberConfigPost
  * @property {string} name
- * @property {string} [type]
  * @property {string} webhook_url
  * @property {Association} association
  * @property {Object} [custom_headers]
@@ -242,7 +238,6 @@ export = WebhookPlatformModel;
  * @typedef SubscriberConfigUpdate
  * @property {number} id
  * @property {string} [name]
- * @property {string} [type]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -385,10 +380,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
 };
 /** @returns {PingWebhook} */
 declare function PingWebhook(): PingWebhook;
@@ -639,7 +630,6 @@ type Events = {
 declare function SubscriberConfigPostRequestV2(): SubscriberConfigPostRequestV2;
 type SubscriberConfigPostRequestV2 = {
     name: string;
-    type?: string;
     webhook_url?: string;
     provider: string;
     association: Association;
@@ -654,7 +644,6 @@ declare function SubscriberConfigUpdateRequestV2(): SubscriberConfigUpdateReques
 type SubscriberConfigUpdateRequestV2 = {
     id: number;
     name?: string;
-    type?: string;
     webhook_url?: string;
     provider: string;
     association?: Association;
@@ -668,7 +657,6 @@ type SubscriberConfigUpdateRequestV2 = {
 declare function SubscriberConfigPost(): SubscriberConfigPost;
 type SubscriberConfigPost = {
     name: string;
-    type?: string;
     webhook_url: string;
     association: Association;
     custom_headers?: any;
@@ -682,7 +670,6 @@ declare function SubscriberConfigUpdate(): SubscriberConfigUpdate;
 type SubscriberConfigUpdate = {
     id: number;
     name?: string;
-    type?: string;
     webhook_url?: string;
     association?: Association;
     custom_headers?: any;

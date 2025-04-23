@@ -6,7 +6,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSerializer} body
  */
 
 /**
@@ -26,13 +26,13 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef EditBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {string} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSerializer} body
  */
 
 /**
  * @typedef GetBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  */
 
 /**
@@ -48,7 +48,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef GetLocationDetailParam
- * @property {number} locationId - Id of the location which you want to view.
+ * @property {string} locationId - Id of the location which you want to view.
  */
 
 /** @typedef GetLocationTagsParam */
@@ -57,10 +57,6 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
- * @property {string[]} [storeCodes] - List of up to 50 store codes to fetch.
- *   Specify multiple values by repeating the query parameter (e.g.,
- *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
- *   are not supported.
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [stage] - To filter companies on basis of verified or
  *   unverified companies.
@@ -82,7 +78,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef UpdateLocationParam
- * @property {number} locationId - Id of the location which you want to edit.
+ * @property {string} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 
@@ -95,7 +91,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      body: CompanyProfilePlatformModel.CreateBrandRequestSerializer().required(),
     }).required();
   }
 
@@ -123,15 +119,15 @@ class CompanyProfilePlatformValidator {
   /** @returns {EditBrandParam} */
   static editBrand() {
     return Joi.object({
-      brandId: Joi.number().required(),
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      brandId: Joi.string().allow("").required(),
+      body: CompanyProfilePlatformModel.UpdateBrandRequestSerializer().required(),
     }).required();
   }
 
   /** @returns {GetBrandParam} */
   static getBrand() {
     return Joi.object({
-      brandId: Joi.number().required(),
+      brandId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -152,7 +148,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {GetLocationDetailParam} */
   static getLocationDetail() {
     return Joi.object({
-      locationId: Joi.number().required(),
+      locationId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -165,7 +161,6 @@ class CompanyProfilePlatformValidator {
   static getLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
-      storeCodes: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
@@ -186,7 +181,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {UpdateLocationParam} */
   static updateLocation() {
     return Joi.object({
-      locationId: Joi.number().required(),
+      locationId: Joi.string().allow("").required(),
       body: CompanyProfilePlatformModel.LocationSerializer().required(),
     }).required();
   }

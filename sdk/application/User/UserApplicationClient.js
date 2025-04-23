@@ -56,6 +56,8 @@ class User {
         "/service/application/user/authentication/v1.0/otp/mobile/send",
       sendResetPasswordEmail:
         "/service/application/user/authentication/v1.0/login/password/reset",
+      sendResetPasswordMobile:
+        "/service/application/user/authentication/v1.0/login/password/mobile/reset",
       sendResetToken:
         "/service/application/user/authentication/v1.0/login/password/reset/token",
       sendVerificationLinkToEmail:
@@ -460,7 +462,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserAttributes>} - Success response
    * @name getUserAttributes
-   * @summary: Get user attributes
+   * @summary: Get User Attributes
    * @description: Get the list of user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
    */
   async getUserAttributes(
@@ -1137,6 +1139,44 @@ class User {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<any>} - Success response
+   * @name sendResetPasswordMobile
+   * @summary: Reset Password via Mobile
+   * @description: Send a password reset link to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
+   */
+  async sendResetPasswordMobile(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["sendResetPasswordMobile"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @name sendResetToken
    * @summary: Validate Password Reset Code
@@ -1401,7 +1441,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserAttributes>} - Success response
    * @name updateUserAttributes
-   * @summary: Update user attributes
+   * @summary: Update User Attributes
    * @description: Update user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
    */
   async updateUserAttributes(
@@ -1438,7 +1478,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserExistsResponse>} - Success response
    * @name userExists
-   * @summary: Check User Existence
+   * @summary: Chcek User Existence
    * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
    */
   async userExists(

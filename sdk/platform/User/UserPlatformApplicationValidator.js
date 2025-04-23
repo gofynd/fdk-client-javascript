@@ -133,11 +133,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
- * @typedef GetUsersByByGroupIdParam
- * @property {string} groupId - Numeric ID allotted to a User Group
- */
-
-/**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
  * @property {string[]} [query] - The search queries. Mobile numbers or email
@@ -349,13 +344,6 @@ class UserPlatformApplicationValidator {
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       groupUid: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetUsersByByGroupIdParam} */
-  static getUsersByByGroupId() {
-    return Joi.object({
-      groupId: Joi.string().allow("").required(),
     }).required();
   }
 
