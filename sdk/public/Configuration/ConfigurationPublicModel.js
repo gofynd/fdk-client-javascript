@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationResponse
+ * @typedef ApplicationResponseSchema
  * @property {Application} [application]
  */
 
@@ -12,8 +12,7 @@ const Joi = require("joi");
  * @property {boolean} [is_primary] - Indicates domain is primary or not.
  *   Primary domain is the default/main domain.
  * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
+ * @property {string} [_id] - The unique identifier of the domain
  * @property {string} [name]
  * @property {boolean} [is_predefined] - Domain is hosting domain or not
  */
@@ -71,11 +70,9 @@ const Joi = require("joi");
  *   internal or not
  * @property {boolean} [is_active] - Indicates whether a sales channel is active
  *   or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
+ * @property {string} [_id] - The unique identifier of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
+ * @property {string} [owner] - The unique identifier of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Randomly generated fixed-length string for sales
@@ -102,7 +99,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequest
+ * @typedef BadRequestSchema
  * @property {string} [message] - Failure message (in a string format)
  */
 
@@ -146,8 +143,8 @@ const Joi = require("joi");
  */
 
 class ConfigurationPublicModel {
-  /** @returns {ApplicationResponse} */
-  static ApplicationResponse() {
+  /** @returns {ApplicationResponseSchema} */
+  static ApplicationResponseSchema() {
     return Joi.object({
       application: ConfigurationPublicModel.Application(),
     });
@@ -252,8 +249,8 @@ class ConfigurationPublicModel {
     });
   }
 
-  /** @returns {BadRequest} */
-  static BadRequest() {
+  /** @returns {BadRequestSchema} */
+  static BadRequestSchema() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

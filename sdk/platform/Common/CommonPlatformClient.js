@@ -93,7 +93,8 @@ class Common {
    * @param {CommonPlatformValidator.SearchApplicationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommonPlatformModel.ApplicationResponse>} - Success response
+   * @returns {Promise<CommonPlatformModel.ApplicationResponseSchema>} -
+   *   Success response
    * @name searchApplication
    * @summary: List sales channel categories
    * @description: This API retrieves details for a specific sales channel based on the provided search criteria. The search can be performed using the name of the sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/searchApplication/).
@@ -147,7 +148,7 @@ class Common {
 
     const {
       error: res_error,
-    } = CommonPlatformModel.ApplicationResponse().validate(responseData, {
+    } = CommonPlatformModel.ApplicationResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

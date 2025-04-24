@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef SuccessMessageResponse
+ * @typedef SuccessMessage
  * @property {string} [success]
  */
 
@@ -26,7 +26,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeDefinitionResponse
+ * @typedef UserAttributeDefinitionDetails
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -54,20 +54,20 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeResponse
+ * @typedef UserAttribute
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 
 /**
- * @typedef CreateUserAttributeRequest
- * @property {boolean} [customer_overriden]
+ * @typedef CreateUserAttribute
+ * @property {boolean} [customer_overridden]
  * @property {Object} [attribute]
  */
 
@@ -84,6 +84,71 @@ const Joi = require("joi");
  * @property {number} [pin_order]
  * @property {string} [default_value]
  * @property {Object[]} [validations]
+ */
+
+/**
+ * @typedef CreateStoreFrontUsersPayload
+ * @property {string} absolute_url - A valid URL linking to the file containing
+ *   user data to be imported.
+ * @property {string} file_format - The format of the file containing the user's
+ *   data. Supported formats are CSV and XLSX.
+ * @property {string} relative_url - A valid relative path to the file within
+ *   the storage system. This path should not include the base URL or domain and
+ *   must conform to the storage structure
+ */
+
+/**
+ * @typedef BulkUserExportSchema
+ * @property {string} file_format - The format of the file in which you want to
+ *   export data. Supported formats are CSV and XLSX.
+ */
+
+/**
+ * @typedef BulkActionModel
+ * @property {string} _id - The Job ID associated with an Import or Export Job
+ * @property {string} file_name - The name of the file
+ * @property {string} file_format - The format of the uploaded file (e.g., CSV, XLSX).
+ * @property {string} action_type - The type of bulk action being performed
+ *   (e.g., import, export).
+ * @property {CreatedBySchema} created_by
+ * @property {BulkActionCountSchema} [count]
+ * @property {string} [status] - The current status of the bulk action.
+ * @property {BulkActionLinkSchema} [links]
+ * @property {string} application_id - The unique identifier of the associated
+ *   application.
+ * @property {string} company_id - The unique identifier of the company
+ *   associated with the bulk action.
+ * @property {string} [created_at] - The timestamp when the bulk action was created.
+ * @property {string} [updated_at] - The timestamp when the bulk action was last updated.
+ */
+
+/**
+ * @typedef CreatedBySchema
+ * @property {string} name - The name of the user who initiated the operation.
+ * @property {string} user_id - A unique identifier for the user who initiated
+ *   the operation.
+ */
+
+/**
+ * @typedef BulkActionLinkSchema
+ * @property {FileLinks} [file]
+ * @property {FileLinks} [error]
+ */
+
+/**
+ * @typedef FileLinks
+ * @property {string} [absolute_url] - The full URL of the file, including the
+ *   domain and protocol, allowing direct access to the file from any location.
+ * @property {string} [relative_url] - The relative path to the file within the
+ *   storage system, excluding the base URL or domain. This path is specific to
+ *   the storage structure.
+ */
+
+/**
+ * @typedef BulkActionCountSchema
+ * @property {number} [total] - The total number of items to be processed.
+ * @property {number} [success] - The number of successfully processed items.
+ * @property {number} [error] - The number of items that failed to process.
  */
 
 /**
@@ -132,12 +197,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BulkActionPaginationSchema
+ * @property {BulkActionModel[]} [items] - Array of Bulk Action Documents
+ * @property {PaginationSchema} [page]
+ */
+
+/**
  * @typedef PaginationSchema
- * @property {number} [size]
- * @property {number} [item_total]
- * @property {boolean} [has_next]
- * @property {string} [type]
- * @property {number} [current]
+ * @property {number} [size] - The number of items per page.
+ * @property {number} [item_total] - The total number of items across all pages.
+ * @property {boolean} [has_next] - Indicates whether there are more pages to retrieve.
+ * @property {string} [type] - The type of pagination used (eg Number).
+ * @property {number} [current] - The current page number.
  */
 
 /**
@@ -239,7 +310,7 @@ const Joi = require("joi");
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {string} [gender]
- * @property {string} username
+ * @property {string} [username]
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -383,6 +454,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetUserTimeline
+ * @property {string} [delete_on] - Denotes the date on which the user will be deleted
+ * @property {UserTimeline[]} [timeline] - List of user timeline events
+ */
+
+/**
+ * @typedef UserTimeline
+ * @property {string} [date] - Denotes the date at which this event occured
+ * @property {string} [title] - Title of the timeline event
+ * @property {string} [type] - Type of the event, indicating its status
+ * @property {boolean} [visible] - Indicates whether the event should be shown on the UI
+ * @property {string} [sub_title] - Additional information about the event
+ */
+
+/**
  * @typedef Facebook
  * @property {string} [app_id]
  * @property {string} [app_secret]
@@ -433,7 +519,7 @@ const Joi = require("joi");
 
 /**
  * @typedef UserGroupUpdateData
- * @property {string} [user_id] - Must be valid mongodb objectid of existing user
+ * @property {string} [user_id] - Must be valid ID of existing user
  * @property {string} [phone_number] - Phone number of registered user
  * @property {string} [email] - Email of registered user
  * @property {string} action
@@ -488,6 +574,7 @@ const Joi = require("joi");
  * @property {string} [updated_at]
  * @property {string} [external_id]
  * @property {string} [rr_id]
+ * @property {UserConsent} [consent]
  */
 
 /**
@@ -512,6 +599,8 @@ const Joi = require("joi");
  * @property {string} [rr_id]
  * @property {boolean} [archive]
  * @property {string} [status]
+ * @property {string} [deleted_on]
+ * @property {UserConsent} [consent]
  */
 
 /**
@@ -531,9 +620,20 @@ const Joi = require("joi");
  * @property {boolean} [verified] - Is the email verified.
  */
 
+/**
+ * @typedef UserConsent
+ * @property {PrivacyPolicyConsentSchema} [privacy_policy]
+ */
+
+/**
+ * @typedef PrivacyPolicyConsentSchema
+ * @property {boolean} [value] - Whether the user has consented to the privacy policy
+ * @property {string} [updated_at] - When the consent was last updated
+ */
+
 class UserPlatformModel {
-  /** @returns {SuccessMessageResponse} */
-  static SuccessMessageResponse() {
+  /** @returns {SuccessMessage} */
+  static SuccessMessage() {
     return Joi.object({
       success: Joi.string().allow(""),
     });
@@ -561,8 +661,8 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeDefinitionResponse} */
-  static UserAttributeDefinitionResponse() {
+  /** @returns {UserAttributeDefinitionDetails} */
+  static UserAttributeDefinitionDetails() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -594,25 +694,25 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeResponse} */
-  static UserAttributeResponse() {
+  /** @returns {UserAttribute} */
+  static UserAttribute() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      customer_overriden: Joi.boolean(),
-      attribute: Joi.any(),
+      customer_overridden: Joi.boolean(),
+      attribute: Joi.object().pattern(/\S/, Joi.any()),
       updated_by: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CreateUserAttributeRequest} */
-  static CreateUserAttributeRequest() {
+  /** @returns {CreateUserAttribute} */
+  static CreateUserAttribute() {
     return Joi.object({
-      customer_overriden: Joi.boolean(),
-      attribute: Joi.any(),
+      customer_overridden: Joi.boolean(),
+      attribute: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -630,6 +730,73 @@ class UserPlatformModel {
       pin_order: Joi.number(),
       default_value: Joi.string().allow(""),
       validations: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {CreateStoreFrontUsersPayload} */
+  static CreateStoreFrontUsersPayload() {
+    return Joi.object({
+      absolute_url: Joi.string().allow("").required(),
+      file_format: Joi.string().allow("").required(),
+      relative_url: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkUserExportSchema} */
+  static BulkUserExportSchema() {
+    return Joi.object({
+      file_format: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkActionModel} */
+  static BulkActionModel() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      file_name: Joi.string().allow("").required(),
+      file_format: Joi.string().allow("").required(),
+      action_type: Joi.string().allow("").required(),
+      created_by: UserPlatformModel.CreatedBySchema().required(),
+      count: UserPlatformModel.BulkActionCountSchema(),
+      status: Joi.string().allow(""),
+      links: UserPlatformModel.BulkActionLinkSchema(),
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.string().allow("").required(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreatedBySchema} */
+  static CreatedBySchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkActionLinkSchema} */
+  static BulkActionLinkSchema() {
+    return Joi.object({
+      file: UserPlatformModel.FileLinks(),
+      error: UserPlatformModel.FileLinks(),
+    });
+  }
+
+  /** @returns {FileLinks} */
+  static FileLinks() {
+    return Joi.object({
+      absolute_url: Joi.string().allow(""),
+      relative_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkActionCountSchema} */
+  static BulkActionCountSchema() {
+    return Joi.object({
+      total: Joi.number(),
+      success: Joi.number(),
+      error: Joi.number(),
     });
   }
 
@@ -694,6 +861,14 @@ class UserPlatformModel {
     });
   }
 
+  /** @returns {BulkActionPaginationSchema} */
+  static BulkActionPaginationSchema() {
+    return Joi.object({
+      items: Joi.array().items(UserPlatformModel.BulkActionModel()),
+      page: UserPlatformModel.PaginationSchema(),
+    });
+  }
+
   /** @returns {PaginationSchema} */
   static PaginationSchema() {
     return Joi.object({
@@ -736,7 +911,7 @@ class UserPlatformModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       error: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       authenticated: Joi.boolean(),
     });
   }
@@ -827,8 +1002,8 @@ class UserPlatformModel {
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
-      username: Joi.string().allow("").required(),
-      meta: Joi.any(),
+      username: Joi.string().allow(""),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
     });
@@ -1009,6 +1184,25 @@ class UserPlatformModel {
     });
   }
 
+  /** @returns {GetUserTimeline} */
+  static GetUserTimeline() {
+    return Joi.object({
+      delete_on: Joi.string().allow(""),
+      timeline: Joi.array().items(UserPlatformModel.UserTimeline()),
+    });
+  }
+
+  /** @returns {UserTimeline} */
+  static UserTimeline() {
+    return Joi.object({
+      date: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      visible: Joi.boolean(),
+      sub_title: Joi.string().allow("").allow(null),
+    });
+  }
+
   /** @returns {Facebook} */
   static Facebook() {
     return Joi.object({
@@ -1082,7 +1276,7 @@ class UserPlatformModel {
       gender: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       phone_numbers: Joi.array().items(UserPlatformModel.UserPhoneNumbers()),
       emails: Joi.array().items(UserPlatformModel.UserEmails()),
     });
@@ -1115,7 +1309,7 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
@@ -1130,6 +1324,7 @@ class UserPlatformModel {
       updated_at: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
+      consent: UserPlatformModel.UserConsent(),
     });
   }
 
@@ -1139,7 +1334,7 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
@@ -1156,6 +1351,8 @@ class UserPlatformModel {
       rr_id: Joi.string().allow(""),
       archive: Joi.boolean(),
       status: Joi.string().allow(""),
+      deleted_on: Joi.string().allow(""),
+      consent: UserPlatformModel.UserConsent(),
     });
   }
 
@@ -1177,6 +1374,21 @@ class UserPlatformModel {
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
+    });
+  }
+
+  /** @returns {UserConsent} */
+  static UserConsent() {
+    return Joi.object({
+      privacy_policy: UserPlatformModel.PrivacyPolicyConsentSchema(),
+    });
+  }
+
+  /** @returns {PrivacyPolicyConsentSchema} */
+  static PrivacyPolicyConsentSchema() {
+    return Joi.object({
+      value: Joi.boolean(),
+      updated_at: Joi.string().allow(""),
     });
   }
 }

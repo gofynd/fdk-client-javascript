@@ -880,11 +880,13 @@ class Theme {
    * @description: Retrieve a list of available fonts that can be used by themes in the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFonts/).
    */
   async getFonts(
-    { requestHeaders } = { requestHeaders: {} },
+    { capability, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.getFonts().validate(
-      {},
+      {
+        capability,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -895,7 +897,9 @@ class Theme {
     const {
       error: warrning,
     } = ThemePlatformApplicationValidator.getFonts().validate(
-      {},
+      {
+        capability,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -906,6 +910,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["capability"] = capability;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1260,10 +1265,10 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
+   * @returns {Promise<ThemePlatformModel.ThemeUpgradable>} - Success response
    * @name isUpgradable
    * @summary: Check theme is upgradable
-   * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
+   * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
    */
   async isUpgradable(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1314,7 +1319,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemeUpgradableResponse().validate(responseData, {
+    } = ThemePlatformModel.ThemeUpgradable().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1426,13 +1431,16 @@ class Theme {
    * @description: Modify and update the content of a page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updatePage/).
    */
   async updatePage(
-    { themeId, pageValue, body, requestHeaders } = { requestHeaders: {} },
+    { themeId, pageValue, socketId, body, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.updatePage().validate(
       {
         themeId,
         pageValue,
+        socketId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1448,6 +1456,7 @@ class Theme {
       {
         themeId,
         pageValue,
+        socketId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1464,7 +1473,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}`,
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}/${socketId}`,
       query_params,
       body,
       requestHeaders,

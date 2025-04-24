@@ -19,7 +19,8 @@ class Partner {
    * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
+   * @returns {Promise<PartnerPlatformModel.ExtensionProxyPathCreation>} -
+   *   Success response
    * @name addProxyPath
    * @summary: Create extension proxy
    * @description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
@@ -77,10 +78,10 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerPlatformModel.AddProxyResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PartnerPlatformModel.ExtensionProxyPathCreation().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -100,7 +101,8 @@ class Partner {
    * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
+   * @returns {Promise<PartnerPlatformModel.ExtensionProxyPathDelete>} -
+   *   Success response
    * @name removeProxyPath
    * @summary: Remove extension proxy
    * @description: Remove the proxy which are created earlier for the extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
@@ -158,7 +160,7 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerPlatformModel.RemoveProxyResponse().validate(responseData, {
+    } = PartnerPlatformModel.ExtensionProxyPathDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

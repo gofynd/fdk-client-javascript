@@ -142,28 +142,28 @@ class ThemeValidator {
   static createExtensionSectionDraft() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: ThemeModel.DraftExtensionSectionRequest().required(),
+      body: ThemeModel.DraftExtensionSection().required(),
     }).required();
   }
 
   static publishExtensionSections() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: ThemeModel.PublishExtensionSectionRequest().required(),
+      body: ThemeModel.PublishExtensionSection().required(),
     }).required();
   }
 
   static applyExtensionPreview() {
     return Joi.object({
       extensionSectionId: Joi.string().allow("").required(),
-      body: ThemeModel.ExtensionPreviewRequest().required(),
+      body: ThemeModel.PreviewExtension().required(),
     }).required();
   }
 
   static removeExtensionPreview() {
     return Joi.object({
       extensionSectionId: Joi.string().allow("").required(),
-      body: ThemeModel.ExtensionPreviewRequest().required(),
+      body: ThemeModel.PreviewExtension().required(),
     }).required();
   }
 
