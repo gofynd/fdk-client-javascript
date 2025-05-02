@@ -8,30 +8,21 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ExtensionProxyPathCreation
- * @property {string} [_id] - Unique identifier for the proxy URL entry in the database.
- * @property {string} [attached_path] - The slug path appended to the base URL
- *   for creating the proxy endpoint.
- * @property {string} [proxy_url] - The external URL that the proxy endpoint
- *   will forward requests to.
- * @property {string} [company_id] - Unique identifier of the company that owns
- *   the proxy URL.
- * @property {string} [application_id] - Unique identifier of the application
- *   associated with the proxy URL.
- * @property {string} [extension_id] - Unique identifier of the extension where
- *   the proxy URL is configured.
- * @property {string} [created_at] - The timestamp indicating when the proxy URL
- *   configuration was created.
- * @property {string} [modified_at] - The timestamp indicating the last update
- *   made to the proxy URL configuration.
+ * @typedef AddProxyResponse
+ * @property {string} [_id]
+ * @property {string} [attached_path]
+ * @property {string} [proxy_url]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
  */
 
 /**
- * @typedef ExtensionProxyPathDelete
- * @property {string} [message] - Descriptive message indicating the status or
- *   result of the deletion operation.
- * @property {Object} [data] - Additional information or metadata about the
- *   deleted proxy configuration.
+ * @typedef RemoveProxyResponse
+ * @property {string} [message]
+ * @property {Object} [data]
  */
 
 /**
@@ -52,8 +43,8 @@ class PartnerPlatformModel {
     });
   }
 
-  /** @returns {ExtensionProxyPathCreation} */
-  static ExtensionProxyPathCreation() {
+  /** @returns {AddProxyResponse} */
+  static AddProxyResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       attached_path: Joi.string().allow(""),
@@ -66,11 +57,11 @@ class PartnerPlatformModel {
     });
   }
 
-  /** @returns {ExtensionProxyPathDelete} */
-  static ExtensionProxyPathDelete() {
+  /** @returns {RemoveProxyResponse} */
+  static RemoveProxyResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
-      data: Joi.object().pattern(/\S/, Joi.any()),
+      data: Joi.any(),
     });
   }
 
@@ -81,7 +72,7 @@ class PartnerPlatformModel {
       message: Joi.string().allow(""),
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
     });
   }
 }

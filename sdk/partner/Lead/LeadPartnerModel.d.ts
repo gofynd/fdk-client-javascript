@@ -14,7 +14,6 @@ export = LeadPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef TicketHistoryList
@@ -38,7 +37,7 @@ export = LeadPartnerModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef GeneralConfigDetails
+ * @typedef GeneralConfigResponse
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {string} [type]
  * @property {GeneralConfigIntegrationSchema} [integration]
@@ -180,7 +179,7 @@ export = LeadPartnerModel;
 declare class LeadPartnerModel {
 }
 declare namespace LeadPartnerModel {
-    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigDetails, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponse, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
@@ -223,10 +222,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {TicketHistoryList} */
 declare function TicketHistoryList(): TicketHistoryList;
@@ -273,9 +268,9 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {GeneralConfigDetails} */
-declare function GeneralConfigDetails(): GeneralConfigDetails;
-type GeneralConfigDetails = {
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
     support_communication?: SupportCommunicationSchema[];
     type?: string;
     integration?: GeneralConfigIntegrationSchema;

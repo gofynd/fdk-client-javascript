@@ -20,8 +20,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionChargeRes>} - Success response
    * @name cancelSubscriptionCharge
-   * @summary: Cancel the extension subscription
-   * @description: Cancel an ongoing extension subscription for the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
+   * @summary: Cancel a subscription charge.
+   * @description: Cancel an ongoing subscription charge for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
    */
   async cancelSubscriptionCharge(
     { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
@@ -101,11 +101,10 @@ class Billing {
    * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponseSchemas>}
-   *   - Success response
-   *
+   * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
+   *   Success response
    * @name createOneTimeCharge
-   * @summary: Generate a one-time charge
+   * @summary: Generate a one-time charge.
    * @description: Generate a one-time charge for specific services or products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
    */
   async createOneTimeCharge(
@@ -161,7 +160,7 @@ class Billing {
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CreateOneTimeChargeResponseSchemas().validate(
+    } = BillingPlatformModel.CreateOneTimeChargeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -184,10 +183,11 @@ class Billing {
    * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<BillingPlatformModel.CreateSubscription>} - Success response
+   * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
+   *   Success response
    * @name createSubscriptionCharge
    * @summary: Initiate subscription billing
-   * @description: Initiates and registers a subscription charge for a specific extension for a given company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
+   * @description: Register a subscription charge for a seller using your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
    */
   async createSubscriptionCharge(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -244,10 +244,10 @@ class Billing {
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CreateSubscription().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = BillingPlatformModel.CreateSubscriptionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -269,7 +269,7 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.ChargeDetails>} - Success response
    * @name getChargeDetails
-   * @summary: Obtain charge details
+   * @summary: Obtain charge details.
    * @description: Retrieve comprehensive details about a specific billing charge. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
    */
   async getChargeDetails(
@@ -350,7 +350,7 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionChargeRes>} - Success response
    * @name getSubscriptionCharge
-   * @summary: Retrieve subscription charge details
+   * @summary: Retrieve subscription charge details.
    * @description: Retrieve detailed information about subscription charges using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
    */
   async getSubscriptionCharge(

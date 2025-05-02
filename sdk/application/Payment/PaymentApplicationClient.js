@@ -62,6 +62,8 @@ class Payment {
         "/service/application/payment/v1.0/payment/request/link/",
       linkWallet:
         "/service/application/payment/v1.0/payment/options/wallet/verify",
+      outstandingOrderDetails:
+        "/service/application/payment/v1.0/payment/outstanding-orders/",
       paidOrderDetails:
         "/service/application/payment/v1.0/payment/paid-orders/",
       pollingPaymentLink:
@@ -75,8 +77,6 @@ class Payment {
         "/service/application/payment/v1.0/resend-payment-link/",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
-      validateCustomerAndCreditSummary:
-        "/service/application/payment/v1.0/payment/validate/customer-credits-v2",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
       verifyAndChargePayment:
         "/service/application/payment/v1.0/payment/confirm/charge",
@@ -109,7 +109,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundAccountDetails>} - Success response
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @name addBeneficiaryDetails
    * @summary: Add beneficiary for refund
    * @description: Add beneficiary details specifically for refund transactions, including account holder name, account number and bank details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addBeneficiaryDetails/).
@@ -146,7 +146,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundAccountDetails>} - Success response
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @name addRefundBankAccountUsingOTP
    * @summary: Add refund account using OTP verification
    * @description: Add bank account specifically for refunds, employing OTP verification for security. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
@@ -183,7 +183,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AttachCardsDetails>} - Success response
+   * @returns {Promise<AttachCardsResponse>} - Success response
    * @name attachCardToCustomer
    * @summary: Link payment card to customer
    * @description: Link payment card to a user account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/attachCardToCustomer/).
@@ -220,7 +220,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CancelPaymentLinkDetails>} - Success response
+   * @returns {Promise<CancelPaymentLinkResponse>} - Success response
    * @name cancelPaymentLink
    * @summary: Cancel payment link
    * @description: Cancel previously generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cancelPaymentLink/).
@@ -257,7 +257,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CardDetailsFetchedDetails>} - Success response
+   * @returns {Promise<CardDetailsResponse>} - Success response
    * @name cardDetails
    * @summary: Get card details
    * @description: Get details of a specified payment card, including information such as the card type, brand, country, and expiration date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
@@ -304,7 +304,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentStatusUpdateDetails>} - Success response
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @name checkAndUpdatePaymentStatus
    * @summary: Update payment status
    * @description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatus/).
@@ -341,7 +341,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentStatusUpdateDetails>} - Success response
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @name checkAndUpdatePaymentStatusPaymentLink
    * @summary: Update payment link status
    * @description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
@@ -378,7 +378,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CheckCreditDetails>} - Success response
+   * @returns {Promise<CheckCreditResponse>} - Success response
    * @name checkCredit
    * @summary: Verify credit availability and status
    * @description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
@@ -416,7 +416,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CreateOrderUserDetails>} - Success response
+   * @returns {Promise<CreateOrderUserResponse>} - Success response
    * @name createOrderHandlerPaymentLink
    * @summary: Create order for payment via link
    * @description: Initiate the creation of an order handler for processing payments through a link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createOrderHandlerPaymentLink/).
@@ -453,7 +453,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CreatePaymentLinkDetails>} - Success response
+   * @returns {Promise<CreatePaymentLinkResponse>} - Success response
    * @name createPaymentLink
    * @summary: Create payment link
    * @description: Create new payment link for transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentLink/).
@@ -490,7 +490,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentOrderDetails>} - Success response
+   * @returns {Promise<PaymentOrderResponse>} - Success response
    * @name createPaymentOrder
    * @summary: Create Order
    * @description: Create an order and payment on the aggregator side. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
@@ -527,7 +527,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CustomerCreditSummaryDetails>} - Success response
+   * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
    * @name customerCreditSummary
    * @summary: Credit summary
    * @description: Get summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerCreditSummary/).
@@ -565,7 +565,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CustomerOnboardingDetails>} - Success response
+   * @returns {Promise<CustomerOnboardingResponse>} - Success response
    * @name customerOnboard
    * @summary: Onboard customer for payment
    * @description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerOnboard/).
@@ -602,7 +602,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DeleteCardsDetails>} - Success response
+   * @returns {Promise<DeleteCardsResponse>} - Success response
    * @name deleteUserCard
    * @summary: Delete customer card
    * @description: Delete payment card from the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
@@ -676,7 +676,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundTransferModeUpdateDetails>} - Success response
+   * @returns {Promise<UpdateRefundTransferModeResponse>} - Success response
    * @name enableOrDisableRefundTransferMode
    * @summary: Toggle refund mode
    * @description: Enable/Disable a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/enableOrDisableRefundTransferMode/).
@@ -713,7 +713,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ActiveCardPaymentGatewayDetails>} - Success response
+   * @returns {Promise<ActiveCardPaymentGatewayResponse>} - Success response
    * @name getActiveCardAggregator
    * @summary: Retrieve active card aggregator
    * @description: Get details about the active card aggregator used by the user, including the aggregator name.You can refresh the data by setting the 'refresh' parameter to true if needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveCardAggregator/).
@@ -751,7 +751,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<TransferModeFetchDetails>} - Success response
+   * @returns {Promise<TransferModeResponse>} - Success response
    * @name getActiveRefundTransferModes
    * @summary: Get refund transfer modes
    * @description: Lists available refund modes, such as UPI, providing details like display name, logo, and ID for each mode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveRefundTransferModes/).
@@ -788,7 +788,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ListCardsDetails>} - Success response
+   * @returns {Promise<ListCardsResponse>} - Success response
    * @name getActiveUserCards
    * @summary: Get customer cards
    * @description: List all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
@@ -826,19 +826,20 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AggregatorsConfigDetail>} - Success response
+   * @returns {Promise<AggregatorsConfigDetailResponse>} - Success response
    * @name getAggregatorsConfig
    * @summary: Get payment aggregators
    * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
    */
   async getAggregatorsConfig(
-    { refresh, requestHeaders } = { requestHeaders: {} },
+    { xApiToken, refresh, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["refresh"] = refresh;
 
     const xHeaders = {};
+    xHeaders["x-api-token"] = xApiToken;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -864,7 +865,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<EpaylaterBannerDetails>} - Success response
+   * @returns {Promise<EpaylaterBannerResponse>} - Success response
    * @name getEpaylaterBannerDetails
    * @summary: Epaylater banner info
    * @description: Get Epaylater payment banner details. It provides information about the banner's display status, along with relevant messages and the user's registration status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getEpaylaterBannerDetails/).
@@ -901,7 +902,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderBeneficiaryFetchDetails>} - Success response
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @name getOrderBeneficiariesDetail
    * @summary: Retrieve beneficiary details
    * @description: Get beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getOrderBeneficiariesDetail/).
@@ -939,7 +940,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetPaymentLinkDetails>} - Success response
+   * @returns {Promise<GetPaymentLinkResponse>} - Success response
    * @name getPaymentLink
    * @summary: Get payment link
    * @description: Get a generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLink/).
@@ -977,7 +978,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentModeRouteDetails>} - Success response
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @name getPaymentModeRoutes
    * @summary: Get payment modes
    * @description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutes/).
@@ -1036,7 +1037,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentModeRouteDetails>} - Success response
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @name getPaymentModeRoutesPaymentLink
    * @summary: Payment modes for payment link
    * @description: List payment modes available for a given payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutesPaymentLink/).
@@ -1074,7 +1075,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentModeRouteDetails>} - Success response
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @name getPosPaymentModeRoutes
    * @summary: POS payment modes
    * @description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPosPaymentModeRoutes/).
@@ -1082,9 +1083,9 @@ class Payment {
   async getPosPaymentModeRoutes(
     {
       amount,
-      cartId,
       pincode,
       orderType,
+      cartId,
       checkoutMode,
       refresh,
       cardReference,
@@ -1129,7 +1130,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RupifiBannerDetails>} - Success response
+   * @returns {Promise<RupifiBannerResponse>} - Success response
    * @name getRupifiBannerDetails
    * @summary: Rupifi banner info
    * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
@@ -1166,7 +1167,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderBeneficiaryFetchDetails>} - Success response
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @name getUserBeneficiariesDetail
    * @summary: Retrieve beneficiary details
    * @description: Get beneficiaries associated with the user for processing refunds, based on the provided order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
@@ -1204,7 +1205,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentInitializationDetails>} - Success response
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
    * @name initialisePayment
    * @summary: Start payment process
    * @description: Initiate the payment procedure for an order. Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePayment/).
@@ -1241,7 +1242,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentInitializationDetails>} - Success response
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
    * @name initialisePaymentPaymentLink
    * @summary: Initialize payment link
    * @description: Begin payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
@@ -1315,7 +1316,45 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaidOrderDetails>} - Success response
+   * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
+   * @name outstandingOrderDetails
+   * @summary: Outstanding orders
+   * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
+   */
+  async outstandingOrderDetails(
+    { aggregator, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["outstandingOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaidOrderDetailsResponse>} - Success response
    * @name paidOrderDetails
    * @summary: Retrieve details of paid orders
    * @description: Get details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator merchant user ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/paidOrderDetails/).
@@ -1353,7 +1392,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PollingPaymentLinkDetails>} - Success response
+   * @returns {Promise<PollingPaymentLinkResponse>} - Success response
    * @name pollingPaymentLink
    * @summary: Poll status of payment link
    * @description: Get real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/pollingPaymentLink/).
@@ -1391,13 +1430,13 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RedirectToAggregatorDetails>} - Success response
+   * @returns {Promise<RedirectToAggregatorResponse>} - Success response
    * @name redirectToAggregator
    * @summary: Redirects users to the payment aggregator's interface
-   * @description: This endpoint is used to redirect users to the payment aggregator's platform where they can complete the payment process. The request may include necessary details for initiating the payment on the aggregator’s side, and the user is transferred seamlessly to their interface. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/redirectToAggregator/).
+   * @description: Get details about the active card aggregator used by the user, including the aggregator's name. You can refresh the data by setting the 'refresh' parameter to true if needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/redirectToAggregator/).
    */
   async redirectToAggregator(
-    { aggregator, source, requestHeaders } = { requestHeaders: {} },
+    { source, aggregator, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -1430,7 +1469,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RenderHTMLDetails>} - Success response
+   * @returns {Promise<renderHTMLResponse>} - Success response
    * @name renderHTML
    * @summary: Render HTML
    * @description: Render HTML for a payment aggregator page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
@@ -1467,7 +1506,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ResendOrCancelPaymentDetails>} - Success response
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @name resendOrCancelPayment
    * @summary: Resend or cancel a pending payment transaction
    * @description: Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendOrCancelPayment/).
@@ -1504,7 +1543,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ResendPaymentLinkDetails>} - Success response
+   * @returns {Promise<ResendPaymentLinkResponse>} - Success response
    * @name resendPaymentLink
    * @summary: Resend payment link
    * @description: Resend an existing payment link to the user to complete the payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendPaymentLink/).
@@ -1541,7 +1580,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SetDefaultBeneficiaryDetails>} - Success response
+   * @returns {Promise<SetDefaultBeneficiaryResponse>} - Success response
    * @name updateDefaultBeneficiary
    * @summary: Set default beneficiary for refund
    * @description: Update default beneficiary for the order refund of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
@@ -1578,44 +1617,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ValidateCustomerCreditSchema>} - Success response
-   * @name validateCustomerAndCreditSummary
-   * @summary: Verify payment customer and show credit summary
-   * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateCustomerAndCreditSummary/).
-   */
-  async validateCustomerAndCreditSummary(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["validateCustomerAndCreditSummary"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ValidateVPADetails>} - Success response
+   * @returns {Promise<ValidateVPAResponse>} - Success response
    * @name validateVPA
    * @summary: Validate VPA
    * @description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
@@ -1652,7 +1654,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ChargeCustomerDetails>} - Success response
+   * @returns {Promise<ChargeCustomerResponse>} - Success response
    * @name verifyAndChargePayment
    * @summary: Verify order confirmation and charge
    * @description: Verify the payment status and charge from the customer's BNPL (Buy Now, Pay Later) account after order confirmation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyAndChargePayment/).
@@ -1689,7 +1691,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ValidateCustomerDetails>} - Success response
+   * @returns {Promise<ValidateCustomerResponse>} - Success response
    * @name verifyCustomerForPayment
    * @summary: Verify payment customer
    * @description: Verify if the user is eligible for pay-later payment from the payment aggregator side using the customer's phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyCustomerForPayment/).
@@ -1726,7 +1728,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<IfscCodeDetails>} - Success response
+   * @returns {Promise<IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC
    * @description: Validate IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyIfscCode/).
@@ -1764,7 +1766,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AddBeneficiaryViaOtpVerificationDetails>} - Success response
+   * @returns {Promise<AddBeneficiaryViaOtpVerificationResponse>} - Success response
    * @name verifyOtpAndAddBeneficiaryForBank
    * @summary: Verify OTP for bank and add beneficiary
    * @description: Verify the OTP provided by the user and adds a bank beneficiary for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForBank/).
@@ -1801,7 +1803,7 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<WalletOtpDetails>} - Success response
+   * @returns {Promise<WalletOtpResponse>} - Success response
    * @name verifyOtpAndAddBeneficiaryForWallet
    * @summary: Verify OTP for wallet
    * @description: Verify OTP provided by the user and adds a wallet beneficiary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).

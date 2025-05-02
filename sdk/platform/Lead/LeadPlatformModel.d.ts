@@ -1,6 +1,6 @@
 export = LeadPlatformModel;
 /**
- * @typedef GeneralConfigDetails
+ * @typedef GeneralConfigResponse
  * @property {string} [_id]
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {boolean} [show_communication_info]
@@ -47,7 +47,6 @@ export = LeadPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef TicketHistoryList
@@ -289,11 +288,11 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { GeneralConfigDetails, SupportCommunicationSchema, SupportSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { GeneralConfigResponse, SupportCommunicationSchema, SupportSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
-/** @returns {GeneralConfigDetails} */
-declare function GeneralConfigDetails(): GeneralConfigDetails;
-type GeneralConfigDetails = {
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
     _id?: string;
     support_communication?: SupportCommunicationSchema[];
     show_communication_info?: boolean;
@@ -369,10 +368,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {TicketHistoryList} */
 declare function TicketHistoryList(): TicketHistoryList;

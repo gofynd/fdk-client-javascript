@@ -1,12 +1,12 @@
 export = CompanyProfilePlatformModel;
 /**
- * @typedef CompanyTaxesSchema
+ * @typedef CompanyTaxesSerializer
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
  */
 /**
- * @typedef UserSchema
+ * @typedef UserSerializer
  * @property {string} [user_id]
  * @property {string} [contact]
  * @property {string} [username]
@@ -51,10 +51,10 @@ export = CompanyProfilePlatformModel;
  * @property {string} [url]
  */
 /**
- * @typedef GetAddressSchema
+ * @typedef GetAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -67,14 +67,14 @@ export = CompanyProfilePlatformModel;
  * @property {number} latitude
  */
 /**
- * @typedef GetCompanyProfileSerializerResponseSchema
+ * @typedef GetCompanyProfileSerializerResponse
  * @property {string} [business_info]
- * @property {CompanyTaxesSchema[]} [taxes]
+ * @property {CompanyTaxesSerializer[]} [taxes]
  * @property {string} [business_type]
  * @property {string} [name]
  * @property {Object} [_custom_json]
  * @property {string} [verified_on]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {Object} [warnings]
  * @property {BusinessDetails} [business_details]
@@ -87,29 +87,29 @@ export = CompanyProfilePlatformModel;
  * @property {string} [stage]
  * @property {string} company_type
  * @property {Document[]} [documents]
- * @property {GetAddressSchema[]} [addresses]
- * @property {UserSchema} [verified_by]
+ * @property {GetAddressSerializer[]} [addresses]
+ * @property {UserSerializer} [verified_by]
  * @property {string[]} [notification_emails]
- * @property {UserSchema} [modified_by]
+ * @property {UserSerializer} [modified_by]
  */
 /**
- * @typedef ErrorResponseSchema
- * @property {string} [message] - A descriptive message providing details about
- *   the error, intended to convey the nature and context of the issue.
- * @property {Object} [error] - An object containing additional error details,
- *   which may vary depending on the error type.
+ * @typedef ErrorResponse
+ * @property {string} [message]
+ * @property {string} [code]
+ * @property {number} [status]
+ * @property {Object} [meta]
  */
 /**
- * @typedef CompanyRequestTaxesSchema
+ * @typedef CompanyTaxesSerializer1
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
  */
 /**
- * @typedef CreateUpdateAddressSchema
+ * @typedef CreateUpdateAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} pincode
+ * @property {number} pincode
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -126,18 +126,18 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [warnings]
  * @property {string} [company_type]
  * @property {Object} [_custom_json]
- * @property {CompanyRequestTaxesSchema[]} [taxes]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
  * @property {BusinessDetails} [business_details]
  * @property {Document[]} [documents]
  * @property {string} [business_type]
- * @property {CreateUpdateAddressSchema[]} [addresses]
+ * @property {CreateUpdateAddressSerializer[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {ContactDetails} [contact_details]
  * @property {string} [reject_reason]
  * @property {string} [name]
  */
 /**
- * @typedef ProfileSuccessResponseSchema
+ * @typedef ProfileSuccessResponse
  * @property {number} [uid]
  * @property {string} [message]
  * @property {boolean} [success]
@@ -148,7 +148,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} [verified]
  */
 /**
- * @typedef MetricsSchema
+ * @typedef MetricsSerializer
  * @property {string} [stage]
  * @property {DocumentsObj} [store]
  * @property {DocumentsObj} [company_documents]
@@ -158,18 +158,18 @@ export = CompanyProfilePlatformModel;
  * @property {DocumentsObj} [brand]
  */
 /**
- * @typedef BrandBannerSchema
+ * @typedef BrandBannerSerializer
  * @property {string} portrait
  * @property {string} landscape
  */
 /**
- * @typedef GetBrandResponseSchema
- * @property {UserSchema} [modified_by]
- * @property {BrandBannerSchema} [banner]
+ * @typedef GetBrandResponseSerializer
+ * @property {UserSerializer} [modified_by]
+ * @property {BrandBannerSerializer} [banner]
  * @property {string} name
  * @property {Object} [_custom_json]
  * @property {string} [verified_on]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {Object} [warnings]
  * @property {Object} [_locale_language]
@@ -179,13 +179,13 @@ export = CompanyProfilePlatformModel;
  * @property {number} [uid]
  * @property {string} [reject_reason]
  * @property {string} [stage]
- * @property {UserSchema} [verified_by]
+ * @property {UserSerializer} [verified_by]
  * @property {string} [slug_key]
  * @property {string} [logo]
  * @property {string} [description]
  */
 /**
- * @typedef CreateBrandRequestSchema
+ * @typedef CreateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -194,12 +194,12 @@ export = CompanyProfilePlatformModel;
  * @property {string} logo
  * @property {string} [brand_tier]
  * @property {number} [uid]
- * @property {BrandBannerSchema} banner
+ * @property {BrandBannerSerializer} banner
  * @property {string} name
  * @property {string} [slug_key]
  */
 /**
- * @typedef UpdateBrandRequestSchema
+ * @typedef UpdateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -208,7 +208,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} logo
  * @property {string} [brand_tier]
  * @property {number} [uid]
- * @property {BrandBannerSchema} banner
+ * @property {BrandBannerSerializer} banner
  * @property {string} name
  */
 /**
@@ -222,40 +222,40 @@ export = CompanyProfilePlatformModel;
  * @property {string} [website_url]
  */
 /**
- * @typedef CompanySchema
+ * @typedef CompanySerializer
  * @property {string} [stage]
  * @property {Object} [_custom_json]
  * @property {string} [verified_on]
- * @property {UserSchema} [verified_by]
+ * @property {UserSerializer} [verified_by]
  * @property {string} [created_on]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
  * @property {string} business_type
- * @property {GetAddressSchema[]} [addresses]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
  * @property {BusinessCountryInfo} [business_country_info]
  * @property {number} [uid]
  * @property {string} [reject_reason]
  * @property {string} [name]
- * @property {UserSchema} [modified_by]
+ * @property {UserSerializer} [modified_by]
  */
 /**
- * @typedef CompanyBrandSchema
+ * @typedef CompanyBrandSerializer
  * @property {string} [stage]
  * @property {string} [verified_on]
- * @property {UserSchema} [verified_by]
+ * @property {UserSerializer} [verified_by]
  * @property {string} [created_on]
- * @property {UserSchema} [created_by]
- * @property {CompanySchema} [company]
+ * @property {UserSerializer} [created_by]
+ * @property {CompanySerializer} [company]
  * @property {Object} [warnings]
  * @property {string} [modified_on]
  * @property {number} [uid]
  * @property {string} [reject_reason]
- * @property {GetBrandResponseSchema} [brand]
- * @property {UserSchema} [modified_by]
+ * @property {GetBrandResponseSerializer} [brand]
+ * @property {UserSerializer} [modified_by]
  */
 /**
  * @typedef Page
@@ -266,126 +266,125 @@ export = CompanyProfilePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
- * @typedef CompanyBrandListSchema
- * @property {CompanyBrandSchema[]} [items]
+ * @typedef CompanyBrandListSerializer
+ * @property {CompanyBrandSerializer[]} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef CompanyBrandPostRequestSchema
+ * @typedef CompanyBrandPostRequestSerializer
  * @property {number} [uid]
  * @property {number[]} brands
  * @property {number} company
  */
 /**
- * @typedef InvoiceCredSchema
+ * @typedef InvoiceCredSerializer
  * @property {string} [username]
  * @property {boolean} [enabled]
  * @property {string} [password]
  */
 /**
- * @typedef InvoiceDetailsSchema
- * @property {InvoiceCredSchema} [e_invoice]
- * @property {InvoiceCredSchema} [e_waybill]
+ * @typedef InvoiceDetailsSerializer
+ * @property {InvoiceCredSerializer} [e_invoice]
+ * @property {InvoiceCredSerializer} [e_waybill]
  */
 /**
- * @typedef GetCompanySchema
+ * @typedef GetCompanySerializer
  * @property {string} [stage]
  * @property {string} [verified_on]
- * @property {UserSchema} [verified_by]
+ * @property {UserSerializer} [verified_by]
  * @property {string} [created_on]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [company_type]
  * @property {string} [modified_on]
  * @property {string} [business_type]
- * @property {GetAddressSchema[]} [addresses]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {number} [uid]
  * @property {string} [reject_reason]
  * @property {string} [name]
- * @property {UserSchema} [modified_by]
+ * @property {UserSerializer} [modified_by]
  */
 /**
- * @typedef LocationManagerSchema
+ * @typedef LocationManagerSerializer
  * @property {string} [email]
  * @property {SellerPhoneNumber} mobile_no
  * @property {string} [name]
  */
 /**
- * @typedef LocationTimingSchema
+ * @typedef LocationTimingSerializer
  * @property {number} hour
  * @property {number} minute
  */
 /**
- * @typedef LocationDayWiseSchema
+ * @typedef LocationDayWiseSerializer
  * @property {boolean} open
  * @property {string} weekday
- * @property {LocationTimingSchema} [opening]
- * @property {LocationTimingSchema} [closing]
+ * @property {LocationTimingSerializer} [opening]
+ * @property {LocationTimingSerializer} [closing]
  */
 /**
- * @typedef HolidayDateSchema
+ * @typedef HolidayDateSerializer
  * @property {string} end_date
  * @property {string} start_date
  */
 /**
- * @typedef HolidaySchemaSchema
- * @property {HolidayDateSchema} date
+ * @typedef HolidaySchemaSerializer
+ * @property {HolidayDateSerializer} date
  * @property {string} title
  * @property {string} holiday_type
  */
 /**
- * @typedef ProductReturnConfigSchema
+ * @typedef ProductReturnConfigSerializer
  * @property {boolean} [on_same_store]
  * @property {number} [store_uid]
  */
 /**
- * @typedef GetLocationSchema
+ * @typedef GetLocationSerializer
  * @property {string} code
  * @property {string} [phone_number]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {InvoiceDetailsSchema} [gst_credentials]
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {string} name
  * @property {Object} [_custom_json]
  * @property {string} [verified_on]
- * @property {UserSchema} [created_by]
+ * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
- * @property {GetCompanySchema} [company]
- * @property {GetAddressSchema} address
+ * @property {GetCompanySerializer} [company]
+ * @property {GetAddressSerializer} address
  * @property {Object} [warnings]
  * @property {string} [store_type]
- * @property {LocationManagerSchema} [manager]
+ * @property {LocationManagerSerializer} [manager]
  * @property {boolean} [auto_invoice]
  * @property {string} [modified_on]
  * @property {number} [uid]
- * @property {LocationDayWiseSchema[]} [timing]
+ * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} [stage]
  * @property {Document[]} [documents]
  * @property {boolean} [credit_note]
- * @property {HolidaySchemaSchema[]} [holiday]
+ * @property {HolidaySchemaSerializer[]} [holiday]
  * @property {string} display_name
- * @property {ProductReturnConfigSchema} [product_return_config]
- * @property {UserSchema} [verified_by]
+ * @property {ProductReturnConfigSerializer} [product_return_config]
+ * @property {UserSerializer} [verified_by]
  * @property {string[]} [notification_emails]
- * @property {UserSchema} [modified_by]
+ * @property {UserSerializer} [modified_by]
  * @property {string[]} [tags]
  * @property {boolean} [default_order_acceptance_timing]
- * @property {LocationDayWiseSchema[]} [order_acceptance_timing]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
  */
 /**
- * @typedef LocationListSchema
- * @property {GetLocationSchema[]} [items]
+ * @typedef LocationListSerializer
+ * @property {GetLocationSerializer[]} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef AddressSchema
+ * @typedef AddressSerializer
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -398,39 +397,39 @@ export = CompanyProfilePlatformModel;
  * @property {number} latitude
  */
 /**
- * @typedef LocationSchema
+ * @typedef LocationSerializer
  * @property {string} code
- * @property {InvoiceDetailsSchema} [gst_credentials]
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {string} name
  * @property {Object} [_custom_json]
  * @property {Object} [warnings]
- * @property {AddressSchema} address
+ * @property {AddressSerializer} address
  * @property {number} company
  * @property {string} [store_type]
- * @property {LocationManagerSchema} [manager]
+ * @property {LocationManagerSerializer} [manager]
  * @property {boolean} [auto_invoice]
  * @property {number} [uid]
- * @property {LocationDayWiseSchema[]} [timing]
+ * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} [stage]
  * @property {Document[]} documents
  * @property {boolean} [credit_note]
- * @property {HolidaySchemaSchema[]} [holiday]
- * @property {ProductReturnConfigSchema} [product_return_config]
+ * @property {HolidaySchemaSerializer[]} [holiday]
+ * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} display_name
  * @property {string[]} [notification_emails]
  * @property {string[]} [tags]
  * @property {boolean} [default_order_acceptance_timing] - Flag to set
  *   order_acceptance_timing as default timing
- * @property {LocationDayWiseSchema[]} [order_acceptance_timing] - Order
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing] - Order
  *   acceptance timing of the store
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
  * @property {boolean} [auto_assign_courier_partner]
  */
 /**
- * @typedef BulkLocationSchema
- * @property {LocationSchema[]} [data]
+ * @typedef BulkLocationSerializer
+ * @property {LocationSerializer[]} [data]
  */
 /**
  * @typedef AverageOrderProcessingTime
@@ -445,18 +444,18 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyRequestTaxesSchema, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateBrandRequestSchema, UpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSerializer, UserSerializer, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSerializer, GetCompanyProfileSerializerResponse, ErrorResponse, CompanyTaxesSerializer1, CreateUpdateAddressSerializer, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateBrandRequestSerializer, UpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, Page, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, GetCompanySerializer, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, HolidayDateSerializer, HolidaySchemaSerializer, ProductReturnConfigSerializer, GetLocationSerializer, LocationListSerializer, AddressSerializer, LocationSerializer, BulkLocationSerializer, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
-/** @returns {CompanyTaxesSchema} */
-declare function CompanyTaxesSchema(): CompanyTaxesSchema;
-type CompanyTaxesSchema = {
+/** @returns {CompanyTaxesSerializer} */
+declare function CompanyTaxesSerializer(): CompanyTaxesSerializer;
+type CompanyTaxesSerializer = {
     effective_date?: string;
     rate?: number;
     enable?: boolean;
 };
-/** @returns {UserSchema} */
-declare function UserSchema(): UserSchema;
-type UserSchema = {
+/** @returns {UserSerializer} */
+declare function UserSerializer(): UserSerializer;
+type UserSerializer = {
     user_id?: string;
     contact?: string;
     username?: string;
@@ -507,12 +506,12 @@ type Document = {
     type: string;
     url?: string;
 };
-/** @returns {GetAddressSchema} */
-declare function GetAddressSchema(): GetAddressSchema;
-type GetAddressSchema = {
+/** @returns {GetAddressSerializer} */
+declare function GetAddressSerializer(): GetAddressSerializer;
+type GetAddressSerializer = {
     landmark?: string;
     country_code?: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
@@ -524,16 +523,16 @@ type GetAddressSchema = {
     city?: string;
     latitude: number;
 };
-/** @returns {GetCompanyProfileSerializerResponseSchema} */
-declare function GetCompanyProfileSerializerResponseSchema(): GetCompanyProfileSerializerResponseSchema;
-type GetCompanyProfileSerializerResponseSchema = {
+/** @returns {GetCompanyProfileSerializerResponse} */
+declare function GetCompanyProfileSerializerResponse(): GetCompanyProfileSerializerResponse;
+type GetCompanyProfileSerializerResponse = {
     business_info?: string;
-    taxes?: CompanyTaxesSchema[];
+    taxes?: CompanyTaxesSerializer[];
     business_type?: string;
     name?: string;
     _custom_json?: any;
     verified_on?: string;
-    created_by?: UserSchema;
+    created_by?: UserSerializer;
     created_on?: string;
     warnings?: any;
     business_details?: BusinessDetails;
@@ -546,38 +545,32 @@ type GetCompanyProfileSerializerResponseSchema = {
     stage?: string;
     company_type: string;
     documents?: Document[];
-    addresses?: GetAddressSchema[];
-    verified_by?: UserSchema;
+    addresses?: GetAddressSerializer[];
+    verified_by?: UserSerializer;
     notification_emails?: string[];
-    modified_by?: UserSchema;
+    modified_by?: UserSerializer;
 };
-/** @returns {ErrorResponseSchema} */
-declare function ErrorResponseSchema(): ErrorResponseSchema;
-type ErrorResponseSchema = {
-    /**
-     * - A descriptive message providing details about
-     * the error, intended to convey the nature and context of the issue.
-     */
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
     message?: string;
-    /**
-     * - An object containing additional error details,
-     * which may vary depending on the error type.
-     */
-    error?: any;
+    code?: string;
+    status?: number;
+    meta?: any;
 };
-/** @returns {CompanyRequestTaxesSchema} */
-declare function CompanyRequestTaxesSchema(): CompanyRequestTaxesSchema;
-type CompanyRequestTaxesSchema = {
+/** @returns {CompanyTaxesSerializer1} */
+declare function CompanyTaxesSerializer1(): CompanyTaxesSerializer1;
+type CompanyTaxesSerializer1 = {
     effective_date?: string;
     rate?: number;
     enable?: boolean;
 };
-/** @returns {CreateUpdateAddressSchema} */
-declare function CreateUpdateAddressSchema(): CreateUpdateAddressSchema;
-type CreateUpdateAddressSchema = {
+/** @returns {CreateUpdateAddressSerializer} */
+declare function CreateUpdateAddressSerializer(): CreateUpdateAddressSerializer;
+type CreateUpdateAddressSerializer = {
     landmark?: string;
     country_code?: string;
-    pincode: string;
+    pincode: number;
     address_type: string;
     longitude: number;
     country: string;
@@ -595,19 +588,19 @@ type UpdateCompany = {
     warnings?: any;
     company_type?: string;
     _custom_json?: any;
-    taxes?: CompanyRequestTaxesSchema[];
+    taxes?: CompanyTaxesSerializer1[];
     business_details?: BusinessDetails;
     documents?: Document[];
     business_type?: string;
-    addresses?: CreateUpdateAddressSchema[];
+    addresses?: CreateUpdateAddressSerializer[];
     notification_emails?: string[];
     contact_details?: ContactDetails;
     reject_reason?: string;
     name?: string;
 };
-/** @returns {ProfileSuccessResponseSchema} */
-declare function ProfileSuccessResponseSchema(): ProfileSuccessResponseSchema;
-type ProfileSuccessResponseSchema = {
+/** @returns {ProfileSuccessResponse} */
+declare function ProfileSuccessResponse(): ProfileSuccessResponse;
+type ProfileSuccessResponse = {
     uid?: number;
     message?: string;
     success?: boolean;
@@ -618,9 +611,9 @@ type DocumentsObj = {
     pending?: number;
     verified?: number;
 };
-/** @returns {MetricsSchema} */
-declare function MetricsSchema(): MetricsSchema;
-type MetricsSchema = {
+/** @returns {MetricsSerializer} */
+declare function MetricsSerializer(): MetricsSerializer;
+type MetricsSerializer = {
     stage?: string;
     store?: DocumentsObj;
     company_documents?: DocumentsObj;
@@ -629,21 +622,21 @@ type MetricsSchema = {
     uid?: number;
     brand?: DocumentsObj;
 };
-/** @returns {BrandBannerSchema} */
-declare function BrandBannerSchema(): BrandBannerSchema;
-type BrandBannerSchema = {
+/** @returns {BrandBannerSerializer} */
+declare function BrandBannerSerializer(): BrandBannerSerializer;
+type BrandBannerSerializer = {
     portrait: string;
     landscape: string;
 };
-/** @returns {GetBrandResponseSchema} */
-declare function GetBrandResponseSchema(): GetBrandResponseSchema;
-type GetBrandResponseSchema = {
-    modified_by?: UserSchema;
-    banner?: BrandBannerSchema;
+/** @returns {GetBrandResponseSerializer} */
+declare function GetBrandResponseSerializer(): GetBrandResponseSerializer;
+type GetBrandResponseSerializer = {
+    modified_by?: UserSerializer;
+    banner?: BrandBannerSerializer;
     name: string;
     _custom_json?: any;
     verified_on?: string;
-    created_by?: UserSchema;
+    created_by?: UserSerializer;
     created_on?: string;
     warnings?: any;
     _locale_language?: any;
@@ -653,14 +646,14 @@ type GetBrandResponseSchema = {
     uid?: number;
     reject_reason?: string;
     stage?: string;
-    verified_by?: UserSchema;
+    verified_by?: UserSerializer;
     slug_key?: string;
     logo?: string;
     description?: string;
 };
-/** @returns {CreateBrandRequestSchema} */
-declare function CreateBrandRequestSchema(): CreateBrandRequestSchema;
-type CreateBrandRequestSchema = {
+/** @returns {CreateBrandRequestSerializer} */
+declare function CreateBrandRequestSerializer(): CreateBrandRequestSerializer;
+type CreateBrandRequestSerializer = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -669,13 +662,13 @@ type CreateBrandRequestSchema = {
     logo: string;
     brand_tier?: string;
     uid?: number;
-    banner: BrandBannerSchema;
+    banner: BrandBannerSerializer;
     name: string;
     slug_key?: string;
 };
-/** @returns {UpdateBrandRequestSchema} */
-declare function UpdateBrandRequestSchema(): UpdateBrandRequestSchema;
-type UpdateBrandRequestSchema = {
+/** @returns {UpdateBrandRequestSerializer} */
+declare function UpdateBrandRequestSerializer(): UpdateBrandRequestSerializer;
+type UpdateBrandRequestSerializer = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -684,7 +677,7 @@ type UpdateBrandRequestSchema = {
     logo: string;
     brand_tier?: string;
     uid?: number;
-    banner: BrandBannerSchema;
+    banner: BrandBannerSerializer;
     name: string;
 };
 /** @returns {CompanySocialAccounts} */
@@ -699,43 +692,43 @@ type CompanyDetails = {
     socials?: CompanySocialAccounts[];
     website_url?: string;
 };
-/** @returns {CompanySchema} */
-declare function CompanySchema(): CompanySchema;
-type CompanySchema = {
+/** @returns {CompanySerializer} */
+declare function CompanySerializer(): CompanySerializer;
+type CompanySerializer = {
     stage?: string;
     _custom_json?: any;
     verified_on?: string;
-    verified_by?: UserSchema;
+    verified_by?: UserSerializer;
     created_on?: string;
-    created_by?: UserSchema;
+    created_by?: UserSerializer;
     company_type: string;
     modified_on?: string;
     market_channels?: string[];
     business_type: string;
-    addresses?: GetAddressSchema[];
+    addresses?: GetAddressSerializer[];
     notification_emails?: string[];
     details?: CompanyDetails;
     business_country_info?: BusinessCountryInfo;
     uid?: number;
     reject_reason?: string;
     name?: string;
-    modified_by?: UserSchema;
+    modified_by?: UserSerializer;
 };
-/** @returns {CompanyBrandSchema} */
-declare function CompanyBrandSchema(): CompanyBrandSchema;
-type CompanyBrandSchema = {
+/** @returns {CompanyBrandSerializer} */
+declare function CompanyBrandSerializer(): CompanyBrandSerializer;
+type CompanyBrandSerializer = {
     stage?: string;
     verified_on?: string;
-    verified_by?: UserSchema;
+    verified_by?: UserSerializer;
     created_on?: string;
-    created_by?: UserSchema;
-    company?: CompanySchema;
+    created_by?: UserSerializer;
+    company?: CompanySerializer;
     warnings?: any;
     modified_on?: string;
     uid?: number;
     reject_reason?: string;
-    brand?: GetBrandResponseSchema;
-    modified_by?: UserSchema;
+    brand?: GetBrandResponseSerializer;
+    modified_by?: UserSerializer;
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -768,143 +761,139 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
-/** @returns {CompanyBrandListSchema} */
-declare function CompanyBrandListSchema(): CompanyBrandListSchema;
-type CompanyBrandListSchema = {
-    items?: CompanyBrandSchema[];
+/** @returns {CompanyBrandListSerializer} */
+declare function CompanyBrandListSerializer(): CompanyBrandListSerializer;
+type CompanyBrandListSerializer = {
+    items?: CompanyBrandSerializer[];
     page?: Page;
 };
-/** @returns {CompanyBrandPostRequestSchema} */
-declare function CompanyBrandPostRequestSchema(): CompanyBrandPostRequestSchema;
-type CompanyBrandPostRequestSchema = {
+/** @returns {CompanyBrandPostRequestSerializer} */
+declare function CompanyBrandPostRequestSerializer(): CompanyBrandPostRequestSerializer;
+type CompanyBrandPostRequestSerializer = {
     uid?: number;
     brands: number[];
     company: number;
 };
-/** @returns {InvoiceCredSchema} */
-declare function InvoiceCredSchema(): InvoiceCredSchema;
-type InvoiceCredSchema = {
+/** @returns {InvoiceCredSerializer} */
+declare function InvoiceCredSerializer(): InvoiceCredSerializer;
+type InvoiceCredSerializer = {
     username?: string;
     enabled?: boolean;
     password?: string;
 };
-/** @returns {InvoiceDetailsSchema} */
-declare function InvoiceDetailsSchema(): InvoiceDetailsSchema;
-type InvoiceDetailsSchema = {
-    e_invoice?: InvoiceCredSchema;
-    e_waybill?: InvoiceCredSchema;
+/** @returns {InvoiceDetailsSerializer} */
+declare function InvoiceDetailsSerializer(): InvoiceDetailsSerializer;
+type InvoiceDetailsSerializer = {
+    e_invoice?: InvoiceCredSerializer;
+    e_waybill?: InvoiceCredSerializer;
 };
-/** @returns {GetCompanySchema} */
-declare function GetCompanySchema(): GetCompanySchema;
-type GetCompanySchema = {
+/** @returns {GetCompanySerializer} */
+declare function GetCompanySerializer(): GetCompanySerializer;
+type GetCompanySerializer = {
     stage?: string;
     verified_on?: string;
-    verified_by?: UserSchema;
+    verified_by?: UserSerializer;
     created_on?: string;
-    created_by?: UserSchema;
+    created_by?: UserSerializer;
     company_type?: string;
     modified_on?: string;
     business_type?: string;
-    addresses?: GetAddressSchema[];
+    addresses?: GetAddressSerializer[];
     uid?: number;
     reject_reason?: string;
     name?: string;
-    modified_by?: UserSchema;
+    modified_by?: UserSerializer;
 };
-/** @returns {LocationManagerSchema} */
-declare function LocationManagerSchema(): LocationManagerSchema;
-type LocationManagerSchema = {
+/** @returns {LocationManagerSerializer} */
+declare function LocationManagerSerializer(): LocationManagerSerializer;
+type LocationManagerSerializer = {
     email?: string;
     mobile_no: SellerPhoneNumber;
     name?: string;
 };
-/** @returns {LocationTimingSchema} */
-declare function LocationTimingSchema(): LocationTimingSchema;
-type LocationTimingSchema = {
+/** @returns {LocationTimingSerializer} */
+declare function LocationTimingSerializer(): LocationTimingSerializer;
+type LocationTimingSerializer = {
     hour: number;
     minute: number;
 };
-/** @returns {LocationDayWiseSchema} */
-declare function LocationDayWiseSchema(): LocationDayWiseSchema;
-type LocationDayWiseSchema = {
+/** @returns {LocationDayWiseSerializer} */
+declare function LocationDayWiseSerializer(): LocationDayWiseSerializer;
+type LocationDayWiseSerializer = {
     open: boolean;
     weekday: string;
-    opening?: LocationTimingSchema;
-    closing?: LocationTimingSchema;
+    opening?: LocationTimingSerializer;
+    closing?: LocationTimingSerializer;
 };
-/** @returns {HolidayDateSchema} */
-declare function HolidayDateSchema(): HolidayDateSchema;
-type HolidayDateSchema = {
+/** @returns {HolidayDateSerializer} */
+declare function HolidayDateSerializer(): HolidayDateSerializer;
+type HolidayDateSerializer = {
     end_date: string;
     start_date: string;
 };
-/** @returns {HolidaySchemaSchema} */
-declare function HolidaySchemaSchema(): HolidaySchemaSchema;
-type HolidaySchemaSchema = {
-    date: HolidayDateSchema;
+/** @returns {HolidaySchemaSerializer} */
+declare function HolidaySchemaSerializer(): HolidaySchemaSerializer;
+type HolidaySchemaSerializer = {
+    date: HolidayDateSerializer;
     title: string;
     holiday_type: string;
 };
-/** @returns {ProductReturnConfigSchema} */
-declare function ProductReturnConfigSchema(): ProductReturnConfigSchema;
-type ProductReturnConfigSchema = {
+/** @returns {ProductReturnConfigSerializer} */
+declare function ProductReturnConfigSerializer(): ProductReturnConfigSerializer;
+type ProductReturnConfigSerializer = {
     on_same_store?: boolean;
     store_uid?: number;
 };
-/** @returns {GetLocationSchema} */
-declare function GetLocationSchema(): GetLocationSchema;
-type GetLocationSchema = {
+/** @returns {GetLocationSerializer} */
+declare function GetLocationSerializer(): GetLocationSerializer;
+type GetLocationSerializer = {
     code: string;
     phone_number?: string;
     contact_numbers?: SellerPhoneNumber[];
-    gst_credentials?: InvoiceDetailsSchema;
+    gst_credentials?: InvoiceDetailsSerializer;
     name: string;
     _custom_json?: any;
     verified_on?: string;
-    created_by?: UserSchema;
+    created_by?: UserSerializer;
     created_on?: string;
-    company?: GetCompanySchema;
-    address: GetAddressSchema;
+    company?: GetCompanySerializer;
+    address: GetAddressSerializer;
     warnings?: any;
     store_type?: string;
-    manager?: LocationManagerSchema;
+    manager?: LocationManagerSerializer;
     auto_invoice?: boolean;
     modified_on?: string;
     uid?: number;
-    timing?: LocationDayWiseSchema[];
+    timing?: LocationDayWiseSerializer[];
     stage?: string;
     documents?: Document[];
     credit_note?: boolean;
-    holiday?: HolidaySchemaSchema[];
+    holiday?: HolidaySchemaSerializer[];
     display_name: string;
-    product_return_config?: ProductReturnConfigSchema;
-    verified_by?: UserSchema;
+    product_return_config?: ProductReturnConfigSerializer;
+    verified_by?: UserSerializer;
     notification_emails?: string[];
-    modified_by?: UserSchema;
+    modified_by?: UserSerializer;
     tags?: string[];
     default_order_acceptance_timing?: boolean;
-    order_acceptance_timing?: LocationDayWiseSchema[];
+    order_acceptance_timing?: LocationDayWiseSerializer[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
 };
-/** @returns {LocationListSchema} */
-declare function LocationListSchema(): LocationListSchema;
-type LocationListSchema = {
-    items?: GetLocationSchema[];
+/** @returns {LocationListSerializer} */
+declare function LocationListSerializer(): LocationListSerializer;
+type LocationListSerializer = {
+    items?: GetLocationSerializer[];
     page?: Page;
 };
-/** @returns {AddressSchema} */
-declare function AddressSchema(): AddressSchema;
-type AddressSchema = {
+/** @returns {AddressSerializer} */
+declare function AddressSerializer(): AddressSerializer;
+type AddressSerializer = {
     landmark?: string;
     country_code: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
@@ -916,27 +905,27 @@ type AddressSchema = {
     city?: string;
     latitude: number;
 };
-/** @returns {LocationSchema} */
-declare function LocationSchema(): LocationSchema;
-type LocationSchema = {
+/** @returns {LocationSerializer} */
+declare function LocationSerializer(): LocationSerializer;
+type LocationSerializer = {
     code: string;
-    gst_credentials?: InvoiceDetailsSchema;
+    gst_credentials?: InvoiceDetailsSerializer;
     contact_numbers?: SellerPhoneNumber[];
     name: string;
     _custom_json?: any;
     warnings?: any;
-    address: AddressSchema;
+    address: AddressSerializer;
     company: number;
     store_type?: string;
-    manager?: LocationManagerSchema;
+    manager?: LocationManagerSerializer;
     auto_invoice?: boolean;
     uid?: number;
-    timing?: LocationDayWiseSchema[];
+    timing?: LocationDayWiseSerializer[];
     stage?: string;
     documents: Document[];
     credit_note?: boolean;
-    holiday?: HolidaySchemaSchema[];
-    product_return_config?: ProductReturnConfigSchema;
+    holiday?: HolidaySchemaSerializer[];
+    product_return_config?: ProductReturnConfigSerializer;
     display_name: string;
     notification_emails?: string[];
     tags?: string[];
@@ -949,15 +938,15 @@ type LocationSchema = {
      * - Order
      * acceptance timing of the store
      */
-    order_acceptance_timing?: LocationDayWiseSchema[];
+    order_acceptance_timing?: LocationDayWiseSerializer[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
 };
-/** @returns {BulkLocationSchema} */
-declare function BulkLocationSchema(): BulkLocationSchema;
-type BulkLocationSchema = {
-    data?: LocationSchema[];
+/** @returns {BulkLocationSerializer} */
+declare function BulkLocationSerializer(): BulkLocationSerializer;
+type BulkLocationSerializer = {
+    data?: LocationSerializer[];
 };
 /** @returns {AverageOrderProcessingTime} */
 declare function AverageOrderProcessingTime(): AverageOrderProcessingTime;

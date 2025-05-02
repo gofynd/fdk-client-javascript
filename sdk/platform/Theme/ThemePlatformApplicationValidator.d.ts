@@ -37,11 +37,7 @@ export = ThemePlatformApplicationValidator;
  * @property {string} [type] - The type of the theme
  * @property {string} [companyMode] - The mode of the company
  */
-/**
- * @typedef GetFontsParam
- * @property {string} [capability] - Filter fonts based on supported
- *   capabilities (e.g., "WOFF2").
- */
+/** @typedef GetFontsParam */
 /**
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
@@ -72,7 +68,6 @@ export = ThemePlatformApplicationValidator;
  * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
- * @property {string} socketId - Unique socket id for websocket
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 /**
@@ -113,7 +108,7 @@ declare class ThemePlatformApplicationValidator {
     /** @returns {GetExtensionSectionsParam} */
     static getExtensionSections(): GetExtensionSectionsParam;
     /** @returns {GetFontsParam} */
-    static getFonts(): GetFontsParam;
+    static getFonts(): any;
     /** @returns {GetPageParam} */
     static getPage(): GetPageParam;
     /** @returns {GetThemeByIdParam} */
@@ -192,13 +187,6 @@ type GetExtensionSectionsParam = {
      */
     companyMode?: string;
 };
-type GetFontsParam = {
-    /**
-     * - Filter fonts based on supported
-     * capabilities (e.g., "WOFF2").
-     */
-    capability?: string;
-};
 type GetPageParam = {
     /**
      * - ID of the theme to be retrieved
@@ -249,10 +237,6 @@ type UpdatePageParam = {
      * - Value of the page to be updated
      */
     pageValue: string;
-    /**
-     * - Unique socket id for websocket
-     */
-    socketId: string;
     body: ThemePlatformModel.AvailablePageSchema;
 };
 type UpdateThemeParam = {
@@ -278,4 +262,5 @@ type UpgradeThemeParam = {
 type GetApplicationThemesParam = any;
 type GetApplicationThemesCountParam = any;
 type GetAppliedThemeParam = any;
+type GetFontsParam = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

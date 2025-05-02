@@ -91,12 +91,6 @@ export = ThemePlatformModel;
 /**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
- * @property {CanvasItem} [canvas]
- */
-/**
- * @typedef CanvasItem
- * @property {string} [value]
- * @property {string} [label]
  */
 /**
  * @typedef SEOMetaItem
@@ -137,21 +131,11 @@ export = ThemePlatformModel;
  * @typedef AvailablePageSchemaSections
  * @property {string} [name]
  * @property {string} [label]
- * @property {string} [canvas]
  * @property {Object} [props]
- * @property {string} [custom_css] - Custom CSS for a section
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
- * @property {SectionSource} [__source]
- */
-/**
- * @typedef SectionSource
- * @property {string} [id] - The source id specifying the source of the section.
- * @property {string} [bundle_name] - This is the extension binding name
- *   containing this section.
- * @property {string} [type] - This is source type. It will either be
- *   themeBundle or extension.
+ * @property {string} [source]
  */
 /**
  * @typedef AvailablePagePredicate
@@ -253,7 +237,7 @@ export = ThemePlatformModel;
  * @property {string} [src]
  */
 /**
- * @typedef ThemeUpgradable
+ * @typedef ThemeUpgradableResponse
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
  * @property {ThemeVersions} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
@@ -395,16 +379,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 /**
  * @typedef Assets
@@ -525,7 +500,7 @@ export = ThemePlatformModel;
  * @property {string} [applied_theme] - The version of the applied theme
  */
 /**
- * @typedef DummyTheme
+ * @typedef DummyResponse
  * @property {string} [message]
  */
 /**
@@ -606,7 +581,7 @@ export = ThemePlatformModel;
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, CanvasItem, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradable, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyTheme, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
+    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
 }
 /** @returns {GetExtensionSectionRes} */
 declare function GetExtensionSectionRes(): GetExtensionSectionRes;
@@ -769,13 +744,6 @@ type AvailablePageSchema = {
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
 type AvailablePageSectionMetaAttributes = {
     attributes?: any;
-    canvas?: CanvasItem;
-};
-/** @returns {CanvasItem} */
-declare function CanvasItem(): CanvasItem;
-type CanvasItem = {
-    value?: string;
-    label?: string;
 };
 /** @returns {SEOMetaItem} */
 declare function SEOMetaItem(): SEOMetaItem;
@@ -826,34 +794,11 @@ declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
 type AvailablePageSchemaSections = {
     name?: string;
     label?: string;
-    canvas?: string;
     props?: any;
-    /**
-     * - Custom CSS for a section
-     */
-    custom_css?: string;
     blocks?: any[];
     preset?: any;
     predicate?: AvailablePagePredicate;
-    __source?: SectionSource;
-};
-/** @returns {SectionSource} */
-declare function SectionSource(): SectionSource;
-type SectionSource = {
-    /**
-     * - The source id specifying the source of the section.
-     */
-    id?: string;
-    /**
-     * - This is the extension binding name
-     * containing this section.
-     */
-    bundle_name?: string;
-    /**
-     * - This is source type. It will either be
-     * themeBundle or extension.
-     */
-    type?: string;
+    source?: string;
 };
 /** @returns {AvailablePagePredicate} */
 declare function AvailablePagePredicate(): AvailablePagePredicate;
@@ -1022,9 +967,9 @@ type ThemesSchema = {
     company_id?: number;
     src?: string;
 };
-/** @returns {ThemeUpgradable} */
-declare function ThemeUpgradable(): ThemeUpgradable;
-type ThemeUpgradable = {
+/** @returns {ThemeUpgradableResponse} */
+declare function ThemeUpgradableResponse(): ThemeUpgradableResponse;
+type ThemeUpgradableResponse = {
     /**
      * - Indicates if the theme is upgradable or not
      */
@@ -1332,35 +1277,7 @@ type CustomProps = {
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
-    props?: Prop[];
-};
-/** @returns {Prop} */
-declare function Prop(): Prop;
-type Prop = {
-    /**
-     * - The type of the property
-     */
-    type?: string;
-    /**
-     * - The category of the property
-     */
-    category?: string;
-    /**
-     * - The value of the property
-     */
-    value?: string;
-    /**
-     * - The ID of the property
-     */
-    id?: string;
-    /**
-     * - The label of the property
-     */
-    label?: string;
-    /**
-     * - Additional information about the property
-     */
-    info?: string;
+    props?: any[];
 };
 /** @returns {Assets} */
 declare function Assets(): Assets;
@@ -1583,9 +1500,9 @@ type ThemeVersions = {
      */
     applied_theme?: string;
 };
-/** @returns {DummyTheme} */
-declare function DummyTheme(): DummyTheme;
-type DummyTheme = {
+/** @returns {DummyResponse} */
+declare function DummyResponse(): DummyResponse;
+type DummyResponse = {
     message?: string;
 };
 /** @returns {AppliedThemes} */
