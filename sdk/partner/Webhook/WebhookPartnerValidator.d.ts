@@ -1,5 +1,6 @@
 export = WebhookValidator;
 declare class WebhookValidator {
+    static responseTimeSummary(): any;
     static fetchDeliverySummary(): any;
     static getDeliveryDetailInsights(): any;
     static fetchDeliveryTs(): any;

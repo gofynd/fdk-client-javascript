@@ -4,7 +4,7 @@ const PartnerPublicModel = require("./PartnerPublicModel");
 
 /**
  * @typedef GetPanelExtensionDetailsParam
- * @property {string} slug - Pass the slug of the extension
+ * @property {string} slug - Slug of the extension
  */
 
 class PartnerPublicValidator {

@@ -556,7 +556,7 @@ class Lead {
    * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
+   * @returns {Promise<LeadPartnerModel.GeneralConfigDetails>} - Success response
    * @name getGeneralConfig
    * @summary: Get general support configuration
    * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getGeneralConfig/).
@@ -606,7 +606,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPartnerModel.GeneralConfigResponse().validate(responseData, {
+    } = LeadPartnerModel.GeneralConfigDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

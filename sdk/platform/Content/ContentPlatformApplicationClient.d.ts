@@ -4,6 +4,18 @@ declare class Content {
     config: any;
     applicationId: any;
     /**
+     * @param {ContentPlatformApplicationValidator.AddApplicationLanguageParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name addApplicationLanguage
+     * @summary: Add app language
+     * @description: Add new languages to application's supported language list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addApplicationLanguage/).
+     */
+    addApplicationLanguage({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddApplicationLanguageParam, { responseHeaders }?: object): Promise<any>;
+    /**
      * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -47,6 +59,18 @@ declare class Content {
      */
     addPathRedirectionRules({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
     /**
+     * @param {ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name bulkUnPublishApplicationLanguage
+     * @summary: Unpublish all languages of sales channel.
+     * @description: Unpublish all application's published languages of specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/bulkUnPublishApplicationLanguage/).
+     */
+    bulkUnPublishApplicationLanguage({ body, requestHeaders }?: ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam, { responseHeaders }?: object): Promise<any>;
+    /**
      * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
      *   - Arg object
      *
@@ -60,20 +84,6 @@ declare class Content {
      */
     createAnnouncement({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAnnouncementParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldByResourceIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
-     *   - Success response
-     *
-     * @name createAppCustomFieldByResourceId
-     * @summary: Create custom field entries for gives resource and resource_id
-     * @description: You can add a custom field using this endpoint to any resource by providing the resource ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldByResourceId/).
-     */
-    createAppCustomFieldByResourceId({ resource, resourceId, body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomFieldByResourceIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam} arg
      *   - Arg object
      *
@@ -83,35 +93,48 @@ declare class Content {
      *   - Success response
      *
      * @name createAppCustomFieldDefinition
-     * @summary: Create custom field definition
+     * @summary: Create custom field definition for a given resource type
      * @description: You can create custom fields definition to any resource so you can extend property of resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldDefinition/).
      */
-    createAppCustomFieldDefinition({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
+    createAppCustomFieldDefinition({ resource, body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectParam} arg
+     * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
-     * @name createAppCustomObject
+     * @name createAppCustomObjectBySlug
      * @summary: Create custom object entries
-     * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
+     * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectBySlug/).
      */
-    createAppCustomObject({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectSchema>;
+    createAppCustomObjectBySlug({ definitionSlug, body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateAppCustomObjectDefinitionParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+     *   - Success response
+     *
      * @name createAppCustomObjectDefinition
      * @summary: Create custom object definition
      * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectDefinition/).
      */
-    createAppCustomObjectDefinition({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
+    createAppCustomObjectDefinition({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
+     * @name createApplicationResourceTranslation
+     * @summary: Add app translation
+     * @description: Create new translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createApplicationResourceTranslation/).
+     */
+    createApplicationResourceTranslation({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -167,18 +190,6 @@ declare class Content {
      */
     createPage({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-     * @name createPagePreview
-     * @summary: Create page preview
-     * @description: Generate and add a new page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
-     */
-    createPagePreview({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePagePreviewParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam} arg
      *   - Arg object
      *
@@ -191,15 +202,17 @@ declare class Content {
      */
     createSEOMarkupSchema({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
+     * @param {ContentPlatformApplicationValidator.CreateTranslateUILabelsParam} arg
+     *   - Arg object
+     *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name createSlideshow
-     * @summary: Create a slideshow
-     * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
+     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+     * @name createTranslateUILabels
+     * @summary: Add Translate Ui Labels
+     * @description: Creates a new Translate Ui Labels entry with specified configuration and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createTranslateUILabels/).
      */
-    createSlideshow({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
+    createTranslateUILabels({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
      *   - Arg object
@@ -214,31 +227,31 @@ declare class Content {
      */
     deleteAnnouncement({ announcementId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAnnouncementParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionParam} arg
+     * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-     * @name deleteAppCustomFieldDefinition
+     * @name deleteAppCustomFieldDefinitionBySlug
      * @summary: Delete custom fields definition
-     * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinition/).
+     * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinitionBySlug/).
      */
-    deleteAppCustomFieldDefinition({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
+    deleteAppCustomFieldDefinitionBySlug({ slug, resource, namespace, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectParam} arg
+     * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
-     * @name deleteAppCustomObject
+     * @name deleteAppCustomObjectBySlug
      * @summary: Delete custom object
-     * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObject/).
+     * @description: A Custom object entry can be deleted by providing the custom object definition slug and custom object entry slug using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectBySlug/).
      */
-    deleteAppCustomObject({ metaobjectId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
+    deleteAppCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomObjectBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionParam} arg
+     * @param {ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -246,11 +259,35 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>}
      *   - Success response
      *
-     * @name deleteAppCustomObjectDefinition
+     * @name deleteAppCustomObjectDefinitionBySlug
      * @summary: Delete custom object definition
-     * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinition/).
+     * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinitionBySlug/).
      */
-    deleteAppCustomObjectDefinition({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>;
+    deleteAppCustomObjectDefinitionBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteApplicationLanguageParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
+     * @name deleteApplicationLanguage
+     * @summary: Remove app language
+     * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
+     */
+    deleteApplicationLanguage({ locale, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationLanguageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
+     * @name deleteApplicationResourceTranslation
+     * @summary: Remove app translation
+     * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
+     */
+    deleteApplicationResourceTranslation({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -351,16 +388,6 @@ declare class Content {
      */
     deleteSEOMarkupSchema({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
-     * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name deleteSlideshow
-     * @summary: Delete a slideshow
-     * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
-     */
-    deleteSlideshow({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -396,7 +423,7 @@ declare class Content {
      */
     editSEOMarkupSchema({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.EditSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
-     * @param {ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesParam} arg
+     * @param {ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -404,11 +431,11 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>}
      *   - Success response
      *
-     * @name exportAppCustomObjectEntries
+     * @name exportAppCustomObjectEntriesBySlug
      * @summary: Initiate download for bulk custom object entries
-     * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntries/).
+     * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntriesBySlug/).
      */
-    exportAppCustomObjectEntries({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>;
+    exportAppCustomObjectEntriesBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>;
     /**
      * @param {ContentPlatformApplicationValidator.GenerateSEOTitleParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -445,19 +472,32 @@ declare class Content {
      */
     getAnnouncementsList({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetAnnouncementsListParam, { responseHeaders }?: object): Promise<ContentPlatformModel.GetAnnouncementListSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionParam} arg
+     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionByResourceParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
+     * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>} -
+     *   Success response
+     * @name getAppCustomFieldDefinitionByResource
+     * @summary: Get custom fields definitions for a given resource type
+     * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitionByResource/).
+     */
+    getAppCustomFieldDefinitionByResource({ pageNo, pageSize, resource, types, search, slugs, namespaces, requestHeaders, }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionByResourceParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.MetaFieldDefinitionDetailResSchema>}
      *   - Success response
      *
-     * @name getAppCustomFieldDefinition
-     * @summary: Get custom fields definition
-     * @description: Custom field definitions can be fetch using definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinition/).
+     * @name getAppCustomFieldDefinitionBySlug
+     * @summary: Get custom fields definition by resource, slug and namespace
+     * @description: Custom field definitions can be retrived from this using its slug, namespace and resource - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitionBySlug/).
      */
-    getAppCustomFieldDefinition({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
+    getAppCustomFieldDefinitionBySlug({ slug, resource, namespace, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.MetaFieldDefinitionDetailResSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionsParam} arg
      *   - Arg object
@@ -470,34 +510,21 @@ declare class Content {
      * @summary: Get custom fields definitions
      * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitions/).
      */
-    getAppCustomFieldDefinitions({ pageNo, pageSize, resource, type, search, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
+    getAppCustomFieldDefinitions({ pageNo, pageSize, resources, types, search, slugs, namespaces, requestHeaders, }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppCustomFieldTypesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.MetafieldTypesSchema>} - Success response
      * @name getAppCustomFieldTypes
      * @summary: Get custom field types
      * @description: Each custom field and custom field definition has a type, which defines the type of information that it can store. The custom field types have built-in validation. This api will give list of supported custom fields types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldTypes/).
      */
-    getAppCustomFieldTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
+    getAppCustomFieldTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.MetafieldTypesSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomFieldsResponseSchema>} -
-     *   Success response
-     * @name getAppCustomFields
-     * @summary: Get list of custom fields of gives resource
-     * @description: Retrieves a list of custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFields/).
-     */
-    getAppCustomFields({ resource, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceIdParam} arg
+     * @param {ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceSlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -505,36 +532,38 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
      *   - Success response
      *
-     * @name getAppCustomFieldsByResourceId
-     * @summary: Get list of custom fields of given resource and resource id
-     * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceId/).
+     * @name getAppCustomFieldsByResourceSlug
+     * @summary: Get list of custom fields of given resource and resource slug
+     * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceSlug/).
      */
-    getAppCustomFieldsByResourceId({ resource, resourceId, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>;
+    getAppCustomFieldsByResourceSlug({ resource, resourceSlug, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldsByResourceSlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectParam} arg
+     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
-     * @name getAppCustomObject
-     * @summary: Get custom object details
-     * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObject/).
-     */
-    getAppCustomObject({ metaobjectId, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
+     * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
      *   Success response
-     * @name getAppCustomObjectDefinition
-     * @summary: Get custom object definition
-     * @description: Custom object definitions can be fetched using their definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinition/).
+     * @name getAppCustomObjectBySlug
+     * @summary: Get custom object details
+     * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectBySlug/).
      */
-    getAppCustomObjectDefinition({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
+    getAppCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBySlugSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+     *   - Success response
+     *
+     * @name getAppCustomObjectDefinitionBySlug
+     * @summary: Get custom object definition
+     * @description: Custom object definitions can be fetched using their custom object definition slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinitionBySlug/).
+     */
+    getAppCustomObjectDefinitionBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionsParam} arg
      *   - Arg object
@@ -549,17 +578,17 @@ declare class Content {
      */
     getAppCustomObjectDefinitions({ pageNo, pageSize, search, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionsSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectsParam} arg
+     * @param {ContentPlatformApplicationValidator.GetAppCustomObjectsBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomObjectsSchema>} - Success response
-     * @name getAppCustomObjects
+     * @name getAppCustomObjectsBySlug
      * @summary: Get list of custom objects
-     * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjects/).
+     * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectsBySlug/).
      */
-    getAppCustomObjects({ pageNo, pageSize, definitionId, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectsSchema>;
+    getAppCustomObjectsBySlug({ pageNo, pageSize, definitionSlug, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomObjectsBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectsSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppJobsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -581,6 +610,30 @@ declare class Content {
      */
     getAppResources({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourcesSchema>;
     /**
+     * @param {ContentPlatformApplicationValidator.GetApplicationLanguagesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getApplicationLanguages
+     * @summary: Get app languages
+     * @description: Fetch all languages configured for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationLanguages/).
+     */
+    getApplicationLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getApplicationResourceTranslations
+     * @summary: Get app translations
+     * @description: Fetch translations for application-level resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationResourceTranslations/).
+     */
+    getApplicationResourceTranslations({ locale, type, resourceId, requestHeaders }?: ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam, { responseHeaders }?: object): Promise<any>;
+    /**
      * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -594,12 +647,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
+     * @returns {Promise<ContentPlatformModel.BlogGetDetails>} - Success response
      * @name getBlogs
      * @summary: List blogs
      * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, tags, q, slug, title, status, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetResponse>;
+    getBlogs({ pageNo, pageSize, tags, q, slug, title, status, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -629,13 +682,13 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
+     * @returns {Promise<ContentPlatformModel.DefaultNavigationDetails>} -
      *   Success response
      * @name getDefaultNavigations
      * @summary: Get default navigations
      * @description: Retrieve default navigation elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
      */
-    getDefaultNavigations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultNavigationResponse>;
+    getDefaultNavigations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultNavigationDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDefaultSEOMarkupSchemaParam} arg
      *   - Arg object
@@ -709,12 +762,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
+     * @returns {Promise<ContentPlatformModel.LandingPageGetDetails>} - Success response
      * @name getLandingPages
      * @summary: Get landing pages
      * @description: Lists a list landing pages as per device types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
      */
-    getLandingPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetLandingPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.LandingPageGetResponse>;
+    getLandingPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetLandingPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.LandingPageGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
      *   - Arg object
@@ -743,12 +796,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
+     * @returns {Promise<ContentPlatformModel.NavigationGetDetails>} - Success response
      * @name getNavigations
      * @summary: Get navigation items
      * @description: Retrieve a list of navigational elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
      */
-    getNavigations({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.NavigationGetResponse>;
+    getNavigations({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.NavigationGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -783,12 +836,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
+     * @returns {Promise<ContentPlatformModel.PageGetDetails>} - Success response
      * @name getPages
      * @summary: Get pages
      * @description: Retrieve a list of available pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
      */
-    getPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageGetResponse>;
+    getPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
      *   - Arg object
@@ -850,48 +903,6 @@ declare class Content {
      */
     getSEOMarkupSchemas({ title, active, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSEOMarkupSchemasParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchemaComponent>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name getSlideshowBySlug
-     * @summary: Get Slideshow
-     * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
-     */
-    getSlideshowBySlug({ slug, devicePlatform, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowGetResponse>} - Success response
-     * @name getSlideshows
-     * @summary: List Slideshows
-     * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
-     */
-    getSlideshows({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowGetResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Numeric ID allotted to a business account
-     *   on Fynd Platform
-     * @param {string} arg.applicationId - Numeric ID allotted to an application
-     *   created within a business account.
-     * @param {string} arg.devicePlatform - Filter slideshows by platform.
-     *   Acceptable values are: web, android, ios and all
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @returns {Paginator<ContentPlatformModel.SlideshowGetResponse>}
-     * @summary: List Slideshows
-     * @description: Use this API to list all Slideshows
-     */
-    getSlideshowsPaginator({ companyId, applicationId, devicePlatform, pageSize, }?: {
-        companyId: string;
-        applicationId: string;
-        devicePlatform: string;
-        pageSize?: number;
-    }): Paginator<ContentPlatformModel.SlideshowGetResponse>;
-    /**
      * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
      *   - Arg object
      *
@@ -904,32 +915,55 @@ declare class Content {
      */
     getSupportInformation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
     /**
-     * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesParam} arg
+     * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadResponse>}
+     * @returns {Promise<ContentPlatformModel.TranslateUiLabelsPage>} - Success response
+     * @name getTranslateUILabels
+     * @summary: Get Translate Ui Labels
+     * @description: Retrieves Translate Ui Labels with optional filtering by type, application, and company identifiers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabels/).
+     */
+    getTranslateUILabels({ templateThemeId, themeId, locale, type, requestHeaders }?: ContentPlatformApplicationValidator.GetTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabelsPage>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+     * @name getTranslateUILabelsById
+     * @summary: Get Resource Detail
+     * @description: Fetches detailed information for a specific Translate Ui Labels using its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabelsById/).
+     */
+    getTranslateUILabelsById({ id, requestHeaders }?: ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
+    /**
+     * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomObjectEntryBulkUploadDetails>}
      *   - Success response
      *
-     * @name importAppCustomObjectEntries
+     * @name importAppCustomObjectEntriesBySlug
      * @summary: Bulk custom object entries upload
-     * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntries/).
+     * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntriesBySlug/).
      */
-    importAppCustomObjectEntries({ definitionId, body, requestHeaders }?: ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectEntryBulkUploadResponse>;
+    importAppCustomObjectEntriesBySlug({ slug, body, requestHeaders }?: ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectEntryBulkUploadDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.RemoveInjectableTagParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.TagDeleteSuccessDetails>} - Success response
      * @name removeInjectableTag
      * @summary: Remove HTML tag
      * @description: Delete a specific injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
      */
-    removeInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.RemoveInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagDeleteSuccessResponse>;
+    removeInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.RemoveInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagDeleteSuccessDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.ResetDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -942,17 +976,17 @@ declare class Content {
      */
     resetDataLoader({ service, operationId, requestHeaders }?: ContentPlatformApplicationValidator.ResetDataLoaderParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DataLoaderResetResponseSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryParam} arg
+     * @param {ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<string>} - Success response
-     * @name sampleAppCustomObjectBulkEntry
+     * @name sampleAppCustomObjectBulkEntryBySlug
      * @summary: Download sample for custom object bulk entry
-     * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntry/).
+     * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntryBySlug/).
      */
-    sampleAppCustomObjectBulkEntry({ definitionId, requestHeaders }?: ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryParam, { responseHeaders }?: object): Promise<string>;
+    sampleAppCustomObjectBulkEntryBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.SampleAppCustomObjectBulkEntryBySlugParam, { responseHeaders }?: object): Promise<string>;
     /**
      * @param {ContentPlatformApplicationValidator.SelectDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -991,7 +1025,21 @@ declare class Content {
      */
     updateAnnouncementSchedule({ announcementId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAnnouncementScheduleParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionParam} arg
+     * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldByResourceSlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
+     *   - Success response
+     *
+     * @name updateAppCustomFieldByResourceSlug
+     * @summary: Create custom field entries for gives resource and resource slug
+     * @description: You can add a custom field using this endpoint to any resource by providing the resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldByResourceSlug/).
+     */
+    updateAppCustomFieldByResourceSlug({ resource, resourceSlug, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomFieldByResourceSlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -999,36 +1047,62 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>}
      *   - Success response
      *
-     * @name updateAppCustomFieldDefinition
+     * @name updateAppCustomFieldDefinitionBySlug
      * @summary: Update custom field definition
-     * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinition/).
+     * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinitionBySlug/).
      */
-    updateAppCustomFieldDefinition({ definitionId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
+    updateAppCustomFieldDefinitionBySlug({ slug, resource, namespace, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomFieldDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectParam} arg
+     * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectBySlugParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
-     * @name updateAppCustomObject
-     * @summary: Update custom object details
-     * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
-     */
-    updateAppCustomObject({ metaobjectId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
+     * @returns {Promise<ContentPlatformModel.CustomObjectBySlugSchema>} -
      *   Success response
-     * @name updateAppCustomObjectDefinition
-     * @summary: Update custom object definition
-     * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinition/).
+     * @name updateAppCustomObjectBySlug
+     * @summary: Update custom object details
+     * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectBySlug/).
      */
-    updateAppCustomObjectDefinition({ definitionId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
+    updateAppCustomObjectBySlug({ definitionSlug, slug, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBySlugSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>}
+     *   - Success response
+     *
+     * @name updateAppCustomObjectDefinitionBySlug
+     * @summary: Update custom object definition
+     * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinitionBySlug/).
+     */
+    updateAppCustomObjectDefinitionBySlug({ slug, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.ApplicationLanguage>} - Success response
+     * @name updateApplicationLanguageStatus
+     * @summary: Set app language
+     * @description: Update language status and settings for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationLanguageStatus/).
+     */
+    updateApplicationLanguageStatus({ locale, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ApplicationLanguage>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
+     * @name updateApplicationResourceTranslation
+     * @summary: Update app translation
+     * @description: Update existing translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationResourceTranslation/).
+     */
+    updateApplicationResourceTranslation({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1154,16 +1228,6 @@ declare class Content {
      */
     updateSEOConfiguration({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSEOConfigurationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name updateSlideshow
-     * @summary: Update a slideshow
-     * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
-     */
-    updateSlideshow({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
      *   - Arg object
      *
@@ -1175,7 +1239,31 @@ declare class Content {
      * @description: Modify information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
      */
     updateSupportInformation({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSupportInformationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
+     * @name updateTranslateUILabels
+     * @summary: Update Resource Detail
+     * @description: Modifies existing Translate Ui Labels properties including locale, type, and associated configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateTranslateUILabels/).
+     */
+    updateTranslateUILabels({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>} -
+     *   Success response
+     * @name upsertApplicationResourceTranslationInBulk
+     * @summary: Bulk update translations
+     * @description: Create or update multiple translations in a single request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/upsertApplicationResourceTranslationInBulk/).
+     */
+    upsertApplicationResourceTranslationInBulk({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>;
 }
 import ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
 import ContentPlatformModel = require("./ContentPlatformModel");
-import Paginator = require("../../common/Paginator");
