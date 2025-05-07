@@ -23,7 +23,7 @@ export = UserPlatformModel;
  * @property {number} [__v] - The version number of the attribute.
  */
 /**
- * @typedef UserAttributeDefinitionDetails
+ * @typedef UserAttributeDefinitionResp
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -55,102 +55,51 @@ export = UserPlatformModel;
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 /**
- * @typedef CreateUserAttribute
- * @property {boolean} [customer_overridden]
+ * @typedef CreateUserAttributePayload
+ * @property {boolean} [customer_overriden]
  * @property {Object} [attribute]
  */
 /**
  * @typedef CreateUserAttributeDefinition
- * @property {string} [name]
- * @property {string} [slug]
- * @property {string} [description]
- * @property {string} [type]
- * @property {boolean} [multi_value]
- * @property {boolean} [customer_editable]
- * @property {boolean} [encrypted]
- * @property {boolean} [pinned]
- * @property {number} [pin_order]
- * @property {string} [default_value]
- * @property {Object[]} [validations]
- */
-/**
- * @typedef CreateStoreFrontUsersPayload
- * @property {string} absolute_url - A valid URL linking to the file containing
- *   user data to be imported.
- * @property {string} file_format - The format of the file containing the user's
- *   data. Supported formats are CSV and XLSX.
- * @property {string} relative_url - A valid relative path to the file within
- *   the storage system. This path should not include the base URL or domain and
- *   must conform to the storage structure
- */
-/**
- * @typedef BulkUserExportSchema
- * @property {string} file_format - The format of the file in which you want to
- *   export data. Supported formats are CSV and XLSX.
- */
-/**
- * @typedef BulkActionModel
- * @property {string} _id - The Job ID associated with an Import or Export Job
- * @property {string} file_name - The name of the file
- * @property {string} file_format - The format of the uploaded file (e.g., CSV, XLSX).
- * @property {string} action_type - The type of bulk action being performed
- *   (e.g., import, export).
- * @property {CreatedBySchema} created_by
- * @property {BulkActionCountSchema} [count]
- * @property {string} [status] - The current status of the bulk action.
- * @property {BulkActionLinkSchema} [links]
- * @property {string} application_id - The unique identifier of the associated
- *   application.
- * @property {string} company_id - The unique identifier of the company
- *   associated with the bulk action.
- * @property {string} [created_at] - The timestamp when the bulk action was created.
- * @property {string} [updated_at] - The timestamp when the bulk action was last updated.
- */
-/**
- * @typedef CreatedBySchema
- * @property {string} name - The name of the user who initiated the operation.
- * @property {string} user_id - A unique identifier for the user who initiated
- *   the operation.
- */
-/**
- * @typedef BulkActionLinkSchema
- * @property {FileLinks} [file]
- * @property {FileLinks} [error]
- */
-/**
- * @typedef FileLinks
- * @property {string} [absolute_url] - The full URL of the file, including the
- *   domain and protocol, allowing direct access to the file from any location.
- * @property {string} [relative_url] - The relative path to the file within the
- *   storage system, excluding the base URL or domain. This path is specific to
- *   the storage structure.
- */
-/**
- * @typedef BulkActionCountSchema
- * @property {number} [total] - The total number of items to be processed.
- * @property {number} [success] - The number of successfully processed items.
- * @property {number} [error] - The number of items that failed to process.
+ * @property {string} [name] - The name of user attribute definition.
+ * @property {string} [slug] - The unique identifier of user attribute definition.
+ * @property {string} [description] - The description for the user attribute definition.
+ * @property {string} [type] - The attribute type for the user attribute definition.
+ * @property {boolean} [multi_value] - Identifier to specify if attribute will
+ *   have multiple values or not.
+ * @property {boolean} [customer_editable] - Identifier to specify if attribute
+ *   can be edited by the customer.
+ * @property {boolean} [encrypted] - Identifier to specify if attribute will be
+ *   stored in encrypted format.
+ * @property {boolean} [pinned] - Identifier to specify if the definition is
+ *   pinned or not.
+ * @property {number} [pin_order] - Pin order of the Attribute Definition.
+ * @property {Object} [default_value] - The default value for the User Attribute
+ *   Definition. Data type of the default value depends on the type of the
+ *   attribute definition type defined.
+ * @property {Object[]} [validations] - The custom validations that have been
+ *   set for this customer definition.
  */
 /**
  * @typedef BlockUserRequestSchema
- * @property {boolean} [status]
- * @property {string[]} [user_id]
- * @property {string} [reason]
+ * @property {boolean} status
+ * @property {string[]} user_id
+ * @property {string} reason
  */
 /**
  * @typedef ArchiveUserRequestSchema
- * @property {string} [user_id]
+ * @property {string} user_id
  */
 /**
  * @typedef UnDeleteUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
+ * @property {string} user_id
+ * @property {string} reason
+ * @property {string} reason_id
  */
 /**
  * @typedef BlockUserSuccess
@@ -174,17 +123,12 @@ export = UserPlatformModel;
  * @property {PaginationSchema} [page]
  */
 /**
- * @typedef BulkActionPaginationSchema
- * @property {BulkActionModel[]} [items] - Array of Bulk Action Documents
- * @property {PaginationSchema} [page]
- */
-/**
  * @typedef PaginationSchema
- * @property {number} [size] - The number of items per page.
- * @property {number} [item_total] - The total number of items across all pages.
- * @property {boolean} [has_next] - Indicates whether there are more pages to retrieve.
- * @property {string} [type] - The type of pagination used (eg Number).
- * @property {number} [current] - The current page number.
+ * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_next]
+ * @property {string} [type]
+ * @property {number} [current]
  */
 /**
  * @typedef SessionListResponseSchema
@@ -223,7 +167,7 @@ export = UserPlatformModel;
  * @typedef Conditions
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {string} [value]
+ * @property {Object} [value]
  * @property {string} [key]
  */
 /**
@@ -234,6 +178,7 @@ export = UserPlatformModel;
 /**
  * @typedef UserGroupResponseSchema
  * @property {Conditions[]} [conditions]
+ * @property {string[]} [blacklisted_users]
  * @property {UserResponseErrorSchema} [error]
  * @property {string} [name]
  * @property {string} [description]
@@ -244,6 +189,8 @@ export = UserPlatformModel;
  * @property {string} [type]
  * @property {number} [uid]
  * @property {string} [application_id]
+ * @property {string[]} [tags]
+ * @property {string} [category] - Category of the User group
  * @property {string} [created_at]
  * @property {string} [modified_at]
  * @property {number} [__v]
@@ -254,10 +201,20 @@ export = UserPlatformModel;
  * @property {PaginationSchema} [page]
  */
 /**
+ * @typedef UserGroupCategoriesResponseSchema
+ * @property {UserGroupCategory[]} [items]
+ */
+/**
+ * @typedef UserGroupCategory
+ * @property {string} [name] - Name of the User Group Category
+ * @property {string} [key] - Category key of the User group
+ * @property {string} [description] - Description of the User Group Category
+ */
+/**
  * @typedef ConditionsSchema
  * @property {string} [user_attribute_definition_id]
  * @property {string} [type]
- * @property {string} [value]
+ * @property {Object} [value]
  */
 /**
  * @typedef CreateUserGroup
@@ -266,6 +223,7 @@ export = UserPlatformModel;
  * @property {string} name
  * @property {string} description
  * @property {string} [file_url]
+ * @property {string[]} [blacklisted_users]
  */
 /**
  * @typedef CreateUserRequestSchema
@@ -274,7 +232,7 @@ export = UserPlatformModel;
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {string} [gender]
- * @property {string} [username]
+ * @property {string} username
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -285,8 +243,9 @@ export = UserPlatformModel;
  */
 /**
  * @typedef CreateUserSessionRequestSchema
- * @property {string} [domain]
- * @property {string} [user_id]
+ * @property {string} domain
+ * @property {string} user_id
+ * @property {number} [max_age]
  */
 /**
  * @typedef CreateUserSessionResponseSchema
@@ -304,6 +263,8 @@ export = UserPlatformModel;
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
+ * @property {AccountLockout} [account_lockout]
+ * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -331,9 +292,39 @@ export = UserPlatformModel;
  * @property {string} [background_color]
  */
 /**
+ * @typedef PasswordConfigs
+ * @property {number} [length]
+ * @property {boolean} [require_special_character]
+ * @property {boolean} [require_number]
+ * @property {boolean} [require_capital_character]
+ */
+/**
+ * @typedef PasswordHistory
+ * @property {boolean} [required]
+ * @property {number} [count]
+ */
+/**
+ * @typedef PasswordExpiry
+ * @property {boolean} [required]
+ * @property {number} [duration]
+ */
+/**
+ * @typedef PasswordSettings
+ * @property {PasswordConfigs} [configs]
+ * @property {PasswordHistory} [history]
+ * @property {PasswordExpiry} [expiry]
+ */
+/**
+ * @typedef AccountLockout
+ * @property {boolean} [enable]
+ * @property {number} [attempts]
+ * @property {number} [duration]
+ */
+/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
+ * @property {string} [via]
  */
 /**
  * @typedef MetaSchema
@@ -347,9 +338,14 @@ export = UserPlatformModel;
  * @property {boolean} [apple]
  */
 /**
+ * @typedef PlatformPassword
+ * @property {boolean} [is_required]
+ */
+/**
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef PlatformEmail
@@ -365,6 +361,7 @@ export = UserPlatformModel;
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef RegisterRequiredFieldsEmail
@@ -385,7 +382,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -397,19 +394,6 @@ export = UserPlatformModel;
 /**
  * @typedef DeleteAccountConsent
  * @property {string} [consent_text]
- */
-/**
- * @typedef GetUserTimeline
- * @property {string} [delete_on] - Denotes the date on which the user will be deleted
- * @property {UserTimeline[]} [timeline] - List of user timeline events
- */
-/**
- * @typedef UserTimeline
- * @property {string} [date] - Denotes the date at which this event occured
- * @property {string} [title] - Title of the timeline event
- * @property {string} [type] - Type of the event, indicating its status
- * @property {boolean} [visible] - Indicates whether the event should be shown on the UI
- * @property {string} [sub_title] - Additional information about the event
  */
 /**
  * @typedef Facebook
@@ -453,10 +437,14 @@ export = UserPlatformModel;
  * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
  *   type json. Array of user data. Must have `action` field and one of
  *   `phone_number`, `email` or `user_id` field in object
+ * @property {string[]} [whitelisted_users] - List of user ids to be whitelisted
+ *   from user group
+ * @property {string[]} [blacklisted_users] - List of user ids to be blacklisted
+ *   from user group
  */
 /**
  * @typedef UserGroupUpdateData
- * @property {string} [user_id] - Must be valid ID of existing user
+ * @property {string} [user_id] - Must be valid mongodb objectid of existing user
  * @property {string} [phone_number] - Phone number of registered user
  * @property {string} [email] - Email of registered user
  * @property {string} action
@@ -488,9 +476,16 @@ export = UserPlatformModel;
  * @property {string} [country_code]
  */
 /**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
+ */
+/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [password_last_modified]
+ * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -507,10 +502,13 @@ export = UserPlatformModel;
  * @property {string} [updated_at]
  * @property {string} [external_id]
  * @property {string} [rr_id]
- * @property {UserConsent} [consent]
  */
 /**
  * @typedef UserSearchSchema
+ * @property {number} [__v] - Version indicator.
+ * @property {boolean} [has_old_password_hash] - Indicates if record contains
+ *   old password hash.
+ * @property {DebugInfo} [debug]
  * @property {string} [application_id]
  * @property {string} [user_id]
  * @property {string} [first_name]
@@ -531,8 +529,11 @@ export = UserPlatformModel;
  * @property {string} [rr_id]
  * @property {boolean} [archive]
  * @property {string} [status]
- * @property {string} [deleted_on]
- * @property {UserConsent} [consent]
+ */
+/**
+ * @typedef DebugInfo
+ * @property {string} [source] - Source service name.
+ * @property {string} [platform] - Platform type(eg; platform, partner).
  */
 /**
  * @typedef PhoneNumber
@@ -550,18 +551,63 @@ export = UserPlatformModel;
  * @property {boolean} [verified] - Is the email verified.
  */
 /**
- * @typedef UserConsent
- * @property {PrivacyPolicyConsentSchema} [privacy_policy]
+ * @typedef BulkUpdateUserAttributesBody
+ * @property {string[]} [users] - Array of user IDs to update (required unless
+ *   user_file_url is provided)
+ * @property {string} [user_file_url] - URL to a CSV file containing user IDs
+ *   (required unless users array is provided)
+ * @property {BulkUpdateUserSameAttributes[]} [attribute] - Array of attribute
+ *   key-value pairs to update for all users
  */
 /**
- * @typedef PrivacyPolicyConsentSchema
- * @property {boolean} [value] - Whether the user has consented to the privacy policy
- * @property {string} [updated_at] - When the consent was last updated
+ * @typedef BulkUpdateUserSameAttributes
+ * @property {string} key - Slug of the attribute definition
+ * @property {Object} value - Value to set for all users (type depends on the
+ *   attribute type)
+ */
+/**
+ * @typedef BulkUpdatePerUserAttributesBody
+ * @property {UserDetailAttributes[]} user_detail_attributes - Object with user
+ *   IDs and attribute arrays
+ */
+/**
+ * @typedef UserDetailAttributes
+ * @property {string} [user_id] - Unique identifier of user.
+ * @property {BulkUpdatePerUserAttributes[]} [attributes] - Array of attribute
+ *   key-value pairs to update for this user
+ */
+/**
+ * @typedef BulkUpdatePerUserAttributes
+ * @property {string} key - Slug of the attribute definition
+ * @property {Object} value - Value to set (type depends on the attribute type)
+ */
+/**
+ * @typedef BulkOperation
+ * @property {boolean} [success] - Whether the operation was successful
+ * @property {number} [total] - Total number of users to process
+ * @property {number} [processed] - Number of users successfully processed
+ * @property {number} [errors_count] - Number of errors encountered
+ * @property {BulkOperationError[]} [errors] - Array of errors encountered
+ *   during processing
+ * @property {string} [processing_type] - Type of processing used (synchronous
+ *   or asynchronous)
+ * @property {Object} [error_summary] - Contains key indicating reason of error
+ */
+/**
+ * @typedef BulkOperationError
+ * @property {string} [user_id] - ID of the user for which the error occurred
+ * @property {string} [error] - Error message
+ */
+/**
+ * @typedef BulkOperationAsync
+ * @property {boolean} [success] - Whether the request was accepted for processing
+ * @property {string} [request_id] - ID of the request that can be used to check status
+ * @property {string} [processing_type] - Type of processing being used
  */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
+    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionResp, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttributePayload, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, UserGroupCategoriesResponseSchema, UserGroupCategory, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, PlatformPassword, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserPasswordHistory, UserSchema, UserSearchSchema, DebugInfo, PhoneNumber, Email, BulkUpdateUserAttributesBody, BulkUpdateUserSameAttributes, BulkUpdatePerUserAttributesBody, UserDetailAttributes, BulkUpdatePerUserAttributes, BulkOperation, BulkOperationError, BulkOperationAsync };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -633,9 +679,9 @@ type UserAttributeDefinition = {
      */
     __v?: number;
 };
-/** @returns {UserAttributeDefinitionDetails} */
-declare function UserAttributeDefinitionDetails(): UserAttributeDefinitionDetails;
-type UserAttributeDefinitionDetails = {
+/** @returns {UserAttributeDefinitionResp} */
+declare function UserAttributeDefinitionResp(): UserAttributeDefinitionResp;
+type UserAttributeDefinitionResp = {
     /**
      * - The unique identifier for the attribute definition.
      */
@@ -741,174 +787,89 @@ type UserAttribute = {
     /**
      * - Whether the attribute is customer-editable.
      */
-    customer_overridden?: boolean;
+    customer_overriden?: boolean;
     attribute?: any;
     updated_by?: string;
 };
-/** @returns {CreateUserAttribute} */
-declare function CreateUserAttribute(): CreateUserAttribute;
-type CreateUserAttribute = {
-    customer_overridden?: boolean;
+/** @returns {CreateUserAttributePayload} */
+declare function CreateUserAttributePayload(): CreateUserAttributePayload;
+type CreateUserAttributePayload = {
+    customer_overriden?: boolean;
     attribute?: any;
 };
 /** @returns {CreateUserAttributeDefinition} */
 declare function CreateUserAttributeDefinition(): CreateUserAttributeDefinition;
 type CreateUserAttributeDefinition = {
+    /**
+     * - The name of user attribute definition.
+     */
     name?: string;
+    /**
+     * - The unique identifier of user attribute definition.
+     */
     slug?: string;
+    /**
+     * - The description for the user attribute definition.
+     */
     description?: string;
+    /**
+     * - The attribute type for the user attribute definition.
+     */
     type?: string;
+    /**
+     * - Identifier to specify if attribute will
+     * have multiple values or not.
+     */
     multi_value?: boolean;
+    /**
+     * - Identifier to specify if attribute
+     * can be edited by the customer.
+     */
     customer_editable?: boolean;
+    /**
+     * - Identifier to specify if attribute will be
+     * stored in encrypted format.
+     */
     encrypted?: boolean;
+    /**
+     * - Identifier to specify if the definition is
+     * pinned or not.
+     */
     pinned?: boolean;
+    /**
+     * - Pin order of the Attribute Definition.
+     */
     pin_order?: number;
-    default_value?: string;
+    /**
+     * - The default value for the User Attribute
+     * Definition. Data type of the default value depends on the type of the
+     * attribute definition type defined.
+     */
+    default_value?: any;
+    /**
+     * - The custom validations that have been
+     * set for this customer definition.
+     */
     validations?: any[];
-};
-/** @returns {CreateStoreFrontUsersPayload} */
-declare function CreateStoreFrontUsersPayload(): CreateStoreFrontUsersPayload;
-type CreateStoreFrontUsersPayload = {
-    /**
-     * - A valid URL linking to the file containing
-     * user data to be imported.
-     */
-    absolute_url: string;
-    /**
-     * - The format of the file containing the user's
-     * data. Supported formats are CSV and XLSX.
-     */
-    file_format: string;
-    /**
-     * - A valid relative path to the file within
-     * the storage system. This path should not include the base URL or domain and
-     * must conform to the storage structure
-     */
-    relative_url: string;
-};
-/** @returns {BulkUserExportSchema} */
-declare function BulkUserExportSchema(): BulkUserExportSchema;
-type BulkUserExportSchema = {
-    /**
-     * - The format of the file in which you want to
-     * export data. Supported formats are CSV and XLSX.
-     */
-    file_format: string;
-};
-/** @returns {BulkActionModel} */
-declare function BulkActionModel(): BulkActionModel;
-type BulkActionModel = {
-    /**
-     * - The Job ID associated with an Import or Export Job
-     */
-    _id: string;
-    /**
-     * - The name of the file
-     */
-    file_name: string;
-    /**
-     * - The format of the uploaded file (e.g., CSV, XLSX).
-     */
-    file_format: string;
-    /**
-     * - The type of bulk action being performed
-     * (e.g., import, export).
-     */
-    action_type: string;
-    created_by: CreatedBySchema;
-    count?: BulkActionCountSchema;
-    /**
-     * - The current status of the bulk action.
-     */
-    status?: string;
-    links?: BulkActionLinkSchema;
-    /**
-     * - The unique identifier of the associated
-     * application.
-     */
-    application_id: string;
-    /**
-     * - The unique identifier of the company
-     * associated with the bulk action.
-     */
-    company_id: string;
-    /**
-     * - The timestamp when the bulk action was created.
-     */
-    created_at?: string;
-    /**
-     * - The timestamp when the bulk action was last updated.
-     */
-    updated_at?: string;
-};
-/** @returns {CreatedBySchema} */
-declare function CreatedBySchema(): CreatedBySchema;
-type CreatedBySchema = {
-    /**
-     * - The name of the user who initiated the operation.
-     */
-    name: string;
-    /**
-     * - A unique identifier for the user who initiated
-     * the operation.
-     */
-    user_id: string;
-};
-/** @returns {BulkActionLinkSchema} */
-declare function BulkActionLinkSchema(): BulkActionLinkSchema;
-type BulkActionLinkSchema = {
-    file?: FileLinks;
-    error?: FileLinks;
-};
-/** @returns {FileLinks} */
-declare function FileLinks(): FileLinks;
-type FileLinks = {
-    /**
-     * - The full URL of the file, including the
-     * domain and protocol, allowing direct access to the file from any location.
-     */
-    absolute_url?: string;
-    /**
-     * - The relative path to the file within the
-     * storage system, excluding the base URL or domain. This path is specific to
-     * the storage structure.
-     */
-    relative_url?: string;
-};
-/** @returns {BulkActionCountSchema} */
-declare function BulkActionCountSchema(): BulkActionCountSchema;
-type BulkActionCountSchema = {
-    /**
-     * - The total number of items to be processed.
-     */
-    total?: number;
-    /**
-     * - The number of successfully processed items.
-     */
-    success?: number;
-    /**
-     * - The number of items that failed to process.
-     */
-    error?: number;
 };
 /** @returns {BlockUserRequestSchema} */
 declare function BlockUserRequestSchema(): BlockUserRequestSchema;
 type BlockUserRequestSchema = {
-    status?: boolean;
-    user_id?: string[];
-    reason?: string;
+    status: boolean;
+    user_id: string[];
+    reason: string;
 };
 /** @returns {ArchiveUserRequestSchema} */
 declare function ArchiveUserRequestSchema(): ArchiveUserRequestSchema;
 type ArchiveUserRequestSchema = {
-    user_id?: string;
+    user_id: string;
 };
 /** @returns {UnDeleteUserRequestSchema} */
 declare function UnDeleteUserRequestSchema(): UnDeleteUserRequestSchema;
 type UnDeleteUserRequestSchema = {
-    user_id?: string;
-    reason?: string;
-    reason_id?: string;
+    user_id: string;
+    reason: string;
+    reason_id: string;
 };
 /** @returns {BlockUserSuccess} */
 declare function BlockUserSuccess(): BlockUserSuccess;
@@ -936,37 +897,13 @@ type CustomerListResponseSchema = {
     items?: UserSearchSchema[];
     page?: PaginationSchema;
 };
-/** @returns {BulkActionPaginationSchema} */
-declare function BulkActionPaginationSchema(): BulkActionPaginationSchema;
-type BulkActionPaginationSchema = {
-    /**
-     * - Array of Bulk Action Documents
-     */
-    items?: BulkActionModel[];
-    page?: PaginationSchema;
-};
 /** @returns {PaginationSchema} */
 declare function PaginationSchema(): PaginationSchema;
 type PaginationSchema = {
-    /**
-     * - The number of items per page.
-     */
     size?: number;
-    /**
-     * - The total number of items across all pages.
-     */
     item_total?: number;
-    /**
-     * - Indicates whether there are more pages to retrieve.
-     */
     has_next?: boolean;
-    /**
-     * - The type of pagination used (eg Number).
-     */
     type?: string;
-    /**
-     * - The current page number.
-     */
     current?: number;
 };
 /** @returns {SessionListResponseSchema} */
@@ -1015,7 +952,7 @@ declare function Conditions(): Conditions;
 type Conditions = {
     user_attribute_definition_id?: string;
     type?: string;
-    value?: string;
+    value?: any;
     key?: string;
 };
 /** @returns {UserResponseErrorSchema} */
@@ -1028,6 +965,7 @@ type UserResponseErrorSchema = {
 declare function UserGroupResponseSchema(): UserGroupResponseSchema;
 type UserGroupResponseSchema = {
     conditions?: Conditions[];
+    blacklisted_users?: string[];
     error?: UserResponseErrorSchema;
     name?: string;
     description?: string;
@@ -1038,6 +976,11 @@ type UserGroupResponseSchema = {
     type?: string;
     uid?: number;
     application_id?: string;
+    tags?: string[];
+    /**
+     * - Category of the User group
+     */
+    category?: string;
     created_at?: string;
     modified_at?: string;
     __v?: number;
@@ -1048,12 +991,33 @@ type UserGroupListResponseSchema = {
     items?: UserGroupResponseSchema[];
     page?: PaginationSchema;
 };
+/** @returns {UserGroupCategoriesResponseSchema} */
+declare function UserGroupCategoriesResponseSchema(): UserGroupCategoriesResponseSchema;
+type UserGroupCategoriesResponseSchema = {
+    items?: UserGroupCategory[];
+};
+/** @returns {UserGroupCategory} */
+declare function UserGroupCategory(): UserGroupCategory;
+type UserGroupCategory = {
+    /**
+     * - Name of the User Group Category
+     */
+    name?: string;
+    /**
+     * - Category key of the User group
+     */
+    key?: string;
+    /**
+     * - Description of the User Group Category
+     */
+    description?: string;
+};
 /** @returns {ConditionsSchema} */
 declare function ConditionsSchema(): ConditionsSchema;
 type ConditionsSchema = {
     user_attribute_definition_id?: string;
     type?: string;
-    value?: string;
+    value?: any;
 };
 /** @returns {CreateUserGroup} */
 declare function CreateUserGroup(): CreateUserGroup;
@@ -1063,6 +1027,7 @@ type CreateUserGroup = {
     name: string;
     description: string;
     file_url?: string;
+    blacklisted_users?: string[];
 };
 /** @returns {CreateUserRequestSchema} */
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
@@ -1072,7 +1037,7 @@ type CreateUserRequestSchema = {
     first_name?: string;
     last_name?: string;
     gender?: string;
-    username?: string;
+    username: string;
     meta?: any;
     external_id?: string;
     rr_id?: string;
@@ -1085,8 +1050,9 @@ type CreateUserResponseSchema = {
 /** @returns {CreateUserSessionRequestSchema} */
 declare function CreateUserSessionRequestSchema(): CreateUserSessionRequestSchema;
 type CreateUserSessionRequestSchema = {
-    domain?: string;
-    user_id?: string;
+    domain: string;
+    user_id: string;
+    max_age?: number;
 };
 /** @returns {CreateUserSessionResponseSchema} */
 declare function CreateUserSessionResponseSchema(): CreateUserSessionResponseSchema;
@@ -1106,6 +1072,8 @@ type PlatformSchema = {
     active?: boolean;
     forgot_password?: boolean;
     login?: Login;
+    account_lockout?: AccountLockout;
+    password_settings?: PasswordSettings;
     skip_captcha?: boolean;
     name?: string;
     meta?: MetaSchema;
@@ -1133,11 +1101,46 @@ type LookAndFeel = {
     card_position?: string;
     background_color?: string;
 };
+/** @returns {PasswordConfigs} */
+declare function PasswordConfigs(): PasswordConfigs;
+type PasswordConfigs = {
+    length?: number;
+    require_special_character?: boolean;
+    require_number?: boolean;
+    require_capital_character?: boolean;
+};
+/** @returns {PasswordHistory} */
+declare function PasswordHistory(): PasswordHistory;
+type PasswordHistory = {
+    required?: boolean;
+    count?: number;
+};
+/** @returns {PasswordExpiry} */
+declare function PasswordExpiry(): PasswordExpiry;
+type PasswordExpiry = {
+    required?: boolean;
+    duration?: number;
+};
+/** @returns {PasswordSettings} */
+declare function PasswordSettings(): PasswordSettings;
+type PasswordSettings = {
+    configs?: PasswordConfigs;
+    history?: PasswordHistory;
+    expiry?: PasswordExpiry;
+};
+/** @returns {AccountLockout} */
+declare function AccountLockout(): AccountLockout;
+type AccountLockout = {
+    enable?: boolean;
+    attempts?: number;
+    duration?: number;
+};
 /** @returns {Login} */
 declare function Login(): Login;
 type Login = {
     password?: boolean;
     otp?: boolean;
+    via?: string;
 };
 /** @returns {MetaSchema} */
 declare function MetaSchema(): MetaSchema;
@@ -1152,11 +1155,17 @@ type Social = {
     google?: boolean;
     apple?: boolean;
 };
+/** @returns {PlatformPassword} */
+declare function PlatformPassword(): PlatformPassword;
+type PlatformPassword = {
+    is_required?: boolean;
+};
 /** @returns {RequiredFields} */
 declare function RequiredFields(): RequiredFields;
 type RequiredFields = {
     email?: PlatformEmail;
     mobile?: PlatformMobile;
+    password?: PlatformPassword;
 };
 /** @returns {PlatformEmail} */
 declare function PlatformEmail(): PlatformEmail;
@@ -1175,6 +1184,7 @@ declare function RegisterRequiredFields(): RegisterRequiredFields;
 type RegisterRequiredFields = {
     email?: RegisterRequiredFieldsEmail;
     mobile?: RegisterRequiredFieldsMobile;
+    password?: PlatformPassword;
 };
 /** @returns {RegisterRequiredFieldsEmail} */
 declare function RegisterRequiredFieldsEmail(): RegisterRequiredFieldsEmail;
@@ -1199,7 +1209,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */
@@ -1213,42 +1223,6 @@ type DeleteAccountReasons = {
 declare function DeleteAccountConsent(): DeleteAccountConsent;
 type DeleteAccountConsent = {
     consent_text?: string;
-};
-/** @returns {GetUserTimeline} */
-declare function GetUserTimeline(): GetUserTimeline;
-type GetUserTimeline = {
-    /**
-     * - Denotes the date on which the user will be deleted
-     */
-    delete_on?: string;
-    /**
-     * - List of user timeline events
-     */
-    timeline?: UserTimeline[];
-};
-/** @returns {UserTimeline} */
-declare function UserTimeline(): UserTimeline;
-type UserTimeline = {
-    /**
-     * - Denotes the date at which this event occured
-     */
-    date?: string;
-    /**
-     * - Title of the timeline event
-     */
-    title?: string;
-    /**
-     * - Type of the event, indicating its status
-     */
-    type?: string;
-    /**
-     * - Indicates whether the event should be shown on the UI
-     */
-    visible?: boolean;
-    /**
-     * - Additional information about the event
-     */
-    sub_title?: string;
 };
 /** @returns {Facebook} */
 declare function Facebook(): Facebook;
@@ -1307,12 +1281,22 @@ type PartialUserGroupUpdateSchema = {
      * `phone_number`, `email` or `user_id` field in object
      */
     user_data?: UserGroupUpdateData[];
+    /**
+     * - List of user ids to be whitelisted
+     * from user group
+     */
+    whitelisted_users?: string[];
+    /**
+     * - List of user ids to be blacklisted
+     * from user group
+     */
+    blacklisted_users?: string[];
 };
 /** @returns {UserGroupUpdateData} */
 declare function UserGroupUpdateData(): UserGroupUpdateData;
 type UserGroupUpdateData = {
     /**
-     * - Must be valid ID of existing user
+     * - Must be valid mongodb objectid of existing user
      */
     user_id?: string;
     /**
@@ -1354,11 +1338,19 @@ type UserPhoneNumbers = {
     phone?: string;
     country_code?: string;
 };
+/** @returns {UserPasswordHistory} */
+declare function UserPasswordHistory(): UserPasswordHistory;
+type UserPasswordHistory = {
+    salt?: string;
+    hash?: string;
+};
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
     application_id?: string;
     user_id?: string;
+    password_last_modified?: string;
+    password_history?: UserPasswordHistory[];
     first_name?: string;
     meta?: any;
     last_name?: string;
@@ -1375,11 +1367,20 @@ type UserSchema = {
     updated_at?: string;
     external_id?: string;
     rr_id?: string;
-    consent?: UserConsent;
 };
 /** @returns {UserSearchSchema} */
 declare function UserSearchSchema(): UserSearchSchema;
 type UserSearchSchema = {
+    /**
+     * - Version indicator.
+     */
+    __v?: number;
+    /**
+     * - Indicates if record contains
+     * old password hash.
+     */
+    has_old_password_hash?: boolean;
+    debug?: DebugInfo;
     application_id?: string;
     user_id?: string;
     first_name?: string;
@@ -1400,8 +1401,18 @@ type UserSearchSchema = {
     rr_id?: string;
     archive?: boolean;
     status?: string;
-    deleted_on?: string;
-    consent?: UserConsent;
+};
+/** @returns {DebugInfo} */
+declare function DebugInfo(): DebugInfo;
+type DebugInfo = {
+    /**
+     * - Source service name.
+     */
+    source?: string;
+    /**
+     * - Platform type(eg; platform, partner).
+     */
+    platform?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
@@ -1447,20 +1458,131 @@ type Email = {
      */
     verified?: boolean;
 };
-/** @returns {UserConsent} */
-declare function UserConsent(): UserConsent;
-type UserConsent = {
-    privacy_policy?: PrivacyPolicyConsentSchema;
+/** @returns {BulkUpdateUserAttributesBody} */
+declare function BulkUpdateUserAttributesBody(): BulkUpdateUserAttributesBody;
+type BulkUpdateUserAttributesBody = {
+    /**
+     * - Array of user IDs to update (required unless
+     * user_file_url is provided)
+     */
+    users?: string[];
+    /**
+     * - URL to a CSV file containing user IDs
+     * (required unless users array is provided)
+     */
+    user_file_url?: string;
+    /**
+     * - Array of attribute
+     * key-value pairs to update for all users
+     */
+    attribute?: BulkUpdateUserSameAttributes[];
 };
-/** @returns {PrivacyPolicyConsentSchema} */
-declare function PrivacyPolicyConsentSchema(): PrivacyPolicyConsentSchema;
-type PrivacyPolicyConsentSchema = {
+/** @returns {BulkUpdateUserSameAttributes} */
+declare function BulkUpdateUserSameAttributes(): BulkUpdateUserSameAttributes;
+type BulkUpdateUserSameAttributes = {
     /**
-     * - Whether the user has consented to the privacy policy
+     * - Slug of the attribute definition
      */
-    value?: boolean;
+    key: string;
     /**
-     * - When the consent was last updated
+     * - Value to set for all users (type depends on the
+     * attribute type)
      */
-    updated_at?: string;
+    value: any;
+};
+/** @returns {BulkUpdatePerUserAttributesBody} */
+declare function BulkUpdatePerUserAttributesBody(): BulkUpdatePerUserAttributesBody;
+type BulkUpdatePerUserAttributesBody = {
+    /**
+     * - Object with user
+     * IDs and attribute arrays
+     */
+    user_detail_attributes: UserDetailAttributes[];
+};
+/** @returns {UserDetailAttributes} */
+declare function UserDetailAttributes(): UserDetailAttributes;
+type UserDetailAttributes = {
+    /**
+     * - Unique identifier of user.
+     */
+    user_id?: string;
+    /**
+     * - Array of attribute
+     * key-value pairs to update for this user
+     */
+    attributes?: BulkUpdatePerUserAttributes[];
+};
+/** @returns {BulkUpdatePerUserAttributes} */
+declare function BulkUpdatePerUserAttributes(): BulkUpdatePerUserAttributes;
+type BulkUpdatePerUserAttributes = {
+    /**
+     * - Slug of the attribute definition
+     */
+    key: string;
+    /**
+     * - Value to set (type depends on the attribute type)
+     */
+    value: any;
+};
+/** @returns {BulkOperation} */
+declare function BulkOperation(): BulkOperation;
+type BulkOperation = {
+    /**
+     * - Whether the operation was successful
+     */
+    success?: boolean;
+    /**
+     * - Total number of users to process
+     */
+    total?: number;
+    /**
+     * - Number of users successfully processed
+     */
+    processed?: number;
+    /**
+     * - Number of errors encountered
+     */
+    errors_count?: number;
+    /**
+     * - Array of errors encountered
+     * during processing
+     */
+    errors?: BulkOperationError[];
+    /**
+     * - Type of processing used (synchronous
+     * or asynchronous)
+     */
+    processing_type?: string;
+    /**
+     * - Contains key indicating reason of error
+     */
+    error_summary?: any;
+};
+/** @returns {BulkOperationError} */
+declare function BulkOperationError(): BulkOperationError;
+type BulkOperationError = {
+    /**
+     * - ID of the user for which the error occurred
+     */
+    user_id?: string;
+    /**
+     * - Error message
+     */
+    error?: string;
+};
+/** @returns {BulkOperationAsync} */
+declare function BulkOperationAsync(): BulkOperationAsync;
+type BulkOperationAsync = {
+    /**
+     * - Whether the request was accepted for processing
+     */
+    success?: boolean;
+    /**
+     * - ID of the request that can be used to check status
+     */
+    request_id?: string;
+    /**
+     * - Type of processing being used
+     */
+    processing_type?: string;
 };

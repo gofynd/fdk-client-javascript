@@ -69,14 +69,16 @@ declare class FileStorage {
      * @param {string} namespace
      * @param {number} size
      * @param {number} tags
+     * @param {string} enc_key
      */
-    upload({ data, file_name, content_type, namespace, size, tags, }?: {
+    upload({ data, file_name, content_type, namespace, size, tags, enc_key, }?: {
         data: any;
         file_name: any;
         content_type: any;
         namespace: any;
         size: any;
         tags: any;
+        enc_key: any;
     }): Promise<any>;
 }
 import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");

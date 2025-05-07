@@ -1,3 +1,2187 @@
+# CHANGE LOG (1.10.5-2) - 1.10.5
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>UpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getItemCount
+
+- ##### What's New
+	- [Added] property <code>user_cart_article_count</code> of schema <code>CartItemCount</code> in response with status code 200
+
+
+#### getCoupons
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>available_coupon_list[].uid</code> of schema <code>Coupon</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] property <code>error</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>available_promotions[].promotion_type</code> of schema <code>PromotionOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].article_price</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].available_sizes</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].size</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].medias</code> of schema <code>PromotionOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].is_bank_offer</code> of schema <code>PromotionOffer</code> in response with status code 200
+
+
+#### getLadderOffers
+
+- ##### What's New
+	- [Added] property <code>error</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].article_price</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].available_sizes</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].size</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>available_offers[].promotion_type</code> of schema <code>LadderPriceOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].medias</code> of schema <code>LadderPriceOffer</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartShipments</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartShipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>shipments[].items[].product.action.page.type</code>, <code>shipments[].items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>shipments[].items[].charges[].meta</code>, <code>shipments[].items[].charges[].amount</code>, <code>shipments[].items[].charges[].name</code>, <code>shipments[].items[].charges[].allow_refund</code>, <code>shipments[].items[].charges[].code</code>, <code>shipments[].items[].charges[].type</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>CartCheckoutDetailRequestObject</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>CartCheckoutDetailPayload</code> in request body
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>CartCheckoutDetailV2RequestObject</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getPaymentPromotionOffers
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>promotions[].promotion_type</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>promotions[].medias</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+
+
+#### getCartMetaConfigs
+
+- ##### What's New
+	- [Added] property <code>data[].app_id</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].company_id</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].updated_on</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].last_modified_by</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].min_cart_value</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].max_cart_value</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].bulk_coupons</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].max_cart_items</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gift_display_text</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].delivery_charges</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].revenue_engine_coupon</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gift_pricing</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].enabled</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].is_active</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].order_placing</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].allow_coupon_with_rewards</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gst_input</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].staff_selection</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].placing_for_customer</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].hide_on_storefront</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].pan_card</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].is_universal</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].empty_cart</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].international_delivery_charges</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data[].article_tags</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+
+#### getCartMetaConfig
+
+- ##### What's New
+	- [Added] property <code>data.empty_cart</code> of schema <code>CartConfigDetailObj</code> in response with status code 200
+	- [Added] property <code>error</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>isBankOffer</code> (type: <code>boolean</code>)
+
+
+
+#### addItemsv2
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>addItemsv2</code>
+
+
+
+### Configuration
+
+
+
+#### getApplication
+
+- ##### What's New
+	- [Added] property <code>redirections[]._id</code> of schema <code>ApplicationRedirections</code> in response with status code 200
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>is_sis_enabled</code> of schema <code>Application</code> in response with status code 200
+	- [Added] property <code>company_created_on</code> of schema <code>Application</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>tokens[].created_by</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getOwnerInfo
+
+- ##### What's New
+	- [Added] property <code>application_info.domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>application_info.domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>application_info.tokens[].created_by</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getBasicDetails
+
+- ##### What's New
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### signUrls
+
+- ##### What's New
+	- [Added] property <code>enc_url_mapping</code> of schema <code>SignUrl</code> in request body
+
+
+### Logistic
+
+
+
+#### createShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getQCPromise
+
+- ##### What's New
+	- [Added] method <code>getQCPromise</code>
+
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.is_active</code> of schema <code>Shipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+
+
+### Theme
+
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>previewId</code> (type: <code>string</code>)
+
+
+
+## Partner Client
+
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### saveOrganizationLevelProxy
+
+- ##### What's New
+	- [Added] property <code>headers</code> of schema <code>ProxyFile</code> in request body
+
+
+#### saveProxyDetails
+
+- ##### What's New
+	- [Added] property <code>headers</code> of schema <code>ProxyFile</code> in request body
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### createCoupon
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Added] property <code>is_plt_bypass</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Added] <code>data.ownership.payable_category</code> made required in response with status code 201
+	- [Added] property <code>data.medias</code> of schema <code>CouponDetailObj</code> in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_type</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_prefix</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_counts</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 201
+	- [Breaking] [Deleted] Default value from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>data._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getCoupons
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] <code>items[].ownership.payable_category</code> made required in response with status code 200
+	- [Added] property <code>items[].draft</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].review</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].rejected</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].approved</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].identifiers</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].validity</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].rule</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] property <code>items[].is_archived</code> of schema <code>CouponObj</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>draft</code> of schema <code>CouponsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>review</code> of schema <code>CouponsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>rejected</code> of schema <code>CouponsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>approved</code> of schema <code>CouponsResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>createdBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewedBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>status</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>items[]._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[]._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>items[]._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+
+
+#### getCouponById
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Added] property <code>medias</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Added] property <code>is_plt_bypass</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>coupon_prefix</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>1</code> from property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>reason</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>number</code> of property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in response with status code 200
+
+
+#### updateCoupon
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Added] property <code>medias</code> of schema <code>CouponUpdate</code> in request body
+	- [Added] property <code>is_plt_bypass</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>data.date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Added] <code>data.ownership.payable_category</code> made required in response with status code 200
+	- [Added] property <code>data.medias</code> of schema <code>CouponDetailObj</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>coupon_prefix</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] Default value from <code>1</code> from property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>reason</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>draft</code> from property <code>data._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>number</code> of property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in request body
+
+
+#### deleteCoupon
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCoupon</code>
+
+
+
+#### getPromotions
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].ownership.payable_category</code> made required in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[].date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Added] property <code>items[].draft</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] property <code>items[].review</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] property <code>items[].rejected</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] property <code>items[].approved</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] property <code>items[].promotion_type</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] property <code>items[].is_archived</code> of schema <code>PromotionListItem</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>draft</code> of schema <code>PromotionsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>review</code> of schema <code>PromotionsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>rejected</code> of schema <code>PromotionsResponseObject</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>approved</code> of schema <code>PromotionsResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>createdBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewedBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>status</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+
+
+#### createPromotion
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in request body
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Added] property <code>_id</code> of schema <code>PromotionAdd</code> in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 201
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 201
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 201
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Added] property <code>draft</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>review</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>rejected</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>approved</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>offer_counts</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>offer_prefix</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>custom_content</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>medias</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>offer_type</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>visibility</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in request body
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in request body
+	- [Breaking] [Deleted] property <code>is_processed</code> of schema <code>PromotionAdd</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>post_order_action.action_date</code> of schema <code>PromotionAction</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 201
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>post_order_action.action_date</code> of schema <code>PromotionAction</code> in response with status code 201
+	- [Breaking] [Deleted] Default value from property <code>is_archived</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Breaking] [Deleted] Default value from property <code>is_bank_offer</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getPromotionById
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 200
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>medias</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>visibility</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_prefix</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>custom_content</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_counts</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_type</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>post_order_action.action_date</code> of schema <code>PromotionAction</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>is_bank_offer</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### updatePromotion
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in request body
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 200
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>medias</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>visibility</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_prefix</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>custom_content</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_counts</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>offer_type</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in request body
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>post_order_action.action_date</code> of schema <code>PromotionAction</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>post_order_action.action_date</code> of schema <code>PromotionAction</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>is_bank_offer</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### deletePromotion
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deletePromotion</code>
+
+
+
+#### getPromotionPaymentOffers
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getPromotionPaymentOffers</code>
+
+
+
+#### getCartMetaConfig
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>data</code> of schema <code>CartMetaConfigDetailObject</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### updateCartMetaConfig
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### deleteCartMetaConfig
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### getCartMetaConfigs
+
+- ##### What's New
+	- [Added] property <code>data[].app_id</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].company_id</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].updated_on</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].last_modified_by</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].min_cart_value</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].max_cart_value</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].bulk_coupons</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].max_cart_items</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gift_display_text</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].delivery_charges</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].revenue_engine_coupon</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gift_pricing</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].enabled</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].order_placing</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].article_tags</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].allow_coupon_with_rewards</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].gst_input</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].staff_selection</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].placing_for_customer</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].hide_on_storefront</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].pan_card</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].is_universal</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].empty_cart</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+	- [Added] property <code>data[].international_delivery_charges</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+
+#### addPriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>distribution_logic[]</code> of schema <code>PriceAdjustmentAdd</code> in request body
+	- [Added] property <code>data.distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 201
+	- [Added] property <code>price_adjustments</code> of schema <code>AddPriceAdjustmentResponseObject</code> in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>distribution_logic.distribution_level</code>, <code>distribution_logic.distribution</code> in request body
+	- [Breaking] [Deleted] properties <code>data.distribution_logic.distribution_level</code>, <code>data.distribution_logic.distribution</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[].distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Added] property <code>price_adjustments[].distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>data[].distribution_logic.distribution_level</code>, <code>data[].distribution_logic.distribution</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>price_adjustments[].distribution_logic.distribution_level</code>, <code>price_adjustments[].distribution_logic.distribution</code> in response with status code 200
+
+
+#### updatePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>distribution_logic[]</code> of schema <code>PriceAdjustmentUpdate</code> in request body
+	- [Added] property <code>allow_refund</code> of schema <code>PriceAdjustmentUpdate</code> in request body
+	- [Added] property <code>data.distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>distribution_logic.distribution_level</code>, <code>distribution_logic.distribution</code> in request body
+	- [Breaking] [Deleted] properties <code>data.distribution_logic.distribution_level</code>, <code>data.distribution_logic.distribution</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### removePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+	- [Added] property <code>meta</code> of schema <code>OperationErrorResponseObject</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>OpenapiCartDetailsResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>OpenApiCartServiceabilityResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>UpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>OverrideCheckoutReq</code> in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+	- [Breaking] [Deleted] Default value from <code>1</code> from property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].price_marked</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].price_marked in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].amount_paid</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].amount_paid in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>cart_items[].item_id</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].discount</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].price_effective</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].price_effective in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>payment_confirm_url</code> of schema <code>OverrideCheckoutResult</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>number</code> of property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.email</code> of schema <code>CartMappingUserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getItemCount
+
+- ##### What's New
+	- [Added] property <code>user_cart_article_count</code> of schema <code>CartItemCountResponseObject</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>PlatformUpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### updateAddress
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address_id</code> of schema <code>UpdateAddressResult</code> in response with status code 200
+	- [Deleted] Type from <code>number</code> from property <code>address_id</code> of schema <code>UpdateAddressResult</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].debug</code> of schema <code>PlatformShipmentResponseObject</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>PlatformCartShipmentsResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>shipments[].items[].product.action.page.type</code>, <code>shipments[].items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>shipments[].order_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].box_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].dp_id</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].debug</code> of schema <code>PlatformShipmentResponseObject</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>PlatformCartShipmentsResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>shipments[].items[].product.action.page.type</code>, <code>shipments[].items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>shipments[].order_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].box_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].dp_id</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>PlatformCartCheckoutDetailRequestObject</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartCheckoutResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.user_type</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_charges</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.delivery_charge_order_value</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_emps</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>cart.price_adjustment_applied[].applied_articles_ids[]</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### validateCouponForPayment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>coupon_validity.error_en</code> of schema <code>CouponValidity</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>customer_details</code> of schema <code>PlatformCartCheckoutDetailV2RequestObject</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartCheckoutResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>custom_meta[]</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Breaking] [Deleted] properties <code>customer_details.name</code>, <code>customer_details.email</code>, <code>customer_details.mobile</code> in request body
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Breaking] [Deleted] properties <code>cart.items[].product.action.page.type</code>, <code>cart.items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.user_type</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_charges</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.delivery_charge_order_value</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_emps</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>custom_meta</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Changed] <code>customer_details.mobile</code> made optional in request body
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>cart.price_adjustment_applied[].applied_articles_ids[]</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>coupon.mrp_coupon</code> of schema <code>CartDetailCoupon</code> in response with status code 200
+	- [Added] property <code>error_message</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponseObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].product.action.page.type</code>, <code>items[].product.action.page.params</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getApplicationBrands
+
+- ##### What's New
+	- [Added] property <code>modified_on</code> of schema <code>BrandListingResponseSchema</code> in response with status code 200
+
+
+#### createCollection
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>is_visible</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>published</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+
+
+#### getAllCollections
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[]._schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+
+
+#### getCollectionDetail
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+
+
+#### updateCollection
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationCollectionItemSeoBreadcrumbs</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationCollectionItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>seo.breadcrumbs[].action.type</code>, <code>seo.breadcrumbs[].action.page</code> in request body
+	- [Breaking] [Deleted] properties <code>seo.breadcrumbs[].action.type</code>, <code>seo.breadcrumbs[].action.page</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in request body
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in response with status code 200
+
+
+#### deleteAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### updateAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### deleteBulkInventoryJob
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### createBulkInventory
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### createProductAssetsInBulk
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### deleteProductBulkJob
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### createProductsInBulk
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### createSizeGuide
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### updateSizeGuide
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### editProduct
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### deleteProduct
+
+- ##### What's New
+	- [Added] property <code>uid</code> of schema <code>SuccessResponseSchema</code> in response with status code 200
+
+
+#### saveMerchandisingRules
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+
+
+### Configuration
+
+
+
+#### getAppBasicDetails
+
+- ##### What's New
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### updateAppBasicDetails
+
+- ##### What's New
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in request body
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in request body
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### getDomains
+
+- ##### What's New
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### addDomain
+
+- ##### What's New
+	- [Added] property <code>display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### changeDomainType
+
+- ##### What's New
+	- [Added] property <code>domain.display_name</code> of schema <code>UpdateDomain</code> in request body
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### createApplication
+
+- ##### What's New
+	- [Added] property <code>domain.display_name</code> of schema <code>AppDomain</code> in request body
+	- [Added] property <code>app.domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>app.domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### getApplications
+
+- ##### What's New
+	- [Added] property <code>items[].domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>items[].domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### getApplicationById
+
+- ##### What's New
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### updateApplication
+
+- ##### What's New
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in request body
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in request body
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### createTokens
+
+- ##### What's New
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+#### deleteToken
+
+- ##### What's New
+	- [Added] property <code>domains[].display_name</code> of schema <code>Domain</code> in response with status code 200
+	- [Added] property <code>domain.display_name</code> of schema <code>Domain</code> in response with status code 200
+
+
+### Content
+
+
+
+#### getNavigations
+
+- ##### What's New
+	- [Added] property <code>items[].domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>items[].tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+#### createNavigation
+
+- ##### What's New
+	- [Added] property <code>domain</code> of schema <code>NavigationRequestSchema</code> in request body
+	- [Added] property <code>tags</code> of schema <code>NavigationRequestSchema</code> in request body
+	- [Added] property <code>domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+#### getDefaultNavigations
+
+- ##### What's New
+	- [Added] property <code>items[].domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>items[].tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+#### getNavigationBySlug
+
+- ##### What's New
+	- [Added] property <code>domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+#### updateNavigation
+
+- ##### What's New
+	- [Added] property <code>domain</code> of schema <code>NavigationRequestSchema</code> in request body
+	- [Added] property <code>tags</code> of schema <code>NavigationRequestSchema</code> in request body
+	- [Added] property <code>domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+#### deleteNavigation
+
+- ##### What's New
+	- [Added] property <code>domain</code> of schema <code>NavigationSchema</code> in response with status code 200
+	- [Added] property <code>tags</code> of schema <code>NavigationSchema</code> in response with status code 200
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### appStartUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### getSignUrls
+
+- ##### What's New
+	- [Added] property <code>enc_url_mapping</code> of schema <code>SignUrl</code> in request body
+
+
+### Order
+
+
+
+#### reassignLocation
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### click2Call
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status</code> of schema <code>ErrorDetail</code> in response with status code 400
+
+
+#### getShipmentHistory
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### postShipmentHistory
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status</code> of schema <code>ErrorDetail</code> in response with status code 400
+
+
+#### sendSmsNinja
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>data.days</code> of schema <code>SmsDataPayload</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>double</code> from property <code>data.amount_paid</code> of schema <code>SmsDataPayload</code> in request body
+
+
+#### updatePackagingDimensions
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### orderUpdate
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status</code> of schema <code>ErrorDetail</code> in response with status code 400
+
+
+#### trackShipment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>trackShipment</code>
+
+
+
+#### updateShipmentTracking
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateShipmentTracking</code>
+
+
+
+#### getFailedOrderLogs
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### checkOrderStatus
+
+- ##### What's Changed
+	- [Changed] Security in Request
+
+
+#### updateShipmentLock
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] properties <code>shipping_info.alternate_mobile_number</code>, <code>shipping_info.state</code>, <code>shipping_info.customer_code</code>, <code>shipping_info.shipping_type</code>, <code>shipping_info.middle_name</code>, <code>shipping_info.primary_mobile_number</code>, <code>shipping_info.last_name</code>, <code>shipping_info.geo_location</code>, <code>shipping_info.gender</code>, <code>shipping_info.house_no</code>, <code>shipping_info.first_name</code>, <code>shipping_info.title</code>, <code>shipping_info.landmark</code>, <code>shipping_info.country</code>, <code>shipping_info.address_type</code>, <code>shipping_info.state_code</code>, <code>shipping_info.city</code>, <code>shipping_info.external_customer_code</code>, <code>shipping_info.floor_no</code>, <code>shipping_info.alternate_email</code>, <code>shipping_info.slot</code>, <code>shipping_info.address</code>, <code>shipping_info.area</code>, <code>shipping_info.address1</code>, <code>shipping_info.pincode</code>, <code>shipping_info.primary_email</code>, <code>shipping_info.address2</code>, <code>shipping_info.country_code</code>, <code>shipping_info.country_iso_code</code> in request body
+	- [Added] properties <code>billing_info.alternate_mobile_number</code>, <code>billing_info.state</code>, <code>billing_info.customer_code</code>, <code>billing_info.shipping_type</code>, <code>billing_info.middle_name</code>, <code>billing_info.primary_mobile_number</code>, <code>billing_info.last_name</code>, <code>billing_info.geo_location</code>, <code>billing_info.gender</code>, <code>billing_info.house_no</code>, <code>billing_info.first_name</code>, <code>billing_info.title</code>, <code>billing_info.landmark</code>, <code>billing_info.country</code>, <code>billing_info.address_type</code>, <code>billing_info.state_code</code>, <code>billing_info.city</code>, <code>billing_info.external_customer_code</code>, <code>billing_info.floor_no</code>, <code>billing_info.alternate_email</code>, <code>billing_info.slot</code>, <code>billing_info.address</code>, <code>billing_info.area</code>, <code>billing_info.address1</code>, <code>billing_info.pincode</code>, <code>billing_info.primary_email</code>, <code>billing_info.address2</code>, <code>billing_info.country_code</code>, <code>billing_info.country_iso_code</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>shipments[].line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>shipments[].line_items[].charges[].amount.ordering_currency</code>, <code>shipments[].line_items[].charges[].amount.base_currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>charges[].amount</code> of schema <code>AmountSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>charges[].amount.ordering_currency</code>, <code>charges[].amount.base_currency</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>shipments[].line_items[].charges[].amount.ordering_currency</code>, <code>shipments[].line_items[].charges[].amount.base_currency</code> made optional in request body
+	- [Breaking] [Changed] <code>charges[].amount.ordering_currency</code>, <code>charges[].amount.base_currency</code> made optional in request body
+
+
+#### updateOrder
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].created_at</code> of schema <code>OrderData</code> in request body
+
+
+#### addStateManagerConfig
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getShipmentById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.created_at</code> of schema <code>OrderData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+
+
+#### getBagById
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>data.shipment.line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.shipment.line_items[].charges[].amount.base_currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status_history[].created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.shipment.line_items[].charges[].amount.base_currency</code> made optional in response with status code 200
+
+
+#### getBags
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>data.items[].shipment.line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.items[].shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.items[].shipment.line_items[].charges[].amount.base_currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status_history[].created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.items[].shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.items[].shipment.line_items[].charges[].amount.base_currency</code> made optional in response with status code 200
+
+
+### User
+
+
+
+#### createUserGroup
+
+- ##### What's New
+	- [Added] property <code>category</code> of schema <code>UserGroupResponseSchema</code> in response with status code 201
+
+
+#### getUserGroups
+
+- ##### What's New
+	- [Added] property <code>items[].category</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### updateUserGroup
+
+- ##### What's New
+	- [Added] property <code>category</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### getUserGroupById
+
+- ##### What's New
+	- [Added] property <code>category</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### updateUserGroupPartially
+
+- ##### What's New
+	- [Added] property <code>category</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### getUserGroupCategories
+
+- ##### What's New
+	- [Added] method <code>getUserGroupCategories</code>
+
+
+
 # CHANGE LOG (3.3.4) - 2.6.0
 
 ## Application Client

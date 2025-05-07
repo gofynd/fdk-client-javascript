@@ -6,7 +6,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateBrandRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
  */
 
 /**
@@ -26,13 +26,13 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef EditBrandParam
- * @property {string} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.UpdateBrandRequestSchema} body
+ * @property {number} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema} body
  */
 
 /**
  * @typedef GetBrandParam
- * @property {string} brandId - Id of the brand to be viewed.
+ * @property {number} brandId - Id of the brand to be viewed.
  */
 
 /**
@@ -48,7 +48,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef GetLocationDetailParam
- * @property {string} locationId - Id of the location which you want to view.
+ * @property {number} locationId - Id of the location which you want to view.
  */
 
 /** @typedef GetLocationTagsParam */
@@ -57,6 +57,10 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
+ * @property {string[]} [storeCodes] - List of up to 50 store codes to fetch.
+ *   Specify multiple values by repeating the query parameter (e.g.,
+ *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
+ *   are not supported.
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [stage] - To filter companies on basis of verified or
  *   unverified companies.
@@ -78,7 +82,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef UpdateLocationParam
- * @property {string} locationId - Id of the location which you want to edit.
+ * @property {number} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSchema} body
  */
 
@@ -91,7 +95,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CreateBrandRequestSchema().required(),
+      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema().required(),
     }).required();
   }
 
@@ -119,15 +123,15 @@ class CompanyProfilePlatformValidator {
   /** @returns {EditBrandParam} */
   static editBrand() {
     return Joi.object({
-      brandId: Joi.string().allow("").required(),
-      body: CompanyProfilePlatformModel.UpdateBrandRequestSchema().required(),
+      brandId: Joi.number().required(),
+      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSchema().required(),
     }).required();
   }
 
   /** @returns {GetBrandParam} */
   static getBrand() {
     return Joi.object({
-      brandId: Joi.string().allow("").required(),
+      brandId: Joi.number().required(),
     }).required();
   }
 
@@ -148,7 +152,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {GetLocationDetailParam} */
   static getLocationDetail() {
     return Joi.object({
-      locationId: Joi.string().allow("").required(),
+      locationId: Joi.number().required(),
     }).required();
   }
 
@@ -161,6 +165,7 @@ class CompanyProfilePlatformValidator {
   static getLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
+      storeCodes: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
@@ -181,7 +186,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {UpdateLocationParam} */
   static updateLocation() {
     return Joi.object({
-      locationId: Joi.string().allow("").required(),
+      locationId: Joi.number().required(),
       body: CompanyProfilePlatformModel.LocationSchema().required(),
     }).required();
   }

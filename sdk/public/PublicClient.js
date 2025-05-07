@@ -1,5 +1,3 @@
-const Catalog = require("./Catalog/CatalogPublicClient");
-
 const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Content = require("./Content/ContentPublicClient");
@@ -23,8 +21,6 @@ class PublicClient {
    */
   constructor(config) {
     this.config = config;
-
-    this.catalog = new Catalog(config);
 
     this.configuration = new Configuration(config);
 

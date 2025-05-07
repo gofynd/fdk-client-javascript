@@ -14,8 +14,11 @@ class Theme {
     this._relativeUrls = {
       getAllPages: "/service/application/theme/v1.0/{theme_id}/page",
       getAppliedTheme: "/service/application/theme/v2.0/applied-theme",
+      getAppliedThemeV1: "/service/application/theme/v1.0/applied-theme",
       getPage: "/service/application/theme/v1.0/{theme_id}/{page_value}",
       getThemeForPreview: "/service/application/theme/v2.0/{theme_id}/preview",
+      getThemeForPreviewV1:
+        "/service/application/theme/v1.0/{theme_id}/preview",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -38,7 +41,7 @@ class Theme {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<AllAvailablePageSchema>} - Success response
    * @name getAllPages
-   * @summary: List pages
+   * @summary: Fetch all pages.
    * @description: Get all page level configs, sections and seo data of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
    */
   async getAllPages(
@@ -120,6 +123,43 @@ class Theme {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ThemesSchema>} - Success response
+   * @name getAppliedThemeV1
+   * @summary: Current theme.
+   * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedThemeV1/).
+   */
+  async getAppliedThemeV1(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAppliedThemeV1"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get theme page
@@ -132,6 +172,7 @@ class Theme {
       filters,
       sectionPreviewHash,
       company,
+      previewId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -152,6 +193,7 @@ class Theme {
     query_params["filters"] = filters;
     query_params["section_preview_hash"] = sectionPreviewHash;
     query_params["company"] = company;
+    query_params["preview_id"] = previewId;
 
     const xHeaders = {};
 
@@ -207,6 +249,52 @@ class Theme {
       "get",
       constructUrl({
         url: this._urls["getThemeForPreview"],
+        params: { themeId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ThemesSchema>} - Success response
+   * @name getThemeForPreviewV1
+   * @summary: Preview theme.
+   * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreviewV1/).
+   */
+  async getThemeForPreviewV1(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["themeId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getThemeForPreviewV1"],
         params: { themeId },
       }),
       query_params,
