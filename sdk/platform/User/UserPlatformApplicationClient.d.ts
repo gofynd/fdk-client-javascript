@@ -24,30 +24,6 @@ declare class User {
      */
     blockOrUnblockUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.BlockOrUnblockUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BlockUserSuccess>;
     /**
-     * @param {UserPlatformApplicationValidator.BulkUpdatePerUserAttributesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkOperation>} - Success response
-     * @name bulkUpdatePerUserAttributes
-     * @summary: Bulk Update Different Attributes Per User
-     * @description: Update different sets of attributes for different users in a single request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkUpdatePerUserAttributes/).
-     */
-    bulkUpdatePerUserAttributes({ body, requestHeaders }?: UserPlatformApplicationValidator.BulkUpdatePerUserAttributesParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkOperation>;
-    /**
-     * @param {UserPlatformApplicationValidator.BulkUpdateUserAttributesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.BulkOperation>} - Success response
-     * @name bulkUpdateUserAttributes
-     * @summary: Bulk Update User Attributes
-     * @description: Update the same set of attributes for multiple users at once - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/bulkUpdateUserAttributes/).
-     */
-    bulkUpdateUserAttributes({ body, requestHeaders }?: UserPlatformApplicationValidator.BulkUpdateUserAttributesParam, { responseHeaders }?: object): Promise<UserPlatformModel.BulkOperation>;
-    /**
      * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -63,13 +39,13 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResp>} -
+     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionDetails>} -
      *   Success response
      * @name createUserAttributeDefinition
      * @summary: Create a User Attribute Definition
      * @description: Create a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
      */
-    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionResp>;
+    createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionDetails>;
     /**
      * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -236,20 +212,6 @@ declare class User {
      */
     getUserGroupById({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetUserGroupCategoriesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.UserGroupCategoriesResponseSchema>}
-     *   - Success response
-     *
-     * @name getUserGroupCategories
-     * @summary: Get User Group Categories
-     * @description: Retrieve a list of user group ctaegorie. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupCategories/).
-     */
-    getUserGroupCategories({ requestHeaders }?: any, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupCategoriesResponseSchema>;
-    /**
      * @param {UserPlatformApplicationValidator.GetUserGroupsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -260,16 +222,6 @@ declare class User {
      * @description: Retrieve a list of user groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
-    /**
-     * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
-     * @name getUsersByByGroupId
-     * @summary: Get users belonging to user group by Id
-     * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
-     */
-    getUsersByByGroupId({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersByByGroupIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

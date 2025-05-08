@@ -31,7 +31,7 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
      * @name addInjectableTag
      * @summary: Create HTML tag
-     * @description: Create and add a new injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
+     * @description: Create and add a new injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
      */
     addInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
     /**
@@ -40,12 +40,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
      * @name addPathRedirectionRules
      * @summary: Create path redirection rules
      * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
      */
-    addPathRedirectionRules({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreatePathMappingSchema>;
+    addPathRedirectionRules({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
      *   - Arg object
@@ -122,18 +122,6 @@ declare class Content {
      */
     createFaqCategory({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateFaqCategoryParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateFaqCategorySchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateInjectableTagParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-     * @name createInjectableTag
-     * @summary: Create HTML tags
-     * @description: Use this API to create HTML tags. This includes a list of tags with name, tag type (css/js), url and position of the tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createInjectableTag/).
-     */
-    createInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
      *   - Arg object
      *
@@ -201,17 +189,15 @@ declare class Content {
      */
     createSitemap({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
     /**
-     * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
-     *   - Arg object
-     *
+     * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-     * @name deleteAllInjectableTags
-     * @summary: Delete HTML tags in application
-     * @description: Use this API to delete all the existing tags at once - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name createSlideshow
+     * @summary: Create a slideshow
+     * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
      */
-    deleteAllInjectableTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
+    createSlideshow({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
      *   - Arg object
@@ -300,12 +286,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
      * @name deleteFaqCategory
      * @summary: Delete FAQ category
      * @description: Remove a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
      */
-    deleteFaqCategory({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteFaqCategoryParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateFaqCategorySchema>;
+    deleteFaqCategory({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteFaqCategoryParam, { responseHeaders }?: object): Promise<ContentPlatformModel.FaqSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteLandingPageParam} arg
      *   - Arg object
@@ -344,12 +330,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
+     * @returns {Promise<Object>} - Success response
      * @name deletePathRedirectionRules
      * @summary: Delete path redirection rule
      * @description: Remove specific path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
      */
-    deletePathRedirectionRules({ pathId, requestHeaders }?: ContentPlatformApplicationValidator.DeletePathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DeletPathMappingSchema>;
+    deletePathRedirectionRules({ pathId, requestHeaders }?: ContentPlatformApplicationValidator.DeletePathRedirectionRulesParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam} arg
      *   - Arg object
@@ -361,7 +347,7 @@ declare class Content {
      * @summary: Delete SEO Markup Schema
      * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
      */
-    deleteSEOMarkupSchema({ schemaId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
+    deleteSEOMarkupSchema({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteSitemapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -373,6 +359,16 @@ declare class Content {
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSitemap/).
      */
     deleteSitemap({ name, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name deleteSlideshow
+     * @summary: Delete a slideshow
+     * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
+     */
+    deleteSlideshow({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -393,7 +389,7 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
      * @name editInjectableTag
      * @summary: Update HTML tag
-     * @description: Modify an injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
+     * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
      */
     editInjectableTag({ tagId, body, requestHeaders }?: ContentPlatformApplicationValidator.EditInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
     /**
@@ -404,10 +400,10 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
      * @name editSEOMarkupSchema
-     * @summary: Edit SEO Markup Schema
-     * @description: Use this API to edit SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
+     * @summary: Get SEO Markup Schema
+     * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
      */
-    editSEOMarkupSchema({ schemaId, body, requestHeaders }?: ContentPlatformApplicationValidator.EditSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
+    editSEOMarkupSchema({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.EditSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
      * @param {ContentPlatformApplicationValidator.ExportAppCustomObjectEntriesBySlugParam} arg
      *   - Arg object
@@ -584,7 +580,7 @@ declare class Content {
      * @summary: Get bulk import and export job list
      * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppJobs/).
      */
-    getAppJobs({ pageNo, pageSize, actionType, requestHeaders }?: ContentPlatformApplicationValidator.GetAppJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;
+    getAppJobs({ page, pageSize, actionType, requestHeaders }?: ContentPlatformApplicationValidator.GetAppJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppResourcesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -601,7 +597,7 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
      * @name getBlogBySlug
-     * @summary: Get blog by slug.
+     * @summary: Get blog by slug
      * @description: Retrieve detailed information about a specific blog using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
      */
     getBlogBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogSchema>;
@@ -609,35 +605,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.BlogGetResponseSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.BlogGetDetails>} - Success response
      * @name getBlogs
      * @summary: List blogs
      * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, tags, q, slug, title, status, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetResponseSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-     * @name getComponentById
-     * @summary: Get component
-     * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
-     */
-    getComponentById({ slug, requestHeaders }?: ContentPlatformApplicationValidator.GetComponentByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetDataLoaderApiSpecsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DataLoadersApiSpecSchema>} -
-     *   Success response
-     * @name getDataLoaderApiSpecs
-     * @summary: Get data loaders api specs.
-     * @description: Retrieve a list of data loaders api specs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaderApiSpecs/).
-     */
-    getDataLoaderApiSpecs({ dataLoader, requestHeaders }?: ContentPlatformApplicationValidator.GetDataLoaderApiSpecsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DataLoadersApiSpecSchema>;
+    getBlogs({ pageNo, pageSize, tags, q, slug, title, status, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -654,27 +627,26 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DataLoaderItemsResponseSchema>} -
+     * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
      *   Success response
      * @name getDataLoadersByService
      * @summary: List all data loaders
      * @description: Use this to get all data loaders of an application by service name - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoadersByService/).
      */
-    getDataLoadersByService({ serviceName, requestHeaders }?: ContentPlatformApplicationValidator.GetDataLoadersByServiceParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DataLoaderItemsResponseSchema>;
+    getDataLoadersByService({ serviceName, requestHeaders }?: ContentPlatformApplicationValidator.GetDataLoadersByServiceParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DataLoaderResponseSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDefaultNavigationsParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DefaultNavigationResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ContentPlatformModel.DefaultNavigationDetails>} -
+     *   Success response
      * @name getDefaultNavigations
      * @summary: Get default navigations
      * @description: Retrieve default navigation elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
      */
-    getDefaultNavigations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultNavigationResponseSchema>;
+    getDefaultNavigations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultNavigationDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDefaultSEOMarkupSchemaParam} arg
      *   - Arg object
@@ -752,21 +724,20 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
      * @name getInjectableTags
-     * @summary: Get all the tags in an application
-     * @description: Use this API to retrieve all HTML Tags - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+     * @summary: Get all HTML tags
+     * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
      */
-    getInjectableTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
+    getInjectableTags({ all, requestHeaders }?: ContentPlatformApplicationValidator.GetInjectableTagsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.LandingPageGetResponseSchema>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.LandingPageGetDetails>} - Success response
      * @name getLandingPages
      * @summary: Get landing pages
      * @description: Lists a list landing pages as per device types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
      */
-    getLandingPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetLandingPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.LandingPageGetResponseSchema>;
+    getLandingPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetLandingPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.LandingPageGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
      *   - Arg object
@@ -795,13 +766,12 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.NavigationGetResponseSchema>} -
-     *   Success response
+     * @returns {Promise<ContentPlatformModel.NavigationGetDetails>} - Success response
      * @name getNavigations
      * @summary: Get navigation items
      * @description: Retrieve a list of navigational elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
      */
-    getNavigations({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.NavigationGetResponseSchema>;
+    getNavigations({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.NavigationGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -809,7 +779,7 @@ declare class Content {
      * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
      * @name getPageBySlug
      * @summary: Get page by slug
-     * @description: Get detailed information about a specific page using its slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+     * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
      */
     getPageBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.GetPageBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
     /**
@@ -836,53 +806,36 @@ declare class Content {
      * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.PageGetResponseSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.PageGetDetails>} - Success response
      * @name getPages
-     * @summary: Get pages.
+     * @summary: Get pages
      * @description: Retrieve a list of available pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
      */
-    getPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageGetResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Numeric ID allotted to a business account
-     *   on Fynd Platform
-     * @param {string} arg.applicationId - Numeric ID allotted to an application
-     *   created within a business account.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @returns {Paginator<ContentPlatformModel.PageGetResponseSchema>}
-     * @summary: Get pages.
-     * @description: Retrieve a list of available pages.
-     */
-    getPagesPaginator({ companyId, applicationId, pageSize }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-    }): Paginator<ContentPlatformModel.PageGetResponseSchema>;
+    getPages({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageGetDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
      * @name getPathRedirectionRule
      * @summary: Get Path Redirection Rule
      * @description: Use this API to Get detailed information about a specific path redirection rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
      */
-    getPathRedirectionRule({ pathId, requestHeaders }?: ContentPlatformApplicationValidator.GetPathRedirectionRuleParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DeletPathMappingSchema>;
+    getPathRedirectionRule({ pathId, requestHeaders }?: ContentPlatformApplicationValidator.GetPathRedirectionRuleParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetPathRedirectionRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.GetAllPathMappingSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
      * @name getPathRedirectionRules
      * @summary: List Path Redirection Rules
      * @description: Use this API to List Path Redirection Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
      */
-    getPathRedirectionRules({ pageSize, pageNo, requestHeaders }?: ContentPlatformApplicationValidator.GetPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.GetAllPathMappingSchema>;
+    getPathRedirectionRules({ pageSize, pageNo, requestHeaders }?: ContentPlatformApplicationValidator.GetPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetSEOConfigurationParam} arg
      *   - Arg object
@@ -906,7 +859,7 @@ declare class Content {
      * @summary: Get SEO Markup Schema
      * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchema/).
      */
-    getSEOMarkupSchema({ schemaId, requestHeaders }?: ContentPlatformApplicationValidator.GetSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
+    getSEOMarkupSchema({ id, requestHeaders }?: ContentPlatformApplicationValidator.GetSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
      * @param {ContentPlatformApplicationValidator.GetSEOMarkupSchemasParam} arg
      *   - Arg object
@@ -943,6 +896,28 @@ declare class Content {
      */
     getSitemaps({ pageNo, pageSize, isActive, name, requestHeaders }?: ContentPlatformApplicationValidator.GetSitemapsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfigurationList>;
     /**
+     * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name getSlideshowBySlug
+     * @summary: Get Slideshow
+     * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
+     */
+    getSlideshowBySlug({ slug, devicePlatform, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowGetDetails>} - Success response
+     * @name getSlideshows
+     * @summary: List Slideshows
+     * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
+     */
+    getSlideshows({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowGetDetails>;
+    /**
      * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
      *   - Arg object
      *
@@ -974,14 +949,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponseSchema>}
-     *   - Success response
-     *
+     * @returns {Promise<ContentPlatformModel.TagDeleteSuccessDetails>} - Success response
      * @name removeInjectableTag
      * @summary: Remove HTML tag
      * @description: Delete a specific injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
      */
-    removeInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.RemoveInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagDeleteSuccessResponseSchema>;
+    removeInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.RemoveInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagDeleteSuccessDetails>;
     /**
      * @param {ContentPlatformApplicationValidator.ResetDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1149,8 +1122,8 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
      * @name updateInjectableTag
-     * @summary: Update HTML Tags
-     * @description: Use this API to edit all HTML Tags present - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+     * @summary: Update HTML tag
+     * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
      */
     updateInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
     /**
@@ -1215,12 +1188,12 @@ declare class Content {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
      * @name updatePathRedirectionRules
      * @summary: Update path redirection rule
      * @description: Modify settings for path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
      */
-    updatePathRedirectionRules({ pathId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdatePathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreatePathMappingSchema>;
+    updatePathRedirectionRules({ pathId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdatePathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateSEOConfigurationParam} arg
      *   - Arg object
@@ -1245,6 +1218,16 @@ declare class Content {
      */
     updateSitemap({ name, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
     /**
+     * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name updateSlideshow
+     * @summary: Update a slideshow
+     * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
+     */
+    updateSlideshow({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
+    /**
      * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
      *   - Arg object
      *
@@ -1259,4 +1242,3 @@ declare class Content {
 }
 import ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
 import ContentPlatformModel = require("./ContentPlatformModel");
-import Paginator = require("../../common/Paginator");

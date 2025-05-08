@@ -64,7 +64,7 @@ const Joi = require("joi");
  * @typedef GetAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -106,15 +106,14 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponseSchema
- * @property {number} [code]
- * @property {string} [error]
  * @property {string} [message]
- * @property {Object} [meta]
+ * @property {string} [code]
  * @property {number} [status]
+ * @property {Object} [meta]
  */
 
 /**
- * @typedef CompanyTaxesSchema1
+ * @typedef CompanyTaxesSerializer1
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
@@ -124,7 +123,7 @@ const Joi = require("joi");
  * @typedef CreateUpdateAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} pincode
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -142,7 +141,7 @@ const Joi = require("joi");
  * @property {Object} [warnings]
  * @property {string} [company_type]
  * @property {Object} [_custom_json]
- * @property {CompanyTaxesSchema1[]} [taxes]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
  * @property {BusinessDetails} [business_details]
  * @property {Document[]} [documents]
  * @property {string} [business_type]
@@ -156,7 +155,6 @@ const Joi = require("joi");
 /**
  * @typedef ProfileSuccessResponseSchema
  * @property {number} [uid]
- * @property {Object[]} [data]
  * @property {string} [message]
  * @property {boolean} [success]
  */
@@ -208,7 +206,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateUpdateBrandRequestSchema
+ * @typedef CreateBrandRequestSchema
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -220,6 +218,20 @@ const Joi = require("joi");
  * @property {BrandBannerSchema} banner
  * @property {string} name
  * @property {string} [slug_key]
+ */
+
+/**
+ * @typedef UpdateBrandRequestSchema
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {string[]} [synonyms]
+ * @property {number} [company_id]
+ * @property {string} [description]
+ * @property {string} logo
+ * @property {string} [brand_tier]
+ * @property {number} [uid]
+ * @property {BrandBannerSchema} banner
+ * @property {string} name
  */
 
 /**
@@ -245,7 +257,7 @@ const Joi = require("joi");
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
- * @property {string} [business_type]
+ * @property {string} business_type
  * @property {GetAddressSchema[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
@@ -281,7 +293,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 
 /**
@@ -313,7 +324,6 @@ const Joi = require("joi");
 /**
  * @typedef GetCompanySchema
  * @property {string} [stage]
- * @property {Object} [_custom_json]
  * @property {string} [verified_on]
  * @property {UserSchema} [verified_by]
  * @property {string} [created_on]
@@ -415,7 +425,7 @@ const Joi = require("joi");
  * @typedef AddressSchema
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -561,7 +571,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number(),
       address_type: Joi.string().allow(""),
       longitude: Joi.number().required(),
       country: Joi.string().allow(""),
@@ -611,16 +621,15 @@ class CompanyProfilePlatformModel {
   /** @returns {ErrorResponseSchema} */
   static ErrorResponseSchema() {
     return Joi.object({
-      code: Joi.number(),
-      error: Joi.string().allow(""),
       message: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      code: Joi.string().allow(""),
       status: Joi.number(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {CompanyTaxesSchema1} */
-  static CompanyTaxesSchema1() {
+  /** @returns {CompanyTaxesSerializer1} */
+  static CompanyTaxesSerializer1() {
     return Joi.object({
       effective_date: Joi.string().allow(""),
       rate: Joi.number(),
@@ -633,7 +642,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number().required(),
       address_type: Joi.string().allow("").required(),
       longitude: Joi.number().required(),
       country: Joi.string().allow("").required(),
@@ -654,7 +663,7 @@ class CompanyProfilePlatformModel {
       company_type: Joi.string().allow(""),
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       taxes: Joi.array().items(
-        CompanyProfilePlatformModel.CompanyTaxesSchema1()
+        CompanyProfilePlatformModel.CompanyTaxesSerializer1()
       ),
       business_details: CompanyProfilePlatformModel.BusinessDetails(),
       documents: Joi.array().items(CompanyProfilePlatformModel.Document()),
@@ -673,7 +682,6 @@ class CompanyProfilePlatformModel {
   static ProfileSuccessResponseSchema() {
     return Joi.object({
       uid: Joi.number(),
-      data: Joi.array().items(Joi.any()),
       message: Joi.string().allow(""),
       success: Joi.boolean(),
     });
@@ -733,8 +741,8 @@ class CompanyProfilePlatformModel {
     });
   }
 
-  /** @returns {CreateUpdateBrandRequestSchema} */
-  static CreateUpdateBrandRequestSchema() {
+  /** @returns {CreateBrandRequestSchema} */
+  static CreateBrandRequestSchema() {
     return Joi.object({
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       _locale_language: Joi.object().pattern(/\S/, Joi.any()),
@@ -747,6 +755,22 @@ class CompanyProfilePlatformModel {
       banner: CompanyProfilePlatformModel.BrandBannerSchema().required(),
       name: Joi.string().allow("").required(),
       slug_key: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateBrandRequestSchema} */
+  static UpdateBrandRequestSchema() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      company_id: Joi.number(),
+      description: Joi.string().allow(""),
+      logo: Joi.string().allow("").required(),
+      brand_tier: Joi.string().allow(""),
+      uid: Joi.number(),
+      banner: CompanyProfilePlatformModel.BrandBannerSchema().required(),
+      name: Joi.string().allow("").required(),
     });
   }
 
@@ -780,7 +804,7 @@ class CompanyProfilePlatformModel {
       company_type: Joi.string().allow("").required(),
       modified_on: Joi.string().allow(""),
       market_channels: Joi.array().items(Joi.string().allow("")),
-      business_type: Joi.string().allow(""),
+      business_type: Joi.string().allow("").required(),
       addresses: Joi.array().items(
         CompanyProfilePlatformModel.GetAddressSchema()
       ),
@@ -822,7 +846,6 @@ class CompanyProfilePlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      total: Joi.number(),
     });
   }
 
@@ -866,7 +889,6 @@ class CompanyProfilePlatformModel {
   static GetCompanySchema() {
     return Joi.object({
       stage: Joi.string().allow(""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       verified_on: Joi.string().allow(""),
       verified_by: CompanyProfilePlatformModel.UserSchema(),
       created_on: Joi.string().allow(""),
@@ -996,7 +1018,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow("").required(),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number(),
       address_type: Joi.string().allow(""),
       longitude: Joi.number().required(),
       country: Joi.string().allow(""),

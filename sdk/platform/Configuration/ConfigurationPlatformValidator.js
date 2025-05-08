@@ -8,11 +8,6 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef CreateCurrencyParam
- * @property {ConfigurationPlatformModel.Currency} body
- */
-
-/**
  * @typedef GetApplicationsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
@@ -36,11 +31,6 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 /** @typedef GetCurrenciesParam */
 
 /**
- * @typedef GetCurrencyParam
- * @property {string} id - Unique object Id of the curreny
- */
-
-/**
  * @typedef GetCurrencyExchangeRatesParam
  * @property {string} [currencyCode] - The 3-letter ISO 4217 code representing
  *   the base currency for the exchange rates. Defaults to "INR" if not specified.
@@ -55,20 +45,9 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
  */
 
-/** @typedef GetDomainOptionsParam */
-
-/**
- * @typedef GetLocationsParam
- * @property {string} [locationType] - Provide location type to query on.
- *   Possible values : country, state, city
- * @property {string} [id] - Field is optional when location_type is country. If
- *   querying for state, provide id of country. If querying for city, provide id
- *   of state.
- */
-
 /**
  * @typedef GetOtherSellerApplicationByIdParam
- * @property {string} appId - Application Id
+ * @property {string} id - Application Id
  */
 
 /**
@@ -89,21 +68,10 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef GetStoresForACompanyParam
- * @property {number} company - Numeric ID allotted to a business account on Fynd Platform
- */
-
-/**
  * @typedef OptOutFromApplicationParam
- * @property {string} appId - Alphanumeric ID allotted to an application (sales
+ * @property {string} id - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account.
  * @property {ConfigurationPlatformModel.OptOutInventory} body
- */
-
-/**
- * @typedef UpdateCurrencyParam
- * @property {string} id - Unique object Id of the curreny
- * @property {ConfigurationPlatformModel.Currency} body
  */
 
 class ConfigurationPlatformValidator {
@@ -111,13 +79,6 @@ class ConfigurationPlatformValidator {
   static createApplication() {
     return Joi.object({
       body: ConfigurationPlatformModel.CreateApplicationRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {CreateCurrencyParam} */
-  static createCurrency() {
-    return Joi.object({
-      body: ConfigurationPlatformModel.Currency().required(),
     }).required();
   }
 
@@ -151,13 +112,6 @@ class ConfigurationPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetCurrencyParam} */
-  static getCurrency() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetCurrencyExchangeRatesParam} */
   static getCurrencyExchangeRates() {
     return Joi.object({
@@ -174,23 +128,10 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetDomainOptionsParam} */
-  static getDomainOptions() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetLocationsParam} */
-  static getLocations() {
-    return Joi.object({
-      locationType: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetOtherSellerApplicationByIdParam} */
   static getOtherSellerApplicationById() {
     return Joi.object({
-      appId: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -211,26 +152,11 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetStoresForACompanyParam} */
-  static getStoresForACompany() {
-    return Joi.object({
-      company: Joi.number().required(),
-    }).required();
-  }
-
   /** @returns {OptOutFromApplicationParam} */
   static optOutFromApplication() {
     return Joi.object({
-      appId: Joi.string().allow("").required(),
-      body: ConfigurationPlatformModel.OptOutInventory().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateCurrencyParam} */
-  static updateCurrency() {
-    return Joi.object({
       id: Joi.string().allow("").required(),
-      body: ConfigurationPlatformModel.Currency().required(),
+      body: ConfigurationPlatformModel.OptOutInventory().required(),
     }).required();
   }
 }

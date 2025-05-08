@@ -16,7 +16,7 @@ const Joi = require("joi");
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ?
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  */
 
 /**

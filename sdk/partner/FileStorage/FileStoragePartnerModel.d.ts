@@ -5,37 +5,27 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef SaveProxy
- * @property {number} [id] - Unique identifier assigned to the saved proxy session.
- * @property {string} [token] - Authentication token generated for the created
- *   proxy session.
+ * @property {number} [id]
+ * @property {string} [token]
  */
 /**
  * @typedef ProxyFileData
- * @property {string} [email] - User email address required for proxy authentication.
- * @property {string} [password] - Password associated with the email for proxy
- *   authentication.
+ * @property {string} [email]
+ * @property {string} [password]
  */
 /**
  * @typedef ProxyFile
- * @property {number} [id] - Unique identifier for the proxy request, used in
- *   failure scenarios.
- * @property {string} [customer] - Name or identifier of the customer associated
- *   with the proxy file.
- * @property {number} [quantity] - Number of proxy instances or sessions requested.
- * @property {number} [price] - Cost of the proxy service, provided in
- *   applicable currency units.
+ * @property {number} [id]
+ * @property {string} [customer]
+ * @property {number} [quantity]
+ * @property {number} [price]
  * @property {ProxyFileData} [data]
- * @property {string} [url] - Endpoint URL for proxy-related API requests, such
- *   as user registration or fetching data.
- * @property {Object} [headers] - A key-value map of HTTP headers to include in
- *   the proxied request. Common headers include "Content-Type", "Accept", and
- *   authentication headers such as "x-api-key". These headers will be forwarded
- *   as-is to the external API specified in the `url` field.
+ * @property {string} [url]
  */
 /**
  * @typedef FetchProxyDetails
- * @property {Object} [data] - The actual response data
- * @property {Object} [support] - Support-related information
+ * @property {Object} [data]
+ * @property {Object} [support]
  */
 /**
  * @typedef NamespaceDetails
@@ -47,66 +37,64 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef AllNamespaceDetails
- * @property {NamespaceDetails[]} [items] - An Array of all the existing Namespace
+ * @property {NamespaceDetails[]} [items]
  */
 /**
  * @typedef CDN
- * @property {string} url - The CDN URL of the file.
- * @property {string} absolute_url - The absolute URL of the file.
- * @property {string} relative_url - The relative path of the file within the CDN.
+ * @property {string} url
+ * @property {string} absolute_url
+ * @property {string} relative_url
  */
 /**
  * @typedef Upload
- * @property {number} expiry - The expiration time of the uploaded file.
- * @property {string} url - The URL of the uploaded file.
+ * @property {number} expiry
+ * @property {string} url
  */
 /**
  * @typedef FileUpload
- * @property {string} file_name - The name of the uploaded file.
- * @property {string} file_path - The storage path of the uploaded file.
- * @property {string} content_type - The MIME type of the uploaded file.
- * @property {string} [method] - The method used for the upload.
- * @property {string} namespace - The namespace where the file is stored.
- * @property {string} operation - The operation type performed on the file.
- * @property {number} size - The size of the uploaded file in bytes.
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} content_type
+ * @property {string} [method]
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
  * @property {Upload} upload
- * @property {string[]} [tags] - Tags associated with the uploaded file.
+ * @property {string[]} [tags]
  */
 /**
  * @typedef FileUploadStart
- * @property {string} file_name - The name of the file to be uploaded.
- * @property {string} content_type - The MIME type of the file.
- * @property {number} size - The file size in bytes.
- * @property {string[]} [tags] - Tags associated with the file.
- * @property {Object} [params] - Additional parameters for file upload.
- * @property {string} [enc_key] - Encryption key for securing the file during upload.
+ * @property {string} file_name
+ * @property {string} content_type
+ * @property {number} size
+ * @property {string[]} [tags]
+ * @property {Object} [params]
  */
 /**
  * @typedef CreatedBy
- * @property {string} [user_id] - The unique identifier of the user.
- * @property {string} [username] - The username of the creator.
+ * @property {string} [username]
+ * @property {string} [user_id]
  */
 /**
  * @typedef FileUploadComplete
- * @property {string} _id - The unique identifier of the uploaded file.
- * @property {string} file_name - The name of the file.
- * @property {string} file_path - The storage path of the file.
- * @property {string} content_type - The MIME type of the file.
- * @property {string} namespace - The namespace where the file is stored.
- * @property {string} operation - The type of operation performed on the file.
- * @property {number} size - The size of the file in bytes.
+ * @property {string} _id
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} content_type
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
  * @property {Upload} upload
  * @property {CDN} cdn
- * @property {boolean} success - Indicates if the upload was successful.
- * @property {string[]} [tags] - Tags associated with the file.
- * @property {string} created_on - The timestamp when the file was created.
- * @property {string} modified_on - The timestamp when the file was last modified.
+ * @property {boolean} success
+ * @property {string[]} [tags]
+ * @property {string} created_on
+ * @property {string} modified_on
  * @property {CreatedBy} [created_by]
  */
 /**
  * @typedef FailedBrowseFilesResult
- * @property {string} message - Message representing the description due to
- *   which Browse File egte failed
+ * @property {string} message
  */
 declare class FileStoragePartnerModel {
 }
@@ -124,75 +112,29 @@ type SizeConstraints = {
 /** @returns {SaveProxy} */
 declare function SaveProxy(): SaveProxy;
 type SaveProxy = {
-    /**
-     * - Unique identifier assigned to the saved proxy session.
-     */
     id?: number;
-    /**
-     * - Authentication token generated for the created
-     * proxy session.
-     */
     token?: string;
 };
 /** @returns {ProxyFileData} */
 declare function ProxyFileData(): ProxyFileData;
 type ProxyFileData = {
-    /**
-     * - User email address required for proxy authentication.
-     */
     email?: string;
-    /**
-     * - Password associated with the email for proxy
-     * authentication.
-     */
     password?: string;
 };
 /** @returns {ProxyFile} */
 declare function ProxyFile(): ProxyFile;
 type ProxyFile = {
-    /**
-     * - Unique identifier for the proxy request, used in
-     * failure scenarios.
-     */
     id?: number;
-    /**
-     * - Name or identifier of the customer associated
-     * with the proxy file.
-     */
     customer?: string;
-    /**
-     * - Number of proxy instances or sessions requested.
-     */
     quantity?: number;
-    /**
-     * - Cost of the proxy service, provided in
-     * applicable currency units.
-     */
     price?: number;
     data?: ProxyFileData;
-    /**
-     * - Endpoint URL for proxy-related API requests, such
-     * as user registration or fetching data.
-     */
     url?: string;
-    /**
-     * - A key-value map of HTTP headers to include in
-     * the proxied request. Common headers include "Content-Type", "Accept", and
-     * authentication headers such as "x-api-key". These headers will be forwarded
-     * as-is to the external API specified in the `url` field.
-     */
-    headers?: any;
 };
 /** @returns {FetchProxyDetails} */
 declare function FetchProxyDetails(): FetchProxyDetails;
 type FetchProxyDetails = {
-    /**
-     * - The actual response data
-     */
     data?: any;
-    /**
-     * - Support-related information
-     */
     support?: any;
 };
 /** @returns {NamespaceDetails} */
@@ -216,173 +158,69 @@ type NamespaceDetails = {
 /** @returns {AllNamespaceDetails} */
 declare function AllNamespaceDetails(): AllNamespaceDetails;
 type AllNamespaceDetails = {
-    /**
-     * - An Array of all the existing Namespace
-     */
     items?: NamespaceDetails[];
 };
 /** @returns {CDN} */
 declare function CDN(): CDN;
 type CDN = {
-    /**
-     * - The CDN URL of the file.
-     */
     url: string;
-    /**
-     * - The absolute URL of the file.
-     */
     absolute_url: string;
-    /**
-     * - The relative path of the file within the CDN.
-     */
     relative_url: string;
 };
 /** @returns {Upload} */
 declare function Upload(): Upload;
 type Upload = {
-    /**
-     * - The expiration time of the uploaded file.
-     */
     expiry: number;
-    /**
-     * - The URL of the uploaded file.
-     */
     url: string;
 };
 /** @returns {FileUpload} */
 declare function FileUpload(): FileUpload;
 type FileUpload = {
-    /**
-     * - The name of the uploaded file.
-     */
     file_name: string;
-    /**
-     * - The storage path of the uploaded file.
-     */
     file_path: string;
-    /**
-     * - The MIME type of the uploaded file.
-     */
     content_type: string;
-    /**
-     * - The method used for the upload.
-     */
     method?: string;
-    /**
-     * - The namespace where the file is stored.
-     */
     namespace: string;
-    /**
-     * - The operation type performed on the file.
-     */
     operation: string;
-    /**
-     * - The size of the uploaded file in bytes.
-     */
     size: number;
     upload: Upload;
-    /**
-     * - Tags associated with the uploaded file.
-     */
     tags?: string[];
 };
 /** @returns {FileUploadStart} */
 declare function FileUploadStart(): FileUploadStart;
 type FileUploadStart = {
-    /**
-     * - The name of the file to be uploaded.
-     */
     file_name: string;
-    /**
-     * - The MIME type of the file.
-     */
     content_type: string;
-    /**
-     * - The file size in bytes.
-     */
     size: number;
-    /**
-     * - Tags associated with the file.
-     */
     tags?: string[];
-    /**
-     * - Additional parameters for file upload.
-     */
     params?: any;
-    /**
-     * - Encryption key for securing the file during upload.
-     */
-    enc_key?: string;
 };
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
-    /**
-     * - The unique identifier of the user.
-     */
-    user_id?: string;
-    /**
-     * - The username of the creator.
-     */
     username?: string;
+    user_id?: string;
 };
 /** @returns {FileUploadComplete} */
 declare function FileUploadComplete(): FileUploadComplete;
 type FileUploadComplete = {
-    /**
-     * - The unique identifier of the uploaded file.
-     */
     _id: string;
-    /**
-     * - The name of the file.
-     */
     file_name: string;
-    /**
-     * - The storage path of the file.
-     */
     file_path: string;
-    /**
-     * - The MIME type of the file.
-     */
     content_type: string;
-    /**
-     * - The namespace where the file is stored.
-     */
     namespace: string;
-    /**
-     * - The type of operation performed on the file.
-     */
     operation: string;
-    /**
-     * - The size of the file in bytes.
-     */
     size: number;
     upload: Upload;
     cdn: CDN;
-    /**
-     * - Indicates if the upload was successful.
-     */
     success: boolean;
-    /**
-     * - Tags associated with the file.
-     */
     tags?: string[];
-    /**
-     * - The timestamp when the file was created.
-     */
     created_on: string;
-    /**
-     * - The timestamp when the file was last modified.
-     */
     modified_on: string;
     created_by?: CreatedBy;
 };
 /** @returns {FailedBrowseFilesResult} */
 declare function FailedBrowseFilesResult(): FailedBrowseFilesResult;
 type FailedBrowseFilesResult = {
-    /**
-     * - Message representing the description due to
-     * which Browse File egte failed
-     */
     message: string;
 };

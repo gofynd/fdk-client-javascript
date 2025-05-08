@@ -24,10 +24,14 @@ export = AuditTrailPlatformModel;
  * @property {string} [type]
  * @property {string} [action]
  */
+/**
+ * @typedef BadRequestSchema
+ * @property {string} [message] - Failure message.
+ */
 declare class AuditTrailPlatformModel {
 }
 declare namespace AuditTrailPlatformModel {
-    export { RequestBodyAuditLog, CreateLogResp, LogMetaObj, EntityObject };
+    export { RequestBodyAuditLog, CreateLogResp, LogMetaObj, EntityObject, BadRequestSchema };
 }
 /** @returns {RequestBodyAuditLog} */
 declare function RequestBodyAuditLog(): RequestBodyAuditLog;
@@ -57,4 +61,12 @@ type EntityObject = {
     id?: string;
     type?: string;
     action?: string;
+};
+/** @returns {BadRequestSchema} */
+declare function BadRequestSchema(): BadRequestSchema;
+type BadRequestSchema = {
+    /**
+     * - Failure message.
+     */
+    message?: string;
 };

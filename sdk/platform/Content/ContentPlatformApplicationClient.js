@@ -181,7 +181,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name addInjectableTag
    * @summary: Create HTML tag
-   * @description: Create and add a new injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
+   * @description: Create and add a new injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
    */
   async addInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -259,7 +259,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name addPathRedirectionRules
    * @summary: Create path redirection rules
    * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
@@ -315,7 +315,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreatePathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -711,7 +711,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       body,
       requestHeaders,
@@ -826,87 +826,6 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateInjectableTagParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name createInjectableTag
-   * @summary: Create HTML tags
-   * @description: Use this API to create HTML tags. This includes a list of tags with name, tag type (css/js), url and position of the tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createInjectableTag/).
-   */
-  async createInjectableTag(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createInjectableTag \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > createInjectableTag \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
    *   - Arg object
    *
@@ -954,7 +873,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       body,
       requestHeaders,
@@ -1033,7 +952,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       body,
       requestHeaders,
@@ -1110,7 +1029,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       body,
       requestHeaders,
@@ -1191,7 +1110,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
       query_params,
       body,
       requestHeaders,
@@ -1386,24 +1305,24 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
-   *   - Arg object
-   *
+   * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name deleteAllInjectableTags
-   * @summary: Delete HTML tags in application
-   * @description: Use this API to delete all the existing tags at once - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
+   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+   * @name createSlideshow
+   * @summary: Create a slideshow
+   * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
    */
-  async deleteAllInjectableTags(
-    { requestHeaders } = { requestHeaders: {} },
+  async createSlideshow(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
-      {},
+    } = ContentPlatformApplicationValidator.createSlideshow().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1413,14 +1332,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
-      {},
+    } = ContentPlatformApplicationValidator.createSlideshow().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAllInjectableTags \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Content > createSlideshow \n ${warrning}`,
       });
     }
 
@@ -1428,10 +1349,10 @@ class Content {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows`,
       query_params,
-      undefined,
+      body,
       requestHeaders,
       { responseHeaders }
     );
@@ -1443,7 +1364,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(responseData, {
+    } = ContentPlatformModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1454,7 +1375,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Content > deleteAllInjectableTags \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Content > createSlideshow \n ${res_error}`,
         });
       }
     }
@@ -2037,7 +1958,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
    * @name deleteFaqCategory
    * @summary: Delete FAQ category
    * @description: Remove a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
@@ -2093,7 +2014,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqCategorySchema().validate(responseData, {
+    } = ContentPlatformModel.FaqSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2355,7 +2276,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name deletePathRedirectionRules
    * @summary: Delete path redirection rule
    * @description: Remove specific path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
@@ -2409,9 +2330,7 @@ class Content {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.DeletPathMappingSchema().validate(responseData, {
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2442,14 +2361,14 @@ class Content {
    * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
    */
   async deleteSEOMarkupSchema(
-    { schemaId, requestHeaders } = { requestHeaders: {} },
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2462,7 +2381,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.deleteSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2478,7 +2397,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -2592,6 +2511,85 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+   * @name deleteSlideshow
+   * @summary: Delete a slideshow
+   * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
+   */
+  async deleteSlideshow(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.deleteSlideshow().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.deleteSlideshow().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteSlideshow \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.SlideshowSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteSlideshow \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2682,7 +2680,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name editInjectableTag
    * @summary: Update HTML tag
-   * @description: Modify an injectable tag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
+   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
    */
   async editInjectableTag(
     { tagId, body, requestHeaders } = { requestHeaders: {} },
@@ -2764,18 +2762,18 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name editSEOMarkupSchema
-   * @summary: Edit SEO Markup Schema
-   * @description: Use this API to edit SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
+   * @summary: Get SEO Markup Schema
+   * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
    */
   async editSEOMarkupSchema(
-    { schemaId, body, requestHeaders } = { requestHeaders: {} },
+    { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.editSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2789,7 +2787,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.editSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2806,7 +2804,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
       query_params,
       body,
       requestHeaders,
@@ -3993,12 +3991,12 @@ class Content {
    * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppJobs/).
    */
   async getAppJobs(
-    { pageNo, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
+    { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformApplicationValidator.getAppJobs().validate(
       {
-        pageNo,
+        page,
         pageSize,
         actionType,
       },
@@ -4013,7 +4011,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.getAppJobs().validate(
       {
-        pageNo,
+        page,
         pageSize,
         actionType,
       },
@@ -4027,7 +4025,7 @@ class Content {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
     query_params["page_size"] = pageSize;
     query_params["action_type"] = actionType;
 
@@ -4148,7 +4146,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getBlogBySlug
-   * @summary: Get blog by slug.
+   * @summary: Get blog by slug
    * @description: Retrieve detailed information about a specific blog using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
    */
   async getBlogBySlug(
@@ -4225,7 +4223,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.BlogGetResponseSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.BlogGetDetails>} - Success response
    * @name getBlogs
    * @summary: List blogs
    * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
@@ -4286,7 +4284,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4300,7 +4298,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogGetResponseSchema().validate(responseData, {
+    } = ContentPlatformModel.BlogGetDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4312,168 +4310,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getBlogs \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name getComponentById
-   * @summary: Get component
-   * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
-   */
-  async getComponentById(
-    { slug, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getComponentById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getComponentById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetDataLoaderApiSpecsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DataLoadersApiSpecSchema>} -
-   *   Success response
-   * @name getDataLoaderApiSpecs
-   * @summary: Get data loaders api specs.
-   * @description: Retrieve a list of data loaders api specs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaderApiSpecs/).
-   */
-  async getDataLoaderApiSpecs(
-    { dataLoader, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getDataLoaderApiSpecs().validate(
-      {
-        dataLoader,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getDataLoaderApiSpecs().validate(
-      {
-        dataLoader,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getDataLoaderApiSpecs \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["data_loader"] = dataLoader;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/api-spec`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.DataLoadersApiSpecSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getDataLoaderApiSpecs \n ${res_error}`,
         });
       }
     }
@@ -4562,7 +4398,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DataLoaderItemsResponseSchema>} -
+   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name getDataLoadersByService
    * @summary: List all data loaders
@@ -4619,10 +4455,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderItemsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ContentPlatformModel.DataLoaderResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4644,9 +4480,8 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DefaultNavigationResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ContentPlatformModel.DefaultNavigationDetails>} -
+   *   Success response
    * @name getDefaultNavigations
    * @summary: Get default navigations
    * @description: Retrieve default navigation elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
@@ -4698,10 +4533,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DefaultNavigationResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ContentPlatformModel.DefaultNavigationDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5201,17 +5036,19 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
-   * @summary: Get all the tags in an application
-   * @description: Use this API to retrieve all HTML Tags - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+   * @summary: Get all HTML tags
+   * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
-    { requestHeaders } = { requestHeaders: {} },
+    { all, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {},
+      {
+        all,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -5222,7 +5059,9 @@ class Content {
     const {
       error: warrning,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {},
+      {
+        all,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -5233,6 +5072,7 @@ class Content {
     }
 
     const query_params = {};
+    query_params["all"] = all;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -5274,8 +5114,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.LandingPageGetResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ContentPlatformModel.LandingPageGetDetails>} - Success response
    * @name getLandingPages
    * @summary: Get landing pages
    * @description: Lists a list landing pages as per device types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
@@ -5321,7 +5160,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5335,10 +5174,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageGetResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ContentPlatformModel.LandingPageGetDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5519,8 +5358,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.NavigationGetResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ContentPlatformModel.NavigationGetDetails>} - Success response
    * @name getNavigations
    * @summary: Get navigation items
    * @description: Retrieve a list of navigational elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
@@ -5571,7 +5409,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5585,10 +5423,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationGetResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ContentPlatformModel.NavigationGetDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5611,7 +5449,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
    * @summary: Get page by slug
-   * @description: Get detailed information about a specific page using its slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+   * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
    */
   async getPageBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -5837,9 +5675,9 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.PageGetResponseSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.PageGetDetails>} - Success response
    * @name getPages
-   * @summary: Get pages.
+   * @summary: Get pages
    * @description: Retrieve a list of available pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
    */
   async getPages(
@@ -5881,7 +5719,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages`,
+      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5895,7 +5733,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageGetResponseSchema().validate(responseData, {
+    } = ContentPlatformModel.PageGetDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5915,46 +5753,12 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.PageGetResponseSchema>}
-   * @summary: Get pages.
-   * @description: Retrieve a list of available pages.
-   */
-  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.DeletPathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRule
    * @summary: Get Path Redirection Rule
    * @description: Use this API to Get detailed information about a specific path redirection rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
@@ -6010,7 +5814,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DeletPathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6035,7 +5839,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.GetAllPathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRules
    * @summary: List Path Redirection Rules
    * @description: Use this API to List Path Redirection Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
@@ -6095,7 +5899,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GetAllPathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6203,14 +6007,14 @@ class Content {
    * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchema/).
    */
   async getSEOMarkupSchema(
-    { schemaId, requestHeaders } = { requestHeaders: {} },
+    { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -6223,7 +6027,7 @@ class Content {
       error: warrning,
     } = ContentPlatformApplicationValidator.getSEOMarkupSchema().validate(
       {
-        schemaId,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -6239,7 +6043,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${schemaId}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo/schema/${id}`,
       query_params,
       undefined,
       requestHeaders,
@@ -6537,6 +6341,178 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+   * @name getSlideshowBySlug
+   * @summary: Get Slideshow
+   * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
+   */
+  async getSlideshowBySlug(
+    { slug, devicePlatform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getSlideshowBySlug().validate(
+      {
+        slug,
+        devicePlatform,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getSlideshowBySlug().validate(
+      {
+        slug,
+        devicePlatform,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getSlideshowBySlug \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["device_platform"] = devicePlatform;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.SlideshowSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getSlideshowBySlug \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.SlideshowGetDetails>} - Success response
+   * @name getSlideshows
+   * @summary: List Slideshows
+   * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
+   */
+  async getSlideshows(
+    { devicePlatform, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getSlideshows().validate(
+      {
+        devicePlatform,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getSlideshows().validate(
+      {
+        devicePlatform,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getSlideshows \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["device_platform"] = devicePlatform;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.SlideshowGetDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getSlideshows \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
    *   - Arg object
    *
@@ -6704,9 +6680,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ContentPlatformModel.TagDeleteSuccessDetails>} - Success response
    * @name removeInjectableTag
    * @summary: Remove HTML tag
    * @description: Delete a specific injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
@@ -6762,10 +6736,10 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagDeleteSuccessResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ContentPlatformModel.TagDeleteSuccessDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -7870,8 +7844,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
-   * @summary: Update HTML Tags
-   * @description: Use this API to edit all HTML Tags present - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+   * @summary: Update HTML tag
+   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
    */
   async updateInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -8356,7 +8330,7 @@ class Content {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.CreatePathMappingSchema>} - Success response
+   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name updatePathRedirectionRules
    * @summary: Update path redirection rule
    * @description: Modify settings for path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
@@ -8414,7 +8388,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreatePathMappingSchema().validate(responseData, {
+    } = ContentPlatformModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -8589,6 +8563,87 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > updateSitemap \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+   * @name updateSlideshow
+   * @summary: Update a slideshow
+   * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
+   */
+  async updateSlideshow(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.updateSlideshow().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.updateSlideshow().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > updateSlideshow \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.SlideshowSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > updateSlideshow \n ${res_error}`,
         });
       }
     }

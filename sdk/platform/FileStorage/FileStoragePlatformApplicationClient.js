@@ -1447,7 +1447,6 @@ class FileStorage {
  * @param {string} namespace
  * @param {number} size
  * @param {number} tags
- * @param {string} enc_key
  */
 FileStorage.prototype.upload = function ({
   data,
@@ -1456,7 +1455,6 @@ FileStorage.prototype.upload = function ({
   namespace,
   size,
   tags,
-  enc_key,
 } = {}) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -1467,7 +1465,6 @@ FileStorage.prototype.upload = function ({
           content_type,
           size: size,
           tags: tags,
-          enc_key: enc_key,
         },
       });
       if (dataObj.upload && dataObj.upload.url) {

@@ -37,13 +37,6 @@ const ContentPublicModel = require("./ContentPublicModel");
 
 /** @typedef GetPricingBannerParam */
 
-/** @typedef GetSDKDocumentationParam */
-
-/**
- * @typedef GetSDKDocumentationByTypeParam
- * @property {string} type - Type of SDK
- */
-
 class ContentPublicValidator {
   /** @returns {GetAllTagsParam} */
   static getAllTags() {
@@ -106,18 +99,6 @@ class ContentPublicValidator {
   /** @returns {GetPricingBannerParam} */
   static getPricingBanner() {
     return Joi.object({});
-  }
-
-  /** @returns {GetSDKDocumentationParam} */
-  static getSDKDocumentation() {
-    return Joi.object({});
-  }
-
-  /** @returns {GetSDKDocumentationByTypeParam} */
-  static getSDKDocumentationByType() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-    }).required();
   }
 }
 

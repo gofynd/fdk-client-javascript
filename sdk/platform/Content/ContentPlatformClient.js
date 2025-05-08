@@ -355,6 +355,95 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformValidator.DeleteCustomFieldsByResourceSlugParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.CustomFieldsDeleteSchema>} -
+   *   Success response
+   * @name deleteCustomFieldsByResourceSlug
+   * @summary: delete custom fields of given resource and resource slug
+   * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldsByResourceSlug/).
+   */
+  async deleteCustomFieldsByResourceSlug(
+    { resource, resourceSlug, ids, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformValidator.deleteCustomFieldsByResourceSlug().validate(
+      {
+        resource,
+        resourceSlug,
+        ids,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformValidator.deleteCustomFieldsByResourceSlug().validate(
+      {
+        resource,
+        resourceSlug,
+        ids,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteCustomFieldsByResourceSlug \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["ids"] = ids;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v2.0/company/${this.config.companyId}/customfields/resource/${resource}/${resourceSlug}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.CustomFieldsDeleteSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteCustomFieldsByResourceSlug \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformValidator.DeleteCustomObjectBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -1434,12 +1523,12 @@ class Content {
    * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getJobs/).
    */
   async getJobs(
-    { pageNo, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
+    { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformValidator.getJobs().validate(
       {
-        pageNo,
+        page,
         pageSize,
         actionType,
       },
@@ -1452,7 +1541,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ContentPlatformValidator.getJobs().validate(
       {
-        pageNo,
+        page,
         pageSize,
         actionType,
       },
@@ -1466,7 +1555,7 @@ class Content {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
     query_params["page_size"] = pageSize;
     query_params["action_type"] = actionType;
 

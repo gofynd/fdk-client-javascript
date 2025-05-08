@@ -21,8 +21,8 @@ class Discount {
    * @returns {Promise<DiscountPlatformModel.CancelJobResponseSchema>} -
    *   Success response
    * @name cancelDownloadJob
-   * @summary: Cancel download job.
-   * @description: Cancel download Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelDownloadJob/).
+   * @summary: delete discount download job
+   * @description: Cancel a discount download job by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelDownloadJob/).
    */
   async cancelDownloadJob(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -101,8 +101,8 @@ class Discount {
    * @returns {Promise<DiscountPlatformModel.CancelJobResponseSchema>} -
    *   Success response
    * @name cancelValidationJob
-   * @summary: Cancel validation job.
-   * @description: Validate file. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelValidationJob/).
+   * @summary: deletel validation job discount
+   * @description: Cancel validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelValidationJob/).
    */
   async cancelValidationJob(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -180,8 +180,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name createDiscount
-   * @summary: Create discount.
-   * @description: Create discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/createDiscount/).
+   * @summary: Create discount
+   * @description: Creates a discount. There are additional optional parameters that can be specified in the body of the request when creating a discount - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/createDiscount/).
    */
   async createDiscount(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -259,8 +259,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
    * @name downloadDiscountFile
-   * @summary: Download discount file.
-   * @description: Validate file. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
+   * @summary: Get discount file
+   * @description: Retrieve a discount file by its type, it could be product or inventory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
    */
   async downloadDiscountFile(
     { type, body, requestHeaders } = { requestHeaders: {} },
@@ -340,8 +340,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name getDiscount
-   * @summary: Get discount by ID.
-   * @description: Retrieve detailed information about a specific discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscount/).
+   * @summary: Get discount
+   * @description: Retrieve a single discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscount/).
    */
   async getDiscount(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -419,8 +419,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.ListOrCalender>} - Success response
    * @name getDiscounts
-   * @summary: Get discounts.
-   * @description: Retrieve a list of available discounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscounts/).
+   * @summary: List discounts
+   * @description: Retrieve a list of discounts. You can also retrieve discounts using filter query parameters. There are additional optional parameters that can be specified in the parameters of the request when retrieving discount - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscounts/).
    */
   async getDiscounts(
     {
@@ -529,64 +529,13 @@ class Discount {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.view] - Listing or calender. Default is listing.
-   * @param {string} [arg.q] - The search query. This can be a partial or
-   *   complete name of a discount.
-   * @param {number} [arg.pageSize] - Page size. Default is 12.
-   * @param {boolean} [arg.archived] - Archived. Default is false.
-   * @param {number} [arg.month] - Month. Default is current month.
-   * @param {number} [arg.year] - Year. Default is current year.
-   * @param {string} [arg.type] - Basic or custom.
-   * @param {string[]} [arg.appIds] - Application ids.
-   * @returns {Paginator<DiscountPlatformModel.ListOrCalender>}
-   * @summary: Get discounts.
-   * @description: Retrieve a list of available discounts.
-   */
-  getDiscountsPaginator({
-    view,
-    q,
-    pageSize,
-    archived,
-    month,
-    year,
-    type,
-    appIds,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getDiscounts({
-        view: view,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        archived: archived,
-        month: month,
-        year: year,
-        type: type,
-        appIds: appIds,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
    * @name getDownloadJob
-   * @summary: Get download job.
-   * @description: Download file Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDownloadJob/).
+   * @summary: List discount download job
+   * @description: Retrieve a discount download job by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDownloadJob/).
    */
   async getDownloadJob(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -664,8 +613,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
    * @name getValidationJob
-   * @summary: Get validation job.
-   * @description: Validate file. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
+   * @summary: List validation job discount
+   * @description: Retrieve a validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
    */
   async getValidationJob(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -743,8 +692,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name updateDiscount
-   * @summary: Update discount.
-   * @description: Create discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
+   * @summary: Update discount
+   * @description: Update an existing discount by its id. Discount can only be updated after 5 min from last updated time stamp (modified_on). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
    */
   async updateDiscount(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -824,8 +773,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name upsertDiscountItems
-   * @summary: Upsert discount items.
-   * @description: Create custom discounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/upsertDiscountItems/).
+   * @summary: Upsert discount items
+   * @description: Enables users to create custom discounts in bulk by providing the multiple products in requestBody. It allows for the efficient creation of multiple discounts simultaneously, streamlining the discount management process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/upsertDiscountItems/).
    */
   async upsertDiscountItems(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -903,8 +852,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
    * @name validateDiscountFile
-   * @summary: Validate discount file.
-   * @description: Validate file. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/validateDiscountFile/).
+   * @summary: Validate discount file
+   * @description: Validates the discount file for any discrepancies. like item should be valid etc.. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/validateDiscountFile/).
    */
   async validateDiscountFile(
     { body, discount, requestHeaders } = { requestHeaders: {} },

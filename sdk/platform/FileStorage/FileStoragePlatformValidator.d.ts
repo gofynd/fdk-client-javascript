@@ -18,8 +18,7 @@ export = FileStoragePlatformValidator;
  */
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync] - Determines whether the copy files operation
- *   should run in synchronous mode.
+ * @property {boolean} [sync]
  * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
@@ -83,10 +82,6 @@ type CompleteUploadParam = {
     body: FileStoragePlatformModel.FileUpload;
 };
 type CopyFilesParam = {
-    /**
-     * - Determines whether the copy files operation
-     * should run in synchronous mode.
-     */
     sync?: boolean;
     body: FileStoragePlatformModel.CopyFiles;
 };

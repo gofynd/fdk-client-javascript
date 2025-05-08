@@ -3,16 +3,6 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
- * @typedef CreateRuleParam
- * @property {OrderPlatformModel.RuleRequestSchema} body
- */
-
-/**
- * @typedef DeleteRuleParam
- * @property {string} ruleId
- */
-
-/**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane] - Optional parameter to specify the lane for
  *   filtering results.
@@ -20,7 +10,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   be used as the target for the search operation
  * @property {string} [searchId] - Identifier used for the search operation
  *   based on the selected search type.
- * @property {string} [searchValue]
  * @property {string} [fromDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [toDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds] - Comma-separated list of delivery partner IDs to
@@ -47,35 +36,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef GetQuestionsParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {string} [q] - To search questions using query
- * @property {boolean} [isActive] - To get active questions
- */
-
-/**
- * @typedef GetRuleByIdParam
- * @property {string} ruleId
- */
-
-/**
- * @typedef GetRuleLaneConfigParam
- * @property {string} [searchValue]
- */
-
-/**
- * @typedef GetRuleListParam
+ * @typedef GetRulesParam
  * @property {OrderPlatformModel.RuleListRequestSchema} body
  */
-
-/** @typedef GetRuleParametersParam */
 
 /**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - The unique identifier for the shipment
  * @property {number} lineNumber - A unique identifier of the bag's line number.
- * @property {string} bagId - The ID of the bag.
  */
 
 /**
@@ -83,39 +51,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} shipmentId - The unique identifier for the shipment
  */
 
-/**
- * @typedef UpdateRuleParam
- * @property {string} ruleId
- * @property {OrderPlatformModel.RuleUpdateRequestSchema} body
- */
-
-/**
- * @typedef UpdateRulePositionParam
- * @property {OrderPlatformModel.UpdateRulePositionRequestSchema} body
- */
-
 class OrderPlatformApplicationValidator {
-  /** @returns {CreateRuleParam} */
-  static createRule() {
-    return Joi.object({
-      body: OrderPlatformModel.RuleRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {DeleteRuleParam} */
-  static deleteRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetApplicationShipmentsParam} */
   static getApplicationShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchId: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
@@ -138,40 +80,11 @@ class OrderPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetQuestionsParam} */
-  static getQuestions() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
-    }).required();
-  }
-
-  /** @returns {GetRuleByIdParam} */
-  static getRuleById() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetRuleLaneConfigParam} */
-  static getRuleLaneConfig() {
-    return Joi.object({
-      searchValue: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetRuleListParam} */
-  static getRuleList() {
+  /** @returns {GetRulesParam} */
+  static getRules() {
     return Joi.object({
       body: OrderPlatformModel.RuleListRequestSchema().required(),
     }).required();
-  }
-
-  /** @returns {GetRuleParametersParam} */
-  static getRuleParameters() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetShipmentBagReasonsParam} */
@@ -179,7 +92,6 @@ class OrderPlatformApplicationValidator {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       lineNumber: Joi.number().required(),
-      bagId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -187,21 +99,6 @@ class OrderPlatformApplicationValidator {
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {UpdateRuleParam} */
-  static updateRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      body: OrderPlatformModel.RuleUpdateRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateRulePositionParam} */
-  static updateRulePosition() {
-    return Joi.object({
-      body: OrderPlatformModel.UpdateRulePositionRequestSchema().required(),
     }).required();
   }
 }

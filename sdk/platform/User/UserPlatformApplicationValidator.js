@@ -13,16 +13,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
- * @typedef BulkUpdatePerUserAttributesParam
- * @property {UserPlatformModel.BulkUpdatePerUserAttributesBody} body
- */
-
-/**
- * @typedef BulkUpdateUserAttributesParam
- * @property {UserPlatformModel.BulkUpdateUserAttributesBody} body
- */
-
-/**
  * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
@@ -131,8 +121,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {string} groupId - Numeric ID allotted to a User Group
  */
 
-/** @typedef GetUserGroupCategoriesParam */
-
 /**
  * @typedef GetUserGroupsParam
  * @property {string} [pageNo] - Page number for pagination result
@@ -142,11 +130,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {string} [type] - To search for User Groups with given type
  * @property {string} [status] - To get User Groups with given status
  * @property {number} [groupUid] - To get User Groups with given uid
- */
-
-/**
- * @typedef GetUsersByByGroupIdParam
- * @property {string} groupId - Numeric ID allotted to a User Group
  */
 
 /**
@@ -177,7 +160,7 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {string} attributeDefId - The unique identifier of the attribute
  *   definition to update.
  * @property {string} userId - The unique identifier of the user to update.
- * @property {UserPlatformModel.CreateUserAttributePayload} body
+ * @property {UserPlatformModel.CreateUserAttribute} body
  */
 
 /**
@@ -211,20 +194,6 @@ class UserPlatformApplicationValidator {
   static blockOrUnblockUsers() {
     return Joi.object({
       body: UserPlatformModel.BlockUserRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {BulkUpdatePerUserAttributesParam} */
-  static bulkUpdatePerUserAttributes() {
-    return Joi.object({
-      body: UserPlatformModel.BulkUpdatePerUserAttributesBody().required(),
-    }).required();
-  }
-
-  /** @returns {BulkUpdateUserAttributesParam} */
-  static bulkUpdateUserAttributes() {
-    return Joi.object({
-      body: UserPlatformModel.BulkUpdateUserAttributesBody().required(),
     }).required();
   }
 
@@ -366,11 +335,6 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetUserGroupCategoriesParam} */
-  static getUserGroupCategories() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetUserGroupsParam} */
   static getUserGroups() {
     return Joi.object({
@@ -380,13 +344,6 @@ class UserPlatformApplicationValidator {
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       groupUid: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetUsersByByGroupIdParam} */
-  static getUsersByByGroupId() {
-    return Joi.object({
-      groupId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -426,7 +383,7 @@ class UserPlatformApplicationValidator {
       attributeDefId: Joi.string().allow("").required(),
       userId: Joi.string().allow("").required(),
 
-      body: UserPlatformModel.CreateUserAttributePayload().required(),
+      body: UserPlatformModel.CreateUserAttribute().required(),
     }).required();
   }
 

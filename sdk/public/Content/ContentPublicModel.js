@@ -239,6 +239,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SdkReadmeSchema
+ * @property {string} [data]
+ */
+
+/**
  * @typedef TagsSchema
  * @property {CustomItemSchema[]} [items]
  * @property {PageSchema} [page]
@@ -295,26 +300,6 @@ const Joi = require("joi");
 /**
  * @typedef CredentialsSchema
  * @property {CredentialSchema[]} [items]
- */
-
-/**
- * @typedef SDKLinksResponseSchema
- * @property {SDKLinkObjectSchema[]} [readmes]
- */
-
-/**
- * @typedef SDKLinkObjectSchema
- * @property {string} [owner]
- * @property {string} [repo]
- * @property {string} [path]
- * @property {string} [image]
- * @property {string} [name]
- * @property {string} [type]
- */
-
-/**
- * @typedef SDKbyTypeResponseSchema
- * @property {string} [readme_content]
  */
 
 /**
@@ -624,6 +609,13 @@ class ContentPublicModel {
     });
   }
 
+  /** @returns {SdkReadmeSchema} */
+  static SdkReadmeSchema() {
+    return Joi.object({
+      data: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {TagsSchema} */
   static TagsSchema() {
     return Joi.object({
@@ -694,32 +686,6 @@ class ContentPublicModel {
   static CredentialsSchema() {
     return Joi.object({
       items: Joi.array().items(ContentPublicModel.CredentialSchema()),
-    });
-  }
-
-  /** @returns {SDKLinksResponseSchema} */
-  static SDKLinksResponseSchema() {
-    return Joi.object({
-      readmes: Joi.array().items(ContentPublicModel.SDKLinkObjectSchema()),
-    });
-  }
-
-  /** @returns {SDKLinkObjectSchema} */
-  static SDKLinkObjectSchema() {
-    return Joi.object({
-      owner: Joi.string().allow(""),
-      repo: Joi.string().allow(""),
-      path: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SDKbyTypeResponseSchema} */
-  static SDKbyTypeResponseSchema() {
-    return Joi.object({
-      readme_content: Joi.string().allow(""),
     });
   }
 

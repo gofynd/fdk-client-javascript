@@ -1,114 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef MarketplaceTheme
- * @property {string} [_id] - Theme ID
- * @property {PaymentInfo} [payment]
- * @property {ContactInfo} [contact]
- * @property {string[]} [industry] - Industries the theme is suitable for
- * @property {boolean} [is_update] - Indicates if the theme is an update
- * @property {boolean} [is_default] - Indicates if the theme is a default theme
- * @property {string} [name] - Theme name
- * @property {string} [tagline] - Theme tagline
- * @property {string} [description] - Theme description
- * @property {CatalogSize} [catalog_size]
- * @property {MarketplaceThemeImages} [images]
- * @property {CarouselItem[]} [carousel]
- * @property {string} [src] - Theme source URL
- * @property {ExploreInfo} [explore]
- * @property {Feature[]} [features]
- * @property {Highlight[]} [highlights]
- * @property {Variation[]} [variations]
- * @property {Documentation} [documentation]
- * @property {string} [status] - Theme status
- * @property {number} [step] - Theme step
- * @property {Comments} [comments]
- * @property {Release} [release]
- * @property {string} [slug] - Theme slug
- * @property {string} [organization_id] - Organization ID
- * @property {string} [user_id] - User ID
- * @property {string} [created_at] - Theme creation timestamp
- * @property {string} [updated_at] - Theme update timestamp
- * @property {string} [template_theme_id] - Template theme ID
- * @property {string} [theme_type] - Theme type
- */
-
-/**
- * @typedef PaymentInfo
- * @property {boolean} [is_paid] - Indicates if the theme is paid
- * @property {number} [amount] - Amount of payment
- */
-
-/**
- * @typedef ContactInfo
- * @property {string[]} [developer_contact] - Developer contact information
- * @property {string} [seller_contact] - Seller contact information
- */
-
-/**
- * @typedef CatalogSize
- * @property {number} [min] - Minimum catalog size
- * @property {number} [max] - Maximum catalog size
- */
-
-/**
- * @typedef MarketplaceThemeImages
- * @property {string} [desktop] - Desktop theme image URL
- * @property {string} [mobile] - Mobile theme image URL
- */
-
-/**
- * @typedef CarouselItem
- * @property {string} [desktop] - Desktop carousel image URL
- * @property {string} [mobile] - Mobile carousel image URL
- */
-
-/**
- * @typedef ExploreInfo
- * @property {string} [title] - Explore feature title
- * @property {string} [description] - Explore feature description
- */
-
-/**
- * @typedef Feature
- * @property {string} [category] - Feature category
- * @property {FeatureItem[]} [list]
- */
-
-/**
- * @typedef FeatureItem
- * @property {string} [label] - Feature properties
- * @property {string} [description] - Feature description
- */
-
-/**
- * @typedef Highlight
- * @property {string} [title] - Highlight title
- * @property {string} [description] - Highlight description
- * @property {string} [image] - Highlight image URL
- */
-
-/**
- * @typedef Variation
- * @property {string} [name] - Variation name
- * @property {string} [color] - Variation color
- * @property {string} [demo_url] - Variation demo URL
- * @property {MarketplaceThemeImages} [images]
- */
-
-/**
- * @typedef Documentation
- * @property {string} [notes] - Documentation notes
- * @property {string} [url] - Documentation URL
- */
-
-/**
- * @typedef Comments
- * @property {string} [developer_remark] - Developer remark
- * @property {string} [reviewer_feedback] - Reviewer feedback
- */
-
-/**
  * @typedef GetExtensionSectionRes
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
@@ -162,22 +54,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyThemeReqSchema
- * @property {string} [marketplace_theme_id] - Theme id of the marketplace
- */
-
-/**
- * @typedef CompanyTheme
- * @property {string} [_id] - The unique identifier for the theme.
- * @property {string} [name] - The name of the theme.
- * @property {string} [marketplace_theme_id]
- * @property {number} [company_id] - The ID of the company that the theme belongs to.
- * @property {CompanyThemeMeta} [meta]
- * @property {string} [created_at] - The timestamp when the theme was created.
- * @property {string} [updated_at] - The timestamp when the theme was last updated.
- */
-
-/**
  * @typedef MarketplaceThemeId
  * @property {string} [_id] - The unique identifier for the marketplace theme.
  * @property {boolean} [is_default] - Whether the theme is the default theme.
@@ -222,7 +98,6 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
- * @property {string} [application]
  */
 
 /**
@@ -246,7 +121,6 @@ const Joi = require("joi");
  * @typedef SEOSitemap
  * @property {number} [priority]
  * @property {string} [frequency]
- * @property {string} [modified_on] - Timestamp at which the document was last modified on
  */
 
 /**
@@ -268,14 +142,12 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumbs]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [_id]
- * @property {string} [canonical_url]
  */
 
 /**
  * @typedef AvailablePageSchemaSections
- * @property {string} [_id] - Unique Id for section.
  * @property {string} [name]
  * @property {string} [label]
  * @property {Object} [props]
@@ -299,7 +171,7 @@ const Joi = require("joi");
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
- * @property {AvailablePageSchedulePredicate[]} [schedule] - Multiple schedule for section
+ * @property {AvailablePageSchedulePredicate} [schedule]
  * @property {AvailablePagePlatformPredicate} [platform]
  * @property {string[]} [zones] - An array of zone ids associated with the section
  */
@@ -313,16 +185,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [authenticated] - Indicates if the predicate applies to
- *   authenticated users.
- * @property {boolean} [anonymous] - Indicates if the predicate applies to
- *   anonymous users.
- * @property {string} [user_type] - Type of User filter settings applied for section
- * @property {string[]} [user_groups] - List of the user groups selected as a filter
- * @property {string} [start] - Timestamp after which the user has created
- *   account on storefront
- * @property {string} [end] - Timestamp before which the user has created
- *   account on storefront
+ * @property {boolean} [authenticated]
+ * @property {boolean} [anonymous]
  */
 
 /**
@@ -358,7 +222,7 @@ const Joi = require("joi");
 
 /**
  * @typedef FontsSchema
- * @property {Object[]} [items]
+ * @property {FontsSchemaItems} [items]
  * @property {string} [kind]
  */
 
@@ -382,7 +246,6 @@ const Joi = require("joi");
  * @property {FontsSchemaItemsFiles} [files]
  * @property {string} [category]
  * @property {string} [kind]
- * @property {string} [menu]
  */
 
 /**
@@ -409,19 +272,17 @@ const Joi = require("joi");
  * @property {Object} [styles] - The styles associated with the theme
  * @property {string} [created_at] - The creation timestamp of the theme
  * @property {string} [updated_at] - The last update timestamp of the theme
- * @property {Object[]} [global_sections]
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
- * @property {Object[]} [applied_themes] - Applied themes array
  */
 
 /**
  * @typedef ThemeUpgradable
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
- * @property {Object} [versions] - Information about theme versions.
+ * @property {ThemeVersions} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
  */
 
@@ -462,7 +323,7 @@ const Joi = require("joi");
  * @property {string} current - The current configuration
  * @property {ThemeConfiguration[]} list - A list of configurations
  * @property {GlobalSchema} [global_schema]
- * @property {Object} [preset] - An Object of default theme configurations
+ * @property {Preset} [preset]
  */
 
 /**
@@ -612,7 +473,6 @@ const Joi = require("joi");
  * @property {Object[]} [props]
  * @property {Object[]} [blocks] - Blocks
  * @property {string} [name] - Name of the section
- * @property {SectionPreset} [preset]
  * @property {string} [label] - Label for the section
  */
 
@@ -750,26 +610,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Option
- * @property {string} [text]
- * @property {string} [value]
- */
-
-/**
- * @typedef CreateThemePreviewBody
- * @property {number} [pincode] - Pincode.
- * @property {number} [user_group_uid] - Uid of the user group.
- * @property {string} [preview_date_time] - Date and Time for theme preview.
- * @property {string} [page] - Page value.
- */
-
-/**
- * @typedef CreateThemePreviewResponseSchema
- * @property {boolean} [success] - Whether the preview entry created on not.
- * @property {string} [hash_key] - Hash key to required at the time of theme preview.
- */
-
-/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -829,140 +669,6 @@ const Joi = require("joi");
  */
 
 class ThemePlatformModel {
-  /** @returns {MarketplaceTheme} */
-  static MarketplaceTheme() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      payment: ThemePlatformModel.PaymentInfo(),
-      contact: ThemePlatformModel.ContactInfo(),
-      industry: Joi.array().items(Joi.string().allow("")),
-      is_update: Joi.boolean(),
-      is_default: Joi.boolean(),
-      name: Joi.string().allow(""),
-      tagline: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      catalog_size: ThemePlatformModel.CatalogSize(),
-      images: ThemePlatformModel.MarketplaceThemeImages(),
-      carousel: Joi.array().items(ThemePlatformModel.CarouselItem()),
-      src: Joi.string().allow(""),
-      explore: ThemePlatformModel.ExploreInfo(),
-      features: Joi.array().items(ThemePlatformModel.Feature()),
-      highlights: Joi.array().items(ThemePlatformModel.Highlight()),
-      variations: Joi.array().items(ThemePlatformModel.Variation()),
-      documentation: ThemePlatformModel.Documentation(),
-      status: Joi.string().allow(""),
-      step: Joi.number(),
-      comments: ThemePlatformModel.Comments(),
-      release: ThemePlatformModel.Release(),
-      slug: Joi.string().allow(""),
-      organization_id: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      template_theme_id: Joi.string().allow(""),
-      theme_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaymentInfo} */
-  static PaymentInfo() {
-    return Joi.object({
-      is_paid: Joi.boolean(),
-      amount: Joi.number(),
-    });
-  }
-
-  /** @returns {ContactInfo} */
-  static ContactInfo() {
-    return Joi.object({
-      developer_contact: Joi.array().items(Joi.string().allow("")),
-      seller_contact: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CatalogSize} */
-  static CatalogSize() {
-    return Joi.object({
-      min: Joi.number(),
-      max: Joi.number(),
-    });
-  }
-
-  /** @returns {MarketplaceThemeImages} */
-  static MarketplaceThemeImages() {
-    return Joi.object({
-      desktop: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CarouselItem} */
-  static CarouselItem() {
-    return Joi.object({
-      desktop: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ExploreInfo} */
-  static ExploreInfo() {
-    return Joi.object({
-      title: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Feature} */
-  static Feature() {
-    return Joi.object({
-      category: Joi.string().allow(""),
-      list: Joi.array().items(ThemePlatformModel.FeatureItem()),
-    });
-  }
-
-  /** @returns {FeatureItem} */
-  static FeatureItem() {
-    return Joi.object({
-      label: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Highlight} */
-  static Highlight() {
-    return Joi.object({
-      title: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Variation} */
-  static Variation() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      color: Joi.string().allow(""),
-      demo_url: Joi.string().allow(""),
-      images: ThemePlatformModel.MarketplaceThemeImages(),
-    });
-  }
-
-  /** @returns {Documentation} */
-  static Documentation() {
-    return Joi.object({
-      notes: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Comments} */
-  static Comments() {
-    return Joi.object({
-      developer_remark: Joi.string().allow(""),
-      reviewer_feedback: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {GetExtensionSectionRes} */
   static GetExtensionSectionRes() {
     return Joi.object({
@@ -1027,26 +733,6 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {CompanyThemeReqSchema} */
-  static CompanyThemeReqSchema() {
-    return Joi.object({
-      marketplace_theme_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CompanyTheme} */
-  static CompanyTheme() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      marketplace_theme_id: Joi.string().allow(""),
-      company_id: Joi.number(),
-      meta: ThemePlatformModel.CompanyThemeMeta(),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {MarketplaceThemeId} */
   static MarketplaceThemeId() {
     return Joi.object({
@@ -1104,7 +790,6 @@ class ThemePlatformModel {
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-      application: Joi.string().allow(""),
     });
   }
 
@@ -1136,7 +821,6 @@ class ThemePlatformModel {
     return Joi.object({
       priority: Joi.number(),
       frequency: Joi.string().allow(""),
-      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -1164,16 +848,14 @@ class ThemePlatformModel {
       description: Joi.string().allow(""),
       meta_tags: Joi.array().items(ThemePlatformModel.SEOMetaItem()),
       sitemap: ThemePlatformModel.SEOSitemap(),
-      breadcrumbs: Joi.array().items(ThemePlatformModel.SEObreadcrumb()),
+      breadcrumb: Joi.array().items(ThemePlatformModel.SEObreadcrumb()),
       _id: Joi.string().allow(""),
-      canonical_url: Joi.string().allow(""),
     });
   }
 
   /** @returns {AvailablePageSchemaSections} */
   static AvailablePageSchemaSections() {
     return Joi.object({
-      _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
       props: Joi.object().pattern(/\S/, Joi.any()),
@@ -1199,9 +881,7 @@ class ThemePlatformModel {
       screen: ThemePlatformModel.AvailablePageScreenPredicate(),
       user: ThemePlatformModel.AvailablePageUserPredicate(),
       route: ThemePlatformModel.AvailablePageRoutePredicate(),
-      schedule: Joi.array().items(
-        ThemePlatformModel.AvailablePageSchedulePredicate()
-      ),
+      schedule: ThemePlatformModel.AvailablePageSchedulePredicate(),
       platform: ThemePlatformModel.AvailablePagePlatformPredicate(),
       zones: Joi.array().items(Joi.string().allow("")),
     });
@@ -1221,10 +901,6 @@ class ThemePlatformModel {
     return Joi.object({
       authenticated: Joi.boolean(),
       anonymous: Joi.boolean(),
-      user_type: Joi.string().allow(""),
-      user_groups: Joi.array().items(Joi.string().allow("")),
-      start: Joi.string().allow(""),
-      end: Joi.string().allow(""),
     });
   }
 
@@ -1272,7 +948,7 @@ class ThemePlatformModel {
   /** @returns {FontsSchema} */
   static FontsSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: ThemePlatformModel.FontsSchemaItems(),
       kind: Joi.string().allow(""),
     });
   }
@@ -1302,7 +978,6 @@ class ThemePlatformModel {
       files: ThemePlatformModel.FontsSchemaItemsFiles(),
       category: Joi.string().allow(""),
       kind: Joi.string().allow(""),
-      menu: Joi.string().allow(""),
     });
   }
 
@@ -1333,13 +1008,11 @@ class ThemePlatformModel {
       styles: Joi.object().pattern(/\S/, Joi.any()),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-      global_sections: Joi.array().items(Joi.any()),
       assets: ThemePlatformModel.Assets(),
       available_sections: Joi.array().items(ThemePlatformModel.SectionItem()),
       theme_type: Joi.string().allow(""),
       company_id: Joi.number(),
       src: Joi.string().allow(""),
-      applied_themes: Joi.array().items(Joi.any()),
     });
   }
 
@@ -1347,7 +1020,7 @@ class ThemePlatformModel {
   static ThemeUpgradable() {
     return Joi.object({
       upgrade: Joi.boolean(),
-      versions: Joi.object().pattern(/\S/, Joi.any()),
+      versions: ThemePlatformModel.ThemeVersions(),
       message: Joi.string().allow(""),
     });
   }
@@ -1402,7 +1075,7 @@ class ThemePlatformModel {
         .items(ThemePlatformModel.ThemeConfiguration())
         .required(),
       global_schema: ThemePlatformModel.GlobalSchema(),
-      preset: Joi.object().pattern(/\S/, Joi.any()),
+      preset: ThemePlatformModel.Preset(),
     });
   }
 
@@ -1580,10 +1253,9 @@ class ThemePlatformModel {
   /** @returns {SectionItem} */
   static SectionItem() {
     return Joi.object({
-      props: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
-      blocks: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      props: Joi.array().items(Joi.any()),
+      blocks: Joi.array().items(Joi.any()),
       name: Joi.string().allow(""),
-      preset: ThemePlatformModel.SectionPreset(),
       label: Joi.string().allow(""),
     });
   }
@@ -1758,32 +1430,6 @@ class ThemePlatformModel {
       applied: Joi.boolean(),
       is_private: Joi.boolean(),
       meta: ThemePlatformModel.CompanyThemeMeta(),
-    });
-  }
-
-  /** @returns {Option} */
-  static Option() {
-    return Joi.object({
-      text: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateThemePreviewBody} */
-  static CreateThemePreviewBody() {
-    return Joi.object({
-      pincode: Joi.number(),
-      user_group_uid: Joi.number(),
-      preview_date_time: Joi.string().allow(""),
-      page: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateThemePreviewResponseSchema} */
-  static CreateThemePreviewResponseSchema() {
-    return Joi.object({
-      success: Joi.boolean(),
-      hash_key: Joi.string().allow(""),
     });
   }
 

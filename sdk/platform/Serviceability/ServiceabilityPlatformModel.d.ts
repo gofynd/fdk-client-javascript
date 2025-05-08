@@ -1,511 +1,10 @@
 export = ServiceabilityPlatformModel;
 /**
- * @typedef GetExportPriceZoneHistory
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {string} [updated_by]
- * @property {string} [type]
- * @property {string} [stage]
- */
-/**
- * @typedef PriceBulkGeoAreaExportRequestPayload
- * @property {string} [type] - Type of the geo area export
- */
-/**
- * @typedef GetBulkPriceZoneHistory
- * @property {Pagination} page
- * @property {BulkPriceZoneItem[]} items - List of bulk price zone history items
- */
-/**
- * @typedef Pagination
- * @property {string} [type] - Data type of page
- * @property {number} size - Number of items per page
- * @property {number} current - Current page number
- * @property {boolean} has_next - Flag indicating if there is a next page
- * @property {number} item_total - Total number of items
- */
-/**
- * @typedef BulkPriceZoneItem
- * @property {string} batch_id - The unique batch ID for the bulk upload
- * @property {string} entity_type - Entity type of the record
- * @property {string} [error_file_url] - URL of the error file if any error occurred
- * @property {string} file_path - File path or URL where the bulk file is stored
- * @property {string} file_name - Name of the file
- * @property {string} updated_at - Timestamp of the last update
- * @property {string} updated_by - User who last updated the record
- * @property {string} stage - Stage of the bulk upload process
- */
-/**
- * @typedef PriceBulkGeoAreaPayload
- * @property {string} type - Type of bulk geo area export (e.g. 'price').
- * @property {string} file_url - URL to the file containing bulk geo area data.
- */
-/**
- * @typedef StandardError
- * @property {string} message - A brief description of the error.
- */
-/**
- * @typedef RuleConditionIntegerDetail
- * @property {string} [text]
- * @property {number} [value]
- * @property {boolean} [stage]
- */
-/**
- * @typedef RuleConditionStringDetail
- * @property {string} [text]
- * @property {string} [value]
- * @property {boolean} [stage]
- */
-/**
- * @typedef RuleResponseIntegerDetail
- * @property {RuleConditionIntegerDetail[]} [includes]
- */
-/**
- * @typedef RuleResponseStringDetail
- * @property {RuleConditionStringDetail[]} [includes]
- */
-/**
- * @typedef CourierPartnerRuleResponseDetailConditions
- * @property {LocationRule} [forward]
- * @property {LocationRule} [reverse]
- * @property {StringComparisonOperations} [payment_mode]
- * @property {RuleResponseIntegerDetail} [category_ids]
- * @property {RuleResponseIntegerDetail} [product_ids]
- * @property {StringComparisonOperations} [product_tags]
- * @property {RuleResponseStringDetail} [zone_ids]
- * @property {RuleResponseIntegerDetail} [department_ids]
- * @property {RuleResponseIntegerDetail} [brand_ids]
- * @property {ArithmeticOperationsV2} [order_place_date]
- * @property {RuleResponseIntegerDetail} [store_ids]
- * @property {StringComparisonOperations} [store_type]
- * @property {StringComparisonOperations} [store_tags]
- * @property {ArithmeticOperations} [shipment_weight]
- * @property {ArithmeticOperations} [shipment_cost]
- * @property {ArithmeticOperations} [shipment_volumetric_weight]
- * @property {RuleResponseIntegerDetail} [company_ids]
- * @property {StringComparisonOperations} [promise_types]
- */
-/**
- * @typedef CourierPartnerRuleResponseDetailSchema
- * @property {string} [id]
- * @property {boolean} is_active
- * @property {CourierPartnerList[]} [cp_list]
- * @property {string} name
- * @property {CourierPartnerRuleResponseDetailConditions} conditions
- * @property {string[]} [manual_priority]
- * @property {string[]} sort
- * @property {string} type
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {string} [shipment_adjustment_type]
- */
-/**
- * @typedef StoreLocationDetail
- * @property {string} [uid]
- * @property {string} [display_name]
- * @property {string} [sub_type]
- * @property {string} [parent_id]
- * @property {string} [parent_uid]
- */
-/**
- * @typedef StoreRuleLocationDetailSchema
- * @property {StoreLocationDetail[]} [includes]
- */
-/**
- * @typedef StoreRuleConditionDetailSchema
- * @property {RuleResponseIntegerDetail} [department_ids]
- * @property {RuleResponseIntegerDetail} [category_ids]
- * @property {RuleResponseIntegerDetail} [brand_ids]
- * @property {StoreRuleLocationDetailSchema} [to_location]
- * @property {CustomerRadiusSchema} [customer_radius]
- * @property {StringComparisonOperations} [store_type]
- * @property {StringComparisonOperations} [product_tags]
- * @property {RuleResponseIntegerDetail} [product_ids]
- * @property {StringComparisonOperations} [store_tags]
- * @property {ArithmeticOperationsV2} [order_place_date]
- * @property {RuleResponseStringDetail} [zone_ids]
- * @property {RuleResponseIntegerDetail} [company_ids]
- */
-/**
- * @typedef StoreRuleDataDetailsSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {number} [company_id]
- * @property {string} [application_id]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
- * @property {number[]} [manual_priority]
- * @property {StoreRuleConditionDetailSchema} [conditions]
- * @property {boolean} [is_active]
- * @property {Object} [meta_sort_priority]
- * @property {Object} [meta_conditions]
- */
-/**
- * @typedef OptimalLocationArticlesResponseSchema
- * @property {number} item_id
- * @property {string} size
- * @property {number} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number} [seller_id]
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} price_effective
- * @property {number} mto_quantity
- * @property {string} _id
- * @property {string} uid
- */
-/**
- * @typedef OptimalLocationAssignedStoresResponseSchema
- * @property {number} store_id
- * @property {OptimalLocationArticlesResponseSchema[]} articles
- */
-/**
- * @typedef OptimalLocationsResponseSchema
- * @property {OptimalLocationAssignedStoresResponseSchema[]} assigned_stores
- * @property {ErrorResponseSchema[]} [faulty_articles]
- */
-/**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy] - The strategy parameter allows users to
- *   specify the desired approach or criteria for selecting optimal locations.
- */
-/**
- * @typedef OptimalLocationsArticles
- * @property {number} item_id
- * @property {string} size
- * @property {number} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} [seller_id]
- */
-/**
- * @typedef ServiceabilityLocation
- * @property {string} longitude - The longitude of the serviceability location.
- * @property {string} latitude - The latitude of the serviceability location.
- */
-/**
- * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
- * @property {ServiceabilityLocation} [location]
- */
-/**
- * @typedef OptimlLocationsRequestSchema
- * @property {string} channel_id
- * @property {string} channel_type
- * @property {string} [channel_identifier]
- * @property {LocationDetailsServiceability} to_serviceability
- * @property {OptimalLocationsArticles[]} articles
- */
-/**
- * @typedef ErrorResponseV3
- * @property {boolean} [success]
- * @property {ErrorObject} [error]
- */
-/**
- * @typedef ErrorObject
- * @property {string} [type]
- * @property {string} [value]
- * @property {string} [message]
- */
-/**
- * @typedef ValidateAddressRequestSchema
- * @property {string} [address] - A string representing the complete address,
- *   combining address line 1, address line 2, area, landmark, sector, city,
- *   state, and pincode. This provides a comprehensive view of the address details.
- * @property {string} [address1] - A string representing the first line of the
- *   address, typically containing street or building information.
- * @property {string} [address2] - A string representing the second line of the
- *   address, which can be used for additional address details if needed.
- * @property {string} [area] - A string specifying the locality or area
- *   associated with the address.
- * @property {string} [landmark] - A string representing a prominent nearby
- *   landmark that aids in locating the address.
- * @property {string} [pincode] - A string indicating the postal code or PIN
- *   code of the address area.
- * @property {string} [sector] - A string specifying the sector or district of
- *   the address if applicable.
- * @property {string} [city] - A string denoting the city or municipality of the address.
- * @property {string} [state] - A string indicating the state or province of the address.
- * @property {string} [name] - A string representing the recipient's name or the
- *   organization name associated with the address.
- * @property {string} [phone] - An integer representing the recipient's contact
- *   phone number.
- * @property {string} [email] - A string containing the recipient's email address.
- * @property {string} [country_iso_code] - A string containing the recipient's
- *   email address.
- */
-/**
- * @typedef CountryObject
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {CountryHierarchy[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [latitude]
- * @property {string} [longitude]
- * @property {CurrencyObject} [currency]
- * @property {string} [type]
- */
-/**
- * @typedef GetCountries
- * @property {CountryObject[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef CurrencyObject
- * @property {string} [code]
- * @property {string} [name]
- * @property {string} [symbol]
- */
-/**
- * @typedef CountryHierarchy
- * @property {string} [display_name]
- * @property {string} [slug]
- */
-/**
- * @typedef GetCountry
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {CountryHierarchy[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [latitude]
- * @property {string} [longitude]
- * @property {CurrencyObject} [currency]
- * @property {string} [type]
- * @property {GetCountryFields} [fields]
- */
-/**
- * @typedef GetCountryFields
- * @property {GetCountryFieldsAddress[]} address
- * @property {string[]} serviceability_fields
- * @property {GetCountryFieldsAddressTemplate} address_template
- */
-/**
- * @typedef GetCountryFieldsAddressTemplate
- * @property {string} checkout_form
- * @property {string} store_os_form
- * @property {string} default_display
- */
-/**
- * @typedef FieldValidation
- * @property {string} [type]
- * @property {FieldValidationRegex} [regex]
- */
-/**
- * @typedef FieldValidationRegex
- * @property {string} [value]
- * @property {LengthValidation} [length]
- */
-/**
- * @typedef LengthValidation
- * @property {number} [min]
- * @property {number} [max]
- */
-/**
- * @typedef GetOneOrAllQuery
- * @property {string} [country]
- * @property {string} [state]
- * @property {string} [city]
- * @property {string} [sector]
- */
-/**
- * @typedef GetOneOrAllPath
- * @property {string} [type]
- * @property {string} [value]
- */
-/**
- * @typedef GetOneOrAllParams
- * @property {GetOneOrAllPath} [path]
- * @property {GetOneOrAllQuery} [query]
- */
-/**
- * @typedef GetOneOrAll
- * @property {string} [operation_id]
- * @property {GetOneOrAllParams} [params]
- */
-/**
- * @typedef GetCountryFieldsAddressValues
- * @property {GetOneOrAll} [get_one]
- * @property {GetOneOrAll} [get_all]
- */
-/**
- * @typedef GetCountryFieldsAddress
- * @property {string} display_name
- * @property {string} slug
- * @property {boolean} required
- * @property {boolean} [edit]
- * @property {string} input
- * @property {FieldValidation} [validation]
- * @property {GetCountryFieldsAddressValues} [values]
- * @property {string} [error_text]
- */
-/**
- * @typedef PincodeLatLongData
- * @property {string} [type]
- * @property {number[]} [coordinates]
- */
-/**
- * @typedef Localities
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string[]} [parent_ids]
- * @property {Object} [meta]
- * @property {string} [type]
- * @property {PincodeLatLongData} [lat_long]
- * @property {string} [parent_uid]
- * @property {string} [code]
- * @property {LocalityParent[]} [localities]
- * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
- * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
- * @property {Object} [currency] - Currency information for the country.
- * @property {string} [phone_code] - Country's international phone dialing code.
- * @property {Object} [hierarchy] - Hierarchical data of the country's location.
- * @property {string} [latitude] - Latitude of the country's geographic center.
- * @property {string} [longitude] - Longitude of the country's geographic center.
- */
-/**
- * @typedef GetLocalities
- * @property {Localities[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef LocalityParent
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {Object} [meta]
- * @property {string[]} [parent_ids]
- * @property {string} [type]
- * @property {Object} [serviceability]
- * @property {string} [code]
- * @property {string} [parent_uid]
- * @property {string} [iso2] - ISO 3166-1 alpha-2 code for the country.
- * @property {string} [iso3] - ISO 3166-1 alpha-3 code for the country.
- * @property {Object} [currency] - Currency information for the country.
- * @property {string} [phone_code] - Country's international phone dialing code.
- * @property {Object} [hierarchy] - Hierarchical data of the country's location.
- * @property {string} [latitude] - Latitude of the country's geographic center.
- * @property {string} [longitude] - Longitude of the country's geographic center.
- */
-/**
- * @typedef GetLocality
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {Object} [meta]
- * @property {string[]} [parent_ids]
- * @property {string} [parent_uid]
- * @property {string} [type]
- * @property {string} [code]
- * @property {LocalityParent[]} [localities]
- */
-/**
- * @typedef ApplicationConfigPutResponseSchema
- * @property {string[]} [rule_ids]
- * @property {string[]} [sort]
- * @property {string[]} [manual_priority]
- * @property {string} [application_id]
- * @property {number} [company_id]
- */
-/**
- * @typedef PromiseType
- * @property {string} display_name
- * @property {string} slug
- * @property {string} description
- * @property {boolean} is_active
- * @property {boolean} is_default
- */
-/**
- * @typedef BuyboxRuleConfig
- * @property {string[]} [store_type_priority]
- * @property {string[]} [store_tag_priority]
- * @property {string[]} [sort]
- */
-/**
- * @typedef CourierPartnerConfig
- * @property {string[]} [rule_ids]
- * @property {string[]} [sort]
- * @property {string[]} [manual_priority]
- */
-/**
- * @typedef ZoneConfig
+ * @typedef UpdateZoneConfigDetails
  * @property {string} [serviceability_type]
- * @property {number} [active_count]
- * @property {number} [total_count]
  */
 /**
- * @typedef ApplicationConfigGetResponseSchema
- * @property {ZoneConfig} [zones]
- * @property {CourierPartnerConfig} [courier_partner_config]
- * @property {BuyboxRuleConfig} [buybox_rule_config]
- * @property {PromiseConfig} [promise_config]
- * @property {PromiseType[]} [promise_types]
- */
-/**
- * @typedef ApplicationConfigPutRequestSchema
- * @property {string[]} [rule_ids]
- * @property {string[]} [sort]
- * @property {string[]} [manual_priority]
- */
-/**
- * @typedef InstallCourierPartnerItemsSchema
- * @property {string} [base_url]
- * @property {Object} [callbacks]
- * @property {string} [contact_email]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {string} [developed_by_name]
- * @property {string} [ext_version]
- * @property {string} [extention_type]
- * @property {boolean} [is_coming_soon]
- * @property {boolean} [is_hidden]
- * @property {boolean} [is_installed]
- * @property {string} [launch_type]
- * @property {Object} [logo]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [organization_id]
- * @property {Object} [partner]
- * @property {string[]} [scope]
- * @property {string[]} [whitelisted_urls]
- * @property {number} [__v]
- * @property {string} [_id]
- */
-/**
- * @typedef InstallCourierPartnerResponseSchema
- * @property {InstallCourierPartnerItemsSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef ServiceabilityErrorResponseSchema
+ * @typedef ServiceabilityErrorResult
  * @property {string} message
  * @property {string} value
  * @property {string} type
@@ -515,6 +14,17 @@ export = ServiceabilityPlatformModel;
  * @property {string} channel_id
  * @property {string} serviceability_type
  * @property {string} channel_type
+ */
+/**
+ * @typedef ApplicationServiceabilityConfigResult
+ * @property {ServiceabilityErrorResult} [error]
+ * @property {ApplicationServiceabilityConfig} [data]
+ * @property {boolean} success
+ */
+/**
+ * @typedef EntityRegionView_Details
+ * @property {string[]} sub_type
+ * @property {string[]} [parent_id]
  */
 /**
  * @typedef EntityRegionView_Error
@@ -531,6 +41,11 @@ export = ServiceabilityPlatformModel;
  * @property {number} current
  */
 /**
+ * @typedef getAppRegionZonesResult
+ * @property {PageSchema[]} page
+ * @property {ListViewItems[]} items
+ */
+/**
  * @typedef PageSchema
  * @property {boolean} has_next
  * @property {number} item_total
@@ -545,115 +60,17 @@ export = ServiceabilityPlatformModel;
  * @property {string} name
  */
 /**
+ * @typedef EntityRegionView_Result
+ * @property {EntityRegionView_Error} error
+ * @property {EntityRegionView_page} page
+ * @property {EntityRegionView_Items[]} data
+ * @property {boolean} success
+ */
+/**
  * @typedef ListViewSummary
  * @property {number} total_zones
  * @property {number} total_pincodes_served
  * @property {number} total_active_zones
- */
-/**
- * @typedef ProductSchema
- * @property {string} type - The classification of product type used in the
- *   zone, whether it's a list of categories, departments, tags or item_ids.
- * @property {number[]} values
- */
-/**
- * @typedef ProductDetailsSchema
- * @property {string} type - The classification of product type used in the
- *   zone, whether it's a list of categories, departments, tags or item_ids.
- * @property {DetailsSchema[]} values - List of values representing the products
- *   or the type of products selected for the delivery zone.
- */
-/**
- * @typedef StoresSchema
- * @property {string} type - Classification of whether all stores in the
- *   application are considered or a custom selection of stores by the seller.
- * @property {number[]} values - List of store ids mapped to the delivery zone
- *   when custom type is selected.
- */
-/**
- * @typedef StoresDetailsSchema
- * @property {string} type - The classification of product type used in the
- *   zone, whether it's a list of categories, departments, tags or item_ids.
- * @property {StoreValueDetailsSchema[]} values - List of values representing
- *   the products or the type of products selected for the delivery zone.
- */
-/**
- * @typedef DetailsSchema
- * @property {string} name - Display name of the value.
- * @property {string} value - Raw value (id) of the store or product or region.
- */
-/**
- * @typedef StoreValueDetailsSchema
- * @property {string} text
- * @property {number} value
- */
-/**
- * @typedef SummarySchema
- * @property {number} [stores_count] - Count of the stores that will be
- *   considered for the delivery zone.
- * @property {number} [products_count] - Count of the products that will be
- *   considered for the delivery zone.
- * @property {RegionSchema[]} [regions] - Summary of regions, with each country
- *   and the no of regions selected for the delivery zone.
- */
-/**
- * @typedef RegionSchema
- * @property {string} [name] - Display name of the country
- * @property {number} [count] - Count of the total number of regions mapped to a
- *   country for the delivery zone.
- */
-/**
- * @typedef ServiceabilityDeleteErrorResponseSchema
- * @property {ServiceabilityErrorResponseSchema[]} error
- */
-/**
- * @typedef ListViewResponseV2
- * @property {ListViewItemsV2[]} items
- * @property {ZoneDataItem} page
- */
-/**
- * @typedef ListViewItemsV2
- * @property {string} zone_id
- * @property {string} name
- * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
- * @property {GeoArea[]} geo_areas
- * @property {string} slug
- * @property {ListViewProductV2} [stores]
- * @property {boolean} is_active
- * @property {boolean} is_opted - Indicates whether the zone is opted or not.
- * @property {boolean} [is_public_opted] - Indicates whether the public zone is
- *   opted by any seller or not
- * @property {ListViewProductV2} [product]
- * @property {number} company_id
- * @property {string} application_id
- * @property {string} created_by
- * @property {string} created_on
- * @property {string} modified_by
- * @property {string} modified_on
- * @property {string} [stage]
- * @property {Summary} [summary]
- */
-/**
- * @typedef SummaryRegions
- * @property {RegionSchema[]} [regions]
- */
-/**
- * @typedef Summary
- * @property {number} [stores_count]
- * @property {number} [products_count]
- * @property {RegionSchema[]} [regions]
- */
-/**
- * @typedef GeoArea
- * @property {string} id
- * @property {string} [type]
- * @property {string} name
- */
-/**
- * @typedef ListViewProductV2
- * @property {string} type
- * @property {string[]} values
  */
 /**
  * @typedef ZoneDataItem
@@ -675,14 +92,23 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ListViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} stores_count
- * @property {boolean} is_active
- * @property {number} regions_count
- * @property {number} company_id
- * @property {ListViewChannels[]} channels
+ * @property {string} zone_id - The unique identifier for the zone.
+ * @property {string} name - The name of the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} stores_count - The number of stores within the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {number} regions_count - The number of regions within the zone.
+ * @property {number} company_id - The unique identifier for the company to
+ *   which the zone belongs.
+ * @property {number[]} [store_ids] - A list of store identifiers associated
+ *   with the zone.
+ * @property {ListViewChannels[]} channels - The name of the zone.
+ */
+/**
+ * @typedef ListViewResult
+ * @property {ZoneDataItem} page
+ * @property {ListViewItems[]} items
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -693,234 +119,126 @@ export = ServiceabilityPlatformModel;
  * @property {number} current
  */
 /**
+ * @typedef CompanyStoreView_Result
+ * @property {CompanyStoreView_PageItems[]} page
+ * @property {Object[]} [items]
+ */
+/**
  * @typedef GetZoneDataViewChannels
  * @property {string} channel_id
  * @property {string} channel_type
  */
 /**
  * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
+ * @property {string} type - Denotes if the zone is applicable for all the
+ *   products or specific products.
+ * @property {string[]} tags - List of product tags.
+ */
+/**
+ * @typedef ZoneMappingDetailType
+ * @property {string} country - Uid for the country.
+ * @property {ZoneMappingRegions[]} [regions] - List of regions with its details.
  */
 /**
  * @typedef ZoneMappingType
- * @property {string} country
- * @property {string[]} [pincode]
- * @property {string[]} [state]
+ * @property {string} country - Uid for the country.
+ * @property {string[]} regions - List of region uid for the given country.
  */
 /**
- * @typedef UpdateZoneDataV2
- * @property {string} [zone_id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string} [access_level] - Access level of the zone (public or private).
- * @property {string} [slug]
- * @property {string[]} [geo_areas]
- * @property {number} [company_id]
- * @property {string} [application_id]
- * @property {boolean} [is_active]
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
- * @property {ProductSchema} [product]
- * @property {StoresSchema} [stores]
- */
-/**
- * @typedef ZoneUpdateSuccessResponseSchema
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
- * @property {string} application_id
- * @property {boolean} is_active
- * @property {boolean} is_opted - Indicates whether the zone is opted or not.
- * @property {string[]} geo_areas
- * @property {ProductSchema} product
- * @property {StoresSchema} stores
- * @property {string} zone_id
- * @property {string} created_by
- * @property {string} created_on
- * @property {string} modified_by
- * @property {string} modified_on
- * @property {string} [stage]
- * @property {Summary} [summary]
- */
-/**
- * @typedef ZoneDeleteSuccessResponseSchema
- * @property {string} message
+ * @typedef ZoneMappingRegions
+ * @property {string} [display_name] - Name of the region that is in proper casing.
+ * @property {string[]} [parent_id]
+ * @property {string} [parent_uid] - Unique identifier for that regions parent.
+ * @property {string} [sub_type] - What type does the region belong to.
+ * @property {string} [uid] - Unique identifier for that region.
  */
 /**
  * @typedef UpdateZoneData
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} zone_id - Unique identifier for the zone.
+ * @property {string} name - Name for the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} company_id - Company id associated with the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
  * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingType[]} mapping - Country to region mapping for the zone.
+ */
+/**
+ * @typedef ZoneUpdateDetails
+ * @property {string} identifier
+ * @property {UpdateZoneData} data
+ */
+/**
+ * @typedef ZoneSuccessResult
+ * @property {number} status_code
+ * @property {boolean} success
  */
 /**
  * @typedef GetZoneDataViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} [company_id]
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} zone_id - The unique identifier for the zone.
+ * @property {string} name - The name of the zone for easy identification.
+ * @property {string} slug - A URL-friendly version of the zone’s name, used for
+ *   routing or linking.
+ * @property {number} [company_id] - The ID of the company associated with this zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active
+ *   (true) or inactive (false).
+ * @property {GetZoneDataViewChannels[]} channels - A list of channels available
+ *   within this zone.
  * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} [region_type]
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {number[]} store_ids - A collection of store IDs linked to this zone.
+ * @property {string} [region_type] - The type of region the zone represents.
+ * @property {ZoneMappingType[]} mapping - A list of mappings defining
+ *   relationships between this zone and other entities.
+ * @property {string} [assignment_preference] - The preferred method for
+ *   assigning stores or products to the zone.
+ * @property {number} stores_count - The total number of stores assigned to this zone.
+ */
+/**
+ * @typedef GetSingleZoneDataViewResult
+ * @property {GetZoneDataViewItems} data
  */
 /**
  * @typedef GetZoneByIdSchema
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {boolean} is_active
- * @property {boolean} [is_opted]
- * @property {ProductSchema} [product]
- * @property {StoresSchema} [stores]
- * @property {string} [created_by]
- * @property {string} [created_on]
- * @property {string} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [stage]
- * @property {string} [overlapping_file_url]
- * @property {string[]} geo_areas
- * @property {string} type
- * @property {string[]} [overlapping_zone_names]
- */
-/**
- * @typedef GetZoneByIdDetailsSchema
  * @property {string} zone_id - Unique identifier for the zone.
+ * @property {string} name - Name for the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} [company_id] - Company id associated with the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
+ * @property {ZoneProductTypes} product
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingDetailType[]} mapping - Country to region mapping for the zone.
+ * @property {number} [stores_count]
+ */
+/**
+ * @typedef CreateZoneData
  * @property {string} name - Name of the zone.
- * @property {string} slug - URL-friendly version of the zone name.
- * @property {boolean} is_active - Indicates whether the zone is active.
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
- * @property {ProductDetailsSchema} [product]
- * @property {StoresDetailsSchema} [stores]
- * @property {string} [stage] - Current stage of the zone in its lifecycle.
- * @property {string} [overlapping_file_url] - URL of the file containing
- *   overlapping zone information.
- * @property {GeoAreaDetailsSchema[]} geo_areas
- * @property {string} type - Type of the zone (custom or default).
- * @property {string} [access_level] - Access level of the zone (public or private).
- * @property {string[]} [overlapping_zone_names] - List of names of overlapping zones.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} company_id - Unique identifier of the company for which
+ *   the zone is created.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingType[]} mapping - Country to region mapping for the zone.
+ * @property {ZoneProductTypes} [product]
  */
 /**
- * @typedef GeoAreaDetailsSchema
- * @property {string} id - Unique identifier for the geographical area.
- * @property {string} name - Name of the geographical area.
- */
-/**
- * @typedef CreateZoneV2Data
- * @property {boolean} is_active
- * @property {string} slug
- * @property {string} type
- * @property {string} access_level - Access level of zone
- * @property {string} name
- * @property {number} company_id
- * @property {string} application_id
- * @property {string[]} geo_areas
- * @property {ZoneStores} [stores]
- * @property {ZoneProduct} [product]
- */
-/**
- * @typedef ZoneBulkExport
- * @property {string} [batch_id]
- */
-/**
- * @typedef GetZoneBulkExport
- * @property {ZoneBulkItem[]} [items]
- */
-/**
- * @typedef ZoneBulkItem
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {string} [updated_by]
- * @property {string} [type]
- * @property {string} [stage]
- */
-/**
- * @typedef CreateBulkZoneData
- * @property {string} [file_url]
- * @property {string} [product_type]
- */
-/**
- * @typedef ZoneStores
- * @property {string} type
- * @property {number[]} values
- */
-/**
- * @typedef ZoneProduct
- * @property {string} type
- * @property {number[]} values
- */
-/**
- * @typedef ZoneResponseV2
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {string} type
- * @property {string} access_level - Access level of the zone (public or private).
- * @property {string} application_id
- * @property {boolean} is_active
- * @property {boolean} [is_public_opted] - Indicates whether the public zone is
- *   opted by any seller or not
- * @property {boolean} [is_opted] - Indicates whether the zone is opted or not.
- * @property {string[]} geo_areas
- * @property {ListViewProductV2} [stores]
- * @property {ListViewProductV2} [product]
- * @property {string} created_by
- * @property {string} created_on
- * @property {string} modified_by
- * @property {string} modified_on
- * @property {string} [stage]
+ * @typedef ZoneResult
+ * @property {number} [status_code]
  * @property {string} zone_id
- * @property {SummaryRegions} [summary]
+ * @property {boolean} success
  */
 /**
- * @typedef CreateBulkZoneResponseSchema
- * @property {string} [zone_id]
- */
-/**
- * @typedef GetBulkZoneHistory
- * @property {BulkZoneItems[]} [items]
- * @property {PageV2} [page]
- */
-/**
- * @typedef BulkZoneItems
- * @property {string} [batch_id]
- * @property {string} [entity_type]
- * @property {string} [error_file_url]
- * @property {string} [file_path]
- * @property {string} [file_name]
- * @property {string} [updated_at]
- * @property {string} [updated_by]
- * @property {string} [stage]
- */
-/**
- * @typedef PageV2
- * @property {string} [type]
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- */
-/**
- * @typedef BulkCreateZoneExport
- * @property {string} [placeholder]
+ * @typedef GetZoneFromPincodeViewDetails
+ * @property {string} country
+ * @property {string} pincode
  */
 /**
  * @typedef Zone
@@ -931,7 +249,24 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {boolean} is_active
  * @property {number[]} store_ids
- * @property {string} assignment_preference
+ */
+/**
+ * @typedef GetZoneFromPincodeViewResult
+ * @property {string} serviceability_type
+ * @property {Zone[]} zones
+ */
+/**
+ * @typedef GetZoneFromApplicationIdViewResult
+ * @property {ZoneDataItem[]} page
+ * @property {ListViewItems[]} items
+ */
+/**
+ * @typedef ServiceabilityPageResult
+ * @property {string} [type]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {number} [current]
  */
 /**
  * @typedef MobileNo
@@ -939,9 +274,82 @@ export = ServiceabilityPlatformModel;
  * @property {number} [country_code]
  */
 /**
+ * @typedef ManagerResult
+ * @property {string} [email]
+ * @property {MobileNo} [mobile_no]
+ * @property {string} [name]
+ */
+/**
+ * @typedef ModifiedByResult
+ * @property {string} [username]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef IntegrationTypeResult
+ * @property {string} [inventory]
+ * @property {string} [order]
+ */
+/**
+ * @typedef ProductReturnConfigResult
+ * @property {boolean} [on_same_store]
+ */
+/**
+ * @typedef ContactNumberResult
+ * @property {string} [number]
+ * @property {number} [country_code]
+ */
+/**
+ * @typedef AddressResult
+ * @property {string} [city]
+ * @property {string} [address1]
+ * @property {number} [pincode]
+ * @property {string} [address2]
+ * @property {string} [landmark]
+ * @property {string} [state]
+ * @property {string} [country]
+ * @property {number} [latitude]
+ * @property {number} [longitude]
+ */
+/**
+ * @typedef CreatedByResult
+ * @property {string} [username]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef EwayBillResult
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef EinvoiceResult
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef GstCredentialsResult
+ * @property {EwayBillResult} [e_waybill]
+ * @property {EinvoiceResult} [e_invoice]
+ */
+/**
+ * @typedef WarningsResult
+ * @property {string} [store_address]
+ */
+/**
  * @typedef OpeningClosing
  * @property {number} [minute]
  * @property {number} [hour]
+ */
+/**
+ * @typedef TimmingResult
+ * @property {boolean} [open]
+ * @property {string} [weekday]
+ * @property {OpeningClosing} [closing]
+ * @property {OpeningClosing} [opening]
+ */
+/**
+ * @typedef DocumentsResult
+ * @property {string} [legal_name]
+ * @property {string} [value]
+ * @property {string} [type]
+ * @property {boolean} [verified]
  */
 /**
  * @typedef Dp
@@ -957,78 +365,108 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [assign_dp_from_sb]
  */
 /**
- * @typedef ServiceabilityZoneErrorResult
- * @property {ServiceabilityErrorResponseSchema[]} error
+ * @typedef LogisticsResult
+ * @property {boolean} [override]
+ * @property {Dp} [dp]
  */
 /**
- * @typedef ServiceabilityZoneNonMarketplaceErrorResult
- * @property {string} error
+ * @typedef ItemResult
+ * @property {string} [created_on]
+ * @property {ManagerResult} [manager]
+ * @property {ModifiedByResult} [modified_by]
+ * @property {IntegrationTypeResult} [integration_type]
+ * @property {string} [verified_on]
+ * @property {ProductReturnConfigResult} [product_return_config]
+ * @property {ContactNumberResult[]} [contact_numbers]
+ * @property {ModifiedByResult} [verified_by]
+ * @property {string} [stage]
+ * @property {AddressResult} [address]
+ * @property {string} [modified_on]
+ * @property {CreatedByResult} [created_by]
+ * @property {GstCredentialsResult} [gst_credentials]
+ * @property {string} [display_name]
+ * @property {number} [company_id]
+ * @property {number} [uid]
+ * @property {Object} [_custom_json] - Custom JSON for internal usage
+ * @property {string} [code]
+ * @property {WarningsResult} [warnings]
+ * @property {string} [name]
+ * @property {TimmingResult[]} [timing]
+ * @property {DocumentsResult[]} [documents]
+ * @property {string} [store_type]
+ * @property {string} [sub_type]
+ * @property {number} [company]
+ * @property {string} [_cls]
+ * @property {LogisticsResult} [logistics]
+ * @property {string[]} [notification_emails]
+ */
+/**
+ * @typedef GetStoresViewResult
+ * @property {ServiceabilityPageResult} page
+ * @property {ItemResult[]} [items]
  */
 /**
  * @typedef PincodeMopData
- * @property {number[]} pincodes
- * @property {string} country
- * @property {string} action
+ * @property {number[]} pincodes - A list of pincodes.
+ * @property {string} country - Name of the country.
+ * @property {string} action - Denotes wether to activate or deavtivate pincodes
+ *   for COD mode of payment.
  */
 /**
- * @typedef PincodeMopUpdateResponseSchema
- * @property {number} pincode
- * @property {string} channel_id
- * @property {string} country
- * @property {boolean} is_active
+ * @typedef PincodeMopUpdateResult
+ * @property {number} pincode - Pincode of the region.
+ * @property {string} channel_id - Unique identifier of the sales channel.
+ * @property {string} country - Country name.
+ * @property {boolean} is_active - Denotes whether the pincode mode of payment
+ *   is active or not.
  */
 /**
- * @typedef PincodeMOPresponseSchema
- * @property {string} batch_id
- * @property {boolean} success
- * @property {number} status_code
- * @property {string} country
- * @property {string} action
- * @property {number[]} [pincodes]
- * @property {PincodeMopUpdateResponseSchema[]} [updated_pincodes]
+ * @typedef PincodeMOPResult
+ * @property {boolean} success - Denotes if the action was successful or not.
+ * @property {number} status_code - Status code for the response.
+ * @property {string} batch_id - Unique identifier identifying the perticular request.
+ * @property {string} country - Name of the country.
+ * @property {string} action - Denotes wether to activate or deavtivate pincodes
+ *   for COD mode of payment.
+ * @property {number[]} [pincodes] - List of pincodes.
+ * @property {PincodeMopUpdateResult[]} [updated_pincodes] - Details of the
+ *   updated pincodes.
  */
 /**
  * @typedef CommonError
- * @property {number} [status_code]
- * @property {ErrorResponseSchema[]} [error]
- * @property {boolean} [success]
- */
-/**
- * @typedef MoPCommonError
- * @property {string} [batch_id]
- * @property {number} [status_code]
- * @property {ErrorResponseSchema[]} [error]
- * @property {boolean} [success]
+ * @property {string} [status_code] - Status code for the error.
+ * @property {Object} [error]
+ * @property {string} [success] - Whether operation was successful.
  */
 /**
  * @typedef PincodeMopBulkData
- * @property {string} [batch_id]
- * @property {string} s3_url
+ * @property {string} batch_id - Unique identifier for the request.
+ * @property {string} s3_url - CDN url for the uploaded file.
  */
 /**
- * @typedef PincodeBulkViewResponseSchema
+ * @typedef PincodeBulkViewResult
  * @property {string} batch_id
- * @property {string} s3_url
+ * @property {string} s3_url - CDN url for the uploaded file.
  */
 /**
- * @typedef PincodeCodStatusListingRequestSchema
- * @property {string} [country]
- * @property {boolean} [is_active]
- * @property {number} [pincode]
+ * @typedef PincodeCodStatusListingDetails
+ * @property {string} [country] - Name of the country.
+ * @property {boolean} [is_active] - Search based on the active or inactive flag.
+ * @property {number} [pincode] - Search based on the pincode.
  * @property {number} [current]
  * @property {number} [page_size]
  */
 /**
- * @typedef PincodeCodDataSchema
- * @property {string} [pincode]
- * @property {boolean} [active]
+ * @typedef PincodeCodStatusItem
+ * @property {boolean} [active] - Denoted if the pincode is active or not.
+ * @property {string} [pincode] - Name of the pincode.
  */
 /**
- * @typedef PincodeCodStatusListingResponseSchema
- * @property {string} country
- * @property {PincodeCodDataSchema[]} data
- * @property {boolean} success
- * @property {Error[]} [errors]
+ * @typedef PincodeCodStatusListingResult
+ * @property {string} country - Name of the country.
+ * @property {PincodeCodStatusListingResult[]} data - List of pincode details.
+ * @property {boolean} success - Denotes if the request was successful or not.
+ * @property {Error[]} [errors] - List of error object in case of unsuccessful response.
  * @property {PincodeCodStatusListingPage} page
  * @property {PincodeCodStatusListingSummary} summary
  */
@@ -1048,13 +486,13 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef PincodeCodStatusListingSummary
- * @property {number} total_active_pincodes
- * @property {number} total_inactive_pincodes
+ * @property {number} total_active_pincodes - Count of the total active pincodes.
+ * @property {number} total_inactive_pincodes - Count of the total inactive pincodes.
  */
 /**
- * @typedef PincodeMopUpdateAuditHistoryRequestSchema
- * @property {string} entity_type
- * @property {string} [file_name]
+ * @typedef PincodeMopUpdateAuditHistoryDetails
+ * @property {string} entity_type - Type of the entity requested.
+ * @property {string} [file_name] - Name of the file.
  */
 /**
  * @typedef PincodeMopUpdateAuditHistoryPaging
@@ -1065,21 +503,22 @@ export = ServiceabilityPlatformModel;
  * @property {number} [item_total]
  */
 /**
- * @typedef PincodeMopUpdateAuditHistoryResponseSchema
- * @property {string} [batch_id]
- * @property {string} [entity_type]
- * @property {string} [error_file_s3_url]
- * @property {string} [s3_url]
- * @property {string} [file_name]
+ * @typedef PincodeMopUpdateAuditHistoryResult
+ * @property {string} [batch_id] - Uniquie identifier of the request.
+ * @property {string} [entity_type] - Type of the entity requested.
+ * @property {string} [error_file_s3_url] - URL for the error file.
+ * @property {string} [s3_url] - CDN url for the file uploaded.
+ * @property {string} [file_name] - Name of the file.
  * @property {string} [updated_at]
  * @property {string} [updated_by]
- * @property {boolean} [success]
+ * @property {boolean} [success] - Denotes if the request was successfully processed.
  */
 /**
- * @typedef PincodeMopUpdateAuditHistoryResponseData
- * @property {string} [entity_type]
+ * @typedef PincodeMopUpdateAuditHistoryResultData
+ * @property {string} [entity_type] - Type of the entity requested.
  * @property {PincodeMopUpdateAuditHistoryPaging} page
- * @property {PincodeMopUpdateAuditHistoryResponseSchema[]} data
+ * @property {PincodeMopUpdateAuditHistoryResult[]} data - History records of
+ *   the uploaded files.
  */
 /**
  * @typedef ArithmeticOperations
@@ -1107,231 +546,48 @@ export = ServiceabilityPlatformModel;
  * @property {SchemeRulesFeatures} [feature]
  */
 /**
+ * @typedef CourierAccountUpdateDetails
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ */
+/**
  * @typedef CourierAccount
- * @property {string} extension_id
- * @property {string} account_id
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
- * @property {number} [company_id]
- * @property {Object} [scheme_rules]
+ * @property {number} company_id - Company id associated with the account.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ * @property {CourierPartnerSchemeModel} scheme_rules
  */
 /**
- * @typedef BulkGeoAreaDetails
- * @property {string} [file_url]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {string} [type]
+ * @typedef CourierAccountDetailsBody
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} [account_id] - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
  */
 /**
- * @typedef BulkGeoAreaResult
- * @property {string} [geoarea_id]
+ * @typedef ErrorResult
+ * @property {string} value - Fields containing the error.
+ * @property {string} message - Description of the error.
+ * @property {string} type - Type of the error.
  */
 /**
- * @typedef PriceGeoAreaExportResult
- * @property {string} [batch_id]
- */
-/**
- * @typedef BulkGeoAreaGetResponseSchema
- * @property {string} [batch_id]
- * @property {string} [file_path]
- * @property {number} [total]
- * @property {number} [failed]
- * @property {string} [error_file_url]
- * @property {string} [action]
- * @property {string} [updated_at]
- * @property {string} [updated_by]
- * @property {string} [type]
- * @property {string} [stage]
- * @property {string} [file_url]
- */
-/**
- * @typedef GeoAreaBulkCreationResult
- * @property {string} [batch_id] - The unique identifier of the bulk export batch.
- */
-/**
- * @typedef GeoAreaBulkExportResult
- * @property {string} [batch_id] - The unique identifier of the bulk export batch.
- * @property {string} [file_path] - The file path where the export data will be stored.
- * @property {number} [total] - The total number of records processed in the export.
- * @property {number} [failed] - The number of records that failed to export.
- * @property {string} [error_file_url] - The URL of the file containing details
- *   of errors encountered during the export, if available.
- * @property {string} [action] - The action performed during the export process,
- *   typically "import" or "export".
- * @property {string} [updated_at] - The timestamp when the export status was
- *   last updated.
- * @property {string} [updated_by] - The name or identifier of the user or
- *   process that last updated the export status.
- * @property {string} [type] - The type of export process, such as "geo_area_bulk_export".
- * @property {string} [stage] - The current stage of the export process, such as
- *   "initiated", "in_progress", or "completed".
- */
-/**
- * @typedef GeoAreaRequestBody
- * @property {boolean} is_active
- * @property {string} name
- * @property {string} slug
- * @property {string} type
- * @property {Area[]} areas
- * @property {string} region_type
- */
-/**
- * @typedef GeoAreaErrorResult
- * @property {GeoAreaResponseDetail[]} [error]
- */
-/**
- * @typedef ErrorResponseItem
- * @property {string} message
- * @property {string} error_name
- * @property {number} error_code
- * @property {string} value
- * @property {ConflictingArea[]} conflicting_areas
- */
-/**
- * @typedef ConflictingArea
- * @property {string} geoarea_id
- * @property {string} name
- */
-/**
- * @typedef GeoAreaResponseDetail
- * @property {string} [type]
- * @property {string} [value]
- * @property {string} [message]
- */
-/**
- * @typedef ErrorResponseDetail
- * @property {ErrorResponseItem[]} items
- */
-/**
- * @typedef GeoAreaResponseBody
- * @property {string} name
- * @property {string} slug
- * @property {boolean} is_active
- * @property {Area[]} areas
- * @property {string} region_type
- * @property {string} type
- * @property {string} created_on
- * @property {string} modified_on
- * @property {string} created_by
- * @property {string} modified_by
- * @property {string} geoarea_id
- */
-/**
- * @typedef GeoAreaPutResponseBody
- * @property {string} [name]
- * @property {string} [geoarea_id]
- * @property {string} [slug]
- * @property {boolean} [is_active]
- * @property {Area[]} [areas]
- * @property {string} [region_type]
- * @property {string} [type]
- * @property {string} [created_on]
- * @property {string} [modified_on]
- * @property {string} [created_by]
- * @property {string} [modified_by]
- * @property {string} [upload_type]
- */
-/**
- * @typedef Area
- * @property {string[]} [regions]
- * @property {string} [country]
- */
-/**
- * @typedef Region
- * @property {string} uid
- * @property {string} display_name
- * @property {string} sub_type
- * @property {string[]} parent_id
- */
-/**
- * @typedef RegionV2
- * @property {string} [uid]
- * @property {string} [display_name]
- * @property {string} [sub_type]
- * @property {string[]} [parent_id]
- */
-/**
- * @typedef Country
- * @property {string} uid
- * @property {string} display_name
- */
-/**
- * @typedef AreaExpanded
- * @property {Country} country
- * @property {Region[]} regions
- */
-/**
- * @typedef AreaExpandedV2
- * @property {Country} country
- * @property {RegionV2[]} regions
- */
-/**
- * @typedef GeoAreaResponseSchema
- * @property {string} name
- * @property {string} slug
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {string} geoarea_id
- * @property {boolean} is_active
- * @property {string} type
- * @property {string} region_type
- * @property {AreaExpanded[]} areas
- * @property {string} [created_on]
- * @property {string} [modified_on]
- * @property {string} [created_by]
- * @property {string} [modified_by]
- */
-/**
- * @typedef GeoAreaGetResponseBody
- * @property {GeoAreaItemResponseSchema[]} [items]
- * @property {Page2} [page]
- */
-/**
- * @typedef GeoAreaItemResponseSchema
- * @property {number} company_id
- * @property {string} application_id
- * @property {string} geoarea_id
- * @property {string} name
- * @property {string} slug
- * @property {boolean} is_active
- * @property {string} region_type
- * @property {string} type
- * @property {AreaExpandedV2[]} areas
- * @property {string} [created_on]
- * @property {string} [modified_on]
- * @property {string} [created_by]
- * @property {string} [modified_by]
- */
-/**
- * @typedef ErrorResponseV2
- * @property {boolean} success
- * @property {string} error
- */
-/**
- * @typedef ErrorResponseSchema
- * @property {string} value
- * @property {string} message
- * @property {string} type
- * @property {string} [error]
- */
-/**
- * @typedef PackageMaterialNotFound
- * @property {number} [status_code]
- * @property {boolean} [success]
- */
-/**
- * @typedef PackageMaterialsErrorResponseSchema
- * @property {string} [value]
- * @property {string} [message]
- * @property {string} [type]
- * @property {string} [error]
- */
-/**
- * @typedef CourierPartnerAccountFailureResponseSchema
- * @property {boolean} success
- * @property {ErrorResponseSchema[]} error
+ * @typedef CourierPartnerAccountFailureResult
+ * @property {boolean} success - Denotes whether the request is a success or failure.
+ * @property {ErrorResult[]} error
  */
 /**
  * @typedef Page
@@ -1342,50 +598,54 @@ export = ServiceabilityPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 /**
- * @typedef Page2
- * @property {number} size
- * @property {number} item_total
- * @property {string} type
- * @property {number} current
- * @property {boolean} has_next
+ * @typedef CourierPartnerRuleCPListResult
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {Object} [scheme_rules] - Denotes the scheme rules associated with
+ *   the courier partner account.
+ */
+/**
+ * @typedef CourierPartnerRuleResult
+ * @property {boolean} is_active - Denotes whether the given courier partner
+ *   rule is inactive or active.
+ * @property {string} application_id - Unique identifier of the sales channel.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} sort - Sort Strategy of the courier partners.
+ * @property {Object} [created_by] - The Fynd account used to create the courier
+ *   partner rule.
+ * @property {string} id - Unique identifier of the courier partner rule.
+ * @property {Object} [modified_by] - The Fynd account used to modify the
+ *   courier partner rule.
+ * @property {string} [modified_on] - The datetime at which courier partner rule
+ *   is modified.
+ * @property {string} name - Name for the courier partner rule.
+ * @property {string} type - The type of the rule.
+ * @property {CourierPartnerRuleCPListResult[]} [cp_list]
  */
 /**
  * @typedef CourierPartnerList
- * @property {string} [extension_id]
- * @property {string} [account_id]
- * @property {string} [name]
- * @property {boolean} [is_self_ship]
- * @property {Object} [scheme_rules]
- * @property {string} [stage]
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
  */
 /**
  * @typedef LocationRuleValues
- * @property {string} uid
- * @property {string} [sub_type]
- * @property {string} [display_name]
- * @property {string} [parent_uid]
- * @property {string[]} [parent_id]
- */
-/**
- * @typedef LocationRuleValuesV2
  * @property {string} id
  * @property {string} [sub_type]
+ * @property {string} [name]
  * @property {string} [display_name]
- * @property {string} [parent_uid]
  * @property {string[]} [parent_id]
+ * @property {string[]} [parent_ids]
  */
 /**
  * @typedef LocationRule
  * @property {string} [type]
  * @property {LocationRuleValues[]} [includes]
- */
-/**
- * @typedef LocationRuleV2
- * @property {string} [type]
- * @property {LocationRuleValuesV2[]} [includes]
  */
 /**
  * @typedef StringComparisonOperations
@@ -1406,165 +666,178 @@ export = ServiceabilityPlatformModel;
  * @property {StringComparisonOperations} [zone_ids]
  * @property {IntComparisonOperations} [department_ids]
  * @property {IntComparisonOperations} [brand_ids]
- * @property {ArithmeticOperationsV2} [order_place_date]
+ * @property {ArithmeticOperations} [order_place_date]
  * @property {IntComparisonOperations} [store_ids]
  * @property {StringComparisonOperations} [store_type]
  * @property {StringComparisonOperations} [store_tags]
  * @property {ArithmeticOperations} [shipment_weight]
  * @property {ArithmeticOperations} [shipment_cost]
  * @property {ArithmeticOperations} [shipment_volumetric_weight]
- * @property {IntComparisonOperations} [company_ids]
- * @property {StringComparisonOperations} [promise_types]
- */
-/**
- * @typedef CourierPartnerRuleResponseConditions
- * @property {LocationRule} [forward]
- * @property {LocationRule} [reverse]
- * @property {StringComparisonOperations} [payment_mode]
- * @property {IntComparisonOperations} [category_ids]
- * @property {IntComparisonOperations} [product_ids]
- * @property {StringComparisonOperations} [product_tags]
- * @property {StringComparisonOperations} [zone_ids]
- * @property {IntComparisonOperations} [department_ids]
- * @property {IntComparisonOperations} [brand_ids]
- * @property {ArithmeticOperationsV2} [order_place_date]
- * @property {IntComparisonOperations} [store_ids]
- * @property {StringComparisonOperations} [store_type]
- * @property {StringComparisonOperations} [store_tags]
- * @property {ArithmeticOperations} [shipment_weight]
- * @property {ArithmeticOperations} [shipment_cost]
- * @property {ArithmeticOperations} [shipment_volumetric_weight]
- * @property {IntComparisonOperations} [company_ids]
- * @property {StringComparisonOperations} [promise_types]
  */
 /**
  * @typedef CourierPartnerRule
- * @property {string} [id]
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {boolean} is_active
- * @property {CourierPartnerList[]} [cp_list]
- * @property {string} name
+ * @property {boolean} is_active - Denotes whether the given courier partner
+ *   rule is inactive or active.
+ * @property {CourierPartnerList[]} [cp_list] - A list of courier partners.
+ * @property {string} name - Name for the courier partner rule.
  * @property {CourierPartnerRuleConditions} conditions
- * @property {string[]} [manual_priority]
- * @property {string[]} sort
- * @property {string} [shipment_adjustment_type]
- * @property {string} type
+ * @property {string[]} sort - Sort Strategy for the courier partners.
+ * @property {string} [type] - Denotes the type of the rule.
  */
 /**
- * @typedef CourierPartnerRuleResponseSchema
- * @property {string} [id]
- * @property {boolean} is_active
- * @property {CourierPartnerList[]} [cp_list]
- * @property {string} name
- * @property {CourierPartnerRuleResponseConditions} conditions
- * @property {string[]} [manual_priority]
- * @property {string[]} sort
- * @property {string} type
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {string} [shipment_adjustment_type]
- */
-/**
- * @typedef FailureResponseSchema
+ * @typedef FailureResult
  * @property {boolean} success
- * @property {ErrorResponseSchema[]} error
+ * @property {ErrorResult[]} error
  */
 /**
- * @typedef CourierPartnerRulesListResponseSchema
- * @property {CourierPartnerRuleResponseSchema[]} items
+ * @typedef CourierPartnerRulesListResult
+ * @property {CourierPartnerRuleResult[]} items
  * @property {Page} page
+ */
+/**
+ * @typedef ShipmentsArticles
+ * @property {number} [item_id] - Unique identifier of the item.
+ * @property {number} [category_id] - Unique identifier of the category.
+ * @property {number} [brand_id] - Unique identifier of the brand.
+ * @property {number} [department_id] - Unique identifier of the department.
+ * @property {string[]} [tags] - Tags associated with the item.
+ */
+/**
+ * @typedef ShipmentDimension
+ * @property {number} height - Height of the shipment in centimeters.
+ * @property {number} length - Length of the shipment in centimeters.
+ * @property {number} width - Width of the shipment in centimeters.
+ */
+/**
+ * @typedef Shipments
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {number} [location_id] - Unique identifier of the selling location.
+ * @property {string[]} [location_tags] - Tags associated with the selling location.
+ * @property {number} [shipment_weight] - Weight of the shipment.
+ * @property {number} [shipment_volumetric_weight] - Volumetric weight of the shipment.
+ * @property {number} [shipment_cost] - Total Cost of the shipment.
+ * @property {ShipmentDimension} [shipment_dimension]
+ * @property {string[]} [courier_partner_schemes] - A List of courier schemes.
+ * @property {ShipmentsArticles[]} [articles] - List of articles in the shipment.
+ */
+/**
+ * @typedef ShipmentCourierPartnerDetails
+ * @property {ShipmentsCourierPartnersServiceability} from_location
+ * @property {ShipmentsCourierPartnersServiceability} to_location
+ * @property {Shipments[]} [shipments] - List of shipments.
+ * @property {string} [journey] - Journey type of the shipment forward or return.
+ * @property {string} [payment_mode] - Payment mode opted for the shipment.
+ */
+/**
+ * @typedef CourierPartnerPromise
+ * @property {string} min - The earliest possible timestamp.
+ * @property {string} max - The latest possible timestamp.
+ */
+/**
+ * @typedef CourierPartners
+ * @property {string} [extension_id] - Unique identifier of courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
+ * @property {string} [name] - Name of the courier partner.
+ * @property {CourierPartnerPromise} [delivery_promise]
+ */
+/**
+ * @typedef ShipmentCourierPartners
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {CourierPartners[]} [courier_partners] - Courier partners of the shipment.
+ */
+/**
+ * @typedef ShipmentCourierPartnerResult
+ * @property {CourierPartners[]} [courier_partners]
+ * @property {ShipmentCourierPartners[]} [shipments]
+ */
+/**
+ * @typedef ShipmentsCourierPartnersServiceability
+ * @property {string} [pincode] - Postal code or PIN code of the address area.
+ * @property {string} [sector_code] - Specifies the sector or district code of
+ *   the address if applicable.
+ * @property {string} [state_code] - Indicates the state or province code of the address.
+ * @property {string} [city_code] - Denote the city or municipality code of the address.
+ * @property {string} country_code - ISO2 code for the country of the address.
  */
 /**
  * @typedef CompanyConfig
- * @property {number} [company_id]
- * @property {string[]} [sort]
- * @property {string} [logistics_as_actual]
+ * @property {string[]} rule_ids - A list for courier partner rules.
+ * @property {string[]} sort - Sort strategy for the courier partners.
+ * @property {string} [logistics_as_actual] - Depicts if the courier partner
+ *   rule configuration plan is subscribed by the seller for which mode.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {string} [application_id] - Unique identifier of the sales channel.
  */
 /**
- * @typedef StorePromiseAttributeConfig
- * @property {boolean} [is_operational_timing_enabled]
- * @property {boolean} [is_order_acceptance_timing_enabled]
- * @property {boolean} [is_average_processing_time]
- * @property {boolean} [is_holiday_enabled]
- */
-/**
- * @typedef DeliveryServiceAttributeConfig
- * @property {boolean} [is_pickup_cutoff_time_enabled]
- * @property {boolean} [is_service_tat_enabled]
- * @property {boolean} [is_holiday_enabled]
- */
-/**
- * @typedef BufferField
- * @property {string} [unit]
- * @property {number} [value]
- * @property {boolean} [enabled]
- */
-/**
- * @typedef PromiseConfig
- * @property {StorePromiseAttributeConfig} [store_attributes]
- * @property {DeliveryServiceAttributeConfig} [delivery_service_attributes]
- * @property {BufferField} [buffer_field]
+ * @typedef ZoneConfig
+ * @property {string} [serviceability_type] - Serviceability type of the delivery zone.
+ * @property {number} [active_count] - Count of active delivery zones associated
+ *   with the sales channel.
+ * @property {number} [total_count] - Count of total delivery zones associated
+ *   with the sales channel.
  */
 /**
  * @typedef ApplicationConfig
- * @property {string[]} [rule_ids]
- * @property {string[]} [sort]
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {string[]} [manual_priority]
+ * @property {string[]} [rule_ids] - A list of courier partner rules.
+ * @property {string[]} [sort] - Strategy adopted to sort the courier partners.
  * @property {ZoneConfig} [zones]
- * @property {BuyboxRuleConfig} [buybox_rule_config]
- * @property {PromiseType[]} [promise_types]
- * @property {PromiseConfig} [promise_config]
  */
 /**
- * @typedef ApplicationConfigPatchRequestSchema
- * @property {CourierPartnerConfig} [courier_partner_config]
- * @property {BuyboxRuleConfig} [buybox_rule_config]
- * @property {PromiseConfig} [promise_config]
+ * @typedef BulkRegionJobDetails
+ * @property {string} [file_path] - CDN path of the uploaded csv file for bulk import.
+ * @property {string} country - Country for which the tat or serviceability is
+ *   to be imported or exported.
+ * @property {string} action - Denotes the import or export action to be performed.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
  */
 /**
- * @typedef ApplicationConfigPatchResponseSchema
- * @property {boolean} [success]
- */
-/**
- * @typedef BulkRegionResponseItemData
- * @property {string} file_path
- * @property {number} [failed]
+ * @typedef BulkRegionResultItemData
+ * @property {string} [file_path] - CDN path of the file which was used for bulk import.
+ * @property {number} [failed] - Count of the failed records.
  * @property {Object[]} [failed_records]
- * @property {string} action
- * @property {string} batch_id
- * @property {string} country
- * @property {number} [success]
- * @property {string} region
- * @property {string} status
- * @property {number} [total]
- * @property {string} [error_file_path]
+ * @property {string} action - Denotes the import or export action performed.
+ * @property {string} batch_id - Unique id to identify the import or export query.
+ * @property {string} country - Country for which the import or export action is
+ *   performed.
+ * @property {number} [success] - Denoted if the import or export was successful
+ *   or failure.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
+ * @property {string} status - Current status of the import or export action performed.
+ * @property {number} [total] - Count of total records.
+ * @property {string} [error_file_path] - Path of the error file.
  */
 /**
- * @typedef BulkRegionResponseSchema
- * @property {BulkRegionResponseItemData[]} items
+ * @typedef BulkRegionResult
+ * @property {BulkRegionResultItemData[]} items
  * @property {Page} page
  */
 /**
- * @typedef SelfShipResponseSchema
+ * @typedef SelfShipResult
  * @property {boolean} is_active
  * @property {number} tat
  */
 /**
  * @typedef ApplicationSelfShipConfig
- * @property {Object} [self_ship]
+ * @property {SelfShipResult} [self_ship]
+ */
+/**
+ * @typedef ApplicationSelfShipConfigResult
+ * @property {ServiceabilityErrorResult} [error]
+ * @property {ApplicationSelfShipConfig} [data]
+ * @property {boolean} success
  */
 /**
  * @typedef StoreRuleConfigData
- * @property {string[]} [rule_ids]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
- * @property {number[]} [manual_priority]
- * @property {Object} [meta_sort_priority]
+ * @property {string[]} [rule_ids] - List of rule ids which are active in the application.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  */
 /**
  * @typedef CustomerRadiusSchema
@@ -1579,79 +852,85 @@ export = ServiceabilityPlatformModel;
  * @property {IntComparisonOperations} [department_ids]
  * @property {IntComparisonOperations} [category_ids]
  * @property {IntComparisonOperations} [brand_ids]
- * @property {LocationRuleV2} [to_location]
+ * @property {LocationRule} [to_location]
  * @property {CustomerRadiusSchema} [customer_radius]
  * @property {StringComparisonOperations} [store_type]
  * @property {StringComparisonOperations} [product_tags]
  * @property {IntComparisonOperations} [product_ids]
  * @property {StringComparisonOperations} [store_tags]
- * @property {ArithmeticOperationsV2} [order_place_date]
+ * @property {ArithmeticOperations} [order_place_date]
  * @property {StringComparisonOperations} [zone_ids]
  */
 /**
  * @typedef StoreRuleDataSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {number} [company_id]
- * @property {string} [application_id]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
- * @property {number[]} [manual_priority]
- * @property {Object} [meta_sort_priority]
- * @property {Object} [meta_conditions]
+ * @property {string} [id] - Id of the rule.
+ * @property {string} [name] - Name of the rule.
+ * @property {number} [company_id] - Company id for which the rule is created.
+ * @property {string} [application_id] - Application id for which the rule is created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
+ * @property {boolean} [is_active] - Denotes whether the rule is active or inactive.
  */
 /**
  * @typedef StorePrioritySchema
- * @property {number} [id]
- * @property {string} [name]
+ * @property {number} [id] - Id of the store.
+ * @property {string} [name] - Name of the store.
  */
 /**
- * @typedef GetStoreRulesApiResponseSchema
+ * @typedef GetStoreRulesApiResult
  * @property {StoreRuleDataSchema[]} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef CreateStoreRuleRequestSchema
- * @property {string} [name]
- * @property {boolean} [is_active]
+ * @typedef CreateStoreRuleDetailsSchema
+ * @property {string} [name] - Name of the rule.
+ * @property {boolean} [is_active] - Denotes if the rule is active or not.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {number[]} [manual_priority]
- * @property {string[]} [sort]
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  */
 /**
- * @typedef StoreRuleResponseSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
- * @property {number[]} [manual_priority]
+ * @typedef StoreRuleResultSchema
+ * @property {string} [id] - Id of the rule created.
+ * @property {string} [name] - Name of the rule created.
+ * @property {string} [type] - Type of the rule created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the rule for sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the rule for sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
  */
 /**
- * @typedef StoreRuleUpdateResponseSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
- * @property {number[]} [manual_priority]
+ * @typedef StoreRuleUpdateResultSchema
+ * @property {string} [id] - Id of the rule created.
+ * @property {string} [name] - Name of the rule created.
+ * @property {string} [type] - Type of the rule created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the rule for sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the rule for sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
- * @property {number} [company_id]
- * @property {string} [application_id]
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
+ * @property {number} [company_id] - Company id for which the rule is created.
+ * @property {string} [application_id] - Application id for which the rule is created.
  */
 /**
  * @typedef ServiceabilityModel
@@ -1686,175 +965,137 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [ewaybill]
  */
 /**
- * @typedef CourierAccountSchemeResponseSchema
- * @property {string} [name]
- * @property {string} [extension_id]
- * @property {string} [scheme_id]
- * @property {ArithmeticOperations} [weight]
- * @property {string} [transport_type]
- * @property {string} [region]
- * @property {string} [delivery_type]
- * @property {string[]} [payment_mode]
- * @property {string} [stage]
- * @property {CourierPartnerSchemeFeatures} [feature]
+ * @typedef CourierPartnerSchemeModel
+ * @property {string} [name] - Name of the scheme.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {ArithmeticOperations} weight
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Denotes whether the courier partner scheme is in
+ *   enabled or disabled stage.
+ * @property {CourierPartnerSchemeFeatures} feature
  */
 /**
- * @typedef CourierAccountResponseSchema
- * @property {number} [company_id]
- * @property {string} [extension_id]
- * @property {string} account_id
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
- * @property {CourierAccountSchemeResponseSchema} scheme_rules
+ * @typedef CourierAccountResult
+ * @property {number} company_id - Company id associated with the account.
+ * @property {string} [extension_id] - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ * @property {CourierPartnerSchemeModel} [scheme_rules]
  */
 /**
- * @typedef CompanyCourierPartnerAccountListResponseSchema
- * @property {CourierAccountResponseSchema[]} items
+ * @typedef CompanyCourierPartnerAccountListResult
+ * @property {CourierAccountResult[]} items
  * @property {Page} page
  */
 /**
  * @typedef PackageMaterial
- * @property {number} [company_id]
- * @property {number} [item_id]
- * @property {string} [id]
- * @property {string} name
- * @property {number} width
- * @property {number} height
- * @property {number} length
- * @property {number} weight
- * @property {boolean} [auto_calculate]
- * @property {number} [max_weight]
- * @property {number} [package_vol_weight]
- * @property {number} error_rate
- * @property {Channel[]} channels
- * @property {string} package_type
- * @property {string} size
- * @property {boolean} [track_inventory]
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} store_ids
- * @property {PackageMpStores[]} [mp_stores]
- * @property {string[]} [media]
- * @property {string} status
- * @property {boolean} [is_active]
+ * @property {string} name - Name of the packaging material.
+ * @property {number} width - Width of the packaging material dimentions in centimeter.
+ * @property {number} height - Height of the packaging material dimentions in centimeter.
+ * @property {number} length - Length of the packaging material dimentions in centimeter.
+ * @property {PackageMaterialRule[]} [rules] - Product group rules associated
+ *   with the packaging.
+ * @property {number[]} store_ids - Store ids where the packaging is avaiable.
+ * @property {number} weight - Package's weight in gram.
+ * @property {number} error_rate - Error Rate associated with the packaging dimensions.
+ * @property {string} package_type - Type of package material.
+ * @property {string} size - Physical size of the packaging.
+ * @property {string[]} [media] - Image urls associated with the packaging material.
+ * @property {Channel[]} channels - Sales channel where packaging is applicable.
+ * @property {boolean} [track_inventory] - Denotes if the track of the inventory
+ *   should be kept.
+ * @property {string} status - Current status of the packaging material, if it
+ *   is active or inactive.
+ * @property {number} [max_weight] - Maximum weight holding capacity.
+ * @property {number} [package_vol_weight] - Volumetric weight that a packaging
+ *   material can carry.
+ * @property {boolean} [auto_calculate] - Denotes whether the volumetric weight
+ *   should be auto calculated or not.
  */
 /**
- * @typedef CourierPartnerRuleDeleteResponseSchema
- * @property {string} [message]
- */
-/**
- * @typedef StoreRuleDeleteResponseSchema
- * @property {string} [message]
- */
-/**
- * @typedef PackageMaterialDeleteResponseSchema
- * @property {string} [message]
- */
-/**
- * @typedef PackageMaterialResponseSchema
- * @property {number} [company_id]
- * @property {string} name
- * @property {string} [id]
- * @property {number} width
- * @property {number} height
- * @property {number} length
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} store_ids
- * @property {number} weight
- * @property {number} error_rate
- * @property {string} package_type
- * @property {string} size
- * @property {string[]} [media]
- * @property {Channel[]} channels
- * @property {boolean} [track_inventory]
- * @property {boolean} [is_active]
- * @property {string} status
- * @property {number} [max_weight]
- * @property {number} [package_vol_weight]
- * @property {boolean} [auto_calculate]
- * @property {PackageMpStores[]} [mp_stores]
+ * @typedef PackageMaterialResult
+ * @property {string} name - Name of the packaging material.
+ * @property {string} [id] - Id of the packaging material.
+ * @property {number} [item_id] - Unique identifier of an item associated with
+ *   the packaging material.
+ * @property {number} [company_id] - Company id associated with the packaging material.
+ * @property {number} width - Width of the packaging material dimentions in centimeter.
+ * @property {number} height - Height of the packaging material dimentions in centimeter.
+ * @property {number} length - Length of the packaging material dimentions in centimeter.
+ * @property {PackageMaterialRule[]} [rules] - Product group rules associated
+ *   with the packaging.
+ * @property {number[]} store_ids - Store ids where the packaging is avaiable.
+ * @property {number} weight - Package's weight in gram.
+ * @property {number} error_rate - Error Rate associated with the packaging dimensions.
+ * @property {string} package_type - Type of package material.
+ * @property {string} size - Physical size of the packaging.
+ * @property {string[]} [media] - Image urls associated with the packaging material.
+ * @property {Channel[]} channels - Sales channel where packaging is applicable.
+ * @property {boolean} [track_inventory] - Denotes if the track of the inventory
+ *   should be kept.
+ * @property {string} status - Current status of the packaging material, if it
+ *   is active or inactive.
+ * @property {number} [max_weight] - Maximum weight holding capacity.
+ * @property {number} [package_vol_weight] - Volumetric weight that a packaging
+ *   material can carry.
+ * @property {boolean} [auto_calculate] - Denotes whether the volumetric weight
+ *   should be auto calculated or not.
  */
 /**
  * @typedef PackageMaterialRule
- * @property {string} [rule_id]
+ * @property {string} [rule_id] - Unique identifier of the package rule.
  * @property {PackageMaterialRuleQuantity} [quantity]
- * @property {number} [weight]
- * @property {number} [company_id]
- * @property {boolean} [is_active]
- * @property {string} [type]
- * @property {string} [name]
- * @property {string} [id]
- */
-/**
- * @typedef PackageMpStores
- * @property {string} [app_name]
- * @property {string} [app_id]
- * @property {number[]} [store_ids]
- * @property {Object} [store_data]
- */
-/**
- * @typedef PackageRuleRequestSchema
- * @property {string} name
- * @property {number} company_id
- * @property {PackageRuleCategory} [category_id]
- * @property {PackageRuleProduct} [product_id]
- * @property {PackageRuleProductTag} [product_tag]
- * @property {PackageRuleDepartmentId} [department_id]
- * @property {PackageRuleProductAttributes} [product_attributes]
- * @property {string} type
- * @property {boolean} [is_active]
+ * @property {number} [weight] - Volumetric weight in gram.
  */
 /**
  * @typedef PackageRule
- * @property {string} name
- * @property {string} [id]
- * @property {number} [item_id]
- * @property {number} company_id
- * @property {number} [width]
- * @property {number} [height]
- * @property {number} [length]
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} [store_ids]
- * @property {number} [weight]
- * @property {number} [error_rate]
- * @property {string} [package_type]
- * @property {string} [size]
- * @property {string[]} [media]
- * @property {Channel[]} [channels]
- * @property {boolean} [track_inventory]
- * @property {string} [status]
- * @property {number} [max_weight]
- * @property {number} [package_vol_weight]
- * @property {boolean} [auto_calculate]
- * @property {PackageMpStores[]} [mp_stores]
+ * @property {string} name - Name of the package rule.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {string} type - Type of the rule.
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
+ * @property {PackageRuleProductTag} [product_tag]
+ * @property {PackageRuleProduct} [product_id]
+ * @property {PackageRuleCategory} [category_id]
  */
 /**
  * @typedef PackageRuleResult
- * @property {boolean} [is_active]
- * @property {number} company_id
+ * @property {string} [id] - Unique id of a package rule.
+ * @property {string} name - Name of a package rule.
+ * @property {number} company_id - Unique identifier of a company associated
+ *   with the package rule.
+ * @property {string} type - Type of the rule created.
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
+ * @property {PackageRuleProductTag} [product_tag]
  * @property {PackageRuleProduct} [product_id]
  * @property {PackageRuleCategory} [category_id]
- * @property {PackageRuleDepartmentId} [department_id]
- * @property {PackageRuleProductTag} [product_tag]
- * @property {PackageRuleProductAttributes} [product_attributes]
- * @property {string} name
- * @property {string} type
- * @property {string} [id]
  */
 /**
  * @typedef Channel
- * @property {string} [type]
- * @property {string} [id]
+ * @property {string} [type] - Type of the channel.
+ * @property {string} [id] - Unique identifier of the channel.
  */
 /**
  * @typedef PackageMaterialRuleList
- * @property {PackageRuleResult[]} [items]
+ * @property {PackageRuleResult} [items]
  * @property {Page} [page]
  */
 /**
  * @typedef PackageMaterialList
- * @property {Object} [items]
+ * @property {PackageMaterialResult} [items]
  * @property {Page} [page]
  */
 /**
@@ -1870,302 +1111,2302 @@ export = ServiceabilityPlatformModel;
  * @property {number[]} [includes]
  */
 /**
- * @typedef PackageRuleProductAttributes
- * @property {Object[]} [includes]
- */
-/**
- * @typedef PackageRuleDepartmentId
- * @property {number[]} [includes]
- */
-/**
  * @typedef PackageMaterialRuleQuantity
- * @property {number} [min]
- * @property {number} [max]
+ * @property {number} [min] - Minimum product's quantity that a packaging can contain.
+ * @property {number} [max] - Maximum product's quantity that a packaging can contain.
  */
 /**
- * @typedef RulePriorityRequestSchema
- * @property {string} rule_id
- * @property {number} priority
+ * @typedef RulePriorityDetails
+ * @property {string} rule_id - Rule id whose priority needs to be changed.
+ * @property {number} priority - New priority of the rule.
  */
 /**
- * @typedef RulePriorityResponseSchema
- * @property {boolean} [success]
+ * @typedef RulePriorityResult
+ * @property {boolean} [success] - Denotes if the priority of the rule is
+ *   changes successfully or not.
  */
 /**
- * @typedef CompanySelfShip
- * @property {boolean} is_active
- * @property {number} tat
- * @property {string} unit
+ * @typedef ArticleAssignment
+ * @property {string} [level]
+ * @property {string} [strategy] - The strategy parameter allows users to
+ *   specify the desired approach or criteria for selecting optimal locations.
  */
 /**
- * @typedef ArithmeticOperationsV2
- * @property {string} [lt]
- * @property {string} [gt]
- * @property {string} [lte]
- * @property {string} [gte]
+ * @typedef ServiceabilityLocation
+ * @property {string} longitude - The longitude of the serviceability location.
+ * @property {string} latitude - The latitude of the serviceability location.
  */
 /**
- * @typedef CompanyConfigurationShema
- * @property {string[]} [sort]
+ * @typedef LocationDetailsServiceability
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} country - The country of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ * @property {string} country_iso_code - The ISO code of the country.
+ * @property {ServiceabilityLocation} [location]
+ */
+/**
+ * @typedef OptimalLocationsArticles
+ * @property {number} item_id
+ * @property {string} size
+ * @property {number} quantity
+ * @property {string} [group_id]
+ * @property {boolean} [is_primary_item]
+ * @property {Object} [meta]
+ * @property {ArticleAssignment} article_assignment
+ * @property {number[]} ignore_locations
+ * @property {number[]} assign_locations
+ * @property {number} [seller_id]
+ */
+/**
+ * @typedef OptimlLocationsDetailsSchema
+ * @property {string} channel_id
+ * @property {string} channel_type
+ * @property {string} [channel_identifier]
+ * @property {LocationDetailsServiceability} to_serviceability
+ * @property {OptimalLocationsArticles[]} [articles]
+ */
+/**
+ * @typedef OptimalLocationArticlesResult
+ * @property {number} item_id
+ * @property {string} size
+ * @property {number} quantity
+ * @property {string} [group_id]
+ * @property {boolean} [is_primary_item]
+ * @property {Object} [meta]
+ * @property {ArticleAssignment} article_assignment
+ * @property {number} [seller_id]
+ * @property {number[]} ignore_locations
+ * @property {number[]} assign_locations
+ * @property {number} price_effective
+ * @property {number} mto_quantity
+ * @property {string} _id
+ * @property {string} uid
+ */
+/**
+ * @typedef OptimalLocationAssignedStoresResult
+ * @property {number} store_id
+ * @property {OptimalLocationArticlesResult[]} articles
+ */
+/**
+ * @typedef OptimalLocationsResult
+ * @property {OptimalLocationAssignedStoresResult[]} assigned_stores
+ * @property {ErrorResult[]} [faulty_articles]
  */
 /**
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
  */
+/**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
+ */
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { GetExportPriceZoneHistory, PriceBulkGeoAreaExportRequestPayload, GetBulkPriceZoneHistory, Pagination, BulkPriceZoneItem, PriceBulkGeoAreaPayload, StandardError, RuleConditionIntegerDetail, RuleConditionStringDetail, RuleResponseIntegerDetail, RuleResponseStringDetail, CourierPartnerRuleResponseDetailConditions, CourierPartnerRuleResponseDetailSchema, StoreLocationDetail, StoreRuleLocationDetailSchema, StoreRuleConditionDetailSchema, StoreRuleDataDetailsSchema, OptimalLocationArticlesResponseSchema, OptimalLocationAssignedStoresResponseSchema, OptimalLocationsResponseSchema, ArticleAssignment, OptimalLocationsArticles, ServiceabilityLocation, LocationDetailsServiceability, OptimlLocationsRequestSchema, ErrorResponseV3, ErrorObject, ValidateAddressRequestSchema, CountryObject, GetCountries, CurrencyObject, CountryHierarchy, GetCountry, GetCountryFields, GetCountryFieldsAddressTemplate, FieldValidation, FieldValidationRegex, LengthValidation, GetOneOrAllQuery, GetOneOrAllPath, GetOneOrAllParams, GetOneOrAll, GetCountryFieldsAddressValues, GetCountryFieldsAddress, PincodeLatLongData, Localities, GetLocalities, LocalityParent, GetLocality, ApplicationConfigPutResponseSchema, PromiseType, BuyboxRuleConfig, CourierPartnerConfig, ZoneConfig, ApplicationConfigGetResponseSchema, ApplicationConfigPutRequestSchema, InstallCourierPartnerItemsSchema, InstallCourierPartnerResponseSchema, ServiceabilityErrorResponseSchema, ApplicationServiceabilityConfig, EntityRegionView_Error, EntityRegionView_page, PageSchema, EntityRegionView_Items, ListViewSummary, ProductSchema, ProductDetailsSchema, StoresSchema, StoresDetailsSchema, DetailsSchema, StoreValueDetailsSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponseSchema, ListViewResponseV2, ListViewItemsV2, SummaryRegions, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, CompanyStoreView_PageItems, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponseSchema, ZoneDeleteSuccessResponseSchema, UpdateZoneData, GetZoneDataViewItems, GetZoneByIdSchema, GetZoneByIdDetailsSchema, GeoAreaDetailsSchema, CreateZoneV2Data, ZoneBulkExport, GetZoneBulkExport, ZoneBulkItem, CreateBulkZoneData, ZoneStores, ZoneProduct, ZoneResponseV2, CreateBulkZoneResponseSchema, GetBulkZoneHistory, BulkZoneItems, PageV2, BulkCreateZoneExport, Zone, MobileNo, OpeningClosing, Dp, ServiceabilityZoneErrorResult, ServiceabilityZoneNonMarketplaceErrorResult, PincodeMopData, PincodeMopUpdateResponseSchema, PincodeMOPresponseSchema, CommonError, MoPCommonError, PincodeMopBulkData, PincodeBulkViewResponseSchema, PincodeCodStatusListingRequestSchema, PincodeCodDataSchema, PincodeCodStatusListingResponseSchema, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequestSchema, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponseSchema, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, BulkGeoAreaDetails, BulkGeoAreaResult, PriceGeoAreaExportResult, BulkGeoAreaGetResponseSchema, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, ErrorResponseItem, ConflictingArea, GeoAreaResponseDetail, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponseSchema, GeoAreaGetResponseBody, GeoAreaItemResponseSchema, ErrorResponseV2, ErrorResponseSchema, PackageMaterialNotFound, PackageMaterialsErrorResponseSchema, CourierPartnerAccountFailureResponseSchema, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRuleValuesV2, LocationRule, LocationRuleV2, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRuleResponseConditions, CourierPartnerRule, CourierPartnerRuleResponseSchema, FailureResponseSchema, CourierPartnerRulesListResponseSchema, CompanyConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequestSchema, ApplicationConfigPatchResponseSchema, BulkRegionResponseItemData, BulkRegionResponseSchema, SelfShipResponseSchema, ApplicationSelfShipConfig, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponseSchema, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierAccountSchemeResponseSchema, CourierAccountResponseSchema, CompanyCourierPartnerAccountListResponseSchema, PackageMaterial, CourierPartnerRuleDeleteResponseSchema, StoreRuleDeleteResponseSchema, PackageMaterialDeleteResponseSchema, PackageMaterialResponseSchema, PackageMaterialRule, PackageMpStores, PackageRuleRequestSchema, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageRuleProductAttributes, PackageRuleDepartmentId, PackageMaterialRuleQuantity, RulePriorityRequestSchema, RulePriorityResponseSchema, CompanySelfShip, ArithmeticOperationsV2, CompanyConfigurationShema, ValidationError };
+    export { UpdateZoneConfigDetails, ServiceabilityErrorResult, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResult, EntityRegionView_Details, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResult, PageSchema, EntityRegionView_Items, EntityRegionView_Result, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResult, CompanyStoreView_PageItems, CompanyStoreView_Result, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingDetailType, ZoneMappingType, ZoneMappingRegions, UpdateZoneData, ZoneUpdateDetails, ZoneSuccessResult, GetZoneDataViewItems, GetSingleZoneDataViewResult, GetZoneByIdSchema, CreateZoneData, ZoneResult, GetZoneFromPincodeViewDetails, Zone, GetZoneFromPincodeViewResult, GetZoneFromApplicationIdViewResult, ServiceabilityPageResult, MobileNo, ManagerResult, ModifiedByResult, IntegrationTypeResult, ProductReturnConfigResult, ContactNumberResult, AddressResult, CreatedByResult, EwayBillResult, EinvoiceResult, GstCredentialsResult, WarningsResult, OpeningClosing, TimmingResult, DocumentsResult, Dp, LogisticsResult, ItemResult, GetStoresViewResult, PincodeMopData, PincodeMopUpdateResult, PincodeMOPResult, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusItem, PincodeCodStatusListingResult, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, PincodeMopUpdateAuditHistoryResultData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccountUpdateDetails, CourierAccount, CourierAccountDetailsBody, ErrorResult, CourierPartnerAccountFailureResult, Page, CourierPartnerRuleCPListResult, CourierPartnerRuleResult, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResult, CourierPartnerRulesListResult, ShipmentsArticles, ShipmentDimension, Shipments, ShipmentCourierPartnerDetails, CourierPartnerPromise, CourierPartners, ShipmentCourierPartners, ShipmentCourierPartnerResult, ShipmentsCourierPartnersServiceability, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, SelfShipResult, ApplicationSelfShipConfig, ApplicationSelfShipConfigResult, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialResult, PackageMaterialRule, PackageRule, PackageRuleResult, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityDetails, RulePriorityResult, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsDetailsSchema, OptimalLocationArticlesResult, OptimalLocationAssignedStoresResult, OptimalLocationsResult, ValidationError, StandardError };
 }
-/** @returns {GetExportPriceZoneHistory} */
-declare function GetExportPriceZoneHistory(): GetExportPriceZoneHistory;
-type GetExportPriceZoneHistory = {
-    batch_id?: string;
-    file_path?: string;
-    total?: number;
-    failed?: number;
-    error_file_url?: string;
-    action?: string;
-    updated_at?: string;
-    updated_by?: string;
-    type?: string;
-    stage?: string;
+/** @returns {UpdateZoneConfigDetails} */
+declare function UpdateZoneConfigDetails(): UpdateZoneConfigDetails;
+type UpdateZoneConfigDetails = {
+    serviceability_type?: string;
 };
-/** @returns {PriceBulkGeoAreaExportRequestPayload} */
-declare function PriceBulkGeoAreaExportRequestPayload(): PriceBulkGeoAreaExportRequestPayload;
-type PriceBulkGeoAreaExportRequestPayload = {
-    /**
-     * - Type of the geo area export
-     */
+/** @returns {ServiceabilityErrorResult} */
+declare function ServiceabilityErrorResult(): ServiceabilityErrorResult;
+type ServiceabilityErrorResult = {
+    message: string;
+    value: string;
+    type: string;
+};
+/** @returns {ApplicationServiceabilityConfig} */
+declare function ApplicationServiceabilityConfig(): ApplicationServiceabilityConfig;
+type ApplicationServiceabilityConfig = {
+    channel_id: string;
+    serviceability_type: string;
+    channel_type: string;
+};
+/** @returns {ApplicationServiceabilityConfigResult} */
+declare function ApplicationServiceabilityConfigResult(): ApplicationServiceabilityConfigResult;
+type ApplicationServiceabilityConfigResult = {
+    error?: ServiceabilityErrorResult;
+    data?: ApplicationServiceabilityConfig;
+    success: boolean;
+};
+/** @returns {EntityRegionView_Details} */
+declare function EntityRegionView_Details(): EntityRegionView_Details;
+type EntityRegionView_Details = {
+    sub_type: string[];
+    parent_id?: string[];
+};
+/** @returns {EntityRegionView_Error} */
+declare function EntityRegionView_Error(): EntityRegionView_Error;
+type EntityRegionView_Error = {
+    message?: string;
+    value?: string;
     type?: string;
 };
-/** @returns {GetBulkPriceZoneHistory} */
-declare function GetBulkPriceZoneHistory(): GetBulkPriceZoneHistory;
-type GetBulkPriceZoneHistory = {
-    page: Pagination;
-    /**
-     * - List of bulk price zone history items
-     */
-    items: BulkPriceZoneItem[];
-};
-/** @returns {Pagination} */
-declare function Pagination(): Pagination;
-type Pagination = {
-    /**
-     * - Data type of page
-     */
-    type?: string;
-    /**
-     * - Number of items per page
-     */
-    size: number;
-    /**
-     * - Current page number
-     */
-    current: number;
-    /**
-     * - Flag indicating if there is a next page
-     */
+/** @returns {EntityRegionView_page} */
+declare function EntityRegionView_page(): EntityRegionView_page;
+type EntityRegionView_page = {
+    type: string;
     has_next: boolean;
-    /**
-     * - Total number of items
-     */
     item_total: number;
+    size: number;
+    current: number;
 };
-/** @returns {BulkPriceZoneItem} */
-declare function BulkPriceZoneItem(): BulkPriceZoneItem;
-type BulkPriceZoneItem = {
-    /**
-     * - The unique batch ID for the bulk upload
-     */
-    batch_id: string;
-    /**
-     * - Entity type of the record
-     */
-    entity_type: string;
-    /**
-     * - URL of the error file if any error occurred
-     */
-    error_file_url?: string;
-    /**
-     * - File path or URL where the bulk file is stored
-     */
-    file_path: string;
-    /**
-     * - Name of the file
-     */
-    file_name: string;
-    /**
-     * - Timestamp of the last update
-     */
-    updated_at: string;
-    /**
-     * - User who last updated the record
-     */
-    updated_by: string;
-    /**
-     * - Stage of the bulk upload process
-     */
-    stage: string;
+/** @returns {getAppRegionZonesResult} */
+declare function getAppRegionZonesResult(): getAppRegionZonesResult;
+type getAppRegionZonesResult = {
+    page: PageSchema[];
+    items: ListViewItems[];
 };
-/** @returns {PriceBulkGeoAreaPayload} */
-declare function PriceBulkGeoAreaPayload(): PriceBulkGeoAreaPayload;
-type PriceBulkGeoAreaPayload = {
+/** @returns {PageSchema} */
+declare function PageSchema(): PageSchema;
+type PageSchema = {
+    has_next: boolean;
+    item_total: number;
+    size: number;
+    current: number;
+    type: string;
+};
+/** @returns {EntityRegionView_Items} */
+declare function EntityRegionView_Items(): EntityRegionView_Items;
+type EntityRegionView_Items = {
+    sub_type: string;
+    uid: string;
+    name: string;
+};
+/** @returns {EntityRegionView_Result} */
+declare function EntityRegionView_Result(): EntityRegionView_Result;
+type EntityRegionView_Result = {
+    error: EntityRegionView_Error;
+    page: EntityRegionView_page;
+    data: EntityRegionView_Items[];
+    success: boolean;
+};
+/** @returns {ListViewSummary} */
+declare function ListViewSummary(): ListViewSummary;
+type ListViewSummary = {
+    total_zones: number;
+    total_pincodes_served: number;
+    total_active_zones: number;
+};
+/** @returns {ZoneDataItem} */
+declare function ZoneDataItem(): ZoneDataItem;
+type ZoneDataItem = {
+    has_next: boolean;
+    item_total: number;
+    size: number;
+    current: number;
+    type: string;
+};
+/** @returns {ListViewProduct} */
+declare function ListViewProduct(): ListViewProduct;
+type ListViewProduct = {
+    count: number;
+    type: string;
+};
+/** @returns {ListViewChannels} */
+declare function ListViewChannels(): ListViewChannels;
+type ListViewChannels = {
+    channel_id: string;
+    channel_type: string;
+};
+/** @returns {ListViewItems} */
+declare function ListViewItems(): ListViewItems;
+type ListViewItems = {
     /**
-     * - Type of bulk geo area export (e.g. 'price').
+     * - The unique identifier for the zone.
+     */
+    zone_id: string;
+    /**
+     * - The name of the zone.
+     */
+    name: string;
+    /**
+     * - A human-readable and unique identifier for the
+     * zone, derived from the name.
+     */
+    slug: string;
+    /**
+     * - The number of stores within the zone.
+     */
+    stores_count: number;
+    /**
+     * - A flag indicating whether the zone is active.
+     */
+    is_active: boolean;
+    /**
+     * - The number of regions within the zone.
+     */
+    regions_count: number;
+    /**
+     * - The unique identifier for the company to
+     * which the zone belongs.
+     */
+    company_id: number;
+    /**
+     * - A list of store identifiers associated
+     * with the zone.
+     */
+    store_ids?: number[];
+    /**
+     * - The name of the zone.
+     */
+    channels: ListViewChannels[];
+};
+/** @returns {ListViewResult} */
+declare function ListViewResult(): ListViewResult;
+type ListViewResult = {
+    page: ZoneDataItem;
+    items: ListViewItems[];
+};
+/** @returns {CompanyStoreView_PageItems} */
+declare function CompanyStoreView_PageItems(): CompanyStoreView_PageItems;
+type CompanyStoreView_PageItems = {
+    type: string;
+    has_next: boolean;
+    item_total: number;
+    size: number;
+    current: number;
+};
+/** @returns {CompanyStoreView_Result} */
+declare function CompanyStoreView_Result(): CompanyStoreView_Result;
+type CompanyStoreView_Result = {
+    page: CompanyStoreView_PageItems[];
+    items?: any[];
+};
+/** @returns {GetZoneDataViewChannels} */
+declare function GetZoneDataViewChannels(): GetZoneDataViewChannels;
+type GetZoneDataViewChannels = {
+    channel_id: string;
+    channel_type: string;
+};
+/** @returns {ZoneProductTypes} */
+declare function ZoneProductTypes(): ZoneProductTypes;
+type ZoneProductTypes = {
+    /**
+     * - Denotes if the zone is applicable for all the
+     * products or specific products.
      */
     type: string;
     /**
-     * - URL to the file containing bulk geo area data.
+     * - List of product tags.
      */
-    file_url: string;
+    tags: string[];
 };
-/** @returns {StandardError} */
-declare function StandardError(): StandardError;
-type StandardError = {
+/** @returns {ZoneMappingDetailType} */
+declare function ZoneMappingDetailType(): ZoneMappingDetailType;
+type ZoneMappingDetailType = {
     /**
-     * - A brief description of the error.
+     * - Uid for the country.
+     */
+    country: string;
+    /**
+     * - List of regions with its details.
+     */
+    regions?: ZoneMappingRegions[];
+};
+/** @returns {ZoneMappingType} */
+declare function ZoneMappingType(): ZoneMappingType;
+type ZoneMappingType = {
+    /**
+     * - Uid for the country.
+     */
+    country: string;
+    /**
+     * - List of region uid for the given country.
+     */
+    regions: string[];
+};
+/** @returns {ZoneMappingRegions} */
+declare function ZoneMappingRegions(): ZoneMappingRegions;
+type ZoneMappingRegions = {
+    /**
+     * - Name of the region that is in proper casing.
+     */
+    display_name?: string;
+    parent_id?: string[];
+    /**
+     * - Unique identifier for that regions parent.
+     */
+    parent_uid?: string;
+    /**
+     * - What type does the region belong to.
+     */
+    sub_type?: string;
+    /**
+     * - Unique identifier for that region.
+     */
+    uid?: string;
+};
+/** @returns {UpdateZoneData} */
+declare function UpdateZoneData(): UpdateZoneData;
+type UpdateZoneData = {
+    /**
+     * - Unique identifier for the zone.
+     */
+    zone_id: string;
+    /**
+     * - Name for the zone.
+     */
+    name: string;
+    /**
+     * - A human-readable and unique identifier for the
+     * zone, derived from the name.
+     */
+    slug: string;
+    /**
+     * - Company id associated with the zone.
+     */
+    company_id: number;
+    /**
+     * - A flag indicating whether the zone is active.
+     */
+    is_active: boolean;
+    /**
+     * - Channels for which the zone is active.
+     */
+    channels: GetZoneDataViewChannels[];
+    product: ZoneProductTypes;
+    /**
+     * - A list of store identifiers associated with the zone.
+     */
+    store_ids: number[];
+    /**
+     * - Type of region that belongs in the zone.
+     */
+    region_type: string;
+    /**
+     * - Country to region mapping for the zone.
+     */
+    mapping: ZoneMappingType[];
+};
+/** @returns {ZoneUpdateDetails} */
+declare function ZoneUpdateDetails(): ZoneUpdateDetails;
+type ZoneUpdateDetails = {
+    identifier: string;
+    data: UpdateZoneData;
+};
+/** @returns {ZoneSuccessResult} */
+declare function ZoneSuccessResult(): ZoneSuccessResult;
+type ZoneSuccessResult = {
+    status_code: number;
+    success: boolean;
+};
+/** @returns {GetZoneDataViewItems} */
+declare function GetZoneDataViewItems(): GetZoneDataViewItems;
+type GetZoneDataViewItems = {
+    /**
+     * - The unique identifier for the zone.
+     */
+    zone_id: string;
+    /**
+     * - The name of the zone for easy identification.
+     */
+    name: string;
+    /**
+     * - A URL-friendly version of the zone’s name, used for
+     * routing or linking.
+     */
+    slug: string;
+    /**
+     * - The ID of the company associated with this zone.
+     */
+    company_id?: number;
+    /**
+     * - A flag indicating whether the zone is active
+     * (true) or inactive (false).
+     */
+    is_active: boolean;
+    /**
+     * - A list of channels available
+     * within this zone.
+     */
+    channels: GetZoneDataViewChannels[];
+    product: ZoneProductTypes;
+    /**
+     * - A collection of store IDs linked to this zone.
+     */
+    store_ids: number[];
+    /**
+     * - The type of region the zone represents.
+     */
+    region_type?: string;
+    /**
+     * - A list of mappings defining
+     * relationships between this zone and other entities.
+     */
+    mapping: ZoneMappingType[];
+    /**
+     * - The preferred method for
+     * assigning stores or products to the zone.
+     */
+    assignment_preference?: string;
+    /**
+     * - The total number of stores assigned to this zone.
+     */
+    stores_count: number;
+};
+/** @returns {GetSingleZoneDataViewResult} */
+declare function GetSingleZoneDataViewResult(): GetSingleZoneDataViewResult;
+type GetSingleZoneDataViewResult = {
+    data: GetZoneDataViewItems;
+};
+/** @returns {GetZoneByIdSchema} */
+declare function GetZoneByIdSchema(): GetZoneByIdSchema;
+type GetZoneByIdSchema = {
+    /**
+     * - Unique identifier for the zone.
+     */
+    zone_id: string;
+    /**
+     * - Name for the zone.
+     */
+    name: string;
+    /**
+     * - A human-readable and unique identifier for the
+     * zone, derived from the name.
+     */
+    slug: string;
+    /**
+     * - Company id associated with the zone.
+     */
+    company_id?: number;
+    /**
+     * - A flag indicating whether the zone is active.
+     */
+    is_active: boolean;
+    /**
+     * - Channels for which the zone is active.
+     */
+    channels: GetZoneDataViewChannels[];
+    product: ZoneProductTypes;
+    /**
+     * - A list of store identifiers associated with the zone.
+     */
+    store_ids: number[];
+    /**
+     * - Type of region that belongs in the zone.
+     */
+    region_type: string;
+    /**
+     * - Country to region mapping for the zone.
+     */
+    mapping: ZoneMappingDetailType[];
+    stores_count?: number;
+};
+/** @returns {CreateZoneData} */
+declare function CreateZoneData(): CreateZoneData;
+type CreateZoneData = {
+    /**
+     * - Name of the zone.
+     */
+    name: string;
+    /**
+     * - A human-readable and unique identifier for the
+     * zone, derived from the name.
+     */
+    slug: string;
+    /**
+     * - Unique identifier of the company for which
+     * the zone is created.
+     */
+    company_id: number;
+    /**
+     * - A flag indicating whether the zone is active.
+     */
+    is_active: boolean;
+    /**
+     * - Channels for which the zone is active.
+     */
+    channels: GetZoneDataViewChannels[];
+    /**
+     * - A list of store identifiers associated with the zone.
+     */
+    store_ids: number[];
+    /**
+     * - Type of region that belongs in the zone.
+     */
+    region_type: string;
+    /**
+     * - Country to region mapping for the zone.
+     */
+    mapping: ZoneMappingType[];
+    product?: ZoneProductTypes;
+};
+/** @returns {ZoneResult} */
+declare function ZoneResult(): ZoneResult;
+type ZoneResult = {
+    status_code?: number;
+    zone_id: string;
+    success: boolean;
+};
+/** @returns {GetZoneFromPincodeViewDetails} */
+declare function GetZoneFromPincodeViewDetails(): GetZoneFromPincodeViewDetails;
+type GetZoneFromPincodeViewDetails = {
+    country: string;
+    pincode: string;
+};
+/** @returns {Zone} */
+declare function Zone(): Zone;
+type Zone = {
+    zone_id: string;
+    type: string;
+    name: string;
+    tags: string[];
+    slug: string;
+    is_active: boolean;
+    store_ids: number[];
+};
+/** @returns {GetZoneFromPincodeViewResult} */
+declare function GetZoneFromPincodeViewResult(): GetZoneFromPincodeViewResult;
+type GetZoneFromPincodeViewResult = {
+    serviceability_type: string;
+    zones: Zone[];
+};
+/** @returns {GetZoneFromApplicationIdViewResult} */
+declare function GetZoneFromApplicationIdViewResult(): GetZoneFromApplicationIdViewResult;
+type GetZoneFromApplicationIdViewResult = {
+    page: ZoneDataItem[];
+    items: ListViewItems[];
+};
+/** @returns {ServiceabilityPageResult} */
+declare function ServiceabilityPageResult(): ServiceabilityPageResult;
+type ServiceabilityPageResult = {
+    type?: string;
+    has_next?: boolean;
+    item_total?: number;
+    size?: number;
+    current?: number;
+};
+/** @returns {MobileNo} */
+declare function MobileNo(): MobileNo;
+type MobileNo = {
+    number?: string;
+    country_code?: number;
+};
+/** @returns {ManagerResult} */
+declare function ManagerResult(): ManagerResult;
+type ManagerResult = {
+    email?: string;
+    mobile_no?: MobileNo;
+    name?: string;
+};
+/** @returns {ModifiedByResult} */
+declare function ModifiedByResult(): ModifiedByResult;
+type ModifiedByResult = {
+    username?: string;
+    user_id?: string;
+};
+/** @returns {IntegrationTypeResult} */
+declare function IntegrationTypeResult(): IntegrationTypeResult;
+type IntegrationTypeResult = {
+    inventory?: string;
+    order?: string;
+};
+/** @returns {ProductReturnConfigResult} */
+declare function ProductReturnConfigResult(): ProductReturnConfigResult;
+type ProductReturnConfigResult = {
+    on_same_store?: boolean;
+};
+/** @returns {ContactNumberResult} */
+declare function ContactNumberResult(): ContactNumberResult;
+type ContactNumberResult = {
+    number?: string;
+    country_code?: number;
+};
+/** @returns {AddressResult} */
+declare function AddressResult(): AddressResult;
+type AddressResult = {
+    city?: string;
+    address1?: string;
+    pincode?: number;
+    address2?: string;
+    landmark?: string;
+    state?: string;
+    country?: string;
+    latitude?: number;
+    longitude?: number;
+};
+/** @returns {CreatedByResult} */
+declare function CreatedByResult(): CreatedByResult;
+type CreatedByResult = {
+    username?: string;
+    user_id?: string;
+};
+/** @returns {EwayBillResult} */
+declare function EwayBillResult(): EwayBillResult;
+type EwayBillResult = {
+    enabled?: boolean;
+};
+/** @returns {EinvoiceResult} */
+declare function EinvoiceResult(): EinvoiceResult;
+type EinvoiceResult = {
+    enabled?: boolean;
+};
+/** @returns {GstCredentialsResult} */
+declare function GstCredentialsResult(): GstCredentialsResult;
+type GstCredentialsResult = {
+    e_waybill?: EwayBillResult;
+    e_invoice?: EinvoiceResult;
+};
+/** @returns {WarningsResult} */
+declare function WarningsResult(): WarningsResult;
+type WarningsResult = {
+    store_address?: string;
+};
+/** @returns {OpeningClosing} */
+declare function OpeningClosing(): OpeningClosing;
+type OpeningClosing = {
+    minute?: number;
+    hour?: number;
+};
+/** @returns {TimmingResult} */
+declare function TimmingResult(): TimmingResult;
+type TimmingResult = {
+    open?: boolean;
+    weekday?: string;
+    closing?: OpeningClosing;
+    opening?: OpeningClosing;
+};
+/** @returns {DocumentsResult} */
+declare function DocumentsResult(): DocumentsResult;
+type DocumentsResult = {
+    legal_name?: string;
+    value?: string;
+    type?: string;
+    verified?: boolean;
+};
+/** @returns {Dp} */
+declare function Dp(): Dp;
+type Dp = {
+    fm_priority?: number;
+    rvp_priority?: number;
+    lm_priority?: number;
+    internal_account_id?: string;
+    area_code?: number;
+    payment_mode?: string;
+    operations?: string[];
+    external_account_id?: string;
+    transport_mode?: string;
+    assign_dp_from_sb?: boolean;
+};
+/** @returns {LogisticsResult} */
+declare function LogisticsResult(): LogisticsResult;
+type LogisticsResult = {
+    override?: boolean;
+    dp?: Dp;
+};
+/** @returns {ItemResult} */
+declare function ItemResult(): ItemResult;
+type ItemResult = {
+    created_on?: string;
+    manager?: ManagerResult;
+    modified_by?: ModifiedByResult;
+    integration_type?: IntegrationTypeResult;
+    verified_on?: string;
+    product_return_config?: ProductReturnConfigResult;
+    contact_numbers?: ContactNumberResult[];
+    verified_by?: ModifiedByResult;
+    stage?: string;
+    address?: AddressResult;
+    modified_on?: string;
+    created_by?: CreatedByResult;
+    gst_credentials?: GstCredentialsResult;
+    display_name?: string;
+    company_id?: number;
+    uid?: number;
+    /**
+     * - Custom JSON for internal usage
+     */
+    _custom_json?: any;
+    code?: string;
+    warnings?: WarningsResult;
+    name?: string;
+    timing?: TimmingResult[];
+    documents?: DocumentsResult[];
+    store_type?: string;
+    sub_type?: string;
+    company?: number;
+    _cls?: string;
+    logistics?: LogisticsResult;
+    notification_emails?: string[];
+};
+/** @returns {GetStoresViewResult} */
+declare function GetStoresViewResult(): GetStoresViewResult;
+type GetStoresViewResult = {
+    page: ServiceabilityPageResult;
+    items?: ItemResult[];
+};
+/** @returns {PincodeMopData} */
+declare function PincodeMopData(): PincodeMopData;
+type PincodeMopData = {
+    /**
+     * - A list of pincodes.
+     */
+    pincodes: number[];
+    /**
+     * - Name of the country.
+     */
+    country: string;
+    /**
+     * - Denotes wether to activate or deavtivate pincodes
+     * for COD mode of payment.
+     */
+    action: string;
+};
+/** @returns {PincodeMopUpdateResult} */
+declare function PincodeMopUpdateResult(): PincodeMopUpdateResult;
+type PincodeMopUpdateResult = {
+    /**
+     * - Pincode of the region.
+     */
+    pincode: number;
+    /**
+     * - Unique identifier of the sales channel.
+     */
+    channel_id: string;
+    /**
+     * - Country name.
+     */
+    country: string;
+    /**
+     * - Denotes whether the pincode mode of payment
+     * is active or not.
+     */
+    is_active: boolean;
+};
+/** @returns {PincodeMOPResult} */
+declare function PincodeMOPResult(): PincodeMOPResult;
+type PincodeMOPResult = {
+    /**
+     * - Denotes if the action was successful or not.
+     */
+    success: boolean;
+    /**
+     * - Status code for the response.
+     */
+    status_code: number;
+    /**
+     * - Unique identifier identifying the perticular request.
+     */
+    batch_id: string;
+    /**
+     * - Name of the country.
+     */
+    country: string;
+    /**
+     * - Denotes wether to activate or deavtivate pincodes
+     * for COD mode of payment.
+     */
+    action: string;
+    /**
+     * - List of pincodes.
+     */
+    pincodes?: number[];
+    /**
+     * - Details of the
+     * updated pincodes.
+     */
+    updated_pincodes?: PincodeMopUpdateResult[];
+};
+/** @returns {CommonError} */
+declare function CommonError(): CommonError;
+type CommonError = {
+    /**
+     * - Status code for the error.
+     */
+    status_code?: string;
+    error?: any;
+    /**
+     * - Whether operation was successful.
+     */
+    success?: string;
+};
+/** @returns {PincodeMopBulkData} */
+declare function PincodeMopBulkData(): PincodeMopBulkData;
+type PincodeMopBulkData = {
+    /**
+     * - Unique identifier for the request.
+     */
+    batch_id: string;
+    /**
+     * - CDN url for the uploaded file.
+     */
+    s3_url: string;
+};
+/** @returns {PincodeBulkViewResult} */
+declare function PincodeBulkViewResult(): PincodeBulkViewResult;
+type PincodeBulkViewResult = {
+    batch_id: string;
+    /**
+     * - CDN url for the uploaded file.
+     */
+    s3_url: string;
+};
+/** @returns {PincodeCodStatusListingDetails} */
+declare function PincodeCodStatusListingDetails(): PincodeCodStatusListingDetails;
+type PincodeCodStatusListingDetails = {
+    /**
+     * - Name of the country.
+     */
+    country?: string;
+    /**
+     * - Search based on the active or inactive flag.
+     */
+    is_active?: boolean;
+    /**
+     * - Search based on the pincode.
+     */
+    pincode?: number;
+    current?: number;
+    page_size?: number;
+};
+/** @returns {PincodeCodStatusItem} */
+declare function PincodeCodStatusItem(): PincodeCodStatusItem;
+type PincodeCodStatusItem = {
+    /**
+     * - Denoted if the pincode is active or not.
+     */
+    active?: boolean;
+    /**
+     * - Name of the pincode.
+     */
+    pincode?: string;
+};
+/** @returns {PincodeCodStatusListingResult} */
+declare function PincodeCodStatusListingResult(): PincodeCodStatusListingResult;
+type PincodeCodStatusListingResult = {
+    /**
+     * - Name of the country.
+     */
+    country: string;
+    /**
+     * - List of pincode details.
+     */
+    data: PincodeCodStatusListingResult[];
+    /**
+     * - Denotes if the request was successful or not.
+     */
+    success: boolean;
+    /**
+     * - List of error object in case of unsuccessful response.
+     */
+    errors?: Error[];
+    page: PincodeCodStatusListingPage;
+    summary: PincodeCodStatusListingSummary;
+};
+/** @returns {Error} */
+declare function Error(): Error;
+type Error = {
+    type?: string;
+    value?: string;
+    message?: string;
+};
+/** @returns {PincodeCodStatusListingPage} */
+declare function PincodeCodStatusListingPage(): PincodeCodStatusListingPage;
+type PincodeCodStatusListingPage = {
+    type: string;
+    has_next: boolean;
+    item_total: number;
+    size: number;
+    current: number;
+};
+/** @returns {PincodeCodStatusListingSummary} */
+declare function PincodeCodStatusListingSummary(): PincodeCodStatusListingSummary;
+type PincodeCodStatusListingSummary = {
+    /**
+     * - Count of the total active pincodes.
+     */
+    total_active_pincodes: number;
+    /**
+     * - Count of the total inactive pincodes.
+     */
+    total_inactive_pincodes: number;
+};
+/** @returns {PincodeMopUpdateAuditHistoryDetails} */
+declare function PincodeMopUpdateAuditHistoryDetails(): PincodeMopUpdateAuditHistoryDetails;
+type PincodeMopUpdateAuditHistoryDetails = {
+    /**
+     * - Type of the entity requested.
+     */
+    entity_type: string;
+    /**
+     * - Name of the file.
+     */
+    file_name?: string;
+};
+/** @returns {PincodeMopUpdateAuditHistoryPaging} */
+declare function PincodeMopUpdateAuditHistoryPaging(): PincodeMopUpdateAuditHistoryPaging;
+type PincodeMopUpdateAuditHistoryPaging = {
+    type?: string;
+    size?: number;
+    current?: number;
+    has_next?: boolean;
+    item_total?: number;
+};
+/** @returns {PincodeMopUpdateAuditHistoryResult} */
+declare function PincodeMopUpdateAuditHistoryResult(): PincodeMopUpdateAuditHistoryResult;
+type PincodeMopUpdateAuditHistoryResult = {
+    /**
+     * - Uniquie identifier of the request.
+     */
+    batch_id?: string;
+    /**
+     * - Type of the entity requested.
+     */
+    entity_type?: string;
+    /**
+     * - URL for the error file.
+     */
+    error_file_s3_url?: string;
+    /**
+     * - CDN url for the file uploaded.
+     */
+    s3_url?: string;
+    /**
+     * - Name of the file.
+     */
+    file_name?: string;
+    updated_at?: string;
+    updated_by?: string;
+    /**
+     * - Denotes if the request was successfully processed.
+     */
+    success?: boolean;
+};
+/** @returns {PincodeMopUpdateAuditHistoryResultData} */
+declare function PincodeMopUpdateAuditHistoryResultData(): PincodeMopUpdateAuditHistoryResultData;
+type PincodeMopUpdateAuditHistoryResultData = {
+    /**
+     * - Type of the entity requested.
+     */
+    entity_type?: string;
+    page: PincodeMopUpdateAuditHistoryPaging;
+    /**
+     * - History records of
+     * the uploaded files.
+     */
+    data: PincodeMopUpdateAuditHistoryResult[];
+};
+/** @returns {ArithmeticOperations} */
+declare function ArithmeticOperations(): ArithmeticOperations;
+type ArithmeticOperations = {
+    lt?: number;
+    gt?: number;
+    lte?: number;
+    gte?: number;
+};
+/** @returns {SchemeRulesFeatures} */
+declare function SchemeRulesFeatures(): SchemeRulesFeatures;
+type SchemeRulesFeatures = {
+    quality_check?: boolean;
+    quick_response_code?: boolean;
+    e_waybill?: boolean;
+    multi_part_shipments?: boolean;
+    flammable?: boolean;
+    hazmat?: boolean;
+    battery_operated?: boolean;
+};
+/** @returns {SchemeRules} */
+declare function SchemeRules(): SchemeRules;
+type SchemeRules = {
+    weight?: ArithmeticOperations;
+    transport_type?: string[];
+    region?: string;
+    payment_mode?: string[];
+    feature?: SchemeRulesFeatures;
+};
+/** @returns {CourierAccountUpdateDetails} */
+declare function CourierAccountUpdateDetails(): CourierAccountUpdateDetails;
+type CourierAccountUpdateDetails = {
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id: string;
+    /**
+     * - Denotes if the account is of self delivery type.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Denotes whether the account is in enabled or disabled stage.
+     */
+    stage: string;
+    /**
+     * - Denotes whether it is the seller's own
+     * account or not.
+     */
+    is_own_account: boolean;
+};
+/** @returns {CourierAccount} */
+declare function CourierAccount(): CourierAccount;
+type CourierAccount = {
+    /**
+     * - Company id associated with the account.
+     */
+    company_id: number;
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Unique identifier of courier partner scheme
+     * and company id combination.
+     */
+    account_id: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id: string;
+    /**
+     * - Denotes if the account is of self delivery type.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Denotes whether the account is in enabled or disabled stage.
+     */
+    stage: string;
+    /**
+     * - Denotes whether it is the seller's own
+     * account or not.
+     */
+    is_own_account: boolean;
+    scheme_rules: CourierPartnerSchemeModel;
+};
+/** @returns {CourierAccountDetailsBody} */
+declare function CourierAccountDetailsBody(): CourierAccountDetailsBody;
+type CourierAccountDetailsBody = {
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Unique identifier of courier partner scheme
+     * and company id combination.
+     */
+    account_id?: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id: string;
+    /**
+     * - Denotes if the account is of self delivery type.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Denotes whether the account is in enabled or disabled stage.
+     */
+    stage: string;
+    /**
+     * - Denotes whether it is the seller's own
+     * account or not.
+     */
+    is_own_account: boolean;
+};
+/** @returns {ErrorResult} */
+declare function ErrorResult(): ErrorResult;
+type ErrorResult = {
+    /**
+     * - Fields containing the error.
+     */
+    value: string;
+    /**
+     * - Description of the error.
      */
     message: string;
+    /**
+     * - Type of the error.
+     */
+    type: string;
 };
-/** @returns {RuleConditionIntegerDetail} */
-declare function RuleConditionIntegerDetail(): RuleConditionIntegerDetail;
-type RuleConditionIntegerDetail = {
-    text?: string;
-    value?: number;
-    stage?: boolean;
+/** @returns {CourierPartnerAccountFailureResult} */
+declare function CourierPartnerAccountFailureResult(): CourierPartnerAccountFailureResult;
+type CourierPartnerAccountFailureResult = {
+    /**
+     * - Denotes whether the request is a success or failure.
+     */
+    success: boolean;
+    error: ErrorResult[];
 };
-/** @returns {RuleConditionStringDetail} */
-declare function RuleConditionStringDetail(): RuleConditionStringDetail;
-type RuleConditionStringDetail = {
-    text?: string;
-    value?: string;
-    stage?: boolean;
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    /**
+     * - The total number of items on the page.
+     */
+    item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
+    next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
+    has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
+    has_next?: boolean;
+    /**
+     * - The current page number.
+     */
+    current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
+    type: string;
+    /**
+     * - The number of items per page.
+     */
+    size?: number;
 };
-/** @returns {RuleResponseIntegerDetail} */
-declare function RuleResponseIntegerDetail(): RuleResponseIntegerDetail;
-type RuleResponseIntegerDetail = {
-    includes?: RuleConditionIntegerDetail[];
+/** @returns {CourierPartnerRuleCPListResult} */
+declare function CourierPartnerRuleCPListResult(): CourierPartnerRuleCPListResult;
+type CourierPartnerRuleCPListResult = {
+    /**
+     * - Unique identifier of courier partner scheme
+     * and company id combination.
+     */
+    account_id: string;
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Denotes if the account is of self delivery type.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Denotes the scheme rules associated with
+     * the courier partner account.
+     */
+    scheme_rules?: any;
 };
-/** @returns {RuleResponseStringDetail} */
-declare function RuleResponseStringDetail(): RuleResponseStringDetail;
-type RuleResponseStringDetail = {
-    includes?: RuleConditionStringDetail[];
+/** @returns {CourierPartnerRuleResult} */
+declare function CourierPartnerRuleResult(): CourierPartnerRuleResult;
+type CourierPartnerRuleResult = {
+    /**
+     * - Denotes whether the given courier partner
+     * rule is inactive or active.
+     */
+    is_active: boolean;
+    /**
+     * - Unique identifier of the sales channel.
+     */
+    application_id: string;
+    /**
+     * - Unique identifier of the company.
+     */
+    company_id: number;
+    conditions: CourierPartnerRuleConditions;
+    /**
+     * - Sort Strategy of the courier partners.
+     */
+    sort: string[];
+    /**
+     * - The Fynd account used to create the courier
+     * partner rule.
+     */
+    created_by?: any;
+    /**
+     * - Unique identifier of the courier partner rule.
+     */
+    id: string;
+    /**
+     * - The Fynd account used to modify the
+     * courier partner rule.
+     */
+    modified_by?: any;
+    /**
+     * - The datetime at which courier partner rule
+     * is modified.
+     */
+    modified_on?: string;
+    /**
+     * - Name for the courier partner rule.
+     */
+    name: string;
+    /**
+     * - The type of the rule.
+     */
+    type: string;
+    cp_list?: CourierPartnerRuleCPListResult[];
 };
-/** @returns {CourierPartnerRuleResponseDetailConditions} */
-declare function CourierPartnerRuleResponseDetailConditions(): CourierPartnerRuleResponseDetailConditions;
-type CourierPartnerRuleResponseDetailConditions = {
+/** @returns {CourierPartnerList} */
+declare function CourierPartnerList(): CourierPartnerList;
+type CourierPartnerList = {
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Unique identifier of courier partner scheme
+     * and company id combination.
+     */
+    account_id: string;
+};
+/** @returns {LocationRuleValues} */
+declare function LocationRuleValues(): LocationRuleValues;
+type LocationRuleValues = {
+    id: string;
+    sub_type?: string;
+    name?: string;
+    display_name?: string;
+    parent_id?: string[];
+    parent_ids?: string[];
+};
+/** @returns {LocationRule} */
+declare function LocationRule(): LocationRule;
+type LocationRule = {
+    type?: string;
+    includes?: LocationRuleValues[];
+};
+/** @returns {StringComparisonOperations} */
+declare function StringComparisonOperations(): StringComparisonOperations;
+type StringComparisonOperations = {
+    includes?: string[];
+};
+/** @returns {IntComparisonOperations} */
+declare function IntComparisonOperations(): IntComparisonOperations;
+type IntComparisonOperations = {
+    includes?: number[];
+};
+/** @returns {CourierPartnerRuleConditions} */
+declare function CourierPartnerRuleConditions(): CourierPartnerRuleConditions;
+type CourierPartnerRuleConditions = {
     forward?: LocationRule;
     reverse?: LocationRule;
     payment_mode?: StringComparisonOperations;
-    category_ids?: RuleResponseIntegerDetail;
-    product_ids?: RuleResponseIntegerDetail;
+    category_ids?: IntComparisonOperations;
+    product_ids?: IntComparisonOperations;
     product_tags?: StringComparisonOperations;
-    zone_ids?: RuleResponseStringDetail;
-    department_ids?: RuleResponseIntegerDetail;
-    brand_ids?: RuleResponseIntegerDetail;
-    order_place_date?: ArithmeticOperationsV2;
-    store_ids?: RuleResponseIntegerDetail;
+    zone_ids?: StringComparisonOperations;
+    department_ids?: IntComparisonOperations;
+    brand_ids?: IntComparisonOperations;
+    order_place_date?: ArithmeticOperations;
+    store_ids?: IntComparisonOperations;
     store_type?: StringComparisonOperations;
     store_tags?: StringComparisonOperations;
     shipment_weight?: ArithmeticOperations;
     shipment_cost?: ArithmeticOperations;
     shipment_volumetric_weight?: ArithmeticOperations;
-    company_ids?: RuleResponseIntegerDetail;
-    promise_types?: StringComparisonOperations;
 };
-/** @returns {CourierPartnerRuleResponseDetailSchema} */
-declare function CourierPartnerRuleResponseDetailSchema(): CourierPartnerRuleResponseDetailSchema;
-type CourierPartnerRuleResponseDetailSchema = {
-    id?: string;
+/** @returns {CourierPartnerRule} */
+declare function CourierPartnerRule(): CourierPartnerRule;
+type CourierPartnerRule = {
+    /**
+     * - Denotes whether the given courier partner
+     * rule is inactive or active.
+     */
     is_active: boolean;
+    /**
+     * - A list of courier partners.
+     */
     cp_list?: CourierPartnerList[];
+    /**
+     * - Name for the courier partner rule.
+     */
     name: string;
-    conditions: CourierPartnerRuleResponseDetailConditions;
-    manual_priority?: string[];
+    conditions: CourierPartnerRuleConditions;
+    /**
+     * - Sort Strategy for the courier partners.
+     */
     sort: string[];
-    type: string;
+    /**
+     * - Denotes the type of the rule.
+     */
+    type?: string;
+};
+/** @returns {FailureResult} */
+declare function FailureResult(): FailureResult;
+type FailureResult = {
+    success: boolean;
+    error: ErrorResult[];
+};
+/** @returns {CourierPartnerRulesListResult} */
+declare function CourierPartnerRulesListResult(): CourierPartnerRulesListResult;
+type CourierPartnerRulesListResult = {
+    items: CourierPartnerRuleResult[];
+    page: Page;
+};
+/** @returns {ShipmentsArticles} */
+declare function ShipmentsArticles(): ShipmentsArticles;
+type ShipmentsArticles = {
+    /**
+     * - Unique identifier of the item.
+     */
+    item_id?: number;
+    /**
+     * - Unique identifier of the category.
+     */
+    category_id?: number;
+    /**
+     * - Unique identifier of the brand.
+     */
+    brand_id?: number;
+    /**
+     * - Unique identifier of the department.
+     */
+    department_id?: number;
+    /**
+     * - Tags associated with the item.
+     */
+    tags?: string[];
+};
+/** @returns {ShipmentDimension} */
+declare function ShipmentDimension(): ShipmentDimension;
+type ShipmentDimension = {
+    /**
+     * - Height of the shipment in centimeters.
+     */
+    height: number;
+    /**
+     * - Length of the shipment in centimeters.
+     */
+    length: number;
+    /**
+     * - Width of the shipment in centimeters.
+     */
+    width: number;
+};
+/** @returns {Shipments} */
+declare function Shipments(): Shipments;
+type Shipments = {
+    /**
+     * - Unique identifier of the shipment.
+     */
+    id?: string;
+    /**
+     * - Unique identifier of the selling location.
+     */
+    location_id?: number;
+    /**
+     * - Tags associated with the selling location.
+     */
+    location_tags?: string[];
+    /**
+     * - Weight of the shipment.
+     */
+    shipment_weight?: number;
+    /**
+     * - Volumetric weight of the shipment.
+     */
+    shipment_volumetric_weight?: number;
+    /**
+     * - Total Cost of the shipment.
+     */
+    shipment_cost?: number;
+    shipment_dimension?: ShipmentDimension;
+    /**
+     * - A List of courier schemes.
+     */
+    courier_partner_schemes?: string[];
+    /**
+     * - List of articles in the shipment.
+     */
+    articles?: ShipmentsArticles[];
+};
+/** @returns {ShipmentCourierPartnerDetails} */
+declare function ShipmentCourierPartnerDetails(): ShipmentCourierPartnerDetails;
+type ShipmentCourierPartnerDetails = {
+    from_location: ShipmentsCourierPartnersServiceability;
+    to_location: ShipmentsCourierPartnersServiceability;
+    /**
+     * - List of shipments.
+     */
+    shipments?: Shipments[];
+    /**
+     * - Journey type of the shipment forward or return.
+     */
+    journey?: string;
+    /**
+     * - Payment mode opted for the shipment.
+     */
+    payment_mode?: string;
+};
+/** @returns {CourierPartnerPromise} */
+declare function CourierPartnerPromise(): CourierPartnerPromise;
+type CourierPartnerPromise = {
+    /**
+     * - The earliest possible timestamp.
+     */
+    min: string;
+    /**
+     * - The latest possible timestamp.
+     */
+    max: string;
+};
+/** @returns {CourierPartners} */
+declare function CourierPartners(): CourierPartners;
+type CourierPartners = {
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id?: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id?: string;
+    /**
+     * - Name of the courier partner.
+     */
+    name?: string;
+    delivery_promise?: CourierPartnerPromise;
+};
+/** @returns {ShipmentCourierPartners} */
+declare function ShipmentCourierPartners(): ShipmentCourierPartners;
+type ShipmentCourierPartners = {
+    /**
+     * - Unique identifier of the shipment.
+     */
+    id?: string;
+    /**
+     * - Courier partners of the shipment.
+     */
+    courier_partners?: CourierPartners[];
+};
+/** @returns {ShipmentCourierPartnerResult} */
+declare function ShipmentCourierPartnerResult(): ShipmentCourierPartnerResult;
+type ShipmentCourierPartnerResult = {
+    courier_partners?: CourierPartners[];
+    shipments?: ShipmentCourierPartners[];
+};
+/** @returns {ShipmentsCourierPartnersServiceability} */
+declare function ShipmentsCourierPartnersServiceability(): ShipmentsCourierPartnersServiceability;
+type ShipmentsCourierPartnersServiceability = {
+    /**
+     * - Postal code or PIN code of the address area.
+     */
+    pincode?: string;
+    /**
+     * - Specifies the sector or district code of
+     * the address if applicable.
+     */
+    sector_code?: string;
+    /**
+     * - Indicates the state or province code of the address.
+     */
+    state_code?: string;
+    /**
+     * - Denote the city or municipality code of the address.
+     */
+    city_code?: string;
+    /**
+     * - ISO2 code for the country of the address.
+     */
+    country_code: string;
+};
+/** @returns {CompanyConfig} */
+declare function CompanyConfig(): CompanyConfig;
+type CompanyConfig = {
+    /**
+     * - A list for courier partner rules.
+     */
+    rule_ids: string[];
+    /**
+     * - Sort strategy for the courier partners.
+     */
+    sort: string[];
+    /**
+     * - Depicts if the courier partner
+     * rule configuration plan is subscribed by the seller for which mode.
+     */
+    logistics_as_actual?: string;
+    /**
+     * - Unique identifier of the company.
+     */
+    company_id: number;
+    /**
+     * - Unique identifier of the sales channel.
+     */
     application_id?: string;
-    company_id?: number;
-    shipment_adjustment_type?: string;
 };
-/** @returns {StoreLocationDetail} */
-declare function StoreLocationDetail(): StoreLocationDetail;
-type StoreLocationDetail = {
-    uid?: string;
-    display_name?: string;
-    sub_type?: string;
-    parent_id?: string;
-    parent_uid?: string;
+/** @returns {ZoneConfig} */
+declare function ZoneConfig(): ZoneConfig;
+type ZoneConfig = {
+    /**
+     * - Serviceability type of the delivery zone.
+     */
+    serviceability_type?: string;
+    /**
+     * - Count of active delivery zones associated
+     * with the sales channel.
+     */
+    active_count?: number;
+    /**
+     * - Count of total delivery zones associated
+     * with the sales channel.
+     */
+    total_count?: number;
 };
-/** @returns {StoreRuleLocationDetailSchema} */
-declare function StoreRuleLocationDetailSchema(): StoreRuleLocationDetailSchema;
-type StoreRuleLocationDetailSchema = {
-    includes?: StoreLocationDetail[];
+/** @returns {ApplicationConfig} */
+declare function ApplicationConfig(): ApplicationConfig;
+type ApplicationConfig = {
+    /**
+     * - A list of courier partner rules.
+     */
+    rule_ids?: string[];
+    /**
+     * - Strategy adopted to sort the courier partners.
+     */
+    sort?: string[];
+    zones?: ZoneConfig;
 };
-/** @returns {StoreRuleConditionDetailSchema} */
-declare function StoreRuleConditionDetailSchema(): StoreRuleConditionDetailSchema;
-type StoreRuleConditionDetailSchema = {
-    department_ids?: RuleResponseIntegerDetail;
-    category_ids?: RuleResponseIntegerDetail;
-    brand_ids?: RuleResponseIntegerDetail;
-    to_location?: StoreRuleLocationDetailSchema;
+/** @returns {BulkRegionJobDetails} */
+declare function BulkRegionJobDetails(): BulkRegionJobDetails;
+type BulkRegionJobDetails = {
+    /**
+     * - CDN path of the uploaded csv file for bulk import.
+     */
+    file_path?: string;
+    /**
+     * - Country for which the tat or serviceability is
+     * to be imported or exported.
+     */
+    country: string;
+    /**
+     * - Denotes the import or export action to be performed.
+     */
+    action: string;
+    /**
+     * - Region of the country for which import or export
+     * is triggered.
+     */
+    region: string;
+};
+/** @returns {BulkRegionResultItemData} */
+declare function BulkRegionResultItemData(): BulkRegionResultItemData;
+type BulkRegionResultItemData = {
+    /**
+     * - CDN path of the file which was used for bulk import.
+     */
+    file_path?: string;
+    /**
+     * - Count of the failed records.
+     */
+    failed?: number;
+    failed_records?: any[];
+    /**
+     * - Denotes the import or export action performed.
+     */
+    action: string;
+    /**
+     * - Unique id to identify the import or export query.
+     */
+    batch_id: string;
+    /**
+     * - Country for which the import or export action is
+     * performed.
+     */
+    country: string;
+    /**
+     * - Denoted if the import or export was successful
+     * or failure.
+     */
+    success?: number;
+    /**
+     * - Region of the country for which import or export
+     * is triggered.
+     */
+    region: string;
+    /**
+     * - Current status of the import or export action performed.
+     */
+    status: string;
+    /**
+     * - Count of total records.
+     */
+    total?: number;
+    /**
+     * - Path of the error file.
+     */
+    error_file_path?: string;
+};
+/** @returns {BulkRegionResult} */
+declare function BulkRegionResult(): BulkRegionResult;
+type BulkRegionResult = {
+    items: BulkRegionResultItemData[];
+    page: Page;
+};
+/** @returns {SelfShipResult} */
+declare function SelfShipResult(): SelfShipResult;
+type SelfShipResult = {
+    is_active: boolean;
+    tat: number;
+};
+/** @returns {ApplicationSelfShipConfig} */
+declare function ApplicationSelfShipConfig(): ApplicationSelfShipConfig;
+type ApplicationSelfShipConfig = {
+    self_ship?: SelfShipResult;
+};
+/** @returns {ApplicationSelfShipConfigResult} */
+declare function ApplicationSelfShipConfigResult(): ApplicationSelfShipConfigResult;
+type ApplicationSelfShipConfigResult = {
+    error?: ServiceabilityErrorResult;
+    data?: ApplicationSelfShipConfig;
+    success: boolean;
+};
+/** @returns {StoreRuleConfigData} */
+declare function StoreRuleConfigData(): StoreRuleConfigData;
+type StoreRuleConfigData = {
+    /**
+     * - List of rule ids which are active in the application.
+     */
+    rule_ids?: string[];
+    /**
+     * - Priority of the store type to be
+     * used in the basic prioritization sorting of stores.
+     */
+    type_based_priority?: string[];
+    /**
+     * - Priority of the store tags to be
+     * used in the basic prioritization sorting of stores.
+     */
+    tag_based_priority?: string[];
+    /**
+     * - Priority of explicit
+     * stores to be used for sorting of stores.
+     */
+    store_priority?: StorePrioritySchema[];
+    /**
+     * - Criteria on which the selected stores should be sorted.
+     */
+    sort?: string[];
+};
+/** @returns {CustomerRadiusSchema} */
+declare function CustomerRadiusSchema(): CustomerRadiusSchema;
+type CustomerRadiusSchema = {
+    unit: string;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+};
+/** @returns {StoreRuleConditionSchema} */
+declare function StoreRuleConditionSchema(): StoreRuleConditionSchema;
+type StoreRuleConditionSchema = {
+    department_ids?: IntComparisonOperations;
+    category_ids?: IntComparisonOperations;
+    brand_ids?: IntComparisonOperations;
+    to_location?: LocationRule;
     customer_radius?: CustomerRadiusSchema;
     store_type?: StringComparisonOperations;
     product_tags?: StringComparisonOperations;
-    product_ids?: RuleResponseIntegerDetail;
+    product_ids?: IntComparisonOperations;
     store_tags?: StringComparisonOperations;
-    order_place_date?: ArithmeticOperationsV2;
-    zone_ids?: RuleResponseStringDetail;
-    company_ids?: RuleResponseIntegerDetail;
+    order_place_date?: ArithmeticOperations;
+    zone_ids?: StringComparisonOperations;
 };
-/** @returns {StoreRuleDataDetailsSchema} */
-declare function StoreRuleDataDetailsSchema(): StoreRuleDataDetailsSchema;
-type StoreRuleDataDetailsSchema = {
+/** @returns {StoreRuleDataSchema} */
+declare function StoreRuleDataSchema(): StoreRuleDataSchema;
+type StoreRuleDataSchema = {
+    /**
+     * - Id of the rule.
+     */
     id?: string;
+    /**
+     * - Name of the rule.
+     */
     name?: string;
+    /**
+     * - Company id for which the rule is created.
+     */
     company_id?: number;
+    /**
+     * - Application id for which the rule is created.
+     */
     application_id?: string;
+    /**
+     * - Priority of the store type to be
+     * used in the basic prioritization sorting of stores.
+     */
     type_based_priority?: string[];
+    /**
+     * - Priority of the store tags to be
+     * used in the basic prioritization sorting of stores.
+     */
     tag_based_priority?: string[];
+    /**
+     * - Priority of explicit
+     * stores to be used for sorting of stores.
+     */
     store_priority?: StorePrioritySchema[];
+    /**
+     * - Criteria on which the selected stores should be sorted.
+     */
     sort?: string[];
-    manual_priority?: number[];
-    conditions?: StoreRuleConditionDetailSchema;
+    conditions?: StoreRuleConditionSchema;
+    /**
+     * - Denotes whether the rule is active or inactive.
+     */
     is_active?: boolean;
-    meta_sort_priority?: any;
-    meta_conditions?: any;
 };
-/** @returns {OptimalLocationArticlesResponseSchema} */
-declare function OptimalLocationArticlesResponseSchema(): OptimalLocationArticlesResponseSchema;
-type OptimalLocationArticlesResponseSchema = {
-    item_id: number;
+/** @returns {StorePrioritySchema} */
+declare function StorePrioritySchema(): StorePrioritySchema;
+type StorePrioritySchema = {
+    /**
+     * - Id of the store.
+     */
+    id?: number;
+    /**
+     * - Name of the store.
+     */
+    name?: string;
+};
+/** @returns {GetStoreRulesApiResult} */
+declare function GetStoreRulesApiResult(): GetStoreRulesApiResult;
+type GetStoreRulesApiResult = {
+    items?: StoreRuleDataSchema[];
+    page?: Page;
+};
+/** @returns {CreateStoreRuleDetailsSchema} */
+declare function CreateStoreRuleDetailsSchema(): CreateStoreRuleDetailsSchema;
+type CreateStoreRuleDetailsSchema = {
+    /**
+     * - Name of the rule.
+     */
+    name?: string;
+    /**
+     * - Denotes if the rule is active or not.
+     */
+    is_active?: boolean;
+    conditions?: StoreRuleConditionSchema;
+    /**
+     * - Priority of the store type to be
+     * used in the basic prioritization sorting of stores.
+     */
+    type_based_priority?: string[];
+    /**
+     * - Priority of the store tags to be
+     * used in the basic prioritization sorting of stores.
+     */
+    tag_based_priority?: string[];
+    /**
+     * - Priority of explicit
+     * stores to be used for sorting of stores.
+     */
+    store_priority?: StorePrioritySchema[];
+    /**
+     * - Criteria on which the selected stores should be sorted.
+     */
+    sort?: string[];
+};
+/** @returns {StoreRuleResultSchema} */
+declare function StoreRuleResultSchema(): StoreRuleResultSchema;
+type StoreRuleResultSchema = {
+    /**
+     * - Id of the rule created.
+     */
+    id?: string;
+    /**
+     * - Name of the rule created.
+     */
+    name?: string;
+    /**
+     * - Type of the rule created.
+     */
+    type?: string;
+    /**
+     * - Priority of the store type to be
+     * used in the rule for sorting of stores.
+     */
+    type_based_priority?: string[];
+    /**
+     * - Priority of the store tags to be
+     * used in the rule for sorting of stores.
+     */
+    tag_based_priority?: string[];
+    /**
+     * - Priority of explicit
+     * stores to be used for sorting of stores.
+     */
+    store_priority?: StorePrioritySchema[];
+    /**
+     * - Criteria on which the selected stores should be sorted.
+     */
+    sort?: string[];
+    conditions?: StoreRuleConditionSchema;
+    /**
+     * - Denotes if the rule is active or inactive.
+     */
+    is_active?: boolean;
+};
+/** @returns {StoreRuleUpdateResultSchema} */
+declare function StoreRuleUpdateResultSchema(): StoreRuleUpdateResultSchema;
+type StoreRuleUpdateResultSchema = {
+    /**
+     * - Id of the rule created.
+     */
+    id?: string;
+    /**
+     * - Name of the rule created.
+     */
+    name?: string;
+    /**
+     * - Type of the rule created.
+     */
+    type?: string;
+    /**
+     * - Priority of the store type to be
+     * used in the rule for sorting of stores.
+     */
+    type_based_priority?: string[];
+    /**
+     * - Priority of the store tags to be
+     * used in the rule for sorting of stores.
+     */
+    tag_based_priority?: string[];
+    /**
+     * - Priority of explicit
+     * stores to be used for sorting of stores.
+     */
+    store_priority?: StorePrioritySchema[];
+    /**
+     * - Criteria on which the selected stores should be sorted.
+     */
+    sort?: string[];
+    conditions?: StoreRuleConditionSchema;
+    /**
+     * - Denotes if the rule is active or inactive.
+     */
+    is_active?: boolean;
+    /**
+     * - Company id for which the rule is created.
+     */
+    company_id?: number;
+    /**
+     * - Application id for which the rule is created.
+     */
+    application_id?: string;
+};
+/** @returns {ServiceabilityModel} */
+declare function ServiceabilityModel(): ServiceabilityModel;
+type ServiceabilityModel = {
+    lm_cod_limit: number;
+    is_qc: boolean;
+    pickup_cutoff?: string;
+    route_code?: string;
+    is_first_mile: boolean;
+    is_return: boolean;
+    is_installation: boolean;
+    is_last_mile: boolean;
+};
+/** @returns {CourierPartnerSchemeFeatures} */
+declare function CourierPartnerSchemeFeatures(): CourierPartnerSchemeFeatures;
+type CourierPartnerSchemeFeatures = {
+    doorstep_qc?: boolean;
+    qr?: boolean;
+    mps?: boolean;
+    ndr?: boolean;
+    ndr_attempts?: number;
+    dangerous_goods?: boolean;
+    fragile_goods?: boolean;
+    restricted_goods?: boolean;
+    cold_storage_goods?: boolean;
+    doorstep_exchange?: boolean;
+    doorstep_return?: boolean;
+    product_installation?: boolean;
+    openbox_delivery?: boolean;
+    status_updates?: string;
+    multi_pick_single_drop?: boolean;
+    single_pick_multi_drop?: boolean;
+    multi_pick_multi_drop?: boolean;
+    ewaybill?: boolean;
+};
+/** @returns {CourierPartnerSchemeModel} */
+declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
+type CourierPartnerSchemeModel = {
+    /**
+     * - Name of the scheme.
+     */
+    name?: string;
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id: string;
+    volumetric_weight?: ArithmeticOperations;
+    weight: ArithmeticOperations;
+    /**
+     * - Mode of transport associated with the
+     * courier partner scheme.
+     */
+    transport_type: string;
+    /**
+     * - Serviceable region associated with the courier
+     * partner scheme.
+     */
+    region: string;
+    /**
+     * - Type of delivery associated with the
+     * courier partner scheme.
+     */
+    delivery_type: string;
+    /**
+     * - Mode of payment associated with the
+     * courier partner scheme.
+     */
+    payment_mode: string[];
+    /**
+     * - Denotes whether the courier partner scheme is in
+     * enabled or disabled stage.
+     */
+    stage: string;
+    feature: CourierPartnerSchemeFeatures;
+};
+/** @returns {CourierAccountResult} */
+declare function CourierAccountResult(): CourierAccountResult;
+type CourierAccountResult = {
+    /**
+     * - Company id associated with the account.
+     */
+    company_id: number;
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id?: string;
+    /**
+     * - Unique identifier of courier partner scheme
+     * and company id combination.
+     */
+    account_id: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id: string;
+    /**
+     * - Denotes if the account is of self delivery type.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Denotes whether the account is in enabled or disabled stage.
+     */
+    stage: string;
+    /**
+     * - Denotes whether it is the seller's own
+     * account or not.
+     */
+    is_own_account: boolean;
+    scheme_rules?: CourierPartnerSchemeModel;
+};
+/** @returns {CompanyCourierPartnerAccountListResult} */
+declare function CompanyCourierPartnerAccountListResult(): CompanyCourierPartnerAccountListResult;
+type CompanyCourierPartnerAccountListResult = {
+    items: CourierAccountResult[];
+    page: Page;
+};
+/** @returns {PackageMaterial} */
+declare function PackageMaterial(): PackageMaterial;
+type PackageMaterial = {
+    /**
+     * - Name of the packaging material.
+     */
+    name: string;
+    /**
+     * - Width of the packaging material dimentions in centimeter.
+     */
+    width: number;
+    /**
+     * - Height of the packaging material dimentions in centimeter.
+     */
+    height: number;
+    /**
+     * - Length of the packaging material dimentions in centimeter.
+     */
+    length: number;
+    /**
+     * - Product group rules associated
+     * with the packaging.
+     */
+    rules?: PackageMaterialRule[];
+    /**
+     * - Store ids where the packaging is avaiable.
+     */
+    store_ids: number[];
+    /**
+     * - Package's weight in gram.
+     */
+    weight: number;
+    /**
+     * - Error Rate associated with the packaging dimensions.
+     */
+    error_rate: number;
+    /**
+     * - Type of package material.
+     */
+    package_type: string;
+    /**
+     * - Physical size of the packaging.
+     */
     size: string;
-    quantity: number;
-    group_id?: string;
-    is_primary_item?: boolean;
-    meta?: any;
-    article_assignment: ArticleAssignment;
-    seller_id?: number;
-    ignore_locations: number[];
-    assign_locations: number[];
-    price_effective: number;
-    mto_quantity: number;
-    _id: string;
-    uid: string;
+    /**
+     * - Image urls associated with the packaging material.
+     */
+    media?: string[];
+    /**
+     * - Sales channel where packaging is applicable.
+     */
+    channels: Channel[];
+    /**
+     * - Denotes if the track of the inventory
+     * should be kept.
+     */
+    track_inventory?: boolean;
+    /**
+     * - Current status of the packaging material, if it
+     * is active or inactive.
+     */
+    status: string;
+    /**
+     * - Maximum weight holding capacity.
+     */
+    max_weight?: number;
+    /**
+     * - Volumetric weight that a packaging
+     * material can carry.
+     */
+    package_vol_weight?: number;
+    /**
+     * - Denotes whether the volumetric weight
+     * should be auto calculated or not.
+     */
+    auto_calculate?: boolean;
 };
-/** @returns {OptimalLocationAssignedStoresResponseSchema} */
-declare function OptimalLocationAssignedStoresResponseSchema(): OptimalLocationAssignedStoresResponseSchema;
-type OptimalLocationAssignedStoresResponseSchema = {
-    store_id: number;
-    articles: OptimalLocationArticlesResponseSchema[];
+/** @returns {PackageMaterialResult} */
+declare function PackageMaterialResult(): PackageMaterialResult;
+type PackageMaterialResult = {
+    /**
+     * - Name of the packaging material.
+     */
+    name: string;
+    /**
+     * - Id of the packaging material.
+     */
+    id?: string;
+    /**
+     * - Unique identifier of an item associated with
+     * the packaging material.
+     */
+    item_id?: number;
+    /**
+     * - Company id associated with the packaging material.
+     */
+    company_id?: number;
+    /**
+     * - Width of the packaging material dimentions in centimeter.
+     */
+    width: number;
+    /**
+     * - Height of the packaging material dimentions in centimeter.
+     */
+    height: number;
+    /**
+     * - Length of the packaging material dimentions in centimeter.
+     */
+    length: number;
+    /**
+     * - Product group rules associated
+     * with the packaging.
+     */
+    rules?: PackageMaterialRule[];
+    /**
+     * - Store ids where the packaging is avaiable.
+     */
+    store_ids: number[];
+    /**
+     * - Package's weight in gram.
+     */
+    weight: number;
+    /**
+     * - Error Rate associated with the packaging dimensions.
+     */
+    error_rate: number;
+    /**
+     * - Type of package material.
+     */
+    package_type: string;
+    /**
+     * - Physical size of the packaging.
+     */
+    size: string;
+    /**
+     * - Image urls associated with the packaging material.
+     */
+    media?: string[];
+    /**
+     * - Sales channel where packaging is applicable.
+     */
+    channels: Channel[];
+    /**
+     * - Denotes if the track of the inventory
+     * should be kept.
+     */
+    track_inventory?: boolean;
+    /**
+     * - Current status of the packaging material, if it
+     * is active or inactive.
+     */
+    status: string;
+    /**
+     * - Maximum weight holding capacity.
+     */
+    max_weight?: number;
+    /**
+     * - Volumetric weight that a packaging
+     * material can carry.
+     */
+    package_vol_weight?: number;
+    /**
+     * - Denotes whether the volumetric weight
+     * should be auto calculated or not.
+     */
+    auto_calculate?: boolean;
 };
-/** @returns {OptimalLocationsResponseSchema} */
-declare function OptimalLocationsResponseSchema(): OptimalLocationsResponseSchema;
-type OptimalLocationsResponseSchema = {
-    assigned_stores: OptimalLocationAssignedStoresResponseSchema[];
-    faulty_articles?: ErrorResponseSchema[];
+/** @returns {PackageMaterialRule} */
+declare function PackageMaterialRule(): PackageMaterialRule;
+type PackageMaterialRule = {
+    /**
+     * - Unique identifier of the package rule.
+     */
+    rule_id?: string;
+    quantity?: PackageMaterialRuleQuantity;
+    /**
+     * - Volumetric weight in gram.
+     */
+    weight?: number;
+};
+/** @returns {PackageRule} */
+declare function PackageRule(): PackageRule;
+type PackageRule = {
+    /**
+     * - Name of the package rule.
+     */
+    name: string;
+    /**
+     * - Unique identifier of the company.
+     */
+    company_id: number;
+    /**
+     * - Type of the rule.
+     */
+    type: string;
+    /**
+     * - Denotes if the rule is active or inactive.
+     */
+    is_active?: boolean;
+    product_tag?: PackageRuleProductTag;
+    product_id?: PackageRuleProduct;
+    category_id?: PackageRuleCategory;
+};
+/** @returns {PackageRuleResult} */
+declare function PackageRuleResult(): PackageRuleResult;
+type PackageRuleResult = {
+    /**
+     * - Unique id of a package rule.
+     */
+    id?: string;
+    /**
+     * - Name of a package rule.
+     */
+    name: string;
+    /**
+     * - Unique identifier of a company associated
+     * with the package rule.
+     */
+    company_id: number;
+    /**
+     * - Type of the rule created.
+     */
+    type: string;
+    /**
+     * - Denotes if the rule is active or inactive.
+     */
+    is_active?: boolean;
+    product_tag?: PackageRuleProductTag;
+    product_id?: PackageRuleProduct;
+    category_id?: PackageRuleCategory;
+};
+/** @returns {Channel} */
+declare function Channel(): Channel;
+type Channel = {
+    /**
+     * - Type of the channel.
+     */
+    type?: string;
+    /**
+     * - Unique identifier of the channel.
+     */
+    id?: string;
+};
+/** @returns {PackageMaterialRuleList} */
+declare function PackageMaterialRuleList(): PackageMaterialRuleList;
+type PackageMaterialRuleList = {
+    items?: PackageRuleResult;
+    page?: Page;
+};
+/** @returns {PackageMaterialList} */
+declare function PackageMaterialList(): PackageMaterialList;
+type PackageMaterialList = {
+    items?: PackageMaterialResult;
+    page?: Page;
+};
+/** @returns {PackageRuleProduct} */
+declare function PackageRuleProduct(): PackageRuleProduct;
+type PackageRuleProduct = {
+    includes?: number[];
+};
+/** @returns {PackageRuleProductTag} */
+declare function PackageRuleProductTag(): PackageRuleProductTag;
+type PackageRuleProductTag = {
+    includes?: string[];
+};
+/** @returns {PackageRuleCategory} */
+declare function PackageRuleCategory(): PackageRuleCategory;
+type PackageRuleCategory = {
+    includes?: number[];
+};
+/** @returns {PackageMaterialRuleQuantity} */
+declare function PackageMaterialRuleQuantity(): PackageMaterialRuleQuantity;
+type PackageMaterialRuleQuantity = {
+    /**
+     * - Minimum product's quantity that a packaging can contain.
+     */
+    min?: number;
+    /**
+     * - Maximum product's quantity that a packaging can contain.
+     */
+    max?: number;
+};
+/** @returns {RulePriorityDetails} */
+declare function RulePriorityDetails(): RulePriorityDetails;
+type RulePriorityDetails = {
+    /**
+     * - Rule id whose priority needs to be changed.
+     */
+    rule_id: string;
+    /**
+     * - New priority of the rule.
+     */
+    priority: number;
+};
+/** @returns {RulePriorityResult} */
+declare function RulePriorityResult(): RulePriorityResult;
+type RulePriorityResult = {
+    /**
+     * - Denotes if the priority of the rule is
+     * changes successfully or not.
+     */
+    success?: boolean;
 };
 /** @returns {ArticleAssignment} */
 declare function ArticleAssignment(): ArticleAssignment;
@@ -2176,20 +3417,6 @@ type ArticleAssignment = {
      * specify the desired approach or criteria for selecting optimal locations.
      */
     strategy?: string;
-};
-/** @returns {OptimalLocationsArticles} */
-declare function OptimalLocationsArticles(): OptimalLocationsArticles;
-type OptimalLocationsArticles = {
-    item_id: number;
-    size: string;
-    quantity: number;
-    group_id?: string;
-    is_primary_item?: boolean;
-    meta?: any;
-    article_assignment: ArticleAssignment;
-    ignore_locations: number[];
-    assign_locations: number[];
-    seller_id?: number;
 };
 /** @returns {ServiceabilityLocation} */
 declare function ServiceabilityLocation(): ServiceabilityLocation;
@@ -2232,2159 +3459,58 @@ type LocationDetailsServiceability = {
     country_iso_code: string;
     location?: ServiceabilityLocation;
 };
-/** @returns {OptimlLocationsRequestSchema} */
-declare function OptimlLocationsRequestSchema(): OptimlLocationsRequestSchema;
-type OptimlLocationsRequestSchema = {
+/** @returns {OptimalLocationsArticles} */
+declare function OptimalLocationsArticles(): OptimalLocationsArticles;
+type OptimalLocationsArticles = {
+    item_id: number;
+    size: string;
+    quantity: number;
+    group_id?: string;
+    is_primary_item?: boolean;
+    meta?: any;
+    article_assignment: ArticleAssignment;
+    ignore_locations: number[];
+    assign_locations: number[];
+    seller_id?: number;
+};
+/** @returns {OptimlLocationsDetailsSchema} */
+declare function OptimlLocationsDetailsSchema(): OptimlLocationsDetailsSchema;
+type OptimlLocationsDetailsSchema = {
     channel_id: string;
     channel_type: string;
     channel_identifier?: string;
     to_serviceability: LocationDetailsServiceability;
-    articles: OptimalLocationsArticles[];
-};
-/** @returns {ErrorResponseV3} */
-declare function ErrorResponseV3(): ErrorResponseV3;
-type ErrorResponseV3 = {
-    success?: boolean;
-    error?: ErrorObject;
-};
-/** @returns {ErrorObject} */
-declare function ErrorObject(): ErrorObject;
-type ErrorObject = {
-    type?: string;
-    value?: string;
-    message?: string;
-};
-/** @returns {ValidateAddressRequestSchema} */
-declare function ValidateAddressRequestSchema(): ValidateAddressRequestSchema;
-type ValidateAddressRequestSchema = {
-    /**
-     * - A string representing the complete address,
-     * combining address line 1, address line 2, area, landmark, sector, city,
-     * state, and pincode. This provides a comprehensive view of the address details.
-     */
-    address?: string;
-    /**
-     * - A string representing the first line of the
-     * address, typically containing street or building information.
-     */
-    address1?: string;
-    /**
-     * - A string representing the second line of the
-     * address, which can be used for additional address details if needed.
-     */
-    address2?: string;
-    /**
-     * - A string specifying the locality or area
-     * associated with the address.
-     */
-    area?: string;
-    /**
-     * - A string representing a prominent nearby
-     * landmark that aids in locating the address.
-     */
-    landmark?: string;
-    /**
-     * - A string indicating the postal code or PIN
-     * code of the address area.
-     */
-    pincode?: string;
-    /**
-     * - A string specifying the sector or district of
-     * the address if applicable.
-     */
-    sector?: string;
-    /**
-     * - A string denoting the city or municipality of the address.
-     */
-    city?: string;
-    /**
-     * - A string indicating the state or province of the address.
-     */
-    state?: string;
-    /**
-     * - A string representing the recipient's name or the
-     * organization name associated with the address.
-     */
-    name?: string;
-    /**
-     * - An integer representing the recipient's contact
-     * phone number.
-     */
-    phone?: string;
-    /**
-     * - A string containing the recipient's email address.
-     */
-    email?: string;
-    /**
-     * - A string containing the recipient's
-     * email address.
-     */
-    country_iso_code?: string;
-};
-/** @returns {CountryObject} */
-declare function CountryObject(): CountryObject;
-type CountryObject = {
-    id?: string;
-    name?: string;
-    display_name?: string;
-    iso2?: string;
-    iso3?: string;
-    timezones?: string[];
-    hierarchy?: CountryHierarchy[];
-    phone_code?: string;
-    latitude?: string;
-    longitude?: string;
-    currency?: CurrencyObject;
-    type?: string;
-};
-/** @returns {GetCountries} */
-declare function GetCountries(): GetCountries;
-type GetCountries = {
-    items?: CountryObject[];
-    page?: Page;
-};
-/** @returns {CurrencyObject} */
-declare function CurrencyObject(): CurrencyObject;
-type CurrencyObject = {
-    code?: string;
-    name?: string;
-    symbol?: string;
-};
-/** @returns {CountryHierarchy} */
-declare function CountryHierarchy(): CountryHierarchy;
-type CountryHierarchy = {
-    display_name?: string;
-    slug?: string;
-};
-/** @returns {GetCountry} */
-declare function GetCountry(): GetCountry;
-type GetCountry = {
-    id?: string;
-    name?: string;
-    display_name?: string;
-    iso2?: string;
-    iso3?: string;
-    timezones?: string[];
-    hierarchy?: CountryHierarchy[];
-    phone_code?: string;
-    latitude?: string;
-    longitude?: string;
-    currency?: CurrencyObject;
-    type?: string;
-    fields?: GetCountryFields;
-};
-/** @returns {GetCountryFields} */
-declare function GetCountryFields(): GetCountryFields;
-type GetCountryFields = {
-    address: GetCountryFieldsAddress[];
-    serviceability_fields: string[];
-    address_template: GetCountryFieldsAddressTemplate;
-};
-/** @returns {GetCountryFieldsAddressTemplate} */
-declare function GetCountryFieldsAddressTemplate(): GetCountryFieldsAddressTemplate;
-type GetCountryFieldsAddressTemplate = {
-    checkout_form: string;
-    store_os_form: string;
-    default_display: string;
-};
-/** @returns {FieldValidation} */
-declare function FieldValidation(): FieldValidation;
-type FieldValidation = {
-    type?: string;
-    regex?: FieldValidationRegex;
-};
-/** @returns {FieldValidationRegex} */
-declare function FieldValidationRegex(): FieldValidationRegex;
-type FieldValidationRegex = {
-    value?: string;
-    length?: LengthValidation;
-};
-/** @returns {LengthValidation} */
-declare function LengthValidation(): LengthValidation;
-type LengthValidation = {
-    min?: number;
-    max?: number;
-};
-/** @returns {GetOneOrAllQuery} */
-declare function GetOneOrAllQuery(): GetOneOrAllQuery;
-type GetOneOrAllQuery = {
-    country?: string;
-    state?: string;
-    city?: string;
-    sector?: string;
-};
-/** @returns {GetOneOrAllPath} */
-declare function GetOneOrAllPath(): GetOneOrAllPath;
-type GetOneOrAllPath = {
-    type?: string;
-    value?: string;
-};
-/** @returns {GetOneOrAllParams} */
-declare function GetOneOrAllParams(): GetOneOrAllParams;
-type GetOneOrAllParams = {
-    path?: GetOneOrAllPath;
-    query?: GetOneOrAllQuery;
-};
-/** @returns {GetOneOrAll} */
-declare function GetOneOrAll(): GetOneOrAll;
-type GetOneOrAll = {
-    operation_id?: string;
-    params?: GetOneOrAllParams;
-};
-/** @returns {GetCountryFieldsAddressValues} */
-declare function GetCountryFieldsAddressValues(): GetCountryFieldsAddressValues;
-type GetCountryFieldsAddressValues = {
-    get_one?: GetOneOrAll;
-    get_all?: GetOneOrAll;
-};
-/** @returns {GetCountryFieldsAddress} */
-declare function GetCountryFieldsAddress(): GetCountryFieldsAddress;
-type GetCountryFieldsAddress = {
-    display_name: string;
-    slug: string;
-    required: boolean;
-    edit?: boolean;
-    input: string;
-    validation?: FieldValidation;
-    values?: GetCountryFieldsAddressValues;
-    error_text?: string;
-};
-/** @returns {PincodeLatLongData} */
-declare function PincodeLatLongData(): PincodeLatLongData;
-type PincodeLatLongData = {
-    type?: string;
-    coordinates?: number[];
-};
-/** @returns {Localities} */
-declare function Localities(): Localities;
-type Localities = {
-    id?: string;
-    name?: string;
-    display_name?: string;
-    parent_ids?: string[];
-    meta?: any;
-    type?: string;
-    lat_long?: PincodeLatLongData;
-    parent_uid?: string;
-    code?: string;
-    localities?: LocalityParent[];
-    /**
-     * - ISO 3166-1 alpha-2 code for the country.
-     */
-    iso2?: string;
-    /**
-     * - ISO 3166-1 alpha-3 code for the country.
-     */
-    iso3?: string;
-    /**
-     * - Currency information for the country.
-     */
-    currency?: any;
-    /**
-     * - Country's international phone dialing code.
-     */
-    phone_code?: string;
-    /**
-     * - Hierarchical data of the country's location.
-     */
-    hierarchy?: any;
-    /**
-     * - Latitude of the country's geographic center.
-     */
-    latitude?: string;
-    /**
-     * - Longitude of the country's geographic center.
-     */
-    longitude?: string;
-};
-/** @returns {GetLocalities} */
-declare function GetLocalities(): GetLocalities;
-type GetLocalities = {
-    items?: Localities[];
-    page?: Page;
-};
-/** @returns {LocalityParent} */
-declare function LocalityParent(): LocalityParent;
-type LocalityParent = {
-    id?: string;
-    name?: string;
-    display_name?: string;
-    meta?: any;
-    parent_ids?: string[];
-    type?: string;
-    serviceability?: any;
-    code?: string;
-    parent_uid?: string;
-    /**
-     * - ISO 3166-1 alpha-2 code for the country.
-     */
-    iso2?: string;
-    /**
-     * - ISO 3166-1 alpha-3 code for the country.
-     */
-    iso3?: string;
-    /**
-     * - Currency information for the country.
-     */
-    currency?: any;
-    /**
-     * - Country's international phone dialing code.
-     */
-    phone_code?: string;
-    /**
-     * - Hierarchical data of the country's location.
-     */
-    hierarchy?: any;
-    /**
-     * - Latitude of the country's geographic center.
-     */
-    latitude?: string;
-    /**
-     * - Longitude of the country's geographic center.
-     */
-    longitude?: string;
-};
-/** @returns {GetLocality} */
-declare function GetLocality(): GetLocality;
-type GetLocality = {
-    id?: string;
-    name?: string;
-    display_name?: string;
-    meta?: any;
-    parent_ids?: string[];
-    parent_uid?: string;
-    type?: string;
-    code?: string;
-    localities?: LocalityParent[];
-};
-/** @returns {ApplicationConfigPutResponseSchema} */
-declare function ApplicationConfigPutResponseSchema(): ApplicationConfigPutResponseSchema;
-type ApplicationConfigPutResponseSchema = {
-    rule_ids?: string[];
-    sort?: string[];
-    manual_priority?: string[];
-    application_id?: string;
-    company_id?: number;
-};
-/** @returns {PromiseType} */
-declare function PromiseType(): PromiseType;
-type PromiseType = {
-    display_name: string;
-    slug: string;
-    description: string;
-    is_active: boolean;
-    is_default: boolean;
-};
-/** @returns {BuyboxRuleConfig} */
-declare function BuyboxRuleConfig(): BuyboxRuleConfig;
-type BuyboxRuleConfig = {
-    store_type_priority?: string[];
-    store_tag_priority?: string[];
-    sort?: string[];
-};
-/** @returns {CourierPartnerConfig} */
-declare function CourierPartnerConfig(): CourierPartnerConfig;
-type CourierPartnerConfig = {
-    rule_ids?: string[];
-    sort?: string[];
-    manual_priority?: string[];
-};
-/** @returns {ZoneConfig} */
-declare function ZoneConfig(): ZoneConfig;
-type ZoneConfig = {
-    serviceability_type?: string;
-    active_count?: number;
-    total_count?: number;
-};
-/** @returns {ApplicationConfigGetResponseSchema} */
-declare function ApplicationConfigGetResponseSchema(): ApplicationConfigGetResponseSchema;
-type ApplicationConfigGetResponseSchema = {
-    zones?: ZoneConfig;
-    courier_partner_config?: CourierPartnerConfig;
-    buybox_rule_config?: BuyboxRuleConfig;
-    promise_config?: PromiseConfig;
-    promise_types?: PromiseType[];
-};
-/** @returns {ApplicationConfigPutRequestSchema} */
-declare function ApplicationConfigPutRequestSchema(): ApplicationConfigPutRequestSchema;
-type ApplicationConfigPutRequestSchema = {
-    rule_ids?: string[];
-    sort?: string[];
-    manual_priority?: string[];
-};
-/** @returns {InstallCourierPartnerItemsSchema} */
-declare function InstallCourierPartnerItemsSchema(): InstallCourierPartnerItemsSchema;
-type InstallCourierPartnerItemsSchema = {
-    base_url?: string;
-    callbacks?: any;
-    contact_email?: string;
-    created_at?: string;
-    description?: string;
-    developed_by_name?: string;
-    ext_version?: string;
-    extention_type?: string;
-    is_coming_soon?: boolean;
-    is_hidden?: boolean;
-    is_installed?: boolean;
-    launch_type?: string;
-    logo?: any;
-    modified_at?: string;
-    name?: string;
-    organization_id?: string;
-    partner?: any;
-    scope?: string[];
-    whitelisted_urls?: string[];
-    __v?: number;
-    _id?: string;
-};
-/** @returns {InstallCourierPartnerResponseSchema} */
-declare function InstallCourierPartnerResponseSchema(): InstallCourierPartnerResponseSchema;
-type InstallCourierPartnerResponseSchema = {
-    items?: InstallCourierPartnerItemsSchema[];
-    page?: Page;
-};
-/** @returns {ServiceabilityErrorResponseSchema} */
-declare function ServiceabilityErrorResponseSchema(): ServiceabilityErrorResponseSchema;
-type ServiceabilityErrorResponseSchema = {
-    message: string;
-    value: string;
-    type: string;
-};
-/** @returns {ApplicationServiceabilityConfig} */
-declare function ApplicationServiceabilityConfig(): ApplicationServiceabilityConfig;
-type ApplicationServiceabilityConfig = {
-    channel_id: string;
-    serviceability_type: string;
-    channel_type: string;
-};
-/** @returns {EntityRegionView_Error} */
-declare function EntityRegionView_Error(): EntityRegionView_Error;
-type EntityRegionView_Error = {
-    message?: string;
-    value?: string;
-    type?: string;
-};
-/** @returns {EntityRegionView_page} */
-declare function EntityRegionView_page(): EntityRegionView_page;
-type EntityRegionView_page = {
-    type: string;
-    has_next: boolean;
-    item_total: number;
-    size: number;
-    current: number;
-};
-/** @returns {PageSchema} */
-declare function PageSchema(): PageSchema;
-type PageSchema = {
-    has_next: boolean;
-    item_total: number;
-    size: number;
-    current: number;
-    type: string;
-};
-/** @returns {EntityRegionView_Items} */
-declare function EntityRegionView_Items(): EntityRegionView_Items;
-type EntityRegionView_Items = {
-    sub_type: string;
-    uid: string;
-    name: string;
-};
-/** @returns {ListViewSummary} */
-declare function ListViewSummary(): ListViewSummary;
-type ListViewSummary = {
-    total_zones: number;
-    total_pincodes_served: number;
-    total_active_zones: number;
-};
-/** @returns {ProductSchema} */
-declare function ProductSchema(): ProductSchema;
-type ProductSchema = {
-    /**
-     * - The classification of product type used in the
-     * zone, whether it's a list of categories, departments, tags or item_ids.
-     */
-    type: string;
-    values: number[];
-};
-/** @returns {ProductDetailsSchema} */
-declare function ProductDetailsSchema(): ProductDetailsSchema;
-type ProductDetailsSchema = {
-    /**
-     * - The classification of product type used in the
-     * zone, whether it's a list of categories, departments, tags or item_ids.
-     */
-    type: string;
-    /**
-     * - List of values representing the products
-     * or the type of products selected for the delivery zone.
-     */
-    values: DetailsSchema[];
-};
-/** @returns {StoresSchema} */
-declare function StoresSchema(): StoresSchema;
-type StoresSchema = {
-    /**
-     * - Classification of whether all stores in the
-     * application are considered or a custom selection of stores by the seller.
-     */
-    type: string;
-    /**
-     * - List of store ids mapped to the delivery zone
-     * when custom type is selected.
-     */
-    values: number[];
-};
-/** @returns {StoresDetailsSchema} */
-declare function StoresDetailsSchema(): StoresDetailsSchema;
-type StoresDetailsSchema = {
-    /**
-     * - The classification of product type used in the
-     * zone, whether it's a list of categories, departments, tags or item_ids.
-     */
-    type: string;
-    /**
-     * - List of values representing
-     * the products or the type of products selected for the delivery zone.
-     */
-    values: StoreValueDetailsSchema[];
-};
-/** @returns {DetailsSchema} */
-declare function DetailsSchema(): DetailsSchema;
-type DetailsSchema = {
-    /**
-     * - Display name of the value.
-     */
-    name: string;
-    /**
-     * - Raw value (id) of the store or product or region.
-     */
-    value: string;
-};
-/** @returns {StoreValueDetailsSchema} */
-declare function StoreValueDetailsSchema(): StoreValueDetailsSchema;
-type StoreValueDetailsSchema = {
-    text: string;
-    value: number;
-};
-/** @returns {SummarySchema} */
-declare function SummarySchema(): SummarySchema;
-type SummarySchema = {
-    /**
-     * - Count of the stores that will be
-     * considered for the delivery zone.
-     */
-    stores_count?: number;
-    /**
-     * - Count of the products that will be
-     * considered for the delivery zone.
-     */
-    products_count?: number;
-    /**
-     * - Summary of regions, with each country
-     * and the no of regions selected for the delivery zone.
-     */
-    regions?: RegionSchema[];
-};
-/** @returns {RegionSchema} */
-declare function RegionSchema(): RegionSchema;
-type RegionSchema = {
-    /**
-     * - Display name of the country
-     */
-    name?: string;
-    /**
-     * - Count of the total number of regions mapped to a
-     * country for the delivery zone.
-     */
-    count?: number;
-};
-/** @returns {ServiceabilityDeleteErrorResponseSchema} */
-declare function ServiceabilityDeleteErrorResponseSchema(): ServiceabilityDeleteErrorResponseSchema;
-type ServiceabilityDeleteErrorResponseSchema = {
-    error: ServiceabilityErrorResponseSchema[];
-};
-/** @returns {ListViewResponseV2} */
-declare function ListViewResponseV2(): ListViewResponseV2;
-type ListViewResponseV2 = {
-    items: ListViewItemsV2[];
-    page: ZoneDataItem;
-};
-/** @returns {ListViewItemsV2} */
-declare function ListViewItemsV2(): ListViewItemsV2;
-type ListViewItemsV2 = {
-    zone_id: string;
-    name: string;
-    type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
-    geo_areas: GeoArea[];
-    slug: string;
-    stores?: ListViewProductV2;
-    is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted: boolean;
-    /**
-     * - Indicates whether the public zone is
-     * opted by any seller or not
-     */
-    is_public_opted?: boolean;
-    product?: ListViewProductV2;
-    company_id: number;
-    application_id: string;
-    created_by: string;
-    created_on: string;
-    modified_by: string;
-    modified_on: string;
-    stage?: string;
-    summary?: Summary;
-};
-/** @returns {SummaryRegions} */
-declare function SummaryRegions(): SummaryRegions;
-type SummaryRegions = {
-    regions?: RegionSchema[];
-};
-/** @returns {Summary} */
-declare function Summary(): Summary;
-type Summary = {
-    stores_count?: number;
-    products_count?: number;
-    regions?: RegionSchema[];
-};
-/** @returns {GeoArea} */
-declare function GeoArea(): GeoArea;
-type GeoArea = {
-    id: string;
-    type?: string;
-    name: string;
-};
-/** @returns {ListViewProductV2} */
-declare function ListViewProductV2(): ListViewProductV2;
-type ListViewProductV2 = {
-    type: string;
-    values: string[];
-};
-/** @returns {ZoneDataItem} */
-declare function ZoneDataItem(): ZoneDataItem;
-type ZoneDataItem = {
-    has_next: boolean;
-    item_total: number;
-    size: number;
-    current: number;
-    type: string;
-};
-/** @returns {ListViewProduct} */
-declare function ListViewProduct(): ListViewProduct;
-type ListViewProduct = {
-    count: number;
-    type: string;
-};
-/** @returns {ListViewChannels} */
-declare function ListViewChannels(): ListViewChannels;
-type ListViewChannels = {
-    channel_id: string;
-    channel_type: string;
-};
-/** @returns {ListViewItems} */
-declare function ListViewItems(): ListViewItems;
-type ListViewItems = {
-    zone_id: string;
-    name: string;
-    slug: string;
-    stores_count: number;
-    is_active: boolean;
-    regions_count: number;
-    company_id: number;
-    channels: ListViewChannels[];
-};
-/** @returns {CompanyStoreView_PageItems} */
-declare function CompanyStoreView_PageItems(): CompanyStoreView_PageItems;
-type CompanyStoreView_PageItems = {
-    type: string;
-    has_next: boolean;
-    item_total: number;
-    size: number;
-    current: number;
-};
-/** @returns {GetZoneDataViewChannels} */
-declare function GetZoneDataViewChannels(): GetZoneDataViewChannels;
-type GetZoneDataViewChannels = {
-    channel_id: string;
-    channel_type: string;
-};
-/** @returns {ZoneProductTypes} */
-declare function ZoneProductTypes(): ZoneProductTypes;
-type ZoneProductTypes = {
-    type: string;
-    tags: string[];
-};
-/** @returns {ZoneMappingType} */
-declare function ZoneMappingType(): ZoneMappingType;
-type ZoneMappingType = {
-    country: string;
-    pincode?: string[];
-    state?: string[];
-};
-/** @returns {UpdateZoneDataV2} */
-declare function UpdateZoneDataV2(): UpdateZoneDataV2;
-type UpdateZoneDataV2 = {
-    zone_id?: string;
-    name?: string;
-    type?: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level?: string;
-    slug?: string;
-    geo_areas?: string[];
-    company_id?: number;
-    application_id?: string;
-    is_active?: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
-    product?: ProductSchema;
-    stores?: StoresSchema;
-};
-/** @returns {ZoneUpdateSuccessResponseSchema} */
-declare function ZoneUpdateSuccessResponseSchema(): ZoneUpdateSuccessResponseSchema;
-type ZoneUpdateSuccessResponseSchema = {
-    name: string;
-    slug: string;
-    company_id: number;
-    type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
-    application_id: string;
-    is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted: boolean;
-    geo_areas: string[];
-    product: ProductSchema;
-    stores: StoresSchema;
-    zone_id: string;
-    created_by: string;
-    created_on: string;
-    modified_by: string;
-    modified_on: string;
-    stage?: string;
-    summary?: Summary;
-};
-/** @returns {ZoneDeleteSuccessResponseSchema} */
-declare function ZoneDeleteSuccessResponseSchema(): ZoneDeleteSuccessResponseSchema;
-type ZoneDeleteSuccessResponseSchema = {
-    message: string;
-};
-/** @returns {UpdateZoneData} */
-declare function UpdateZoneData(): UpdateZoneData;
-type UpdateZoneData = {
-    zone_id: string;
-    name: string;
-    slug: string;
-    company_id: number;
-    is_active: boolean;
-    channels: GetZoneDataViewChannels[];
-    product: ZoneProductTypes;
-    store_ids: number[];
-    region_type: string;
-    mapping: ZoneMappingType[];
-    assignment_preference?: string;
-};
-/** @returns {GetZoneDataViewItems} */
-declare function GetZoneDataViewItems(): GetZoneDataViewItems;
-type GetZoneDataViewItems = {
-    zone_id: string;
-    name: string;
-    slug: string;
-    company_id?: number;
-    is_active: boolean;
-    channels: GetZoneDataViewChannels[];
-    product: ZoneProductTypes;
-    store_ids: number[];
-    region_type?: string;
-    mapping: ZoneMappingType[];
-    assignment_preference?: string;
-    stores_count: number;
-};
-/** @returns {GetZoneByIdSchema} */
-declare function GetZoneByIdSchema(): GetZoneByIdSchema;
-type GetZoneByIdSchema = {
-    zone_id: string;
-    name: string;
-    slug: string;
-    is_active: boolean;
-    is_opted?: boolean;
-    product?: ProductSchema;
-    stores?: StoresSchema;
-    created_by?: string;
-    created_on?: string;
-    modified_by?: string;
-    modified_on?: string;
-    stage?: string;
-    overlapping_file_url?: string;
-    geo_areas: string[];
-    type: string;
-    overlapping_zone_names?: string[];
-};
-/** @returns {GetZoneByIdDetailsSchema} */
-declare function GetZoneByIdDetailsSchema(): GetZoneByIdDetailsSchema;
-type GetZoneByIdDetailsSchema = {
-    /**
-     * - Unique identifier for the zone.
-     */
-    zone_id: string;
-    /**
-     * - Name of the zone.
-     */
-    name: string;
-    /**
-     * - URL-friendly version of the zone name.
-     */
-    slug: string;
-    /**
-     * - Indicates whether the zone is active.
-     */
-    is_active: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
-    product?: ProductDetailsSchema;
-    stores?: StoresDetailsSchema;
-    /**
-     * - Current stage of the zone in its lifecycle.
-     */
-    stage?: string;
-    /**
-     * - URL of the file containing
-     * overlapping zone information.
-     */
-    overlapping_file_url?: string;
-    geo_areas: GeoAreaDetailsSchema[];
-    /**
-     * - Type of the zone (custom or default).
-     */
-    type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level?: string;
-    /**
-     * - List of names of overlapping zones.
-     */
-    overlapping_zone_names?: string[];
-};
-/** @returns {GeoAreaDetailsSchema} */
-declare function GeoAreaDetailsSchema(): GeoAreaDetailsSchema;
-type GeoAreaDetailsSchema = {
-    /**
-     * - Unique identifier for the geographical area.
-     */
-    id: string;
-    /**
-     * - Name of the geographical area.
-     */
-    name: string;
-};
-/** @returns {CreateZoneV2Data} */
-declare function CreateZoneV2Data(): CreateZoneV2Data;
-type CreateZoneV2Data = {
-    is_active: boolean;
-    slug: string;
-    type: string;
-    /**
-     * - Access level of zone
-     */
-    access_level: string;
-    name: string;
-    company_id: number;
-    application_id: string;
-    geo_areas: string[];
-    stores?: ZoneStores;
-    product?: ZoneProduct;
-};
-/** @returns {ZoneBulkExport} */
-declare function ZoneBulkExport(): ZoneBulkExport;
-type ZoneBulkExport = {
-    batch_id?: string;
-};
-/** @returns {GetZoneBulkExport} */
-declare function GetZoneBulkExport(): GetZoneBulkExport;
-type GetZoneBulkExport = {
-    items?: ZoneBulkItem[];
-};
-/** @returns {ZoneBulkItem} */
-declare function ZoneBulkItem(): ZoneBulkItem;
-type ZoneBulkItem = {
-    batch_id?: string;
-    file_path?: string;
-    total?: number;
-    failed?: number;
-    error_file_url?: string;
-    action?: string;
-    updated_at?: string;
-    updated_by?: string;
-    type?: string;
-    stage?: string;
-};
-/** @returns {CreateBulkZoneData} */
-declare function CreateBulkZoneData(): CreateBulkZoneData;
-type CreateBulkZoneData = {
-    file_url?: string;
-    product_type?: string;
-};
-/** @returns {ZoneStores} */
-declare function ZoneStores(): ZoneStores;
-type ZoneStores = {
-    type: string;
-    values: number[];
-};
-/** @returns {ZoneProduct} */
-declare function ZoneProduct(): ZoneProduct;
-type ZoneProduct = {
-    type: string;
-    values: number[];
-};
-/** @returns {ZoneResponseV2} */
-declare function ZoneResponseV2(): ZoneResponseV2;
-type ZoneResponseV2 = {
-    name: string;
-    slug: string;
-    company_id: number;
-    type: string;
-    /**
-     * - Access level of the zone (public or private).
-     */
-    access_level: string;
-    application_id: string;
-    is_active: boolean;
-    /**
-     * - Indicates whether the public zone is
-     * opted by any seller or not
-     */
-    is_public_opted?: boolean;
-    /**
-     * - Indicates whether the zone is opted or not.
-     */
-    is_opted?: boolean;
-    geo_areas: string[];
-    stores?: ListViewProductV2;
-    product?: ListViewProductV2;
-    created_by: string;
-    created_on: string;
-    modified_by: string;
-    modified_on: string;
-    stage?: string;
-    zone_id: string;
-    summary?: SummaryRegions;
-};
-/** @returns {CreateBulkZoneResponseSchema} */
-declare function CreateBulkZoneResponseSchema(): CreateBulkZoneResponseSchema;
-type CreateBulkZoneResponseSchema = {
-    zone_id?: string;
-};
-/** @returns {GetBulkZoneHistory} */
-declare function GetBulkZoneHistory(): GetBulkZoneHistory;
-type GetBulkZoneHistory = {
-    items?: BulkZoneItems[];
-    page?: PageV2;
-};
-/** @returns {BulkZoneItems} */
-declare function BulkZoneItems(): BulkZoneItems;
-type BulkZoneItems = {
-    batch_id?: string;
-    entity_type?: string;
-    error_file_url?: string;
-    file_path?: string;
-    file_name?: string;
-    updated_at?: string;
-    updated_by?: string;
-    stage?: string;
-};
-/** @returns {PageV2} */
-declare function PageV2(): PageV2;
-type PageV2 = {
-    type?: string;
-    size?: number;
-    current?: number;
-    has_next?: boolean;
-    item_total?: number;
-};
-/** @returns {BulkCreateZoneExport} */
-declare function BulkCreateZoneExport(): BulkCreateZoneExport;
-type BulkCreateZoneExport = {
-    placeholder?: string;
-};
-/** @returns {Zone} */
-declare function Zone(): Zone;
-type Zone = {
-    zone_id: string;
-    type: string;
-    name: string;
-    tags: string[];
-    slug: string;
-    is_active: boolean;
-    store_ids: number[];
-    assignment_preference: string;
-};
-/** @returns {MobileNo} */
-declare function MobileNo(): MobileNo;
-type MobileNo = {
-    number?: string;
-    country_code?: number;
-};
-/** @returns {OpeningClosing} */
-declare function OpeningClosing(): OpeningClosing;
-type OpeningClosing = {
-    minute?: number;
-    hour?: number;
-};
-/** @returns {Dp} */
-declare function Dp(): Dp;
-type Dp = {
-    fm_priority?: number;
-    rvp_priority?: number;
-    lm_priority?: number;
-    internal_account_id?: string;
-    area_code?: number;
-    payment_mode?: string;
-    operations?: string[];
-    external_account_id?: string;
-    transport_mode?: string;
-    assign_dp_from_sb?: boolean;
-};
-/** @returns {ServiceabilityZoneErrorResult} */
-declare function ServiceabilityZoneErrorResult(): ServiceabilityZoneErrorResult;
-type ServiceabilityZoneErrorResult = {
-    error: ServiceabilityErrorResponseSchema[];
-};
-/** @returns {ServiceabilityZoneNonMarketplaceErrorResult} */
-declare function ServiceabilityZoneNonMarketplaceErrorResult(): ServiceabilityZoneNonMarketplaceErrorResult;
-type ServiceabilityZoneNonMarketplaceErrorResult = {
-    error: string;
-};
-/** @returns {PincodeMopData} */
-declare function PincodeMopData(): PincodeMopData;
-type PincodeMopData = {
-    pincodes: number[];
-    country: string;
-    action: string;
-};
-/** @returns {PincodeMopUpdateResponseSchema} */
-declare function PincodeMopUpdateResponseSchema(): PincodeMopUpdateResponseSchema;
-type PincodeMopUpdateResponseSchema = {
-    pincode: number;
-    channel_id: string;
-    country: string;
-    is_active: boolean;
-};
-/** @returns {PincodeMOPresponseSchema} */
-declare function PincodeMOPresponseSchema(): PincodeMOPresponseSchema;
-type PincodeMOPresponseSchema = {
-    batch_id: string;
-    success: boolean;
-    status_code: number;
-    country: string;
-    action: string;
-    pincodes?: number[];
-    updated_pincodes?: PincodeMopUpdateResponseSchema[];
-};
-/** @returns {CommonError} */
-declare function CommonError(): CommonError;
-type CommonError = {
-    status_code?: number;
-    error?: ErrorResponseSchema[];
-    success?: boolean;
-};
-/** @returns {MoPCommonError} */
-declare function MoPCommonError(): MoPCommonError;
-type MoPCommonError = {
-    batch_id?: string;
-    status_code?: number;
-    error?: ErrorResponseSchema[];
-    success?: boolean;
-};
-/** @returns {PincodeMopBulkData} */
-declare function PincodeMopBulkData(): PincodeMopBulkData;
-type PincodeMopBulkData = {
-    batch_id?: string;
-    s3_url: string;
-};
-/** @returns {PincodeBulkViewResponseSchema} */
-declare function PincodeBulkViewResponseSchema(): PincodeBulkViewResponseSchema;
-type PincodeBulkViewResponseSchema = {
-    batch_id: string;
-    s3_url: string;
-};
-/** @returns {PincodeCodStatusListingRequestSchema} */
-declare function PincodeCodStatusListingRequestSchema(): PincodeCodStatusListingRequestSchema;
-type PincodeCodStatusListingRequestSchema = {
-    country?: string;
-    is_active?: boolean;
-    pincode?: number;
-    current?: number;
-    page_size?: number;
-};
-/** @returns {PincodeCodDataSchema} */
-declare function PincodeCodDataSchema(): PincodeCodDataSchema;
-type PincodeCodDataSchema = {
-    pincode?: string;
-    active?: boolean;
-};
-/** @returns {PincodeCodStatusListingResponseSchema} */
-declare function PincodeCodStatusListingResponseSchema(): PincodeCodStatusListingResponseSchema;
-type PincodeCodStatusListingResponseSchema = {
-    country: string;
-    data: PincodeCodDataSchema[];
-    success: boolean;
-    errors?: Error[];
-    page: PincodeCodStatusListingPage;
-    summary: PincodeCodStatusListingSummary;
-};
-/** @returns {Error} */
-declare function Error(): Error;
-type Error = {
-    type?: string;
-    value?: string;
-    message?: string;
-};
-/** @returns {PincodeCodStatusListingPage} */
-declare function PincodeCodStatusListingPage(): PincodeCodStatusListingPage;
-type PincodeCodStatusListingPage = {
-    type: string;
-    has_next: boolean;
-    item_total: number;
-    size: number;
-    current: number;
-};
-/** @returns {PincodeCodStatusListingSummary} */
-declare function PincodeCodStatusListingSummary(): PincodeCodStatusListingSummary;
-type PincodeCodStatusListingSummary = {
-    total_active_pincodes: number;
-    total_inactive_pincodes: number;
-};
-/** @returns {PincodeMopUpdateAuditHistoryRequestSchema} */
-declare function PincodeMopUpdateAuditHistoryRequestSchema(): PincodeMopUpdateAuditHistoryRequestSchema;
-type PincodeMopUpdateAuditHistoryRequestSchema = {
-    entity_type: string;
-    file_name?: string;
-};
-/** @returns {PincodeMopUpdateAuditHistoryPaging} */
-declare function PincodeMopUpdateAuditHistoryPaging(): PincodeMopUpdateAuditHistoryPaging;
-type PincodeMopUpdateAuditHistoryPaging = {
-    type?: string;
-    size?: number;
-    current?: number;
-    has_next?: boolean;
-    item_total?: number;
-};
-/** @returns {PincodeMopUpdateAuditHistoryResponseSchema} */
-declare function PincodeMopUpdateAuditHistoryResponseSchema(): PincodeMopUpdateAuditHistoryResponseSchema;
-type PincodeMopUpdateAuditHistoryResponseSchema = {
-    batch_id?: string;
-    entity_type?: string;
-    error_file_s3_url?: string;
-    s3_url?: string;
-    file_name?: string;
-    updated_at?: string;
-    updated_by?: string;
-    success?: boolean;
-};
-/** @returns {PincodeMopUpdateAuditHistoryResponseData} */
-declare function PincodeMopUpdateAuditHistoryResponseData(): PincodeMopUpdateAuditHistoryResponseData;
-type PincodeMopUpdateAuditHistoryResponseData = {
-    entity_type?: string;
-    page: PincodeMopUpdateAuditHistoryPaging;
-    data: PincodeMopUpdateAuditHistoryResponseSchema[];
-};
-/** @returns {ArithmeticOperations} */
-declare function ArithmeticOperations(): ArithmeticOperations;
-type ArithmeticOperations = {
-    lt?: number;
-    gt?: number;
-    lte?: number;
-    gte?: number;
-};
-/** @returns {SchemeRulesFeatures} */
-declare function SchemeRulesFeatures(): SchemeRulesFeatures;
-type SchemeRulesFeatures = {
-    quality_check?: boolean;
-    quick_response_code?: boolean;
-    e_waybill?: boolean;
-    multi_part_shipments?: boolean;
-    flammable?: boolean;
-    hazmat?: boolean;
-    battery_operated?: boolean;
-};
-/** @returns {SchemeRules} */
-declare function SchemeRules(): SchemeRules;
-type SchemeRules = {
-    weight?: ArithmeticOperations;
-    transport_type?: string[];
-    region?: string;
-    payment_mode?: string[];
-    feature?: SchemeRulesFeatures;
-};
-/** @returns {CourierAccount} */
-declare function CourierAccount(): CourierAccount;
-type CourierAccount = {
-    extension_id: string;
-    account_id: string;
-    scheme_id: string;
-    is_self_ship: boolean;
-    stage: string;
-    is_own_account: boolean;
-    company_id?: number;
-    scheme_rules?: any;
-};
-/** @returns {BulkGeoAreaDetails} */
-declare function BulkGeoAreaDetails(): BulkGeoAreaDetails;
-type BulkGeoAreaDetails = {
-    file_url?: string;
-    name?: string;
-    slug?: string;
-    type?: string;
-};
-/** @returns {BulkGeoAreaResult} */
-declare function BulkGeoAreaResult(): BulkGeoAreaResult;
-type BulkGeoAreaResult = {
-    geoarea_id?: string;
-};
-/** @returns {PriceGeoAreaExportResult} */
-declare function PriceGeoAreaExportResult(): PriceGeoAreaExportResult;
-type PriceGeoAreaExportResult = {
-    batch_id?: string;
-};
-/** @returns {BulkGeoAreaGetResponseSchema} */
-declare function BulkGeoAreaGetResponseSchema(): BulkGeoAreaGetResponseSchema;
-type BulkGeoAreaGetResponseSchema = {
-    batch_id?: string;
-    file_path?: string;
-    total?: number;
-    failed?: number;
-    error_file_url?: string;
-    action?: string;
-    updated_at?: string;
-    updated_by?: string;
-    type?: string;
-    stage?: string;
-    file_url?: string;
-};
-/** @returns {GeoAreaBulkCreationResult} */
-declare function GeoAreaBulkCreationResult(): GeoAreaBulkCreationResult;
-type GeoAreaBulkCreationResult = {
-    /**
-     * - The unique identifier of the bulk export batch.
-     */
-    batch_id?: string;
-};
-/** @returns {GeoAreaBulkExportResult} */
-declare function GeoAreaBulkExportResult(): GeoAreaBulkExportResult;
-type GeoAreaBulkExportResult = {
-    /**
-     * - The unique identifier of the bulk export batch.
-     */
-    batch_id?: string;
-    /**
-     * - The file path where the export data will be stored.
-     */
-    file_path?: string;
-    /**
-     * - The total number of records processed in the export.
-     */
-    total?: number;
-    /**
-     * - The number of records that failed to export.
-     */
-    failed?: number;
-    /**
-     * - The URL of the file containing details
-     * of errors encountered during the export, if available.
-     */
-    error_file_url?: string;
-    /**
-     * - The action performed during the export process,
-     * typically "import" or "export".
-     */
-    action?: string;
-    /**
-     * - The timestamp when the export status was
-     * last updated.
-     */
-    updated_at?: string;
-    /**
-     * - The name or identifier of the user or
-     * process that last updated the export status.
-     */
-    updated_by?: string;
-    /**
-     * - The type of export process, such as "geo_area_bulk_export".
-     */
-    type?: string;
-    /**
-     * - The current stage of the export process, such as
-     * "initiated", "in_progress", or "completed".
-     */
-    stage?: string;
-};
-/** @returns {GeoAreaRequestBody} */
-declare function GeoAreaRequestBody(): GeoAreaRequestBody;
-type GeoAreaRequestBody = {
-    is_active: boolean;
-    name: string;
-    slug: string;
-    type: string;
-    areas: Area[];
-    region_type: string;
-};
-/** @returns {GeoAreaErrorResult} */
-declare function GeoAreaErrorResult(): GeoAreaErrorResult;
-type GeoAreaErrorResult = {
-    error?: GeoAreaResponseDetail[];
-};
-/** @returns {ErrorResponseItem} */
-declare function ErrorResponseItem(): ErrorResponseItem;
-type ErrorResponseItem = {
-    message: string;
-    error_name: string;
-    error_code: number;
-    value: string;
-    conflicting_areas: ConflictingArea[];
-};
-/** @returns {ConflictingArea} */
-declare function ConflictingArea(): ConflictingArea;
-type ConflictingArea = {
-    geoarea_id: string;
-    name: string;
-};
-/** @returns {GeoAreaResponseDetail} */
-declare function GeoAreaResponseDetail(): GeoAreaResponseDetail;
-type GeoAreaResponseDetail = {
-    type?: string;
-    value?: string;
-    message?: string;
-};
-/** @returns {ErrorResponseDetail} */
-declare function ErrorResponseDetail(): ErrorResponseDetail;
-type ErrorResponseDetail = {
-    items: ErrorResponseItem[];
-};
-/** @returns {GeoAreaResponseBody} */
-declare function GeoAreaResponseBody(): GeoAreaResponseBody;
-type GeoAreaResponseBody = {
-    name: string;
-    slug: string;
-    is_active: boolean;
-    areas: Area[];
-    region_type: string;
-    type: string;
-    created_on: string;
-    modified_on: string;
-    created_by: string;
-    modified_by: string;
-    geoarea_id: string;
-};
-/** @returns {GeoAreaPutResponseBody} */
-declare function GeoAreaPutResponseBody(): GeoAreaPutResponseBody;
-type GeoAreaPutResponseBody = {
-    name?: string;
-    geoarea_id?: string;
-    slug?: string;
-    is_active?: boolean;
-    areas?: Area[];
-    region_type?: string;
-    type?: string;
-    created_on?: string;
-    modified_on?: string;
-    created_by?: string;
-    modified_by?: string;
-    upload_type?: string;
-};
-/** @returns {Area} */
-declare function Area(): Area;
-type Area = {
-    regions?: string[];
-    country?: string;
-};
-/** @returns {Region} */
-declare function Region(): Region;
-type Region = {
-    uid: string;
-    display_name: string;
-    sub_type: string;
-    parent_id: string[];
-};
-/** @returns {RegionV2} */
-declare function RegionV2(): RegionV2;
-type RegionV2 = {
-    uid?: string;
-    display_name?: string;
-    sub_type?: string;
-    parent_id?: string[];
-};
-/** @returns {Country} */
-declare function Country(): Country;
-type Country = {
-    uid: string;
-    display_name: string;
-};
-/** @returns {AreaExpanded} */
-declare function AreaExpanded(): AreaExpanded;
-type AreaExpanded = {
-    country: Country;
-    regions: Region[];
-};
-/** @returns {AreaExpandedV2} */
-declare function AreaExpandedV2(): AreaExpandedV2;
-type AreaExpandedV2 = {
-    country: Country;
-    regions: RegionV2[];
-};
-/** @returns {GeoAreaResponseSchema} */
-declare function GeoAreaResponseSchema(): GeoAreaResponseSchema;
-type GeoAreaResponseSchema = {
-    name: string;
-    slug: string;
-    application_id?: string;
-    company_id?: number;
-    geoarea_id: string;
-    is_active: boolean;
-    type: string;
-    region_type: string;
-    areas: AreaExpanded[];
-    created_on?: string;
-    modified_on?: string;
-    created_by?: string;
-    modified_by?: string;
-};
-/** @returns {GeoAreaGetResponseBody} */
-declare function GeoAreaGetResponseBody(): GeoAreaGetResponseBody;
-type GeoAreaGetResponseBody = {
-    items?: GeoAreaItemResponseSchema[];
-    page?: Page2;
-};
-/** @returns {GeoAreaItemResponseSchema} */
-declare function GeoAreaItemResponseSchema(): GeoAreaItemResponseSchema;
-type GeoAreaItemResponseSchema = {
-    company_id: number;
-    application_id: string;
-    geoarea_id: string;
-    name: string;
-    slug: string;
-    is_active: boolean;
-    region_type: string;
-    type: string;
-    areas: AreaExpandedV2[];
-    created_on?: string;
-    modified_on?: string;
-    created_by?: string;
-    modified_by?: string;
-};
-/** @returns {ErrorResponseV2} */
-declare function ErrorResponseV2(): ErrorResponseV2;
-type ErrorResponseV2 = {
-    success: boolean;
-    error: string;
-};
-/** @returns {ErrorResponseSchema} */
-declare function ErrorResponseSchema(): ErrorResponseSchema;
-type ErrorResponseSchema = {
-    value: string;
-    message: string;
-    type: string;
-    error?: string;
-};
-/** @returns {PackageMaterialNotFound} */
-declare function PackageMaterialNotFound(): PackageMaterialNotFound;
-type PackageMaterialNotFound = {
-    status_code?: number;
-    success?: boolean;
-};
-/** @returns {PackageMaterialsErrorResponseSchema} */
-declare function PackageMaterialsErrorResponseSchema(): PackageMaterialsErrorResponseSchema;
-type PackageMaterialsErrorResponseSchema = {
-    value?: string;
-    message?: string;
-    type?: string;
-    error?: string;
-};
-/** @returns {CourierPartnerAccountFailureResponseSchema} */
-declare function CourierPartnerAccountFailureResponseSchema(): CourierPartnerAccountFailureResponseSchema;
-type CourierPartnerAccountFailureResponseSchema = {
-    success: boolean;
-    error: ErrorResponseSchema[];
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    /**
-     * - The total number of items on the page.
-     */
-    item_total?: number;
-    /**
-     * - The identifier for the next page.
-     */
-    next_id?: string;
-    /**
-     * - Indicates whether there is a previous page.
-     */
-    has_previous?: boolean;
-    /**
-     * - Indicates whether there is a next page.
-     */
-    has_next?: boolean;
-    /**
-     * - The current page number.
-     */
-    current?: number;
-    /**
-     * - The type of the page, such as 'PageType'.
-     */
-    type: string;
-    /**
-     * - The number of items per page.
-     */
-    size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
-};
-/** @returns {Page2} */
-declare function Page2(): Page2;
-type Page2 = {
-    size: number;
-    item_total: number;
-    type: string;
-    current: number;
-    has_next: boolean;
-};
-/** @returns {CourierPartnerList} */
-declare function CourierPartnerList(): CourierPartnerList;
-type CourierPartnerList = {
-    extension_id?: string;
-    account_id?: string;
-    name?: string;
-    is_self_ship?: boolean;
-    scheme_rules?: any;
-    stage?: string;
-};
-/** @returns {LocationRuleValues} */
-declare function LocationRuleValues(): LocationRuleValues;
-type LocationRuleValues = {
-    uid: string;
-    sub_type?: string;
-    display_name?: string;
-    parent_uid?: string;
-    parent_id?: string[];
-};
-/** @returns {LocationRuleValuesV2} */
-declare function LocationRuleValuesV2(): LocationRuleValuesV2;
-type LocationRuleValuesV2 = {
-    id: string;
-    sub_type?: string;
-    display_name?: string;
-    parent_uid?: string;
-    parent_id?: string[];
-};
-/** @returns {LocationRule} */
-declare function LocationRule(): LocationRule;
-type LocationRule = {
-    type?: string;
-    includes?: LocationRuleValues[];
-};
-/** @returns {LocationRuleV2} */
-declare function LocationRuleV2(): LocationRuleV2;
-type LocationRuleV2 = {
-    type?: string;
-    includes?: LocationRuleValuesV2[];
-};
-/** @returns {StringComparisonOperations} */
-declare function StringComparisonOperations(): StringComparisonOperations;
-type StringComparisonOperations = {
-    includes?: string[];
-};
-/** @returns {IntComparisonOperations} */
-declare function IntComparisonOperations(): IntComparisonOperations;
-type IntComparisonOperations = {
-    includes?: number[];
-};
-/** @returns {CourierPartnerRuleConditions} */
-declare function CourierPartnerRuleConditions(): CourierPartnerRuleConditions;
-type CourierPartnerRuleConditions = {
-    forward?: LocationRule;
-    reverse?: LocationRule;
-    payment_mode?: StringComparisonOperations;
-    category_ids?: IntComparisonOperations;
-    product_ids?: IntComparisonOperations;
-    product_tags?: StringComparisonOperations;
-    zone_ids?: StringComparisonOperations;
-    department_ids?: IntComparisonOperations;
-    brand_ids?: IntComparisonOperations;
-    order_place_date?: ArithmeticOperationsV2;
-    store_ids?: IntComparisonOperations;
-    store_type?: StringComparisonOperations;
-    store_tags?: StringComparisonOperations;
-    shipment_weight?: ArithmeticOperations;
-    shipment_cost?: ArithmeticOperations;
-    shipment_volumetric_weight?: ArithmeticOperations;
-    company_ids?: IntComparisonOperations;
-    promise_types?: StringComparisonOperations;
-};
-/** @returns {CourierPartnerRuleResponseConditions} */
-declare function CourierPartnerRuleResponseConditions(): CourierPartnerRuleResponseConditions;
-type CourierPartnerRuleResponseConditions = {
-    forward?: LocationRule;
-    reverse?: LocationRule;
-    payment_mode?: StringComparisonOperations;
-    category_ids?: IntComparisonOperations;
-    product_ids?: IntComparisonOperations;
-    product_tags?: StringComparisonOperations;
-    zone_ids?: StringComparisonOperations;
-    department_ids?: IntComparisonOperations;
-    brand_ids?: IntComparisonOperations;
-    order_place_date?: ArithmeticOperationsV2;
-    store_ids?: IntComparisonOperations;
-    store_type?: StringComparisonOperations;
-    store_tags?: StringComparisonOperations;
-    shipment_weight?: ArithmeticOperations;
-    shipment_cost?: ArithmeticOperations;
-    shipment_volumetric_weight?: ArithmeticOperations;
-    company_ids?: IntComparisonOperations;
-    promise_types?: StringComparisonOperations;
-};
-/** @returns {CourierPartnerRule} */
-declare function CourierPartnerRule(): CourierPartnerRule;
-type CourierPartnerRule = {
-    id?: string;
-    application_id?: string;
-    company_id?: number;
-    is_active: boolean;
-    cp_list?: CourierPartnerList[];
-    name: string;
-    conditions: CourierPartnerRuleConditions;
-    manual_priority?: string[];
-    sort: string[];
-    shipment_adjustment_type?: string;
-    type: string;
-};
-/** @returns {CourierPartnerRuleResponseSchema} */
-declare function CourierPartnerRuleResponseSchema(): CourierPartnerRuleResponseSchema;
-type CourierPartnerRuleResponseSchema = {
-    id?: string;
-    is_active: boolean;
-    cp_list?: CourierPartnerList[];
-    name: string;
-    conditions: CourierPartnerRuleResponseConditions;
-    manual_priority?: string[];
-    sort: string[];
-    type: string;
-    application_id?: string;
-    company_id?: number;
-    shipment_adjustment_type?: string;
-};
-/** @returns {FailureResponseSchema} */
-declare function FailureResponseSchema(): FailureResponseSchema;
-type FailureResponseSchema = {
-    success: boolean;
-    error: ErrorResponseSchema[];
-};
-/** @returns {CourierPartnerRulesListResponseSchema} */
-declare function CourierPartnerRulesListResponseSchema(): CourierPartnerRulesListResponseSchema;
-type CourierPartnerRulesListResponseSchema = {
-    items: CourierPartnerRuleResponseSchema[];
-    page: Page;
-};
-/** @returns {CompanyConfig} */
-declare function CompanyConfig(): CompanyConfig;
-type CompanyConfig = {
-    company_id?: number;
-    sort?: string[];
-    logistics_as_actual?: string;
-};
-/** @returns {StorePromiseAttributeConfig} */
-declare function StorePromiseAttributeConfig(): StorePromiseAttributeConfig;
-type StorePromiseAttributeConfig = {
-    is_operational_timing_enabled?: boolean;
-    is_order_acceptance_timing_enabled?: boolean;
-    is_average_processing_time?: boolean;
-    is_holiday_enabled?: boolean;
-};
-/** @returns {DeliveryServiceAttributeConfig} */
-declare function DeliveryServiceAttributeConfig(): DeliveryServiceAttributeConfig;
-type DeliveryServiceAttributeConfig = {
-    is_pickup_cutoff_time_enabled?: boolean;
-    is_service_tat_enabled?: boolean;
-    is_holiday_enabled?: boolean;
-};
-/** @returns {BufferField} */
-declare function BufferField(): BufferField;
-type BufferField = {
-    unit?: string;
-    value?: number;
-    enabled?: boolean;
-};
-/** @returns {PromiseConfig} */
-declare function PromiseConfig(): PromiseConfig;
-type PromiseConfig = {
-    store_attributes?: StorePromiseAttributeConfig;
-    delivery_service_attributes?: DeliveryServiceAttributeConfig;
-    buffer_field?: BufferField;
-};
-/** @returns {ApplicationConfig} */
-declare function ApplicationConfig(): ApplicationConfig;
-type ApplicationConfig = {
-    rule_ids?: string[];
-    sort?: string[];
-    application_id?: string;
-    company_id?: number;
-    manual_priority?: string[];
-    zones?: ZoneConfig;
-    buybox_rule_config?: BuyboxRuleConfig;
-    promise_types?: PromiseType[];
-    promise_config?: PromiseConfig;
-};
-/** @returns {ApplicationConfigPatchRequestSchema} */
-declare function ApplicationConfigPatchRequestSchema(): ApplicationConfigPatchRequestSchema;
-type ApplicationConfigPatchRequestSchema = {
-    courier_partner_config?: CourierPartnerConfig;
-    buybox_rule_config?: BuyboxRuleConfig;
-    promise_config?: PromiseConfig;
-};
-/** @returns {ApplicationConfigPatchResponseSchema} */
-declare function ApplicationConfigPatchResponseSchema(): ApplicationConfigPatchResponseSchema;
-type ApplicationConfigPatchResponseSchema = {
-    success?: boolean;
-};
-/** @returns {BulkRegionResponseItemData} */
-declare function BulkRegionResponseItemData(): BulkRegionResponseItemData;
-type BulkRegionResponseItemData = {
-    file_path: string;
-    failed?: number;
-    failed_records?: any[];
-    action: string;
-    batch_id: string;
-    country: string;
-    success?: number;
-    region: string;
-    status: string;
-    total?: number;
-    error_file_path?: string;
-};
-/** @returns {BulkRegionResponseSchema} */
-declare function BulkRegionResponseSchema(): BulkRegionResponseSchema;
-type BulkRegionResponseSchema = {
-    items: BulkRegionResponseItemData[];
-    page: Page;
-};
-/** @returns {SelfShipResponseSchema} */
-declare function SelfShipResponseSchema(): SelfShipResponseSchema;
-type SelfShipResponseSchema = {
-    is_active: boolean;
-    tat: number;
-};
-/** @returns {ApplicationSelfShipConfig} */
-declare function ApplicationSelfShipConfig(): ApplicationSelfShipConfig;
-type ApplicationSelfShipConfig = {
-    self_ship?: any;
-};
-/** @returns {StoreRuleConfigData} */
-declare function StoreRuleConfigData(): StoreRuleConfigData;
-type StoreRuleConfigData = {
-    rule_ids?: string[];
-    type_based_priority?: string[];
-    tag_based_priority?: string[];
-    store_priority?: StorePrioritySchema[];
-    sort?: string[];
-    manual_priority?: number[];
-    meta_sort_priority?: any;
-};
-/** @returns {CustomerRadiusSchema} */
-declare function CustomerRadiusSchema(): CustomerRadiusSchema;
-type CustomerRadiusSchema = {
-    unit: string;
-    lt?: number;
-    lte?: number;
-    gt?: number;
-    gte?: number;
-};
-/** @returns {StoreRuleConditionSchema} */
-declare function StoreRuleConditionSchema(): StoreRuleConditionSchema;
-type StoreRuleConditionSchema = {
-    department_ids?: IntComparisonOperations;
-    category_ids?: IntComparisonOperations;
-    brand_ids?: IntComparisonOperations;
-    to_location?: LocationRuleV2;
-    customer_radius?: CustomerRadiusSchema;
-    store_type?: StringComparisonOperations;
-    product_tags?: StringComparisonOperations;
-    product_ids?: IntComparisonOperations;
-    store_tags?: StringComparisonOperations;
-    order_place_date?: ArithmeticOperationsV2;
-    zone_ids?: StringComparisonOperations;
-};
-/** @returns {StoreRuleDataSchema} */
-declare function StoreRuleDataSchema(): StoreRuleDataSchema;
-type StoreRuleDataSchema = {
-    id?: string;
-    name?: string;
-    company_id?: number;
-    application_id?: string;
-    type_based_priority?: string[];
-    tag_based_priority?: string[];
-    store_priority?: StorePrioritySchema[];
-    sort?: string[];
-    manual_priority?: number[];
-    meta_sort_priority?: any;
-    meta_conditions?: any;
-    conditions?: StoreRuleConditionSchema;
-    is_active?: boolean;
-};
-/** @returns {StorePrioritySchema} */
-declare function StorePrioritySchema(): StorePrioritySchema;
-type StorePrioritySchema = {
-    id?: number;
-    name?: string;
-};
-/** @returns {GetStoreRulesApiResponseSchema} */
-declare function GetStoreRulesApiResponseSchema(): GetStoreRulesApiResponseSchema;
-type GetStoreRulesApiResponseSchema = {
-    items?: StoreRuleDataSchema[];
-    page?: Page;
-};
-/** @returns {CreateStoreRuleRequestSchema} */
-declare function CreateStoreRuleRequestSchema(): CreateStoreRuleRequestSchema;
-type CreateStoreRuleRequestSchema = {
-    name?: string;
-    is_active?: boolean;
-    conditions?: StoreRuleConditionSchema;
-    type_based_priority?: string[];
-    tag_based_priority?: string[];
-    store_priority?: StorePrioritySchema[];
-    manual_priority?: number[];
-    sort?: string[];
-};
-/** @returns {StoreRuleResponseSchema} */
-declare function StoreRuleResponseSchema(): StoreRuleResponseSchema;
-type StoreRuleResponseSchema = {
-    id?: string;
-    name?: string;
-    type?: string;
-    type_based_priority?: string[];
-    tag_based_priority?: string[];
-    store_priority?: StorePrioritySchema[];
-    sort?: string[];
-    manual_priority?: number[];
-    conditions?: StoreRuleConditionSchema;
-    is_active?: boolean;
-};
-/** @returns {StoreRuleUpdateResponseSchema} */
-declare function StoreRuleUpdateResponseSchema(): StoreRuleUpdateResponseSchema;
-type StoreRuleUpdateResponseSchema = {
-    id?: string;
-    name?: string;
-    type?: string;
-    type_based_priority?: string[];
-    tag_based_priority?: string[];
-    store_priority?: StorePrioritySchema[];
-    sort?: string[];
-    manual_priority?: number[];
-    conditions?: StoreRuleConditionSchema;
-    is_active?: boolean;
-    company_id?: number;
-    application_id?: string;
-};
-/** @returns {ServiceabilityModel} */
-declare function ServiceabilityModel(): ServiceabilityModel;
-type ServiceabilityModel = {
-    lm_cod_limit: number;
-    is_qc: boolean;
-    pickup_cutoff?: string;
-    route_code?: string;
-    is_first_mile: boolean;
-    is_return: boolean;
-    is_installation: boolean;
-    is_last_mile: boolean;
-};
-/** @returns {CourierPartnerSchemeFeatures} */
-declare function CourierPartnerSchemeFeatures(): CourierPartnerSchemeFeatures;
-type CourierPartnerSchemeFeatures = {
-    doorstep_qc?: boolean;
-    qr?: boolean;
-    mps?: boolean;
-    ndr?: boolean;
-    ndr_attempts?: number;
-    dangerous_goods?: boolean;
-    fragile_goods?: boolean;
-    restricted_goods?: boolean;
-    cold_storage_goods?: boolean;
-    doorstep_exchange?: boolean;
-    doorstep_return?: boolean;
-    product_installation?: boolean;
-    openbox_delivery?: boolean;
-    status_updates?: string;
-    multi_pick_single_drop?: boolean;
-    single_pick_multi_drop?: boolean;
-    multi_pick_multi_drop?: boolean;
-    ewaybill?: boolean;
-};
-/** @returns {CourierAccountSchemeResponseSchema} */
-declare function CourierAccountSchemeResponseSchema(): CourierAccountSchemeResponseSchema;
-type CourierAccountSchemeResponseSchema = {
-    name?: string;
-    extension_id?: string;
-    scheme_id?: string;
-    weight?: ArithmeticOperations;
-    transport_type?: string;
-    region?: string;
-    delivery_type?: string;
-    payment_mode?: string[];
-    stage?: string;
-    feature?: CourierPartnerSchemeFeatures;
-};
-/** @returns {CourierAccountResponseSchema} */
-declare function CourierAccountResponseSchema(): CourierAccountResponseSchema;
-type CourierAccountResponseSchema = {
-    company_id?: number;
-    extension_id?: string;
-    account_id: string;
-    scheme_id: string;
-    is_self_ship: boolean;
-    stage: string;
-    is_own_account: boolean;
-    scheme_rules: CourierAccountSchemeResponseSchema;
-};
-/** @returns {CompanyCourierPartnerAccountListResponseSchema} */
-declare function CompanyCourierPartnerAccountListResponseSchema(): CompanyCourierPartnerAccountListResponseSchema;
-type CompanyCourierPartnerAccountListResponseSchema = {
-    items: CourierAccountResponseSchema[];
-    page: Page;
-};
-/** @returns {PackageMaterial} */
-declare function PackageMaterial(): PackageMaterial;
-type PackageMaterial = {
-    company_id?: number;
-    item_id?: number;
-    id?: string;
-    name: string;
-    width: number;
-    height: number;
-    length: number;
-    weight: number;
-    auto_calculate?: boolean;
-    max_weight?: number;
-    package_vol_weight?: number;
-    error_rate: number;
-    channels: Channel[];
-    package_type: string;
+    articles?: OptimalLocationsArticles[];
+};
+/** @returns {OptimalLocationArticlesResult} */
+declare function OptimalLocationArticlesResult(): OptimalLocationArticlesResult;
+type OptimalLocationArticlesResult = {
+    item_id: number;
     size: string;
-    track_inventory?: boolean;
-    rules?: PackageMaterialRule[];
-    store_ids: number[];
-    mp_stores?: PackageMpStores[];
-    media?: string[];
-    status: string;
-    is_active?: boolean;
+    quantity: number;
+    group_id?: string;
+    is_primary_item?: boolean;
+    meta?: any;
+    article_assignment: ArticleAssignment;
+    seller_id?: number;
+    ignore_locations: number[];
+    assign_locations: number[];
+    price_effective: number;
+    mto_quantity: number;
+    _id: string;
+    uid: string;
 };
-/** @returns {CourierPartnerRuleDeleteResponseSchema} */
-declare function CourierPartnerRuleDeleteResponseSchema(): CourierPartnerRuleDeleteResponseSchema;
-type CourierPartnerRuleDeleteResponseSchema = {
-    message?: string;
+/** @returns {OptimalLocationAssignedStoresResult} */
+declare function OptimalLocationAssignedStoresResult(): OptimalLocationAssignedStoresResult;
+type OptimalLocationAssignedStoresResult = {
+    store_id: number;
+    articles: OptimalLocationArticlesResult[];
 };
-/** @returns {StoreRuleDeleteResponseSchema} */
-declare function StoreRuleDeleteResponseSchema(): StoreRuleDeleteResponseSchema;
-type StoreRuleDeleteResponseSchema = {
-    message?: string;
-};
-/** @returns {PackageMaterialDeleteResponseSchema} */
-declare function PackageMaterialDeleteResponseSchema(): PackageMaterialDeleteResponseSchema;
-type PackageMaterialDeleteResponseSchema = {
-    message?: string;
-};
-/** @returns {PackageMaterialResponseSchema} */
-declare function PackageMaterialResponseSchema(): PackageMaterialResponseSchema;
-type PackageMaterialResponseSchema = {
-    company_id?: number;
-    name: string;
-    id?: string;
-    width: number;
-    height: number;
-    length: number;
-    rules?: PackageMaterialRule[];
-    store_ids: number[];
-    weight: number;
-    error_rate: number;
-    package_type: string;
-    size: string;
-    media?: string[];
-    channels: Channel[];
-    track_inventory?: boolean;
-    is_active?: boolean;
-    status: string;
-    max_weight?: number;
-    package_vol_weight?: number;
-    auto_calculate?: boolean;
-    mp_stores?: PackageMpStores[];
-};
-/** @returns {PackageMaterialRule} */
-declare function PackageMaterialRule(): PackageMaterialRule;
-type PackageMaterialRule = {
-    rule_id?: string;
-    quantity?: PackageMaterialRuleQuantity;
-    weight?: number;
-    company_id?: number;
-    is_active?: boolean;
-    type?: string;
-    name?: string;
-    id?: string;
-};
-/** @returns {PackageMpStores} */
-declare function PackageMpStores(): PackageMpStores;
-type PackageMpStores = {
-    app_name?: string;
-    app_id?: string;
-    store_ids?: number[];
-    store_data?: any;
-};
-/** @returns {PackageRuleRequestSchema} */
-declare function PackageRuleRequestSchema(): PackageRuleRequestSchema;
-type PackageRuleRequestSchema = {
-    name: string;
-    company_id: number;
-    category_id?: PackageRuleCategory;
-    product_id?: PackageRuleProduct;
-    product_tag?: PackageRuleProductTag;
-    department_id?: PackageRuleDepartmentId;
-    product_attributes?: PackageRuleProductAttributes;
-    type: string;
-    is_active?: boolean;
-};
-/** @returns {PackageRule} */
-declare function PackageRule(): PackageRule;
-type PackageRule = {
-    name: string;
-    id?: string;
-    item_id?: number;
-    company_id: number;
-    width?: number;
-    height?: number;
-    length?: number;
-    rules?: PackageMaterialRule[];
-    store_ids?: number[];
-    weight?: number;
-    error_rate?: number;
-    package_type?: string;
-    size?: string;
-    media?: string[];
-    channels?: Channel[];
-    track_inventory?: boolean;
-    status?: string;
-    max_weight?: number;
-    package_vol_weight?: number;
-    auto_calculate?: boolean;
-    mp_stores?: PackageMpStores[];
-};
-/** @returns {PackageRuleResult} */
-declare function PackageRuleResult(): PackageRuleResult;
-type PackageRuleResult = {
-    is_active?: boolean;
-    company_id: number;
-    product_id?: PackageRuleProduct;
-    category_id?: PackageRuleCategory;
-    department_id?: PackageRuleDepartmentId;
-    product_tag?: PackageRuleProductTag;
-    product_attributes?: PackageRuleProductAttributes;
-    name: string;
-    type: string;
-    id?: string;
-};
-/** @returns {Channel} */
-declare function Channel(): Channel;
-type Channel = {
-    type?: string;
-    id?: string;
-};
-/** @returns {PackageMaterialRuleList} */
-declare function PackageMaterialRuleList(): PackageMaterialRuleList;
-type PackageMaterialRuleList = {
-    items?: PackageRuleResult[];
-    page?: Page;
-};
-/** @returns {PackageMaterialList} */
-declare function PackageMaterialList(): PackageMaterialList;
-type PackageMaterialList = {
-    items?: any;
-    page?: Page;
-};
-/** @returns {PackageRuleProduct} */
-declare function PackageRuleProduct(): PackageRuleProduct;
-type PackageRuleProduct = {
-    includes?: number[];
-};
-/** @returns {PackageRuleProductTag} */
-declare function PackageRuleProductTag(): PackageRuleProductTag;
-type PackageRuleProductTag = {
-    includes?: string[];
-};
-/** @returns {PackageRuleCategory} */
-declare function PackageRuleCategory(): PackageRuleCategory;
-type PackageRuleCategory = {
-    includes?: number[];
-};
-/** @returns {PackageRuleProductAttributes} */
-declare function PackageRuleProductAttributes(): PackageRuleProductAttributes;
-type PackageRuleProductAttributes = {
-    includes?: any[];
-};
-/** @returns {PackageRuleDepartmentId} */
-declare function PackageRuleDepartmentId(): PackageRuleDepartmentId;
-type PackageRuleDepartmentId = {
-    includes?: number[];
-};
-/** @returns {PackageMaterialRuleQuantity} */
-declare function PackageMaterialRuleQuantity(): PackageMaterialRuleQuantity;
-type PackageMaterialRuleQuantity = {
-    min?: number;
-    max?: number;
-};
-/** @returns {RulePriorityRequestSchema} */
-declare function RulePriorityRequestSchema(): RulePriorityRequestSchema;
-type RulePriorityRequestSchema = {
-    rule_id: string;
-    priority: number;
-};
-/** @returns {RulePriorityResponseSchema} */
-declare function RulePriorityResponseSchema(): RulePriorityResponseSchema;
-type RulePriorityResponseSchema = {
-    success?: boolean;
-};
-/** @returns {CompanySelfShip} */
-declare function CompanySelfShip(): CompanySelfShip;
-type CompanySelfShip = {
-    is_active: boolean;
-    tat: number;
-    unit: string;
-};
-/** @returns {ArithmeticOperationsV2} */
-declare function ArithmeticOperationsV2(): ArithmeticOperationsV2;
-type ArithmeticOperationsV2 = {
-    lt?: string;
-    gt?: string;
-    lte?: string;
-    gte?: string;
-};
-/** @returns {CompanyConfigurationShema} */
-declare function CompanyConfigurationShema(): CompanyConfigurationShema;
-type CompanyConfigurationShema = {
-    sort?: string[];
+/** @returns {OptimalLocationsResult} */
+declare function OptimalLocationsResult(): OptimalLocationsResult;
+type OptimalLocationsResult = {
+    assigned_stores: OptimalLocationAssignedStoresResult[];
+    faulty_articles?: ErrorResult[];
 };
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
@@ -4397,4 +3523,12 @@ type ValidationError = {
      * - The field in the request that caused the error.
      */
     field: string;
+};
+/** @returns {StandardError} */
+declare function StandardError(): StandardError;
+type StandardError = {
+    /**
+     * - A brief description of the error.
+     */
+    message: string;
 };

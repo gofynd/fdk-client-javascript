@@ -54,7 +54,7 @@ export = CompanyProfilePlatformModel;
  * @typedef GetAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -94,14 +94,13 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef ErrorResponseSchema
- * @property {number} [code]
- * @property {string} [error]
  * @property {string} [message]
- * @property {Object} [meta]
+ * @property {string} [code]
  * @property {number} [status]
+ * @property {Object} [meta]
  */
 /**
- * @typedef CompanyTaxesSchema1
+ * @typedef CompanyTaxesSerializer1
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
@@ -110,7 +109,7 @@ export = CompanyProfilePlatformModel;
  * @typedef CreateUpdateAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} pincode
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -127,7 +126,7 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [warnings]
  * @property {string} [company_type]
  * @property {Object} [_custom_json]
- * @property {CompanyTaxesSchema1[]} [taxes]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
  * @property {BusinessDetails} [business_details]
  * @property {Document[]} [documents]
  * @property {string} [business_type]
@@ -140,7 +139,6 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef ProfileSuccessResponseSchema
  * @property {number} [uid]
- * @property {Object[]} [data]
  * @property {string} [message]
  * @property {boolean} [success]
  */
@@ -187,7 +185,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} [description]
  */
 /**
- * @typedef CreateUpdateBrandRequestSchema
+ * @typedef CreateBrandRequestSchema
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -199,6 +197,19 @@ export = CompanyProfilePlatformModel;
  * @property {BrandBannerSchema} banner
  * @property {string} name
  * @property {string} [slug_key]
+ */
+/**
+ * @typedef UpdateBrandRequestSchema
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {string[]} [synonyms]
+ * @property {number} [company_id]
+ * @property {string} [description]
+ * @property {string} logo
+ * @property {string} [brand_tier]
+ * @property {number} [uid]
+ * @property {BrandBannerSchema} banner
+ * @property {string} name
  */
 /**
  * @typedef CompanySocialAccounts
@@ -221,7 +232,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
- * @property {string} [business_type]
+ * @property {string} business_type
  * @property {GetAddressSchema[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
@@ -255,7 +266,6 @@ export = CompanyProfilePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef CompanyBrandListSchema
@@ -282,7 +292,6 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef GetCompanySchema
  * @property {string} [stage]
- * @property {Object} [_custom_json]
  * @property {string} [verified_on]
  * @property {UserSchema} [verified_by]
  * @property {string} [created_on]
@@ -375,7 +384,7 @@ export = CompanyProfilePlatformModel;
  * @typedef AddressSchema
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -435,7 +444,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyTaxesSchema1, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateUpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyTaxesSerializer1, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateBrandRequestSchema, UpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
 /** @returns {CompanyTaxesSchema} */
 declare function CompanyTaxesSchema(): CompanyTaxesSchema;
@@ -502,7 +511,7 @@ declare function GetAddressSchema(): GetAddressSchema;
 type GetAddressSchema = {
     landmark?: string;
     country_code?: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
@@ -544,15 +553,14 @@ type GetCompanyProfileSerializerResponseSchema = {
 /** @returns {ErrorResponseSchema} */
 declare function ErrorResponseSchema(): ErrorResponseSchema;
 type ErrorResponseSchema = {
-    code?: number;
-    error?: string;
     message?: string;
-    meta?: any;
+    code?: string;
     status?: number;
+    meta?: any;
 };
-/** @returns {CompanyTaxesSchema1} */
-declare function CompanyTaxesSchema1(): CompanyTaxesSchema1;
-type CompanyTaxesSchema1 = {
+/** @returns {CompanyTaxesSerializer1} */
+declare function CompanyTaxesSerializer1(): CompanyTaxesSerializer1;
+type CompanyTaxesSerializer1 = {
     effective_date?: string;
     rate?: number;
     enable?: boolean;
@@ -562,7 +570,7 @@ declare function CreateUpdateAddressSchema(): CreateUpdateAddressSchema;
 type CreateUpdateAddressSchema = {
     landmark?: string;
     country_code?: string;
-    pincode?: string;
+    pincode: number;
     address_type: string;
     longitude: number;
     country: string;
@@ -580,7 +588,7 @@ type UpdateCompany = {
     warnings?: any;
     company_type?: string;
     _custom_json?: any;
-    taxes?: CompanyTaxesSchema1[];
+    taxes?: CompanyTaxesSerializer1[];
     business_details?: BusinessDetails;
     documents?: Document[];
     business_type?: string;
@@ -594,7 +602,6 @@ type UpdateCompany = {
 declare function ProfileSuccessResponseSchema(): ProfileSuccessResponseSchema;
 type ProfileSuccessResponseSchema = {
     uid?: number;
-    data?: any[];
     message?: string;
     success?: boolean;
 };
@@ -644,9 +651,9 @@ type GetBrandResponseSchema = {
     logo?: string;
     description?: string;
 };
-/** @returns {CreateUpdateBrandRequestSchema} */
-declare function CreateUpdateBrandRequestSchema(): CreateUpdateBrandRequestSchema;
-type CreateUpdateBrandRequestSchema = {
+/** @returns {CreateBrandRequestSchema} */
+declare function CreateBrandRequestSchema(): CreateBrandRequestSchema;
+type CreateBrandRequestSchema = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -658,6 +665,20 @@ type CreateUpdateBrandRequestSchema = {
     banner: BrandBannerSchema;
     name: string;
     slug_key?: string;
+};
+/** @returns {UpdateBrandRequestSchema} */
+declare function UpdateBrandRequestSchema(): UpdateBrandRequestSchema;
+type UpdateBrandRequestSchema = {
+    _custom_json?: any;
+    _locale_language?: any;
+    synonyms?: string[];
+    company_id?: number;
+    description?: string;
+    logo: string;
+    brand_tier?: string;
+    uid?: number;
+    banner: BrandBannerSchema;
+    name: string;
 };
 /** @returns {CompanySocialAccounts} */
 declare function CompanySocialAccounts(): CompanySocialAccounts;
@@ -683,7 +704,7 @@ type CompanySchema = {
     company_type: string;
     modified_on?: string;
     market_channels?: string[];
-    business_type?: string;
+    business_type: string;
     addresses?: GetAddressSchema[];
     notification_emails?: string[];
     details?: CompanyDetails;
@@ -740,10 +761,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - Total number of items.
-     */
-    total?: number;
 };
 /** @returns {CompanyBrandListSchema} */
 declare function CompanyBrandListSchema(): CompanyBrandListSchema;
@@ -775,7 +792,6 @@ type InvoiceDetailsSchema = {
 declare function GetCompanySchema(): GetCompanySchema;
 type GetCompanySchema = {
     stage?: string;
-    _custom_json?: any;
     verified_on?: string;
     verified_by?: UserSchema;
     created_on?: string;
@@ -877,7 +893,7 @@ declare function AddressSchema(): AddressSchema;
 type AddressSchema = {
     landmark?: string;
     country_code: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
