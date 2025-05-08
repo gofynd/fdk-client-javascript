@@ -18,7 +18,7 @@ class Payment {
    * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name activateAndDectivatePayout
    * @summary: Activate/Deactivate payout
    * @description: Enable or disable payout functionality. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
@@ -78,7 +78,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -101,7 +101,7 @@ class Payment {
    * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.DeletePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
    * @name deletePayout
    * @summary: Delete payout
    * @description: Remove a payout transaction from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
@@ -157,7 +157,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeletePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.DeletePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -182,7 +182,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodDetails>}
+   * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
    *   - Success response
    *
    * @name deleteSubscriptionPaymentMethod
@@ -248,7 +248,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodDetails().validate(
+    } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -271,7 +271,7 @@ class Payment {
    * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PayoutsDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
    * @name getAllPayouts
    * @summary: List payouts
    * @description: Retrieve a list of all payout transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
@@ -328,7 +328,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutsDetails().validate(responseData, {
+    } = PaymentPlatformModel.PayoutsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -351,7 +351,7 @@ class Payment {
    * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SubscriptionConfigDetails>} -
+   * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
    *   Success response
    * @name getSubscriptionConfig
    * @summary: Get subscription config
@@ -404,7 +404,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionConfigDetails().validate(
+    } = PaymentPlatformModel.SubscriptionConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -429,7 +429,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodDetails>}
+   * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
    *   - Success response
    *
    * @name getSubscriptionPaymentMethod
@@ -490,7 +490,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionPaymentMethodDetails().validate(
+    } = PaymentPlatformModel.SubscriptionPaymentMethodResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -513,7 +513,7 @@ class Payment {
    * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
    * @name savePayout
    * @summary: Save payout
    * @description: Store and process a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
@@ -567,7 +567,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -590,7 +590,7 @@ class Payment {
    * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentDetails>}
+   * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
    *   - Success response
    *
    * @name saveSubscriptionSetupIntent
@@ -650,7 +650,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SaveSubscriptionSetupIntentDetails().validate(
+    } = PaymentPlatformModel.SaveSubscriptionSetupIntentResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -673,7 +673,7 @@ class Payment {
    * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name updatePayout
    * @summary: Update payout
    * @description: Modify the details of a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
@@ -731,7 +731,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -754,7 +754,7 @@ class Payment {
    * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.IfscCodeDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC code
    * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
@@ -811,7 +811,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.IfscCodeDetails().validate(responseData, {
+    } = PaymentPlatformModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

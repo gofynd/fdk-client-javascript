@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ClickStatsResult
+ * @typedef ClickStatsResponse
  * @property {ClickStatsItem[]} click_stats - An array of click statistics for
  *   the short link.
  */
@@ -80,9 +80,9 @@ const Joi = require("joi");
 
 /**
  * @typedef UrlInfo
+ * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
- * @property {string} [alias]
  */
 
 /**
@@ -118,8 +118,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
- * @property {number} [page] - Current page number
  */
 
 /**
@@ -134,8 +132,8 @@ const Joi = require("joi");
  */
 
 class SharePlatformModel {
-  /** @returns {ClickStatsResult} */
-  static ClickStatsResult() {
+  /** @returns {ClickStatsResponse} */
+  static ClickStatsResponse() {
     return Joi.object({
       click_stats: Joi.array()
         .items(SharePlatformModel.ClickStatsItem())
@@ -231,9 +229,9 @@ class SharePlatformModel {
   /** @returns {UrlInfo} */
   static UrlInfo() {
     return Joi.object({
+      original: Joi.string().allow(""),
       hash: Joi.string().allow(""),
       short_url: Joi.string().allow(""),
-      alias: Joi.string().allow(""),
     });
   }
 
@@ -252,7 +250,7 @@ class SharePlatformModel {
       application: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       updated_at: Joi.string().allow(""),
       personalized: Joi.boolean(),
       campaign: SharePlatformModel.CampaignShortLink(),
@@ -273,8 +271,6 @@ class SharePlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      total: Joi.number(),
-      page: Joi.number(),
     });
   }
 

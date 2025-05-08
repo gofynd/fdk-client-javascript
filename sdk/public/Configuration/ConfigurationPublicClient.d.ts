@@ -22,13 +22,12 @@ declare class Configuration {
      * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPublicModel.ApplicationResponseSchema>} -
-     *   Success response
+     * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
      * @name searchApplication
      * @summary: Search application
      * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
      */
-    searchApplication({ authorization, query, requestHeaders }?: ConfigurationPublicValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<ConfigurationPublicModel.ApplicationResponseSchema>;
+    searchApplication({ authorization, query, requestHeaders }?: ConfigurationPublicValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<ConfigurationPublicModel.ApplicationResponse>;
 }
 import ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
 import ConfigurationPublicModel = require("./ConfigurationPublicModel");
