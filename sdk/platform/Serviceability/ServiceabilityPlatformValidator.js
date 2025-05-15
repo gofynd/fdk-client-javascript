@@ -4,25 +4,33 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef BulkServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 
 /**
  * @typedef BulkTatParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
+ */
+
+/**
+ * @typedef CreateCourierPartnerSchemeParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerSchemeDetailsModel} body
  */
 
 /**
  * @typedef CreatePackageMaterialParam
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {ServiceabilityPlatformModel.PackageMaterial} body
  */
 
@@ -32,17 +40,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef CreateZoneParam
- * @property {ServiceabilityPlatformModel.CreateZoneData} body
- */
-
-/** @typedef GetAllStoresParam */
-
-/**
  * @typedef GetBulkServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [batchId] - Unique identifier of bulk job
  * @property {string} [action] - Import or export bulk type
@@ -55,9 +57,10 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetBulkTatParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {string} extensionId - Unique Identifier of courier partner extension.
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [batchId] - Unique identifier of bulk job
  * @property {string} [action] - Import or export bulk type
@@ -71,31 +74,59 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /** @typedef GetCompanyConfigurationParam */
 
 /**
+ * @typedef GetCountriesParam
+ * @property {boolean} [onboard] - Only fetch countries which allowed for
+ *   onboard on Platform.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12
+ * @property {string} [q] - The search string to search in the list of countries by name.
+ * @property {string} [hierarchy] - The search filter to filter countries based
+ *   on their available hierarchy.
+ */
+
+/**
  * @typedef GetCourierPartnerAccountParam
  * @property {string} accountId - Unique ID of courier account
  */
 
 /**
  * @typedef GetCourierPartnerAccountsParam
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string} [stage] - Stage of the account. enabled/disabled
+ * @property {string} [stage] - Stage of the account.
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
+ * @property {string[]} [accountIds] - Filters dp accounts based on their ids
+ * @property {boolean} [selfShip] - To filter self ship/non self ship dp accounts
+ * @property {boolean} [ownAccount] - Filters seller owned or Fynd Managed dp accounts
+ * @property {string} [q] - Filters dp accounts based on case sensitive partial
+ *   account name
  */
 
 /**
- * @typedef GetLocalitiesParam
- * @property {string} localityType - A `locality_type` contains unique
- *   geographical division.
- * @property {string[]} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string[]} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string[]} [city] - A `city` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
+ * @typedef GetCourierPartnerSchemeParam
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ */
+
+/**
+ * @typedef GetCourierPartnerSchemesParam
+ * @property {string} [schemeType] - Indicates whether a scheme is created by an
+ *   admin for global purposes or customized for a specific company.
+ * @property {string} [paymentMode] - Indicates payment mode for a scheme.
+ * @property {string[]} [capabilities] - Indicates whether the scheme possesses
+ *   certain capabilities.
+ * @property {string[]} [schemeIds] - List of scheme ids which need to be
+ *   returned in the response.
+ */
+
+/**
+ * @typedef GetInstalledCourierPartnerExtensionsParam
+ * @property {number} [pageNo] - The current page number for paginated results.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {string} [isInstalled] - Filter to get installed extensions only
  */
 
 /**
@@ -105,9 +136,10 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetPackageMaterialListParam
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string} [q] - Perform regex search on items matching name for given value
+ * @property {string} [q] - Used to search for matching results based on the
+ *   provided input.
  * @property {string} [size] - Filters items based on given size
  * @property {string} [packageType] - Filters items based on given package_type
  */
@@ -119,53 +151,41 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetPackageMaterialRulesParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string} [isActive] - Filters items based on given is_active
- */
-
-/**
  * @typedef GetPackageMaterialsParam
  * @property {string} packageMaterialId - A `package_material_id` is a unique
  *   identifier for a Package Material
  */
 
 /**
- * @typedef GetServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {string} regionId - Unique identifier of a region
- */
-
-/**
- * @typedef GetZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- */
-
-/**
- * @typedef GetZonesParam
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @typedef GetSampleFileServiceabilityStatusParam
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [applicationIds] - Zones filtered by applications
- * @property {string} [q] - Search with name as a free text
- * @property {string} [countryIsoCode] - ISO2 code of the country
- * @property {string} [state] - State name
- * @property {string} [city] - City name
- * @property {string} [pincode] - Pincode value to search zones
- * @property {string} [sector] - Sector value to search zones
+ * @property {string} [batchId] - Batch id of the execution
+ */
+
+/** @typedef GetSelfShipDetailsParam */
+
+/**
+ * @typedef SampleFileServiceabilityParam
+ * @property {ServiceabilityPlatformModel.BulkRegionServiceabilityTatDetails} body
  */
 
 /**
  * @typedef UpdateCompanyConfigurationParam
- * @property {ServiceabilityPlatformModel.CompanyConfig} body
+ * @property {ServiceabilityPlatformModel.CompanyConfigurationSchema} body
  */
 
 /**
  * @typedef UpdateCourierPartnerAccountParam
  * @property {string} accountId - Unique ID of courier account
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
+ */
+
+/**
+ * @typedef UpdateCourierPartnerSchemeParam
+ * @property {string} schemeId - Unique identifier for the scheme, used to fetch
+ *   or modify scheme details.
+ * @property {ServiceabilityPlatformModel.CourierPartnerSchemeUpdateDetailsSchema} body
  */
 
 /**
@@ -183,17 +203,8 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef UpdateServiceabilityParam
- * @property {string} extensionId - Unique Identifier of CP Extension
- * @property {string} schemeId - Unique identifier of a scheme
- * @property {string} regionId - Unique identifier of a region
- * @property {ServiceabilityPlatformModel.ServiceabilityModel} body
- */
-
-/**
- * @typedef UpdateZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- * @property {ServiceabilityPlatformModel.UpdateZoneData} body
+ * @typedef UpdateSelfShipDetailsParam
+ * @property {ServiceabilityPlatformModel.SelfshipSchema} body
  */
 
 class ServiceabilityPlatformValidator {
@@ -202,7 +213,7 @@ class ServiceabilityPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkRegionJobSerializer().required(),
+      body: ServiceabilityPlatformModel.BulkRegionJobDetails().required(),
     }).required();
   }
 
@@ -211,20 +222,28 @@ class ServiceabilityPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkRegionJobSerializer().required(),
+      body: ServiceabilityPlatformModel.BulkRegionJobDetails().required(),
     }).required();
   }
 
   /** @returns {CreateCourierPartnerAccountParam} */
   static createCourierPartnerAccount() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CourierAccountRequestBody().required(),
+      body: ServiceabilityPlatformModel.CourierAccountDetailsBody().required(),
+    }).required();
+  }
+
+  /** @returns {CreateCourierPartnerSchemeParam} */
+  static createCourierPartnerScheme() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.CourierPartnerSchemeDetailsModel().required(),
     }).required();
   }
 
   /** @returns {CreatePackageMaterialParam} */
   static createPackageMaterial() {
     return Joi.object({
+      pageNo: Joi.number(),
       body: ServiceabilityPlatformModel.PackageMaterial().required(),
     }).required();
   }
@@ -236,18 +255,6 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {CreateZoneParam} */
-  static createZone() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.CreateZoneData().required(),
-    }).required();
-  }
-
-  /** @returns {GetAllStoresParam} */
-  static getAllStores() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetBulkServiceabilityParam} */
   static getBulkServiceability() {
     return Joi.object({
@@ -257,7 +264,7 @@ class ServiceabilityPlatformValidator {
       pageSize: Joi.number(),
       batchId: Joi.string().allow(""),
       action: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: Joi.string().allow("").allow(null),
       country: Joi.string().allow(""),
       region: Joi.string().allow(""),
       startDate: Joi.string().allow(""),
@@ -274,7 +281,7 @@ class ServiceabilityPlatformValidator {
       pageSize: Joi.number(),
       batchId: Joi.string().allow(""),
       action: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: Joi.string().allow("").allow(null),
       country: Joi.string().allow(""),
       region: Joi.string().allow(""),
       startDate: Joi.string().allow(""),
@@ -285,6 +292,17 @@ class ServiceabilityPlatformValidator {
   /** @returns {GetCompanyConfigurationParam} */
   static getCompanyConfiguration() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetCountriesParam} */
+  static getCountries() {
+    return Joi.object({
+      onboard: Joi.boolean(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+      hierarchy: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetCourierPartnerAccountParam} */
@@ -302,19 +320,36 @@ class ServiceabilityPlatformValidator {
       stage: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       transportType: Joi.string().allow(""),
+      accountIds: Joi.array().items(Joi.string().allow("")),
+      selfShip: Joi.boolean(),
+      ownAccount: Joi.boolean(),
+      q: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {GetLocalitiesParam} */
-  static getLocalities() {
+  /** @returns {GetCourierPartnerSchemeParam} */
+  static getCourierPartnerScheme() {
     return Joi.object({
-      localityType: Joi.string().allow("").required(),
-      country: Joi.array().items(Joi.string().allow("")),
-      state: Joi.array().items(Joi.string().allow("")),
-      city: Joi.array().items(Joi.string().allow("")),
+      schemeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetCourierPartnerSchemesParam} */
+  static getCourierPartnerSchemes() {
+    return Joi.object({
+      schemeType: Joi.string().allow(""),
+      paymentMode: Joi.string().allow(""),
+      capabilities: Joi.array().items(Joi.string().allow("")),
+      schemeIds: Joi.array().items(Joi.string().allow("")),
+    }).required();
+  }
+
+  /** @returns {GetInstalledCourierPartnerExtensionsParam} */
+  static getInstalledCourierPartnerExtensions() {
+    return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      q: Joi.string().allow(""),
+      isInstalled: Joi.string().allow(""),
     }).required();
   }
 
@@ -343,15 +378,6 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetPackageMaterialRulesParam} */
-  static getPackageMaterialRules() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      isActive: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetPackageMaterialsParam} */
   static getPackageMaterials() {
     return Joi.object({
@@ -359,42 +385,31 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetServiceabilityParam} */
-  static getServiceability() {
-    return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      schemeId: Joi.string().allow("").required(),
-      regionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetZoneByIdParam} */
-  static getZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetZonesParam} */
-  static getZones() {
+  /** @returns {GetSampleFileServiceabilityStatusParam} */
+  static getSampleFileServiceabilityStatus() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      isActive: Joi.boolean(),
-      applicationIds: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      countryIsoCode: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      city: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
-      sector: Joi.string().allow(""),
+      batchId: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetSelfShipDetailsParam} */
+  static getSelfShipDetails() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {SampleFileServiceabilityParam} */
+  static sampleFileServiceability() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.BulkRegionServiceabilityTatDetails().required(),
     }).required();
   }
 
   /** @returns {UpdateCompanyConfigurationParam} */
   static updateCompanyConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CompanyConfig().required(),
+      body: ServiceabilityPlatformModel.CompanyConfigurationSchema().required(),
     }).required();
   }
 
@@ -402,7 +417,15 @@ class ServiceabilityPlatformValidator {
   static updateCourierPartnerAccount() {
     return Joi.object({
       accountId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.CourierAccount().required(),
+      body: ServiceabilityPlatformModel.CourierAccountDetailsBody().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateCourierPartnerSchemeParam} */
+  static updateCourierPartnerScheme() {
+    return Joi.object({
+      schemeId: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.CourierPartnerSchemeUpdateDetailsSchema().required(),
     }).required();
   }
 
@@ -422,21 +445,10 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {UpdateServiceabilityParam} */
-  static updateServiceability() {
+  /** @returns {UpdateSelfShipDetailsParam} */
+  static updateSelfShipDetails() {
     return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      schemeId: Joi.string().allow("").required(),
-      regionId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.ServiceabilityModel().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateZoneByIdParam} */
-  static updateZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.UpdateZoneData().required(),
+      body: ServiceabilityPlatformModel.SelfshipSchema().required(),
     }).required();
   }
 }

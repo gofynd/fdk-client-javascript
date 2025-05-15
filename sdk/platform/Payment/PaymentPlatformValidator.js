@@ -5,7 +5,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.UpdatePayoutRequest} body
+ * @property {PaymentPlatformModel.UpdatePayoutCreation} body
  */
 
 /**
@@ -33,18 +33,18 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef SavePayoutParam
- * @property {PaymentPlatformModel.PayoutRequest} body
+ * @property {PaymentPlatformModel.PayoutCreation} body
  */
 
 /**
  * @typedef SaveSubscriptionSetupIntentParam
- * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentRequest} body
+ * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentCreation} body
  */
 
 /**
  * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutRequest} body
+ * @property {PaymentPlatformModel.PayoutCreation} body
  */
 
 /**
@@ -57,7 +57,7 @@ class PaymentPlatformValidator {
   static activateAndDectivatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
+      body: PaymentPlatformModel.UpdatePayoutCreation().required(),
     }).required();
   }
 
@@ -98,14 +98,14 @@ class PaymentPlatformValidator {
   /** @returns {SavePayoutParam} */
   static savePayout() {
     return Joi.object({
-      body: PaymentPlatformModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutCreation().required(),
     }).required();
   }
 
   /** @returns {SaveSubscriptionSetupIntentParam} */
   static saveSubscriptionSetupIntent() {
     return Joi.object({
-      body: PaymentPlatformModel.SaveSubscriptionSetupIntentRequest().required(),
+      body: PaymentPlatformModel.SaveSubscriptionSetupIntentCreation().required(),
     }).required();
   }
 
@@ -113,7 +113,7 @@ class PaymentPlatformValidator {
   static updatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutCreation().required(),
     }).required();
   }
 

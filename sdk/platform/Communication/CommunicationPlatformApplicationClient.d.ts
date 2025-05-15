@@ -93,14 +93,14 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
      *   - Success response
      *
      * @name createEventSubscriptions
      * @summary: Create an event subscription
      * @description: Creates a new event subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptions/).
      */
-    createEventSubscriptions({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>;
+    createEventSubscriptions({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.CreateEventSubscriptionsByBulkParam} arg
      *   - Arg object
@@ -108,7 +108,7 @@ declare class Communication {
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<
-     *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse[]
+     *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult[]
      * >}
      *   - Success response
      *
@@ -116,7 +116,7 @@ declare class Communication {
      * @summary: Create event subscriptions in bulk
      * @description: Creates a new event subscription in bulk. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptionsByBulk/).
      */
-    createEventSubscriptionsByBulk({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsByBulkParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse[]>;
+    createEventSubscriptionsByBulk({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateEventSubscriptionsByBulkParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult[]>;
     /**
      * @param {CommunicationPlatformApplicationValidator.CreateJobsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -229,14 +229,14 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+     * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
      *   - Success response
      *
      * @name editEventSubscriptions
      * @summary: Update an event subscriptions
      * @description: Modifys the configuration and settings of a specific event subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/editEventSubscriptions/).
      */
-    editEventSubscriptions({ id, body, requestHeaders }?: CommunicationPlatformApplicationValidator.EditEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>;
+    editEventSubscriptions({ id, body, requestHeaders }?: CommunicationPlatformApplicationValidator.EditEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetAppProvidersParam} arg
      *   - Arg object
@@ -463,14 +463,14 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+     * @returns {Promise<CommunicationPlatformModel.GetGlobalVariablesResult>}
      *   - Success response
      *
      * @name getGlobalVariables
      * @summary: Get all global variables
      * @description: Retrieves a list of communication global variables. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
      */
-    getGlobalVariables({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>;
+    getGlobalVariables({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.GetGlobalVariablesResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -642,51 +642,51 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
+     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
      *   Success response
      * @name getSystemSmsTemplates
      * @summary: Gets all system SMS templates
      * @description: Retrieves system-defined SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
      */
-    getSystemSmsTemplates({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemSmsTemplates[]>;
+    getSystemSmsTemplates({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemSmsTemplates>;
     /**
      * @param {CommunicationPlatformApplicationValidator.PostGlobalVariablesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+     * @returns {Promise<CommunicationPlatformModel.CreateGlobalVariablesResult>}
      *   - Success response
      *
      * @name postGlobalVariables
      * @summary: Create global variables
      * @description: Updates and creates communication global variables. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
      */
-    postGlobalVariables({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.PostGlobalVariablesParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>;
+    postGlobalVariables({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.PostGlobalVariablesParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.CreateGlobalVariablesResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
      * @name sendCommunicationAsynchronously
      * @summary: Send communication asynchronously
      * @description: Sends communications to sellers with deffered delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
      */
-    sendCommunicationAsynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EngineResponse>;
+    sendCommunicationAsynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EngineResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
      * @name sendCommunicationSynchronously
      * @summary: Send communication synchronously
      * @description: Sends real-time communications to sellers with immediate delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
      */
-    sendCommunicationSynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EngineResponse>;
+    sendCommunicationSynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EngineResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -703,13 +703,12 @@ declare class Communication {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
-     *   Success response
+     * @returns {Promise<CommunicationPlatformModel.TriggerJobResult>} - Success response
      * @name triggerCampaignJob
      * @summary: Trigger a campaign job
      * @description: Initiates a job to execute a communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
      */
-    triggerCampaignJob({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.TriggerCampaignJobParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.TriggerJobResponse>;
+    triggerCampaignJob({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.TriggerCampaignJobParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.TriggerJobResult>;
     /**
      * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersParam} arg
      *   - Arg object
