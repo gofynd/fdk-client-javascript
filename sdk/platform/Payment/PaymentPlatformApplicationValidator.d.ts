@@ -114,8 +114,6 @@ export = PaymentPlatformApplicationValidator;
  */
 /**
  * @typedef GetPosPaymentModeRoutesParam
- * @property {string} [xOrderingSource] - Optional header to identify the
- *   ordering source used to determine\ applicable payment options for business unit.
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -132,7 +130,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {boolean} [displaySplit] - Display Split Payment Option or not
  * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal
  * @property {string} [shipmentId]
- * @property {string} [customerId]
  */
 /**
  * @typedef GetUserBeneficiariesParam
@@ -243,10 +240,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {PaymentPlatformModel.RefundSessionCreation} body
  */
 /**
- * @typedef ValidateCustomerAndCreditSummaryParam
- * @property {PaymentPlatformModel.CustomerValidationSchema} body
- */
-/**
  * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentPlatformModel.ValidateCustomerCreation} body
  */
@@ -349,13 +342,11 @@ declare class PaymentPlatformApplicationValidator {
     static updatePaymentSession(): UpdatePaymentSessionParam;
     /** @returns {UpdateRefundSessionParam} */
     static updateRefundSession(): UpdateRefundSessionParam;
-    /** @returns {ValidateCustomerAndCreditSummaryParam} */
-    static validateCustomerAndCreditSummary(): ValidateCustomerAndCreditSummaryParam;
     /** @returns {VerifyCustomerForPaymentParam} */
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
+    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, VerifyCustomerForPaymentParam };
 }
 type AddEdcDeviceParam = {
     /**
@@ -495,11 +486,6 @@ type GetPaymentSessionParam = {
 };
 type GetPosPaymentModeRoutesParam = {
     /**
-     * - Optional header to identify the
-     * ordering source used to determine\ applicable payment options for business unit.
-     */
-    xOrderingSource?: string;
-    /**
      * - Payable amount.
      */
     amount: number;
@@ -545,7 +531,6 @@ type GetPosPaymentModeRoutesParam = {
      */
     advancePayment?: boolean;
     shipmentId?: string;
-    customerId?: string;
 };
 type GetUserBeneficiariesParam = {
     orderId: string;
@@ -661,9 +646,6 @@ type UpdateRefundSessionParam = {
      */
     requestId: string;
     body: PaymentPlatformModel.RefundSessionCreation;
-};
-type ValidateCustomerAndCreditSummaryParam = {
-    body: PaymentPlatformModel.CustomerValidationSchema;
 };
 type VerifyCustomerForPaymentParam = {
     body: PaymentPlatformModel.ValidateCustomerCreation;

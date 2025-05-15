@@ -880,13 +880,11 @@ class Theme {
    * @description: Retrieve a list of available fonts that can be used by themes in the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFonts/).
    */
   async getFonts(
-    { capability, requestHeaders } = { requestHeaders: {} },
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.getFonts().validate(
-      {
-        capability,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -897,9 +895,7 @@ class Theme {
     const {
       error: warrning,
     } = ThemePlatformApplicationValidator.getFonts().validate(
-      {
-        capability,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -910,7 +906,6 @@ class Theme {
     }
 
     const query_params = {};
-    query_params["capability"] = capability;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1268,7 +1263,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.ThemeUpgradable>} - Success response
    * @name isUpgradable
    * @summary: Check theme is upgradable
-   * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
+   * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
    */
   async isUpgradable(
     { themeId, requestHeaders } = { requestHeaders: {} },

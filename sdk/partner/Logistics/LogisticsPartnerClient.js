@@ -62,7 +62,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/localities/bulk-sample`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/localities/bulk-sample`,
       query_params,
       body,
       requestHeaders,
@@ -152,7 +152,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/localities/bulk-sample`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/localities/bulk-sample`,
       query_params,
       undefined,
       requestHeaders,
@@ -232,7 +232,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
       query_params,
       body,
       requestHeaders,
@@ -349,7 +349,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/tat`,
       query_params,
       undefined,
       requestHeaders,
@@ -1381,7 +1381,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
       query_params,
       body,
       requestHeaders,
@@ -1502,7 +1502,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/serviceability/bulk`,
       query_params,
       undefined,
       requestHeaders,
@@ -1541,11 +1541,10 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
    * @name createCourierPartnerAccount
-   * @summary: Create courier account
-   * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
+   * @summary: Creation of Courier Account
+   * @description: This API Creates a new Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerAccount/).
    */
   async createCourierPartnerAccount(
     { companyId, body, requestHeaders } = { requestHeaders: {} },
@@ -1600,10 +1599,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountDetailsBody().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.CourierAccount().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1627,8 +1626,8 @@ class Logistics {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: List courier accounts
-   * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
+   * @summary: Getting Courier Account list of a company
+   * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
     {
@@ -1638,10 +1637,6 @@ class Logistics {
       stage,
       paymentMode,
       transportType,
-      accountIds,
-      selfShip,
-      ownAccount,
-      q,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1656,10 +1651,6 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
-        accountIds,
-        selfShip,
-        ownAccount,
-        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1678,10 +1669,6 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
-        accountIds,
-        selfShip,
-        ownAccount,
-        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1698,10 +1685,6 @@ class Logistics {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
-    query_params["account_ids"] = accountIds;
-    query_params["self_ship"] = selfShip;
-    query_params["own_account"] = ownAccount;
-    query_params["q"] = q;
 
     const response = await PartnerAPIClient.execute(
       this.config,
@@ -1745,11 +1728,10 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountDetailsBody>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccountResult>} - Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update courier account
-   * @description: Updates an existing courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
+   * @summary: Update Courier Account in database
+   * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
     { companyId, accountId, body, requestHeaders } = { requestHeaders: {} },
@@ -1806,10 +1788,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountDetailsBody().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.CourierAccountResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1831,8 +1813,8 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.CourierAccountResult>} - Success response
    * @name getCourierPartnerAccount
-   * @summary: Get courier account
-   * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
+   * @summary: Getting Courier Account of a company from database
+   * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
     { companyId, accountId, requestHeaders } = { requestHeaders: {} },
@@ -1907,105 +1889,12 @@ class Logistics {
   }
 
   /**
-   * @param {LogisticsPartnerValidator.GetCountriesParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
-   * @name getCountries
-   * @summary: Get all countries and associated data
-   * @description: Retrieve a list of countries for logistical purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
-   */
-  async getCountries(
-    { onboard, pageNo, pageSize, q, hierarchy, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = LogisticsPartnerValidator.getCountries().validate(
-      {
-        onboard,
-        pageNo,
-        pageSize,
-        q,
-        hierarchy,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticsPartnerValidator.getCountries().validate(
-      {
-        onboard,
-        pageNo,
-        pageSize,
-        q,
-        hierarchy,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for partner > Logistics > getCountries \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["onboard"] = onboard;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["hierarchy"] = hierarchy;
-
-    const response = await PartnerAPIClient.execute(
-      this.config,
-      "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/countries`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LogisticsPartnerModel.GetCountries().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for partner > Logistics > getCountries \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LogisticsPartnerValidator.CreateCourierPartnerSchemeParam} arg -
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModel>} -
+   *   Success response
    * @name createCourierPartnerScheme
    * @summary: Create Scheme for courier partner extension
    * @description: Create Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/createCourierPartnerScheme/).
@@ -2047,7 +1936,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme/`,
       query_params,
       body,
       requestHeaders,
@@ -2061,7 +1950,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeModelSchema().validate(
+    } = LogisticsPartnerModel.CourierPartnerSchemeModel().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2081,104 +1970,13 @@ class Logistics {
   }
 
   /**
-   * @param {LogisticsPartnerValidator.GetCourierPartnerSchemesParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeList>} -
-   *   Success response
-   * @name getCourierPartnerSchemes
-   * @summary: Get created Schemes for courier partner
-   * @description: Get created Schemes for courier partner - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerSchemes/).
-   */
-  async getCourierPartnerSchemes(
-    { schemeType, paymentMode, capabilities, schemeIds, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
-      {
-        schemeType,
-        paymentMode,
-        capabilities,
-        schemeIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
-      {
-        schemeType,
-        paymentMode,
-        capabilities,
-        schemeIds,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for partner > Logistics > getCourierPartnerSchemes \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["scheme_type"] = schemeType;
-    query_params["payment_mode"] = paymentMode;
-    query_params["capabilities"] = capabilities;
-    query_params["scheme_ids"] = schemeIds;
-
-    const response = await PartnerAPIClient.execute(
-      this.config,
-      "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeList().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for partner > Logistics > getCourierPartnerSchemes \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam} arg -
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerPutSchema>} -
-   *   Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeUpdateDetails>}
+   *   - Success response
+   *
    * @name updateCourierPartnerScheme
    * @summary: Update Scheme for courier partner extension
    * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerScheme/).
@@ -2222,7 +2020,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "put",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
       query_params,
       body,
       requestHeaders,
@@ -2236,10 +2034,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerPutSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = LogisticsPartnerModel.CourierPartnerSchemeUpdateDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2256,25 +2054,26 @@ class Logistics {
   }
 
   /**
-   * @param {LogisticsPartnerValidator.GetCourierPartnerSchemeParam} arg - Arg object.
+   * @param {LogisticsPartnerValidator.GetCountriesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>}
-   *   - Success response
-   *
-   * @name getCourierPartnerScheme
-   * @summary: Get Scheme for courier partner extension by Id
-   * @description: Update Scheme for courier partner extension by Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerScheme/).
+   * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
+   * @name getCountries
+   * @summary: Get all countries and associated data
+   * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
-  async getCourierPartnerScheme(
-    { schemeId, requestHeaders } = { requestHeaders: {} },
+  async getCountries(
+    { onboarding, pageNo, pageSize, q, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = LogisticsPartnerValidator.getCourierPartnerScheme().validate(
+    const { error } = LogisticsPartnerValidator.getCountries().validate(
       {
-        schemeId,
+        onboarding,
+        pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2285,25 +2084,32 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsPartnerValidator.getCourierPartnerScheme().validate(
+    } = LogisticsPartnerValidator.getCountries().validate(
       {
-        schemeId,
+        onboarding,
+        pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for partner > Logistics > getCourierPartnerScheme \n ${warrning}`,
+        message: `Parameter Validation warrnings for partner > Logistics > getCountries \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["onboarding"] = onboarding;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
 
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/courier-partner/scheme/${schemeId}`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/countries`,
       query_params,
       undefined,
       requestHeaders,
@@ -2317,10 +2123,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierPartnerSchemeModelSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = LogisticsPartnerModel.GetCountries().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2328,7 +2134,7 @@ class Logistics {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for partner > Logistics > getCourierPartnerScheme \n ${res_error}`,
+          message: `Response Validation Warnings for partner > Logistics > getCountries \n ${res_error}`,
         });
       }
     }

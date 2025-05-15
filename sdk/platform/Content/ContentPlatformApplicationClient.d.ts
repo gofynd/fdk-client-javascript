@@ -4,18 +4,6 @@ declare class Content {
     config: any;
     applicationId: any;
     /**
-     * @param {ContentPlatformApplicationValidator.AddApplicationLanguageParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name addApplicationLanguage
-     * @summary: Add app language
-     * @description: Add new languages to application's supported language list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addApplicationLanguage/).
-     */
-    addApplicationLanguage({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddApplicationLanguageParam, { responseHeaders }?: object): Promise<any>;
-    /**
      * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -58,18 +46,6 @@ declare class Content {
      * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
      */
     addPathRedirectionRules({ body, requestHeaders }?: ContentPlatformApplicationValidator.AddPathRedirectionRulesParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PathMappingSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name bulkUnPublishApplicationLanguage
-     * @summary: Unpublish all languages of sales channel.
-     * @description: Unpublish all application's published languages of specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/bulkUnPublishApplicationLanguage/).
-     */
-    bulkUnPublishApplicationLanguage({ body, requestHeaders }?: ContentPlatformApplicationValidator.BulkUnPublishApplicationLanguageParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
      *   - Arg object
@@ -123,18 +99,6 @@ declare class Content {
      * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectDefinition/).
      */
     createAppCustomObjectDefinition({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-     * @name createApplicationResourceTranslation
-     * @summary: Add app translation
-     * @description: Create new translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createApplicationResourceTranslation/).
-     */
-    createApplicationResourceTranslation({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
     /**
      * @param {ContentPlatformApplicationValidator.CreateBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -190,6 +154,18 @@ declare class Content {
      */
     createPage({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
     /**
+     * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
+     * @name createPagePreview
+     * @summary: Create page preview
+     * @description: Generate and add a new page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
+     */
+    createPagePreview({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePagePreviewParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
+    /**
      * @param {ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam} arg
      *   - Arg object
      *
@@ -202,17 +178,26 @@ declare class Content {
      */
     createSEOMarkupSchema({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateTranslateUILabelsParam} arg
-     *   - Arg object
-     *
+     * @param {ContentPlatformApplicationValidator.CreateSitemapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-     * @name createTranslateUILabels
-     * @summary: Add Translate Ui Labels
-     * @description: Creates a new Translate Ui Labels entry with specified configuration and locale settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createTranslateUILabels/).
+     * @returns {Promise<ContentPlatformModel.SitemapConfig>} - Success response
+     * @name createSitemap
+     * @summary: Create a new sitemap configuration
+     * @description: Create a new sitemap configuration for a specific company and application. The name must be unique within the scope of the application. The sitemap XML data must be valid XML following the sitemap protocol specification. Once created, the configuration can be activated or deactivated using the is_active flag.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSitemap/).
      */
-    createTranslateUILabels({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
+    createSitemap({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
+    /**
+     * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name createSlideshow
+     * @summary: Create a slideshow
+     * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
+     */
+    createSlideshow({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
      *   - Arg object
@@ -264,30 +249,6 @@ declare class Content {
      * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinitionBySlug/).
      */
     deleteAppCustomObjectDefinitionBySlug({ slug, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAppCustomObjectDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.DeleteApplicationLanguageParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-     * @name deleteApplicationLanguage
-     * @summary: Remove app language
-     * @description: Remove a language from application's supported languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationLanguage/).
-     */
-    deleteApplicationLanguage({ locale, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationLanguageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-     * @name deleteApplicationResourceTranslation
-     * @summary: Remove app translation
-     * @description: Remove translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteApplicationResourceTranslation/).
-     */
-    deleteApplicationResourceTranslation({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -387,6 +348,27 @@ declare class Content {
      * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
      */
     deleteSEOMarkupSchema({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteSitemapParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SitemapConfig>} - Success response
+     * @name deleteSitemap
+     * @summary: Delete a specific sitemap configuration
+     * @description: Permanently delete a sitemap configuration identified by its name. This action cannot be undone. All associated data including the sitemap XML data will be removed.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSitemap/).
+     */
+    deleteSitemap({ name, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name deleteSlideshow
+     * @summary: Delete a slideshow
+     * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
+     */
+    deleteSlideshow({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -610,30 +592,6 @@ declare class Content {
      */
     getAppResources({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourcesSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetApplicationLanguagesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getApplicationLanguages
-     * @summary: Get app languages
-     * @description: Fetch all languages configured for the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationLanguages/).
-     */
-    getApplicationLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getApplicationResourceTranslations
-     * @summary: Get app translations
-     * @description: Fetch translations for application-level resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getApplicationResourceTranslations/).
-     */
-    getApplicationResourceTranslations({ locale, type, resourceId, requestHeaders }?: ContentPlatformApplicationValidator.GetApplicationResourceTranslationsParam, { responseHeaders }?: object): Promise<any>;
-    /**
      * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -701,6 +659,18 @@ declare class Content {
      * @description: Use this API to List default SEO Markup Schemas - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultSEOMarkupSchema/).
      */
     getDefaultSEOMarkupSchema({ pageType, requestHeaders }?: ContentPlatformApplicationValidator.GetDefaultSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultSchemaComponent>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetDefaultSitemapConfigParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.DefaultSitemapConfig>} - Success response
+     * @name getDefaultSitemapConfig
+     * @summary: Get default sitemap configuration
+     * @description: Retrieves the current default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultSitemapConfig/).
+     */
+    getDefaultSitemapConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultSitemapConfig>;
     /**
      * @param {ContentPlatformApplicationValidator.GetFaqByIdOrSlugParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -903,6 +873,51 @@ declare class Content {
      */
     getSEOMarkupSchemas({ title, active, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSEOMarkupSchemasParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchemaComponent>;
     /**
+     * @param {ContentPlatformApplicationValidator.GetSitemapParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SitemapConfig>} - Success response
+     * @name getSitemap
+     * @summary: Get a specific sitemap configuration
+     * @description: Retrieve a specific sitemap configuration by its name. Returns the complete configuration including the sitemap XML data, activation status, and timestamps.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSitemap/).
+     */
+    getSitemap({ name, requestHeaders }?: ContentPlatformApplicationValidator.GetSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetSitemapsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SitemapConfigurationList>} -
+     *   Success response
+     * @name getSitemaps
+     * @summary: List sitemap configurations
+     * @description: Retrieve a list of sitemap configurations for a specific company and application. Each configuration contains the sitemap XML data and its activation status.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSitemaps/).
+     */
+    getSitemaps({ pageNo, pageSize, isActive, name, requestHeaders }?: ContentPlatformApplicationValidator.GetSitemapsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfigurationList>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name getSlideshowBySlug
+     * @summary: Get Slideshow
+     * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
+     */
+    getSlideshowBySlug({ slug, devicePlatform, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowGetDetails>} - Success response
+     * @name getSlideshows
+     * @summary: List Slideshows
+     * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
+     */
+    getSlideshows({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowGetDetails>;
+    /**
      * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
      *   - Arg object
      *
@@ -914,30 +929,6 @@ declare class Content {
      * @description: Retrieve information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSupportInformation/).
      */
     getSupportInformation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslateUiLabelsPage>} - Success response
-     * @name getTranslateUILabels
-     * @summary: Get Translate Ui Labels
-     * @description: Retrieves Translate Ui Labels with optional filtering by type, application, and company identifiers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabels/).
-     */
-    getTranslateUILabels({ templateThemeId, themeId, locale, type, requestHeaders }?: ContentPlatformApplicationValidator.GetTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabelsPage>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-     * @name getTranslateUILabelsById
-     * @summary: Get Resource Detail
-     * @description: Fetches detailed information for a specific Translate Ui Labels using its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslateUILabelsById/).
-     */
-    getTranslateUILabelsById({ id, requestHeaders }?: ContentPlatformApplicationValidator.GetTranslateUILabelsByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
     /**
      * @param {ContentPlatformApplicationValidator.ImportAppCustomObjectEntriesBySlugParam} arg
      *   - Arg object
@@ -1080,30 +1071,6 @@ declare class Content {
      */
     updateAppCustomObjectDefinitionBySlug({ slug, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppCustomObjectDefinitionBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ApplicationLanguage>} - Success response
-     * @name updateApplicationLanguageStatus
-     * @summary: Set app language
-     * @description: Update language status and settings for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationLanguageStatus/).
-     */
-    updateApplicationLanguageStatus({ locale, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateApplicationLanguageStatusParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ApplicationLanguage>;
-    /**
-     * @param {ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-     * @name updateApplicationResourceTranslation
-     * @summary: Update app translation
-     * @description: Update existing translations for application resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateApplicationResourceTranslation/).
-     */
-    updateApplicationResourceTranslation({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateApplicationResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
-    /**
      * @param {ContentPlatformApplicationValidator.UpdateBlogParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -1113,6 +1080,18 @@ declare class Content {
      * @description: Modify the content and settings of a specific blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
      */
     updateBlog({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateBlogParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateDefaultSitemapConfigParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.DefaultSitemapConfig>} - Success response
+     * @name updateDefaultSitemapConfig
+     * @summary: Update default sitemap configuration
+     * @description: Updates the default sitemap configuration settings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateDefaultSitemapConfig/).
+     */
+    updateDefaultSitemapConfig({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateDefaultSitemapConfigParam, { responseHeaders }?: object): Promise<ContentPlatformModel.DefaultSitemapConfig>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateFaqParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1228,6 +1207,27 @@ declare class Content {
      */
     updateSEOConfiguration({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSEOConfigurationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchema>;
     /**
+     * @param {ContentPlatformApplicationValidator.UpdateSitemapParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SitemapConfig>} - Success response
+     * @name updateSitemap
+     * @summary: Update a specific sitemap configuration
+     * @description: Update an existing sitemap configuration identified by its name. You can update the activation status and/or the sitemap XML data. The name cannot be modified once the configuration is created. The updated sitemap XML data must be valid XML following the sitemap protocol specification.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSitemap/).
+     */
+    updateSitemap({ name, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSitemapParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SitemapConfig>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
+     * @name updateSlideshow
+     * @summary: Update a slideshow
+     * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
+     */
+    updateSlideshow({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
+    /**
      * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
      *   - Arg object
      *
@@ -1239,31 +1239,6 @@ declare class Content {
      * @description: Modify information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
      */
     updateSupportInformation({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSupportInformationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
-    /**
-     * @param {ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslateUiLabels>} - Success response
-     * @name updateTranslateUILabels
-     * @summary: Update Resource Detail
-     * @description: Modifies existing Translate Ui Labels properties including locale, type, and associated configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateTranslateUILabels/).
-     */
-    updateTranslateUILabels({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateTranslateUILabelsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslateUiLabels>;
-    /**
-     * @param {ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>} -
-     *   Success response
-     * @name upsertApplicationResourceTranslationInBulk
-     * @summary: Bulk update translations
-     * @description: Create or update multiple translations in a single request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/upsertApplicationResourceTranslationInBulk/).
-     */
-    upsertApplicationResourceTranslationInBulk({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpsertApplicationResourceTranslationInBulkParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslationBulkUpsert>;
 }
 import ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
 import ContentPlatformModel = require("./ContentPlatformModel");

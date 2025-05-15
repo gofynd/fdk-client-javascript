@@ -179,7 +179,7 @@ declare class Catalog {
      * @summary: Delete product
      * @description: Users can delete a product by providing the item_id and company_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
      */
-    deleteProduct({ itemId, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    deleteProduct({ itemId, body, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.DeleteProductBulkJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -224,7 +224,7 @@ declare class Catalog {
      * @summary: Download inventory template data
      * @description: Allows you to download inventory product template data for a specific company in formats like csv and excel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadInventoryTemplateView/).
      */
-    downloadInventoryTemplateView({ schemaType, type, requestHeaders }?: CatalogPlatformValidator.DownloadInventoryTemplateViewParam, { responseHeaders }?: object): Promise<string>;
+    downloadInventoryTemplateView({ itemType, requestHeaders }?: CatalogPlatformValidator.DownloadInventoryTemplateViewParam, { responseHeaders }?: object): Promise<string>;
     /**
      * @param {CatalogPlatformValidator.DownloadProductTemplateViewsParam} arg
      *   - Arg object
@@ -411,26 +411,19 @@ declare class Catalog {
      * @summary: List bulk inventory upload history
      * @description: Helps to get bulk Inventory upload jobs status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
      */
-    getInventoryBulkUploadHistory({ pageNo, pageSize, search, startDate, endDate, stage, requestHeaders }?: CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkInventoryGet>;
+    getInventoryBulkUploadHistory({ pageNo, pageSize, search, requestHeaders }?: CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkInventoryGet>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @param {string} [arg.search] - Search string to filter the results by batch id
-     * @param {string} [arg.startDate] - Filter results by the job's start date.
-     * @param {string} [arg.endDate] - Filter results by the job's end date.
-     * @param {string} [arg.stage] - Filter results by the current stage of the
-     *   import job.
      * @returns {Paginator<CatalogPlatformModel.BulkInventoryGet>}
      * @summary: List bulk inventory upload history
      * @description: Helps to get bulk Inventory upload jobs status.
      */
-    getInventoryBulkUploadHistoryPaginator({ pageSize, search, startDate, endDate, stage, }?: {
+    getInventoryBulkUploadHistoryPaginator({ pageSize, search }?: {
         pageSize?: number;
         search?: string;
-        startDate?: string;
-        endDate?: string;
-        stage?: string;
     }): Paginator<CatalogPlatformModel.BulkInventoryGet>;
     /**
      * @param {CatalogPlatformValidator.GetInventoryBySizeParam} arg - Arg object
@@ -907,7 +900,7 @@ declare class Catalog {
      * @summary: List product templates
      * @description: Allows you to list all product templates for a specific company. also can filter by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplate/).
      */
-    listProductTemplate({ department, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.ListProductTemplateParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TemplatesResponseSchema>;
+    listProductTemplate({ department, requestHeaders }?: CatalogPlatformValidator.ListProductTemplateParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TemplatesResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.ListProductTemplateCategoriesParam} arg
      *   - Arg object
@@ -968,30 +961,6 @@ declare class Catalog {
      * @description: Allows to add Inventory for particular size and selling location. for associated companies - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateInventories/).
      */
     updateInventories({ body, requestHeaders }?: CatalogPlatformValidator.UpdateInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponseSchema>;
-    /**
-     * @param {CatalogPlatformValidator.UpdateLocationPriceParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
-     *   - Success response
-     *
-     * @name updateLocationPrice
-     * @summary: Update an Article Price
-     * @description: enables you to update article price for a specific size and selling location (store). The price updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationPrice/).
-     */
-    updateLocationPrice({ storeId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.UpdateLocationPriceParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>;
-    /**
-     * @param {CatalogPlatformValidator.UpdateLocationQuantityParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
-     *   - Success response
-     *
-     * @name updateLocationQuantity
-     * @summary: Update an Article Quantity
-     * @description: enables you to update article quantity for a specific size and selling location (store). The quantity updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationQuantity/).
-     */
-    updateLocationQuantity({ storeId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.UpdateLocationQuantityParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.UpdateMarketplaceOptinParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1086,7 +1055,7 @@ declare class Catalog {
      * @summary: Validate product template schema
      * @description: Allows you to list all product templates validation values for all the fields present in the database for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplateSchema/).
      */
-    validateProductTemplateSchema({ itemType, schemaType, requestHeaders }?: CatalogPlatformValidator.ValidateProductTemplateSchemaParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryValidationResponseSchema>;
+    validateProductTemplateSchema({ itemType, requestHeaders }?: CatalogPlatformValidator.ValidateProductTemplateSchemaParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryValidationResponseSchema>;
 }
 import CatalogPlatformValidator = require("./CatalogPlatformValidator");
 import CatalogPlatformModel = require("./CatalogPlatformModel");

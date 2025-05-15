@@ -17,10 +17,7 @@ class Content {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getAllLanguages: "/service/public/content/languages",
       getAllTags: "/service/public/content/tags",
-      getAllTranslatableResources:
-        "/service/public/content/translatable/resources",
       getAnalyticsTags: "/service/public/content/analytics-tags",
       getBasicDetails: "/service/public/content/basic-details",
       getCredentialsByEntity:
@@ -28,7 +25,6 @@ class Content {
       getCustomPage: "/service/public/content/custom-pages/{slug}",
       getFooterContent: "/service/public/content/footer",
       getHomePageContent: "/service/public/content/home-page",
-      getLanguageByLocale: "/service/public/content/languages/{locale}",
       getMenuContent: "/service/public/content/menu",
       getMenuContentByType: "/service/public/content/menu/{type}",
       getNavbar: "/service/public/content/navbar",
@@ -48,82 +44,6 @@ class Content {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {ContentPublicValidator.GetAllLanguagesParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getAllLanguages
-   * @summary: Get All Languages
-   * @description: Fetches complete list of languages supported by the platform with their locale codes and text directions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getAllLanguages/).
-   */
-  async getAllLanguages(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentPublicValidator.getAllLanguages().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPublicValidator.getAllLanguages().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for public > Content > getAllLanguages \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getAllLanguages"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for public > Content > getAllLanguages \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
   }
 
   /**
@@ -195,84 +115,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for public > Content > getAllTags \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPublicValidator.GetAllTranslatableResourcesParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getAllTranslatableResources
-   * @summary: Get Translatable Items
-   * @description: Retrieves all resources that can be translated across different languages in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getAllTranslatableResources/).
-   */
-  async getAllTranslatableResources(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPublicValidator.getAllTranslatableResources().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPublicValidator.getAllTranslatableResources().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for public > Content > getAllTranslatableResources \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getAllTranslatableResources"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for public > Content > getAllTranslatableResources \n ${res_error}`,
         });
       }
     }
@@ -758,93 +600,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for public > Content > getHomePageContent \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPublicValidator.GetLanguageByLocaleParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<ContentPublicModel.Language>} - Success response
-   * @name getLanguageByLocale
-   * @summary: Get Single Language
-   * @description: Retrieves detailed information about a specific language using its locale identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getLanguageByLocale/).
-   */
-  async getLanguageByLocale(
-    { locale, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["locale"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const { error } = ContentPublicValidator.getLanguageByLocale().validate(
-      { locale },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPublicValidator.getLanguageByLocale().validate(
-      { locale },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for public > Content > getLanguageByLocale \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getLanguageByLocale"],
-        params: { locale },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPublicModel.Language().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for public > Content > getLanguageByLocale \n ${res_error}`,
         });
       }
     }

@@ -103,13 +103,6 @@ const Joi = require("joi");
 /**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
- * @property {CanvasItem} [canvas]
- */
-
-/**
- * @typedef CanvasItem
- * @property {string} [value]
- * @property {string} [label]
  */
 
 /**
@@ -157,9 +150,7 @@ const Joi = require("joi");
  * @typedef AvailablePageSchemaSections
  * @property {string} [name]
  * @property {string} [label]
- * @property {string} [canvas]
  * @property {Object} [props]
- * @property {string} [custom_css] - Custom CSS for a section
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
@@ -450,17 +441,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 
 /**
@@ -816,15 +797,6 @@ class ThemePlatformModel {
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
       attributes: Joi.object().pattern(/\S/, Joi.any()),
-      canvas: ThemePlatformModel.CanvasItem(),
-    });
-  }
-
-  /** @returns {CanvasItem} */
-  static CanvasItem() {
-    return Joi.object({
-      value: Joi.string().allow(""),
-      label: Joi.string().allow(""),
     });
   }
 
@@ -886,9 +858,7 @@ class ThemePlatformModel {
     return Joi.object({
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      canvas: Joi.string().allow(""),
       props: Joi.object().pattern(/\S/, Joi.any()),
-      custom_css: Joi.string().allow(""),
       blocks: Joi.array().items(Joi.any()),
       preset: Joi.object().pattern(/\S/, Joi.any()),
       predicate: ThemePlatformModel.AvailablePagePredicate(),
@@ -1244,19 +1214,7 @@ class ThemePlatformModel {
   /** @returns {GlobalSchema} */
   static GlobalSchema() {
     return Joi.object({
-      props: Joi.array().items(ThemePlatformModel.Prop()),
-    });
-  }
-
-  /** @returns {Prop} */
-  static Prop() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      category: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      label: Joi.string().allow(""),
-      info: Joi.string().allow(""),
+      props: Joi.array().items(Joi.any()),
     });
   }
 

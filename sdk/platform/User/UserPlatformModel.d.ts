@@ -79,64 +79,6 @@ export = UserPlatformModel;
  * @property {Object[]} [validations]
  */
 /**
- * @typedef CreateStoreFrontUsersPayload
- * @property {string} absolute_url - A valid URL linking to the file containing
- *   user data to be imported.
- * @property {string} file_format - The format of the file containing the user's
- *   data. Supported formats are CSV and XLSX.
- * @property {string} relative_url - A valid relative path to the file within
- *   the storage system. This path should not include the base URL or domain and
- *   must conform to the storage structure
- */
-/**
- * @typedef BulkUserExportSchema
- * @property {string} file_format - The format of the file in which you want to
- *   export data. Supported formats are CSV and XLSX.
- */
-/**
- * @typedef BulkActionModel
- * @property {string} _id - The Job ID associated with an Import or Export Job
- * @property {string} file_name - The name of the file
- * @property {string} file_format - The format of the uploaded file (e.g., CSV, XLSX).
- * @property {string} action_type - The type of bulk action being performed
- *   (e.g., import, export).
- * @property {CreatedBySchema} created_by
- * @property {BulkActionCountSchema} [count]
- * @property {string} [status] - The current status of the bulk action.
- * @property {BulkActionLinkSchema} [links]
- * @property {string} application_id - The unique identifier of the associated
- *   application.
- * @property {string} company_id - The unique identifier of the company
- *   associated with the bulk action.
- * @property {string} [created_at] - The timestamp when the bulk action was created.
- * @property {string} [updated_at] - The timestamp when the bulk action was last updated.
- */
-/**
- * @typedef CreatedBySchema
- * @property {string} name - The name of the user who initiated the operation.
- * @property {string} user_id - A unique identifier for the user who initiated
- *   the operation.
- */
-/**
- * @typedef BulkActionLinkSchema
- * @property {FileLinks} [file]
- * @property {FileLinks} [error]
- */
-/**
- * @typedef FileLinks
- * @property {string} [absolute_url] - The full URL of the file, including the
- *   domain and protocol, allowing direct access to the file from any location.
- * @property {string} [relative_url] - The relative path to the file within the
- *   storage system, excluding the base URL or domain. This path is specific to
- *   the storage structure.
- */
-/**
- * @typedef BulkActionCountSchema
- * @property {number} [total] - The total number of items to be processed.
- * @property {number} [success] - The number of successfully processed items.
- * @property {number} [error] - The number of items that failed to process.
- */
-/**
  * @typedef BlockUserRequestSchema
  * @property {boolean} [status]
  * @property {string[]} [user_id]
@@ -174,17 +116,12 @@ export = UserPlatformModel;
  * @property {PaginationSchema} [page]
  */
 /**
- * @typedef BulkActionPaginationSchema
- * @property {BulkActionModel[]} [items] - Array of Bulk Action Documents
- * @property {PaginationSchema} [page]
- */
-/**
  * @typedef PaginationSchema
- * @property {number} [size] - The number of items per page.
- * @property {number} [item_total] - The total number of items across all pages.
- * @property {boolean} [has_next] - Indicates whether there are more pages to retrieve.
- * @property {string} [type] - The type of pagination used (eg Number).
- * @property {number} [current] - The current page number.
+ * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_next]
+ * @property {string} [type]
+ * @property {number} [current]
  */
 /**
  * @typedef SessionListResponseSchema
@@ -274,7 +211,7 @@ export = UserPlatformModel;
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {string} [gender]
- * @property {string} [username]
+ * @property {string} username
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -399,19 +336,6 @@ export = UserPlatformModel;
  * @property {string} [consent_text]
  */
 /**
- * @typedef GetUserTimeline
- * @property {string} [delete_on] - Denotes the date on which the user will be deleted
- * @property {UserTimeline[]} [timeline] - List of user timeline events
- */
-/**
- * @typedef UserTimeline
- * @property {string} [date] - Denotes the date at which this event occured
- * @property {string} [title] - Title of the timeline event
- * @property {string} [type] - Type of the event, indicating its status
- * @property {boolean} [visible] - Indicates whether the event should be shown on the UI
- * @property {string} [sub_title] - Additional information about the event
- */
-/**
  * @typedef Facebook
  * @property {string} [app_id]
  * @property {string} [app_secret]
@@ -456,7 +380,7 @@ export = UserPlatformModel;
  */
 /**
  * @typedef UserGroupUpdateData
- * @property {string} [user_id] - Must be valid ID of existing user
+ * @property {string} [user_id] - Must be valid mongodb objectid of existing user
  * @property {string} [phone_number] - Phone number of registered user
  * @property {string} [email] - Email of registered user
  * @property {string} action
@@ -507,7 +431,6 @@ export = UserPlatformModel;
  * @property {string} [updated_at]
  * @property {string} [external_id]
  * @property {string} [rr_id]
- * @property {UserConsent} [consent]
  */
 /**
  * @typedef UserSearchSchema
@@ -531,8 +454,6 @@ export = UserPlatformModel;
  * @property {string} [rr_id]
  * @property {boolean} [archive]
  * @property {string} [status]
- * @property {string} [deleted_on]
- * @property {UserConsent} [consent]
  */
 /**
  * @typedef PhoneNumber
@@ -549,19 +470,10 @@ export = UserPlatformModel;
  * @property {boolean} [primary] - Is it a primary email.
  * @property {boolean} [verified] - Is the email verified.
  */
-/**
- * @typedef UserConsent
- * @property {PrivacyPolicyConsentSchema} [privacy_policy]
- */
-/**
- * @typedef PrivacyPolicyConsentSchema
- * @property {boolean} [value] - Whether the user has consented to the privacy policy
- * @property {string} [updated_at] - When the consent was last updated
- */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
+    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -766,131 +678,6 @@ type CreateUserAttributeDefinition = {
     default_value?: string;
     validations?: any[];
 };
-/** @returns {CreateStoreFrontUsersPayload} */
-declare function CreateStoreFrontUsersPayload(): CreateStoreFrontUsersPayload;
-type CreateStoreFrontUsersPayload = {
-    /**
-     * - A valid URL linking to the file containing
-     * user data to be imported.
-     */
-    absolute_url: string;
-    /**
-     * - The format of the file containing the user's
-     * data. Supported formats are CSV and XLSX.
-     */
-    file_format: string;
-    /**
-     * - A valid relative path to the file within
-     * the storage system. This path should not include the base URL or domain and
-     * must conform to the storage structure
-     */
-    relative_url: string;
-};
-/** @returns {BulkUserExportSchema} */
-declare function BulkUserExportSchema(): BulkUserExportSchema;
-type BulkUserExportSchema = {
-    /**
-     * - The format of the file in which you want to
-     * export data. Supported formats are CSV and XLSX.
-     */
-    file_format: string;
-};
-/** @returns {BulkActionModel} */
-declare function BulkActionModel(): BulkActionModel;
-type BulkActionModel = {
-    /**
-     * - The Job ID associated with an Import or Export Job
-     */
-    _id: string;
-    /**
-     * - The name of the file
-     */
-    file_name: string;
-    /**
-     * - The format of the uploaded file (e.g., CSV, XLSX).
-     */
-    file_format: string;
-    /**
-     * - The type of bulk action being performed
-     * (e.g., import, export).
-     */
-    action_type: string;
-    created_by: CreatedBySchema;
-    count?: BulkActionCountSchema;
-    /**
-     * - The current status of the bulk action.
-     */
-    status?: string;
-    links?: BulkActionLinkSchema;
-    /**
-     * - The unique identifier of the associated
-     * application.
-     */
-    application_id: string;
-    /**
-     * - The unique identifier of the company
-     * associated with the bulk action.
-     */
-    company_id: string;
-    /**
-     * - The timestamp when the bulk action was created.
-     */
-    created_at?: string;
-    /**
-     * - The timestamp when the bulk action was last updated.
-     */
-    updated_at?: string;
-};
-/** @returns {CreatedBySchema} */
-declare function CreatedBySchema(): CreatedBySchema;
-type CreatedBySchema = {
-    /**
-     * - The name of the user who initiated the operation.
-     */
-    name: string;
-    /**
-     * - A unique identifier for the user who initiated
-     * the operation.
-     */
-    user_id: string;
-};
-/** @returns {BulkActionLinkSchema} */
-declare function BulkActionLinkSchema(): BulkActionLinkSchema;
-type BulkActionLinkSchema = {
-    file?: FileLinks;
-    error?: FileLinks;
-};
-/** @returns {FileLinks} */
-declare function FileLinks(): FileLinks;
-type FileLinks = {
-    /**
-     * - The full URL of the file, including the
-     * domain and protocol, allowing direct access to the file from any location.
-     */
-    absolute_url?: string;
-    /**
-     * - The relative path to the file within the
-     * storage system, excluding the base URL or domain. This path is specific to
-     * the storage structure.
-     */
-    relative_url?: string;
-};
-/** @returns {BulkActionCountSchema} */
-declare function BulkActionCountSchema(): BulkActionCountSchema;
-type BulkActionCountSchema = {
-    /**
-     * - The total number of items to be processed.
-     */
-    total?: number;
-    /**
-     * - The number of successfully processed items.
-     */
-    success?: number;
-    /**
-     * - The number of items that failed to process.
-     */
-    error?: number;
-};
 /** @returns {BlockUserRequestSchema} */
 declare function BlockUserRequestSchema(): BlockUserRequestSchema;
 type BlockUserRequestSchema = {
@@ -936,37 +723,13 @@ type CustomerListResponseSchema = {
     items?: UserSearchSchema[];
     page?: PaginationSchema;
 };
-/** @returns {BulkActionPaginationSchema} */
-declare function BulkActionPaginationSchema(): BulkActionPaginationSchema;
-type BulkActionPaginationSchema = {
-    /**
-     * - Array of Bulk Action Documents
-     */
-    items?: BulkActionModel[];
-    page?: PaginationSchema;
-};
 /** @returns {PaginationSchema} */
 declare function PaginationSchema(): PaginationSchema;
 type PaginationSchema = {
-    /**
-     * - The number of items per page.
-     */
     size?: number;
-    /**
-     * - The total number of items across all pages.
-     */
     item_total?: number;
-    /**
-     * - Indicates whether there are more pages to retrieve.
-     */
     has_next?: boolean;
-    /**
-     * - The type of pagination used (eg Number).
-     */
     type?: string;
-    /**
-     * - The current page number.
-     */
     current?: number;
 };
 /** @returns {SessionListResponseSchema} */
@@ -1072,7 +835,7 @@ type CreateUserRequestSchema = {
     first_name?: string;
     last_name?: string;
     gender?: string;
-    username?: string;
+    username: string;
     meta?: any;
     external_id?: string;
     rr_id?: string;
@@ -1214,42 +977,6 @@ declare function DeleteAccountConsent(): DeleteAccountConsent;
 type DeleteAccountConsent = {
     consent_text?: string;
 };
-/** @returns {GetUserTimeline} */
-declare function GetUserTimeline(): GetUserTimeline;
-type GetUserTimeline = {
-    /**
-     * - Denotes the date on which the user will be deleted
-     */
-    delete_on?: string;
-    /**
-     * - List of user timeline events
-     */
-    timeline?: UserTimeline[];
-};
-/** @returns {UserTimeline} */
-declare function UserTimeline(): UserTimeline;
-type UserTimeline = {
-    /**
-     * - Denotes the date at which this event occured
-     */
-    date?: string;
-    /**
-     * - Title of the timeline event
-     */
-    title?: string;
-    /**
-     * - Type of the event, indicating its status
-     */
-    type?: string;
-    /**
-     * - Indicates whether the event should be shown on the UI
-     */
-    visible?: boolean;
-    /**
-     * - Additional information about the event
-     */
-    sub_title?: string;
-};
 /** @returns {Facebook} */
 declare function Facebook(): Facebook;
 type Facebook = {
@@ -1312,7 +1039,7 @@ type PartialUserGroupUpdateSchema = {
 declare function UserGroupUpdateData(): UserGroupUpdateData;
 type UserGroupUpdateData = {
     /**
-     * - Must be valid ID of existing user
+     * - Must be valid mongodb objectid of existing user
      */
     user_id?: string;
     /**
@@ -1375,7 +1102,6 @@ type UserSchema = {
     updated_at?: string;
     external_id?: string;
     rr_id?: string;
-    consent?: UserConsent;
 };
 /** @returns {UserSearchSchema} */
 declare function UserSearchSchema(): UserSearchSchema;
@@ -1400,8 +1126,6 @@ type UserSearchSchema = {
     rr_id?: string;
     archive?: boolean;
     status?: string;
-    deleted_on?: string;
-    consent?: UserConsent;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
@@ -1446,21 +1170,4 @@ type Email = {
      * - Is the email verified.
      */
     verified?: boolean;
-};
-/** @returns {UserConsent} */
-declare function UserConsent(): UserConsent;
-type UserConsent = {
-    privacy_policy?: PrivacyPolicyConsentSchema;
-};
-/** @returns {PrivacyPolicyConsentSchema} */
-declare function PrivacyPolicyConsentSchema(): PrivacyPolicyConsentSchema;
-type PrivacyPolicyConsentSchema = {
-    /**
-     * - Whether the user has consented to the privacy policy
-     */
-    value?: boolean;
-    /**
-     * - When the consent was last updated
-     */
-    updated_at?: string;
 };

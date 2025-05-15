@@ -21,8 +21,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef ApplyCouponParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -33,15 +31,11 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef CheckCartServiceabilityParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {CartPlatformModel.OpenApiCartServiceabilityCreation} body
  */
 
 /**
  * @typedef CheckoutCartParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {CartPlatformModel.OpenApiPlatformCheckoutReq} body
  */
 
@@ -73,13 +67,11 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef DeletePromotionParam
- * @property {string} id
+ * @property {string} id - Promotion id for fetching single promotion data for deleting
  */
 
 /**
  * @typedef FetchAndvalidateCartItemsParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {CartPlatformModel.OpenapiCartDetailsCreation} body
  */
 
@@ -143,8 +135,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef GetCartParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id] - The unique identifier of the cart
  * @property {string} [userId] - Option to fetch cart for the provided user_id.
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -243,10 +233,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [promotionGroup] - Type of promotion groups
  * @property {number} [storeId] - Unique identifier of a store
  * @property {string} [cartType] - The type of cart
- * @property {string} [promotionType] - Type of promotion to be fetched
- * @property {string} [cartId] - The unique identifier of the user cart.
- * @property {boolean} [autoApply] - Indicates whether to filter promotions
- *   based on their auto_apply status.
+ * @property {string} [sortBy] - Specifies the sorting criteria for the
+ *   promotions. Sorts promotions in descending order by the value provided.
  */
 
 /**
@@ -297,15 +285,11 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef OverrideCartParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {CartPlatformModel.OverrideCheckoutReq} body
  */
 
 /**
  * @typedef PlatformAddItemsParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -321,24 +305,18 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef PlatformCheckoutCartParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailCreation} body
  */
 
 /**
  * @typedef PlatformCheckoutCartV2Param
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Creation} body
  */
 
 /**
  * @typedef PlatformUpdateCartParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -360,8 +338,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef RemoveCouponParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [uid]
  * @property {boolean} [buyNow]
  */
@@ -373,8 +349,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef SelectAddressParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -384,8 +358,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef SelectPaymentModeParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -394,8 +366,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef SelectPaymentModeV2Param
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -489,8 +459,6 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef ValidateCouponForPaymentParam
- * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
- *   source header, to be used to identify source of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]
@@ -527,8 +495,6 @@ class CartPlatformApplicationValidator {
   /** @returns {ApplyCouponParam} */
   static applyCoupon() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       i: Joi.boolean(),
       b: Joi.boolean(),
       p: Joi.boolean(),
@@ -541,8 +507,6 @@ class CartPlatformApplicationValidator {
   /** @returns {CheckCartServiceabilityParam} */
   static checkCartServiceability() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       body: CartPlatformModel.OpenApiCartServiceabilityCreation().required(),
     }).required();
   }
@@ -550,8 +514,6 @@ class CartPlatformApplicationValidator {
   /** @returns {CheckoutCartParam} */
   static checkoutCart() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       body: CartPlatformModel.OpenApiPlatformCheckoutReq().required(),
     }).required();
   }
@@ -602,8 +564,6 @@ class CartPlatformApplicationValidator {
   /** @returns {FetchAndvalidateCartItemsParam} */
   static fetchAndvalidateCartItems() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       body: CartPlatformModel.OpenapiCartDetailsCreation().required(),
     }).required();
   }
@@ -684,8 +644,6 @@ class CartPlatformApplicationValidator {
   /** @returns {GetCartParam} */
   static getCart() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       userId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
@@ -804,9 +762,7 @@ class CartPlatformApplicationValidator {
       promotionGroup: Joi.string().allow(""),
       storeId: Joi.number(),
       cartType: Joi.string().allow(""),
-      promotionType: Joi.string().allow(""),
-      cartId: Joi.string().allow(""),
-      autoApply: Joi.boolean(),
+      sortBy: Joi.string().allow(""),
     }).required();
   }
 
@@ -863,8 +819,6 @@ class CartPlatformApplicationValidator {
   /** @returns {OverrideCartParam} */
   static overrideCart() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       body: CartPlatformModel.OverrideCheckoutReq().required(),
     }).required();
   }
@@ -872,8 +826,6 @@ class CartPlatformApplicationValidator {
   /** @returns {PlatformAddItemsParam} */
   static platformAddItems() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
@@ -886,8 +838,6 @@ class CartPlatformApplicationValidator {
   /** @returns {PlatformCheckoutCartParam} */
   static platformCheckoutCart() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       body: CartPlatformModel.PlatformCartCheckoutDetailCreation().required(),
     }).required();
@@ -896,8 +846,6 @@ class CartPlatformApplicationValidator {
   /** @returns {PlatformCheckoutCartV2Param} */
   static platformCheckoutCartV2() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       body: CartPlatformModel.PlatformCartCheckoutDetailV2Creation().required(),
     }).required();
@@ -906,8 +854,6 @@ class CartPlatformApplicationValidator {
   /** @returns {PlatformUpdateCartParam} */
   static platformUpdateCart() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       orderType: Joi.string().allow(""),
@@ -928,8 +874,6 @@ class CartPlatformApplicationValidator {
   /** @returns {RemoveCouponParam} */
   static removeCoupon() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       uid: Joi.string().allow(""),
       buyNow: Joi.boolean(),
     }).required();
@@ -945,8 +889,6 @@ class CartPlatformApplicationValidator {
   /** @returns {SelectAddressParam} */
   static selectAddress() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       cartId: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       i: Joi.boolean(),
@@ -958,8 +900,6 @@ class CartPlatformApplicationValidator {
   /** @returns {SelectPaymentModeParam} */
   static selectPaymentMode() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       orderType: Joi.string().allow(""),
@@ -970,8 +910,6 @@ class CartPlatformApplicationValidator {
   /** @returns {SelectPaymentModeV2Param} */
   static selectPaymentModeV2() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       orderType: Joi.string().allow(""),
@@ -1086,8 +1024,6 @@ class CartPlatformApplicationValidator {
   /** @returns {ValidateCouponForPaymentParam} */
   static validateCouponForPayment() {
     return Joi.object({
-      xOrderingSource: CartPlatformModel.OrderingSource(),
-
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       addressId: Joi.string().allow(""),

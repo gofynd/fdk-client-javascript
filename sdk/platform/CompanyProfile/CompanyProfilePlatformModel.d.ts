@@ -54,7 +54,7 @@ export = CompanyProfilePlatformModel;
  * @typedef GetAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -94,13 +94,13 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef ErrorResponseSchema
- * @property {string} [message] - A descriptive message providing details about
- *   the error, intended to convey the nature and context of the issue.
- * @property {Object} [error] - An object containing additional error details,
- *   which may vary depending on the error type.
+ * @property {string} [message]
+ * @property {string} [code]
+ * @property {number} [status]
+ * @property {Object} [meta]
  */
 /**
- * @typedef CompanyRequestTaxesSchema
+ * @typedef CompanyTaxesSerializer1
  * @property {string} [effective_date]
  * @property {number} [rate]
  * @property {boolean} [enable]
@@ -109,7 +109,7 @@ export = CompanyProfilePlatformModel;
  * @typedef CreateUpdateAddressSchema
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {string} pincode
+ * @property {number} pincode
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -126,7 +126,7 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [warnings]
  * @property {string} [company_type]
  * @property {Object} [_custom_json]
- * @property {CompanyRequestTaxesSchema[]} [taxes]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
  * @property {BusinessDetails} [business_details]
  * @property {Document[]} [documents]
  * @property {string} [business_type]
@@ -266,7 +266,6 @@ export = CompanyProfilePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef CompanyBrandListSchema
@@ -385,7 +384,7 @@ export = CompanyProfilePlatformModel;
  * @typedef AddressSchema
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {string} [pincode]
+ * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -445,7 +444,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyRequestTaxesSchema, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateBrandRequestSchema, UpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSchema, UserSchema, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSchema, GetCompanyProfileSerializerResponseSchema, ErrorResponseSchema, CompanyTaxesSerializer1, CreateUpdateAddressSchema, UpdateCompany, ProfileSuccessResponseSchema, DocumentsObj, MetricsSchema, BrandBannerSchema, GetBrandResponseSchema, CreateBrandRequestSchema, UpdateBrandRequestSchema, CompanySocialAccounts, CompanyDetails, CompanySchema, CompanyBrandSchema, Page, CompanyBrandListSchema, CompanyBrandPostRequestSchema, InvoiceCredSchema, InvoiceDetailsSchema, GetCompanySchema, LocationManagerSchema, LocationTimingSchema, LocationDayWiseSchema, HolidayDateSchema, HolidaySchemaSchema, ProductReturnConfigSchema, GetLocationSchema, LocationListSchema, AddressSchema, LocationSchema, BulkLocationSchema, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
 /** @returns {CompanyTaxesSchema} */
 declare function CompanyTaxesSchema(): CompanyTaxesSchema;
@@ -512,7 +511,7 @@ declare function GetAddressSchema(): GetAddressSchema;
 type GetAddressSchema = {
     landmark?: string;
     country_code?: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
@@ -554,20 +553,14 @@ type GetCompanyProfileSerializerResponseSchema = {
 /** @returns {ErrorResponseSchema} */
 declare function ErrorResponseSchema(): ErrorResponseSchema;
 type ErrorResponseSchema = {
-    /**
-     * - A descriptive message providing details about
-     * the error, intended to convey the nature and context of the issue.
-     */
     message?: string;
-    /**
-     * - An object containing additional error details,
-     * which may vary depending on the error type.
-     */
-    error?: any;
+    code?: string;
+    status?: number;
+    meta?: any;
 };
-/** @returns {CompanyRequestTaxesSchema} */
-declare function CompanyRequestTaxesSchema(): CompanyRequestTaxesSchema;
-type CompanyRequestTaxesSchema = {
+/** @returns {CompanyTaxesSerializer1} */
+declare function CompanyTaxesSerializer1(): CompanyTaxesSerializer1;
+type CompanyTaxesSerializer1 = {
     effective_date?: string;
     rate?: number;
     enable?: boolean;
@@ -577,7 +570,7 @@ declare function CreateUpdateAddressSchema(): CreateUpdateAddressSchema;
 type CreateUpdateAddressSchema = {
     landmark?: string;
     country_code?: string;
-    pincode: string;
+    pincode: number;
     address_type: string;
     longitude: number;
     country: string;
@@ -595,7 +588,7 @@ type UpdateCompany = {
     warnings?: any;
     company_type?: string;
     _custom_json?: any;
-    taxes?: CompanyRequestTaxesSchema[];
+    taxes?: CompanyTaxesSerializer1[];
     business_details?: BusinessDetails;
     documents?: Document[];
     business_type?: string;
@@ -768,10 +761,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {CompanyBrandListSchema} */
 declare function CompanyBrandListSchema(): CompanyBrandListSchema;
@@ -904,7 +893,7 @@ declare function AddressSchema(): AddressSchema;
 type AddressSchema = {
     landmark?: string;
     country_code: string;
-    pincode?: string;
+    pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;

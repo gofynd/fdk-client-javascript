@@ -504,16 +504,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 /**
  * @typedef Preset
@@ -678,7 +669,7 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
+    export { AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
@@ -1640,35 +1631,7 @@ type SectionItem = {
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
-    props?: Prop[];
-};
-/** @returns {Prop} */
-declare function Prop(): Prop;
-type Prop = {
-    /**
-     * - The type of the property
-     */
-    type?: string;
-    /**
-     * - The category of the property
-     */
-    category?: string;
-    /**
-     * - The value of the property
-     */
-    value?: string;
-    /**
-     * - The ID of the property
-     */
-    id?: string;
-    /**
-     * - The label of the property
-     */
-    label?: string;
-    /**
-     * - Additional information about the property
-     */
-    info?: string;
+    props?: any[];
 };
 /** @returns {Preset} */
 declare function Preset(): Preset;

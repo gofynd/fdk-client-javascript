@@ -80,7 +80,6 @@ const Joi = require("joi");
 
 /**
  * @typedef UrlInfo
- * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
  * @property {string} [alias]
@@ -119,7 +118,8 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
+ * @property {number} [page] - Current page number
  */
 
 /**
@@ -231,7 +231,6 @@ class SharePlatformModel {
   /** @returns {UrlInfo} */
   static UrlInfo() {
     return Joi.object({
-      original: Joi.string().allow(""),
       hash: Joi.string().allow(""),
       short_url: Joi.string().allow(""),
       alias: Joi.string().allow(""),
@@ -274,7 +273,8 @@ class SharePlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
+      total: Joi.number(),
+      page: Joi.number(),
     });
   }
 

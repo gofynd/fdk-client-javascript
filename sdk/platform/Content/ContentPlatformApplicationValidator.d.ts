@@ -1,9 +1,5 @@
 export = ContentPlatformApplicationValidator;
 /**
- * @typedef AddApplicationLanguageParam
- * @property {ContentPlatformModel.ApplicationLanguageCreate} body
- */
-/**
  * @typedef AddDataLoaderParam
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
@@ -19,10 +15,6 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef AddPathRedirectionRulesParam
  * @property {ContentPlatformModel.PathMappingSchema} body
- */
-/**
- * @typedef BulkUnPublishApplicationLanguageParam
- * @property {ContentPlatformModel.unPublishApplicationLanguage} body
  */
 /**
  * @typedef CreateAnnouncementParam
@@ -41,10 +33,6 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef CreateAppCustomObjectDefinitionParam
  * @property {ContentPlatformModel.CustomObjectDefinitionRequestSchema} body
- */
-/**
- * @typedef CreateApplicationResourceTranslationParam
- * @property {ContentPlatformModel.ResourceTranslationCreate} body
  */
 /**
  * @typedef CreateBlogParam
@@ -67,12 +55,20 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.PagePayload} body
  */
 /**
+ * @typedef CreatePagePreviewParam
+ * @property {ContentPlatformModel.PagePayload} body
+ */
+/**
  * @typedef CreateSEOMarkupSchemaParam
  * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
 /**
- * @typedef CreateTranslateUILabelsParam
- * @property {ContentPlatformModel.TranslateUiLabelsCreate} body
+ * @typedef CreateSitemapParam
+ * @property {ContentPlatformModel.SitemapConfigCreate} body
+ */
+/**
+ * @typedef CreateSlideshowParam
+ * @property {ContentPlatformModel.SlideshowPayload} body
  */
 /**
  * @typedef DeleteAnnouncementParam
@@ -92,14 +88,6 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef DeleteAppCustomObjectDefinitionBySlugParam
  * @property {string} slug
- */
-/**
- * @typedef DeleteApplicationLanguageParam
- * @property {string} locale
- */
-/**
- * @typedef DeleteApplicationResourceTranslationParam
- * @property {string} id
  */
 /**
  * @typedef DeleteBlogParam
@@ -138,6 +126,14 @@ export = ContentPlatformApplicationValidator;
  * @typedef DeleteSEOMarkupSchemaParam
  * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
+ */
+/**
+ * @typedef DeleteSitemapParam
+ * @property {string} name
+ */
+/**
+ * @typedef DeleteSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
  */
 /**
  * @typedef EditDataLoaderParam
@@ -237,13 +233,6 @@ export = ContentPlatformApplicationValidator;
  * @property {string} actionType
  */
 /** @typedef GetAppResourcesParam */
-/** @typedef GetApplicationLanguagesParam */
-/**
- * @typedef GetApplicationResourceTranslationsParam
- * @property {string} locale
- * @property {string} type
- * @property {string} resourceId
- */
 /**
  * @typedef GetBlogBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
@@ -272,6 +261,7 @@ export = ContentPlatformApplicationValidator;
  * @property {string} [pageType] - The type of page against which schema
  *   template was created
  */
+/** @typedef GetDefaultSitemapConfigParam */
 /**
  * @typedef GetFaqByIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
@@ -359,18 +349,35 @@ export = ContentPlatformApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
+/**
+ * @typedef GetSitemapParam
+ * @property {string} name
+ */
+/**
+ * @typedef GetSitemapsParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {boolean} [isActive] - Boolean flag for checking if sitemap is
+ *   active or not in storefront
+ * @property {string} [name] - Query parameter to search sitemaps with name
+ */
+/**
+ * @typedef GetSlideshowBySlugParam
+ * @property {string} slug - A short, human-readable, URL-friendly identifier of
+ *   a slideshow. You can get slug value of a page from `getSlideshows` API.
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ */
+/**
+ * @typedef GetSlideshowsParam
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ */
 /** @typedef GetSupportInformationParam */
-/**
- * @typedef GetTranslateUILabelsParam
- * @property {string} [templateThemeId] - Unique id of template theme
- * @property {string} [themeId] - Unique id of theme
- * @property {string} [locale] - Multilingual locale
- * @property {string} [type] - Filter Translate Ui Labels by type
- */
-/**
- * @typedef GetTranslateUILabelsByIdParam
- * @property {string} id - ID of the Translate Ui Labels
- */
 /**
  * @typedef ImportAppCustomObjectEntriesBySlugParam
  * @property {string} slug
@@ -428,19 +435,13 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 /**
- * @typedef UpdateApplicationLanguageStatusParam
- * @property {string} locale
- * @property {ContentPlatformModel.ApplicationLanguageUpdate} body
- */
-/**
- * @typedef UpdateApplicationResourceTranslationParam
- * @property {string} id
- * @property {ContentPlatformModel.ResourceTranslationUpdate} body
- */
-/**
  * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
  * @property {ContentPlatformModel.BlogPayload} body
+ */
+/**
+ * @typedef UpdateDefaultSitemapConfigParam
+ * @property {ContentPlatformModel.DefaultSitemapConfig} body
  */
 /**
  * @typedef UpdateFaqParam
@@ -492,21 +493,20 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.SeoComponent} body
  */
 /**
+ * @typedef UpdateSitemapParam
+ * @property {string} name
+ * @property {ContentPlatformModel.SitemapConfigUpdate} body
+ */
+/**
+ * @typedef UpdateSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
+ * @property {ContentPlatformModel.SlideshowPayload} body
+ */
+/**
  * @typedef UpdateSupportInformationParam
  * @property {ContentPlatformModel.Support} body
  */
-/**
- * @typedef UpdateTranslateUILabelsParam
- * @property {string} id - The unique identifier of the Translate Ui Labels to update
- * @property {ContentPlatformModel.StaticResourceUpdate} body
- */
-/**
- * @typedef UpsertApplicationResourceTranslationInBulkParam
- * @property {ContentPlatformModel.ResourceTranslationList} body
- */
 declare class ContentPlatformApplicationValidator {
-    /** @returns {AddApplicationLanguageParam} */
-    static addApplicationLanguage(): AddApplicationLanguageParam;
     /** @returns {AddDataLoaderParam} */
     static addDataLoader(): AddDataLoaderParam;
     /** @returns {AddFaqParam} */
@@ -515,8 +515,6 @@ declare class ContentPlatformApplicationValidator {
     static addInjectableTag(): AddInjectableTagParam;
     /** @returns {AddPathRedirectionRulesParam} */
     static addPathRedirectionRules(): AddPathRedirectionRulesParam;
-    /** @returns {BulkUnPublishApplicationLanguageParam} */
-    static bulkUnPublishApplicationLanguage(): BulkUnPublishApplicationLanguageParam;
     /** @returns {CreateAnnouncementParam} */
     static createAnnouncement(): CreateAnnouncementParam;
     /** @returns {CreateAppCustomFieldDefinitionParam} */
@@ -525,8 +523,6 @@ declare class ContentPlatformApplicationValidator {
     static createAppCustomObjectBySlug(): CreateAppCustomObjectBySlugParam;
     /** @returns {CreateAppCustomObjectDefinitionParam} */
     static createAppCustomObjectDefinition(): CreateAppCustomObjectDefinitionParam;
-    /** @returns {CreateApplicationResourceTranslationParam} */
-    static createApplicationResourceTranslation(): CreateApplicationResourceTranslationParam;
     /** @returns {CreateBlogParam} */
     static createBlog(): CreateBlogParam;
     /** @returns {CreateFaqCategoryParam} */
@@ -537,10 +533,14 @@ declare class ContentPlatformApplicationValidator {
     static createNavigation(): CreateNavigationParam;
     /** @returns {CreatePageParam} */
     static createPage(): CreatePageParam;
+    /** @returns {CreatePagePreviewParam} */
+    static createPagePreview(): CreatePagePreviewParam;
     /** @returns {CreateSEOMarkupSchemaParam} */
     static createSEOMarkupSchema(): CreateSEOMarkupSchemaParam;
-    /** @returns {CreateTranslateUILabelsParam} */
-    static createTranslateUILabels(): CreateTranslateUILabelsParam;
+    /** @returns {CreateSitemapParam} */
+    static createSitemap(): CreateSitemapParam;
+    /** @returns {CreateSlideshowParam} */
+    static createSlideshow(): CreateSlideshowParam;
     /** @returns {DeleteAnnouncementParam} */
     static deleteAnnouncement(): DeleteAnnouncementParam;
     /** @returns {DeleteAppCustomFieldDefinitionBySlugParam} */
@@ -549,10 +549,6 @@ declare class ContentPlatformApplicationValidator {
     static deleteAppCustomObjectBySlug(): DeleteAppCustomObjectBySlugParam;
     /** @returns {DeleteAppCustomObjectDefinitionBySlugParam} */
     static deleteAppCustomObjectDefinitionBySlug(): DeleteAppCustomObjectDefinitionBySlugParam;
-    /** @returns {DeleteApplicationLanguageParam} */
-    static deleteApplicationLanguage(): DeleteApplicationLanguageParam;
-    /** @returns {DeleteApplicationResourceTranslationParam} */
-    static deleteApplicationResourceTranslation(): DeleteApplicationResourceTranslationParam;
     /** @returns {DeleteBlogParam} */
     static deleteBlog(): DeleteBlogParam;
     /** @returns {DeleteDataLoaderParam} */
@@ -571,6 +567,10 @@ declare class ContentPlatformApplicationValidator {
     static deletePathRedirectionRules(): DeletePathRedirectionRulesParam;
     /** @returns {DeleteSEOMarkupSchemaParam} */
     static deleteSEOMarkupSchema(): DeleteSEOMarkupSchemaParam;
+    /** @returns {DeleteSitemapParam} */
+    static deleteSitemap(): DeleteSitemapParam;
+    /** @returns {DeleteSlideshowParam} */
+    static deleteSlideshow(): DeleteSlideshowParam;
     /** @returns {EditDataLoaderParam} */
     static editDataLoader(): EditDataLoaderParam;
     /** @returns {EditInjectableTagParam} */
@@ -607,10 +607,6 @@ declare class ContentPlatformApplicationValidator {
     static getAppJobs(): GetAppJobsParam;
     /** @returns {GetAppResourcesParam} */
     static getAppResources(): any;
-    /** @returns {GetApplicationLanguagesParam} */
-    static getApplicationLanguages(): any;
-    /** @returns {GetApplicationResourceTranslationsParam} */
-    static getApplicationResourceTranslations(): GetApplicationResourceTranslationsParam;
     /** @returns {GetBlogBySlugParam} */
     static getBlogBySlug(): GetBlogBySlugParam;
     /** @returns {GetBlogsParam} */
@@ -623,6 +619,8 @@ declare class ContentPlatformApplicationValidator {
     static getDefaultNavigations(): any;
     /** @returns {GetDefaultSEOMarkupSchemaParam} */
     static getDefaultSEOMarkupSchema(): GetDefaultSEOMarkupSchemaParam;
+    /** @returns {GetDefaultSitemapConfigParam} */
+    static getDefaultSitemapConfig(): any;
     /** @returns {GetFaqByIdOrSlugParam} */
     static getFaqByIdOrSlug(): GetFaqByIdOrSlugParam;
     /** @returns {GetFaqCategoriesParam} */
@@ -659,12 +657,16 @@ declare class ContentPlatformApplicationValidator {
     static getSEOMarkupSchema(): GetSEOMarkupSchemaParam;
     /** @returns {GetSEOMarkupSchemasParam} */
     static getSEOMarkupSchemas(): GetSEOMarkupSchemasParam;
+    /** @returns {GetSitemapParam} */
+    static getSitemap(): GetSitemapParam;
+    /** @returns {GetSitemapsParam} */
+    static getSitemaps(): GetSitemapsParam;
+    /** @returns {GetSlideshowBySlugParam} */
+    static getSlideshowBySlug(): GetSlideshowBySlugParam;
+    /** @returns {GetSlideshowsParam} */
+    static getSlideshows(): GetSlideshowsParam;
     /** @returns {GetSupportInformationParam} */
     static getSupportInformation(): any;
-    /** @returns {GetTranslateUILabelsParam} */
-    static getTranslateUILabels(): GetTranslateUILabelsParam;
-    /** @returns {GetTranslateUILabelsByIdParam} */
-    static getTranslateUILabelsById(): GetTranslateUILabelsByIdParam;
     /** @returns {ImportAppCustomObjectEntriesBySlugParam} */
     static importAppCustomObjectEntriesBySlug(): ImportAppCustomObjectEntriesBySlugParam;
     /** @returns {RemoveInjectableTagParam} */
@@ -687,12 +689,10 @@ declare class ContentPlatformApplicationValidator {
     static updateAppCustomObjectBySlug(): UpdateAppCustomObjectBySlugParam;
     /** @returns {UpdateAppCustomObjectDefinitionBySlugParam} */
     static updateAppCustomObjectDefinitionBySlug(): UpdateAppCustomObjectDefinitionBySlugParam;
-    /** @returns {UpdateApplicationLanguageStatusParam} */
-    static updateApplicationLanguageStatus(): UpdateApplicationLanguageStatusParam;
-    /** @returns {UpdateApplicationResourceTranslationParam} */
-    static updateApplicationResourceTranslation(): UpdateApplicationResourceTranslationParam;
     /** @returns {UpdateBlogParam} */
     static updateBlog(): UpdateBlogParam;
+    /** @returns {UpdateDefaultSitemapConfigParam} */
+    static updateDefaultSitemapConfig(): UpdateDefaultSitemapConfigParam;
     /** @returns {UpdateFaqParam} */
     static updateFaq(): UpdateFaqParam;
     /** @returns {UpdateFaqCategoryParam} */
@@ -713,19 +713,16 @@ declare class ContentPlatformApplicationValidator {
     static updatePathRedirectionRules(): UpdatePathRedirectionRulesParam;
     /** @returns {UpdateSEOConfigurationParam} */
     static updateSEOConfiguration(): UpdateSEOConfigurationParam;
+    /** @returns {UpdateSitemapParam} */
+    static updateSitemap(): UpdateSitemapParam;
+    /** @returns {UpdateSlideshowParam} */
+    static updateSlideshow(): UpdateSlideshowParam;
     /** @returns {UpdateSupportInformationParam} */
     static updateSupportInformation(): UpdateSupportInformationParam;
-    /** @returns {UpdateTranslateUILabelsParam} */
-    static updateTranslateUILabels(): UpdateTranslateUILabelsParam;
-    /** @returns {UpsertApplicationResourceTranslationInBulkParam} */
-    static upsertApplicationResourceTranslationInBulk(): UpsertApplicationResourceTranslationInBulkParam;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { AddApplicationLanguageParam, AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, BulkUnPublishApplicationLanguageParam, CreateAnnouncementParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectBySlugParam, CreateAppCustomObjectDefinitionParam, CreateApplicationResourceTranslationParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreateSEOMarkupSchemaParam, CreateTranslateUILabelsParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionBySlugParam, DeleteAppCustomObjectBySlugParam, DeleteAppCustomObjectDefinitionBySlugParam, DeleteApplicationLanguageParam, DeleteApplicationResourceTranslationParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesBySlugParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionByResourceParam, GetAppCustomFieldDefinitionBySlugParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsByResourceSlugParam, GetAppCustomObjectBySlugParam, GetAppCustomObjectDefinitionBySlugParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsBySlugParam, GetAppJobsParam, GetAppResourcesParam, GetApplicationLanguagesParam, GetApplicationResourceTranslationsParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSupportInformationParam, GetTranslateUILabelsParam, GetTranslateUILabelsByIdParam, ImportAppCustomObjectEntriesBySlugParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryBySlugParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldByResourceSlugParam, UpdateAppCustomFieldDefinitionBySlugParam, UpdateAppCustomObjectBySlugParam, UpdateAppCustomObjectDefinitionBySlugParam, UpdateApplicationLanguageStatusParam, UpdateApplicationResourceTranslationParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSupportInformationParam, UpdateTranslateUILabelsParam, UpsertApplicationResourceTranslationInBulkParam };
+    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectBySlugParam, CreateAppCustomObjectDefinitionParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSEOMarkupSchemaParam, CreateSitemapParam, CreateSlideshowParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionBySlugParam, DeleteAppCustomObjectBySlugParam, DeleteAppCustomObjectDefinitionBySlugParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, DeleteSitemapParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesBySlugParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionByResourceParam, GetAppCustomFieldDefinitionBySlugParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsByResourceSlugParam, GetAppCustomObjectBySlugParam, GetAppCustomObjectDefinitionBySlugParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsBySlugParam, GetAppJobsParam, GetAppResourcesParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetDefaultSitemapConfigParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSitemapParam, GetSitemapsParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, ImportAppCustomObjectEntriesBySlugParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryBySlugParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldByResourceSlugParam, UpdateAppCustomFieldDefinitionBySlugParam, UpdateAppCustomObjectBySlugParam, UpdateAppCustomObjectDefinitionBySlugParam, UpdateBlogParam, UpdateDefaultSitemapConfigParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSitemapParam, UpdateSlideshowParam, UpdateSupportInformationParam };
 }
-type AddApplicationLanguageParam = {
-    body: ContentPlatformModel.ApplicationLanguageCreate;
-};
 type AddDataLoaderParam = {
     body: ContentPlatformModel.DataLoaderSchema;
 };
@@ -742,9 +739,6 @@ type AddInjectableTagParam = {
 type AddPathRedirectionRulesParam = {
     body: ContentPlatformModel.PathMappingSchema;
 };
-type BulkUnPublishApplicationLanguageParam = {
-    body: ContentPlatformModel.unPublishApplicationLanguage;
-};
 type CreateAnnouncementParam = {
     body: ContentPlatformModel.AdminAnnouncementSchema;
 };
@@ -758,9 +752,6 @@ type CreateAppCustomObjectBySlugParam = {
 };
 type CreateAppCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionRequestSchema;
-};
-type CreateApplicationResourceTranslationParam = {
-    body: ContentPlatformModel.ResourceTranslationCreate;
 };
 type CreateBlogParam = {
     body: ContentPlatformModel.BlogPayload;
@@ -777,11 +768,17 @@ type CreateNavigationParam = {
 type CreatePageParam = {
     body: ContentPlatformModel.PagePayload;
 };
+type CreatePagePreviewParam = {
+    body: ContentPlatformModel.PagePayload;
+};
 type CreateSEOMarkupSchemaParam = {
     body: ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody;
 };
-type CreateTranslateUILabelsParam = {
-    body: ContentPlatformModel.TranslateUiLabelsCreate;
+type CreateSitemapParam = {
+    body: ContentPlatformModel.SitemapConfigCreate;
+};
+type CreateSlideshowParam = {
+    body: ContentPlatformModel.SlideshowPayload;
 };
 type DeleteAnnouncementParam = {
     /**
@@ -800,12 +797,6 @@ type DeleteAppCustomObjectBySlugParam = {
 };
 type DeleteAppCustomObjectDefinitionBySlugParam = {
     slug: string;
-};
-type DeleteApplicationLanguageParam = {
-    locale: string;
-};
-type DeleteApplicationResourceTranslationParam = {
-    id: string;
 };
 type DeleteBlogParam = {
     /**
@@ -863,6 +854,15 @@ type DeleteSEOMarkupSchemaParam = {
     /**
      * - Alphanumeric ID allotted to a SEO Markup Schema
      * Template created within a business.
+     */
+    id: string;
+};
+type DeleteSitemapParam = {
+    name: string;
+};
+type DeleteSlideshowParam = {
+    /**
+     * - ID allotted to the slideshow.
      */
     id: string;
 };
@@ -966,11 +966,6 @@ type GetAppJobsParam = {
     page: string;
     pageSize: string;
     actionType: string;
-};
-type GetApplicationResourceTranslationsParam = {
-    locale: string;
-    type: string;
-    resourceId: string;
 };
 type GetBlogBySlugParam = {
     /**
@@ -1159,29 +1154,50 @@ type GetSEOMarkupSchemasParam = {
      */
     pageSize?: number;
 };
-type GetTranslateUILabelsParam = {
-    /**
-     * - Unique id of template theme
-     */
-    templateThemeId?: string;
-    /**
-     * - Unique id of theme
-     */
-    themeId?: string;
-    /**
-     * - Multilingual locale
-     */
-    locale?: string;
-    /**
-     * - Filter Translate Ui Labels by type
-     */
-    type?: string;
+type GetSitemapParam = {
+    name: string;
 };
-type GetTranslateUILabelsByIdParam = {
+type GetSitemapsParam = {
+    pageNo: string;
+    pageSize: string;
     /**
-     * - ID of the Translate Ui Labels
+     * - Boolean flag for checking if sitemap is
+     * active or not in storefront
      */
-    id: string;
+    isActive?: boolean;
+    /**
+     * - Query parameter to search sitemaps with name
+     */
+    name?: string;
+};
+type GetSlideshowBySlugParam = {
+    /**
+     * - A short, human-readable, URL-friendly identifier of
+     * a slideshow. You can get slug value of a page from `getSlideshows` API.
+     */
+    slug: string;
+    /**
+     * - Filter slideshows by platform. Acceptable
+     * values are: web, android, ios and all
+     */
+    devicePlatform: string;
+};
+type GetSlideshowsParam = {
+    /**
+     * - Filter slideshows by platform. Acceptable
+     * values are: web, android, ios and all
+     */
+    devicePlatform: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
 };
 type ImportAppCustomObjectEntriesBySlugParam = {
     slug: string;
@@ -1243,20 +1259,15 @@ type UpdateAppCustomObjectDefinitionBySlugParam = {
     slug: string;
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
-type UpdateApplicationLanguageStatusParam = {
-    locale: string;
-    body: ContentPlatformModel.ApplicationLanguageUpdate;
-};
-type UpdateApplicationResourceTranslationParam = {
-    id: string;
-    body: ContentPlatformModel.ResourceTranslationUpdate;
-};
 type UpdateBlogParam = {
     /**
      * - ID allotted to the blog.
      */
     id: string;
     body: ContentPlatformModel.BlogPayload;
+};
+type UpdateDefaultSitemapConfigParam = {
+    body: ContentPlatformModel.DefaultSitemapConfig;
 };
 type UpdateFaqParam = {
     /**
@@ -1321,24 +1332,25 @@ type UpdatePathRedirectionRulesParam = {
 type UpdateSEOConfigurationParam = {
     body: ContentPlatformModel.SeoComponent;
 };
+type UpdateSitemapParam = {
+    name: string;
+    body: ContentPlatformModel.SitemapConfigUpdate;
+};
+type UpdateSlideshowParam = {
+    /**
+     * - ID allotted to the slideshow.
+     */
+    id: string;
+    body: ContentPlatformModel.SlideshowPayload;
+};
 type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
-type UpdateTranslateUILabelsParam = {
-    /**
-     * - The unique identifier of the Translate Ui Labels to update
-     */
-    id: string;
-    body: ContentPlatformModel.StaticResourceUpdate;
-};
-type UpsertApplicationResourceTranslationInBulkParam = {
-    body: ContentPlatformModel.ResourceTranslationList;
-};
 type GetAppCustomFieldTypesParam = any;
 type GetAppResourcesParam = any;
-type GetApplicationLanguagesParam = any;
 type GetDataLoadersParam = any;
 type GetDefaultNavigationsParam = any;
+type GetDefaultSitemapConfigParam = any;
 type GetFaqCategoriesParam = any;
 type GetLegalInformationParam = any;
 type GetPageMetaParam = any;

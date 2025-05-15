@@ -40,7 +40,8 @@ export = ConfigurationPlatformModel;
  *   or not for sales channel inventory
  * @property {CommunicationConfig} [communication]
  * @property {string[]} [platforms]
- * @property {string} [_id] - The unique identifier of the sales channel inventory
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel inventory
  * @property {LoyaltyPointsConfig} [loyalty_points]
  * @property {string} [app] - Current sales channel ID
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel
@@ -56,14 +57,12 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef FstIdentification
- * @property {boolean} [enabled] - Indicates whether search query interpretation
- *   is enabled for the application.
+ * @property {boolean} [enabled] - Indicates whether FST identification is
+ *   enabled for the application.
  */
 /**
  * @typedef QuerySuggestions
- * @property {boolean} [enabled] - Indicates whether to enable or disable query
- *   suggestions powered by the GPT model using the current live catalog within
- *   the application.
+ * @property {boolean} [enabled] - Indicates whether query suggestions are enabled.
  * @property {number} [max_limit] - Specifies the maximum number of query
  *   suggestions that can be returned.
  */
@@ -74,7 +73,6 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppInventoryConfig
- * @property {DeliveryStrategy} [delivery_strategy]
  * @property {InventoryBrand} [brand]
  * @property {InventoryStore} [store]
  * @property {InventoryCategory} [category]
@@ -91,6 +89,10 @@ export = ConfigurationPlatformModel;
  * @property {Object[]} [company_store] - List of selling locations whose
  *   inventory is available to the sales channel for displaying on the website
  * @property {number} [company_id]
+ * @property {boolean} [enable_zone_overlapping] - Power product listing with
+ *   overlapping zones
+ * @property {boolean} [sort_popular_first] - Give preference to popularity over
+ *   score in product listing sort
  */
 /**
  * @typedef InventoryBrand
@@ -244,19 +246,6 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [enabled] - Allow orders to be accepted from the sales channel
  * @property {boolean} [force_reassignment] - Allow force reassigning of an order
  * @property {string} [message] - Reason for reassigning an order
- * @property {ProcessingSchedule} [processing_schedule]
- */
-/**
- * @typedef ProcessingSchedule
- * @property {boolean} [is_scheduled] - Indicates whether the order processing
- *   is scheduled for future.
- * @property {StartAfter} [start_after]
- */
-/**
- * @typedef StartAfter
- * @property {number} [days] - Number of days to wait before starting the process.
- * @property {number} [hours] - Number of hours to wait before starting the process.
- * @property {number} [minutes] - Number of minutes to wait before starting the process.
  */
 /**
  * @typedef AppLogisticsConfig
@@ -378,7 +367,8 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef MobileAppConfiguration
  * @property {boolean} [is_active] - Indicates the availability of the mobile build
- * @property {string} [_id] - The unique identifier for mobile application configuration
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for mobile application configuration
  * @property {string} [app_name] - Name of the mobile app
  * @property {LandingImage} [landing_image]
  * @property {SplashImage} [splash_image]
@@ -418,7 +408,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef BuildVersion
- * @property {string} [_id] - Primary Identifier of the build version.
+ * @property {string} [_id] - 24-digit Mongo Object ID
  * @property {string} [application] - Application ID of the sales channel
  * @property {string} [platform_type] - Device platform for which the mobile app
  *   was built, e.g. android, ios.
@@ -436,8 +426,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppSupportedCurrency
- * @property {string} [_id] - The unique identifier of the currency
- *   configuration supported by the application
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the currency configuration supported by the application
  * @property {string[]} [supported_currency]
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account.
@@ -449,14 +439,16 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef DefaultCurrency
- * @property {string} [ref] - The unique identifier of the default currency
+ * @property {string} [ref] - The unique identifier (24-digit Mongo Object ID)
+ *   of the default currency
  * @property {string} [code] - 3-character code of the default currency, e.g.
  *   INR, EUR, USD
  */
 /**
  * @typedef DomainAdd
  * @property {string} [name] - Full domain name, e.g. uniket.hostx0.de
- * @property {string} [_id] - The unique identifier of the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -474,7 +466,8 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef Domain
  * @property {string} [name] - Full domain name, e.g. newton.com
- * @property {string} [_id] - The unique identifier of the sales channel domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel domain
  * @property {boolean} [verified] - Domain is verified or not. TXT and A records
  *   should propagate correctly.
  * @property {boolean} [is_primary] - Domain is primary or not. Primary domain
@@ -490,7 +483,8 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef UpdateDomain
  * @property {string} [name] - Full domain name, e.g. zenz.com
- * @property {string} [_id] - The unique identifier of the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
  * @property {boolean} [verified] - Domain is verified or not (indicates if A
  *   records and TXT records are correct)
  * @property {boolean} [is_primary] - Domain is primary or not (indicates if the
@@ -578,8 +572,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppInventoryStores
- * @property {string} [_id] - The unique identifier of the store in the sales
- *   channel inventory
+ * @property {string} [_id] - The unique identifier of the store (24-digit Mongo
+ *   Object ID) in the sales channel inventory
  * @property {string} [modified_on] - ISO 8601 timestamp of last known updation
  *   to the stores in sales channel inventory
  * @property {number} [uid] - Sales channel inventory store UID
@@ -610,7 +604,8 @@ export = ConfigurationPlatformModel;
  * @property {string} [type] - Permitted values are 'hard' and 'soft'. For hard
  *   type delivery, store selection is compulsory. For soft type, delivery store
  *   selection is optional.
- * @property {string} [_id] - The unique identifier of the ordering stores
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering stores
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v]
@@ -636,7 +631,8 @@ export = ConfigurationPlatformModel;
  * @typedef OtherSellerApplication
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OtherSellerCompany} [company]
  * @property {string} [opt_type] - Inventory opted by the other seller's sales
@@ -651,7 +647,8 @@ export = ConfigurationPlatformModel;
  * @typedef OptedApplicationResponseSchema
  * @property {string} [name] - Name of the other seller's sales channel
  * @property {string} [description] - Basic details about the other seller's sales channel
- * @property {string} [_id] - The unique identifier of the other seller's sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the other seller's sales channel
  * @property {string} [domain] - Domain URL of the other seller's sales channel
  * @property {OptedCompany} [company]
  * @property {OptedInventory} [opted_inventory]
@@ -700,7 +697,8 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef TokenResponseSchema
  * @property {Tokens} [tokens]
- * @property {string} [_id] - The unique identifier of the token
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the token
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
@@ -882,20 +880,6 @@ export = ConfigurationPlatformModel;
  *   address of the store, should be displayed upon visiting the website
  */
 /**
- * @typedef BuyboxFeature
- * @property {boolean} [show_name] - Allow users to see seller/stores name on
- *   PDP (product detail page).
- * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
- *   PDP (product detail page).
- * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
- *   between sellers and stores. True indicates seller listing, while False
- *   indicates store listing.
- */
-/**
- * @typedef DeliveryStrategy
- * @property {string} [value] - Indicates the delivery strategy value.
- */
-/**
  * @typedef AppFeature
  * @property {ProductDetailFeature} [product_detail]
  * @property {LandingPageFeature} [landing_page]
@@ -906,9 +890,8 @@ export = ConfigurationPlatformModel;
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
- * @property {BuyboxFeature} [buybox]
- * @property {DeliveryStrategy} [delivery_strategy]
- * @property {string} [_id] - The unique identifier for the sales channel features
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
  * @property {string} [created_at] - ISO 8601 timestamp showing the date when
  *   the features were configured
@@ -1020,8 +1003,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef Currency
- * @property {string} [_id] - The unique identifier of the current sales channel
- *   supported currency
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the current sales channel supported currency
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
@@ -1083,9 +1066,11 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier of the sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier of owner who owns the application
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1122,9 +1107,11 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
  * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier of the sales channel
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier of owner who owns the application
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
  * @property {string} [token] - Random generated fix length string for sales
@@ -1173,7 +1160,6 @@ export = ConfigurationPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef ApplicationInformation
@@ -1183,7 +1169,8 @@ export = ConfigurationPlatformModel;
  * @property {Links[]} [links]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
- * @property {string} [_id] - Unique identifier of the application information
+ * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
+ *   the application information
  * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
@@ -1302,7 +1289,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef BusinessHighlights
- * @property {string} [_id] - Unique identifier of the related business
+ * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
+ *   the related business
  * @property {string} [title] - Title of the business highlight, e.g. Superfast Delivery
  * @property {string} [icon] - Hosted URL of icon image representing the
  *   business highlight
@@ -1319,7 +1307,8 @@ export = ConfigurationPlatformModel;
  * @property {SecureUrl} [banner]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {string} [_id] - The unique identifier for the sales channel details
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   for the sales channel details
  * @property {string} [slug]
  * @property {number} [company_id]
  */
@@ -1329,8 +1318,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppCurrencyResponseSchema
- * @property {string} [_id] - The unique identifier of the currency
- *   configuration supported by the application
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the currency configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
  * @property {DefaultCurrency} [default_currency]
@@ -1351,7 +1340,7 @@ export = ConfigurationPlatformModel;
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {string} [pincode] - 6-digit PIN code of the opted store location
+ * @property {number} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  * @property {string} [sector] - Sector for the opted store.
@@ -1361,14 +1350,15 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef OrderingStore
  * @property {OptedStoreAddress} [address]
- * @property {string} [_id] - The unique identifier of the ordering store
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering store
  * @property {number} [uid] - Ordering store UID
  * @property {string} [name] - Store name of the ordering store
  * @property {string} [display_name] - Display name of the ordering store
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 /**
@@ -1380,7 +1370,8 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [enabled] - Allow ordering stores for current sales channel
  * @property {string} [type] - For hard type delivery, store selection is
  *   compulsory. For soft type, delivery store selection is optional.
- * @property {string} [_id] - The unique identifier of the ordering store
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the ordering store
  * @property {string} [app] - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account
  * @property {number} [__v] - Version key for tracking ordering stores. Default
@@ -1393,7 +1384,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef ValidationErrors
- * @property {ValidationError[]} errors - A list of validation errors in the request.
+ * @property {ValidationError[]} errors
  */
 /**
  * @typedef ValidationError
@@ -1403,7 +1394,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, FstIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, ProcessingSchedule, StartAfter, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, BuyboxFeature, DeliveryStrategy, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
+    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, FstIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
 }
 /** @returns {CurrencyExchangeResponseV2} */
 declare function CurrencyExchangeResponseV2(): CurrencyExchangeResponseV2;
@@ -1495,7 +1486,8 @@ type ApplicationInventory = {
     communication?: CommunicationConfig;
     platforms?: string[];
     /**
-     * - The unique identifier of the sales channel inventory
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the sales channel inventory
      */
     _id?: string;
     loyalty_points?: LoyaltyPointsConfig;
@@ -1528,8 +1520,8 @@ type PiiMasking = {
 declare function FstIdentification(): FstIdentification;
 type FstIdentification = {
     /**
-     * - Indicates whether search query interpretation
-     * is enabled for the application.
+     * - Indicates whether FST identification is
+     * enabled for the application.
      */
     enabled?: boolean;
 };
@@ -1537,9 +1529,7 @@ type FstIdentification = {
 declare function QuerySuggestions(): QuerySuggestions;
 type QuerySuggestions = {
     /**
-     * - Indicates whether to enable or disable query
-     * suggestions powered by the GPT model using the current live catalog within
-     * the application.
+     * - Indicates whether query suggestions are enabled.
      */
     enabled?: boolean;
     /**
@@ -1557,7 +1547,6 @@ type SearchConfig = {
 /** @returns {AppInventoryConfig} */
 declare function AppInventoryConfig(): AppInventoryConfig;
 type AppInventoryConfig = {
-    delivery_strategy?: DeliveryStrategy;
     brand?: InventoryBrand;
     store?: InventoryStore;
     category?: InventoryCategory;
@@ -1589,6 +1578,16 @@ type AppInventoryConfig = {
      */
     company_store?: any[];
     company_id?: number;
+    /**
+     * - Power product listing with
+     * overlapping zones
+     */
+    enable_zone_overlapping?: boolean;
+    /**
+     * - Give preference to popularity over
+     * score in product listing sort
+     */
+    sort_popular_first?: boolean;
 };
 /** @returns {InventoryBrand} */
 declare function InventoryBrand(): InventoryBrand;
@@ -1888,33 +1887,6 @@ type AppOrderConfig = {
      * - Reason for reassigning an order
      */
     message?: string;
-    processing_schedule?: ProcessingSchedule;
-};
-/** @returns {ProcessingSchedule} */
-declare function ProcessingSchedule(): ProcessingSchedule;
-type ProcessingSchedule = {
-    /**
-     * - Indicates whether the order processing
-     * is scheduled for future.
-     */
-    is_scheduled?: boolean;
-    start_after?: StartAfter;
-};
-/** @returns {StartAfter} */
-declare function StartAfter(): StartAfter;
-type StartAfter = {
-    /**
-     * - Number of days to wait before starting the process.
-     */
-    days?: number;
-    /**
-     * - Number of hours to wait before starting the process.
-     */
-    hours?: number;
-    /**
-     * - Number of minutes to wait before starting the process.
-     */
-    minutes?: number;
 };
 /** @returns {AppLogisticsConfig} */
 declare function AppLogisticsConfig(): AppLogisticsConfig;
@@ -2138,7 +2110,8 @@ type MobileAppConfiguration = {
      */
     is_active?: boolean;
     /**
-     * - The unique identifier for mobile application configuration
+     * - The unique identifier (24-digit Mongo Object ID)
+     * for mobile application configuration
      */
     _id?: string;
     /**
@@ -2228,7 +2201,7 @@ type BuildVersionHistory = {
 declare function BuildVersion(): BuildVersion;
 type BuildVersion = {
     /**
-     * - Primary Identifier of the build version.
+     * - 24-digit Mongo Object ID
      */
     _id?: string;
     /**
@@ -2274,8 +2247,8 @@ type BuildVersion = {
 declare function AppSupportedCurrency(): AppSupportedCurrency;
 type AppSupportedCurrency = {
     /**
-     * - The unique identifier of the currency
-     * configuration supported by the application
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the currency configuration supported by the application
      */
     _id?: string;
     supported_currency?: string[];
@@ -2300,7 +2273,8 @@ type AppSupportedCurrency = {
 declare function DefaultCurrency(): DefaultCurrency;
 type DefaultCurrency = {
     /**
-     * - The unique identifier of the default currency
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the default currency
      */
     ref?: string;
     /**
@@ -2317,7 +2291,8 @@ type DomainAdd = {
      */
     name?: string;
     /**
-     * - The unique identifier of the domain
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the domain
      */
     _id?: string;
     /**
@@ -2355,7 +2330,8 @@ type Domain = {
      */
     name?: string;
     /**
-     * - The unique identifier of the sales channel domain
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the sales channel domain
      */
     _id?: string;
     /**
@@ -2391,7 +2367,8 @@ type UpdateDomain = {
      */
     name?: string;
     /**
-     * - The unique identifier of the domain
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the domain
      */
     _id?: string;
     /**
@@ -2574,8 +2551,8 @@ type StoresResponseSchema = {
 declare function AppInventoryStores(): AppInventoryStores;
 type AppInventoryStores = {
     /**
-     * - The unique identifier of the store in the sales
-     * channel inventory
+     * - The unique identifier of the store (24-digit Mongo
+     * Object ID) in the sales channel inventory
      */
     _id?: string;
     /**
@@ -2647,7 +2624,8 @@ type DeploymentMeta = {
      */
     type?: string;
     /**
-     * - The unique identifier of the ordering stores
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the ordering stores
      */
     _id?: string;
     /**
@@ -2699,7 +2677,8 @@ type OtherSellerApplication = {
      */
     description?: string;
     /**
-     * - The unique identifier of the other seller's sales channel
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the other seller's sales channel
      */
     _id?: string;
     /**
@@ -2731,7 +2710,8 @@ type OptedApplicationResponseSchema = {
      */
     description?: string;
     /**
-     * - The unique identifier of the other seller's sales channel
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the other seller's sales channel
      */
     _id?: string;
     /**
@@ -2837,7 +2817,8 @@ declare function TokenResponseSchema(): TokenResponseSchema;
 type TokenResponseSchema = {
     tokens?: Tokens;
     /**
-     * - The unique identifier of the token
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the token
      */
     _id?: string;
     /**
@@ -3182,34 +3163,6 @@ type RegistrationPageFeature = {
      */
     ask_store_address?: boolean;
 };
-/** @returns {BuyboxFeature} */
-declare function BuyboxFeature(): BuyboxFeature;
-type BuyboxFeature = {
-    /**
-     * - Allow users to see seller/stores name on
-     * PDP (product detail page).
-     */
-    show_name?: boolean;
-    /**
-     * - Allow selection of sellers/stores on
-     * PDP (product detail page).
-     */
-    enable_selection?: boolean;
-    /**
-     * - Toggle buybox listing
-     * between sellers and stores. True indicates seller listing, while False
-     * indicates store listing.
-     */
-    is_seller_buybox_enabled?: boolean;
-};
-/** @returns {DeliveryStrategy} */
-declare function DeliveryStrategy(): DeliveryStrategy;
-type DeliveryStrategy = {
-    /**
-     * - Indicates the delivery strategy value.
-     */
-    value?: string;
-};
 /** @returns {AppFeature} */
 declare function AppFeature(): AppFeature;
 type AppFeature = {
@@ -3222,10 +3175,9 @@ type AppFeature = {
     qr?: QrFeature;
     pcr?: PcrFeature;
     order?: OrderFeature;
-    buybox?: BuyboxFeature;
-    delivery_strategy?: DeliveryStrategy;
     /**
-     * - The unique identifier for the sales channel features
+     * - The unique identifier (24-digit Mongo Object ID)
+     * for the sales channel features
      */
     _id?: string;
     /**
@@ -3438,8 +3390,8 @@ type AppFeatureResponseSchema = {
 declare function Currency(): Currency;
 type Currency = {
     /**
-     * - The unique identifier of the current sales channel
-     * supported currency
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the current sales channel supported currency
      */
     _id?: string;
     /**
@@ -3574,7 +3526,8 @@ type Application = {
      */
     is_active?: boolean;
     /**
-     * - The unique identifier of the sales channel
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the sales channel
      */
     _id?: string;
     /**
@@ -3582,7 +3535,8 @@ type Application = {
      */
     name?: string;
     /**
-     * - The unique identifier of owner who owns the application
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of owner who owns the application
      */
     owner?: string;
     /**
@@ -3656,7 +3610,8 @@ type ApplicationById = {
      */
     is_active?: boolean;
     /**
-     * - The unique identifier of the sales channel
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the sales channel
      */
     _id?: string;
     /**
@@ -3664,7 +3619,8 @@ type ApplicationById = {
      */
     name?: string;
     /**
-     * - The unique identifier of owner who owns the application
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of owner who owns the application
      */
     owner?: string;
     /**
@@ -3770,10 +3726,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {ApplicationInformation} */
 declare function ApplicationInformation(): ApplicationInformation;
@@ -3788,7 +3740,8 @@ type ApplicationInformation = {
      */
     copyright_text?: string;
     /**
-     * - Unique identifier of the application information
+     * - Unique identifier (24-digit Mongo Object ID) of
+     * the application information
      */
     _id?: string;
     business_highlights?: BusinessHighlights[];
@@ -4063,7 +4016,8 @@ type Links = {
 declare function BusinessHighlights(): BusinessHighlights;
 type BusinessHighlights = {
     /**
-     * - Unique identifier of the related business
+     * - Unique identifier (24-digit Mongo Object ID) of
+     * the related business
      */
     _id?: string;
     /**
@@ -4099,7 +4053,8 @@ type ApplicationDetail = {
     domain?: Domain;
     domains?: Domain[];
     /**
-     * - The unique identifier for the sales channel details
+     * - The unique identifier (24-digit Mongo Object ID)
+     * for the sales channel details
      */
     _id?: string;
     slug?: string;
@@ -4114,8 +4069,8 @@ type CurrenciesResponseSchema = {
 declare function AppCurrencyResponseSchema(): AppCurrencyResponseSchema;
 type AppCurrencyResponseSchema = {
     /**
-     * - The unique identifier of the currency
-     * configuration supported by the application
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the currency configuration supported by the application
      */
     _id?: string;
     /**
@@ -4164,7 +4119,7 @@ type OptedStoreAddress = {
     /**
      * - 6-digit PIN code of the opted store location
      */
-    pincode?: string;
+    pincode?: number;
     /**
      * - Country of the opted store, e.g. India
      */
@@ -4191,7 +4146,8 @@ declare function OrderingStore(): OrderingStore;
 type OrderingStore = {
     address?: OptedStoreAddress;
     /**
-     * - The unique identifier of the ordering store
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the ordering store
      */
     _id?: string;
     /**
@@ -4218,7 +4174,7 @@ type OrderingStore = {
     /**
      * - 6-digit PIN Code of the ordering store, e.g. 400001
      */
-    pincode?: string;
+    pincode?: number;
     /**
      * - Code of the ordering store (usually same as Store Code)
      */
@@ -4244,7 +4200,8 @@ type OrderingStores = {
      */
     type?: string;
     /**
-     * - The unique identifier of the ordering store
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the ordering store
      */
     _id?: string;
     /**
@@ -4267,9 +4224,6 @@ type OrderingStoresResponseSchema = {
 /** @returns {ValidationErrors} */
 declare function ValidationErrors(): ValidationErrors;
 type ValidationErrors = {
-    /**
-     * - A list of validation errors in the request.
-     */
     errors: ValidationError[];
 };
 /** @returns {ValidationError} */

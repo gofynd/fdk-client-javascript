@@ -62,6 +62,8 @@ class Payment {
         "/service/application/payment/v1.0/payment/request/link/",
       linkWallet:
         "/service/application/payment/v1.0/payment/options/wallet/verify",
+      outstandingOrderDetails:
+        "/service/application/payment/v1.0/payment/outstanding-orders/",
       paidOrderDetails:
         "/service/application/payment/v1.0/payment/paid-orders/",
       pollingPaymentLink:
@@ -75,8 +77,6 @@ class Payment {
         "/service/application/payment/v1.0/resend-payment-link/",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
-      validateCustomerAndCreditSummary:
-        "/service/application/payment/v1.0/payment/validate/customer-credits-v2",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
       verifyAndChargePayment:
         "/service/application/payment/v1.0/payment/confirm/charge",
@@ -384,11 +384,12 @@ class Payment {
    * @description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
    */
   async checkCredit(
-    { aggregator, requestHeaders } = { requestHeaders: {} },
+    { aggregator, wallet, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["aggregator"] = aggregator;
+    query_params["wallet"] = wallet;
 
     const xHeaders = {};
 
@@ -832,13 +833,14 @@ class Payment {
    * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
    */
   async getAggregatorsConfig(
-    { refresh, requestHeaders } = { requestHeaders: {} },
+    { xApiToken, refresh, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["refresh"] = refresh;
 
     const xHeaders = {};
+    xHeaders["x-api-token"] = xApiToken;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1315,6 +1317,44 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OutstandingOrderDetails>} - Success response
+   * @name outstandingOrderDetails
+   * @summary: Outstanding orders
+   * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
+   */
+  async outstandingOrderDetails(
+    { aggregator, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["outstandingOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaidOrderDetails>} - Success response
    * @name paidOrderDetails
    * @summary: Retrieve details of paid orders
@@ -1559,43 +1599,6 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["updateDefaultBeneficiary"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ValidateCustomerCreditSchema>} - Success response
-   * @name validateCustomerAndCreditSummary
-   * @summary: Verify payment customer and show credit summary
-   * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateCustomerAndCreditSummary/).
-   */
-  async validateCustomerAndCreditSummary(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["validateCustomerAndCreditSummary"],
         params: {},
       }),
       query_params,

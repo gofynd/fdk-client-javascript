@@ -34,6 +34,7 @@ declare class Payment {
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
         linkWallet: string;
+        outstandingOrderDetails: string;
         paidOrderDetails: string;
         pollingPaymentLink: string;
         redirectToAggregator: string;
@@ -41,7 +42,6 @@ declare class Payment {
         resendOrCancelPayment: string;
         resendPaymentLink: string;
         updateDefaultBeneficiary: string;
-        validateCustomerAndCreditSummary: string;
         validateVPA: string;
         verifyAndChargePayment: string;
         verifyCustomerForPayment: string;
@@ -123,7 +123,7 @@ declare class Payment {
      * @summary: Verify credit availability and status
      * @description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
      */
-    checkCredit({ aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CheckCreditDetails>;
+    checkCredit({ aggregator, wallet, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CheckCreditDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -231,7 +231,7 @@ declare class Payment {
      * @summary: Get payment aggregators
      * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
      */
-    getAggregatorsConfig({ refresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AggregatorsConfigDetail>;
+    getAggregatorsConfig({ xApiToken, refresh, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AggregatorsConfigDetail>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -334,6 +334,15 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OutstandingOrderDetails>} - Success response
+     * @name outstandingOrderDetails
+     * @summary: Outstanding orders
+     * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
+     */
+    outstandingOrderDetails({ aggregator, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OutstandingOrderDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaidOrderDetails>} - Success response
      * @name paidOrderDetails
      * @summary: Retrieve details of paid orders
@@ -394,15 +403,6 @@ declare class Payment {
      * @description: Update default beneficiary for the order refund of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
      */
     updateDefaultBeneficiary({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SetDefaultBeneficiaryDetails>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ValidateCustomerCreditSchema>} - Success response
-     * @name validateCustomerAndCreditSummary
-     * @summary: Verify payment customer and show credit summary
-     * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateCustomerAndCreditSummary/).
-     */
-    validateCustomerAndCreditSummary({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ValidateCustomerCreditSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

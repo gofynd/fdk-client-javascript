@@ -37,11 +37,7 @@ export = ThemePlatformApplicationValidator;
  * @property {string} [type] - The type of the theme
  * @property {string} [companyMode] - The mode of the company
  */
-/**
- * @typedef GetFontsParam
- * @property {string} [capability] - Filter fonts based on supported
- *   capabilities (e.g., "WOFF2").
- */
+/** @typedef GetFontsParam */
 /**
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
@@ -113,7 +109,7 @@ declare class ThemePlatformApplicationValidator {
     /** @returns {GetExtensionSectionsParam} */
     static getExtensionSections(): GetExtensionSectionsParam;
     /** @returns {GetFontsParam} */
-    static getFonts(): GetFontsParam;
+    static getFonts(): any;
     /** @returns {GetPageParam} */
     static getPage(): GetPageParam;
     /** @returns {GetThemeByIdParam} */
@@ -191,13 +187,6 @@ type GetExtensionSectionsParam = {
      * - The mode of the company
      */
     companyMode?: string;
-};
-type GetFontsParam = {
-    /**
-     * - Filter fonts based on supported
-     * capabilities (e.g., "WOFF2").
-     */
-    capability?: string;
 };
 type GetPageParam = {
     /**
@@ -278,4 +267,5 @@ type UpgradeThemeParam = {
 type GetApplicationThemesParam = any;
 type GetApplicationThemesCountParam = any;
 type GetAppliedThemeParam = any;
+type GetFontsParam = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

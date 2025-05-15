@@ -76,7 +76,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /**
  * @typedef RemoveDomainByIdParam
- * @property {string} id - The unique identifier of the domain
+ * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
 /** @typedef RemoveOrderingStoreCookieParam */
 /**
@@ -273,7 +273,7 @@ type PartiallyUpdateInventoryConfigParam = {
 };
 type RemoveDomainByIdParam = {
     /**
-     * - The unique identifier of the domain
+     * - The unique identifier (24-digit Mongo Object ID) of the domain
      */
     id: string;
 };

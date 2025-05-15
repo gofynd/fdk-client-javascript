@@ -42,8 +42,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef CreateOrderParam
- * @property {string} [xOrderingSource] - To uniquely identify the source
- *   through which order has been placed.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 
@@ -106,11 +104,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} [orderingChannel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [orderingSource] - To uniquely identify the source through
- *   which order has been placed.
+ * @property {string} orderingChannel - The channel through which orders are placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -307,10 +301,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   orders. This is useful when fetching data for a specific date range while
  *   performing searches.
- * @property {string} [fulfillmentType] - Define the Fulfillment Type for
- *   Listing Orders, This is use when we want to get list of shipments or orders
- *   by cross store or cross company or fulfilling Store (by default), this is
- *   also depends on the login user accessType and store access
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -346,9 +336,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
  * @property {string} [bagStatus] - Comma separated values of bag statuses.
- * @property {string} [statusAssigned] - Used to filter shipments based on
- *   status present in shipment_status_history. For more information on these
- *   statuses, refer to the Fynd Partners documentation.
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
  *   bag_status and override lane.
  * @property {number} [timeToDispatch] - Indicates the time to dispatch.
@@ -362,15 +349,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
  * @property {string} [endDate] - The UTC end date in ISO format
  *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
- * @property {string} [statusAssignedStartDate] - Specifies the starting UTC
- *   date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
- *   boundary for filtering shipments based on the `created_at` timestamp of
- *   statuses in the shipment's status history. It allows filtering statuses
- *   that were created within a specific time range.
- * @property {string} [statusAssignedEndDate] - Specifies the ending UTC date
- *   and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
- *   for filtering shipments based on the `created_at` timestamp of statuses in
- *   the shipment's status history.
  * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
  *   to filter results by specific delivery partners.
  * @property {string} [stores] - A comma-separated list of store IDs used to
@@ -415,18 +393,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   shipments. This is useful when fetching data for a specific date range
  *   while performing searches.
- * @property {string} [fulfillmentType] - Define the Fulfillment Type for
- *   Listing Orders, This is use when we want to get list of shipments or orders
- *   by cross store or cross company or fulfilling Store (by default), this is
- *   also depends on the login user accessType and store access
  */
 
 /**
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
- * @property {string} [orderingSource] - To uniquely identify the source through
- *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 
@@ -580,7 +552,6 @@ class OrderPlatformValidator {
   /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
-      xOrderingSource: Joi.string().allow(""),
       body: OrderPlatformModel.CreateOrderAPI().required(),
     }).required();
   }
@@ -665,8 +636,7 @@ class OrderPlatformValidator {
   /** @returns {GetAllowedStateTransitionParam} */
   static getAllowedStateTransition() {
     return Joi.object({
-      orderingChannel: Joi.string().allow(""),
-      orderingSource: Joi.string().allow(""),
+      orderingChannel: Joi.string().allow("").required(),
       status: Joi.string().allow("").required(),
     }).required();
   }
@@ -857,7 +827,6 @@ class OrderPlatformValidator {
       allowInactive: Joi.boolean(),
       groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
-      fulfillmentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -898,7 +867,6 @@ class OrderPlatformValidator {
     return Joi.object({
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
-      statusAssigned: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
       timeToDispatch: Joi.number(),
       searchType: Joi.string().allow(""),
@@ -907,8 +875,6 @@ class OrderPlatformValidator {
       toDate: Joi.string().allow(""),
       startDate: Joi.string().allow(""),
       endDate: Joi.string().allow(""),
-      statusAssignedStartDate: Joi.string().allow(""),
-      statusAssignedEndDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
@@ -932,7 +898,6 @@ class OrderPlatformValidator {
       orderType: Joi.string().allow(""),
       groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
-      fulfillmentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -941,7 +906,6 @@ class OrderPlatformValidator {
     return Joi.object({
       appId: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
-      orderingSource: Joi.string().allow(""),
       entity: Joi.string().allow(""),
     }).required();
   }

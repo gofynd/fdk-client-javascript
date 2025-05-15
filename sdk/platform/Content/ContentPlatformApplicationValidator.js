@@ -3,11 +3,6 @@ const Joi = require("joi");
 const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
- * @typedef AddApplicationLanguageParam
- * @property {ContentPlatformModel.ApplicationLanguageCreate} body
- */
-
-/**
  * @typedef AddDataLoaderParam
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
@@ -26,11 +21,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef AddPathRedirectionRulesParam
  * @property {ContentPlatformModel.PathMappingSchema} body
- */
-
-/**
- * @typedef BulkUnPublishApplicationLanguageParam
- * @property {ContentPlatformModel.unPublishApplicationLanguage} body
  */
 
 /**
@@ -53,11 +43,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef CreateAppCustomObjectDefinitionParam
  * @property {ContentPlatformModel.CustomObjectDefinitionRequestSchema} body
- */
-
-/**
- * @typedef CreateApplicationResourceTranslationParam
- * @property {ContentPlatformModel.ResourceTranslationCreate} body
  */
 
 /**
@@ -86,13 +71,23 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef CreatePagePreviewParam
+ * @property {ContentPlatformModel.PagePayload} body
+ */
+
+/**
  * @typedef CreateSEOMarkupSchemaParam
  * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
 
 /**
- * @typedef CreateTranslateUILabelsParam
- * @property {ContentPlatformModel.TranslateUiLabelsCreate} body
+ * @typedef CreateSitemapParam
+ * @property {ContentPlatformModel.SitemapConfigCreate} body
+ */
+
+/**
+ * @typedef CreateSlideshowParam
+ * @property {ContentPlatformModel.SlideshowPayload} body
  */
 
 /**
@@ -116,16 +111,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 /**
  * @typedef DeleteAppCustomObjectDefinitionBySlugParam
  * @property {string} slug
- */
-
-/**
- * @typedef DeleteApplicationLanguageParam
- * @property {string} locale
- */
-
-/**
- * @typedef DeleteApplicationResourceTranslationParam
- * @property {string} id
  */
 
 /**
@@ -173,6 +158,16 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef DeleteSEOMarkupSchemaParam
  * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
+ */
+
+/**
+ * @typedef DeleteSitemapParam
+ * @property {string} name
+ */
+
+/**
+ * @typedef DeleteSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
  */
 
 /**
@@ -291,15 +286,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /** @typedef GetAppResourcesParam */
 
-/** @typedef GetApplicationLanguagesParam */
-
-/**
- * @typedef GetApplicationResourceTranslationsParam
- * @property {string} locale
- * @property {string} type
- * @property {string} resourceId
- */
-
 /**
  * @typedef GetBlogBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
@@ -333,6 +319,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {string} [pageType] - The type of page against which schema
  *   template was created
  */
+
+/** @typedef GetDefaultSitemapConfigParam */
 
 /**
  * @typedef GetFaqByIdOrSlugParam
@@ -439,20 +427,39 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   Default value is 10.
  */
 
+/**
+ * @typedef GetSitemapParam
+ * @property {string} name
+ */
+
+/**
+ * @typedef GetSitemapsParam
+ * @property {string} pageNo
+ * @property {string} pageSize
+ * @property {boolean} [isActive] - Boolean flag for checking if sitemap is
+ *   active or not in storefront
+ * @property {string} [name] - Query parameter to search sitemaps with name
+ */
+
+/**
+ * @typedef GetSlideshowBySlugParam
+ * @property {string} slug - A short, human-readable, URL-friendly identifier of
+ *   a slideshow. You can get slug value of a page from `getSlideshows` API.
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ */
+
+/**
+ * @typedef GetSlideshowsParam
+ * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
+ *   values are: web, android, ios and all
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ */
+
 /** @typedef GetSupportInformationParam */
-
-/**
- * @typedef GetTranslateUILabelsParam
- * @property {string} [templateThemeId] - Unique id of template theme
- * @property {string} [themeId] - Unique id of theme
- * @property {string} [locale] - Multilingual locale
- * @property {string} [type] - Filter Translate Ui Labels by type
- */
-
-/**
- * @typedef GetTranslateUILabelsByIdParam
- * @property {string} id - ID of the Translate Ui Labels
- */
 
 /**
  * @typedef ImportAppCustomObjectEntriesBySlugParam
@@ -522,21 +529,14 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef UpdateApplicationLanguageStatusParam
- * @property {string} locale
- * @property {ContentPlatformModel.ApplicationLanguageUpdate} body
- */
-
-/**
- * @typedef UpdateApplicationResourceTranslationParam
- * @property {string} id
- * @property {ContentPlatformModel.ResourceTranslationUpdate} body
- */
-
-/**
  * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
  * @property {ContentPlatformModel.BlogPayload} body
+ */
+
+/**
+ * @typedef UpdateDefaultSitemapConfigParam
+ * @property {ContentPlatformModel.DefaultSitemapConfig} body
  */
 
 /**
@@ -599,29 +599,23 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef UpdateSitemapParam
+ * @property {string} name
+ * @property {ContentPlatformModel.SitemapConfigUpdate} body
+ */
+
+/**
+ * @typedef UpdateSlideshowParam
+ * @property {string} id - ID allotted to the slideshow.
+ * @property {ContentPlatformModel.SlideshowPayload} body
+ */
+
+/**
  * @typedef UpdateSupportInformationParam
  * @property {ContentPlatformModel.Support} body
  */
 
-/**
- * @typedef UpdateTranslateUILabelsParam
- * @property {string} id - The unique identifier of the Translate Ui Labels to update
- * @property {ContentPlatformModel.StaticResourceUpdate} body
- */
-
-/**
- * @typedef UpsertApplicationResourceTranslationInBulkParam
- * @property {ContentPlatformModel.ResourceTranslationList} body
- */
-
 class ContentPlatformApplicationValidator {
-  /** @returns {AddApplicationLanguageParam} */
-  static addApplicationLanguage() {
-    return Joi.object({
-      body: ContentPlatformModel.ApplicationLanguageCreate().required(),
-    }).required();
-  }
-
   /** @returns {AddDataLoaderParam} */
   static addDataLoader() {
     return Joi.object({
@@ -648,13 +642,6 @@ class ContentPlatformApplicationValidator {
   static addPathRedirectionRules() {
     return Joi.object({
       body: ContentPlatformModel.PathMappingSchema().required(),
-    }).required();
-  }
-
-  /** @returns {BulkUnPublishApplicationLanguageParam} */
-  static bulkUnPublishApplicationLanguage() {
-    return Joi.object({
-      body: ContentPlatformModel.unPublishApplicationLanguage().required(),
     }).required();
   }
 
@@ -685,13 +672,6 @@ class ContentPlatformApplicationValidator {
   static createAppCustomObjectDefinition() {
     return Joi.object({
       body: ContentPlatformModel.CustomObjectDefinitionRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {CreateApplicationResourceTranslationParam} */
-  static createApplicationResourceTranslation() {
-    return Joi.object({
-      body: ContentPlatformModel.ResourceTranslationCreate().required(),
     }).required();
   }
 
@@ -730,6 +710,13 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreatePagePreviewParam} */
+  static createPagePreview() {
+    return Joi.object({
+      body: ContentPlatformModel.PagePayload().required(),
+    }).required();
+  }
+
   /** @returns {CreateSEOMarkupSchemaParam} */
   static createSEOMarkupSchema() {
     return Joi.object({
@@ -737,10 +724,17 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateTranslateUILabelsParam} */
-  static createTranslateUILabels() {
+  /** @returns {CreateSitemapParam} */
+  static createSitemap() {
     return Joi.object({
-      body: ContentPlatformModel.TranslateUiLabelsCreate().required(),
+      body: ContentPlatformModel.SitemapConfigCreate().required(),
+    }).required();
+  }
+
+  /** @returns {CreateSlideshowParam} */
+  static createSlideshow() {
+    return Joi.object({
+      body: ContentPlatformModel.SlideshowPayload().required(),
     }).required();
   }
 
@@ -772,20 +766,6 @@ class ContentPlatformApplicationValidator {
   static deleteAppCustomObjectDefinitionBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteApplicationLanguageParam} */
-  static deleteApplicationLanguage() {
-    return Joi.object({
-      locale: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteApplicationResourceTranslationParam} */
-  static deleteApplicationResourceTranslation() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -848,6 +828,20 @@ class ContentPlatformApplicationValidator {
 
   /** @returns {DeleteSEOMarkupSchemaParam} */
   static deleteSEOMarkupSchema() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteSitemapParam} */
+  static deleteSitemap() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteSlideshowParam} */
+  static deleteSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -1002,20 +996,6 @@ class ContentPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetApplicationLanguagesParam} */
-  static getApplicationLanguages() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetApplicationResourceTranslationsParam} */
-  static getApplicationResourceTranslations() {
-    return Joi.object({
-      locale: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetBlogBySlugParam} */
   static getBlogBySlug() {
     return Joi.object({
@@ -1058,6 +1038,11 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       pageType: Joi.string().allow(""),
     }).required();
+  }
+
+  /** @returns {GetDefaultSitemapConfigParam} */
+  static getDefaultSitemapConfig() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetFaqByIdOrSlugParam} */
@@ -1185,26 +1170,43 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetSitemapParam} */
+  static getSitemap() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetSitemapsParam} */
+  static getSitemaps() {
+    return Joi.object({
+      pageNo: Joi.string().allow("").required(),
+      pageSize: Joi.string().allow("").required(),
+      isActive: Joi.boolean(),
+      name: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetSlideshowBySlugParam} */
+  static getSlideshowBySlug() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      devicePlatform: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetSlideshowsParam} */
+  static getSlideshows() {
+    return Joi.object({
+      devicePlatform: Joi.string().allow("").required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetSupportInformationParam} */
   static getSupportInformation() {
     return Joi.object({}).required();
-  }
-
-  /** @returns {GetTranslateUILabelsParam} */
-  static getTranslateUILabels() {
-    return Joi.object({
-      templateThemeId: Joi.string().allow(""),
-      themeId: Joi.string().allow(""),
-      locale: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetTranslateUILabelsByIdParam} */
-  static getTranslateUILabelsById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {ImportAppCustomObjectEntriesBySlugParam} */
@@ -1296,27 +1298,18 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateApplicationLanguageStatusParam} */
-  static updateApplicationLanguageStatus() {
-    return Joi.object({
-      locale: Joi.string().allow("").required(),
-      body: ContentPlatformModel.ApplicationLanguageUpdate().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateApplicationResourceTranslationParam} */
-  static updateApplicationResourceTranslation() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.ResourceTranslationUpdate().required(),
-    }).required();
-  }
-
   /** @returns {UpdateBlogParam} */
   static updateBlog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: ContentPlatformModel.BlogPayload().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateDefaultSitemapConfigParam} */
+  static updateDefaultSitemapConfig() {
+    return Joi.object({
+      body: ContentPlatformModel.DefaultSitemapConfig().required(),
     }).required();
   }
 
@@ -1398,26 +1391,26 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {UpdateSitemapParam} */
+  static updateSitemap() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      body: ContentPlatformModel.SitemapConfigUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateSlideshowParam} */
+  static updateSlideshow() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: ContentPlatformModel.SlideshowPayload().required(),
+    }).required();
+  }
+
   /** @returns {UpdateSupportInformationParam} */
   static updateSupportInformation() {
     return Joi.object({
       body: ContentPlatformModel.Support().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateTranslateUILabelsParam} */
-  static updateTranslateUILabels() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-
-      body: ContentPlatformModel.StaticResourceUpdate().required(),
-    }).required();
-  }
-
-  /** @returns {UpsertApplicationResourceTranslationInBulkParam} */
-  static upsertApplicationResourceTranslationInBulk() {
-    return Joi.object({
-      body: ContentPlatformModel.ResourceTranslationList().required(),
     }).required();
   }
 }

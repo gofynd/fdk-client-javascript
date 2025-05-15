@@ -3,28 +3,6 @@ declare class Content {
     constructor(config: any);
     config: any;
     /**
-     * @param {ContentPlatformValidator.AddCompanyLanguageParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name addCompanyLanguage
-     * @summary: Add company language
-     * @description: Add new languages to company's supported language list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addCompanyLanguage/).
-     */
-    addCompanyLanguage({ body, requestHeaders }?: ContentPlatformValidator.AddCompanyLanguageParam, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformValidator.CreateCompanyResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-     * @name createCompanyResourceTranslation
-     * @summary: Add company translation
-     * @description: Create new translations for company resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCompanyResourceTranslation/).
-     */
-    createCompanyResourceTranslation({ body, requestHeaders }?: ContentPlatformValidator.CreateCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
-    /**
      * @param {ContentPlatformValidator.CreateCustomFieldDefinitionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -60,28 +38,6 @@ declare class Content {
      * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObjectDefinition/).
      */
     createCustomObjectDefinition({ body, requestHeaders }?: ContentPlatformValidator.CreateCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSlugSchema>;
-    /**
-     * @param {ContentPlatformValidator.DeleteCompanyLanguageParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-     * @name deleteCompanyLanguage
-     * @summary: Remove company language
-     * @description: Remove a language from company's supported languages list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyLanguage/).
-     */
-    deleteCompanyLanguage({ locale, requestHeaders }?: ContentPlatformValidator.DeleteCompanyLanguageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
-    /**
-     * @param {ContentPlatformValidator.DeleteCompanyResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.OperationResponseSchema>} - Success response
-     * @name deleteCompanyResourceTranslation
-     * @summary: Remove company translation
-     * @description: Remove translations for company resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCompanyResourceTranslation/).
-     */
-    deleteCompanyResourceTranslation({ id, requestHeaders }?: ContentPlatformValidator.DeleteCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.OperationResponseSchema>;
     /**
      * @param {ContentPlatformValidator.DeleteCustomFieldDefinitionBySlugParam} arg
      *   - Arg object
@@ -145,58 +101,6 @@ declare class Content {
      * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportCustomObjectEntriesBySlug/).
      */
     exportCustomObjectEntriesBySlug({ slug, requestHeaders }?: ContentPlatformValidator.ExportCustomObjectEntriesBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntryInitiateDownload>;
-    /**
-     * @param {ContentPlatformValidator.GetAllResourceDefinitionsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getAllResourceDefinitions
-     * @summary: Get all resource defination
-     * @description: Retrieve translation schemas and configurations for resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAllResourceDefinitions/).
-     */
-    getAllResourceDefinitions({ translatableResourceId, requestHeaders }?: ContentPlatformValidator.GetAllResourceDefinitionsParam, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformValidator.GetAllSectionsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getAllSections
-     * @summary: List all translatable content sections
-     * @description: Retrieve all translatable content sections for organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAllSections/).
-     */
-    getAllSections({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformValidator.GetAllTranslatableResourcesParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getAllTranslatableResources
-     * @summary: List all translatable resources
-     * @description: Retrieve all translatable content resources for the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAllTranslatableResources/).
-     */
-    getAllTranslatableResources({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformValidator.GetCompanyLanguagesParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getCompanyLanguages
-     * @summary: Get company languages
-     * @description: Retrieve language configurations and settings for the specified company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCompanyLanguages/).
-     */
-    getCompanyLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {ContentPlatformValidator.GetCompanyResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-     * @name getCompanyResourceTranslation
-     * @summary: Get company translations
-     * @description: Fetch translations for company-level resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCompanyResourceTranslation/).
-     */
-    getCompanyResourceTranslation({ locale, type, resourceId, requestHeaders }?: ContentPlatformValidator.GetCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
     /**
      * @param {ContentPlatformValidator.GetCustomFieldDefinitionByResourceParam} arg
      *   - Arg object
@@ -316,16 +220,6 @@ declare class Content {
      */
     getJobs({ page, pageSize, actionType, requestHeaders }?: ContentPlatformValidator.GetJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;
     /**
-     * @param {ContentPlatformValidator.GetResourceDefinitionByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceDefinition>} - Success response
-     * @name getResourceDefinitionById
-     * @summary: Get resource definitions details
-     * @description: Fetch specific resource definition and its translation schema. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getResourceDefinitionById/).
-     */
-    getResourceDefinitionById({ id, requestHeaders }?: ContentPlatformValidator.GetResourceDefinitionByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceDefinition>;
-    /**
      * @param {ContentPlatformValidator.GetResourcesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -335,38 +229,6 @@ declare class Content {
      * @description: Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getResources/).
      */
     getResources({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourcesSchema>;
-    /**
-     * @param {ContentPlatformValidator.GetSectionByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslatableSection>} - Success response
-     * @name getSectionById
-     * @summary: Retrieve details of a specific translatable section by its ID.
-     * @description: Fetch details of a specific translatable section. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSectionById/).
-     */
-    getSectionById({ id, requestHeaders }?: ContentPlatformValidator.GetSectionByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslatableSection>;
-    /**
-     * @param {ContentPlatformValidator.GetTranslatableResourceByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TranslatableResource>} - Success response
-     * @name getTranslatableResourceById
-     * @summary: Get translatable resource details
-     * @description: Fetch details of a specific translatable resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslatableResourceById/).
-     */
-    getTranslatableResourceById({ id, requestHeaders }?: ContentPlatformValidator.GetTranslatableResourceByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TranslatableResource>;
-    /**
-     * @param {ContentPlatformValidator.GetTranslatableResourcesBySectionIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getTranslatableResourcesBySectionId
-     * @summary: Get section resources
-     * @description: Retrieve all resources within a specific section. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getTranslatableResourcesBySectionId/).
-     */
-    getTranslatableResourcesBySectionId({ id, requestHeaders }?: ContentPlatformValidator.GetTranslatableResourcesBySectionIdParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPlatformValidator.ImportCustomObjectEntriesBySlugParam} arg
      *   - Arg object
@@ -393,30 +255,6 @@ declare class Content {
      * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleCustomObjectBulkEntryBySlug/).
      */
     sampleCustomObjectBulkEntryBySlug({ slug, requestHeaders }?: ContentPlatformValidator.SampleCustomObjectBulkEntryBySlugParam, { responseHeaders }?: object): Promise<string>;
-    /**
-     * @param {ContentPlatformValidator.UpdateCompanyLanguageDefaultParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CompanyLanguage>} - Success response
-     * @name updateCompanyLanguageDefault
-     * @summary: Set default language
-     * @description: Update default language settings for the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCompanyLanguageDefault/).
-     */
-    updateCompanyLanguageDefault({ locale, body, requestHeaders }?: ContentPlatformValidator.UpdateCompanyLanguageDefaultParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CompanyLanguage>;
-    /**
-     * @param {ContentPlatformValidator.UpdateCompanyResourceTranslationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.ResourceTranslation>} - Success response
-     * @name updateCompanyResourceTranslation
-     * @summary: Update company translation
-     * @description: Update existing translations for company resources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCompanyResourceTranslation/).
-     */
-    updateCompanyResourceTranslation({ id, body, requestHeaders }?: ContentPlatformValidator.UpdateCompanyResourceTranslationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.ResourceTranslation>;
     /**
      * @param {ContentPlatformValidator.UpdateCustomFieldByResourceSlugParam} arg
      *   - Arg object

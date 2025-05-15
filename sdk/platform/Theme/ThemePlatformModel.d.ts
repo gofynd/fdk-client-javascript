@@ -91,12 +91,6 @@ export = ThemePlatformModel;
 /**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
- * @property {CanvasItem} [canvas]
- */
-/**
- * @typedef CanvasItem
- * @property {string} [value]
- * @property {string} [label]
  */
 /**
  * @typedef SEOMetaItem
@@ -137,9 +131,7 @@ export = ThemePlatformModel;
  * @typedef AvailablePageSchemaSections
  * @property {string} [name]
  * @property {string} [label]
- * @property {string} [canvas]
  * @property {Object} [props]
- * @property {string} [custom_css] - Custom CSS for a section
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
@@ -395,16 +387,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 /**
  * @typedef Assets
@@ -606,7 +589,7 @@ export = ThemePlatformModel;
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, CanvasItem, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradable, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyTheme, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
+    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradable, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyTheme, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
 }
 /** @returns {GetExtensionSectionRes} */
 declare function GetExtensionSectionRes(): GetExtensionSectionRes;
@@ -769,13 +752,6 @@ type AvailablePageSchema = {
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
 type AvailablePageSectionMetaAttributes = {
     attributes?: any;
-    canvas?: CanvasItem;
-};
-/** @returns {CanvasItem} */
-declare function CanvasItem(): CanvasItem;
-type CanvasItem = {
-    value?: string;
-    label?: string;
 };
 /** @returns {SEOMetaItem} */
 declare function SEOMetaItem(): SEOMetaItem;
@@ -826,12 +802,7 @@ declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
 type AvailablePageSchemaSections = {
     name?: string;
     label?: string;
-    canvas?: string;
     props?: any;
-    /**
-     * - Custom CSS for a section
-     */
-    custom_css?: string;
     blocks?: any[];
     preset?: any;
     predicate?: AvailablePagePredicate;
@@ -1332,35 +1303,7 @@ type CustomProps = {
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
-    props?: Prop[];
-};
-/** @returns {Prop} */
-declare function Prop(): Prop;
-type Prop = {
-    /**
-     * - The type of the property
-     */
-    type?: string;
-    /**
-     * - The category of the property
-     */
-    category?: string;
-    /**
-     * - The value of the property
-     */
-    value?: string;
-    /**
-     * - The ID of the property
-     */
-    id?: string;
-    /**
-     * - The label of the property
-     */
-    label?: string;
-    /**
-     * - Additional information about the property
-     */
-    info?: string;
+    props?: any[];
 };
 /** @returns {Assets} */
 declare function Assets(): Assets;

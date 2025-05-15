@@ -33,8 +33,6 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef CreateOrderParam
- * @property {string} [xOrderingSource] - To uniquely identify the source
- *   through which order has been placed.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
@@ -86,11 +84,7 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} [orderingChannel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [orderingSource] - To uniquely identify the source through
- *   which order has been placed.
+ * @property {string} orderingChannel - The channel through which orders are placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -272,10 +266,6 @@ export = OrderPlatformValidator;
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   orders. This is useful when fetching data for a specific date range while
  *   performing searches.
- * @property {string} [fulfillmentType] - Define the Fulfillment Type for
- *   Listing Orders, This is use when we want to get list of shipments or orders
- *   by cross store or cross company or fulfilling Store (by default), this is
- *   also depends on the login user accessType and store access
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -306,9 +296,6 @@ export = OrderPlatformValidator;
  * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
  * @property {string} [bagStatus] - Comma separated values of bag statuses.
- * @property {string} [statusAssigned] - Used to filter shipments based on
- *   status present in shipment_status_history. For more information on these
- *   statuses, refer to the Fynd Partners documentation.
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
  *   bag_status and override lane.
  * @property {number} [timeToDispatch] - Indicates the time to dispatch.
@@ -322,15 +309,6 @@ export = OrderPlatformValidator;
  *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
  * @property {string} [endDate] - The UTC end date in ISO format
  *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
- * @property {string} [statusAssignedStartDate] - Specifies the starting UTC
- *   date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
- *   boundary for filtering shipments based on the `created_at` timestamp of
- *   statuses in the shipment's status history. It allows filtering statuses
- *   that were created within a specific time range.
- * @property {string} [statusAssignedEndDate] - Specifies the ending UTC date
- *   and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
- *   for filtering shipments based on the `created_at` timestamp of statuses in
- *   the shipment's status history.
  * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
  *   to filter results by specific delivery partners.
  * @property {string} [stores] - A comma-separated list of store IDs used to
@@ -375,17 +353,11 @@ export = OrderPlatformValidator;
  * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
  *   shipments. This is useful when fetching data for a specific date range
  *   while performing searches.
- * @property {string} [fulfillmentType] - Define the Fulfillment Type for
- *   Listing Orders, This is use when we want to get list of shipments or orders
- *   by cross store or cross company or fulfilling Store (by default), this is
- *   also depends on the login user accessType and store access
  */
 /**
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
- * @property {string} [orderingSource] - To uniquely identify the source through
- *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 /** @typedef GetStateTransitionMapParam */
@@ -636,11 +608,6 @@ type CreateChannelConfigParam = {
     body: OrderPlatformModel.CreateChannelConfigData;
 };
 type CreateOrderParam = {
-    /**
-     * - To uniquely identify the source
-     * through which order has been placed.
-     */
-    xOrderingSource?: string;
     body: OrderPlatformModel.CreateOrderAPI;
 };
 type DispatchManifestsParam = {
@@ -706,16 +673,9 @@ type GenerateProcessManifestParam = {
 };
 type GetAllowedStateTransitionParam = {
     /**
-     * - The specific channel through which
-     * your order was placed. This field will be phased out after version 2.4.0.
-     * Please use ordering_source instead to ensure accurate order tracking and processing.
+     * - The channel through which orders are placed.
      */
-    orderingChannel?: string;
-    /**
-     * - To uniquely identify the source through
-     * which order has been placed.
-     */
-    orderingSource?: string;
+    orderingChannel: string;
     /**
      * - The status key indicates the current status for
      * which the API will provide a list of possible next state transitions.
@@ -1149,13 +1109,6 @@ type GetOrdersParam = {
      * performing searches.
      */
     enforceDateFilter?: boolean;
-    /**
-     * - Define the Fulfillment Type for
-     * Listing Orders, This is use when we want to get list of shipments or orders
-     * by cross store or cross company or fulfilling Store (by default), this is
-     * also depends on the login user accessType and store access
-     */
-    fulfillmentType?: string;
 };
 type GetShipmentByIdParam = {
     /**
@@ -1215,12 +1168,6 @@ type GetShipmentsParam = {
      */
     bagStatus?: string;
     /**
-     * - Used to filter shipments based on
-     * status present in shipment_status_history. For more information on these
-     * statuses, refer to the Fynd Partners documentation.
-     */
-    statusAssigned?: string;
-    /**
      * - Use this flag to fetch by
      * bag_status and override lane.
      */
@@ -1257,21 +1204,6 @@ type GetShipmentsParam = {
      * (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
      */
     endDate?: string;
-    /**
-     * - Specifies the starting UTC
-     * date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
-     * boundary for filtering shipments based on the `created_at` timestamp of
-     * statuses in the shipment's status history. It allows filtering statuses
-     * that were created within a specific time range.
-     */
-    statusAssignedStartDate?: string;
-    /**
-     * - Specifies the ending UTC date
-     * and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
-     * for filtering shipments based on the `created_at` timestamp of statuses in
-     * the shipment's status history.
-     */
-    statusAssignedEndDate?: string;
     /**
      * - A comma-separated list of delivery partner IDs
      * to filter results by specific delivery partners.
@@ -1385,13 +1317,6 @@ type GetShipmentsParam = {
      * while performing searches.
      */
     enforceDateFilter?: boolean;
-    /**
-     * - Define the Fulfillment Type for
-     * Listing Orders, This is use when we want to get list of shipments or orders
-     * by cross store or cross company or fulfilling Store (by default), this is
-     * also depends on the login user accessType and store access
-     */
-    fulfillmentType?: string;
 };
 type GetStateManagerConfigParam = {
     /**
@@ -1402,11 +1327,6 @@ type GetStateManagerConfigParam = {
      * - The channel through which orders are placed.
      */
     orderingChannel?: string;
-    /**
-     * - To uniquely identify the source through
-     * which order has been placed.
-     */
-    orderingSource?: string;
     /**
      * - The entity for which the configuration is applied.
      */

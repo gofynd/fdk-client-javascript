@@ -308,20 +308,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TransitionComments
- * @property {string} title - Title for the transition message.
- * @property {string} message - Message for the transition.
- */
-
-/**
  * @typedef ShipmentsRequestSchema
  * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
  * @property {Products[]} [products] - A list of products or bags that need to
  *   be updated as part of the shipment status change.
  * @property {DataUpdates} [data_updates]
- * @property {TransitionComments[]} [transition_comments] - Comments or notes
- *   associated with the transition of shipment status.
  */
 
 /**
@@ -734,8 +726,8 @@ const Joi = require("joi");
  * @property {string} [text] - A reason for the activity or change.
  * @property {string} [category] - Category of the reason for the status change.
  * @property {string} [state] - Current state related to the reason.
- * @property {string} [display_name] - Display name of the reason for better
- *   user understanding.
+ * @property {string} [dislay_name] - Display name of the reason for better user
+ *   understanding.
  * @property {number} [code] - Unique code identifying the reason.
  * @property {number} [quantity] - Quantity related to the reason, if applicable.
  */
@@ -916,11 +908,7 @@ const Joi = require("joi");
  * @property {string} [currency] - The currency in which the prices details
  *   associated with the item is specified.
  * @property {number} [total_order_value]
- * @property {string} [ordering_channel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed.
+ * @property {string} [ordering_channel]
  * @property {Object} [meta] - Meta data of the order data contains additional,
  *   potentially dynamic information about the order data.
  * @property {number} [cod_charges]
@@ -1370,6 +1358,8 @@ const Joi = require("joi");
  *   or system that is making the order request.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
+ * @property {Object} [custom_json] - An object containing additional metadata,
+ *   ensuring only the required fields are included as needed.
  */
 
 /**
@@ -1661,28 +1651,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkReportsFiltersSchema
- * @property {string} [bag_status] - Comma separated values of bag statuses(to
- *   be deprecated).
- * @property {string} [operational_status] - Comma separated values of
- *   shipment's operational statuses.
- * @property {string} [stores] - Comma separated values of store ids.
- * @property {string} [time_to_dispatch] - Specifies the type of shipments to
- *   retrieve. Use "1" for non-breached shipments and "-1" for breached shipments.
- * @property {string} [payment_methods] - Filters shipments by payment method.
- *   Use "PREPAID" for shipments paid in advance, and "COD" for cash-on-delivery
- *   shipments.
- * @property {string} [dp_ids] - Comma separated values of delivery partners.
- *   Either dp_id or slug(extension_id|scheme_id).
- * @property {string} [sales_channels] - Comma separated values of sales channels ids.
- * @property {string} [tags] - A comma-separated list of tags associated with
- *   the entity. Each tag is a keyword or label that categorizes or describes the entity.
- * @property {string} [lock_status] - Indicates the lock status of the entity.
- *   "true" means the shipment is in a complete or partial lock state, while
- *   "false" means it is unlocked.
- */
-
-/**
  * @typedef BulkReportsDownloadRequestSchema
  * @property {string[]} [store_ids] - A list of specific store IDs for which the
  *   reports should be generated.
@@ -1703,7 +1671,6 @@ const Joi = require("joi");
  *   should include data from cross-company operations.
  * @property {Object} [custom_filters_for_lane] - A flexible object that allows
  *   users to define custom filters specific to the lanes being reported on.
- * @property {BulkReportsFiltersSchema} [filters]
  */
 
 /**
@@ -2546,11 +2513,8 @@ const Joi = require("joi");
  * @typedef TransitionConfigCondition
  * @property {string} app_id - The unique identifier of the application to which
  *   the configuration applies.
- * @property {string} [ordering_channel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed.
+ * @property {string} ordering_channel - The channel through which the order was
+ *   placed, such as ECOMM or another specified channel.
  * @property {string} entity - The type of entity that the configuration pertains to.
  */
 
@@ -2639,9 +2603,9 @@ const Joi = require("joi");
  *   met and optimizing logistics.
  * @property {QuestionSet[]} question_set - An array of question sets linked to
  *   the reason, defining the questions to be answered.
- * @property {Object} [meta] - Meta object of the reason. This contains any
+ * @property {Object} meta - Meta object of the reason. This contains any
  *   additional metadata that might be relevant to the reason.
- * @property {boolean} [is_active] - Indicates whether the reason is currently
+ * @property {boolean} is_active - Indicates whether the reason is currently
  *   active. Active reasons are those that are currently in use within the system.
  */
 
@@ -2798,7 +2762,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -2883,7 +2846,7 @@ const Joi = require("joi");
  * @property {string} [last_name] - The last name of the user.
  * @property {string} [mobile] - The mobile phone number of the user.
  * @property {string} [email] - The email address of the user.
- * @property {Object} [meta] - Additional metadata related to the user.
+ * @property {string} [meta] - Additional metadata related to the user.
  * @property {boolean} [is_anonymous_user] - Indicates whether the user is an
  *   anonymous user (true) or registered (false).
  * @property {string} [name] - A full name of the user, which may be a
@@ -2957,7 +2920,6 @@ const Joi = require("joi");
  * @property {string} [uid] - A unique identifier for the user associated with
  *   the address.
  * @property {string} [user_id] - The unique identifier of the user in the system.
- * @property {string} [code] - A unique identifier associated with store.
  */
 
 /**
@@ -3682,11 +3644,7 @@ const Joi = require("joi");
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
  * @property {string} order_id - The unique identifier of the order for the shipment.
- * @property {string} [ordering_channnel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed.
+ * @property {string} [ordering_channnel] - The channel used for ordering the shipment.
  * @property {string} [shipment_id] - The unique identifier for the shipment itself.
  * @property {string} [customer_note] - Any special notes or instructions
  *   provided by the customer related to the shipment.
@@ -3786,10 +3744,7 @@ const Joi = require("joi");
  *   related to the order.
  * @property {string} [order_value] - The total monetary value of the order
  * @property {string} [ordering_channel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed.
+ *   the order was placed
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -3874,8 +3829,6 @@ const Joi = require("joi");
  *   at the ordering store.
  * @property {string} [state] - The state or region where the ordering store is situated.
  * @property {string} [city] - The city in which the ordering store is located.
- * @property {string} [name] - The name of the ordering store.
- * @property {string} [store_email] - The email address of the ordering store.
  */
 
 /**
@@ -4121,8 +4074,6 @@ const Joi = require("joi");
  * @property {string} [size] - The size of the article, which may be relevant
  *   for clothing.
  * @property {string[]} [tags] - An array of tags associated with the article.
- * @property {Object} [_custom_json] - A custom JSON object containing
- *   additional details or configurations specific to the article.
  */
 
 /**
@@ -4231,9 +4182,7 @@ const Joi = require("joi");
  *   a discount when buying in a bundle. - custom- A custom promotion not
  *   covered by other types. - free_gift_items- Free gift items are included
  *   with the purchase. - free_non_sellable_items- Free items that are not for
- *   sale are included with the purchase. - item_based_discount- Specific
- *   percentage discounts on selected items based on their position after
- *   sorting by price in descending order.
+ *   sale are included with the purchase.
  * @property {string} [promotion_name] - The name of the promotional campaign or offer.
  * @property {DiscountRules[]} [discount_rules] - A list of rules that define
  *   the conditions under which discounts are applied.
@@ -4354,7 +4303,6 @@ const Joi = require("joi");
  *   with a fulfilling store.
  * @property {string} state - The state or region where the fulfilling store is located.
  * @property {string} city - The city in which the fulfilling store is situated.
- * @property {string} [store_email] - The email address of the fulfilling store.
  */
 
 /**
@@ -4590,10 +4538,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderData
  * @property {string} [ordering_channel] - The specific channel through which
- *   your order was placed. This field will be phased out after version 2.4.0.
- *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed.
+ *   the order was placed.
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -5608,14 +5553,6 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {TransitionComments} */
-  static TransitionComments() {
-    return Joi.object({
-      title: Joi.string().allow("").required(),
-      message: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ShipmentsRequestSchema} */
   static ShipmentsRequestSchema() {
     return Joi.object({
@@ -5623,9 +5560,6 @@ class OrderPlatformModel {
       reasons: OrderPlatformModel.ReasonsData(),
       products: Joi.array().items(OrderPlatformModel.Products()),
       data_updates: OrderPlatformModel.DataUpdates(),
-      transition_comments: Joi.array().items(
-        OrderPlatformModel.TransitionComments()
-      ),
     });
   }
 
@@ -6058,7 +5992,7 @@ class OrderPlatformModel {
       text: Joi.string().allow("").allow(null),
       category: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
-      display_name: Joi.string().allow("").allow(null),
+      dislay_name: Joi.string().allow("").allow(null),
       code: Joi.number().allow(null),
       quantity: Joi.number().allow(null),
     });
@@ -6216,7 +6150,6 @@ class OrderPlatformModel {
       currency: Joi.string().allow(""),
       total_order_value: Joi.number(),
       ordering_channel: Joi.string().allow(""),
-      ordering_source: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       cod_charges: Joi.number().allow(null),
       cashback_value: Joi.number().allow(null),
@@ -6574,6 +6507,7 @@ class OrderPlatformModel {
       fynd_order_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
       external_shipment_id: Joi.string().allow(""),
+      custom_json: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -6881,21 +6815,6 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {BulkReportsFiltersSchema} */
-  static BulkReportsFiltersSchema() {
-    return Joi.object({
-      bag_status: Joi.string().allow(""),
-      operational_status: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      time_to_dispatch: Joi.string().allow(""),
-      payment_methods: Joi.string().allow(""),
-      dp_ids: Joi.string().allow(""),
-      sales_channels: Joi.string().allow(""),
-      tags: Joi.string().allow(""),
-      lock_status: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {BulkReportsDownloadRequestSchema} */
   static BulkReportsDownloadRequestSchema() {
     return Joi.object({
@@ -6909,7 +6828,6 @@ class OrderPlatformModel {
       filter_type: Joi.string().allow(""),
       is_cross_company_enabled: Joi.boolean(),
       custom_filters_for_lane: Joi.object().pattern(/\S/, Joi.any()),
-      filters: OrderPlatformModel.BulkReportsFiltersSchema(),
     });
   }
 
@@ -7678,8 +7596,7 @@ class OrderPlatformModel {
   static TransitionConfigCondition() {
     return Joi.object({
       app_id: Joi.string().allow("").required(),
-      ordering_channel: Joi.string().allow(""),
-      ordering_source: Joi.string().allow("").allow(null),
+      ordering_channel: Joi.string().allow("").required(),
       entity: Joi.string().allow("").required(),
     });
   }
@@ -7755,8 +7672,8 @@ class OrderPlatformModel {
       question_set: Joi.array()
         .items(OrderPlatformModel.QuestionSet())
         .required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      is_active: Joi.boolean(),
+      meta: Joi.object().pattern(/\S/, Joi.any()).required(),
+      is_active: Joi.boolean().required(),
     }).id("Reason");
   }
 
@@ -7903,7 +7820,6 @@ class OrderPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 
@@ -7972,7 +7888,7 @@ class OrderPlatformModel {
       last_name: Joi.string().allow("").allow(null),
       mobile: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").allow(null),
-      meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      meta: Joi.string().allow("").allow(null),
       is_anonymous_user: Joi.boolean().allow(null),
       name: Joi.string().allow("").allow(null),
       gender: Joi.string().allow("").allow(null),
@@ -8014,7 +7930,6 @@ class OrderPlatformModel {
       state_code: Joi.string().allow(""),
       uid: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
-      code: Joi.string().allow("").allow(null),
     }).allow(null);
   }
 
@@ -8512,7 +8427,6 @@ class OrderPlatformModel {
       ordering_currency_prices: OrderPlatformModel.OrderingCurrencyPrices(),
       order_id: Joi.string().allow("").required(),
       ordering_channnel: Joi.string().allow("").allow(null),
-      ordering_source: Joi.string().allow("").allow(null),
       shipment_id: Joi.string().allow("").allow(null),
       customer_note: Joi.string().allow("").allow(null),
       total_bags: Joi.number().required(),
@@ -8579,7 +8493,6 @@ class OrderPlatformModel {
         .allow(null, ""),
       order_value: Joi.string().allow("").allow(null),
       ordering_channel: Joi.string().allow("").allow(null),
-      ordering_source: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -8652,8 +8565,6 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
-      name: Joi.string().allow("").allow(null),
-      store_email: Joi.string().allow("").allow(null),
     });
   }
 
@@ -8841,7 +8752,6 @@ class OrderPlatformModel {
       uid: Joi.string().allow("").allow(null),
       size: Joi.string().allow("").allow(null),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -9027,7 +8937,6 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").required(),
       state: Joi.string().allow("").required(),
       city: Joi.string().allow("").required(),
-      store_email: Joi.string().allow("").allow(null),
     });
   }
 
@@ -9187,7 +9096,6 @@ class OrderPlatformModel {
   static OrderData() {
     return Joi.object({
       ordering_channel: Joi.string().allow(""),
-      ordering_source: Joi.string().allow("").allow(null),
       order_date: Joi.string().allow("").required(),
       created_ts: Joi.string().allow(""),
       tax_details: OrderPlatformModel.TaxDetails(),

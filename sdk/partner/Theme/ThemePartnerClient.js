@@ -546,7 +546,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/themes`,
+      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/themes`,
       query_params,
       undefined,
       requestHeaders,
@@ -620,7 +620,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -704,7 +704,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "put",
-      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       body,
       requestHeaders,
@@ -781,7 +781,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "delete",
-      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,

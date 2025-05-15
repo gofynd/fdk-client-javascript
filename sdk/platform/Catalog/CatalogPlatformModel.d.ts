@@ -6,10 +6,6 @@ export = CatalogPlatformModel;
  * @property {ActionPage} [popup]
  */
 /**
- * @typedef ValidationErrors
- * @property {ValidationError[]} errors - A list of validation errors in the request.
- */
-/**
  * @typedef AllSizes
  * @property {ValidateIdentifier[]} [identifiers] - A collection of identifiers
  *   (e.g., GTIN, UPC) associated with the size. Each identifier follows the
@@ -106,6 +102,7 @@ export = CatalogPlatformModel;
  * @property {string} [name] - Name of the application.
  * @property {number} priority - Defines the priority level for this
  *   configuration, with 1 being the highest.
+ * @property {ApplicationItemSEO} [seo]
  */
 /**
  * @typedef ApplicationBrandJson
@@ -219,7 +216,8 @@ export = CatalogPlatformModel;
  *   with the product.
  * @property {number} category_uid - The unique identifier for the category to
  *   which the product belongs.
- * @property {string} [verification_status] - Verification status of the product.
+ * @property {number} [verification_status] - The verification status of the
+ *   product, typically represented as an integer.
  * @property {string} [channel_identifier] - The identifier for the sales
  *   channel through which the product is sold.
  * @property {string} [category_slug] - A URL-friendly string representing the
@@ -256,7 +254,7 @@ export = CatalogPlatformModel;
  *   variants of one another.
  * @property {MultiCategoriesSchema[]} [multi_categories]
  * @property {string} [template_tag] - Tag used for categorizing or templating purposes.
- * @property {NetQuantitySchema} [net_quantity]
+ * @property {Object} [net_quantity] - Net quantity details for the product.
  * @property {CustomOrder} [custom_order]
  * @property {string} country_of_origin - Country where the product is
  *   manufactured or sourced from.
@@ -266,9 +264,6 @@ export = CatalogPlatformModel;
  * @property {CustomMeta[]} [_custom_meta] - Custom meta associated with the product.
  * @property {number} [discount_percentage] - The discount applied to the
  *   product in percentage.
- * @property {number} [no_of_boxes] - Number of boxes containing the product.
- * @property {string} [created_on] - The date and time when the product was created
- * @property {string} [modified_on] - The date and time when the product was last modified
  */
 /**
  * @typedef ApplicationProductListingResponseSchema
@@ -614,7 +609,6 @@ export = CatalogPlatformModel;
  * @property {number} [failed]
  * @property {Object[]} [failed_records]
  * @property {string} [file_path]
- * @property {string} [file_type] - Type of inventory File
  * @property {boolean} [is_active] - Whether the item is active or not.
  * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
@@ -1137,6 +1131,14 @@ export = CatalogPlatformModel;
  * @property {number[]} category_ids - List of category_ids to be deleted.
  */
 /**
+ * @typedef DeleteProductRequestBody
+ * @property {number} [brand_uid] - The brand identifier for the product.
+ * @property {string} [item_code] - The code of the item to be deleted.
+ * @property {string} [company_id] - The ID of the company. (Optional if already
+ *   provided in the path)
+ * @property {number} [item_id] - The ID of the product.
+ */
+/**
  * @typedef DeleteResponseSchema
  * @property {string} [message]
  */
@@ -1375,7 +1377,7 @@ export = CatalogPlatformModel;
  *   for geolocation purposes.
  * @property {number} [longitude] - The longitude coordinate of the address,
  *   used for geolocation purposes.
- * @property {string} [pincode] - The postal code or ZIP code associated with the address.
+ * @property {number} [pincode] - The postal code or ZIP code associated with the address.
  * @property {string} [state] - The state or region where the address is located.
  */
 /**
@@ -1558,6 +1560,7 @@ export = CatalogPlatformModel;
  * @property {string} [slug] - A URL-friendly identifier for the configuration group.
  * @property {string[]} [template_slugs] - A list of template slugs associated
  *   with this configuration.
+ * @property {ApplicationItemSEO} [seo]
  */
 /**
  * @typedef AttributeConfig
@@ -2192,7 +2195,12 @@ export = CatalogPlatformModel;
  * @property {string} seller_identifier - The identifier of the seller.
  * @property {number} store_id - The ID of the store.
  * @property {string[]} [tags] - The tags associated with the inventory item.
- * @property {number} [total_quantity] - The total quantity of the inventory item.
+ * @property {number} [total_quantity] - The total quantity of the inventory
+ *   item. Any one quantity is allowed `sellable_quantity` or `total_quantity`,
+ *   the other one would be derived.
+ * @property {number} [sellable_quantity] - The sellable quantity of the
+ *   inventory item. Any one quantity is allowed `sellable_quantity` or
+ *   `total_quantity`, the other one would be derived.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
  */
 /**
@@ -2607,21 +2615,6 @@ export = CatalogPlatformModel;
  * @property {string} [start] - The start time of the schedule.
  */
 /**
- * @typedef LocationPriceRequestSchema
- * @property {number} price_effective - The effective price of the inventory item.
- * @property {number} price_marked - The marked price of the inventory item.
- * @property {string[]} [tags] - Tags associated with inventory item.
- */
-/**
- * @typedef LocationQuantityRequestSchema
- * @property {string} [expiration_date] - The expiration date of the inventory item.
- * @property {number} total_quantity - The total quantity of the inventory item.
- */
-/**
- * @typedef LocationPriceQuantitySuccessResponseSchema
- * @property {string} message - It is the success message of the price/quantity update.
- */
-/**
  * @typedef OptInPostRequestSchema
  * @property {number[]} [brand_ids]
  * @property {number} [company_id]
@@ -2686,7 +2679,6 @@ export = CatalogPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef PageResponseSchema
@@ -2939,7 +2931,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [multivalue]
  */
 /**
- * @typedef ProductUpdateSchemaV2
+ * @typedef ProductCreateUpdateSchemaV2
  * @property {Object} [_custom_json] - Custom JSON data that can be used for
  *   additional product properties.
  * @property {string} [action] - The action to perform wrt to the product (e.g.,
@@ -2991,62 +2983,6 @@ export = CatalogPlatformModel;
  *   classification.
  * @property {Trader[]} trader - List of traders associated with the product.
  * @property {number} [uid] - Unique identifier for the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
- */
-/**
- * @typedef ProductCreateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
@@ -4289,13 +4225,8 @@ export = CatalogPlatformModel;
  * @property {PageType} type
  */
 /**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-/**
  * @typedef Price1
- * @property {string} [currency_code] - ISO 4217 currency codes
+ * @property {CurrencyCodeEnum} [currency_code]
  * @property {string} [currency_symbol]
  * @property {number} [max]
  * @property {number} [min]
@@ -4311,17 +4242,20 @@ export = CatalogPlatformModel;
  *   category of the product.
  */
 /**
- * @typedef NetQuantitySchema
- * @property {string} [unit] - Specifies the unit of measurement for the net quantity.
- * @property {number} [value] - The numerical value representing the net
- *   quantity of the product.
- */
-/**
  * @typedef CustomMeta
  * @property {string} key - The key of the metadata. Should be a non-empty
  *   string and length should not exceed 30 characters.
  * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
+ */
+/**
+ * @typedef ValidationErrors
+ * @property {ValidationError[]} errors
+ */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
  */
 /**
  * @typedef {| "about-us"
@@ -4373,10 +4307,11 @@ export = CatalogPlatformModel;
  *   | "order-status"
  *   | "locate-us"} PageType
  */
+/** @typedef {"INR" | "USD" | "EUR"} CurrencyCodeEnum */
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProductBundleCreateResponseSchema, GetProductBundleListingResponseSchema, GetProductBundleResponseSchema, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductBundleItem, ProductBundleRequestSchema, ProductBundleUpdateRequestSchema, ProductConfigurationDownloads, ProductUpdateSchemaV2, ProductCreateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, PageType };
+    export { Action, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteProductRequestBody, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProductBundleCreateResponseSchema, GetProductBundleListingResponseSchema, GetProductBundleResponseSchema, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductBundleItem, ProductBundleRequestSchema, ProductBundleUpdateRequestSchema, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, ActionPage, Price1, MultiCategoriesSchema, CustomMeta, ValidationErrors, ValidationError, PageType, CurrencyCodeEnum };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -4387,14 +4322,6 @@ type Action = {
     type?: string;
     page?: ActionPage;
     popup?: ActionPage;
-};
-/** @returns {ValidationErrors} */
-declare function ValidationErrors(): ValidationErrors;
-type ValidationErrors = {
-    /**
-     * - A list of validation errors in the request.
-     */
-    errors: ValidationError[];
 };
 /** @returns {AllSizes} */
 declare function AllSizes(): AllSizes;
@@ -4588,6 +4515,7 @@ type AppConfigurationsSort = {
      * configuration, with 1 being the highest.
      */
     priority: number;
+    seo?: ApplicationItemSEO;
 };
 /** @returns {ApplicationBrandJson} */
 declare function ApplicationBrandJson(): ApplicationBrandJson;
@@ -4859,9 +4787,10 @@ type ApplicationProductsSchema = {
      */
     category_uid: number;
     /**
-     * - Verification status of the product.
+     * - The verification status of the
+     * product, typically represented as an integer.
      */
-    verification_status?: string;
+    verification_status?: number;
     /**
      * - The identifier for the sales
      * channel through which the product is sold.
@@ -4958,7 +4887,10 @@ type ApplicationProductsSchema = {
      * - Tag used for categorizing or templating purposes.
      */
     template_tag?: string;
-    net_quantity?: NetQuantitySchema;
+    /**
+     * - Net quantity details for the product.
+     */
+    net_quantity?: any;
     custom_order?: CustomOrder;
     /**
      * - Country where the product is
@@ -4986,18 +4918,6 @@ type ApplicationProductsSchema = {
      * product in percentage.
      */
     discount_percentage?: number;
-    /**
-     * - Number of boxes containing the product.
-     */
-    no_of_boxes?: number;
-    /**
-     * - The date and time when the product was created
-     */
-    created_on?: string;
-    /**
-     * - The date and time when the product was last modified
-     */
-    modified_on?: string;
 };
 /** @returns {ApplicationProductListingResponseSchema} */
 declare function ApplicationProductListingResponseSchema(): ApplicationProductListingResponseSchema;
@@ -5675,10 +5595,6 @@ type BulkJob = {
     failed?: number;
     failed_records?: any[];
     file_path?: string;
-    /**
-     * - Type of inventory File
-     */
-    file_type?: string;
     /**
      * - Whether the item is active or not.
      */
@@ -6652,6 +6568,27 @@ type DeleteAppCategoryReturnConfig = {
      */
     category_ids: number[];
 };
+/** @returns {DeleteProductRequestBody} */
+declare function DeleteProductRequestBody(): DeleteProductRequestBody;
+type DeleteProductRequestBody = {
+    /**
+     * - The brand identifier for the product.
+     */
+    brand_uid?: number;
+    /**
+     * - The code of the item to be deleted.
+     */
+    item_code?: string;
+    /**
+     * - The ID of the company. (Optional if already
+     * provided in the path)
+     */
+    company_id?: string;
+    /**
+     * - The ID of the product.
+     */
+    item_id?: number;
+};
 /** @returns {DeleteResponseSchema} */
 declare function DeleteResponseSchema(): DeleteResponseSchema;
 type DeleteResponseSchema = {
@@ -7236,7 +7173,7 @@ type GetAddressSchema = {
     /**
      * - The postal code or ZIP code associated with the address.
      */
-    pincode?: string;
+    pincode?: number;
     /**
      * - The state or region where the address is located.
      */
@@ -7572,6 +7509,7 @@ type ConfigItem = {
      * with this configuration.
      */
     template_slugs?: string[];
+    seo?: ApplicationItemSEO;
 };
 /** @returns {AttributeConfig} */
 declare function AttributeConfig(): AttributeConfig;
@@ -9041,9 +8979,17 @@ type InventoryPayload = {
      */
     tags?: string[];
     /**
-     * - The total quantity of the inventory item.
+     * - The total quantity of the inventory
+     * item. Any one quantity is allowed `sellable_quantity` or `total_quantity`,
+     * the other one would be derived.
      */
     total_quantity?: number;
+    /**
+     * - The sellable quantity of the
+     * inventory item. Any one quantity is allowed `sellable_quantity` or
+     * `total_quantity`, the other one would be derived.
+     */
+    sellable_quantity?: number;
     /**
      * - The trace ID of the inventory payload.
      */
@@ -9953,42 +9899,6 @@ type NextSchedule = {
      */
     start?: string;
 };
-/** @returns {LocationPriceRequestSchema} */
-declare function LocationPriceRequestSchema(): LocationPriceRequestSchema;
-type LocationPriceRequestSchema = {
-    /**
-     * - The effective price of the inventory item.
-     */
-    price_effective: number;
-    /**
-     * - The marked price of the inventory item.
-     */
-    price_marked: number;
-    /**
-     * - Tags associated with inventory item.
-     */
-    tags?: string[];
-};
-/** @returns {LocationQuantityRequestSchema} */
-declare function LocationQuantityRequestSchema(): LocationQuantityRequestSchema;
-type LocationQuantityRequestSchema = {
-    /**
-     * - The expiration date of the inventory item.
-     */
-    expiration_date?: string;
-    /**
-     * - The total quantity of the inventory item.
-     */
-    total_quantity: number;
-};
-/** @returns {LocationPriceQuantitySuccessResponseSchema} */
-declare function LocationPriceQuantitySuccessResponseSchema(): LocationPriceQuantitySuccessResponseSchema;
-type LocationPriceQuantitySuccessResponseSchema = {
-    /**
-     * - It is the success message of the price/quantity update.
-     */
-    message: string;
-};
 /** @returns {OptInPostRequestSchema} */
 declare function OptInPostRequestSchema(): OptInPostRequestSchema;
 type OptInPostRequestSchema = {
@@ -10104,10 +10014,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {PageResponseSchema} */
 declare function PageResponseSchema(): PageResponseSchema;
@@ -10670,9 +10576,9 @@ type ProductConfigurationDownloads = {
     data?: any[];
     multivalue?: boolean;
 };
-/** @returns {ProductUpdateSchemaV2} */
-declare function ProductUpdateSchemaV2(): ProductUpdateSchemaV2;
-type ProductUpdateSchemaV2 = {
+/** @returns {ProductCreateUpdateSchemaV2} */
+declare function ProductCreateUpdateSchemaV2(): ProductCreateUpdateSchemaV2;
+type ProductCreateUpdateSchemaV2 = {
     /**
      * - Custom JSON data that can be used for
      * additional product properties.
@@ -10823,168 +10729,6 @@ type ProductUpdateSchemaV2 = {
      * - Unique identifier for the product.
      */
     uid?: number;
-    /**
-     * - Variant group information for the product.
-     */
-    variant_group?: any;
-    /**
-     * - Media related to product variants.
-     */
-    variant_media?: any;
-    /**
-     * - Variants information for the product.
-     */
-    variants?: any;
-};
-/** @returns {ProductCreateSchemaV2} */
-declare function ProductCreateSchemaV2(): ProductCreateSchemaV2;
-type ProductCreateSchemaV2 = {
-    /**
-     * - Custom JSON data that can be used for
-     * additional product properties.
-     */
-    _custom_json?: any;
-    /**
-     * - The action to perform wrt to the product (e.g.,
-     * upsert, update, delete).
-     */
-    action?: string;
-    /**
-     * - Additional attributes related to the product.
-     */
-    attributes?: any;
-    /**
-     * - Unique identifier for the product's brand.
-     */
-    brand_uid: number;
-    /**
-     * - Job ID associated with bulk operations.
-     */
-    bulk_job_id?: string;
-    /**
-     * - The category to which the product belongs.
-     */
-    category_slug: string;
-    /**
-     * - Change request identifier for product updates.
-     */
-    change_request_id?: string;
-    /**
-     * - Unique identifier for the company associated
-     * with the product.
-     */
-    company_id: number;
-    /**
-     * - The country where the product was
-     * manufactured or sourced.
-     */
-    country_of_origin: string;
-    /**
-     * - The currency in which the product's price is listed.
-     */
-    currency: string;
-    custom_order?: CustomOrder;
-    /**
-     * - List of department IDs associated with the product.
-     */
-    departments: number[];
-    /**
-     * - A detailed description of the product.
-     */
-    description?: string;
-    /**
-     * - Product highlights or key features.
-     */
-    highlights?: string[];
-    /**
-     * - Flag to indicate if the product is active.
-     */
-    is_active?: boolean;
-    /**
-     * - Flag to indicate if the product is
-     * dependent on other products.
-     */
-    is_dependent?: boolean;
-    /**
-     * - Flag to indicate if the product
-     * does not have associated images.
-     */
-    is_image_less_product?: boolean;
-    /**
-     * - Flag to indicate if the product is part of a set.
-     */
-    is_set?: boolean;
-    /**
-     * - Unique item code or SKU of the product.
-     */
-    item_code: string;
-    /**
-     * - Type of the product (e.g., standard, set,
-     * composite, digital).
-     */
-    item_type: string;
-    /**
-     * - List of media URLs (images, videos) associated
-     * with the product.
-     */
-    media?: Media[];
-    /**
-     * - Indicates if the product supports multiple sizes.
-     */
-    multi_size?: boolean;
-    /**
-     * - The name of the product.
-     */
-    name: string;
-    net_quantity?: NetQuantity;
-    /**
-     * - Number of boxes required to package the product.
-     */
-    no_of_boxes?: number;
-    /**
-     * - Tags to group products together
-     * for classification.
-     */
-    product_group_tag?: string[];
-    product_publish?: ProductPublish;
-    /**
-     * - The role requesting the product operation
-     * (admin or user).
-     */
-    requester?: string;
-    return_config: ReturnConfig;
-    /**
-     * - A short description of the product,
-     * up to 50 characters.
-     */
-    short_description?: string;
-    /**
-     * - Identifier for the product's size guide.
-     */
-    size_guide?: string;
-    /**
-     * - List of sizes available for the product.
-     */
-    sizes: any[];
-    /**
-     * - URL-friendly identifier for the product.
-     */
-    slug: string;
-    /**
-     * - List of tags associated with the product.
-     */
-    tags?: string[];
-    tax_identifier: TaxIdentifier;
-    teaser_tag?: TeaserTag;
-    /**
-     * - Template tag for the product, used for
-     * classification.
-     */
-    template_tag: string;
-    /**
-     * - List of traders associated with the product.
-     */
-    trader: Trader[];
     /**
      * - Variant group information for the product.
      */
@@ -13676,25 +13420,10 @@ type ActionPage = {
     url?: string;
     type: PageType;
 };
-/** @returns {ValidationError} */
-declare function ValidationError(): ValidationError;
-type ValidationError = {
-    /**
-     * - A brief description of the error encountered.
-     */
-    message: string;
-    /**
-     * - The field in the request that caused the error.
-     */
-    field: string;
-};
 /** @returns {Price1} */
 declare function Price1(): Price1;
 type Price1 = {
-    /**
-     * - ISO 4217 currency codes
-     */
-    currency_code?: string;
+    currency_code?: CurrencyCodeEnum;
     currency_symbol?: string;
     max?: number;
     min?: number;
@@ -13725,19 +13454,6 @@ type MultiCategoriesSchema = {
      */
     department?: number;
 };
-/** @returns {NetQuantitySchema} */
-declare function NetQuantitySchema(): NetQuantitySchema;
-type NetQuantitySchema = {
-    /**
-     * - Specifies the unit of measurement for the net quantity.
-     */
-    unit?: string;
-    /**
-     * - The numerical value representing the net
-     * quantity of the product.
-     */
-    value?: number;
-};
 /** @returns {CustomMeta} */
 declare function CustomMeta(): CustomMeta;
 type CustomMeta = {
@@ -13752,6 +13468,23 @@ type CustomMeta = {
      */
     value: string;
 };
+/** @returns {ValidationErrors} */
+declare function ValidationErrors(): ValidationErrors;
+type ValidationErrors = {
+    errors: ValidationError[];
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
+};
 /**
  * Enum: PageType Used By: Catalog
  *
@@ -13759,3 +13492,10 @@ type CustomMeta = {
  */
 declare function PageType(): PageType;
 type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status" | "locate-us";
+/**
+ * Enum: CurrencyCodeEnum Used By: Catalog
+ *
+ * @returns {CurrencyCodeEnum}
+ */
+declare function CurrencyCodeEnum(): CurrencyCodeEnum;
+type CurrencyCodeEnum = "INR" | "USD" | "EUR";

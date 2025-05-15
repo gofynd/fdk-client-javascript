@@ -1,7 +1,5 @@
 export = ContentPublicValidator;
-/** @typedef GetAllLanguagesParam */
 /** @typedef GetAllTagsParam */
-/** @typedef GetAllTranslatableResourcesParam */
 /** @typedef GetAnalyticsTagsParam */
 /** @typedef GetBasicDetailsParam */
 /**
@@ -18,10 +16,6 @@ export = ContentPublicValidator;
  * @typedef GetHomePageContentParam
  * @property {string} pageType - The type of the page (e.g., pricing).
  */
-/**
- * @typedef GetLanguageByLocaleParam
- * @property {string} locale
- */
 /** @typedef GetMenuContentParam */
 /**
  * @typedef GetMenuContentByTypeParam
@@ -30,12 +24,8 @@ export = ContentPublicValidator;
 /** @typedef GetNavbarParam */
 /** @typedef GetPricingBannerParam */
 declare class ContentPublicValidator {
-    /** @returns {GetAllLanguagesParam} */
-    static getAllLanguages(): any;
     /** @returns {GetAllTagsParam} */
     static getAllTags(): any;
-    /** @returns {GetAllTranslatableResourcesParam} */
-    static getAllTranslatableResources(): any;
     /** @returns {GetAnalyticsTagsParam} */
     static getAnalyticsTags(): any;
     /** @returns {GetBasicDetailsParam} */
@@ -48,8 +38,6 @@ declare class ContentPublicValidator {
     static getFooterContent(): any;
     /** @returns {GetHomePageContentParam} */
     static getHomePageContent(): GetHomePageContentParam;
-    /** @returns {GetLanguageByLocaleParam} */
-    static getLanguageByLocale(): GetLanguageByLocaleParam;
     /** @returns {GetMenuContentParam} */
     static getMenuContent(): any;
     /** @returns {GetMenuContentByTypeParam} */
@@ -60,7 +48,7 @@ declare class ContentPublicValidator {
     static getPricingBanner(): any;
 }
 declare namespace ContentPublicValidator {
-    export { GetAllLanguagesParam, GetAllTagsParam, GetAllTranslatableResourcesParam, GetAnalyticsTagsParam, GetBasicDetailsParam, GetCredentialsByEntityParam, GetCustomPageParam, GetFooterContentParam, GetHomePageContentParam, GetLanguageByLocaleParam, GetMenuContentParam, GetMenuContentByTypeParam, GetNavbarParam, GetPricingBannerParam };
+    export { GetAllTagsParam, GetAnalyticsTagsParam, GetBasicDetailsParam, GetCredentialsByEntityParam, GetCustomPageParam, GetFooterContentParam, GetHomePageContentParam, GetMenuContentParam, GetMenuContentByTypeParam, GetNavbarParam, GetPricingBannerParam };
 }
 type GetCredentialsByEntityParam = {
     /**
@@ -81,18 +69,13 @@ type GetHomePageContentParam = {
      */
     pageType: string;
 };
-type GetLanguageByLocaleParam = {
-    locale: string;
-};
 type GetMenuContentByTypeParam = {
     /**
      * - Type param is type of device
      */
     type: string;
 };
-type GetAllLanguagesParam = any;
 type GetAllTagsParam = any;
-type GetAllTranslatableResourcesParam = any;
 type GetAnalyticsTagsParam = any;
 type GetBasicDetailsParam = any;
 type GetFooterContentParam = any;

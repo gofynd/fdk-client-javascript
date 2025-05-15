@@ -57,8 +57,6 @@ export = ContentPlatformModel;
  * @property {string} [app]
  * @property {string} [_id]
  * @property {string} [robots_txt]
- * @property {boolean} [sitemap_enabled]
- * @property {string} [additional_sitemap]
  * @property {boolean} [cannonical_enabled]
  * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
@@ -185,7 +183,7 @@ export = ContentPlatformModel;
  * @typedef Author
  * @property {string} [designation]
  * @property {string} [id]
- * @property {string} [name] - Name of the author
+ * @property {string} [name]
  */
 /**
  * @typedef BlogSchema
@@ -244,6 +242,50 @@ export = ContentPlatformModel;
  * @typedef DateMeta
  * @property {string} [created_on]
  * @property {string} [modified_on]
+ */
+/**
+ * @typedef DefaultSitemapIndividualConfig
+ * @property {boolean} [enabled] - Whether sitemap configuration is enabled or
+ *   not for this sitemap configuration
+ */
+/**
+ * @typedef DefaultSitemapConfig
+ * @property {DefaultSitemapIndividualConfig} [root]
+ * @property {DefaultSitemapIndividualConfig} [brand]
+ * @property {DefaultSitemapIndividualConfig} [collections]
+ * @property {DefaultSitemapIndividualConfig} [category_l1]
+ * @property {DefaultSitemapIndividualConfig} [category_l2]
+ * @property {DefaultSitemapIndividualConfig} [category_l3]
+ * @property {DefaultSitemapIndividualConfig} [pages]
+ * @property {DefaultSitemapIndividualConfig} [blog]
+ * @property {DefaultSitemapIndividualConfig} [section]
+ * @property {DefaultSitemapIndividualConfig} [faq]
+ * @property {DefaultSitemapIndividualConfig} [sitemap]
+ */
+/**
+ * @typedef SitemapConfigCreate
+ * @property {string} [name] - Unique identifier for the sitemap configuration
+ * @property {boolean} [is_active] - Indicates if the sitemap configuration is active
+ * @property {string} [sitemap] - XML string containing sitemap data in base64 encoding
+ */
+/**
+ * @typedef SitemapConfig
+ * @property {string} [name] - Unique identifier for the sitemap configuration
+ * @property {boolean} [is_active] - Indicates if the sitemap configuration is
+ *   active or not in storefront
+ * @property {string} [sitemap] - XML string containing sitemap data in base64 encoding
+ * @property {string} [created_at] - Timestamp when the configuration was created
+ * @property {string} [updated_at] - Timestamp when the configuration was last updated
+ */
+/**
+ * @typedef SitemapConfigurationList
+ * @property {SitemapConfig[]} [items] - List of all Sitemap configurations
+ * @property {Page} [page]
+ */
+/**
+ * @typedef SitemapConfigUpdate
+ * @property {boolean} [is_active] - Indicates if the sitemap configuration is active
+ * @property {string} [sitemap] - XML string containing sitemap data
  */
 /**
  * @typedef BlogPayload
@@ -325,72 +367,54 @@ export = ContentPlatformModel;
  * @property {string} [end]
  */
 /**
+ * @typedef ConfigurationSchema
+ * @property {number} [sleep_time]
+ * @property {boolean} [start_on_launch]
+ * @property {number} [duration]
+ * @property {string} [slide_direction]
+ */
+/**
+ * @typedef SlideshowMedia
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [bg_color]
+ * @property {number} [duration]
+ * @property {boolean} [auto_decide_duration]
+ * @property {Action} [action]
+ */
+/**
  * @typedef UpdateHandpickedSchema
  * @property {HandpickedTagSchema} [tag]
  */
 /**
  * @typedef HandpickedTagSchema
- * @property {string} [position] - The location in the page where the tag should
- *   be injected, such as 'head', 'body-top', or 'body-bottom'.
- * @property {Object} [attributes] - Additional attributes for the tag to define
- *   its behavior or compatibility. Supported attributes may vary based on the
- *   tag type for example:
- *
- *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
- *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
- *   - For `style` tags: `media`, `type`, `scoped`.
- *   - Custom data attributes like `data-*` can also be added.
- *
- * @property {string[]} [compatible_engines] - List of UI frameworks where this
- *   third-party tag can be injected or supported.
- * @property {string} [name] - The name of the tag used to identify it in the
- *   system. Example: 'Google External Script' or 'Bootstrap CSS'.
- * @property {string} [url] - The URL where the external tag resource (such as a
- *   script or stylesheet) is hosted.
- * @property {string} [type] - The type of the tag, such as 'script' (for
- *   JavaScript) or 'link' (for CSS).
- * @property {string} [sub_type] - Defines whether the tag is embedded within
- *   the HTML (inline) or linked externally (external).
- * @property {string} [content] - The actual content of the inline tag, such as
- *   JavaScript or CSS code if the tag is inline.
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [content]
  */
 /**
  * @typedef RemoveHandpickedSchema
- * @property {string[]} [tags] - A list of tag IDs to remove from the system.
+ * @property {string[]} [tags]
  */
 /**
  * @typedef CreateTagSchema
- * @property {string} [name] - The name of the tag to be created, used for
- *   identification purposes.
- * @property {string} [sub_type] - Indicates if the tag is external (linked) or
- *   inline (embedded within the page).
- * @property {string} [_id] - The unique identifier for the tag.
- * @property {string} [type] - The type of the tag, either JavaScript ('js') or
- *   CSS ('css').
- * @property {string} [url] - The external URL pointing to the script or
- *   stylesheet resource.
- * @property {string} [position] - The position on the webpage where the tag
- *   will be injected, such as 'head', 'body-top', or 'body-bottom'.
- * @property {Object} [attributes] - Additional attributes for the tag to define
- *   its behavior or compatibility. Supported attributes may vary based on the
- *   tag type for example:
- *
- *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
- *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
- *   - For `style` tags: `media`, `type`, `scoped`.
- *   - Custom data attributes like `data-*` can also be added.
- *
- * @property {string[]} [compatible_engines] - List of UI frameworks where this
- *   third-party tag can be injected or supported.
- * @property {Object[]} [pages] - Pages or environments where the tag should be
- *   injected or active.
- * @property {string} [content] - The inline content for tags of type 'inline'
- *   (e.g., JavaScript or CSS code).
+ * @property {string} [name]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {Object[]} [pages]
+ * @property {string} [content]
  */
 /**
  * @typedef CreateTagRequestSchema
- * @property {CreateTagSchema[]} [tags] - A list of tags to be created or
- *   updated, each containing details such as name, type, and attributes.
+ * @property {CreateTagSchema[]} [tags]
  */
 /**
  * @typedef DataLoaderSchema
@@ -414,8 +438,7 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef TagDeleteSuccessDetails
- * @property {boolean} [success] - Indicates whether the tag removal operation
- *   was successful.
+ * @property {boolean} [success]
  */
 /**
  * @typedef ContentAPIError
@@ -525,7 +548,6 @@ export = ContentPlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef LandingPageGetDetails
@@ -665,6 +687,32 @@ export = ContentPlatformModel;
  * @property {string} [application_id]
  */
 /**
+ * @typedef SlideshowGetDetails
+ * @property {SlideshowSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef SlideshowSchema
+ * @property {string} [_id]
+ * @property {string} [slug]
+ * @property {DateMeta} [date_meta]
+ * @property {string} [application]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia[]} [media]
+ * @property {boolean} [active]
+ * @property {boolean} [archived]
+ * @property {Object} [_custom_json]
+ */
+/**
+ * @typedef SlideshowPayload
+ * @property {string} [slug]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia} [media]
+ * @property {boolean} [active]
+ */
+/**
  * @typedef Support
  * @property {boolean} [created]
  * @property {string} [_id]
@@ -702,44 +750,27 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef TagsSchema
- * @property {string} [application] - The ID of the application that owns the tags.
- * @property {string} [_id] - The unique identifier for the tag set.
- * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
- *   or stylesheets) that are configured for the application.
+ * @property {string} [application]
+ * @property {string} [_id]
+ * @property {TagSchema[]} [tags]
  */
 /**
  * @typedef TagSchema
- * @property {string} [name] - The name of the tag used to identify it.
- * @property {string} [url] - The URL where the external tag resource (such as a
- *   script or stylesheet) is located.
- * @property {string} [type] - Specifies whether the tag is a JavaScript ('js')
- *   or CSS ('css') tag.
- * @property {string} [sub_type] - Indicates whether the tag is an external
- *   resource (external) or inline content (inline).
- * @property {string} [_id] - The unique identifier for the tag in the system.
- * @property {string} [position] - The position within the page where the tag
- *   should be injected.
- * @property {Object} [attributes] - Additional attributes for the tag to define
- *   its behavior or compatibility. Supported attributes may vary based on the
- *   tag type for example:
- *
- *   - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
- *   - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
- *   - For `style` tags: `media`, `type`, `scoped`.
- *   - Custom data attributes like `data-*` can also be added.
- *
- * @property {string} [content] - Content of the tag if it is inline, such as
- *   JavaScript or CSS code.
- * @property {string[]} [compatible_engines] - List of UI frameworks where this
- *   third-party tag can be injected or supported.
- * @property {Object[]} [pages] - Pages or environments where the tag should be active.
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [content]
+ * @property {Object[]} [pages]
  * @property {TagSourceSchema} [__source]
  */
 /**
  * @typedef TagSourceSchema
- * @property {string} [type] - The type of source, such as 'extension'
- * @property {string} [id] - The identifier of the source that created or
- *   provided the tag.
+ * @property {string} [type]
+ * @property {string} [id]
  */
 /**
  * @typedef ResourcesSchema
@@ -1255,259 +1286,6 @@ export = ContentPlatformModel;
  * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
-/**
- * @typedef TranslateUiLabels
- * @property {string} [_id] - Unique identifier assigned to the Translate Ui Labels entry
- * @property {string} [company_id] - Identifier linking the resource to a
- *   specific company within the platform
- * @property {string} [application_id] - Reference to the application where this
- *   Translate Ui Labels is utilized
- * @property {string} [template_theme_id] - Links the resource to a specific
- *   template theme configuration
- * @property {string} [theme_id] - Associates the resource with a particular
- *   theme implementation
- * @property {string} [locale] - Specifies the language and region format for
- *   the resource content
- * @property {Object} [resource] - Contains the actual resource data and
- *   configuration settings
- * @property {string} [type] - Categorizes the resource type for proper handling
- *   and processing
- */
-/**
- * @typedef TranslateUiLabelsCreate
- * @property {string} [template_theme_id] - Unique identifier for the template theme
- * @property {string} [theme_id] - Unique identifier for the theme
- * @property {string} [locale] - Locale
- * @property {Object} [resource] - Translate Ui Labels json object
- * @property {string} [type] - Resource type
- */
-/**
- * @typedef StaticResourceUpdate
- * @property {string} [template_theme_id] - Unique identifier for the template theme
- * @property {string} [theme_id] - Unique identifier for the theme
- * @property {string} [locale] - Locale
- * @property {Object} [resource] - Translate Ui Labels json object
- * @property {string} [type] - Resource type
- */
-/**
- * @typedef TranslateUiLabelsPage
- * @property {TranslateUiLabels[]} [items] - List of items containing all the
- *   static info data.
- * @property {Page} [page]
- */
-/**
- * @typedef Error
- * @property {string} [error] - Detailed message explaining the error that occurred
- */
-/**
- * @typedef Meta
- * @property {string} [created_by] - Identifier of the user who created this resource
- * @property {string} [modified_by] - Identifier of the user who last modified
- *   this resource
- * @property {string} [created_on] - Timestamp when this resource was initially created
- * @property {string} [modified_on] - Timestamp when this resource was last modified
- */
-/**
- * @typedef CompanyLanguage
- * @property {string} [_id] - Unique identifier for the company language setting
- * @property {string} company_id - Identifier of the company this language
- *   configuration belongs to
- * @property {string} [locale] - Language code following ISO standards for this
- *   company setting
- * @property {string} [name] - Display name of the language for company usage
- * @property {string} [direction] - Text direction setting for company content
- *   in this language
- * @property {boolean} [is_default] - Indicates if this is the default language
- *   for the company
- * @property {string} [display_name] - Translated name of the language in
- *   English for easy reference and display at the website.
- */
-/**
- * @typedef CompanyLanguageCreate
- * @property {string[]} locales - List of language codes to be added to company
- *   configuration
- */
-/**
- * @typedef CompanyLanguageUpdate
- * @property {boolean} is_default - Sets the specified language as the company default
- */
-/**
- * @typedef ApplicationLanguage
- * @property {string} [_id] - Unique identifier for the application language setting
- * @property {string} company_id - Identifier of the company this application belongs to
- * @property {string} application_id - Unique identifier of the application
- *   using this language
- * @property {string} locale - Language code following ISO standards for this application
- * @property {string} name - Display name of the language for application usage
- * @property {string} direction - Specifies the text direction for displaying
- *   application content, either left-to-right (ltr) or right-to-left (rtl)
- * @property {boolean} is_default - Indicates if this is the default language
- *   for the application
- * @property {boolean} published - Indicates whether this language is currently
- *   active and visible within the storefront.
- * @property {string} [display_name] - Translated name of the language in
- *   English for easy reference and display at the website.
- */
-/**
- * @typedef unPublishApplicationLanguage
- * @property {boolean} published - Updates the publication status of the language
- */
-/**
- * @typedef ApplicationLanguageCreate
- * @property {string[]} locales - List of language codes to be added to
- *   application configuration
- */
-/**
- * @typedef ApplicationLanguageUpdate
- * @property {boolean} is_default - Sets the specified language as the application default
- * @property {boolean} published - Updates the publication status of the language
- */
-/**
- * @typedef TranslatableResource
- * @property {string} [_id] - Unique identifier for the translatable resource
- * @property {string} type - Categorizes the type of content that can be translated
- * @property {string} name - Display name of the translatable resource
- * @property {string} description - Detailed explanation of the translatable resource
- * @property {string} schema_type - Defines the processing type for the
- *   translation schema static (fixed), dynamic (flexible), or partial_dynamic (mixed).
- * @property {string} [created_by] - Identifier of the user who created this resource
- * @property {string} [modified_by] - Identifier of the user who last modified
- *   this resource
- * @property {string} [created_on] - Timestamp when this resource was initially created
- * @property {string} [modified_on] - Timestamp when this resource was last modified
- * @property {TranslatableSection} [section_id]
- */
-/**
- * @typedef ResourceDefinition
- * @property {string} [_id] - Unique identifier for the resource definition
- * @property {string} translatable_resource_id - Reference to the associated
- *   translatable resource
- * @property {ResourceJsonSchema} [json_schema]
- * @property {ResourceUISchema} [ui_schema]
- * @property {ResourceBulkDetails} [bulk_details]
- */
-/**
- * @typedef ResourceJsonSchema
- * @property {string} [schema]
- * @property {ResourceJsonSchemaType} [type]
- */
-/**
- * @typedef ResourceJsonSchemaType
- * @property {Author} [author]
- * @property {Title} [title]
- * @property {FeatureImage} [feature_image]
- */
-/**
- * @typedef ResourceUISchema
- * @property {Author} [author]
- * @property {Title} [title]
- * @property {FeatureImage} [feature_image]
- * @property {Seo} [seo]
- */
-/**
- * @typedef ResourceBulkDetails
- * @property {string[]} [fields]
- */
-/**
- * @typedef Title
- * @property {string} [ui_widget]
- * @property {boolean} [ui_description]
- */
-/**
- * @typedef FeatureImage
- * @property {string} [secure_url] - URL of the secure image
- */
-/**
- * @typedef Seo
- * @property {Title} [title]
- * @property {string} [description]
- * @property {string} [canonical_url]
- * @property {MetaTag[]} [meta_tags]
- */
-/**
- * @typedef MetaTag
- * @property {string} [title] - Title of the meta tag
- * @property {MetaTagItem[]} [items]
- */
-/**
- * @typedef MetaTagItem
- * @property {string} [key] - Key of the meta tag item
- * @property {string} [value] - Value of the meta tag item
- */
-/**
- * @typedef ResourceTranslation
- * @property {string} [_id] - Unique identifier for the translation entry
- * @property {string} [locale] - Language code for this translation
- * @property {TranslationValue} [value]
- */
-/**
- * @typedef TranslationValue
- * @property {string} [name] - Translated name
- * @property {TranslationSeo} [seo]
- */
-/**
- * @typedef TranslationSeo
- * @property {string} [title] - Translated SEO title
- * @property {string[]} [breadcrumbs] - List of translated breadcrumbs
- * @property {string[]} [meta_tags] - List of translated meta tags
- * @property {string} [canonical_url] - Translated canonical URL
- * @property {string} [description] - Translated SEO description
- */
-/**
- * @typedef ResourceTranslationList
- * @property {ResourceTranslationCreate[]} [items]
- */
-/**
- * @typedef ResourceTranslationCreate
- * @property {string} [type] - Type of content being translated
- * @property {string} [resource_id] - Identifier of the resource requiring translation
- * @property {string} [locale] - Target language code for the translation
- * @property {TranslationValue} [value]
- */
-/**
- * @typedef ResourceTranslationUpdate
- * @property {TranslationValue} [value]
- */
-/**
- * @typedef TranslatableSection
- * @property {string} [_id] - Unique identifier for the translatable section
- * @property {string} [name] - Display name of the section
- * @property {string} [description] - Detailed explanation of the section's purpose
- * @property {string} [created_by] - Identifier of the user who created this resource
- * @property {string} [modified_by] - Identifier of the user who last modified
- *   this resource
- * @property {string} [created_on] - Timestamp when this resource was initially created
- * @property {string} [modified_on] - Timestamp when this resource was last modified
- */
-/**
- * @typedef Metrics
- * @property {number} [total] - Total number of translation operations attempted
- * @property {number} [success] - Number of successful translation operations
- * @property {number} [failed] - Number of failed translation operations
- */
-/**
- * @typedef ResourceTranslationUpsertItem
- * @property {string} [message] - Status message for the translation operation
- * @property {ResourceTranslationCreate} [data]
- */
-/**
- * @typedef ResourceTranslationBulkUpsert
- * @property {Metrics} [metrics]
- * @property {ResourceTranslationUpsertItem[]} [failed_items] - List of failed
- *   translation operations
- * @property {ResourceTranslationUpsertItem[]} [updated_items] - List of
- *   successful translation operations
- */
-/**
- * @typedef StandardError
- * @property {string} message - A brief description of the error.
- */
-/**
- * @typedef OperationResponseSchema
- * @property {boolean} success - Indicates if the operation was successful
- * @property {string} [message] - Optional message providing additional
- *   information about the operation
- */
 /** @typedef {"title" | "description"} GenerationEntityType */
 /**
  * @typedef {| "about-us"
@@ -1562,7 +1340,7 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, Seo, MetaTag, MetaTagItem, ResourceTranslation, TranslationValue, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
+    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, DefaultSitemapIndividualConfig, DefaultSitemapConfig, SitemapConfigCreate, SitemapConfig, SitemapConfigurationList, SitemapConfigUpdate, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, SlideshowGetDetails, SlideshowSchema, SlideshowPayload, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, GenerationEntityType, PageType };
 }
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
@@ -1637,8 +1415,6 @@ type SeoSchema = {
     app?: string;
     _id?: string;
     robots_txt?: string;
-    sitemap_enabled?: boolean;
-    additional_sitemap?: string;
     cannonical_enabled?: boolean;
     custom_meta_tags?: CustomMetaTag[];
     details?: Detail;
@@ -1783,9 +1559,6 @@ declare function Author(): Author;
 type Author = {
     designation?: string;
     id?: string;
-    /**
-     * - Name of the author
-     */
     name?: string;
 };
 /** @returns {BlogSchema} */
@@ -1853,6 +1626,92 @@ declare function DateMeta(): DateMeta;
 type DateMeta = {
     created_on?: string;
     modified_on?: string;
+};
+/** @returns {DefaultSitemapIndividualConfig} */
+declare function DefaultSitemapIndividualConfig(): DefaultSitemapIndividualConfig;
+type DefaultSitemapIndividualConfig = {
+    /**
+     * - Whether sitemap configuration is enabled or
+     * not for this sitemap configuration
+     */
+    enabled?: boolean;
+};
+/** @returns {DefaultSitemapConfig} */
+declare function DefaultSitemapConfig(): DefaultSitemapConfig;
+type DefaultSitemapConfig = {
+    root?: DefaultSitemapIndividualConfig;
+    brand?: DefaultSitemapIndividualConfig;
+    collections?: DefaultSitemapIndividualConfig;
+    category_l1?: DefaultSitemapIndividualConfig;
+    category_l2?: DefaultSitemapIndividualConfig;
+    category_l3?: DefaultSitemapIndividualConfig;
+    pages?: DefaultSitemapIndividualConfig;
+    blog?: DefaultSitemapIndividualConfig;
+    section?: DefaultSitemapIndividualConfig;
+    faq?: DefaultSitemapIndividualConfig;
+    sitemap?: DefaultSitemapIndividualConfig;
+};
+/** @returns {SitemapConfigCreate} */
+declare function SitemapConfigCreate(): SitemapConfigCreate;
+type SitemapConfigCreate = {
+    /**
+     * - Unique identifier for the sitemap configuration
+     */
+    name?: string;
+    /**
+     * - Indicates if the sitemap configuration is active
+     */
+    is_active?: boolean;
+    /**
+     * - XML string containing sitemap data in base64 encoding
+     */
+    sitemap?: string;
+};
+/** @returns {SitemapConfig} */
+declare function SitemapConfig(): SitemapConfig;
+type SitemapConfig = {
+    /**
+     * - Unique identifier for the sitemap configuration
+     */
+    name?: string;
+    /**
+     * - Indicates if the sitemap configuration is
+     * active or not in storefront
+     */
+    is_active?: boolean;
+    /**
+     * - XML string containing sitemap data in base64 encoding
+     */
+    sitemap?: string;
+    /**
+     * - Timestamp when the configuration was created
+     */
+    created_at?: string;
+    /**
+     * - Timestamp when the configuration was last updated
+     */
+    updated_at?: string;
+};
+/** @returns {SitemapConfigurationList} */
+declare function SitemapConfigurationList(): SitemapConfigurationList;
+type SitemapConfigurationList = {
+    /**
+     * - List of all Sitemap configurations
+     */
+    items?: SitemapConfig[];
+    page?: Page;
+};
+/** @returns {SitemapConfigUpdate} */
+declare function SitemapConfigUpdate(): SitemapConfigUpdate;
+type SitemapConfigUpdate = {
+    /**
+     * - Indicates if the sitemap configuration is active
+     */
+    is_active?: boolean;
+    /**
+     * - XML string containing sitemap data
+     */
+    sitemap?: string;
 };
 /** @returns {BlogPayload} */
 declare function BlogPayload(): BlogPayload;
@@ -1946,6 +1805,24 @@ type CronBasedScheduleSchema = {
     start?: string;
     end?: string;
 };
+/** @returns {ConfigurationSchema} */
+declare function ConfigurationSchema(): ConfigurationSchema;
+type ConfigurationSchema = {
+    sleep_time?: number;
+    start_on_launch?: boolean;
+    duration?: number;
+    slide_direction?: string;
+};
+/** @returns {SlideshowMedia} */
+declare function SlideshowMedia(): SlideshowMedia;
+type SlideshowMedia = {
+    type?: string;
+    url?: string;
+    bg_color?: string;
+    duration?: number;
+    auto_decide_duration?: boolean;
+    action?: Action;
+};
 /** @returns {UpdateHandpickedSchema} */
 declare function UpdateHandpickedSchema(): UpdateHandpickedSchema;
 type UpdateHandpickedSchema = {
@@ -1954,127 +1831,35 @@ type UpdateHandpickedSchema = {
 /** @returns {HandpickedTagSchema} */
 declare function HandpickedTagSchema(): HandpickedTagSchema;
 type HandpickedTagSchema = {
-    /**
-     * - The location in the page where the tag should
-     * be injected, such as 'head', 'body-top', or 'body-bottom'.
-     */
     position?: string;
-    /**
-     * - Additional attributes for the tag to define
-     * its behavior or compatibility. Supported attributes may vary based on the
-     * tag type for example:
-     *
-     * - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
-     * - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
-     * - For `style` tags: `media`, `type`, `scoped`.
-     * - Custom data attributes like `data-*` can also be added.
-     */
     attributes?: any;
-    /**
-     * - List of UI frameworks where this
-     * third-party tag can be injected or supported.
-     */
-    compatible_engines?: string[];
-    /**
-     * - The name of the tag used to identify it in the
-     * system. Example: 'Google External Script' or 'Bootstrap CSS'.
-     */
     name?: string;
-    /**
-     * - The URL where the external tag resource (such as a
-     * script or stylesheet) is hosted.
-     */
     url?: string;
-    /**
-     * - The type of the tag, such as 'script' (for
-     * JavaScript) or 'link' (for CSS).
-     */
     type?: string;
-    /**
-     * - Defines whether the tag is embedded within
-     * the HTML (inline) or linked externally (external).
-     */
     sub_type?: string;
-    /**
-     * - The actual content of the inline tag, such as
-     * JavaScript or CSS code if the tag is inline.
-     */
     content?: string;
 };
 /** @returns {RemoveHandpickedSchema} */
 declare function RemoveHandpickedSchema(): RemoveHandpickedSchema;
 type RemoveHandpickedSchema = {
-    /**
-     * - A list of tag IDs to remove from the system.
-     */
     tags?: string[];
 };
 /** @returns {CreateTagSchema} */
 declare function CreateTagSchema(): CreateTagSchema;
 type CreateTagSchema = {
-    /**
-     * - The name of the tag to be created, used for
-     * identification purposes.
-     */
     name?: string;
-    /**
-     * - Indicates if the tag is external (linked) or
-     * inline (embedded within the page).
-     */
     sub_type?: string;
-    /**
-     * - The unique identifier for the tag.
-     */
     _id?: string;
-    /**
-     * - The type of the tag, either JavaScript ('js') or
-     * CSS ('css').
-     */
     type?: string;
-    /**
-     * - The external URL pointing to the script or
-     * stylesheet resource.
-     */
     url?: string;
-    /**
-     * - The position on the webpage where the tag
-     * will be injected, such as 'head', 'body-top', or 'body-bottom'.
-     */
     position?: string;
-    /**
-     * - Additional attributes for the tag to define
-     * its behavior or compatibility. Supported attributes may vary based on the
-     * tag type for example:
-     *
-     * - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
-     * - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
-     * - For `style` tags: `media`, `type`, `scoped`.
-     * - Custom data attributes like `data-*` can also be added.
-     */
     attributes?: any;
-    /**
-     * - List of UI frameworks where this
-     * third-party tag can be injected or supported.
-     */
-    compatible_engines?: string[];
-    /**
-     * - Pages or environments where the tag should be
-     * injected or active.
-     */
     pages?: any[];
-    /**
-     * - The inline content for tags of type 'inline'
-     * (e.g., JavaScript or CSS code).
-     */
     content?: string;
 };
 /** @returns {CreateTagRequestSchema} */
 declare function CreateTagRequestSchema(): CreateTagRequestSchema;
 type CreateTagRequestSchema = {
-    /**
-     * - A list of tags to be created or
-     * updated, each containing details such as name, type, and attributes.
-     */
     tags?: CreateTagSchema[];
 };
 /** @returns {DataLoaderSchema} */
@@ -2103,10 +1888,6 @@ type DataLoadersSchema = {
 /** @returns {TagDeleteSuccessDetails} */
 declare function TagDeleteSuccessDetails(): TagDeleteSuccessDetails;
 type TagDeleteSuccessDetails = {
-    /**
-     * - Indicates whether the tag removal operation
-     * was successful.
-     */
     success?: boolean;
 };
 /** @returns {ContentAPIError} */
@@ -2255,10 +2036,6 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
-    /**
-     * - The number of items per page.
-     */
-    page_size?: number;
 };
 /** @returns {LandingPageGetDetails} */
 declare function LandingPageGetDetails(): LandingPageGetDetails;
@@ -2417,6 +2194,35 @@ type PageMetaSchema = {
     custom_pages?: PageSchema[];
     application_id?: string;
 };
+/** @returns {SlideshowGetDetails} */
+declare function SlideshowGetDetails(): SlideshowGetDetails;
+type SlideshowGetDetails = {
+    items?: SlideshowSchema[];
+    page?: Page;
+};
+/** @returns {SlideshowSchema} */
+declare function SlideshowSchema(): SlideshowSchema;
+type SlideshowSchema = {
+    _id?: string;
+    slug?: string;
+    date_meta?: DateMeta;
+    application?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: SlideshowMedia[];
+    active?: boolean;
+    archived?: boolean;
+    _custom_json?: any;
+};
+/** @returns {SlideshowPayload} */
+declare function SlideshowPayload(): SlideshowPayload;
+type SlideshowPayload = {
+    slug?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: SlideshowMedia;
+    active?: boolean;
+};
 /** @returns {Support} */
 declare function Support(): Support;
 type Support = {
@@ -2462,89 +2268,28 @@ type ContactSchema = {
 /** @returns {TagsSchema} */
 declare function TagsSchema(): TagsSchema;
 type TagsSchema = {
-    /**
-     * - The ID of the application that owns the tags.
-     */
     application?: string;
-    /**
-     * - The unique identifier for the tag set.
-     */
     _id?: string;
-    /**
-     * - A list of tags (HTML resources like scripts
-     * or stylesheets) that are configured for the application.
-     */
     tags?: TagSchema[];
 };
 /** @returns {TagSchema} */
 declare function TagSchema(): TagSchema;
 type TagSchema = {
-    /**
-     * - The name of the tag used to identify it.
-     */
     name?: string;
-    /**
-     * - The URL where the external tag resource (such as a
-     * script or stylesheet) is located.
-     */
     url?: string;
-    /**
-     * - Specifies whether the tag is a JavaScript ('js')
-     * or CSS ('css') tag.
-     */
     type?: string;
-    /**
-     * - Indicates whether the tag is an external
-     * resource (external) or inline content (inline).
-     */
     sub_type?: string;
-    /**
-     * - The unique identifier for the tag in the system.
-     */
     _id?: string;
-    /**
-     * - The position within the page where the tag
-     * should be injected.
-     */
     position?: string;
-    /**
-     * - Additional attributes for the tag to define
-     * its behavior or compatibility. Supported attributes may vary based on the
-     * tag type for example:
-     *
-     * - For `script` tags: `async`, `defer`, `crossorigin`, `type`, `onload`.
-     * - For `link` tags: `rel`, `media`, `type`, `crossorigin`, `onload`.
-     * - For `style` tags: `media`, `type`, `scoped`.
-     * - Custom data attributes like `data-*` can also be added.
-     */
     attributes?: any;
-    /**
-     * - Content of the tag if it is inline, such as
-     * JavaScript or CSS code.
-     */
     content?: string;
-    /**
-     * - List of UI frameworks where this
-     * third-party tag can be injected or supported.
-     */
-    compatible_engines?: string[];
-    /**
-     * - Pages or environments where the tag should be active.
-     */
     pages?: any[];
     __source?: TagSourceSchema;
 };
 /** @returns {TagSourceSchema} */
 declare function TagSourceSchema(): TagSourceSchema;
 type TagSourceSchema = {
-    /**
-     * - The type of source, such as 'extension'
-     */
     type?: string;
-    /**
-     * - The identifier of the source that created or
-     * provided the tag.
-     */
     id?: string;
 };
 /** @returns {ResourcesSchema} */
@@ -3847,559 +3592,6 @@ type ActionPage = {
      */
     url?: string;
     type: PageType;
-};
-/** @returns {TranslateUiLabels} */
-declare function TranslateUiLabels(): TranslateUiLabels;
-type TranslateUiLabels = {
-    /**
-     * - Unique identifier assigned to the Translate Ui Labels entry
-     */
-    _id?: string;
-    /**
-     * - Identifier linking the resource to a
-     * specific company within the platform
-     */
-    company_id?: string;
-    /**
-     * - Reference to the application where this
-     * Translate Ui Labels is utilized
-     */
-    application_id?: string;
-    /**
-     * - Links the resource to a specific
-     * template theme configuration
-     */
-    template_theme_id?: string;
-    /**
-     * - Associates the resource with a particular
-     * theme implementation
-     */
-    theme_id?: string;
-    /**
-     * - Specifies the language and region format for
-     * the resource content
-     */
-    locale?: string;
-    /**
-     * - Contains the actual resource data and
-     * configuration settings
-     */
-    resource?: any;
-    /**
-     * - Categorizes the resource type for proper handling
-     * and processing
-     */
-    type?: string;
-};
-/** @returns {TranslateUiLabelsCreate} */
-declare function TranslateUiLabelsCreate(): TranslateUiLabelsCreate;
-type TranslateUiLabelsCreate = {
-    /**
-     * - Unique identifier for the template theme
-     */
-    template_theme_id?: string;
-    /**
-     * - Unique identifier for the theme
-     */
-    theme_id?: string;
-    /**
-     * - Locale
-     */
-    locale?: string;
-    /**
-     * - Translate Ui Labels json object
-     */
-    resource?: any;
-    /**
-     * - Resource type
-     */
-    type?: string;
-};
-/** @returns {StaticResourceUpdate} */
-declare function StaticResourceUpdate(): StaticResourceUpdate;
-type StaticResourceUpdate = {
-    /**
-     * - Unique identifier for the template theme
-     */
-    template_theme_id?: string;
-    /**
-     * - Unique identifier for the theme
-     */
-    theme_id?: string;
-    /**
-     * - Locale
-     */
-    locale?: string;
-    /**
-     * - Translate Ui Labels json object
-     */
-    resource?: any;
-    /**
-     * - Resource type
-     */
-    type?: string;
-};
-/** @returns {TranslateUiLabelsPage} */
-declare function TranslateUiLabelsPage(): TranslateUiLabelsPage;
-type TranslateUiLabelsPage = {
-    /**
-     * - List of items containing all the
-     * static info data.
-     */
-    items?: TranslateUiLabels[];
-    page?: Page;
-};
-/** @returns {Error} */
-declare function Error(): Error;
-type Error = {
-    /**
-     * - Detailed message explaining the error that occurred
-     */
-    error?: string;
-};
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
-    /**
-     * - Identifier of the user who created this resource
-     */
-    created_by?: string;
-    /**
-     * - Identifier of the user who last modified
-     * this resource
-     */
-    modified_by?: string;
-    /**
-     * - Timestamp when this resource was initially created
-     */
-    created_on?: string;
-    /**
-     * - Timestamp when this resource was last modified
-     */
-    modified_on?: string;
-};
-/** @returns {CompanyLanguage} */
-declare function CompanyLanguage(): CompanyLanguage;
-type CompanyLanguage = {
-    /**
-     * - Unique identifier for the company language setting
-     */
-    _id?: string;
-    /**
-     * - Identifier of the company this language
-     * configuration belongs to
-     */
-    company_id: string;
-    /**
-     * - Language code following ISO standards for this
-     * company setting
-     */
-    locale?: string;
-    /**
-     * - Display name of the language for company usage
-     */
-    name?: string;
-    /**
-     * - Text direction setting for company content
-     * in this language
-     */
-    direction?: string;
-    /**
-     * - Indicates if this is the default language
-     * for the company
-     */
-    is_default?: boolean;
-    /**
-     * - Translated name of the language in
-     * English for easy reference and display at the website.
-     */
-    display_name?: string;
-};
-/** @returns {CompanyLanguageCreate} */
-declare function CompanyLanguageCreate(): CompanyLanguageCreate;
-type CompanyLanguageCreate = {
-    /**
-     * - List of language codes to be added to company
-     * configuration
-     */
-    locales: string[];
-};
-/** @returns {CompanyLanguageUpdate} */
-declare function CompanyLanguageUpdate(): CompanyLanguageUpdate;
-type CompanyLanguageUpdate = {
-    /**
-     * - Sets the specified language as the company default
-     */
-    is_default: boolean;
-};
-/** @returns {ApplicationLanguage} */
-declare function ApplicationLanguage(): ApplicationLanguage;
-type ApplicationLanguage = {
-    /**
-     * - Unique identifier for the application language setting
-     */
-    _id?: string;
-    /**
-     * - Identifier of the company this application belongs to
-     */
-    company_id: string;
-    /**
-     * - Unique identifier of the application
-     * using this language
-     */
-    application_id: string;
-    /**
-     * - Language code following ISO standards for this application
-     */
-    locale: string;
-    /**
-     * - Display name of the language for application usage
-     */
-    name: string;
-    /**
-     * - Specifies the text direction for displaying
-     * application content, either left-to-right (ltr) or right-to-left (rtl)
-     */
-    direction: string;
-    /**
-     * - Indicates if this is the default language
-     * for the application
-     */
-    is_default: boolean;
-    /**
-     * - Indicates whether this language is currently
-     * active and visible within the storefront.
-     */
-    published: boolean;
-    /**
-     * - Translated name of the language in
-     * English for easy reference and display at the website.
-     */
-    display_name?: string;
-};
-/** @returns {unPublishApplicationLanguage} */
-declare function unPublishApplicationLanguage(): unPublishApplicationLanguage;
-type unPublishApplicationLanguage = {
-    /**
-     * - Updates the publication status of the language
-     */
-    published: boolean;
-};
-/** @returns {ApplicationLanguageCreate} */
-declare function ApplicationLanguageCreate(): ApplicationLanguageCreate;
-type ApplicationLanguageCreate = {
-    /**
-     * - List of language codes to be added to
-     * application configuration
-     */
-    locales: string[];
-};
-/** @returns {ApplicationLanguageUpdate} */
-declare function ApplicationLanguageUpdate(): ApplicationLanguageUpdate;
-type ApplicationLanguageUpdate = {
-    /**
-     * - Sets the specified language as the application default
-     */
-    is_default: boolean;
-    /**
-     * - Updates the publication status of the language
-     */
-    published: boolean;
-};
-/** @returns {TranslatableResource} */
-declare function TranslatableResource(): TranslatableResource;
-type TranslatableResource = {
-    /**
-     * - Unique identifier for the translatable resource
-     */
-    _id?: string;
-    /**
-     * - Categorizes the type of content that can be translated
-     */
-    type: string;
-    /**
-     * - Display name of the translatable resource
-     */
-    name: string;
-    /**
-     * - Detailed explanation of the translatable resource
-     */
-    description: string;
-    /**
-     * - Defines the processing type for the
-     * translation schema static (fixed), dynamic (flexible), or partial_dynamic (mixed).
-     */
-    schema_type: string;
-    /**
-     * - Identifier of the user who created this resource
-     */
-    created_by?: string;
-    /**
-     * - Identifier of the user who last modified
-     * this resource
-     */
-    modified_by?: string;
-    /**
-     * - Timestamp when this resource was initially created
-     */
-    created_on?: string;
-    /**
-     * - Timestamp when this resource was last modified
-     */
-    modified_on?: string;
-    section_id?: TranslatableSection;
-};
-/** @returns {ResourceDefinition} */
-declare function ResourceDefinition(): ResourceDefinition;
-type ResourceDefinition = {
-    /**
-     * - Unique identifier for the resource definition
-     */
-    _id?: string;
-    /**
-     * - Reference to the associated
-     * translatable resource
-     */
-    translatable_resource_id: string;
-    json_schema?: ResourceJsonSchema;
-    ui_schema?: ResourceUISchema;
-    bulk_details?: ResourceBulkDetails;
-};
-/** @returns {ResourceJsonSchema} */
-declare function ResourceJsonSchema(): ResourceJsonSchema;
-type ResourceJsonSchema = {
-    schema?: string;
-    type?: ResourceJsonSchemaType;
-};
-/** @returns {ResourceJsonSchemaType} */
-declare function ResourceJsonSchemaType(): ResourceJsonSchemaType;
-type ResourceJsonSchemaType = {
-    author?: Author;
-    title?: Title;
-    feature_image?: FeatureImage;
-};
-/** @returns {ResourceUISchema} */
-declare function ResourceUISchema(): ResourceUISchema;
-type ResourceUISchema = {
-    author?: Author;
-    title?: Title;
-    feature_image?: FeatureImage;
-    seo?: Seo;
-};
-/** @returns {ResourceBulkDetails} */
-declare function ResourceBulkDetails(): ResourceBulkDetails;
-type ResourceBulkDetails = {
-    fields?: string[];
-};
-/** @returns {Title} */
-declare function Title(): Title;
-type Title = {
-    ui_widget?: string;
-    ui_description?: boolean;
-};
-/** @returns {FeatureImage} */
-declare function FeatureImage(): FeatureImage;
-type FeatureImage = {
-    /**
-     * - URL of the secure image
-     */
-    secure_url?: string;
-};
-/** @returns {Seo} */
-declare function Seo(): Seo;
-type Seo = {
-    title?: Title;
-    description?: string;
-    canonical_url?: string;
-    meta_tags?: MetaTag[];
-};
-/** @returns {MetaTag} */
-declare function MetaTag(): MetaTag;
-type MetaTag = {
-    /**
-     * - Title of the meta tag
-     */
-    title?: string;
-    items?: MetaTagItem[];
-};
-/** @returns {MetaTagItem} */
-declare function MetaTagItem(): MetaTagItem;
-type MetaTagItem = {
-    /**
-     * - Key of the meta tag item
-     */
-    key?: string;
-    /**
-     * - Value of the meta tag item
-     */
-    value?: string;
-};
-/** @returns {ResourceTranslation} */
-declare function ResourceTranslation(): ResourceTranslation;
-type ResourceTranslation = {
-    /**
-     * - Unique identifier for the translation entry
-     */
-    _id?: string;
-    /**
-     * - Language code for this translation
-     */
-    locale?: string;
-    value?: TranslationValue;
-};
-/** @returns {TranslationValue} */
-declare function TranslationValue(): TranslationValue;
-type TranslationValue = {
-    /**
-     * - Translated name
-     */
-    name?: string;
-    seo?: TranslationSeo;
-};
-/** @returns {TranslationSeo} */
-declare function TranslationSeo(): TranslationSeo;
-type TranslationSeo = {
-    /**
-     * - Translated SEO title
-     */
-    title?: string;
-    /**
-     * - List of translated breadcrumbs
-     */
-    breadcrumbs?: string[];
-    /**
-     * - List of translated meta tags
-     */
-    meta_tags?: string[];
-    /**
-     * - Translated canonical URL
-     */
-    canonical_url?: string;
-    /**
-     * - Translated SEO description
-     */
-    description?: string;
-};
-/** @returns {ResourceTranslationList} */
-declare function ResourceTranslationList(): ResourceTranslationList;
-type ResourceTranslationList = {
-    items?: ResourceTranslationCreate[];
-};
-/** @returns {ResourceTranslationCreate} */
-declare function ResourceTranslationCreate(): ResourceTranslationCreate;
-type ResourceTranslationCreate = {
-    /**
-     * - Type of content being translated
-     */
-    type?: string;
-    /**
-     * - Identifier of the resource requiring translation
-     */
-    resource_id?: string;
-    /**
-     * - Target language code for the translation
-     */
-    locale?: string;
-    value?: TranslationValue;
-};
-/** @returns {ResourceTranslationUpdate} */
-declare function ResourceTranslationUpdate(): ResourceTranslationUpdate;
-type ResourceTranslationUpdate = {
-    value?: TranslationValue;
-};
-/** @returns {TranslatableSection} */
-declare function TranslatableSection(): TranslatableSection;
-type TranslatableSection = {
-    /**
-     * - Unique identifier for the translatable section
-     */
-    _id?: string;
-    /**
-     * - Display name of the section
-     */
-    name?: string;
-    /**
-     * - Detailed explanation of the section's purpose
-     */
-    description?: string;
-    /**
-     * - Identifier of the user who created this resource
-     */
-    created_by?: string;
-    /**
-     * - Identifier of the user who last modified
-     * this resource
-     */
-    modified_by?: string;
-    /**
-     * - Timestamp when this resource was initially created
-     */
-    created_on?: string;
-    /**
-     * - Timestamp when this resource was last modified
-     */
-    modified_on?: string;
-};
-/** @returns {Metrics} */
-declare function Metrics(): Metrics;
-type Metrics = {
-    /**
-     * - Total number of translation operations attempted
-     */
-    total?: number;
-    /**
-     * - Number of successful translation operations
-     */
-    success?: number;
-    /**
-     * - Number of failed translation operations
-     */
-    failed?: number;
-};
-/** @returns {ResourceTranslationUpsertItem} */
-declare function ResourceTranslationUpsertItem(): ResourceTranslationUpsertItem;
-type ResourceTranslationUpsertItem = {
-    /**
-     * - Status message for the translation operation
-     */
-    message?: string;
-    data?: ResourceTranslationCreate;
-};
-/** @returns {ResourceTranslationBulkUpsert} */
-declare function ResourceTranslationBulkUpsert(): ResourceTranslationBulkUpsert;
-type ResourceTranslationBulkUpsert = {
-    metrics?: Metrics;
-    /**
-     * - List of failed
-     * translation operations
-     */
-    failed_items?: ResourceTranslationUpsertItem[];
-    /**
-     * - List of
-     * successful translation operations
-     */
-    updated_items?: ResourceTranslationUpsertItem[];
-};
-/** @returns {StandardError} */
-declare function StandardError(): StandardError;
-type StandardError = {
-    /**
-     * - A brief description of the error.
-     */
-    message: string;
-};
-/** @returns {OperationResponseSchema} */
-declare function OperationResponseSchema(): OperationResponseSchema;
-type OperationResponseSchema = {
-    /**
-     * - Indicates if the operation was successful
-     */
-    success: boolean;
-    /**
-     * - Optional message providing additional
-     * information about the operation
-     */
-    message?: string;
 };
 /**
  * Enum: GenerationEntityType Used By: Content

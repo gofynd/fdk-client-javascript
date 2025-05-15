@@ -5,7 +5,7 @@ export = SharePlatformApplicationValidator;
  */
 /**
  * @typedef GetShortLinkByHashParam
- * @property {string} hash - Hash of short url
+ * @property {string} hash
  */
 /**
  * @typedef GetShortLinkClickStatsParam
@@ -24,7 +24,7 @@ export = SharePlatformApplicationValidator;
  */
 /**
  * @typedef UpdateShortLinkByIdParam
- * @property {string} id - Short link document identifier
+ * @property {string} id - Document Id
  * @property {SharePlatformModel.ShortLinkReq} body
  */
 declare class SharePlatformApplicationValidator {
@@ -46,9 +46,6 @@ type CreateShortLinkParam = {
     body: SharePlatformModel.ShortLinkReq;
 };
 type GetShortLinkByHashParam = {
-    /**
-     * - Hash of short url
-     */
     hash: string;
 };
 type GetShortLinkClickStatsParam = {
@@ -90,7 +87,7 @@ type GetShortLinksParam = {
 };
 type UpdateShortLinkByIdParam = {
     /**
-     * - Short link document identifier
+     * - Document Id
      */
     id: string;
     body: SharePlatformModel.ShortLinkReq;

@@ -54,7 +54,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateProductParam
- * @property {CatalogPlatformModel.ProductCreateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
  */
 
 /**
@@ -91,6 +91,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef DeleteProductParam
  * @property {number} itemId - Id of the product to be deleted.
+ * @property {CatalogPlatformModel.DeleteProductRequestBody} body
  */
 
 /**
@@ -114,9 +115,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef DownloadInventoryTemplateViewParam
- * @property {string} schemaType - Specifies the type of template to download.
- *   Either quantity or price
- * @property {string} type - File extension type
+ * @property {string} itemType - An `item_type` defines the type of item.
  */
 
 /**
@@ -130,7 +129,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
- * @property {CatalogPlatformModel.ProductUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
  */
 
 /**
@@ -221,9 +220,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
  * @property {string} [search] - Search string to filter the results by batch id
- * @property {string} [startDate] - Filter results by the job's start date.
- * @property {string} [endDate] - Filter results by the job's end date.
- * @property {string} [stage] - Filter results by the current stage of the import job.
  */
 
 /**
@@ -456,10 +452,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef ListProductTemplateParam
  * @property {string} department - A `department` is the name of a particular department.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
  */
 
 /**
@@ -494,23 +486,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef UpdateLocationPriceParam
- * @property {number} storeId - The Store Id to update price of size for specific store.
- * @property {string} sellerIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier) of which article price is to update.
- * @property {CatalogPlatformModel.LocationPriceRequestSchema} body
- */
-
-/**
- * @typedef UpdateLocationQuantityParam
- * @property {number} storeId - The Store Id to update quantity of size for
- *   specific store.
- * @property {string} sellerIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier) of which article quantity is to update.
- * @property {CatalogPlatformModel.LocationQuantityRequestSchema} body
- */
-
-/**
  * @typedef UpdateMarketplaceOptinParam
  * @property {string} marketplaceSlug - Slug of the marketplace .
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
@@ -533,7 +508,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateSizeGuideParam
- * @property {string} id - Identifier of the size guide to be edited
+ * @property {string} id - Mongo id of the size guide to be edited
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 
@@ -570,7 +545,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef ValidateProductTemplateSchemaParam
  * @property {string} itemType - An `item_type` defines the type of item. The
  *   default value is standard.
- * @property {string} [schemaType] - Schema of price or quantity template
  */
 
 class CatalogPlatformValidator {
@@ -644,7 +618,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateProductParam} */
   static createProduct() {
     return Joi.object({
-      body: CatalogPlatformModel.ProductCreateSchemaV2().required(),
+      body: CatalogPlatformModel.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -695,6 +669,7 @@ class CatalogPlatformValidator {
   static deleteProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
+      body: CatalogPlatformModel.DeleteProductRequestBody().required(),
     }).required();
   }
 
@@ -725,8 +700,7 @@ class CatalogPlatformValidator {
   /** @returns {DownloadInventoryTemplateViewParam} */
   static downloadInventoryTemplateView() {
     return Joi.object({
-      schemaType: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
+      itemType: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -743,7 +717,7 @@ class CatalogPlatformValidator {
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
-      body: CatalogPlatformModel.ProductUpdateSchemaV2().required(),
+      body: CatalogPlatformModel.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -842,9 +816,6 @@ class CatalogPlatformValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       search: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      stage: Joi.string().allow(""),
     }).required();
   }
 
@@ -1097,8 +1068,6 @@ class CatalogPlatformValidator {
   static listProductTemplate() {
     return Joi.object({
       department: Joi.string().allow("").required(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -1136,24 +1105,6 @@ class CatalogPlatformValidator {
   static updateInventories() {
     return Joi.object({
       body: CatalogPlatformModel.InventoryRequestSchemaV2().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateLocationPriceParam} */
-  static updateLocationPrice() {
-    return Joi.object({
-      storeId: Joi.number().required(),
-      sellerIdentifier: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.LocationPriceRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateLocationQuantityParam} */
-  static updateLocationQuantity() {
-    return Joi.object({
-      storeId: Joi.number().required(),
-      sellerIdentifier: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.LocationQuantityRequestSchema().required(),
     }).required();
   }
 
@@ -1220,7 +1171,6 @@ class CatalogPlatformValidator {
   static validateProductTemplateSchema() {
     return Joi.object({
       itemType: Joi.string().allow("").required(),
-      schemaType: Joi.string().allow(""),
     }).required();
   }
 }

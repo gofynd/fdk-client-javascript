@@ -317,7 +317,7 @@ declare class Payment {
      * @summary: List POS payment modes
      * @description: Available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPosPaymentModeRoutes/).
      */
-    getPosPaymentModeRoutes({ amount, pincode, orderType, xOrderingSource, cartId, checkoutMode, refresh, orderId, cardReference, userDetails, displaySplit, advancePayment, shipmentId, customerId, requestHeaders, }?: PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentModeRouteDetails>;
+    getPosPaymentModeRoutes({ amount, pincode, orderType, cartId, checkoutMode, refresh, orderId, cardReference, userDetails, displaySplit, advancePayment, shipmentId, requestHeaders, }?: PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentModeRouteDetails>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
      *   - Arg object
@@ -603,19 +603,6 @@ declare class Payment {
      * @description: Allows users to update the details of a refund session associated with a specific global identifier (GID) and request ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateRefundSession/).
      */
     updateRefundSession({ gid, requestId, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateRefundSessionParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundSessionDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.ValidateCustomerAndCreditSummaryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.ValidateCustomerCreditSchema>} -
-     *   Success response
-     * @name validateCustomerAndCreditSummary
-     * @summary: Verify payment customer and show credit summary
-     * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/validateCustomerAndCreditSummary/).
-     */
-    validateCustomerAndCreditSummary({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ValidateCustomerAndCreditSummaryParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ValidateCustomerCreditSchema>;
     /**
      * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
      *   - Arg object

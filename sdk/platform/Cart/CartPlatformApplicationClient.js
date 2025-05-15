@@ -263,15 +263,12 @@ class Cart {
    * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
    */
   async applyCoupon(
-    { body, xOrderingSource, i, b, p, id, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.applyCoupon().validate(
       {
         body,
-        xOrderingSource,
         i,
         b,
         p,
@@ -290,7 +287,6 @@ class Cart {
     } = CartPlatformApplicationValidator.applyCoupon().validate(
       {
         body,
-        xOrderingSource,
         i,
         b,
         p,
@@ -362,7 +358,7 @@ class Cart {
    * @description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
    */
   async checkCartServiceability(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -370,7 +366,6 @@ class Cart {
     } = CartPlatformApplicationValidator.checkCartServiceability().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -384,7 +379,6 @@ class Cart {
     } = CartPlatformApplicationValidator.checkCartServiceability().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -443,13 +437,12 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
    */
   async checkoutCart(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.checkoutCart().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -463,7 +456,6 @@ class Cart {
     } = CartPlatformApplicationValidator.checkoutCart().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -997,7 +989,7 @@ class Cart {
    * @description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
    */
   async fetchAndvalidateCartItems(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1005,7 +997,6 @@ class Cart {
     } = CartPlatformApplicationValidator.fetchAndvalidateCartItems().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1019,7 +1010,6 @@ class Cart {
     } = CartPlatformApplicationValidator.fetchAndvalidateCartItems().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1739,22 +1729,13 @@ class Cart {
    * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
    */
   async getCart(
-    {
-      xOrderingSource,
-      id,
-      userId,
-      orderType,
-      i,
-      b,
-      assignCardId,
-      buyNow,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { id, userId, orderType, i, b, assignCardId, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getCart().validate(
       {
-        xOrderingSource,
         id,
         userId,
         orderType,
@@ -1774,7 +1755,6 @@ class Cart {
       error: warrning,
     } = CartPlatformApplicationValidator.getCart().validate(
       {
-        xOrderingSource,
         id,
         userId,
         orderType,
@@ -2867,9 +2847,7 @@ class Cart {
       promotionGroup,
       storeId,
       cartType,
-      promotionType,
-      cartId,
-      autoApply,
+      sortBy,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2883,9 +2861,7 @@ class Cart {
         promotionGroup,
         storeId,
         cartType,
-        promotionType,
-        cartId,
-        autoApply,
+        sortBy,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2903,9 +2879,7 @@ class Cart {
         promotionGroup,
         storeId,
         cartType,
-        promotionType,
-        cartId,
-        autoApply,
+        sortBy,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2922,9 +2896,7 @@ class Cart {
     query_params["promotion_group"] = promotionGroup;
     query_params["store_id"] = storeId;
     query_params["cart_type"] = cartType;
-    query_params["promotion_type"] = promotionType;
-    query_params["cart_id"] = cartId;
-    query_params["auto_apply"] = autoApply;
+    query_params["sort_by"] = sortBy;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3387,13 +3359,12 @@ class Cart {
    * @description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
    */
   async overrideCart(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.overrideCart().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3407,7 +3378,6 @@ class Cart {
     } = CartPlatformApplicationValidator.overrideCart().validate(
       {
         body,
-        xOrderingSource,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3466,7 +3436,7 @@ class Cart {
    * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
    */
   async platformAddItems(
-    { body, xOrderingSource, i, b, buyNow, orderType, id, requestHeaders } = {
+    { body, i, b, buyNow, orderType, id, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -3476,7 +3446,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformAddItems().validate(
       {
         body,
-        xOrderingSource,
         i,
         b,
         buyNow,
@@ -3495,7 +3464,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformAddItems().validate(
       {
         body,
-        xOrderingSource,
         i,
         b,
         buyNow,
@@ -3566,7 +3534,7 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
    */
   async platformCheckoutCart(
-    { body, xOrderingSource, id, requestHeaders } = { requestHeaders: {} },
+    { body, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3574,7 +3542,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformCheckoutCart().validate(
       {
         body,
-        xOrderingSource,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3589,7 +3556,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformCheckoutCart().validate(
       {
         body,
-        xOrderingSource,
         id,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3652,7 +3618,7 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
    */
   async platformCheckoutCartV2(
-    { body, xOrderingSource, id, requestHeaders } = { requestHeaders: {} },
+    { body, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3660,7 +3626,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformCheckoutCartV2().validate(
       {
         body,
-        xOrderingSource,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3675,7 +3640,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformCheckoutCartV2().validate(
       {
         body,
-        xOrderingSource,
         id,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3736,7 +3700,7 @@ class Cart {
    * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
    */
   async platformUpdateCart(
-    { body, xOrderingSource, id, i, orderType, b, buyNow, requestHeaders } = {
+    { body, id, i, orderType, b, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -3746,7 +3710,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformUpdateCart().validate(
       {
         body,
-        xOrderingSource,
         id,
         i,
         orderType,
@@ -3765,7 +3728,6 @@ class Cart {
     } = CartPlatformApplicationValidator.platformUpdateCart().validate(
       {
         body,
-        xOrderingSource,
         id,
         i,
         orderType,
@@ -3914,12 +3876,11 @@ class Cart {
    * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
    */
   async removeCoupon(
-    { xOrderingSource, uid, buyNow, requestHeaders } = { requestHeaders: {} },
+    { uid, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
-        xOrderingSource,
         uid,
         buyNow,
       },
@@ -3934,7 +3895,6 @@ class Cart {
       error: warrning,
     } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
-        xOrderingSource,
         uid,
         buyNow,
       },
@@ -4078,15 +4038,12 @@ class Cart {
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectAddress/).
    */
   async selectAddress(
-    { body, xOrderingSource, cartId, buyNow, i, b, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.selectAddress().validate(
       {
         body,
-        xOrderingSource,
         cartId,
         buyNow,
         i,
@@ -4104,7 +4061,6 @@ class Cart {
     } = CartPlatformApplicationValidator.selectAddress().validate(
       {
         body,
-        xOrderingSource,
         cartId,
         buyNow,
         i,
@@ -4171,9 +4127,7 @@ class Cart {
    * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, xOrderingSource, id, buyNow, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4181,7 +4135,6 @@ class Cart {
     } = CartPlatformApplicationValidator.selectPaymentMode().validate(
       {
         body,
-        xOrderingSource,
         id,
         buyNow,
         orderType,
@@ -4198,7 +4151,6 @@ class Cart {
     } = CartPlatformApplicationValidator.selectPaymentMode().validate(
       {
         body,
-        xOrderingSource,
         id,
         buyNow,
         orderType,
@@ -4263,9 +4215,7 @@ class Cart {
    * @description: Selection of payment mode that supports multiple MOP(mode of payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
    */
   async selectPaymentModeV2(
-    { body, xOrderingSource, id, buyNow, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4273,7 +4223,6 @@ class Cart {
     } = CartPlatformApplicationValidator.selectPaymentModeV2().validate(
       {
         body,
-        xOrderingSource,
         id,
         buyNow,
         orderType,
@@ -4290,7 +4239,6 @@ class Cart {
     } = CartPlatformApplicationValidator.selectPaymentModeV2().validate(
       {
         body,
-        xOrderingSource,
         id,
         buyNow,
         orderType,
@@ -5364,7 +5312,6 @@ class Cart {
    */
   async validateCouponForPayment(
     {
-      xOrderingSource,
       id,
       buyNow,
       addressId,
@@ -5380,7 +5327,6 @@ class Cart {
       error,
     } = CartPlatformApplicationValidator.validateCouponForPayment().validate(
       {
-        xOrderingSource,
         id,
         buyNow,
         addressId,
@@ -5400,7 +5346,6 @@ class Cart {
       error: warrning,
     } = CartPlatformApplicationValidator.validateCouponForPayment().validate(
       {
-        xOrderingSource,
         id,
         buyNow,
         addressId,

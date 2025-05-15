@@ -26,7 +26,7 @@ const Joi = require("joi");
 /**
  * @typedef AuthMeta
  * @property {string} [type] - Specifies the type of authentication used.
- * @property {string} [secret] - Contains the key or token used for authentication.
+ * @property {string} [secret] - Contains the secret key or token used for authentication.
  */
 
 /**
@@ -50,31 +50,9 @@ const Joi = require("joi");
  *   the subscriber.
  * @property {number} [subscriber_id] - The identifier for the subscriber
  *   involved in the mapping.
- * @property {FilterSchema} [filters]
- * @property {Object} [reducer] - The reducer property allows users to customize
- *   the JSON structure of the webhook payload using JSONPath queries. They can
- *   also create new properties by mapping existing ones. Note that it overrides
- *   the entire JSON structure of the webhook payload sent via the webhook. See
- *   the partner documentation's filter and reducer section for details.
  * @property {BroadcasterConfig} [broadcaster_config]
  * @property {string} [created_on] - The timestamp indicating when the
  *   subscriber event mapping was created.
- */
-
-/**
- * @typedef FilterSchema
- * @property {string} [query] - JSONPath expression that specifies the property
- *   in the webhook payload to filter on. This enables targeting specific data
- *   within the payload.
- * @property {string} [condition] - JavaScript function used to evaluate the
- *   specified property in the webhook payload against a condition. This
- *   function determines whether the filter passes based on its return value.
- * @property {string} [logic] - Logical operator used to combine multiple
- *   conditions in the `conditions` array. Supported values are `AND` and `OR`.
- * @property {Object[]} [conditions] - An array of filter objects to be
- *   evaluated using the specified logical operator. This array will contain
- *   more filters including a combination of single condition mode and logical
- *   group mode filters.
  */
 
 /**
@@ -214,7 +192,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliveryTsResult
- * @property {DeliveryTsSchema[]} [delivery_ts] - List of delivery timestamps.
+ * @property {DeliveryTsSchema[]} [delivery_ts]
  */
 
 /**
@@ -284,7 +262,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -303,8 +280,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ResponseTimeTs
- * @property {AvgResponseTime[]} [avg_response_time_ts] - List of average
- *   response time timestamps.
+ * @property {AvgResponseTime[]} [avg_response_time_ts]
  */
 
 /**
@@ -321,8 +297,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliverySummaryResult
- * @property {DeliveryEventLevelSchema[]} [delivery_event_level] - List of
- *   delivery event levels.
+ * @property {DeliveryEventLevelSchema[]} [delivery_event_level]
  * @property {DeliverySummarySchema} [delivery_summary]
  */
 
@@ -405,21 +380,9 @@ class WebhookPartnerModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
-      filters: WebhookPartnerModel.FilterSchema(),
-      reducer: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       broadcaster_config: WebhookPartnerModel.BroadcasterConfig(),
       created_on: Joi.string().allow(""),
     });
-  }
-
-  /** @returns {FilterSchema} */
-  static FilterSchema() {
-    return Joi.object({
-      query: Joi.string().allow(""),
-      condition: Joi.string().allow(""),
-      logic: Joi.string().allow(""),
-      conditions: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
-    }).allow(null);
   }
 
   /** @returns {EventConfigDetails} */
@@ -638,7 +601,6 @@ class WebhookPartnerModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 

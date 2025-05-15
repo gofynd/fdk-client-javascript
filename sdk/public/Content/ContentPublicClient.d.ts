@@ -3,16 +3,13 @@ declare class Content {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getAllLanguages: string;
         getAllTags: string;
-        getAllTranslatableResources: string;
         getAnalyticsTags: string;
         getBasicDetails: string;
         getCredentialsByEntity: string;
         getCustomPage: string;
         getFooterContent: string;
         getHomePageContent: string;
-        getLanguageByLocale: string;
         getMenuContent: string;
         getMenuContentByType: string;
         getNavbar: string;
@@ -20,16 +17,6 @@ declare class Content {
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {ContentPublicValidator.GetAllLanguagesParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getAllLanguages
-     * @summary: Get All Languages
-     * @description: Fetches complete list of languages supported by the platform with their locale codes and text directions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getAllLanguages/).
-     */
-    getAllLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPublicValidator.GetAllTagsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -40,16 +27,6 @@ declare class Content {
      * @description: Retrieve custom tag with injected css/javascript info. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getAllTags/).
      */
     getAllTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPublicModel.TagsSchema>;
-    /**
-     * @param {ContentPublicValidator.GetAllTranslatableResourcesParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getAllTranslatableResources
-     * @summary: Get Translatable Items
-     * @description: Retrieves all resources that can be translated across different languages in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getAllTranslatableResources/).
-     */
-    getAllTranslatableResources({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPublicValidator.GetAnalyticsTagsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -110,16 +87,6 @@ declare class Content {
      * @description: Retrieve home page content for a specific page type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getHomePageContent/).
      */
     getHomePageContent({ pageType, requestHeaders }?: ContentPublicValidator.GetHomePageContentParam, { responseHeaders }?: object): Promise<ContentPublicModel.HomePageContentSchema>;
-    /**
-     * @param {ContentPublicValidator.GetLanguageByLocaleParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ContentPublicModel.Language>} - Success response
-     * @name getLanguageByLocale
-     * @summary: Get Single Language
-     * @description: Retrieves detailed information about a specific language using its locale identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getLanguageByLocale/).
-     */
-    getLanguageByLocale({ locale, requestHeaders }?: ContentPublicValidator.GetLanguageByLocaleParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.Language>;
     /**
      * @param {ContentPublicValidator.GetMenuContentParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

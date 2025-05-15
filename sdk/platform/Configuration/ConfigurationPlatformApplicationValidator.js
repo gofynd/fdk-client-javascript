@@ -101,7 +101,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef RemoveDomainByIdParam
- * @property {string} id - The unique identifier of the domain
+ * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
 
 /** @typedef RemoveOrderingStoreCookieParam */

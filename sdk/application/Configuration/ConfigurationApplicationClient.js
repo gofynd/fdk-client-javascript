@@ -26,10 +26,10 @@ class Configuration {
       getOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
       getOrderingStores:
-        "/service/application/configuration/v2.0/ordering-store/stores",
-      getOwnerInfo: "/service/application/configuration/v2.0/about",
+        "/service/application/configuration/v1.0/ordering-store/stores",
+      getOwnerInfo: "/service/application/configuration/v1.0/about",
       getStoreDetailById:
-        "/service/application/configuration/v2.0/ordering-store/stores/{store_id}",
+        "/service/application/configuration/v1.0/ordering-store/stores/{store_id}",
       removeOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
     };
@@ -135,50 +135,6 @@ class Configuration {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {boolean} [arg.orderIncent] - Select `true` to retrieve the staff
-   *   members eligible for getting incentives on orders.
-   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
-   *   retrieving staff members working at a particular ordering store.
-   * @param {string} [arg.user] - ID of the staff. Helps in retrieving the
-   *   details of a particular staff member.
-   * @param {string} [arg.userName] - Username of the member.
-   * @returns {Paginator<AppStaffListResponseSchema>}
-   * @summary: List staff members
-   * @description: List all staff members of the sales channel.
-   */
-  getAppStaffListPaginator({
-    pageSize,
-    orderIncent,
-    orderingStore,
-    user,
-    userName,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppStaffList({
-        pageNo: pageNo,
-        pageSize: pageSize,
-        orderIncent: orderIncent,
-        orderingStore: orderingStore,
-        user: user,
-        userName: userName,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**

@@ -9,7 +9,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -53,7 +52,6 @@ class AnalyticsPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 
@@ -85,7 +83,7 @@ class AnalyticsPlatformModel {
   static JobStatus() {
     return Joi.object({
       start_date: Joi.string().allow(""),
-      end_date: Joi.string().allow("").allow(null),
+      end_date: Joi.string().allow(""),
       status: Joi.string().allow(""),
       message: Joi.string().allow(""),
       file_metadata: Joi.array().items(Joi.any()).allow(null, ""),

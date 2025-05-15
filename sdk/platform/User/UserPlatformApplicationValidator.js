@@ -13,16 +13,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
- * @typedef BulkImportStoreFrontUsersParam
- * @property {UserPlatformModel.CreateStoreFrontUsersPayload} body
- */
-
-/**
- * @typedef CreateBulkExportUsersParam
- * @property {UserPlatformModel.BulkUserExportSchema} body
- */
-
-/**
  * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
@@ -70,28 +60,6 @@ const UserPlatformModel = require("./UserPlatformModel");
 /**
  * @typedef GetActiveSessionsParam
  * @property {string} id - ID of a customer.
- */
-
-/**
- * @typedef GetBulkExportUsersListParam
- * @property {string} [pageNo] - Page number for pagination result
- * @property {string} [pageSize] - Page size for pagination result
- * @property {string} [fileFormat] - Filter data based on file format eg csv or xlsx
- * @property {string} [search] - The search queries based on job name.
- * @property {string} [startDate] - Start date
- * @property {string} [endDate] - End date
- * @property {string} [status] - Status of the Import Documents
- */
-
-/**
- * @typedef GetBulkImportUsersListParam
- * @property {string} [pageNo] - Page number for pagination result
- * @property {string} [pageSize] - Page size for pagination result
- * @property {string} [search] - The search queries based on job name.
- * @property {string} [startDate] - Start date
- * @property {string} [endDate] - End date
- * @property {string} [status] - Status of the Import Documents
- * @property {string} [fileFormat] - Filter data based on file format eg csv or xlsx
  */
 
 /**
@@ -165,17 +133,6 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
- * @typedef GetUserTimelineParam
- * @property {string} userId - User ID
- */
-
-/**
- * @typedef GetUsersJobByJobIdParam
- * @property {string} jobId - The unique identifier of the job. This is used to
- *   fetch the details of the specific job.
- */
-
-/**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
  * @property {string[]} [query] - The search queries. Mobile numbers or email
@@ -237,20 +194,6 @@ class UserPlatformApplicationValidator {
   static blockOrUnblockUsers() {
     return Joi.object({
       body: UserPlatformModel.BlockUserRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {BulkImportStoreFrontUsersParam} */
-  static bulkImportStoreFrontUsers() {
-    return Joi.object({
-      body: UserPlatformModel.CreateStoreFrontUsersPayload().required(),
-    }).required();
-  }
-
-  /** @returns {CreateBulkExportUsersParam} */
-  static createBulkExportUsers() {
-    return Joi.object({
-      body: UserPlatformModel.BulkUserExportSchema().required(),
     }).required();
   }
 
@@ -318,32 +261,6 @@ class UserPlatformApplicationValidator {
   static getActiveSessions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBulkExportUsersListParam} */
-  static getBulkExportUsersList() {
-    return Joi.object({
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-      fileFormat: Joi.string().allow(""),
-      search: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetBulkImportUsersListParam} */
-  static getBulkImportUsersList() {
-    return Joi.object({
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-      search: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      fileFormat: Joi.string().allow(""),
     }).required();
   }
 
@@ -427,20 +344,6 @@ class UserPlatformApplicationValidator {
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       groupUid: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetUserTimelineParam} */
-  static getUserTimeline() {
-    return Joi.object({
-      userId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetUsersJobByJobIdParam} */
-  static getUsersJobByJobId() {
-    return Joi.object({
-      jobId: Joi.string().allow("").required(),
     }).required();
   }
 

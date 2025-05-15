@@ -36,7 +36,7 @@ declare class Configuration {
      *   Success response
      * @name getAppApiTokens
      * @summary: Get sales channel API tokens
-     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
+     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
      */
     getAppApiTokens({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponseSchema>;
     /**
@@ -178,7 +178,7 @@ declare class Configuration {
      *   Success response
      * @name getDomains
      * @summary: List domains
-     * @description: Retrieve a list of existing domains by its sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
+     * @description: Retrieve a list of existing domains by its sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
      */
     getDomains({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainsResponseSchema>;
     /**

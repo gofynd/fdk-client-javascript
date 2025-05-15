@@ -2,26 +2,25 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidityObject
- * @property {string} start - The start date and time of the discount period.
- * @property {string} end - The end date and time of the discount period.
+ * @property {string} start
+ * @property {string} end
  */
 
 /**
  * @typedef CreateUpdateDiscount
- * @property {string} name - The name of the discount.
- * @property {number} company_id - The unique identifier for the company.
- * @property {boolean} is_active - Indicates if the discount is currently active.
- * @property {string[]} app_ids - List of application IDs associated with the discount.
- * @property {string[]} [extension_ids] - List of extension IDs associated with
- *   the discount.
- * @property {string} job_type - The type of job associated with the discount.
- * @property {string} discount_type - The type of discount being offered.
- * @property {string} discount_level - The level at which the discount is applied.
- * @property {number} [value] - The value of the discount.
- * @property {string} [file_path] - The file path for discount file.
- * @property {number[]} [brand_ids] - List of brand IDs associated with the discount.
- * @property {number[]} [store_ids] - List of store IDs associated with the discount.
- * @property {string[]} [zone_ids] - List of zone IDs associated with the discount.
+ * @property {string} name
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string[]} app_ids
+ * @property {string[]} [extension_ids]
+ * @property {string} job_type
+ * @property {string} discount_type
+ * @property {string} discount_level
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [zone_ids]
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -38,120 +37,118 @@ const Joi = require("joi");
 
 /**
  * @typedef DiscountJob
- * @property {string} _id - The unique identifier for the discount job.
- * @property {string} name - The name of the discount job.
- * @property {number} company_id - The unique identifier for the company.
- * @property {boolean} is_active - Indicates if the discount job is currently active.
- * @property {string[]} app_ids - List of application IDs associated with the
- *   discount job.
- * @property {string} job_type - The type of job associated with the discount job.
- * @property {string} [discount_type] - The type of discount being offered.
- * @property {string} discount_level - The level at which the discount is applied.
- * @property {number} [value] - The value of the discount.
- * @property {string} [file_path] - The file path for discount file.
- * @property {number[]} [brand_ids] - List of brand IDs associated with the discount job.
- * @property {number[]} [store_ids] - List of store IDs associated with the discount job.
- * @property {string[]} [zone_ids] - List of zone IDs associated with the discount job.
+ * @property {string} _id
+ * @property {string} name
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
+ * @property {string} [discount_type]
+ * @property {string} [discount_level]
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [zone_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
- * @property {string} created_on - The date and time when the discount job was created.
- * @property {string} modified_on - The date and time when the discount job was
- *   last modified.
+ * @property {string} created_on
+ * @property {string} modified_on
  * @property {UserDetails} created_by
  * @property {UserDetails} modified_by
- * @property {Object} [meta] - Additional metadata for the discount job.
+ * @property {Object} [meta]
  */
 
 /**
  * @typedef FileJobBody
- * @property {string} [name] - The name of the job.
- * @property {number} [company_id] - Unique identifier for the company.
- * @property {boolean} [is_active] - Indicates if the job is active.
- * @property {string[]} [app_ids] - List of application identifiers.
- * @property {string} [job_type] - Type of job being processed.
- * @property {string} [discount_type] - Type of discount applied.
- * @property {string} [discount_level] - Level at which the discount is applied.
- * @property {number} [value] - Value of the discount.
- * @property {string} [file_path] - Path to the discount file associated with the job.
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
- * @property {string[]} [extension_ids] - List of extension identifiers.
- * @property {string[]} [zone_ids] - List of zone identifiers.
+ * @property {string} [name]
+ * @property {number} [company_id]
+ * @property {boolean} [is_active]
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
+ * @property {string} [discount_type]
+ * @property {string} [discount_level]
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} [validity]
- * @property {string} [created_on] - Timestamp when the job was created.
- * @property {string} [modified_on] - Timestamp when the job was last modified.
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  * @property {UserDetails} [created_by]
  * @property {UserDetails} [modified_by]
- * @property {Object} [meta] - Additional metadata for the job.
+ * @property {Object} [meta]
  */
 
 /**
  * @typedef ListOrCalender
- * @property {DiscountJob[]} items - List of discount jobs.
+ * @property {DiscountJob[]} items
  * @property {Page} page
  */
 
 /**
  * @typedef DiscountItems
- * @property {string} [item_code] - Unique code for the item.
- * @property {string} [brand_name] - Name of the brand.
- * @property {string} [seller_identifier] - Unique Identifier for the size.
- * @property {string} discount_type - Type of discount applied.
- * @property {number} value - Value of the discount.
+ * @property {string} [item_code]
+ * @property {string} [brand_name]
+ * @property {string} [seller_identifier]
+ * @property {string} discount_type
+ * @property {number} value
  * @property {DiscountMeta} [discount_meta]
  */
 
 /**
  * @typedef BulkDiscount
- * @property {number} company_id - Uinque Identifier for the company.
- * @property {DiscountItems[]} items - List of discount items.
+ * @property {number} company_id
+ * @property {DiscountItems[]} items
  */
 
 /**
  * @typedef FileJobResponseSchema
- * @property {string} stage - Current stage of the file job.
- * @property {number} total - Total number of items processed.
- * @property {number} failed - Number of items that failed processing.
- * @property {number} company_id - Identifier for the company.
+ * @property {string} stage
+ * @property {number} total
+ * @property {number} failed
+ * @property {number} company_id
  * @property {FileJobBody} [body]
- * @property {string} type - Type of file job.
- * @property {string} [file_type] - Type of file being processed.
+ * @property {string} type
+ * @property {string} [file_type]
  * @property {string} _id - A unique identifier to distinguish and identify a job.
- * @property {string} [file_path] - Path to the disocunt file.
- * @property {number} [progress] - Progress of the file job.
- * @property {string[]} [extension_ids] - List of extension identifiers.
- * @property {string[]} [zone_ids] - List of zone identifiers.
- * @property {string} [created_on] - Timestamp when the job was created.
- * @property {string} [modified_on] - Timestamp when the job was last modified.
+ * @property {string} [file_path]
+ * @property {number} [progress]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  * @property {UserDetails} [created_by]
  */
 
 /**
  * @typedef FileJobRequestSchema
- * @property {string} name - Name of the file job.
- * @property {boolean} is_active - Indicates if the job is active.
- * @property {number} company_id - Unique Identifier for the company.
- * @property {string[]} app_ids - List of application identifiers.
- * @property {string} job_type - Type of job.
- * @property {string} [discount_type] - Type of discount.
- * @property {string} discount_level - Level at which the discount is applied.
- * @property {string} [file_path] - Path to the disocunt file.
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
+ * @property {string} name
+ * @property {boolean} is_active
+ * @property {number} company_id
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
+ * @property {string} [discount_type]
+ * @property {string} [discount_level]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
- * @property {Object} [meta] - Additional metadata for the disocunt.
+ * @property {Object} [meta]
  */
 
 /**
  * @typedef DownloadFileJob
- * @property {number[]} [brand_ids] - List of brand identifiers.
- * @property {number[]} [store_ids] - List of store identifiers.
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
  */
 
 /**
  * @typedef CancelJobResponseSchema
- * @property {boolean} success - Indicates if the job cancellation was successful.
+ * @property {boolean} success
  */
 
 /**
@@ -163,29 +160,28 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
  * @typedef UserDetails
- * @property {string} username - Username of the user.
- * @property {string} user_id - Unique identifier for the user.
+ * @property {string} username
+ * @property {string} user_id
  */
 
 /**
  * @typedef BadRequestObject
- * @property {string} message - A brief description of the error encountered.
+ * @property {string} message
  */
 
 /**
  * @typedef BadRequestData
- * @property {string} [message] - Detailed information about the error.
+ * @property {string} [message]
  */
 
 /**
  * @typedef BadRequestObjectGet
- * @property {string} [message] - A brief description of the error encountered.
- * @property {string} [error] - Specific error code or identifier.
+ * @property {string} [message]
+ * @property {string} [error]
  * @property {BadRequestData} [data]
  */
 
@@ -235,10 +231,10 @@ class DiscountPlatformModel {
       name: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
-      app_ids: Joi.array().items(Joi.string().allow("")).required(),
-      job_type: Joi.string().allow("").required(),
+      app_ids: Joi.array().items(Joi.string().allow("")),
+      job_type: Joi.string().allow(""),
       discount_type: Joi.string().allow(""),
-      discount_level: Joi.string().allow("").required(),
+      discount_level: Joi.string().allow(""),
       value: Joi.number(),
       file_path: Joi.string().allow(""),
       brand_ids: Joi.array().items(Joi.number()),
@@ -337,10 +333,10 @@ class DiscountPlatformModel {
       name: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       company_id: Joi.number().required(),
-      app_ids: Joi.array().items(Joi.string().allow("")).required(),
-      job_type: Joi.string().allow("").required(),
+      app_ids: Joi.array().items(Joi.string().allow("")),
+      job_type: Joi.string().allow(""),
       discount_type: Joi.string().allow(""),
-      discount_level: Joi.string().allow("").required(),
+      discount_level: Joi.string().allow(""),
       file_path: Joi.string().allow(""),
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
@@ -374,7 +370,6 @@ class DiscountPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 

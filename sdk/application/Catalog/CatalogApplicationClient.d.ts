@@ -319,21 +319,21 @@ declare class Catalog {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ProductSizePriceResponseV4>} - Success response
+     * @returns {Promise<ProductSizePriceResponseV3>} - Success response
      * @name getProductPriceBySlug
      * @summary: Get product price
      * @description: Get the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
      */
-    getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizePriceResponseV4>;
+    getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizePriceResponseV3>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ProductSizeSellersResponseV4>} - Success response
+     * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
      * @name getProductSellersBySlug
      * @summary: List sellers
      * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
      */
-    getProductSellersBySlug({ slug, size, strategy, pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizeSellersResponseV4>;
+    getProductSellersBySlug({ slug, size, strategy, pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizeSellersResponseV3>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -345,7 +345,7 @@ declare class Catalog {
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ProductSizeSellersResponseV4>}
+     * @returns {Paginator<ProductSizeSellersResponseV3>}
      * @summary: List sellers
      * @description: List all sellers offering a specific product identified by its slug and size.
      */
@@ -354,7 +354,7 @@ declare class Catalog {
         size: string;
         strategy?: string;
         pageSize?: number;
-    }): Paginator<ProductSizeSellersResponseV4>;
+    }): Paginator<ProductSizeSellersResponseV3>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

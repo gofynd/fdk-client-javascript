@@ -50,14 +50,10 @@ class User {
         "/service/application/user/authentication/v1.0/otp/forgot/email/send",
       sendForgotOTPOnMobile:
         "/service/application/user/authentication/v1.0/otp/forgot/mobile/send",
-      sendOTPForUpdate:
-        "/service/application/user/profile/v2.0/{entity}/otp/send",
       sendOTPOnEmail:
         "/service/application/user/authentication/v1.0/otp/email/send",
       sendOTPOnMobile:
         "/service/application/user/authentication/v1.0/otp/mobile/send",
-      sendOTPOnPrimary:
-        "/service/application/user/profile/v2.0/{entity}/primary/otp/send",
       sendResetPasswordEmail:
         "/service/application/user/authentication/v1.0/login/password/reset",
       sendResetPasswordMobile:
@@ -87,10 +83,6 @@ class User {
         "/service/application/user/authentication/v1.0/otp/forgot/mobile/verify",
       verifyMobileOTP:
         "/service/application/user/authentication/v1.0/otp/mobile/verify",
-      verifyOTPForUpdate:
-        "/service/application/user/profile/v2.0/{entity}/otp/verify",
-      verifyOTPonPrimary:
-        "/service/application/user/profile/v2.0/{entity}/primary/otp/verify",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -1033,52 +1025,6 @@ class User {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SendOtpSuccess>} - Success response
-   * @name sendOTPForUpdate
-   * @summary: Send OTP to update Mobile or Email
-   * @description: Send OTP to mobile number or email. User needs to use sendOTPOnPrimary and verifyOTPonPrimary before using this method to update details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPForUpdate/).
-   */
-  async sendOTPForUpdate(
-    { entity, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["entity"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["sendOTPForUpdate"],
-        params: { entity },
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
    * @summary: Send OTP on Email
@@ -1137,52 +1083,6 @@ class User {
       constructUrl({
         url: this._urls["sendOTPOnMobile"],
         params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SendOtpSuccess>} - Success response
-   * @name sendOTPOnPrimary
-   * @summary: Send OTP to Primary Mobile or Email
-   * @description: Send OTP to primary mobile number or email to verify primary details. Use this to update Email or Mobile, other APIs will be deprecated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnPrimary/).
-   */
-  async sendOTPOnPrimary(
-    { entity, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["entity"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["sendOTPOnPrimary"],
-        params: { entity },
       }),
       query_params,
       body,
@@ -1822,98 +1722,6 @@ class User {
       constructUrl({
         url: this._urls["verifyMobileOTP"],
         params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<VerifyOtpSuccess>} - Success response
-   * @name verifyOTPForUpdate
-   * @summary: Verify OTP sent to Mobile or Email to update primary details.
-   * @description: Verify OTP sent to Mobile number or Email to update primary details. User needs to use sendOTPOnPrimary, verifyOTPonPrimary and sendOTPForUpdate before using this method to verify update details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyOTPForUpdate/).
-   */
-  async verifyOTPForUpdate(
-    { entity, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["entity"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["verifyOTPForUpdate"],
-        params: { entity },
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<VerifyPrimaryOTPSuccess>} - Success response
-   * @name verifyOTPonPrimary
-   * @summary: Verify OTP sent to Primary Mobile or Email
-   * @description: Verify OTP sent to primary mobile number or email to verify primary details. User needs to use sendOTPOnPrimary before verifying OTP. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyOTPonPrimary/).
-   */
-  async verifyOTPonPrimary(
-    { entity, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["entity"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["verifyOTPonPrimary"],
-        params: { entity },
       }),
       query_params,
       body,

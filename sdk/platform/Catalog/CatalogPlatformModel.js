@@ -8,11 +8,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ValidationErrors
- * @property {ValidationError[]} errors - A list of validation errors in the request.
- */
-
-/**
  * @typedef AllSizes
  * @property {ValidateIdentifier[]} [identifiers] - A collection of identifiers
  *   (e.g., GTIN, UPC) associated with the size. Each identifier follows the
@@ -116,6 +111,7 @@ const Joi = require("joi");
  * @property {string} [name] - Name of the application.
  * @property {number} priority - Defines the priority level for this
  *   configuration, with 1 being the highest.
+ * @property {ApplicationItemSEO} [seo]
  */
 
 /**
@@ -239,7 +235,8 @@ const Joi = require("joi");
  *   with the product.
  * @property {number} category_uid - The unique identifier for the category to
  *   which the product belongs.
- * @property {string} [verification_status] - Verification status of the product.
+ * @property {number} [verification_status] - The verification status of the
+ *   product, typically represented as an integer.
  * @property {string} [channel_identifier] - The identifier for the sales
  *   channel through which the product is sold.
  * @property {string} [category_slug] - A URL-friendly string representing the
@@ -276,7 +273,7 @@ const Joi = require("joi");
  *   variants of one another.
  * @property {MultiCategoriesSchema[]} [multi_categories]
  * @property {string} [template_tag] - Tag used for categorizing or templating purposes.
- * @property {NetQuantitySchema} [net_quantity]
+ * @property {Object} [net_quantity] - Net quantity details for the product.
  * @property {CustomOrder} [custom_order]
  * @property {string} country_of_origin - Country where the product is
  *   manufactured or sourced from.
@@ -286,9 +283,6 @@ const Joi = require("joi");
  * @property {CustomMeta[]} [_custom_meta] - Custom meta associated with the product.
  * @property {number} [discount_percentage] - The discount applied to the
  *   product in percentage.
- * @property {number} [no_of_boxes] - Number of boxes containing the product.
- * @property {string} [created_on] - The date and time when the product was created
- * @property {string} [modified_on] - The date and time when the product was last modified
  */
 
 /**
@@ -675,7 +669,6 @@ const Joi = require("joi");
  * @property {number} [failed]
  * @property {Object[]} [failed_records]
  * @property {string} [file_path]
- * @property {string} [file_type] - Type of inventory File
  * @property {boolean} [is_active] - Whether the item is active or not.
  * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
@@ -1255,6 +1248,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DeleteProductRequestBody
+ * @property {number} [brand_uid] - The brand identifier for the product.
+ * @property {string} [item_code] - The code of the item to be deleted.
+ * @property {string} [company_id] - The ID of the company. (Optional if already
+ *   provided in the path)
+ * @property {number} [item_id] - The ID of the product.
+ */
+
+/**
  * @typedef DeleteResponseSchema
  * @property {string} [message]
  */
@@ -1513,7 +1515,7 @@ const Joi = require("joi");
  *   for geolocation purposes.
  * @property {number} [longitude] - The longitude coordinate of the address,
  *   used for geolocation purposes.
- * @property {string} [pincode] - The postal code or ZIP code associated with the address.
+ * @property {number} [pincode] - The postal code or ZIP code associated with the address.
  * @property {string} [state] - The state or region where the address is located.
  */
 
@@ -1717,6 +1719,7 @@ const Joi = require("joi");
  * @property {string} [slug] - A URL-friendly identifier for the configuration group.
  * @property {string[]} [template_slugs] - A list of template slugs associated
  *   with this configuration.
+ * @property {ApplicationItemSEO} [seo]
  */
 
 /**
@@ -2408,7 +2411,12 @@ const Joi = require("joi");
  * @property {string} seller_identifier - The identifier of the seller.
  * @property {number} store_id - The ID of the store.
  * @property {string[]} [tags] - The tags associated with the inventory item.
- * @property {number} [total_quantity] - The total quantity of the inventory item.
+ * @property {number} [total_quantity] - The total quantity of the inventory
+ *   item. Any one quantity is allowed `sellable_quantity` or `total_quantity`,
+ *   the other one would be derived.
+ * @property {number} [sellable_quantity] - The sellable quantity of the
+ *   inventory item. Any one quantity is allowed `sellable_quantity` or
+ *   `total_quantity`, the other one would be derived.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
  */
 
@@ -2867,24 +2875,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef LocationPriceRequestSchema
- * @property {number} price_effective - The effective price of the inventory item.
- * @property {number} price_marked - The marked price of the inventory item.
- * @property {string[]} [tags] - Tags associated with inventory item.
- */
-
-/**
- * @typedef LocationQuantityRequestSchema
- * @property {string} [expiration_date] - The expiration date of the inventory item.
- * @property {number} total_quantity - The total quantity of the inventory item.
- */
-
-/**
- * @typedef LocationPriceQuantitySuccessResponseSchema
- * @property {string} message - It is the success message of the price/quantity update.
- */
-
-/**
  * @typedef OptInPostRequestSchema
  * @property {number[]} [brand_ids]
  * @property {number} [company_id]
@@ -2956,7 +2946,6 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -3227,7 +3216,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductUpdateSchemaV2
+ * @typedef ProductCreateUpdateSchemaV2
  * @property {Object} [_custom_json] - Custom JSON data that can be used for
  *   additional product properties.
  * @property {string} [action] - The action to perform wrt to the product (e.g.,
@@ -3279,63 +3268,6 @@ const Joi = require("joi");
  *   classification.
  * @property {Trader[]} trader - List of traders associated with the product.
  * @property {number} [uid] - Unique identifier for the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
- */
-
-/**
- * @typedef ProductCreateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
@@ -4700,14 +4632,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
- */
-
-/**
  * @typedef Price1
- * @property {string} [currency_code] - ISO 4217 currency codes
+ * @property {CurrencyCodeEnum} [currency_code]
  * @property {string} [currency_symbol]
  * @property {number} [max]
  * @property {number} [min]
@@ -4725,18 +4651,22 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NetQuantitySchema
- * @property {string} [unit] - Specifies the unit of measurement for the net quantity.
- * @property {number} [value] - The numerical value representing the net
- *   quantity of the product.
- */
-
-/**
  * @typedef CustomMeta
  * @property {string} key - The key of the metadata. Should be a non-empty
  *   string and length should not exceed 30 characters.
  * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
+ */
+
+/**
+ * @typedef ValidationErrors
+ * @property {ValidationError[]} errors
+ */
+
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
  */
 
 /**
@@ -4790,6 +4720,8 @@ const Joi = require("joi");
  *   | "locate-us"} PageType
  */
 
+/** @typedef {"INR" | "USD" | "EUR"} CurrencyCodeEnum */
+
 class CatalogPlatformModel {
   /** @returns {Action} */
   static Action() {
@@ -4797,15 +4729,6 @@ class CatalogPlatformModel {
       type: Joi.string().allow(""),
       page: CatalogPlatformModel.ActionPage(),
       popup: CatalogPlatformModel.ActionPage(),
-    });
-  }
-
-  /** @returns {ValidationErrors} */
-  static ValidationErrors() {
-    return Joi.object({
-      errors: Joi.array()
-        .items(CatalogPlatformModel.ValidationError())
-        .required(),
     });
   }
 
@@ -4910,6 +4833,7 @@ class CatalogPlatformModel {
       logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       priority: Joi.number().required(),
+      seo: CatalogPlatformModel.ApplicationItemSEO(),
     });
   }
 
@@ -5032,7 +4956,7 @@ class CatalogPlatformModel {
       popularity: Joi.number(),
       brand_uid: Joi.number().required(),
       category_uid: Joi.number().required(),
-      verification_status: Joi.string().allow(""),
+      verification_status: Joi.number(),
       channel_identifier: Joi.string().allow(""),
       category_slug: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -5058,7 +4982,7 @@ class CatalogPlatformModel {
         CatalogPlatformModel.MultiCategoriesSchema()
       ),
       template_tag: Joi.string().allow(""),
-      net_quantity: CatalogPlatformModel.NetQuantitySchema(),
+      net_quantity: Joi.object().pattern(/\S/, Joi.any()),
       custom_order: CatalogPlatformModel.CustomOrder(),
       country_of_origin: Joi.string().allow("").required(),
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
@@ -5066,9 +4990,6 @@ class CatalogPlatformModel {
       item_id: Joi.number(),
       _custom_meta: Joi.array().items(CatalogPlatformModel.CustomMeta()),
       discount_percentage: Joi.number(),
-      no_of_boxes: Joi.number(),
-      created_on: Joi.string().allow(""),
-      modified_on: Joi.string().allow(""),
     });
   }
 
@@ -5515,7 +5436,6 @@ class CatalogPlatformModel {
       failed: Joi.number(),
       failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       file_path: Joi.string().allow(""),
-      file_type: Joi.string().allow(""),
       is_active: Joi.boolean(),
       modified_by: Joi.string().allow("").allow(null),
       modified_on: Joi.string().allow(""),
@@ -6153,6 +6073,16 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {DeleteProductRequestBody} */
+  static DeleteProductRequestBody() {
+    return Joi.object({
+      brand_uid: Joi.number(),
+      item_code: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      item_id: Joi.number(),
+    });
+  }
+
   /** @returns {DeleteResponseSchema} */
   static DeleteResponseSchema() {
     return Joi.object({
@@ -6422,7 +6352,7 @@ class CatalogPlatformModel {
       landmark: Joi.string().allow(""),
       latitude: Joi.number(),
       longitude: Joi.number(),
-      pincode: Joi.string().allow(""),
+      pincode: Joi.number(),
       state: Joi.string().allow(""),
     });
   }
@@ -6650,6 +6580,7 @@ class CatalogPlatformModel {
       priority: Joi.number(),
       slug: Joi.string().allow(""),
       template_slugs: Joi.array().items(Joi.string().allow("")),
+      seo: CatalogPlatformModel.ApplicationItemSEO(),
     });
   }
 
@@ -7386,6 +7317,7 @@ class CatalogPlatformModel {
       store_id: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       total_quantity: Joi.number().allow(null),
+      sellable_quantity: Joi.number(),
       trace_id: Joi.string().allow(""),
     });
   }
@@ -7892,30 +7824,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {LocationPriceRequestSchema} */
-  static LocationPriceRequestSchema() {
-    return Joi.object({
-      price_effective: Joi.number().required(),
-      price_marked: Joi.number().required(),
-      tags: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {LocationQuantityRequestSchema} */
-  static LocationQuantityRequestSchema() {
-    return Joi.object({
-      expiration_date: Joi.string().allow(""),
-      total_quantity: Joi.number().required(),
-    });
-  }
-
-  /** @returns {LocationPriceQuantitySuccessResponseSchema} */
-  static LocationPriceQuantitySuccessResponseSchema() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {OptInPostRequestSchema} */
   static OptInPostRequestSchema() {
     return Joi.object({
@@ -7997,7 +7905,6 @@ class CatalogPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      page_size: Joi.number(),
     });
   }
 
@@ -8262,8 +8169,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ProductUpdateSchemaV2} */
-  static ProductUpdateSchemaV2() {
+  /** @returns {ProductCreateUpdateSchemaV2} */
+  static ProductCreateUpdateSchemaV2() {
     return Joi.object({
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       action: Joi.string().allow(""),
@@ -8306,55 +8213,6 @@ class CatalogPlatformModel {
       template_tag: Joi.string().allow("").required(),
       trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
       uid: Joi.number().allow(null),
-      variant_group: Joi.object().pattern(/\S/, Joi.any()),
-      variant_media: Joi.object().pattern(/\S/, Joi.any()),
-      variants: Joi.object().pattern(/\S/, Joi.any()),
-    });
-  }
-
-  /** @returns {ProductCreateSchemaV2} */
-  static ProductCreateSchemaV2() {
-    return Joi.object({
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-      action: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
-      brand_uid: Joi.number().required(),
-      bulk_job_id: Joi.string().allow(""),
-      category_slug: Joi.string().allow("").required(),
-      change_request_id: Joi.string().allow("").allow(null),
-      company_id: Joi.number().required(),
-      country_of_origin: Joi.string().allow("").required(),
-      currency: Joi.string().allow("").required(),
-      custom_order: CatalogPlatformModel.CustomOrder(),
-      departments: Joi.array().items(Joi.number()).required(),
-      description: Joi.string().allow(""),
-      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
-      is_active: Joi.boolean(),
-      is_dependent: Joi.boolean(),
-      is_image_less_product: Joi.boolean(),
-      is_set: Joi.boolean(),
-      item_code: Joi.string().allow("").required(),
-      item_type: Joi.string().allow("").required(),
-      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
-      multi_size: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-      net_quantity: CatalogPlatformModel.NetQuantity(),
-      no_of_boxes: Joi.number(),
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish(),
-      requester: Joi.string().allow(""),
-      return_config: CatalogPlatformModel.ReturnConfig().required(),
-      short_description: Joi.string().allow(""),
-      size_guide: Joi.string().allow(""),
-      sizes: Joi.array()
-        .items(Joi.object().pattern(/\S/, Joi.any()))
-        .required(),
-      slug: Joi.string().allow("").required(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
-      teaser_tag: CatalogPlatformModel.TeaserTag(),
-      template_tag: Joi.string().allow("").required(),
-      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
       variant_group: Joi.object().pattern(/\S/, Joi.any()),
       variant_media: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.object().pattern(/\S/, Joi.any()),
@@ -9819,18 +9677,10 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ValidationError} */
-  static ValidationError() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      field: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {Price1} */
   static Price1() {
     return Joi.object({
-      currency_code: Joi.string().allow(""),
+      currency_code: CatalogPlatformModel.CurrencyCodeEnum(),
       currency_symbol: Joi.string().allow(""),
       max: Joi.number(),
       min: Joi.number(),
@@ -9848,19 +9698,28 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {NetQuantitySchema} */
-  static NetQuantitySchema() {
-    return Joi.object({
-      unit: Joi.string().allow(""),
-      value: Joi.number(),
-    });
-  }
-
   /** @returns {CustomMeta} */
   static CustomMeta() {
     return Joi.object({
       key: Joi.string().allow("").required(),
       value: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ValidationErrors} */
+  static ValidationErrors() {
+    return Joi.object({
+      errors: Joi.array()
+        .items(CatalogPlatformModel.ValidationError())
+        .required(),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
     });
   }
 
@@ -9966,6 +9825,21 @@ class CatalogPlatformModel {
       "order-status",
 
       "locate-us"
+    );
+  }
+
+  /**
+   * Enum: CurrencyCodeEnum Used By: Catalog
+   *
+   * @returns {CurrencyCodeEnum}
+   */
+  static CurrencyCodeEnum() {
+    return Joi.string().valid(
+      "INR",
+
+      "USD",
+
+      "EUR"
     );
   }
 }

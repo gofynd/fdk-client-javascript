@@ -2114,7 +2114,6 @@ class Payment {
       amount,
       pincode,
       orderType,
-      xOrderingSource,
       cartId,
       checkoutMode,
       refresh,
@@ -2124,7 +2123,6 @@ class Payment {
       displaySplit,
       advancePayment,
       shipmentId,
-      customerId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2136,7 +2134,6 @@ class Payment {
         amount,
         pincode,
         orderType,
-        xOrderingSource,
         cartId,
         checkoutMode,
         refresh,
@@ -2146,7 +2143,6 @@ class Payment {
         displaySplit,
         advancePayment,
         shipmentId,
-        customerId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2162,7 +2158,6 @@ class Payment {
         amount,
         pincode,
         orderType,
-        xOrderingSource,
         cartId,
         checkoutMode,
         refresh,
@@ -2172,7 +2167,6 @@ class Payment {
         displaySplit,
         advancePayment,
         shipmentId,
-        customerId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2196,7 +2190,6 @@ class Payment {
     query_params["display_split"] = displaySplit;
     query_params["advance_payment"] = advancePayment;
     query_params["shipment_id"] = shipmentId;
-    query_params["customer_id"] = customerId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4122,88 +4115,6 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > updateRefundSession \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {PaymentPlatformApplicationValidator.ValidateCustomerAndCreditSummaryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.ValidateCustomerCreditSchema>} -
-   *   Success response
-   * @name validateCustomerAndCreditSummary
-   * @summary: Verify payment customer and show credit summary
-   * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/validateCustomerAndCreditSummary/).
-   */
-  async validateCustomerAndCreditSummary(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentPlatformApplicationValidator.validateCustomerAndCreditSummary().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentPlatformApplicationValidator.validateCustomerAndCreditSummary().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > validateCustomerAndCreditSummary \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/validate/customer-credits`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentPlatformModel.ValidateCustomerCreditSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Payment > validateCustomerAndCreditSummary \n ${res_error}`,
         });
       }
     }
