@@ -4,7 +4,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef CreateApplicationParam
- * @property {ConfigurationPlatformModel.CreateApplicationRequestSchema} body
+ * @property {ConfigurationPlatformModel.CreateApplicationRequest} body
  */
 
 /**
@@ -25,24 +25,14 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.CompanyByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.CompanyByBrandsRequest} body
  */
 
 /** @typedef GetCurrenciesParam */
 
 /**
- * @typedef GetCurrencyExchangeRatesParam
- * @property {string} [currencyCode] - The 3-letter ISO 4217 code representing
- *   the base currency for the exchange rates. Defaults to "INR" if not specified.
- * @property {string} [exchangeCurrencyCode] - A 3-letter ISO 4217 currency code
- *   for which exchange rates against the base currency are requested.
- * @property {string} [exchangeCountryCode] - The country code for which
- *   exchange rates against the base currency are requested.
- */
-
-/**
  * @typedef GetDomainAvailibilityParam
- * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 
 /**
@@ -64,7 +54,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.StoreByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.StoreByBrandsRequest} body
  */
 
 /**
@@ -78,7 +68,7 @@ class ConfigurationPlatformValidator {
   /** @returns {CreateApplicationParam} */
   static createApplication() {
     return Joi.object({
-      body: ConfigurationPlatformModel.CreateApplicationRequestSchema().required(),
+      body: ConfigurationPlatformModel.CreateApplicationRequest().required(),
     }).required();
   }
 
@@ -103,7 +93,7 @@ class ConfigurationPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      body: ConfigurationPlatformModel.CompanyByBrandsRequestSchema().required(),
+      body: ConfigurationPlatformModel.CompanyByBrandsRequest().required(),
     }).required();
   }
 
@@ -112,19 +102,10 @@ class ConfigurationPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetCurrencyExchangeRatesParam} */
-  static getCurrencyExchangeRates() {
-    return Joi.object({
-      currencyCode: Joi.string().allow(""),
-      exchangeCurrencyCode: Joi.string().allow(""),
-      exchangeCountryCode: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetDomainAvailibilityParam} */
   static getDomainAvailibility() {
     return Joi.object({
-      body: ConfigurationPlatformModel.DomainSuggestionsRequestSchema().required(),
+      body: ConfigurationPlatformModel.DomainSuggestionsRequest().required(),
     }).required();
   }
 
@@ -148,7 +129,7 @@ class ConfigurationPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      body: ConfigurationPlatformModel.StoreByBrandsRequestSchema().required(),
+      body: ConfigurationPlatformModel.StoreByBrandsRequest().required(),
     }).required();
   }
 

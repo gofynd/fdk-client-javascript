@@ -1,6 +1,6 @@
 export = UserPlatformModel;
 /**
- * @typedef SuccessMessage
+ * @typedef SuccessMessageResponse
  * @property {string} [success]
  */
 /**
@@ -23,7 +23,7 @@ export = UserPlatformModel;
  * @property {number} [__v] - The version number of the attribute.
  */
 /**
- * @typedef UserAttributeDefinitionDetails
+ * @typedef UserAttributeDefinitionResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -49,19 +49,19 @@ export = UserPlatformModel;
  * @property {Object} [value] - The validation value.
  */
 /**
- * @typedef UserAttribute
+ * @typedef UserAttributeResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 /**
- * @typedef CreateUserAttribute
- * @property {boolean} [customer_overridden]
+ * @typedef CreateUserAttributeRequest
+ * @property {boolean} [customer_overriden]
  * @property {Object} [attribute]
  */
 /**
@@ -473,11 +473,11 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, UserAttributeDefinitionValidation, UserAttribute, CreateUserAttribute, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
-/** @returns {SuccessMessage} */
-declare function SuccessMessage(): SuccessMessage;
-type SuccessMessage = {
+/** @returns {SuccessMessageResponse} */
+declare function SuccessMessageResponse(): SuccessMessageResponse;
+type SuccessMessageResponse = {
     success?: string;
 };
 /** @returns {UserAttributeDefinition} */
@@ -545,9 +545,9 @@ type UserAttributeDefinition = {
      */
     __v?: number;
 };
-/** @returns {UserAttributeDefinitionDetails} */
-declare function UserAttributeDefinitionDetails(): UserAttributeDefinitionDetails;
-type UserAttributeDefinitionDetails = {
+/** @returns {UserAttributeDefinitionResponse} */
+declare function UserAttributeDefinitionResponse(): UserAttributeDefinitionResponse;
+type UserAttributeDefinitionResponse = {
     /**
      * - The unique identifier for the attribute definition.
      */
@@ -627,9 +627,9 @@ type UserAttributeDefinitionValidation = {
      */
     value?: any;
 };
-/** @returns {UserAttribute} */
-declare function UserAttribute(): UserAttribute;
-type UserAttribute = {
+/** @returns {UserAttributeResponse} */
+declare function UserAttributeResponse(): UserAttributeResponse;
+type UserAttributeResponse = {
     /**
      * - The unique identifier for the attribute definition.
      */
@@ -653,14 +653,14 @@ type UserAttribute = {
     /**
      * - Whether the attribute is customer-editable.
      */
-    customer_overridden?: boolean;
+    customer_overriden?: boolean;
     attribute?: any;
     updated_by?: string;
 };
-/** @returns {CreateUserAttribute} */
-declare function CreateUserAttribute(): CreateUserAttribute;
-type CreateUserAttribute = {
-    customer_overridden?: boolean;
+/** @returns {CreateUserAttributeRequest} */
+declare function CreateUserAttributeRequest(): CreateUserAttributeRequest;
+type CreateUserAttributeRequest = {
+    customer_overriden?: boolean;
     attribute?: any;
 };
 /** @returns {CreateUserAttributeDefinition} */

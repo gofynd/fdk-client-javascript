@@ -18,8 +18,7 @@ class Discount {
    * @param {DiscountPlatformValidator.CancelDownloadJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.CancelJobResponseSchema>} -
-   *   Success response
+   * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelDownloadJob
    * @summary: delete discount download job
    * @description: Cancel a discount download job by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelDownloadJob/).
@@ -75,7 +74,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.CancelJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -98,8 +97,7 @@ class Discount {
    * @param {DiscountPlatformValidator.CancelValidationJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.CancelJobResponseSchema>} -
-   *   Success response
+   * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelValidationJob
    * @summary: deletel validation job discount
    * @description: Cancel validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelValidationJob/).
@@ -155,7 +153,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.CancelJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -257,7 +255,7 @@ class Discount {
    * @param {DiscountPlatformValidator.DownloadDiscountFileParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name downloadDiscountFile
    * @summary: Get discount file
    * @description: Retrieve a discount file by its type, it could be product or inventory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
@@ -315,7 +313,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.FileJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -532,7 +530,7 @@ class Discount {
    * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getDownloadJob
    * @summary: List discount download job
    * @description: Retrieve a discount download job by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDownloadJob/).
@@ -588,7 +586,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.FileJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -611,7 +609,7 @@ class Discount {
    * @param {DiscountPlatformValidator.GetValidationJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getValidationJob
    * @summary: List validation job discount
    * @description: Retrieve a validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
@@ -667,7 +665,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.FileJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -850,7 +848,7 @@ class Discount {
    * @param {DiscountPlatformValidator.ValidateDiscountFileParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DiscountPlatformModel.FileJobResponseSchema>} - Success response
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name validateDiscountFile
    * @summary: Validate discount file
    * @description: Validates the discount file for any discrepancies. like item should be valid etc.. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/validateDiscountFile/).
@@ -909,7 +907,7 @@ class Discount {
 
     const {
       error: res_error,
-    } = DiscountPlatformModel.FileJobResponseSchema().validate(responseData, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

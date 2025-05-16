@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationResponseSchema
+ * @typedef ApplicationResponse
  * @property {Application} [application]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
@@ -115,7 +115,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequestSchema
+ * @typedef BadRequest
  * @property {string} [message] - Failure message (in a string format)
  */
 
@@ -159,8 +159,8 @@ const Joi = require("joi");
  */
 
 class CommonPlatformModel {
-  /** @returns {ApplicationResponseSchema} */
-  static ApplicationResponseSchema() {
+  /** @returns {ApplicationResponse} */
+  static ApplicationResponse() {
     return Joi.object({
       application: CommonPlatformModel.Application(),
       _id: Joi.string().allow(""),
@@ -272,8 +272,8 @@ class CommonPlatformModel {
     });
   }
 
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
+  /** @returns {BadRequest} */
+  static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
