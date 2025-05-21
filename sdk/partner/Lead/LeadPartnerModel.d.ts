@@ -7,13 +7,14 @@ export = LeadPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef TicketHistoryList
@@ -37,7 +38,7 @@ export = LeadPartnerModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef GeneralConfigResponse
+ * @typedef GeneralConfigDetails
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {string} [type]
  * @property {GeneralConfigIntegrationSchema} [integration]
@@ -179,7 +180,7 @@ export = LeadPartnerModel;
 declare class LeadPartnerModel {
 }
 declare namespace LeadPartnerModel {
-    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponse, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigDetails, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
@@ -195,7 +196,7 @@ type TicketList = {
 declare function Page(): Page;
 type Page = {
     /**
-     * - The total number of items on the page.
+     * - The total number of all items across all pages.
      */
     item_total?: number;
     /**
@@ -222,6 +223,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {TicketHistoryList} */
 declare function TicketHistoryList(): TicketHistoryList;
@@ -268,9 +273,9 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {GeneralConfigResponse} */
-declare function GeneralConfigResponse(): GeneralConfigResponse;
-type GeneralConfigResponse = {
+/** @returns {GeneralConfigDetails} */
+declare function GeneralConfigDetails(): GeneralConfigDetails;
+type GeneralConfigDetails = {
     support_communication?: SupportCommunicationSchema[];
     type?: string;
     integration?: GeneralConfigIntegrationSchema;

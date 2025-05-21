@@ -169,14 +169,7 @@ const convertStringToBase64 = (string) => {
   } else if (isBrowser()) {
     return window.btoa(string);
   } else {
-    try {
-      return Buffer.from(string, "utf-8").toString("base64");
-    } catch (e) {
-      console.error(e);
-      throw new FDKException(
-        "Base64 conversion error: Unsupported environment"
-      );
-    }
+    throw new FDKException("Base64 conversion error: Unsupported environment");
   }
 };
 

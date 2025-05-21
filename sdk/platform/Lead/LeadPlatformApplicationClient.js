@@ -22,7 +22,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name createCustomForm
    * @summary: Create custom form
-   * @description: Create a new custom form for application users to fill - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
+   * @description: Create a new custom form for application users to fill - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/createCustomForm/).
    */
   async createCustomForm(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,7 +101,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
    * @name createNewHistory
    * @summary: Create ticket history interaction
-   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createNewHistory/).
+   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/createNewHistory/).
    */
   async createNewHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -182,7 +182,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name deleteCustomForm
    * @summary: Delete a custom form
-   * @description: Delete a custom form using it's slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/deleteCustomForm/).
+   * @description: Delete a custom form using it's slug - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/deleteCustomForm/).
    */
   async deleteCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -261,7 +261,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name editCustomForm
    * @summary: Update custom form
-   * @description: Modify the content and associated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
+   * @description: Modify the content and associated settings of a custom form. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/editCustomForm/).
    */
   async editCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },
@@ -342,7 +342,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name editNewTicket
    * @summary: Update Ticket Details
-   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editNewTicket/).
+   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/editNewTicket/).
    */
   async editNewTicket(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -421,7 +421,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get custom form
-   * @description: Get information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
+   * @description: Get information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -498,7 +498,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
    * @name getCustomForms
    * @summary: Get custom forms
-   * @description: List all available custom forms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
+   * @description: List all available custom forms - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/getCustomForms/).
    */
   async getCustomForms(
     { requestHeaders } = { requestHeaders: {} },
@@ -573,7 +573,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name getNewTicket
    * @summary: Get Ticket Details
-   * @description: Get ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
+   * @description: Get ticket details of a application level ticket with ticket ID - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/getNewTicket/).
    */
   async getNewTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -650,7 +650,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
    * @name getNewTicketHistory
    * @summary: Get ticket history interaction
-   * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicketHistory/).
+   * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/getNewTicketHistory/).
    */
   async getNewTicketHistory(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -729,7 +729,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
    * @name getNewTickets
    * @summary: List sales channel tickets
-   * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
+   * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/lead/getNewTickets/).
    */
   async getNewTickets(
     { items, filters, q, status, priority, category, requestHeaders } = {

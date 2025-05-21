@@ -1,6 +1,6 @@
 export = SharePlatformModel;
 /**
- * @typedef ClickStatsResponse
+ * @typedef ClickStatsResult
  * @property {ClickStatsItem[]} click_stats - An array of click statistics for
  *   the short link.
  */
@@ -72,6 +72,7 @@ export = SharePlatformModel;
  * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
+ * @property {string} [alias]
  */
 /**
  * @typedef ShortLinkRes
@@ -98,13 +99,14 @@ export = SharePlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef ShortLinkList
@@ -118,11 +120,11 @@ export = SharePlatformModel;
 declare class SharePlatformModel {
 }
 declare namespace SharePlatformModel {
-    export { ClickStatsResponse, ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, shortLinkReqMeta, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
+    export { ClickStatsResult, ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, shortLinkReqMeta, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
 }
-/** @returns {ClickStatsResponse} */
-declare function ClickStatsResponse(): ClickStatsResponse;
-type ClickStatsResponse = {
+/** @returns {ClickStatsResult} */
+declare function ClickStatsResult(): ClickStatsResult;
+type ClickStatsResult = {
     /**
      * - An array of click statistics for
      * the short link.
@@ -228,6 +230,7 @@ type UrlInfo = {
     original?: string;
     hash?: string;
     short_url?: string;
+    alias?: string;
 };
 /** @returns {ShortLinkRes} */
 declare function ShortLinkRes(): ShortLinkRes;
@@ -260,7 +263,7 @@ type ShortLinkRes = {
 declare function Page(): Page;
 type Page = {
     /**
-     * - The total number of items on the page.
+     * - The total number of all items across all pages.
      */
     item_total?: number;
     /**
@@ -287,6 +290,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - The number of items per page.
+     */
+    page_size?: number;
 };
 /** @returns {ShortLinkList} */
 declare function ShortLinkList(): ShortLinkList;

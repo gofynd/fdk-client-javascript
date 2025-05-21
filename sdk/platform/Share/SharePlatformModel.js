@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ClickStatsResponse
+ * @typedef ClickStatsResult
  * @property {ClickStatsItem[]} click_stats - An array of click statistics for
  *   the short link.
  */
@@ -83,6 +83,7 @@ const Joi = require("joi");
  * @property {string} [original]
  * @property {string} [hash]
  * @property {string} [short_url]
+ * @property {string} [alias]
  */
 
 /**
@@ -111,13 +112,14 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -132,8 +134,8 @@ const Joi = require("joi");
  */
 
 class SharePlatformModel {
-  /** @returns {ClickStatsResponse} */
-  static ClickStatsResponse() {
+  /** @returns {ClickStatsResult} */
+  static ClickStatsResult() {
     return Joi.object({
       click_stats: Joi.array()
         .items(SharePlatformModel.ClickStatsItem())
@@ -232,6 +234,7 @@ class SharePlatformModel {
       original: Joi.string().allow(""),
       hash: Joi.string().allow(""),
       short_url: Joi.string().allow(""),
+      alias: Joi.string().allow(""),
     });
   }
 
@@ -250,7 +253,7 @@ class SharePlatformModel {
       application: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       updated_at: Joi.string().allow(""),
       personalized: Joi.boolean(),
       campaign: SharePlatformModel.CampaignShortLink(),
@@ -271,6 +274,7 @@ class SharePlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 

@@ -22,7 +22,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name getGiveawayById
    * @summary: Get a giveaway
-   * @description: Retrieve specific giveaway details by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
+   * @description: Retrieve specific giveaway details by its unique identifier. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/getGiveawayById/).
    */
   async getGiveawayById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -101,7 +101,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name getOfferByName
    * @summary: Get offer by name
-   * @description: Retrieve an offer by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
+   * @description: Retrieve an offer by its name. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/getOfferByName/).
    */
   async getOfferByName(
     { name, requestHeaders } = { requestHeaders: {} },
@@ -178,7 +178,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
    * @name getRewardsConfiguration
    * @summary: Get rewards configuration
-   * @description: Retrieve the configuration settings for the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
+   * @description: Retrieve the configuration settings for the rewards program. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/getRewardsConfiguration/).
    */
   async getRewardsConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -253,7 +253,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
    * @name getUserDetails
    * @summary: Get a user
-   * @description: Retrieve comprehensive details about a user in the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
+   * @description: Retrieve comprehensive details about a user in the rewards program. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/getUserDetails/).
    */
   async getUserDetails(
     { userId, requestHeaders } = { requestHeaders: {} },
@@ -330,7 +330,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
    * @name getUserPointsHistory
    * @summary: Get reward user points history
-   * @description: Retrieve the history of points earned and redeemed by a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
+   * @description: Retrieve the history of points earned and redeemed by a user. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
     { userId, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -417,7 +417,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name saveGiveAway
    * @summary: Create a giveaway
-   * @description: Store and manage details of a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
+   * @description: Store and manage details of a giveaway. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/saveGiveAway/).
    */
   async saveGiveAway(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -498,7 +498,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
    * @name setRewardsConfiguration
    * @summary: Set rewards configuration
-   * @description: Configure and modify the settings for the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
+   * @description: Configure and modify the settings for the rewards program. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/setRewardsConfiguration/).
    */
   async setRewardsConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -574,10 +574,10 @@ class Rewards {
    * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
+   * @returns {Promise<RewardsPlatformModel.ListGiveaway>} - Success response
    * @name showGiveaways
    * @summary: List giveaways
-   * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
+   * @description: Retrieve and display available giveaways. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/showGiveaways/).
    */
   async showGiveaways(
     { pageId, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -634,7 +634,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsPlatformModel.GiveawayResponse().validate(responseData, {
+    } = RewardsPlatformModel.ListGiveaway().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -660,7 +660,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
    * @name showOffers
    * @summary: List offers
-   * @description: Display available offers for users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
+   * @description: Display available offers for users. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/showOffers/).
    */
   async showOffers(
     { requestHeaders } = { requestHeaders: {} },
@@ -730,7 +730,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name updateGiveAway
    * @summary: Update a giveaway
-   * @description: Modify and update information about a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
+   * @description: Modify and update information about a giveaway. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/updateGiveAway/).
    */
   async updateGiveAway(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -813,7 +813,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name updateOfferByName
    * @summary: Update offer by name
-   * @description: Modify and manage an offer using its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
+   * @description: Modify and manage an offer using its name. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/updateOfferByName/).
    */
   async updateOfferByName(
     { name, body, requestHeaders } = { requestHeaders: {} },
@@ -896,7 +896,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
    * @name updateUserStatus
    * @summary: Update user status
-   * @description: Change and update the status of a user in the rewards system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
+   * @description: Change and update the status of a user in the rewards system. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/rewards/updateUserStatus/).
    */
   async updateUserStatus(
     { userId, body, requestHeaders } = { requestHeaders: {} },

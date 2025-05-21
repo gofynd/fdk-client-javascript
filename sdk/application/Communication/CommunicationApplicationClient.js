@@ -40,7 +40,7 @@ class Communication {
    * @returns {Promise<CommunicationConsent>} - Success response
    * @name getCommunicationConsent
    * @summary: Retrieve consent status
-   * @description: Get the consent provided by the user for receiving communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
+   * @description: Get the consent provided by the user for receiving communication. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/communication/getCommunicationConsent/).
    */
   async getCommunicationConsent(
     { requestHeaders } = { requestHeaders: {} },
@@ -77,7 +77,7 @@ class Communication {
    * @returns {Promise<PushtokenRes>} - Success response
    * @name upsertAppPushtoken
    * @summary: Update or adds app push token
-   * @description: Update or inserts the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
+   * @description: Update or inserts the push token of the user. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/communication/upsertAppPushtoken/).
    */
   async upsertAppPushtoken(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -114,7 +114,7 @@ class Communication {
    * @returns {Promise<CommunicationConsentRes>} - Success response
    * @name upsertCommunicationConsent
    * @summary: Update or adds consent settings
-   * @description: Update or insert the consent provided by the user for receiving communication messages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
+   * @description: Update or insert the consent provided by the user for receiving communication messages. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/communication/upsertCommunicationConsent/).
    */
   async upsertCommunicationConsent(
     { body, requestHeaders } = { requestHeaders: {} },

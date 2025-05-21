@@ -51,7 +51,11 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @property {string} [companyMode] - The mode of the company
  */
 
-/** @typedef GetFontsParam */
+/**
+ * @typedef GetFontsParam
+ * @property {string} [capability] - Filter fonts based on supported
+ *   capabilities (e.g., "WOFF2").
+ */
 
 /**
  * @typedef GetPageParam
@@ -89,6 +93,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
+ * @property {string} socketId - Unique socket id for websocket
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 
@@ -186,7 +191,9 @@ class ThemePlatformApplicationValidator {
 
   /** @returns {GetFontsParam} */
   static getFonts() {
-    return Joi.object({}).required();
+    return Joi.object({
+      capability: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetPageParam} */
@@ -238,6 +245,7 @@ class ThemePlatformApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       pageValue: Joi.string().allow("").required(),
+      socketId: Joi.string().allow("").required(),
       body: ThemePlatformModel.AvailablePageSchema().required(),
     }).required();
   }
