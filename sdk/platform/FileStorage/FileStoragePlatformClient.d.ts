@@ -8,60 +8,60 @@ declare class FileStorage {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
      * @name browse
-     * @summary: Browse files.
-     * @description: View and navigate through available files. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/browse/).
+     * @summary: Browse files
+     * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
      */
     browse({ namespace, page, limit, requestHeaders }?: FileStoragePlatformValidator.BrowseParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.FileUploadComplete>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
      * @name completeUpload
-     * @summary: Complete file upload.
-     * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/completeUpload/).
+     * @summary: Complete file upload
+     * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database at platform level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
      */
-    completeUpload({ namespace, body, requestHeaders }?: FileStoragePlatformValidator.CompleteUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.FileUploadComplete>;
+    completeUpload({ namespace, body, requestHeaders }?: FileStoragePlatformValidator.CompleteUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.CompleteResponse>;
     /**
      * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
      * @name copyFiles
-     * @summary: Copy files.
-     * @description: Duplicate files to another location. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/copyFiles/).
+     * @summary: Copy files
+     * @description: Handle multiple file uploads, updating progress and providing detailed status reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
      */
     copyFiles({ body, sync, requestHeaders }?: FileStoragePlatformValidator.CopyFilesParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.SignUrlResult>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
      * @name getSignUrls
-     * @summary: Get signed URLs.
-     * @description: Retrieve signed URLs for file access. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/getSignUrls/).
+     * @summary: Get signed URLs
+     * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored resources inside private bucket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
      */
-    getSignUrls({ body, requestHeaders }?: FileStoragePlatformValidator.GetSignUrlsParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.SignUrlResult>;
+    getSignUrls({ body, requestHeaders }?: FileStoragePlatformValidator.GetSignUrlsParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.SignUrlResponse>;
     /**
      * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.ProxyFileAccess>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
      * @name proxy
-     * @summary: Proxy file access.
-     * @description: Access files through a proxy. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/proxy/).
+     * @summary: Access files through a proxy
+     * @description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
      */
-    proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.ProxyFileAccess>;
+    proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.ProxyResponse>;
     /**
      * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.FileUpload>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
      * @name startUpload
-     * @summary: Start file upload.
-     * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/startUpload/).
+     * @summary: Start file upload
+     * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response at platform level. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
      */
-    startUpload({ namespace, body, requestHeaders }?: FileStoragePlatformValidator.StartUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.FileUpload>;
+    startUpload({ namespace, body, requestHeaders }?: FileStoragePlatformValidator.StartUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.StartResponse>;
     /**
      * @param data
      * @param {string} file_name
@@ -69,14 +69,16 @@ declare class FileStorage {
      * @param {string} namespace
      * @param {number} size
      * @param {number} tags
+     * @param {string} enc_key
      */
-    upload({ data, file_name, content_type, namespace, size, tags, }?: {
+    upload({ data, file_name, content_type, namespace, size, tags, enc_key, }?: {
         data: any;
         file_name: any;
         content_type: any;
         namespace: any;
         size: any;
         tags: any;
+        enc_key: any;
     }): Promise<any>;
 }
 import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");

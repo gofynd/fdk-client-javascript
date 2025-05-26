@@ -15,10 +15,10 @@ class FileStorage {
     this._conf = _conf;
     this._relativeUrls = {
       completeUpload:
-        "/service/application/assets/v2.0/namespaces/{namespace}/upload/complete",
+        "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete",
       signUrls: "/service/application/assets/v1.0/sign-urls",
       startUpload:
-        "/service/application/assets/v2.0/namespaces/{namespace}/upload/start",
+        "/service/application/assets/v1.0/namespaces/{namespace}/upload/start",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -39,10 +39,10 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FileUploadComplete>} - Success response
+   * @returns {Promise<CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: Finalizes upload process.
-   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/completeUpload/).
+   * @summary: Complete file upload
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -85,10 +85,10 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SignUrlResult>} - Success response
+   * @returns {Promise<SignUrlResponse>} - Success response
    * @name signUrls
-   * @summary: Signs file URLs.
-   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/signUrls/).
+   * @summary: Get signed URLs
+   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -122,10 +122,10 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FileUpload>} - Success response
+   * @returns {Promise<StartResponse>} - Success response
    * @name startUpload
    * @summary: Initiates file upload
-   * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/startUpload/).
+   * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -173,6 +173,7 @@ class FileStorage {
  * @param {string} namespace
  * @param {number} size
  * @param {number} tags
+ * @param {string} enc_key
  */
 FileStorage.prototype.upload = function ({
   data,
@@ -181,6 +182,7 @@ FileStorage.prototype.upload = function ({
   namespace,
   size,
   tags,
+  enc_key,
 } = {}) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -191,6 +193,7 @@ FileStorage.prototype.upload = function ({
           content_type,
           size: size,
           tags: tags,
+          enc_key: enc_key,
         },
       });
       if (dataObj.upload && dataObj.upload.url) {

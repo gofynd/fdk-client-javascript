@@ -14,7 +14,7 @@ export = FileStoragePlatformValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUpload} body
+ * @property {FileStoragePlatformModel.StartResponse} body
  */
 /**
  * @typedef CopyFilesParam
@@ -23,7 +23,7 @@ export = FileStoragePlatformValidator;
  */
 /**
  * @typedef GetSignUrlsParam
- * @property {FileStoragePlatformModel.SignUrl} body
+ * @property {FileStoragePlatformModel.SignUrlRequest} body
  */
 /**
  * @typedef ProxyParam
@@ -35,7 +35,7 @@ export = FileStoragePlatformValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStoragePlatformModel.FileUploadStart} body
+ * @property {FileStoragePlatformModel.StartRequest} body
  */
 declare class FileStoragePlatformValidator {
     /** @returns {BrowseParam} */
@@ -79,14 +79,14 @@ type CompleteUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUpload;
+    body: FileStoragePlatformModel.StartResponse;
 };
 type CopyFilesParam = {
     sync?: boolean;
     body: FileStoragePlatformModel.CopyFiles;
 };
 type GetSignUrlsParam = {
-    body: FileStoragePlatformModel.SignUrl;
+    body: FileStoragePlatformModel.SignUrlRequest;
 };
 type ProxyParam = {
     /**
@@ -102,6 +102,6 @@ type StartUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStoragePlatformModel.FileUploadStart;
+    body: FileStoragePlatformModel.StartRequest;
 };
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");

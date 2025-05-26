@@ -2,7 +2,7 @@ export = PaymentPlatformValidator;
 /**
  * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.UpdatePayoutCreation} body
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 /**
  * @typedef DeletePayoutParam
@@ -24,16 +24,16 @@ export = PaymentPlatformValidator;
  */
 /**
  * @typedef SavePayoutParam
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef SaveSubscriptionSetupIntentParam
- * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentCreation} body
+ * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentRequest} body
  */
 /**
  * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
- * @property {PaymentPlatformModel.PayoutCreation} body
+ * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
  * @typedef VerifyIfscCodeParam
@@ -69,7 +69,7 @@ type ActivateAndDectivatePayoutParam = {
      * - Unique transfer id
      */
     uniqueTransferNo: string;
-    body: PaymentPlatformModel.UpdatePayoutCreation;
+    body: PaymentPlatformModel.UpdatePayoutRequest;
 };
 type DeletePayoutParam = {
     /**
@@ -94,17 +94,17 @@ type GetSubscriptionPaymentMethodParam = {
     uniqueExternalId?: string;
 };
 type SavePayoutParam = {
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type SaveSubscriptionSetupIntentParam = {
-    body: PaymentPlatformModel.SaveSubscriptionSetupIntentCreation;
+    body: PaymentPlatformModel.SaveSubscriptionSetupIntentRequest;
 };
 type UpdatePayoutParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
-    body: PaymentPlatformModel.PayoutCreation;
+    body: PaymentPlatformModel.PayoutRequest;
 };
 type VerifyIfscCodeParam = {
     ifscCode: string;

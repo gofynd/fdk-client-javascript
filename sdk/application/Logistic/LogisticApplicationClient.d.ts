@@ -6,11 +6,13 @@ declare class Logistic {
         getAllCountries: string;
         getCountries: string;
         getCountry: string;
-        getCourierPartners: string;
-        getDeliveryPromise: string;
         getLocalities: string;
         getLocality: string;
+        getLocations: string;
+        getOptimalLocations: string;
         getPincodeCity: string;
+        getPincodeZones: string;
+        getTatProduct: string;
         validateAddress: string;
     };
     _urls: {};
@@ -18,82 +20,100 @@ declare class Logistic {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CountryResult>} - Success response
+     * @returns {Promise<CountryListResponse>} - Success response
      * @name getAllCountries
      * @summary: Get deliverable countries
-     * @description: Get a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getAllCountries/).
+     * @description: Get a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
      */
-    getAllCountries({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CountryResult>;
+    getAllCountries({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CountryListResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GetCountries>} - Success response
      * @name getCountries
      * @summary: Get countries
-     * @description: List of supported countries. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getCountries/).
+     * @description: List of supported countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, phoneCode, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetCountries>;
+    getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetCountries>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GetCountry>} - Success response
      * @name getCountry
      * @summary: Get country details
-     * @description: Get details about a particular country and its address format customized for different business scenarios. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getCountry/).
+     * @description: Get details about a particular country and its address format customized for different business scenarios. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountry/).
      */
     getCountry({ countryIsoCode, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetCountry>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ShipmentCourierPartnerResult>} - Success response
-     * @name getCourierPartners
-     * @summary: Serviceable Courier Partners
-     * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getCourierPartners/).
-     */
-    getCourierPartners({ companyId, applicationId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ShipmentCourierPartnerResult>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetPromiseDetails>} - Success response
-     * @name getDeliveryPromise
-     * @summary: Get delivery promise
-     * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getDeliveryPromise/).
-     */
-    getDeliveryPromise({ xLocationDetail, xApplicationData, pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetPromiseDetails>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetLocalitiesApp>} - Success response
+     * @returns {Promise<GetLocalities>} - Success response
      * @name getLocalities
-     * @summary: Get Localities
-     * @description: Get Localities data. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getLocalities/).
+     * @summary: Get localities
+     * @description: Get geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
      */
-    getLocalities({ localityType, country, state, city, pageNo, pageSize, q, sector, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocalitiesApp>;
+    getLocalities({ localityType, country, state, city, pageNo, pageSize, q, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocalities>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetLocalityApp>} - Success response
+     * @returns {Promise<GetLocality>} - Success response
      * @name getLocality
-     * @summary: Get Locality API
-     * @description: Get detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getLocality/).
+     * @summary: Get locality detail
+     * @description: Get detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocality/).
      */
-    getLocality({ localityType, localityValue, country, state, city, sector, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocalityApp>;
+    getLocality({ localityType, localityValue, country, state, city, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocality>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PincodeDetailsResult>} - Success response
+     * @returns {Promise<GetStoreResponse>} - Success response
+     * @name getLocations
+     * @summary: Get available selling locations
+     * @description: Get stores available for the application based on Delivery Zones and Order Orchestration rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
+     */
+    getLocations({ xApplicationId, xApplicationData, country, state, city, pincode, sector, pageNo, pageSize, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetStoreResponse>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @name getOptimalLocations
+     * @summary: Get selling locations
+     * @description: Get optimal fulfillment centre for customers by analyzing their location, product availability, and inventory levels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
+     */
+    getOptimalLocations({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ReAssignStoreResponse>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PincodeApiResponse>} - Success response
      * @name getPincodeCity
      * @summary: Get pincode details
-     * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getPincodeCity/).
+     * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
      */
-    getPincodeCity({ pincode, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PincodeDetailsResult>;
+    getPincodeCity({ pincode, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<PincodeApiResponse>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ValidateAddressDetails>} - Success response
+     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+     * @name getPincodeZones
+     * @summary: Get zones
+     * @description: Get the delivery zone associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
+     */
+    getPincodeZones({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetZoneFromPincodeViewResponse>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<TATViewResponse>} - Success response
+     * @name getTatProduct
+     * @summary: Get product's turnaround time
+     * @description: Get the estimated delivery time frame for a specific product from a designated store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+     */
+    getTatProduct({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TATViewResponse>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ValidateAddressRequest>} - Success response
      * @name validateAddress
      * @summary: Validate address
-     * @description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/validateAddress/).
+     * @description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/validateAddress/).
      */
-    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ValidateAddressDetails>;
+    validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ValidateAddressRequest>;
 }

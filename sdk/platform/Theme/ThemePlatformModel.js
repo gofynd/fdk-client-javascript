@@ -103,13 +103,6 @@ const Joi = require("joi");
 /**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
- * @property {CanvasItem} [canvas]
- */
-
-/**
- * @typedef CanvasItem
- * @property {string} [value]
- * @property {string} [label]
  */
 
 /**
@@ -157,22 +150,11 @@ const Joi = require("joi");
  * @typedef AvailablePageSchemaSections
  * @property {string} [name]
  * @property {string} [label]
- * @property {string} [canvas]
  * @property {Object} [props]
- * @property {string} [custom_css] - Custom CSS for a section
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
- * @property {SectionSource} [__source]
- */
-
-/**
- * @typedef SectionSource
- * @property {string} [id] - The source id specifying the source of the section.
- * @property {string} [bundle_name] - This is the extension binding name
- *   containing this section.
- * @property {string} [type] - This is source type. It will either be
- *   themeBundle or extension.
+ * @property {string} [source]
  */
 
 /**
@@ -289,7 +271,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ThemeUpgradable
+ * @typedef ThemeUpgradableResponse
  * @property {boolean} [upgrade] - Indicates if the theme is upgradable or not
  * @property {ThemeVersions} [versions]
  * @property {string} [message] - A message describing the theme upgrade status
@@ -450,17 +432,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-
-/**
- * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [value] - The value of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {Object[]} [props]
  */
 
 /**
@@ -604,7 +576,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DummyTheme
+ * @typedef DummyResponse
  * @property {string} [message]
  */
 
@@ -815,16 +787,7 @@ class ThemePlatformModel {
   /** @returns {AvailablePageSectionMetaAttributes} */
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
-      canvas: ThemePlatformModel.CanvasItem(),
-    });
-  }
-
-  /** @returns {CanvasItem} */
-  static CanvasItem() {
-    return Joi.object({
-      value: Joi.string().allow(""),
-      label: Joi.string().allow(""),
+      attributes: Joi.any(),
     });
   }
 
@@ -886,22 +849,11 @@ class ThemePlatformModel {
     return Joi.object({
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      canvas: Joi.string().allow(""),
-      props: Joi.object().pattern(/\S/, Joi.any()),
-      custom_css: Joi.string().allow(""),
+      props: Joi.any(),
       blocks: Joi.array().items(Joi.any()),
-      preset: Joi.object().pattern(/\S/, Joi.any()),
+      preset: Joi.any(),
       predicate: ThemePlatformModel.AvailablePagePredicate(),
-      __source: ThemePlatformModel.SectionSource(),
-    });
-  }
-
-  /** @returns {SectionSource} */
-  static SectionSource() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      bundle_name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      source: Joi.string().allow(""),
     });
   }
 
@@ -939,7 +891,7 @@ class ThemePlatformModel {
     return Joi.object({
       selected: Joi.string().allow(""),
       exact_url: Joi.string().allow(""),
-      query: Joi.object().pattern(/\S/, Joi.any()),
+      query: Joi.any(),
     });
   }
 
@@ -1035,7 +987,7 @@ class ThemePlatformModel {
       name: Joi.string().allow(""),
       template_theme_id: Joi.string().allow(""),
       version: Joi.string().allow(""),
-      styles: Joi.object().pattern(/\S/, Joi.any()),
+      styles: Joi.any(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       assets: ThemePlatformModel.Assets(),
@@ -1046,8 +998,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {ThemeUpgradable} */
-  static ThemeUpgradable() {
+  /** @returns {ThemeUpgradableResponse} */
+  static ThemeUpgradableResponse() {
     return Joi.object({
       upgrade: Joi.boolean(),
       versions: ThemePlatformModel.ThemeVersions(),
@@ -1113,7 +1065,7 @@ class ThemePlatformModel {
   static ThemeConfiguration() {
     return Joi.object({
       name: Joi.string().allow(""),
-      global_config: Joi.object().pattern(/\S/, Joi.any()),
+      global_config: Joi.any(),
       page: Joi.array().items(ThemePlatformModel.ThemeConfigListPage()),
     });
   }
@@ -1165,7 +1117,7 @@ class ThemePlatformModel {
   /** @returns {ThemeConfigListPageSettingsProps} */
   static ThemeConfigListPageSettingsProps() {
     return Joi.object({
-      props: Joi.object().pattern(/\S/, Joi.any()),
+      props: Joi.any(),
     });
   }
 
@@ -1244,19 +1196,7 @@ class ThemePlatformModel {
   /** @returns {GlobalSchema} */
   static GlobalSchema() {
     return Joi.object({
-      props: Joi.array().items(ThemePlatformModel.Prop()),
-    });
-  }
-
-  /** @returns {Prop} */
-  static Prop() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      category: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      label: Joi.string().allow(""),
-      info: Joi.string().allow(""),
+      props: Joi.array().items(Joi.any()),
     });
   }
 
@@ -1444,8 +1384,8 @@ class ThemePlatformModel {
     });
   }
 
-  /** @returns {DummyTheme} */
-  static DummyTheme() {
+  /** @returns {DummyResponse} */
+  static DummyResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

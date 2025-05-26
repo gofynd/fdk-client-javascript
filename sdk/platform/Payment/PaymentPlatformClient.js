@@ -18,10 +18,10 @@ class Payment {
    * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name activateAndDectivatePayout
    * @summary: Activate/Deactivate payout
-   * @description: Enable or disable payout functionality. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/activateAndDectivatePayout/).
+   * @description: Enable or disable payout functionality. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
    */
   async activateAndDectivatePayout(
     { uniqueTransferNo, body, requestHeaders } = { requestHeaders: {} },
@@ -78,7 +78,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -101,10 +101,10 @@ class Payment {
    * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.DeletePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
    * @name deletePayout
    * @summary: Delete payout
-   * @description: Remove a payout transaction from the system. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/deletePayout/).
+   * @description: Remove a payout transaction from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
    */
   async deletePayout(
     { uniqueTransferNo, requestHeaders } = { requestHeaders: {} },
@@ -157,7 +157,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeletePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.DeletePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -182,12 +182,12 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodDetails>}
+   * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
    *   - Success response
    *
    * @name deleteSubscriptionPaymentMethod
    * @summary: Delete subscription payment method
-   * @description: Remove a payment method from subscription options. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
+   * @description: Remove a payment method from subscription options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
    */
   async deleteSubscriptionPaymentMethod(
     { uniqueExternalId, paymentMethodId, requestHeaders } = {
@@ -248,7 +248,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodDetails().validate(
+    } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -271,10 +271,10 @@ class Payment {
    * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PayoutsDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
    * @name getAllPayouts
    * @summary: List payouts
-   * @description: Retrieve a list of all payout transactions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getAllPayouts/).
+   * @description: Retrieve a list of all payout transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
    */
   async getAllPayouts(
     { uniqueExternalId, requestHeaders } = { requestHeaders: {} },
@@ -328,7 +328,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutsDetails().validate(responseData, {
+    } = PaymentPlatformModel.PayoutsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -351,11 +351,11 @@ class Payment {
    * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SubscriptionConfigDetails>} -
+   * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
    *   Success response
    * @name getSubscriptionConfig
    * @summary: Get subscription config
-   * @description: Retrieve configuration settings for subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getSubscriptionConfig/).
+   * @description: Retrieve configuration settings for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionConfig/).
    */
   async getSubscriptionConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -404,7 +404,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionConfigDetails().validate(
+    } = PaymentPlatformModel.SubscriptionConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -429,12 +429,12 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodDetails>}
+   * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
    *   - Success response
    *
    * @name getSubscriptionPaymentMethod
    * @summary: Get subscription payment method
-   * @description: Retrieve payment methods for subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getSubscriptionPaymentMethod/).
+   * @description: Retrieve payment methods for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionPaymentMethod/).
    */
   async getSubscriptionPaymentMethod(
     { uniqueExternalId, requestHeaders } = { requestHeaders: {} },
@@ -490,7 +490,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionPaymentMethodDetails().validate(
+    } = PaymentPlatformModel.SubscriptionPaymentMethodResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -513,10 +513,10 @@ class Payment {
    * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
    * @name savePayout
    * @summary: Save payout
-   * @description: Store and process a payout transaction. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/savePayout/).
+   * @description: Store and process a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
    */
   async savePayout(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -567,7 +567,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -590,12 +590,12 @@ class Payment {
    * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentDetails>}
+   * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
    *   - Success response
    *
    * @name saveSubscriptionSetupIntent
    * @summary: Save subscription setup intent
-   * @description: Store and process setup intent for subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/saveSubscriptionSetupIntent/).
+   * @description: Store and process setup intent for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveSubscriptionSetupIntent/).
    */
   async saveSubscriptionSetupIntent(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -650,7 +650,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SaveSubscriptionSetupIntentDetails().validate(
+    } = PaymentPlatformModel.SaveSubscriptionSetupIntentResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -673,10 +673,10 @@ class Payment {
    * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name updatePayout
    * @summary: Update payout
-   * @description: Modify the details of a payout transaction. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/updatePayout/).
+   * @description: Modify the details of a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
    */
   async updatePayout(
     { uniqueTransferNo, body, requestHeaders } = { requestHeaders: {} },
@@ -731,7 +731,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutDetails().validate(responseData, {
+    } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -754,10 +754,10 @@ class Payment {
    * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.IfscCodeDetails>} - Success response
+   * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC code
-   * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/verifyIfscCode/).
+   * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
    */
   async verifyIfscCode(
     { ifscCode, requestHeaders } = { requestHeaders: {} },
@@ -811,7 +811,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.IfscCodeDetails().validate(responseData, {
+    } = PaymentPlatformModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

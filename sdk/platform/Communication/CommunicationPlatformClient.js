@@ -24,7 +24,7 @@ class Communication {
    *   Success response
    * @name getSystemNotifications
    * @summary: Get system notifications
-   * @description: Retrieves a list of system notifications. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemNotifications/).
+   * @description: Retrieves a list of system notifications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
    */
   async getSystemNotifications(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },

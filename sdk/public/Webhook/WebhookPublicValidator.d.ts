@@ -7,11 +7,11 @@ export = WebhookPublicValidator;
  */
 /**
  * @typedef TestHandlerTransformationParam
- * @property {WebhookPublicModel.TransformEventPayload} body
+ * @property {WebhookPublicModel.TransformEventRequest} body
  */
 /**
  * @typedef ValidateSchemaParam
- * @property {WebhookPublicModel.ValidateSchemaPayload} body
+ * @property {WebhookPublicModel.ValidateSchemaRequest} body
  */
 declare class WebhookPublicValidator {
     /** @returns {FetchAllWebhookEventsParam} */
@@ -32,10 +32,10 @@ type QueryWebhookEventDetailsParam = {
     body: WebhookPublicModel.EventConfigBase[];
 };
 type TestHandlerTransformationParam = {
-    body: WebhookPublicModel.TransformEventPayload;
+    body: WebhookPublicModel.TransformEventRequest;
 };
 type ValidateSchemaParam = {
-    body: WebhookPublicModel.ValidateSchemaPayload;
+    body: WebhookPublicModel.ValidateSchemaRequest;
 };
 type FetchAllWebhookEventsParam = any;
 type NotifyDepricatedEventParam = any;

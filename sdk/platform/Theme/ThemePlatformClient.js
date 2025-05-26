@@ -21,7 +21,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name addMarketplaceThemeToCompany
    * @summary: Create a company theme
-   * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/addMarketplaceThemeToCompany/).
+   * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
    */
   async addMarketplaceThemeToCompany(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -102,7 +102,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name deleteCompanyTheme
    * @summary: Delete a company theme
-   * @description: Remove a theme associated with a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/deleteCompanyTheme/).
+   * @description: Remove a theme associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
    */
   async deleteCompanyTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -181,7 +181,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.CompanyPrivateTheme[]>} - Success response
    * @name getCompanyLevelPrivateThemes
    * @summary: List private company themes
-   * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/getCompanyLevelPrivateThemes/).
+   * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelPrivateThemes/).
    */
   async getCompanyLevelPrivateThemes(
     { searchText, requestHeaders } = { requestHeaders: {} },
@@ -260,7 +260,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
    * @name getCompanyLevelThemes
    * @summary: List company themes
-   * @description: Retrieve themes added to a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/getCompanyLevelThemes/).
+   * @description: Retrieve themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
    */
   async getCompanyLevelThemes(
     { searchText, requestHeaders } = { requestHeaders: {} },

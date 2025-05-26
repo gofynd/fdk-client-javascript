@@ -44,7 +44,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
-   * @description: Get Location configuration - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/public/configuration/getLocations/).
+   * @description: Get Location configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
    */
   async getLocations(
     { locationType, id, requestHeaders } = { requestHeaders: {} },
@@ -121,11 +121,10 @@ class Configuration {
    * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPublicModel.ApplicationResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
    * @name searchApplication
    * @summary: Search application
-   * @description: Provide application name or domain url. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/public/configuration/searchApplication/).
+   * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
    */
   async searchApplication(
     { authorization, query, requestHeaders } = { requestHeaders: {} },
@@ -179,10 +178,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.ApplicationResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ConfigurationPublicModel.ApplicationResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {

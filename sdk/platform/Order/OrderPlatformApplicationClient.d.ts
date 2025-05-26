@@ -9,37 +9,26 @@ declare class Order {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
+     * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
      *   - Success response
      *
      * @name getApplicationShipments
      * @summary: List sales channel shipments
-     * @description: Get shipments of a particular sales channel based on the filters provided - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getApplicationShipments/).
+     * @description: Get shipments of a particular sales channel based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
      */
-    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
+    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponseSchema>} -
-     *   Success response
+     * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
      * @name getPlatformShipmentReasons
      * @summary: List shipment cancellation reasons
-     * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getPlatformShipmentReasons/).
+     * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
      */
-    getPlatformShipmentReasons({ action, requestHeaders }?: OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentReasonsResponseSchema>;
-    /**
-     * @param {OrderPlatformApplicationValidator.GetRulesParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.RuleListResponseSchema>} - Success response
-     * @name getRules
-     * @summary: List of RMA rules based on the given input conditions.
-     * @description: Retrieves a comprehensive list of RMA (Return Merchandise Authorization) rules associated with  a specific company and application. These rules dictate the processes for handling returns,  including actions, reasons, quality control (QC) types, and associated questions.  The endpoint allows for filtering and pagination based on input conditions, providing a tailored set of rules that match the criteria specified. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getRules/).
-     */
-    getRules({ body, requestHeaders }?: OrderPlatformApplicationValidator.GetRulesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RuleListResponseSchema>;
+    getPlatformShipmentReasons({ action, requestHeaders }?: OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentReasonsResponse>;
     /**
      * @param {OrderPlatformApplicationValidator.GetShipmentBagReasonsParam} arg
      *   - Arg object
@@ -48,8 +37,8 @@ declare class Order {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
      * @name getShipmentBagReasons
-     * @summary: Retrieve Reasons for Cancellation and Return journey
-     * @description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipmentBagReasons/).
+     * @summary: List bag cancellation reasons
+     * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
      */
     getShipmentBagReasons({ shipmentId, lineNumber, requestHeaders }?: OrderPlatformApplicationValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentBagReasons>;
     /**
@@ -61,7 +50,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
      * @name trackShipmentPlatform
      * @summary: Track shipment
-     * @description: Track shipment by shipment Id for an application - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/trackShipmentPlatform/).
+     * @description: Track shipment by shipment Id for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipmentPlatform/).
      */
     trackShipmentPlatform({ shipmentId, requestHeaders }?: OrderPlatformApplicationValidator.TrackShipmentPlatformParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PlatformShipmentTrack>;
 }
