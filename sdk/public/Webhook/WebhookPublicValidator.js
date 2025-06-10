@@ -13,12 +13,12 @@ const WebhookPublicModel = require("./WebhookPublicModel");
 
 /**
  * @typedef TestHandlerTransformationParam
- * @property {WebhookPublicModel.TransformEventRequest} body
+ * @property {WebhookPublicModel.TransformEventPayload} body
  */
 
 /**
  * @typedef ValidateSchemaParam
- * @property {WebhookPublicModel.ValidateSchemaRequest} body
+ * @property {WebhookPublicModel.ValidateSchemaPayload} body
  */
 
 class WebhookPublicValidator {
@@ -42,14 +42,14 @@ class WebhookPublicValidator {
   /** @returns {TestHandlerTransformationParam} */
   static testHandlerTransformation() {
     return Joi.object({
-      body: WebhookPublicModel.TransformEventRequest().required(),
+      body: WebhookPublicModel.TransformEventPayload().required(),
     }).required();
   }
 
   /** @returns {ValidateSchemaParam} */
   static validateSchema() {
     return Joi.object({
-      body: WebhookPublicModel.ValidateSchemaRequest().required(),
+      body: WebhookPublicModel.ValidateSchemaPayload().required(),
     }).required();
   }
 }

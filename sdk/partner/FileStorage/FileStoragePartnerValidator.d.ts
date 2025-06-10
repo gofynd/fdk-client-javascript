@@ -1,6 +1,9 @@
 export = FileStorageValidator;
 declare class FileStorageValidator {
-    static startUpload(): any;
     static completeUpload(): any;
-    static browse(): any;
+    static startUpload(): any;
+    static browseFiles(): any;
+    static fetchProxy(): any;
+    static saveProxyDetails(): any;
+    static signUrls(): any;
 }

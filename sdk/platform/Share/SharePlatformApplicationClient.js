@@ -22,7 +22,7 @@ class Share {
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name createShortLink
    * @summary: Create short link
-   * @description: Generate a shortened URL link for sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
+   * @description: Generate a shortened URL link for sharing. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/share/createShortLink/).
    */
   async createShortLink(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,7 +101,7 @@ class Share {
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name getShortLinkByHash
    * @summary: Get short link by hash
-   * @description: Retrieve a specific short link by its unique hash. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
+   * @description: Retrieve a specific short link by its unique hash. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/share/getShortLinkByHash/).
    */
   async getShortLinkByHash(
     { hash, requestHeaders } = { requestHeaders: {} },
@@ -179,10 +179,10 @@ class Share {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
+   * @returns {Promise<SharePlatformModel.ClickStatsResult>} - Success response
    * @name getShortLinkClickStats
    * @summary: Get short link click statistics
-   * @description: Retrieve statistics and analytics for clicks on a short link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
+   * @description: Retrieve statistics and analytics for clicks on a short link. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/share/getShortLinkClickStats/).
    */
   async getShortLinkClickStats(
     { surlId, requestHeaders } = { requestHeaders: {} },
@@ -232,7 +232,7 @@ class Share {
 
     const {
       error: res_error,
-    } = SharePlatformModel.ClickStatsResponse().validate(responseData, {
+    } = SharePlatformModel.ClickStatsResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -258,7 +258,7 @@ class Share {
    * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
    * @name getShortLinks
    * @summary: Get short links
-   * @description: Retrieve a list of all generated short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
+   * @description: Retrieve a list of all generated short links. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/share/getShortLinks/).
    */
   async getShortLinks(
     {
@@ -367,7 +367,7 @@ class Share {
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name updateShortLinkById
    * @summary: Update short link
-   * @description: Update details of a specific short link by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
+   * @description: Update details of a specific short link by its ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/share/updateShortLinkById/).
    */
   async updateShortLinkById(
     { id, body, requestHeaders } = { requestHeaders: {} },

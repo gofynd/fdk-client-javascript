@@ -9,13 +9,14 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -43,7 +44,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GeneralConfigResponse
+ * @typedef GeneralConfigDetails
  * @property {SupportCommunicationSchema[]} [support_communication]
  * @property {string} [type]
  * @property {GeneralConfigIntegrationSchema} [integration]
@@ -223,6 +224,7 @@ class LeadPartnerModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -255,8 +257,8 @@ class LeadPartnerModel {
     });
   }
 
-  /** @returns {GeneralConfigResponse} */
-  static GeneralConfigResponse() {
+  /** @returns {GeneralConfigDetails} */
+  static GeneralConfigDetails() {
     return Joi.object({
       support_communication: Joi.array().items(
         LeadPartnerModel.SupportCommunicationSchema()
@@ -272,7 +274,7 @@ class LeadPartnerModel {
     return Joi.object({
       type: Joi.string().allow(""),
       title: Joi.string().allow(""),
-      value: Joi.any(),
+      value: Joi.object().pattern(/\S/, Joi.any()),
       description: Joi.string().allow(""),
       enabled: Joi.boolean(),
     });
@@ -298,7 +300,7 @@ class LeadPartnerModel {
   /** @returns {TicketHistoryPayload} */
   static TicketHistoryPayload() {
     return Joi.object({
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       type: LeadPartnerModel.HistoryTypeEnum().required(),
     });
   }
@@ -339,12 +341,12 @@ class LeadPartnerModel {
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       status: Joi.string().allow(""),
       priority: LeadPartnerModel.PriorityEnum(),
       category: Joi.string().allow("").required(),
       content: LeadPartnerModel.TicketContent().required(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -376,9 +378,9 @@ class LeadPartnerModel {
   /** @returns {FeedbackForm} */
   static FeedbackForm() {
     return Joi.object({
-      inputs: Joi.any(),
+      inputs: Joi.object().pattern(/\S/, Joi.any()),
       title: Joi.string().allow(""),
-      timestamps: Joi.any(),
+      timestamps: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -397,10 +399,10 @@ class LeadPartnerModel {
   static TicketHistory() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       ticket_id: Joi.string().allow("").required(),
       created_on: LeadPartnerModel.CreatedOn(),
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -420,12 +422,12 @@ class LeadPartnerModel {
       status: LeadPartnerModel.Status().required(),
       priority: LeadPartnerModel.Priority().required(),
       sla: LeadPartnerModel.SLA(),
-      created_by: Joi.any(),
-      assigned_to: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      assigned_to: Joi.object().pattern(/\S/, Joi.any()),
       tags: Joi.array().items(Joi.string().allow("")),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       is_feedback_pending: Joi.boolean(),
-      integration: Joi.any(),
+      integration: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

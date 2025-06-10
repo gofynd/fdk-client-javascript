@@ -9,7 +9,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GiveawayResponse
+ * @typedef ListGiveaway
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
  */
@@ -58,13 +58,14 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [page_size] - The number of items per page.
  */
 
 /**
@@ -178,7 +179,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ConfigurationRequest
+ * @typedef SetConfiguration
  * @property {string[]} [valid_android_packages]
  * @property {string} [terms_conditions_link]
  */
@@ -194,8 +195,8 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {GiveawayResponse} */
-  static GiveawayResponse() {
+  /** @returns {ListGiveaway} */
+  static ListGiveaway() {
     return Joi.object({
       items: Joi.array().items(RewardsPlatformModel.Giveaway()),
       page: RewardsPlatformModel.Page(),
@@ -264,6 +265,7 @@ class RewardsPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      page_size: Joi.number(),
     });
   }
 
@@ -276,7 +278,7 @@ class RewardsPlatformModel {
       banner_image: RewardsPlatformModel.Asset(),
       created_at: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      rule: Joi.any(),
+      rule: Joi.object().pattern(/\S/, Joi.any()),
       share: RewardsPlatformModel.ShareMessages(),
       sub_text: Joi.string().allow(""),
       text: Joi.string().allow(""),
@@ -368,7 +370,7 @@ class RewardsPlatformModel {
       claimed: Joi.boolean(),
       created_at: Joi.string().allow(""),
       expires_on: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       points: Joi.number(),
       remaining_points: Joi.number(),
       text_1: Joi.string().allow(""),
@@ -397,8 +399,8 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {ConfigurationRequest} */
-  static ConfigurationRequest() {
+  /** @returns {SetConfiguration} */
+  static SetConfiguration() {
     return Joi.object({
       valid_android_packages: Joi.array().items(Joi.string().allow("")),
       terms_conditions_link: Joi.string().allow(""),

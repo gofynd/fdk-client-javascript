@@ -5,6 +5,7 @@ const Communication = require("./Communication/CommunicationApplicationClient");
 const Configuration = require("./Configuration/ConfigurationApplicationClient");
 const Content = require("./Content/ContentApplicationClient");
 const FileStorage = require("./FileStorage/FileStorageApplicationClient");
+const Finance = require("./Finance/FinanceApplicationClient");
 const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
@@ -35,6 +36,7 @@ class ApplicationClient {
     this.configuration = new Configuration(config);
     this.content = new Content(config);
     this.fileStorage = new FileStorage(config);
+    this.finance = new Finance(config);
     this.lead = new Lead(config);
     this.logistic = new Logistic(config);
     this.order = new Order(config);
