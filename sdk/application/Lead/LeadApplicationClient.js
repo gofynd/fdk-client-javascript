@@ -13,7 +13,7 @@ class Lead {
     this._conf = _conf;
     this._relativeUrls = {
       createHistory: "/service/application/lead/v1.0/ticket/{id}/history",
-      createTicket: "/service/application/lead/v1.0/ticket/",
+      createTicket: "/service/application/lead/v1.0/ticket",
       getCustomForm: "/service/application/lead/v1.0/form/{slug}",
       getTicket: "/service/application/lead/v1.0/ticket/{id}",
       submitCustomForm: "/service/application/lead/v1.0/form/{slug}/submit",
@@ -39,8 +39,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<TicketHistory>} - Success response
    * @name createHistory
-   * @summary: Log ticket history
-   * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/lead/createHistory/).
+   * @summary: Logs ticket history.
+   * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -86,7 +86,7 @@ class Lead {
    * @returns {Promise<Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a ticket
-   * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/lead/createTicket/).
+   * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
   async createTicket(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -123,7 +123,7 @@ class Lead {
    * @returns {Promise<CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get custom form
-   * @description: Get a customizable form template for data collection. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/lead/getCustomForm/).
+   * @description: Get a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -169,7 +169,7 @@ class Lead {
    * @returns {Promise<Ticket>} - Success response
    * @name getTicket
    * @summary: Get a support ticket
-   * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/lead/getTicket/).
+   * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
    */
   async getTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -212,10 +212,10 @@ class Lead {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SubmitCustomFormDetails>} - Success response
+   * @returns {Promise<SubmitCustomFormResponse>} - Success response
    * @name submitCustomForm
    * @summary: Submits form data
-   * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/lead/submitCustomForm/).
+   * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
    */
   async submitCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },

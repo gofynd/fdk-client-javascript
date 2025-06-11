@@ -4,12 +4,34 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef AddDomainParam
- * @property {ConfigurationPlatformModel.DomainAddRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainAddRequest} body
  */
 
 /**
  * @typedef ChangeDomainTypeParam
- * @property {ConfigurationPlatformModel.UpdateDomainTypeRequestSchema} body
+ * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
+ */
+
+/**
+ * @typedef CreateAppCurrencyConfigParam
+ * @property {ConfigurationPlatformModel.AppSupportedCurrency} body
+ */
+
+/** @typedef CreateTokensParam */
+
+/**
+ * @typedef CreateUrlRedirectionParam
+ * @property {ConfigurationPlatformModel.UrlRedirectionRequest} body
+ */
+
+/**
+ * @typedef DeleteTokenParam
+ * @property {string} token - Token
+ */
+
+/**
+ * @typedef DeleteUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
  */
 
 /** @typedef GetAppApiTokensParam */
@@ -43,15 +65,16 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /** @typedef GetApplicationByIdParam */
 
+/** @typedef GetApplicationConfigurationParam */
+
 /**
- * @typedef GetBuildConfigParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
+ * @typedef GetApplicationDomainAvailibilityParam
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 
 /**
  * @typedef GetDomainStatusParam
- * @property {ConfigurationPlatformModel.DomainStatusRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainStatusRequest} body
  */
 
 /** @typedef GetDomainsParam */
@@ -62,7 +85,16 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationPlatformModel.OrderingStoreSelectRequestSchema} body
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
+ */
+
+/**
+ * @typedef GetOrderingStoresParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {string} [q] - Store code or name of the ordering store.
  */
 
 /**
@@ -71,13 +103,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.FilterOrderingStoreRequestSchema} body
- */
-
-/**
- * @typedef GetPreviousVersionsParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
+ * @property {ConfigurationPlatformModel.FilterOrderingStoreRequest} body
  */
 
 /**
@@ -90,8 +116,20 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
+ * @typedef GetStoreDetailByIdParam
+ * @property {number} storeId - Store uid
+ */
+
+/**
+ * @typedef GetUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
+ */
+
+/** @typedef GetUrlRedirectionsParam */
+
+/**
  * @typedef ModifyAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 
 /**
@@ -101,14 +139,15 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef RemoveDomainByIdParam
- * @property {string} id - The unique identifier of the domain
+ * @property {string} domainId - The unique identifier (24-digit Mongo Object
+ *   ID) of the domain
  */
 
 /** @typedef RemoveOrderingStoreCookieParam */
 
 /**
  * @typedef UpdateAppApiTokensParam
- * @property {ConfigurationPlatformModel.TokenResponseSchema} body
+ * @property {ConfigurationPlatformModel.TokenResponse} body
  */
 
 /**
@@ -128,14 +167,17 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef UpdateAppFeaturesParam
- * @property {ConfigurationPlatformModel.AppFeatureRequestSchema} body
+ * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 
 /**
- * @typedef UpdateBuildConfigParam
- * @property {string} platformType - The device platform for which the mobile
- *   app is built, e.g. android, ios.
- * @property {ConfigurationPlatformModel.MobileAppConfigRequestSchema} body
+ * @typedef UpdateApplicationParam
+ * @property {ConfigurationPlatformModel.Application} body
+ */
+
+/**
+ * @typedef UpdateApplicationVersionParam
+ * @property {ConfigurationPlatformModel.PlatformVersionRequest} body
  */
 
 /**
@@ -148,18 +190,57 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  * @property {ConfigurationPlatformModel.OrderingStoreConfig} body
  */
 
+/**
+ * @typedef UpdateUrlRedirectionParam
+ * @property {string} redirectionDomainId - Redirection domain id that needs to be fetched
+ * @property {ConfigurationPlatformModel.UrlRedirection} body
+ */
+
 class ConfigurationPlatformApplicationValidator {
   /** @returns {AddDomainParam} */
   static addDomain() {
     return Joi.object({
-      body: ConfigurationPlatformModel.DomainAddRequestSchema().required(),
+      body: ConfigurationPlatformModel.DomainAddRequest().required(),
     }).required();
   }
 
   /** @returns {ChangeDomainTypeParam} */
   static changeDomainType() {
     return Joi.object({
-      body: ConfigurationPlatformModel.UpdateDomainTypeRequestSchema().required(),
+      body: ConfigurationPlatformModel.UpdateDomainTypeRequest().required(),
+    }).required();
+  }
+
+  /** @returns {CreateAppCurrencyConfigParam} */
+  static createAppCurrencyConfig() {
+    return Joi.object({
+      body: ConfigurationPlatformModel.AppSupportedCurrency().required(),
+    }).required();
+  }
+
+  /** @returns {CreateTokensParam} */
+  static createTokens() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {CreateUrlRedirectionParam} */
+  static createUrlRedirection() {
+    return Joi.object({
+      body: ConfigurationPlatformModel.UrlRedirectionRequest().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteTokenParam} */
+  static deleteToken() {
+    return Joi.object({
+      token: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteUrlRedirectionParam} */
+  static deleteUrlRedirection() {
+    return Joi.object({
+      redirectionDomainId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -215,17 +296,22 @@ class ConfigurationPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetBuildConfigParam} */
-  static getBuildConfig() {
+  /** @returns {GetApplicationConfigurationParam} */
+  static getApplicationConfiguration() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetApplicationDomainAvailibilityParam} */
+  static getApplicationDomainAvailibility() {
     return Joi.object({
-      platformType: Joi.string().allow("").required(),
+      body: ConfigurationPlatformModel.DomainSuggestionsRequest().required(),
     }).required();
   }
 
   /** @returns {GetDomainStatusParam} */
   static getDomainStatus() {
     return Joi.object({
-      body: ConfigurationPlatformModel.DomainStatusRequestSchema().required(),
+      body: ConfigurationPlatformModel.DomainStatusRequest().required(),
     }).required();
   }
 
@@ -247,7 +333,16 @@ class ConfigurationPlatformApplicationValidator {
   /** @returns {GetOrderingStoreCookieParam} */
   static getOrderingStoreCookie() {
     return Joi.object({
-      body: ConfigurationPlatformModel.OrderingStoreSelectRequestSchema().required(),
+      body: ConfigurationPlatformModel.OrderingStoreSelectRequest().required(),
+    }).required();
+  }
+
+  /** @returns {GetOrderingStoresParam} */
+  static getOrderingStores() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -256,14 +351,7 @@ class ConfigurationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      body: ConfigurationPlatformModel.FilterOrderingStoreRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {GetPreviousVersionsParam} */
-  static getPreviousVersions() {
-    return Joi.object({
-      platformType: Joi.string().allow("").required(),
+      body: ConfigurationPlatformModel.FilterOrderingStoreRequest().required(),
     }).required();
   }
 
@@ -276,10 +364,29 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetStoreDetailByIdParam} */
+  static getStoreDetailById() {
+    return Joi.object({
+      storeId: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {GetUrlRedirectionParam} */
+  static getUrlRedirection() {
+    return Joi.object({
+      redirectionDomainId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetUrlRedirectionsParam} */
+  static getUrlRedirections() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {ModifyAppFeaturesParam} */
   static modifyAppFeatures() {
     return Joi.object({
-      body: ConfigurationPlatformModel.AppFeatureRequestSchema().required(),
+      body: ConfigurationPlatformModel.AppFeatureRequest().required(),
     }).required();
   }
 
@@ -293,7 +400,7 @@ class ConfigurationPlatformApplicationValidator {
   /** @returns {RemoveDomainByIdParam} */
   static removeDomainById() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      domainId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -305,7 +412,7 @@ class ConfigurationPlatformApplicationValidator {
   /** @returns {UpdateAppApiTokensParam} */
   static updateAppApiTokens() {
     return Joi.object({
-      body: ConfigurationPlatformModel.TokenResponseSchema().required(),
+      body: ConfigurationPlatformModel.TokenResponse().required(),
     }).required();
   }
 
@@ -333,15 +440,21 @@ class ConfigurationPlatformApplicationValidator {
   /** @returns {UpdateAppFeaturesParam} */
   static updateAppFeatures() {
     return Joi.object({
-      body: ConfigurationPlatformModel.AppFeatureRequestSchema().required(),
+      body: ConfigurationPlatformModel.AppFeatureRequest().required(),
     }).required();
   }
 
-  /** @returns {UpdateBuildConfigParam} */
-  static updateBuildConfig() {
+  /** @returns {UpdateApplicationParam} */
+  static updateApplication() {
     return Joi.object({
-      platformType: Joi.string().allow("").required(),
-      body: ConfigurationPlatformModel.MobileAppConfigRequestSchema().required(),
+      body: ConfigurationPlatformModel.Application().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateApplicationVersionParam} */
+  static updateApplicationVersion() {
+    return Joi.object({
+      body: ConfigurationPlatformModel.PlatformVersionRequest().required(),
     }).required();
   }
 
@@ -356,6 +469,15 @@ class ConfigurationPlatformApplicationValidator {
   static updateOrderingStoreConfig() {
     return Joi.object({
       body: ConfigurationPlatformModel.OrderingStoreConfig().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateUrlRedirectionParam} */
+  static updateUrlRedirection() {
+    return Joi.object({
+      redirectionDomainId: Joi.string().allow("").required(),
+
+      body: ConfigurationPlatformModel.UrlRedirection().required(),
     }).required();
   }
 }

@@ -16,6 +16,87 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.CreateAppPushtokenParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.PushtokenRes>} - Success response
+   * @name createAppPushtoken
+   * @summary: Create app push token.
+   * @description: Create the push token of the user.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAppPushtoken/).
+   */
+  async createAppPushtoken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createAppPushtoken().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createAppPushtoken().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createAppPushtoken \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pn/tokens`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.PushtokenRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > createAppPushtoken \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
    *   - Arg object
    *
@@ -23,8 +104,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name createAudience
-   * @summary: Create an audience
-   * @description: Creates a new email audience. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createAudience/).
+   * @summary: Create audience.
+   * @description: Add audience which is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
    */
   async createAudience(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -97,231 +178,6 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryHeadersParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryHeaders
-   * @summary: Create BigQuery headers
-   * @description: Create BigQuery headers - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryHeaders/).
-   */
-  async createBigQueryHeaders(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryHeaders \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryHeaders \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryNCountParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryNCount
-   * @summary: Create BigQuery N-count
-   * @description: Creates big query n count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryNCount/).
-   */
-  async createBigQueryNCount(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryNCount \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-n-records`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryNCount \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryRowCountParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryRowCount
-   * @summary: Create a BigQuery row count
-   * @description: Creates big query row count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryRowCount/).
-   */
-  async createBigQueryRowCount(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryRowCount \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryRowCount \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
    *   - Arg object
    *
@@ -329,8 +185,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name createCampaign
-   * @summary: Create a campaign
-   * @description: Creates a new communication campaign. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createCampaign/).
+   * @summary: Create campaign.
+   * @description: Add a new communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
    */
   async createCampaign(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -410,8 +266,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name createEmailProvider
-   * @summary: Create an email provider
-   * @description: Creates a new email communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createEmailProvider/).
+   * @summary: Create email provider.
+   * @description: Generate and add a new email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailProvider/).
    */
   async createEmailProvider(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -491,8 +347,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name createEmailTemplate
-   * @summary: Creat an email template
-   * @description: Creates a new email communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createEmailTemplate/).
+   * @summary: Create email template.
+   * @description: Generate and add a new email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
    */
   async createEmailTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -570,12 +426,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name createEventSubscriptions
-   * @summary: Create an event subscription
-   * @description: Creates a new event subscription. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createEventSubscriptions/).
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptions/).
    */
   async createEventSubscriptions(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -628,10 +482,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -654,13 +508,13 @@ class Communication {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<
-   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult[]
+   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse[]
    * >}
    *   - Success response
    *
    * @name createEventSubscriptionsByBulk
-   * @summary: Create event subscriptions in bulk
-   * @description: Creates a new event subscription in bulk. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createEventSubscriptionsByBulk/).
+   * @summary: Create event subscriptions by bulk
+   * @description: Create event subscriptions by bulk - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptionsByBulk/).
    */
   async createEventSubscriptionsByBulk(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -712,7 +566,7 @@ class Communication {
     }
 
     const { error: res_error } = Joi.array()
-      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult())
+      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -735,8 +589,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.CreateJobsRes>} - Success response
    * @name createJobs
-   * @summary: Create a campaign  jobs
-   * @description: Creates a new campaign  job. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createJobs/).
+   * @summary: Create jobs
+   * @description: Create jobs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createJobs/).
    */
   async createJobs(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -814,10 +668,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
    * @name createSmsProvider
-   * @summary: Create SMS provider
-   * @description: Creates a new SMS communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createSmsProvider/).
+   * @summary: Create SMS provider.
+   * @description: Add a new SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsProvider/).
    */
   async createSmsProvider(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -868,7 +722,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -895,8 +751,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name createSmsTemplate
-   * @summary: Create a SMS template
-   * @description: Creates a new SMS communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createSmsTemplate/).
+   * @summary: Create SMS template.
+   * @description: Add a new SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
    */
   async createSmsTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -974,10 +830,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
    * @name deleteAudienceById
-   * @summary: Delete an audience
-   * @description: Remove a specific audience permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteAudienceById/).
+   * @summary: Delete audience by ID.
+   * @description: Remove a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
    */
   async deleteAudienceById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -1032,7 +888,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Audience().validate(responseData, {
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1052,15 +908,96 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteCampaignByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+   * @name deleteCampaignById
+   * @summary: Update campaign by ID.
+   * @description: Modify the settings of a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteCampaignById/).
+   */
+  async deleteCampaignById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteCampaignById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteCampaignById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteCampaignById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > deleteCampaignById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.DeleteEmailProviderByIdParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
    * @name deleteEmailProviderById
-   * @summary: Delete an email provider
-   * @description: Removes a specific email communication provider from the platform permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteEmailProviderById/).
+   * @summary: Delete email provider by ID.
+   * @description: Remove a specific email communication provider from the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailProviderById/).
    */
   async deleteEmailProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1113,7 +1050,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1138,10 +1075,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
    * @name deleteEmailTemplateById
-   * @summary: Delete an email template
-   * @description: Removes a specific email communication template from the platform permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteEmailTemplateById/).
+   * @summary: Delete email template by ID.
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Remove a specific email communication template by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
    */
   async deleteEmailTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1194,7 +1131,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1219,10 +1156,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name deleteEventSubscriptionsById
-   * @summary: Delete an event subscriptions
-   * @description: Removes a specific event subscription from the platform permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteEventSubscriptionsById/).
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEventSubscriptionsById/).
    */
   async deleteEventSubscriptionsById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1275,7 +1212,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1300,10 +1237,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
    * @name deleteSmsProviderById
-   * @summary: Delete an SMS provider
-   * @description: Removes a specific SMS communication provider from the platform permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteSmsProviderById/).
+   * @summary: Delete SMS provider by ID.
+   * @description: Remove a specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsProviderById/).
    */
   async deleteSmsProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1356,7 +1293,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1381,10 +1318,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
    * @name deleteSmsTemplateById
-   * @summary: Delete an SMS template
-   * @description: Removes a specific SMS communication template from the platform permenantly. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/deleteSmsTemplateById/).
+   * @summary: Delete SMS template by ID.
+   * @description: Remove a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
    */
   async deleteSmsTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1437,7 +1374,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+    } = CommunicationPlatformModel.BasicDelete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1462,12 +1399,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name editEventSubscriptions
-   * @summary: Update an event subscriptions
-   * @description: Modifys the configuration and settings of a specific event subscription. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/editEventSubscriptions/).
+   * @summary: Create event subscriptions
+   * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/editEventSubscriptions/).
    */
   async editEventSubscriptions(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -1522,10 +1457,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1549,8 +1484,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name getAppProviders
-   * @summary: Get application providers
-   * @description: Retrieve a list of providers associated with the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getAppProviders/).
+   * @summary: Get application providers.
+   * @description: Retrieve a list of providers associated with the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAppProviders/).
    */
   async getAppProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -1626,8 +1561,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name getAudienceById
-   * @summary: Get an audience
-   * @description: Retrieves detailed information about an specific audience. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getAudienceById/).
+   * @summary: Get audience by ID.
+   * @description: Retrieve detailed information about a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
    */
   async getAudienceById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1707,8 +1642,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
    * @name getAudiences
-   * @summary: Get all the audiences
-   * @description: Retrieves a list of all the audiences. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getAudiences/).
+   * @summary: Get audiences.
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
    */
   async getAudiences(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -1791,161 +1726,44 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getBigQueryHeadersById
-   * @summary: Get BigQuery headers
-   * @description: Retrieves header information from BigQuery. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryHeadersById/).
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.Audiences>}
+   * @summary: Get audiences.
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.
    */
-  async getBigQueryHeadersById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigQueryHeadersById \n ${warrning}`,
+  getAudiencesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAudiences({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
       });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getBigQueryHeadersById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigQueryRowCountByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getBigQueryRowCountById
-   * @summary: Get BigQuery row count
-   * @description: Retrieves big query row count by id - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryRowCountById/).
-   */
-  async getBigQueryRowCountById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigQueryRowCountById \n ${warrning}`,
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
       });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getBigQueryRowCountById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1956,8 +1774,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name getCampaignById
-   * @summary: Get a campaign
-   * @description: Retrieves detailed information about a specific communication campaign. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getCampaignById/).
+   * @summary: Get campaign by ID.
+   * @description: Retrieve detailed information about a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaignById/).
    */
   async getCampaignById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2037,8 +1855,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
    * @name getCampaigns
-   * @summary: Get all campaigns
-   * @description: Retrieves a list of communication campaigns. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getCampaigns/).
+   * @summary: Get campaigns.
+   * @description: Retrieve a list of communication campaigns. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaigns/).
    */
   async getCampaigns(
     { query, pageNo, pageSize, sort, requestHeaders } = { requestHeaders: {} },
@@ -2128,18 +1946,18 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
    * @name getCommunicationLogs
-   * @summary: Get communication reports
-   * @description: Retrieve a lsit of logs and records of communication activities. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getCommunicationLogs/).
+   * @summary: Get communication logs.
+   * @description: Retrieve logs and records of communication activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCommunicationLogs/).
    */
   async getCommunicationLogs(
-    { pageId, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
       {
-        pageId,
+        pageNo,
         pageSize,
         sort,
         query,
@@ -2155,7 +1973,7 @@ class Communication {
       error: warrning,
     } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
       {
-        pageId,
+        pageNo,
         pageSize,
         sort,
         query,
@@ -2170,7 +1988,7 @@ class Communication {
     }
 
     const query_params = {};
-    query_params["page_id"] = pageId;
+    query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
     query_params["query"] = query;
@@ -2212,6 +2030,122 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] -
+   * @returns {Paginator<CommunicationPlatformModel.Logs>}
+   * @summary: Get communication logs.
+   * @description: Retrieve logs and records of communication activities.
+   */
+  getCommunicationLogsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCommunicationLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetDefaultEmailProvidersParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DefaultEmailProviders[]>} -
+   *   Success response
+   * @name getDefaultEmailProviders
+   * @summary: Get app providers.
+   * @description: Retrieve a list of app  providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultEmailProviders/).
+   */
+  async getDefaultEmailProviders(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDefaultEmailProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDefaultEmailProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDefaultEmailProviders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/default-providers`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.DefaultEmailProviders())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getDefaultEmailProviders \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetDefaultSmsProvidersParam} arg
    *   - Arg object
    *
@@ -2220,8 +2154,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DefaultSmsProviders[]>} -
    *   Success response
    * @name getDefaultSmsProviders
-   * @summary: Get all default SMS providers
-   * @description: Retrieve all the default SMS communication providers. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getDefaultSmsProviders/).
+   * @summary: Get default SMS providers.
+   * @description: Retrieve the default SMS communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultSmsProviders/).
    */
   async getDefaultSmsProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -2295,8 +2229,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DummyDatasources[]>} -
    *   Success response
    * @name getDummyDatasources
-   * @summary: Get dummy data sources
-   * @description: Retrieve a list of dummy data sources. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getDummyDatasources/).
+   * @summary: Get dummy data sources.
+   * @description: Retrieve a list of dummy data sources for testing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasources/).
    */
   async getDummyDatasources(
     { requestHeaders } = { requestHeaders: {} },
@@ -2331,7 +2265,7 @@ class Communication {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/dummy-data-sources`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasource/dummy-data-sources`,
       query_params,
       undefined,
       requestHeaders,
@@ -2370,8 +2304,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DummyDatasourcesMeta>} -
    *   Success response
    * @name getDummyDatasourcesMeta
-   * @summary: Get dummy data sources metadata
-   * @description: Retrieve metadata information about dummy data sources. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getDummyDatasourcesMeta/).
+   * @summary: Get dummy data sources metadata.
+   * @description: Retrieve metadata information about dummy data sources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasourcesMeta/).
    */
   async getDummyDatasourcesMeta(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2406,11 +2340,12 @@ class Communication {
     }
 
     const query_params = {};
+    query_params["id"] = id;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/dummy-data-sources-meta/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasource/dummy-data-source-meta`,
       query_params,
       undefined,
       requestHeaders,
@@ -2451,8 +2386,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name getEmailProviderById
-   * @summary: Get a email provider
-   * @description: Retrieves detailed information about a specific email communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEmailProviderById/).
+   * @summary: Get email provider by ID.
+   * @description: Retrieve detailed information about a specific email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviderById/).
    */
   async getEmailProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2532,8 +2467,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
    * @name getEmailProviders
-   * @summary: Get all email providers
-   * @description: Retrieves a list of all email communication providers associated with the sales channel.. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEmailProviders/).
+   * @summary: Get email providers.
+   * @description: Retrieve a list of email communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviders/).
    */
   async getEmailProviders(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -2616,6 +2551,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.EmailProviders>}
+   * @summary: Get email providers.
+   * @description: Retrieve a list of email communication providers.
+   */
+  getEmailProvidersPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailProviders({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
    *   - Arg object
    *
@@ -2623,8 +2599,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name getEmailTemplateById
-   * @summary: Get an email template
-   * @description: Retrieves detailed information about a specific email communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEmailTemplateById/).
+   * @summary: Get email template by ID.
+   * @description: Retrieve detailed information about a specific email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
    */
   async getEmailTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2704,8 +2680,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
    * @name getEmailTemplates
-   * @summary: Get all email templates
-   * @description: Retrieves a list of available email communication templates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEmailTemplates/).
+   * @summary: Get email templates.
+   * @description: Retrieve a list of available email communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
    */
   async getEmailTemplates(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -2788,6 +2764,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
+   * @summary: Get email templates.
+   * @description: Retrieve a list of available email communication templates.
+   */
+  getEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam} arg
    *   - Arg object
    *
@@ -2796,8 +2813,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
    *   Success response
    * @name getEventSubscriptions
-   * @summary: Get all event subscriptions
-   * @description: Retrieves a list of all event subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEventSubscriptions/).
+   * @summary: Get event subscriptions.
+   * @description: Retrieve a list of event subscriptions related to communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptions/).
    */
   async getEventSubscriptions(
     { pageNo, pageSize, populate, requestHeaders } = { requestHeaders: {} },
@@ -2877,6 +2894,44 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.populate] - Populate Fields
+   * @returns {Paginator<CommunicationPlatformModel.EventSubscriptions>}
+   * @summary: Get event subscriptions.
+   * @description: Retrieve a list of event subscriptions related to communication.
+   */
+  getEventSubscriptionsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    populate,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEventSubscriptions({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        populate: populate,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsByIdParam} arg
    *   - Arg object
    *
@@ -2884,8 +2939,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name getEventSubscriptionsById
-   * @summary: Get an event subscription
-   * @description: Retrieves detailed information about a specific event subscription. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEventSubscriptionsById/).
+   * @summary: Get event subscriptions by id
+   * @description: Get event subscriptions by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptionsById/).
    */
   async getEventSubscriptionsById(
     { id, populate, requestHeaders } = { requestHeaders: {} },
@@ -2968,8 +3023,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GlobalProviders>} - Success response
    * @name getGlobalProviders
-   * @summary: Get global providers
-   * @description: Retrieve a list of global communication providers associated with the sales channel.. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getGlobalProviders/).
+   * @summary: Get global providers.
+   * @description: Retrieve a list of global communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalProviders/).
    */
   async getGlobalProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -3043,12 +3098,12 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GetGlobalVariablesResult>}
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
    *   - Success response
    *
    * @name getGlobalVariables
-   * @summary: Get all global variables
-   * @description: Retrieves a list of communication global variables. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getGlobalVariables/).
+   * @summary: Get global variables.
+   * @description: Retrieve global variables used in communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
    */
   async getGlobalVariables(
     { requestHeaders } = { requestHeaders: {} },
@@ -3097,7 +3152,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GetGlobalVariablesResult().validate(
+    } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3122,8 +3177,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
    * @name getJobLogs
-   * @summary: Get logs of all campaign job
-   * @description: Retrieve logs and details related to campaign jobs. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getJobLogs/).
+   * @summary: Get job logs.
+   * @description: Retrieve logs and details related to communication jobs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobLogs/).
    */
   async getJobLogs(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3206,13 +3261,54 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.JobLogs>}
+   * @summary: Get job logs.
+   * @description: Retrieve logs and details related to communication jobs.
+   */
+  getJobLogsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetJobsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
    * @name getJobs
-   * @summary: Get all campaign jobs
-   * @description: Retrieves a list of campaign jobs. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getJobs/).
+   * @summary: Get jobs.
+   * @description: Retrieve a list of communication jobs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobs/).
    */
   async getJobs(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3295,6 +3391,41 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.Jobs>}
+   * @summary: Get jobs.
+   * @description: Retrieve a list of communication jobs.
+   */
+  getJobsPaginator({ companyId, applicationId, pageSize, sort, query } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam} arg
    *   - Arg object
    *
@@ -3302,8 +3433,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
    * @name getNSampleRecordsFromCsv
-   * @summary: Get N sample records of a CSV
-   * @description: Retrieve a specified number of sample records from a CSV data source. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getNSampleRecordsFromCsv/).
+   * @summary: Get N sample records from CSV.
+   * @description: Retrieve a specified number of sample records from a CSV data source. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
    */
   async getNSampleRecordsFromCsv(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3383,17 +3514,21 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
    * @name getNSampleRecordsFromCsvByGet
-   * @summary: Get N sample records of a CSV
-   * @description: Retrieve a specified number of sample records from a CSV data source. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
+   * @summary: Get N sample records in CSV
+   * @description: Retrieve a specified number of sample records from a CSV data source using a GET request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
    */
   async getNSampleRecordsFromCsvByGet(
-    { requestHeaders } = { requestHeaders: {} },
+    { count, header, url, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
-      {},
+      {
+        count,
+        header,
+        url,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3404,7 +3539,11 @@ class Communication {
     const {
       error: warrning,
     } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
-      {},
+      {
+        count,
+        header,
+        url,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3415,6 +3554,9 @@ class Communication {
     }
 
     const query_params = {};
+    query_params["count"] = count;
+    query_params["header"] = header;
+    query_params["url"] = url;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3460,8 +3602,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.OtpConfiguration>} - Success response
    * @name getOtpConfiguration
-   * @summary: Get configuration of otp
-   * @description: Retrieves all configurations related to OTP. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getOtpConfiguration/).
+   * @summary: Get otp-configuration, if not present in db then return default settings
+   * @description: Get otp-configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getOtpConfiguration/).
    */
   async getOtpConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -3535,10 +3677,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
    * @name getSmsProviderById
-   * @summary: Get a SMS provider
-   * @description: Retrieve detailed information about a specific SMS communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSmsProviderById/).
+   * @summary: Get SMS provider by ID.
+   * @description: Retrieve detailed information about a specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviderById/).
    */
   async getSmsProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3589,7 +3731,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3614,10 +3758,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsProviders>} - Success response
    * @name getSmsProviders
-   * @summary: Get all SMS providers
-   * @description: Retrieves a list of SMS communication providers. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSmsProviders/).
+   * @summary: Get SMS providers.
+   * @description: Retrieve a list of SMS communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviders/).
    */
   async getSmsProviders(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3678,7 +3822,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsProviders().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3705,8 +3851,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name getSmsTemplateById
-   * @summary: Get a SMS template
-   * @description: Retrieves detailed information about a specific SMS communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSmsTemplateById/).
+   * @summary: Get SMS template by ID.
+   * @description: Retrieve detailed information about a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
    */
   async getSmsTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3786,8 +3932,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSmsTemplates
-   * @summary: Get all SMS templates
-   * @description: Retrieve a list of all SMS communication templates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSmsTemplates/).
+   * @summary: Get SMS templates.
+   * @description: Retrieve a list of available SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
    */
   async getSmsTemplates(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3870,6 +4016,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.sort] - To sort based on created_at
+   * @param {string} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
+   * @summary: Get SMS templates.
+   * @description: Retrieve a list of available SMS communication templates.
+   */
+  getSmsTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSmsTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam} arg
    *   - Arg object
    *
@@ -3877,8 +4064,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
    * @name getStatsOfCampaignById
-   * @summary: Get campaign statistics
-   * @description: Retrieves statistical data for a specific a communication campaign. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getStatsOfCampaignById/).
+   * @summary: Get campaign statistics by ID.
+   * @description: Retrieve statistical data for a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getStatsOfCampaignById/).
    */
   async getStatsOfCampaignById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3956,10 +4143,12 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SubscribedEmailTemplates>}
+   *   - Success response
+   *
    * @name getSubscribedEmailTemplates
-   * @summary: Get all subscribed email templates
-   * @description: Retrieves a list of email communication templates that are subscribed to an event. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSubscribedEmailTemplates/).
+   * @summary: Get subscribed email templates.
+   * @description: Retrieve email communication templates that are subscribed to. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedEmailTemplates/).
    */
   async getSubscribedEmailTemplates(
     { pageNo, pageSize, query, requestHeaders } = { requestHeaders: {} },
@@ -4019,10 +4208,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplates().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CommunicationPlatformModel.SubscribedEmailTemplates().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4044,10 +4233,11 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SubscribedSmsTemplates>} -
+   *   Success response
    * @name getSubscribedSmsTemplates
-   * @summary: Get all subscribed SMS templates
-   * @description: Retrieve a list of SMS communication templates that are subscribed to an event. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSubscribedSmsTemplates/).
+   * @summary: Get subscribed SMS templates.
+   * @description: Retrieve SMS communication templates that are subscribed to. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedSmsTemplates/).
    */
   async getSubscribedSmsTemplates(
     { pageNo, pageSize, query, requestHeaders } = { requestHeaders: {} },
@@ -4107,10 +4297,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplates().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CommunicationPlatformModel.SubscribedSmsTemplates().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4127,91 +4317,16 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemAudiencesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getSystemAudiences
-   * @summary: Get system audiences
-   * @description: Retrieves a list of  system-defined audiences for communication. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemAudiences/).
-   */
-  async getSystemAudiences(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemAudiences \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/system-datasources`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getSystemAudiences \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
+   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplate[]>} -
    *   Success response
    * @name getSystemEmailTemplates
-   * @summary: Get all system email templates
-   * @description: Retrieves system-defined email communication templates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemEmailTemplates/).
+   * @summary: Get system email templates.
+   * @description: Retrieve system-defined email communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
    */
   async getSystemEmailTemplates(
     { requestHeaders } = { requestHeaders: {} },
@@ -4258,12 +4373,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationPlatformModel.SystemEmailTemplates().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.SystemEmailTemplate())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4285,11 +4397,11 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
    *   Success response
    * @name getSystemSmsTemplates
-   * @summary: Gets all system SMS templates
-   * @description: Retrieves system-defined SMS communication templates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemSmsTemplates/).
+   * @summary: Get system SMS templates.
+   * @description: Retrieve system-defined SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
    */
   async getSystemSmsTemplates(
     { requestHeaders } = { requestHeaders: {} },
@@ -4336,12 +4448,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationPlatformModel.SystemSmsTemplates().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.SystemSmsTemplates())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4363,12 +4472,12 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.CreateGlobalVariablesResult>}
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
    *   - Success response
    *
    * @name postGlobalVariables
-   * @summary: Create global variables
-   * @description: Updates and creates communication global variables. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/postGlobalVariables/).
+   * @summary: Post global variables.
+   * @description: Update and post global variables for communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
    */
   async postGlobalVariables(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4421,7 +4530,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.CreateGlobalVariablesResult().validate(
+    } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4446,10 +4555,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
    * @name sendCommunicationAsynchronously
-   * @summary: Send communication asynchronously
-   * @description: Sends communications to sellers with deffered delivery. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/sendCommunicationAsynchronously/).
+   * @summary: Send communication asynchronously.
+   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
    */
   async sendCommunicationAsynchronously(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4502,7 +4611,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResult().validate(responseData, {
+    } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4527,10 +4636,11 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
    * @name sendCommunicationSynchronously
-   * @summary: Send communication synchronously
-   * @description: Sends real-time communications to sellers with immediate delivery. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/sendCommunicationSynchronously/).
+   * @summary: Send communication synchronously.
+   * @description: Initiate and send communication in real-time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
    */
   async sendCommunicationSynchronously(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4583,10 +4693,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResult().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4603,16 +4713,98 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.SendEngineCommunicationSynchronouslyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+   *   Success response
+   * @name sendEngineCommunicationSynchronously
+   * @summary: Send communication asynchronously.
+   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendEngineCommunicationSynchronously/).
+   */
+  async sendEngineCommunicationSynchronously(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.sendEngineCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.sendEngineCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > sendEngineCommunicationSynchronously \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-sync`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SendInstantResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > sendEngineCommunicationSynchronously \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
    * @name sendOtp
-   * @summary: Send OTP
-   * @description: Sends a one-time password (OTP) for authentication or verification. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/sendOtp/).
+   * @summary: Send OTP.
+   * @description: Send a one-time password (OTP) for authentication or verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
    */
   async sendOtp(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, ci, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4620,6 +4812,7 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
+        ci,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4633,6 +4826,7 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
+        ci,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4644,6 +4838,7 @@ class Communication {
     }
 
     const query_params = {};
+    query_params["ci"] = ci;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4687,10 +4882,11 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.TriggerJobResult>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
+   *   Success response
    * @name triggerCampaignJob
-   * @summary: Trigger a campaign job
-   * @description: Initiates a job to execute a communication campaign. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/triggerCampaignJob/).
+   * @summary: Trigger campaign job.
+   * @description: Initiate a job to execute a communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
    */
   async triggerCampaignJob(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4743,7 +4939,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.TriggerJobResult().validate(responseData, {
+    } = CommunicationPlatformModel.TriggerJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4770,8 +4966,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name updateAppProviders
-   * @summary: Update application providers
-   * @description: Modify provider configuration using provider object id . - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateAppProviders/).
+   * @summary: Update application providers.
+   * @description: Modify provider information for the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProviders/).
    */
   async updateAppProviders(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4844,6 +5040,89 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersGlobalProviderParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse>}
+   *   - Success response
+   *
+   * @name updateAppProvidersGlobalProvider
+   * @summary: Get global app providers.
+   * @description: Retrieve a list of global app  providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProvidersGlobalProvider/).
+   */
+  async updateAppProvidersGlobalProvider(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAppProvidersGlobalProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.updateAppProvidersGlobalProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > updateAppProvidersGlobalProvider \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/global-providers`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > updateAppProvidersGlobalProvider \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
    *   - Arg object
    *
@@ -4851,8 +5130,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name updateAudienceById
-   * @summary: Update an audience
-   * @description: Modify the configuration of a specific audience. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateAudienceById/).
+   * @summary: Update audience by ID.
+   * @description: Modify the settings of a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
    */
   async updateAudienceById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -4934,8 +5213,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name updateCampaignById
-   * @summary: Update a campaign
-   * @description: Modify the configuration of a specific communication campaign. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateCampaignById/).
+   * @summary: Update campaign by ID.
+   * @description: Modify the settings of a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateCampaignById/).
    */
   async updateCampaignById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5017,8 +5296,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name updateEmailProviderById
-   * @summary: Update email provider
-   * @description: Modifys the configurations of a specific email communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateEmailProviderById/).
+   * @summary: Update email provider by ID.
+   * @description: Modify the settings of a specific email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailProviderById/).
    */
   async updateEmailProviderById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5100,8 +5379,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name updateEmailTemplateById
-   * @summary: Update an email template
-   * @description: Modifys the content and settings of a specific email communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateEmailTemplateById/).
+   * @summary: Update email template by ID.
+   * @description: Modify the content and settings of a specific email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
    */
   async updateEmailTemplateById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5183,17 +5462,19 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.OtpConfiguration>} - Success response
    * @name updateOtpConfiguration
-   * @summary: Update configuration of otp
-   * @description: Updates all configurations related to OTP. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateOtpConfiguration/).
+   * @summary: Update/insert otp configurations
+   * @description: Update otp-configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateOtpConfiguration/).
    */
   async updateOtpConfiguration(
-    { requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CommunicationPlatformApplicationValidator.updateOtpConfiguration().validate(
-      {},
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -5204,7 +5485,9 @@ class Communication {
     const {
       error: warrning,
     } = CommunicationPlatformApplicationValidator.updateOtpConfiguration().validate(
-      {},
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -5221,7 +5504,7 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/otp-configuration`,
       query_params,
-      undefined,
+      body,
       requestHeaders,
       { responseHeaders }
     );
@@ -5258,10 +5541,10 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
    * @name updateSmsProviderById
-   * @summary: Update SMS provider
-   * @description: Modifys the configurations of a specific SMS communication provider. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateSmsProviderById/).
+   * @summary: Update SMS provider by ID.
+   * @description: Modify specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsProviderById/).
    */
   async updateSmsProviderById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5314,7 +5597,9 @@ class Communication {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5341,8 +5626,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name updateSmsTemplateById
-   * @summary: Update a SMS template
-   * @description: Modifys the content and settings of a specific SMS communication template. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateSmsTemplateById/).
+   * @summary: Update SMS template by ID.
+   * @description: Modify the content and settings of a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
    */
   async updateSmsTemplateById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5424,8 +5709,8 @@ class Communication {
    *   - Success response
    *
    * @name verfiyOtp
-   * @summary: Verify OTP
-   * @description: Verifies the one-time password (OTP) for authentication or verification. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/verfiyOtp/).
+   * @summary: Verify OTP.
+   * @description: Verify the one-time password (OTP) for authentication or verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/verfiyOtp/).
    */
   async verfiyOtp(
     { body, requestHeaders } = { requestHeaders: {} },

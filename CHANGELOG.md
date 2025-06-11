@@ -1,3 +1,11169 @@
+# CHANGE LOG (1.10.3-2) - 1.10.3
+
+## Application Client
+
+- [Breaking] [Removed] Finance class from application client
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>UpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### getItemCount
+
+- ##### What's New
+	- [Added] property <code>user_cart_article_count</code> of schema <code>CartItemCountResponse</code> in response with status code 200
+
+
+#### getCoupons
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>available_coupon_list[].uid</code> of schema <code>Coupon</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>available_coupon_list[].start_date</code> of schema <code>Coupon</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>available_coupon_list[].end_date</code> of schema <code>Coupon</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### getAddresses
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address[].pincode</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>address[].expire_at</code> of schema <code>Address</code> in response with status code 200
+
+
+#### addAddress
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>Address</code> in request body
+
+
+#### getAddressById
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>Address</code> in response with status code 200
+
+
+#### updateAddress
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>Address</code> in request body
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address.address[].pincode</code> of schema <code>Address</code> in response with status code 400
+	- [Deleted] Value format from <code>date-time</code> from property <code>address.address[].expire_at</code> of schema <code>Address</code> in response with status code 400
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 404
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 404
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 404
+
+
+#### getPromotionOffers
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>available_promotions[].promotion_type</code> of schema <code>PromotionOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].article_price</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].available_sizes</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].free_gift_items[].size</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].medias</code> of schema <code>PromotionOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_promotions[].is_bank_offer</code> of schema <code>PromotionOffer</code> in response with status code 200
+
+
+#### getLadderOffers
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].article_price</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].available_sizes</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].free_gift_items[].size</code> of schema <code>FreeGiftItems</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>available_offers[].promotion_type</code> of schema <code>LadderPriceOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>available_offers[].medias</code> of schema <code>LadderPriceOffer</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>ShipmentResponse</code> in response with status code 200
+	- [Added] property <code>shipments[].distance</code> of schema <code>ShipmentResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartShipmentsResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].charges[].meta</code>, <code>items[].charges[].amount</code>, <code>items[].charges[].name</code>, <code>items[].charges[].allow_refund</code>, <code>items[].charges[].code</code>, <code>items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>charge,discount,mop,selling_price,delivery_charge</code> from property <code>price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore</code> from property <code>shipments[].order_type</code> of schema <code>ShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>shipments[].items[].charges[].meta</code>, <code>shipments[].items[].charges[].amount</code>, <code>shipments[].items[].charges[].name</code>, <code>shipments[].items[].charges[].allow_refund</code>, <code>shipments[].items[].charges[].code</code>, <code>shipments[].items[].charges[].type</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>shipments[].items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>CartCheckoutDetailRequest</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>CartCheckoutDetailPayload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>CartCheckoutDetailV2Request</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore</code> from property <code>order_type</code> of schema <code>CartCheckoutDetailV2Payload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].article.gift_card.gift_message</code> of schema <code>ArticleGiftCard</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>cart.items[].charges[].meta</code>, <code>cart.items[].charges[].amount</code>, <code>cart.items[].charges[].name</code>, <code>cart.items[].charges[].allow_refund</code>, <code>cart.items[].charges[].code</code>, <code>cart.items[].charges[].type</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>number</code> of property <code>cart.items[].charges[]</code> of schema <code>Charges</code> in response with status code 200
+
+
+#### getPaymentPromotionOffers
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>promotions[].promotion_type</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>promotions[].medias</code> of schema <code>PromotionPaymentOffer</code> in response with status code 200
+
+
+#### getCartMetaConfigs
+
+- ##### What's New
+	- [Added] property <code>data[].is_active</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].created_on</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+
+#### getCartMetaConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>isBankOffer</code> (type: <code>boolean</code>)
+
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>CartConfigDetailObj</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_on</code> of schema <code>CartConfigDetailObj</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>item_type</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_on</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>seo.meta_tags[].items[].key</code>, <code>seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### getProductSizesBySlug
+
+- ##### What's New
+	- [Added] property <code>product_name</code> of schema <code>ProductSizes</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>teaser_tag</code> of schema <code>ProductSizes</code> in response with status code 200
+
+
+#### getProductComparisonBySlugs
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+	- [Added] property <code>items[].sizes</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].identifiers</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].is_tryout</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].channel</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].discount_meta</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].variants</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].category_map</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].color</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].product_online_date</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].promo_meta</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] property <code>items[].no_of_boxes</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>standard,composite,set,digital</code> from property <code>items[].item_type</code> of schema <code>ProductCompareDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### getSimilarComparisonProductBySlug
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### getComparedFrequentlyProductBySlug
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>similars.items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>similars.items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>similars.items[].item_type</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>similars.items[].modified_on</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>similars.items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>similars.items[].seo.meta_tags[].items[].key</code>, <code>similars.items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### getProductStockByIds
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].brand.seo</code> of schema <code>BrandItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].currency</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+
+
+#### getProductStockForTimeByIds
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].brand.seo</code> of schema <code>BrandItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_id</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].currency</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
+
+
+#### getProducts
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>url</code> to property <code>filters[].values[].logo</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>filters[].values[].logo.url</code>, <code>filters[].values[].logo.type</code>, <code>filters[].values[].logo.meta</code>, <code>filters[].values[].logo.alt</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>filters[].values[].logo</code> of schema <code>Media</code> in response with status code 200
+
+
+#### getBrands
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].seo</code> of schema <code>BrandItem</code> in response with status code 200
+
+
+#### getBrandDetailBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>seo</code> of schema <code>BrandDetailResponseSchema</code> in response with status code 200
+
+
+#### getHomeProducts
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>ProductListingDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### getCollections
+
+- ##### What's New
+	- [Added] property <code>items[].tags</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 404
+
+
+#### getCollectionItemsBySlug
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>url</code> to property <code>filters[].values[].logo</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>filters[].values[].logo.url</code>, <code>filters[].values[].logo.type</code>, <code>filters[].values[].logo.meta</code>, <code>filters[].values[].logo.alt</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>filters[].values[].logo</code> of schema <code>Media</code> in response with status code 200
+
+
+#### getCollectionDetailBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>modified_on</code> of schema <code>CollectionDetailResponseSchema</code> in response with status code 200
+
+
+#### getFollowedListing
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>uri</code> to property <code>items[].seo.breadcrumbs[].url</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] property <code>items[].seo.title</code> of schema <code>ApplicationItemSEO</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_on</code> of schema <code>ProductListingDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo.meta_tags[].items[].key</code>, <code>items[].seo.meta_tags[].items[].value</code> made optional in response with status code 200
+
+
+#### followById
+
+- ##### What's New
+	- [Added] Response with status 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 404
+
+
+#### getStores
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>tags</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>Store</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].manager_contact</code> of schema <code>Store</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].contacts</code> of schema <code>Store</code> in response with status code 200
+
+
+#### getInStockLocations
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>float</code> to property <code>items[].address.lat_long.coordinates[]</code> of schema <code>AddressLatLong</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>filters[].slug</code>, <code>filters[].uid</code>, <code>filters[].is_active</code>, <code>filters[].priority_order</code>, <code>filters[].name</code>, <code>filters[].logo</code>, <code>filters[].modified_by</code>, <code>filters[].modified_on</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].departments[].is_active</code> of schema <code>AppStoreDepartment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].departments[].logo.url</code>, <code>items[].departments[].logo.type</code>, <code>items[].departments[].logo.meta</code>, <code>items[].departments[].logo.alt</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].address.country_code</code> of schema <code>StoreAddressSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].address.address_meta</code> of schema <code>StoreAddressSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._custom_json</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].additional_contacts</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_id</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].display_name</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_type</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].auto_invoice</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].credit_note</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].stage</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].gst_credentials</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].product_return_config</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].avg_order_processing_time</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bulk_shipment</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].default_order_acceptance_timing</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].order_acceptance_timing</code> of schema <code>AppStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].auto_assign_courier_partner</code> of schema <code>AppStore</code> in response with status code 200
+
+
+#### getLocationDetailsById
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>float</code> to property <code>address.lat_long.coordinates[]</code> of schema <code>AddressLatLong</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>address.country_code</code> of schema <code>StoreAddressSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>address.address_meta</code> of schema <code>StoreAddressSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>additional_contacts</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,warehouse</code> from property <code>store_type</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>auto_invoice</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>credit_note</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>stage</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>gst_credentials</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>product_return_config</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>avg_order_processing_time</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>bulk_shipment</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>default_order_acceptance_timing</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order_acceptance_timing</code> of schema <code>StoreDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>auto_assign_courier_partner</code> of schema <code>StoreDetails</code> in response with status code 200
+
+
+#### getProductBundlesBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ProductGroupingModel</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ProductGroupingModel</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].products[].allow_remove</code> of schema <code>ProductInGroup</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>items[].products[].product_details</code> of schema <code>ProductInGroup</code> in response with status code 200
+
+
+#### getProductPriceBySlug
+
+- ##### What's New
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>ProductSizePriceResponseV4</code> in response with status code 200
+
+
+#### getProductSellersBySlug
+
+- ##### What's New
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>ProductSizePriceResponseV4</code> in response with status code 200
+
+
+### Communication
+
+
+
+#### upsertAppPushtoken
+
+- ##### What's New
+	- [Added] method <code>upsertAppPushtoken</code>
+
+
+
+#### createAppPushtoken
+
+- ##### What's New
+	- [Added] method <code>createAppPushtoken</code>
+
+
+
+### Configuration
+
+
+
+#### getApplication
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getOwnerInfo
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>application_info.company_info.created_on</code> of schema <code>CompanyInfo</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>application_info.company_info.addresses[].address_type</code> of schema <code>CompanyAboutAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>application_info.created_at</code> of schema <code>ApplicationInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>application_info.tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getIntegrationTokens
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppTokenResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppTokenResponseSchema</code> in response with status code 200
+
+
+#### getFeatures
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.created_at</code> of schema <code>AppFeature</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.modified_at</code> of schema <code>AppFeature</code> in response with status code 200
+
+
+#### getContactInfo
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+
+
+#### getCurrencies
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### getCurrencyById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### getAppCurrencies
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>supported_currency[].created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>supported_currency[].modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>supported_currency[].subunit</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppCurrencyResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppCurrencyResponseSchema</code> in response with status code 200
+
+
+### Content
+
+
+
+#### getBlog
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getBlogs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getDataLoaders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>DataLoaderSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>DataLoaderSchema</code> in response with status code 200
+
+
+#### getLandingPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getLegalInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+
+
+#### getNavigations
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/application/content/v2.0/navigations</code> To <code>/service/application/content/v1.0/navigations</code>
+
+
+#### getSEOConfiguration
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.created_at</code> of schema <code>SeoSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.updated_at</code> of schema <code>SeoSchema</code> in response with status code 200
+
+
+#### getSEOMarkupSchemas
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>items[].page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### getDefaultSitemapConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getDefaultSitemapConfig</code>
+
+
+
+#### getSitemaps
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSitemaps</code>
+
+
+
+#### getSitemap
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSitemap</code>
+
+
+
+#### getSupportInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Support</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Support</code> in response with status code 200
+
+
+#### getPages
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomObjectBySlug</code>
+
+
+
+#### getCustomFieldsByResourceId
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomFieldsByResourceId</code>
+
+
+
+#### getCustomObject
+
+- ##### What's New
+	- [Added] method <code>getCustomObject</code>
+
+
+
+#### getCustomObjects
+
+- ##### What's New
+	- [Added] method <code>getCustomObjects</code>
+
+
+
+#### getCustomFieldDefinitions
+
+- ##### What's New
+	- [Added] method <code>getCustomFieldDefinitions</code>
+
+
+
+#### getCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>getCustomFieldDefinition</code>
+
+
+
+#### getCustomFields
+
+- ##### What's New
+	- [Added] method <code>getCustomFields</code>
+
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### completeUpload
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by.user_id</code> of schema <code>CreatedBy</code> in response with status code 200
+
+
+#### signUrls
+
+- ##### What's New
+	- [Added] property <code>enc_url_mapping</code> of schema <code>SignUrl</code> in request body
+
+
+### Lead
+
+
+
+#### getTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### createHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>TicketHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TicketHistory</code> in response with status code 200
+
+
+#### createTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### getCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+#### submitCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>ticket.updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>ticket.created_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>response.created_at</code> of schema <code>FormResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>response.updated_at</code> of schema <code>FormResponseSchema</code> in response with status code 200
+
+
+### Logistic
+
+
+
+#### getZones
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>storeUid</code> (type: <code>integer</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>regionUid</code> (type: <code>string</code>)
+
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ListViewItemsV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ListViewItemsV2</code> in response with status code 200
+
+
+#### getGeoAreas
+
+- ##### What's New
+	- [Added] <code>items[].application_id</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GeoAreaItemResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GeoAreaItemResponseSchema</code> in response with status code 200
+
+
+#### getLocalitiesByPrefix
+
+- ##### What's New
+	- [Breaking] [Added] Required <code>path</code> parameter <code>companyId</code> (type: <code>integer</code>)
+
+
+
+#### createShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].distance</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>Shipments</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>location_articles[].articles[].delivery_slots.delivery_date</code> of schema <code>ArticleDeliverySlots</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].delivery_slots.delivery_date</code> of schema <code>ArticleDeliverySlots</code> in response with status code 200
+
+
+#### getQCPromise
+
+- ##### What's New
+	- [Added] method <code>getQCPromise</code>
+
+
+
+### Order
+
+
+
+#### getShipmentRefundSummary
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>refund_summary[].refund_initiated_at</code> of schema <code>ShipmentRefundSummary</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>refund_summary[].refund_updated_at</code> of schema <code>ShipmentRefundSummary</code> in response with status code 200
+
+
+#### getRefundOptions
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>items[].shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>items[].shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>items[].shipments[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>items[].shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>items[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>items[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>items[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>items[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].coupon_details</code> of schema <code>OrderSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].coupon_details</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].shipments[].meta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>items[].shipments[].order_type</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].returnable_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].delivery_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items</code> from property <code>items[].shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].returnable_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>items[].shipments[].bags[].current_status.journey_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>items[].shipments[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>items[].shipments[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>items[].shipments[].billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>items[].shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] property <code>order.shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.shipments[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>order.coupon_details</code> of schema <code>OrderSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.shipments[].coupon_details</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>order.shipments[].meta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>order.shipments[].order_type</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].returnable_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].delivery_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items</code> from property <code>order.shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].returnable_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>order.shipments[].bags[].current_status.journey_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>order.shipments[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>order.shipments[].billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] property <code>order.shipments[].fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.shipments[].bags[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.shipments[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.shipments[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.shipments[].is_active</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>order.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>order.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>order.charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>order.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>order.coupon_details</code> of schema <code>OrderSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.shipments[].coupon_details</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>order.shipments[].meta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>order.shipments[].order_type</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].returnable_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].delivery_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items</code> from property <code>order.shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].returnable_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>order.shipments[].bags[].current_status.journey_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>order.shipments[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>order.shipments[].billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>order.shipments[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.currency_info.conversion_rate.timestamp</code> of schema <code>ConversionRate</code> in response with status code 200
+	- [Added] property <code>shipment.fulfilling_store.custom_json</code> of schema <code>FulfillingStore</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>shipment.bags[].charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>shipment.charges[].distribution_logic.distribution.rule</code> of schema <code>ChargeDistributionSchema</code> in response with status code 200
+	- [Added] property <code>shipment.charges[].meta</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipment.charges[].is_refundable</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipment.charges[].is_refundable_on_state</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] <code>shipment.charges[].distribution_logic</code> made required in response with status code 200
+	- [Added] property <code>shipment.is_active</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>shipment.coupon_details</code> of schema <code>Shipments</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipment.meta</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>shipment.order_type</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.invoice.updated_date</code> of schema <code>Invoice</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.returnable_date</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.shipment_created_at</code> of schema <code>Shipments</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.bags[].delivery_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items</code> from property <code>shipment.bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.bags[].returnable_date</code> of schema <code>Bags</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.bags[].current_status.updated_at</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>shipment.bags[].current_status.journey_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>shipment.delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>shipment.delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,store</code> from property <code>shipment.billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>shipment.billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.delivery_date</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getInvoiceByShipmentId
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>GET,PUT</code> from property <code>presigned_type</code> of schema <code>ResponseGetInvoiceShipment</code> in response with status code 200
+
+
+#### trackShipment
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>forward,reverse,rto</code> from property <code>results[].shipment_type</code> of schema <code>Track</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>results[].updated_at</code> of schema <code>Track</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>results[].meta</code> of schema <code>Track</code> in response with status code 200
+
+
+#### getCustomerDetailsByShipmentId
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### sendOtpToShipmentCustomer
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### verifyOtpShipmentCustomer
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>message</code> of schema <code>VerifyOtpResponseSchema</code> in response with status code 200
+
+
+#### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from property <code>reasons</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from property <code>success</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>rule_id</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+
+
+#### getShipmentReasons
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>bag,order</code> from property <code>reasons[].feedback_type</code> of schema <code>ShipmentReason</code> in response with status code 200
+
+
+### Payment
+
+
+
+#### getAggregatorsConfig
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>boolean</code> from property <code>razorpay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>razorpay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>razorpay.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>juspay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>juspay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>juspay.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>simpl.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>simpl.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>simpl.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>payumoney.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>payumoney.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>payumoney.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>rupifi.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>rupifi.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>rupifi.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>mswipe.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>mswipe.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>mswipe.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>stripe.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>stripe.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>stripe.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>ccavenue.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ccavenue.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>ccavenue.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>ajiodhan.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ajiodhan.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>ajiodhan.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>potlee.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>potlee.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>potlee.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>qr_refund_jiopay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>qr_refund_jiopay.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>qr_refund_jiopay.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Type from <code>boolean</code> from property <code>offerxone.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>offerxone.sdk</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>self,fynd</code> from property <code>offerxone.config_type</code> of schema <code>AggregatorConfigDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### attachCardToCustomer
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>card_id</code> of schema <code>AttachCardRequest</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getActiveCardAggregator
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### updateUserCard
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getActiveUserCards
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### updateActiveCards
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### deleteUserCard
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>card_id</code> of schema <code>DeletehCardRequest</code> in request body
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Required status to Request body content
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### verifyCustomerForPayment
+
+- ##### What's New
+	- [Added] property <code>error.order_id</code> of schema <code>PaymentError</code> in response with status code 400
+	- [Added] property <code>error.order_type</code> of schema <code>PaymentError</code> in response with status code 400
+	- [Added] property <code>error.transaction_amount_in_paise</code> of schema <code>PaymentError</code> in response with status code 400
+	- [Added] property <code>error_msg</code> of schema <code>PaymentErrorCodeAndResponse</code> in response with status code 400
+	- [Added] property <code>status</code> of schema <code>PaymentErrorCodeAndResponse</code> in response with status code 400
+	- [Added] property <code>message</code> of schema <code>PaymentErrorCodeAndResponse</code> in response with status code 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error.code</code> of schema <code>ErrorCodeAndDescription</code> in response with status code 400
+	- [Breaking] [Deleted] property <code>error.description</code> of schema <code>ErrorCodeAndDescription</code> in response with status code 400
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>error.description</code> made optional in response with status code 400
+	- [Breaking] [Changed] <code>success</code> made optional in response with status code 400
+
+
+#### verifyAndChargePayment
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>amount</code> of schema <code>ChargeCustomerRequest</code> in request body
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+
+#### initialisePayment
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>amount</code> of schema <code>PaymentInitializationRequest</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status_code</code> of schema <code>PaymentInitializationDetails</code> in response with status code 200
+
+
+#### checkAndUpdatePaymentStatus
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>amount</code> of schema <code>PaymentStatusUpdateRequest</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>merchant_url</code> of schema <code>PaymentStatusUpdate</code> in request body
+	- [Breaking] [Deleted] Response with status 400
+
+- ##### What's Changed
+	- [Changed] <code>order_id</code> made optional in request body
+	- [Changed] <code>status</code> made optional in request body
+
+
+#### getPaymentModeRoutes
+
+- ##### What's New
+	- [Added] property <code>error[]</code> of schema <code>PaymentOptionErrorResponse</code> in response with status code 400
+	- [Added] property <code>message</code> of schema <code>PaymentOptionErrorResponse</code> in response with status code 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>error.code</code>, <code>error.description</code> in response with status code 400
+
+- ##### What's Changed
+	- [Changed] Required status of query parameter <code>cartId</code>
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>error</code> of schema <code>ErrorCodeAndDescription</code> in response with status code 400
+	- [Breaking] [Changed] <code>error.description</code> made optional in response with status code 400
+
+
+#### getPosPaymentModeRoutes
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Required status from query parameter <code>cardReference</code>
+	- [Deleted] Required status from query parameter <code>userDetails</code>
+	- [Breaking] [Deleted] Response with status 400
+
+- ##### What's Changed
+	- [Changed] Required status of query parameter <code>cartId</code>
+
+
+#### walletLinkInitiate
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### linkWallet
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### delinkWallet
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>wallet_id</code> of schema <code>WalletDelinkRequestSchema</code> in request body
+
+
+#### getRupifiBannerDetails
+
+- ##### What's New
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getEpaylaterBannerDetails
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### resendOrCancelPayment
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>resend,cancel</code> from property <code>request_type</code> of schema <code>ResendOrCancelPayment</code> in request body
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### renderHTML
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### validateVPA
+
+- ##### What's New
+	- [Added] <code>data.upi_vpa</code> made required in response with status code 200
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>aggregator</code> of schema <code>ValidateVPA</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.customer_name</code> of schema <code>ValidateUPI</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>boolean</code> to <code>string</code> of property <code>data.status</code> of schema <code>ValidateUPI</code> in response with status code 200
+
+
+#### cardDetails
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data.bank_code</code> of schema <code>CardDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.card_sub_type</code> of schema <code>CardDetails</code> in response with status code 200
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+
+#### getActiveRefundTransferModes
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].items</code> of schema <code>TransferModeDetails</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data[].items</code> made optional in response with status code 200
+
+
+#### enableOrDisableRefundTransferMode
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getUserBeneficiariesDetail
+
+- ##### What's New
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] pattern validator for beneficiaries[].modified_on in response with status code 200
+	- [Deleted] pattern validator for beneficiaries[].created_on in response with status code 200
+	- [Deleted] pattern validator for bank[].modified_on in response with status code 200
+	- [Deleted] pattern validator for bank[].created_on in response with status code 200
+
+
+#### getOrderBeneficiariesDetail
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] pattern validator for beneficiaries[].modified_on in response with status code 200
+	- [Deleted] pattern validator for beneficiaries[].created_on in response with status code 200
+	- [Deleted] pattern validator for bank[].modified_on in response with status code 200
+	- [Deleted] pattern validator for bank[].created_on in response with status code 200
+
+
+#### addBeneficiaryDetails
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deleteBeneficiaryDetails
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>message</code> of schema <code>DeleteRefundAccountResponse</code> in response with status code 200
+	- [Added] Response with status 500
+
+
+#### verifyOtpAndAddBeneficiaryForBank
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### addRefundBankAccountUsingOTP
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>details.account_no</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>details.bank_name</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>details.ifsc_code</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>details.branch_name</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>details.account_holder</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>details</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>data.status</code> of schema <code>PostBankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.message</code> of schema <code>PostBankDetailsForOTP</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.bene_name_mismatch</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.subcode</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.hash_key</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.mobile</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.request_id</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.beneficiary_id</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.account_no</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.account_holder</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bank_name</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.branch_name</code> of schema <code>RefundData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.ifsc_code</code> of schema <code>RefundData</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>message</code>, <code>success</code> made optional in response with status code 200
+
+
+#### getotpOrderBeneficiariesDetail
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].account_no</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].bank_name</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].ifsc_code</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].branch_name</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].account_holder</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data[]</code> of schema <code>BankDetailsForOTP</code> in response with status code 200
+	- [Added] Response with status 500
+
+
+#### verifyOtpAndAddBeneficiaryForWallet
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### updateDefaultBeneficiary
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getBenficiaryOrder
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### createPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success_redirection_url</code> of schema <code>CreatePaymentLink</code> in request body
+	- [Breaking] [Deleted] property <code>failure_redirection_url</code> of schema <code>CreatePaymentLink</code> in request body
+
+
+#### getPaymentLinkId
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### resendPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPaymentModeRoutesPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### pollingPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### createOrderHandlerPaymentLink
+
+- ##### What's New
+	- [Breaking] [Added] <code>payment_methods</code> made required in request body
+	- [Breaking] [Added] <code>success_callback_url</code> made required in request body
+	- [Added] Response with status 500
+
+
+#### initialisePaymentPaymentLink
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>amount</code> of schema <code>PaymentInitializationRequest</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>status_code</code> of schema <code>PaymentInitializationDetails</code> in response with status code 200
+
+
+#### checkAndUpdatePaymentStatusPaymentLink
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>amount</code> of schema <code>PaymentStatusUpdateRequest</code> in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>merchant_url</code> of schema <code>PaymentStatusUpdate</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>order_id</code> made optional in request body
+	- [Changed] <code>status</code> made optional in request body
+
+
+#### customerCreditSummary
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.due_date</code> of schema <code>CreditSummary</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### redirectToAggregator
+
+- ##### What's New
+	- [Added] property <code>data.signup_url</code> of schema <code>RedirectURL</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Required status from query parameter <code>aggregator</code>
+	- [Breaking] [Deleted] Response with status 400
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.redirect_url</code> made optional in response with status code 200
+
+
+#### checkCredit
+
+- ##### What's New
+	- [Added] <code>data.status</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.available_credit</code> of schema <code>CreditDetail</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### customerOnboard
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>personal_info.dob</code> of schema <code>UserPersonalInfoInDetails</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### outstandingOrderDetails
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### cancelPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### paidOrderDetails
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### createPaymentOrder
+
+- ##### What's New
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+
+#### setRefundOptionforShipment
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>shipment_ids</code> of schema <code>ShipmentRefundRequest</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>message</code> of schema <code>ShipmentRefundResponse</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>data</code> of schema <code>ShipmentRefundDetail</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.order_id</code>, <code>data.transfer_mode</code>, <code>data.beneficiary_id</code>, <code>data.shipment_ids</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.beneficiary_id</code>, <code>data.order_id</code>, <code>data.transfer_mode</code>, <code>data.shipment_ids</code> made optional in response with status code 200
+
+
+#### getSelectedRefundOption
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>shipment_id</code> of schema <code>SelectedRefundOptionResponse</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>message</code> of schema <code>SelectedRefundOptionResponse</code> in response with status code 200
+	- [Added] Response with status 500
+
+
+#### getUserBeneficiariesDetailV2
+
+- ##### What's New
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>data</code> of schema <code>BeneficiaryRefundOptions</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.bank</code>, <code>data.wallet</code>, <code>data.upi</code> in response with status code 200
+
+
+#### validateBeneficiaryAddress
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>ifsc_code</code> of schema <code>ValidateValidateAddressRequest</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>upi</code> of schema <code>VPADetails</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>upi.is_valid</code>, <code>upi.upi_vpa</code>, <code>upi.status</code>, <code>upi.customer_name</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>upi.customer_name</code>, <code>upi.is_valid</code>, <code>upi.status</code>, <code>upi.upi_vpa</code> made optional in response with status code 200
+
+
+#### confirmPayment
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+### Rewards
+
+
+
+#### getOfferByName
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Offer</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Offer</code> in response with status code 200
+
+
+#### catalogueOrder
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getUserPointsHistory
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>PointsHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>PointsHistory</code> in response with status code 200
+
+
+#### getUserPoints
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getUserReferralDetails
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>referral.created_at</code> of schema <code>Offer</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>referral.updated_at</code> of schema <code>Offer</code> in response with status code 200
+
+
+#### getOrderDiscount
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### redeemReferralCode
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+### Share
+
+
+
+#### createShortLink
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkReq</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+
+
+#### getShortLinkByHash
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+
+
+#### getOriginalShortLinkByHash
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+
+
+### Theme
+
+
+
+#### getAllPages
+
+- ##### What's New
+	- [Added] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].assets</code> of schema <code>AvailablePageSchemaSections</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].assets</code> of schema <code>AvailablePageSchemaSections</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### getAppliedTheme
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
+
+	- [Breaking] [Deleted] properties <code>config.global_schema.props[].type</code>, <code>config.global_schema.props[].category</code>, <code>config.global_schema.props[].id</code>, <code>config.global_schema.props[].label</code>, <code>config.global_schema.props[].info</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getThemeForPreview
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
+
+	- [Breaking] [Deleted] properties <code>config.global_schema.props[].type</code>, <code>config.global_schema.props[].category</code>, <code>config.global_schema.props[].id</code>, <code>config.global_schema.props[].label</code>, <code>config.global_schema.props[].info</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getAppliedThemeV1
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.global_schema.props[].type</code>, <code>config.global_schema.props[].category</code>, <code>config.global_schema.props[].id</code>, <code>config.global_schema.props[].label</code>, <code>config.global_schema.props[].info</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getThemeForPreviewV1
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.global_schema.props[].type</code>, <code>config.global_schema.props[].category</code>, <code>config.global_schema.props[].id</code>, <code>config.global_schema.props[].label</code>, <code>config.global_schema.props[].info</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+### User
+
+
+
+#### loginWithFacebook
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogleAndroid
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithGoogleIOS
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithAppleIOS
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithEmailAndPassword
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### forgotPassword
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### loginWithToken
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### verifyMobileOTP
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>verify_mobile_link</code> of schema <code>VerifyOtpSuccess</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### verifyEmailOTP
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>verify_mobile_link</code> of schema <code>VerifyOtpSuccess</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### getLoggedInUser
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### getPlatformConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+
+
+#### updateProfile
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### addMobileNumber
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### deleteMobileNumber
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### setMobileNumberAsPrimary
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### sendVerificationLinkToMobile
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user</code> of schema <code>SendMobileVerifyLinkSuccess</code> in response with status code 200
+
+
+#### addEmail
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### deleteEmail
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### setEmailAsPrimary
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>user.debug</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.has_old_password_hash</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.account_type</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+### Webhook
+
+
+
+#### saveClickEvent
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sent_at</code> of schema <code>ClickEventPayload</code> in request body
+
+
+## Partner Client
+
+
+
+### Authorization
+
+
+
+#### createOrganizationClient
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,platform,administrator,partner</code> from property <code>client_type</code> of schema <code>ClientResponseSchema</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ClientResponseSchema</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ClientResponseSchema</code> in response with status code 201
+
+
+#### getOrganizationClientList
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,platform,administrator,partner</code> from property <code>items[].client_type</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+
+
+#### getOrganizationClientById
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,platform,administrator,partner</code> from property <code>client_type</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+
+
+#### updateOrganizationClientById
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,platform,administrator,partner</code> from property <code>client_type</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+
+
+#### deleteOrganizationOAuthClientById
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,platform,administrator,partner</code> from property <code>client_type</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ClientResponseSchema</code> in response with status code 200
+
+
+### FileStorage
+
+
+
+#### completeUpload
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by.user_id</code> of schema <code>CreatedBy</code> in response with status code 200
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>FileUploadStart</code> in request body
+
+
+#### browse
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.user_id</code> of schema <code></code> in response with status code 200
+
+
+#### browseFiles
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.user_id</code> of schema <code></code> in response with status code 200
+
+
+#### saveOrganizationLevelProxy
+
+- ##### What's New
+	- [Added] property <code>headers</code> of schema <code>ProxyFile</code> in request body
+
+
+#### saveProxyDetails
+
+- ##### What's New
+	- [Added] property <code>headers</code> of schema <code>ProxyFile</code> in request body
+
+
+### Logistics
+
+
+
+#### getCourierPartnerAccounts
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].scheme_rules.weight</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### getCourierPartnerAccount
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>scheme_rules.weight</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### createCourierPartnerScheme
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>weight</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>weight</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+#### updateCourierPartnerScheme
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>weight</code> of schema <code>ArithmeticOperations</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>weight</code> of schema <code>ArithmeticOperations</code> in response with status code 200
+
+
+### Payment
+
+
+
+#### getPayout
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deletePayout
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deletePayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+### Theme
+
+
+
+#### getAllPages
+
+- ##### What's New
+	- [Added] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### createPage
+
+- ##### What's New
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in request body
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### updateMultiplePages
+
+- ##### What's New
+	- [Added] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in request body
+	- [Added] properties <code>pages[].sections[].predicate.schedule.cron</code>, <code>pages[].sections[].predicate.schedule.start</code>, <code>pages[].sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].created_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].updated_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].__v</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>pages[].__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>pages[].sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### updatePage
+
+- ##### What's New
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in request body
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in request body
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in request body
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### deletePage
+
+- ##### What's New
+	- [Added] properties <code>sections[].predicate.schedule.cron</code>, <code>sections[].predicate.schedule.start</code>, <code>sections[].predicate.schedule.end</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_type</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.user_groups</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.start</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.user.end</code> of schema <code>AvailablePageUserPredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>sections[].predicate.schedule[]</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>seo.sitemap.modified_on</code> of schema <code>SEOSitemap</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>__v</code> of schema <code>AvailablePageSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>sections[].predicate.schedule</code> of schema <code>AvailablePagePredicate</code> in response with status code 200
+
+
+#### getApplicationThemes
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getThemeById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### updateTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### deleteTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getOrganizationThemes
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### getOrganizationThemeDetails
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### updateDraftTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### submitOrganizationTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### deleteOrganizationTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### getLatestVersionOfThemeBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### createNewThemeInOrganization
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### getThemeRejectionReasons
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>rejection_reasons.theme_file</code>, <code>rejection_reasons.theme_details</code>, <code>rejection_reasons.theme_value_proposition</code>, <code>rejection_reasons.theme_attributes</code>, <code>rejection_reasons.theme_variations</code>, <code>rejection_reasons.theme_docs</code>, <code>rejection_reasons.theme_review</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemeRejectionReasons</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemeRejectionReasons</code> in response with status code 200
+
+
+#### createExtensionSectionDraft
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DraftExtensionSection</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>DraftExtensionSection</code> in request body
+
+
+#### getExtensionbinding
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DraftExtensionSection</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>DraftExtensionSection</code> in response with status code 200
+
+
+#### getThemeVersions
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### createTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getOrgnaizationDefaultTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### getAppliedTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+### Webhook
+
+
+
+#### responseTimeSummary
+
+- ##### What's New
+	- [Added] property <code>avg_response_time_ts[].timestamp</code> of schema <code>AvgResponseTime</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>avg_response_time_ts[].last_attempted_on</code> of schema <code>AvgResponseTime</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>avg_response_time_ts[].response_code</code> of schema <code>AvgResponseTime</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>avg_response_time_ts[].attempt</code> of schema <code>AvgResponseTime</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>avg_response_time_ts[].total</code> of schema <code>AvgResponseTime</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>number</code> of property <code>avg_response_time_ts[].response_time</code> of schema <code>AvgResponseTime</code> in response with status code 200
+
+
+## Platform Client
+
+- [Added] Finance class in platform client
+
+
+### Billing
+
+
+
+#### getChargeDetails
+
+- ##### What's New
+	- [Added] Possible values <code>day</code> to property <code>recurring.interval</code> of schema <code>ChargeRecurring</code> in response with status code 200
+	- [Added] Possible values <code>week</code> to property <code>recurring.interval</code> of schema <code>ChargeRecurring</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>integer</code> from property <code>code</code> of schema <code>ResourceNotFound</code> in response with status code 404
+	- [Deleted] Type from <code>boolean</code> from property <code>success</code> of schema <code>ResourceNotFound</code> in response with status code 404
+
+
+#### getSubscriptionCharge
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,theme,subscription</code> from property <code>entity_type</code> of schema <code>SubscriptionChargeRes</code> in response with status code 200
+	- [Deleted] Possible values from <code>pending,expired,declined,active,frozen,cancelled,no_renew,success,failed</code> from property <code>status</code> of schema <code>SubscriptionChargeRes</code> in response with status code 200
+	- [Deleted] Type from <code>integer</code> from property <code>code</code> of schema <code>ResourceNotFound</code> in response with status code 404
+	- [Deleted] Type from <code>boolean</code> from property <code>success</code> of schema <code>ResourceNotFound</code> in response with status code 404
+
+
+#### cancelSubscriptionCharge
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,theme,subscription</code> from property <code>entity_type</code> of schema <code>SubscriptionChargeRes</code> in response with status code 200
+	- [Deleted] Possible values from <code>pending,expired,declined,active,frozen,cancelled,no_renew,success,failed</code> from property <code>status</code> of schema <code>SubscriptionChargeRes</code> in response with status code 200
+	- [Deleted] Type from <code>integer</code> from property <code>code</code> of schema <code>ResourceNotFound</code> in response with status code 404
+	- [Deleted] Type from <code>boolean</code> from property <code>success</code> of schema <code>ResourceNotFound</code> in response with status code 404
+
+
+#### createOneTimeCharge
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>subscription,extension,standalone</code> from property <code>charge.final_charge.charge_type</code> of schema <code>OneTimeChargeEntity</code> in response with status code 200
+	- [Deleted] Possible values from <code>pending,expired,declined,active,frozen,cancelled,no_renew,success,failed</code> from property <code>charge.final_charge.status</code> of schema <code>OneTimeChargeEntity</code> in response with status code 200
+	- [Deleted] Possible values from <code>extension,theme</code> from property <code>charge.final_charge.entity_type</code> of schema <code>OneTimeChargeEntity</code> in response with status code 200
+
+
+#### createSubscriptionCharge
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>trial_days</code> of schema <code>CreateSubscriptionCharge</code> in request body
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>line_items[].trial_days</code> of schema <code>ChargeLineItem</code> in request body
+	- [Added] Possible values <code>day</code> to property <code>subscription.line_items[].recurring.interval</code> of schema <code>ChargeRecurring</code> in response with status code 200
+	- [Added] Possible values <code>week</code> to property <code>subscription.line_items[].recurring.interval</code> of schema <code>ChargeRecurring</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>extension,theme</code> from property <code>subscription.entity_type</code> of schema <code>EntitySubscription</code> in response with status code 200
+	- [Deleted] Possible values from <code>pending,expired,declined,active,frozen,cancelled,no_renew,success,failed</code> from property <code>subscription.status</code> of schema <code>EntitySubscription</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>integer</code> of property <code>trial_days</code> of schema <code>CreateSubscriptionCharge</code> in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>integer</code> of property <code>line_items[].trial_days</code> of schema <code>ChargeLineItem</code> in request body
+
+
+### Cart
+
+
+
+#### createCoupon
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Breaking] [Added] <code>data.ownership.payable_category</code> made required in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_type</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_prefix</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_counts</code> of schema <code>CouponAdd</code> in request body
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>identifiers.email_domain</code> of schema <code>Identifier</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.date_meta.created_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.author.approved_by</code> of schema <code>CouponAuthor</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.author.rejected_by</code> of schema <code>CouponAuthor</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.author.reviewed_by</code> of schema <code>CouponAuthor</code> in response with status code 201
+	- [Breaking] [Deleted] Default value from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.identifiers.email_domain</code> of schema <code>Identifier</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.coupon_type</code> of schema <code>CouponDetailObj</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.coupon_prefix</code> of schema <code>CouponDetailObj</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>data.coupon_counts</code> of schema <code>CouponDetailObj</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getCoupons
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].ownership.payable_category</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>createdBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewedBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>status</code> (type: <code>string</code>)
+
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.approved_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.rejected_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.reviewed_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>items[]._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[]._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>draft</code> of schema <code>CouponsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>review</code> of schema <code>CouponsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>rejected</code> of schema <code>CouponsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>approved</code> of schema <code>CouponsResult</code> in response with status code 200
+
+
+#### getCouponById
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>coupon_type</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>coupon_prefix</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>reason</code> of schema <code>CouponUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>identifiers.email_domain</code> of schema <code>Identifier</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### updateCoupon
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Breaking] [Added] <code>data.ownership.payable_category</code> made required in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>CouponAuthor</code> in request body
+	- [Breaking] [Deleted] Default value from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>_schedule.end</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>CouponSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_type</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_prefix</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>coupon_counts</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>reason</code> of schema <code>CouponUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>identifiers.email_domain</code> of schema <code>Identifier</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.date_meta.modified_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.date_meta.created_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.date_meta.approved_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.date_meta.rejected_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.date_meta.reviewed_on</code> of schema <code>CouponDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data.ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.author.approved_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.author.rejected_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.author.reviewed_by</code> of schema <code>CouponAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>data._schedule.end</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data._schedule.status</code> of schema <code>CouponSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.identifiers.email_domain</code> of schema <code>Identifier</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.coupon_type</code> of schema <code>CouponDetailObj</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.coupon_prefix</code> of schema <code>CouponDetailObj</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.coupon_counts</code> of schema <code>CouponDetailObj</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### deleteCoupon
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCoupon</code>
+
+
+
+#### getPromotions
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].ownership.payable_category</code> made required in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[]._schedule.end</code> of schema <code>PromotionSchedule</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>createdBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewedBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>approvedEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewStartTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>reviewEndTime</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>status</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._schedule.status</code> of schema <code>PromotionSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.approved_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.rejected_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].author.reviewed_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>draft</code> of schema <code>PromotionsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>review</code> of schema <code>PromotionsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>rejected</code> of schema <code>PromotionsResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>approved</code> of schema <code>PromotionsResult</code> in response with status code 200
+
+
+#### createPromotion
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.end</code> of schema <code>PromotionSchedule</code> in request body
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in request body
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in request body
+	- [Added] property <code>_id</code> of schema <code>PromotionAdd</code> in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 201
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.end</code> of schema <code>PromotionSchedule</code> in response with status code 201
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 201
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in request body
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in request body
+	- [Breaking] [Deleted] property <code>is_processed</code> of schema <code>PromotionAdd</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>PromotionSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 201
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 201
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>PromotionSchedule</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>PromotionAuthor</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>PromotionAuthor</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>PromotionAuthor</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>is_archived</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>is_bank_offer</code> of schema <code>PromotionAddResult</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getPromotionById
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.end</code> of schema <code>PromotionSchedule</code> in response with status code 200
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 200
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>PromotionSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>is_bank_offer</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### updatePromotion
+
+- ##### What's New
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.end</code> of schema <code>PromotionSchedule</code> in request body
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in request body
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in request body
+	- [Breaking] [Added] <code>ownership.payable_category</code> made required in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>_schedule.end</code> of schema <code>PromotionSchedule</code> in response with status code 200
+	- [Breaking] [Added] <code>post_order_action.action_date</code>, <code>post_order_action.action_type</code> made required in response with status code 200
+	- [Breaking] [Added] <code>visiblility.coupon_list</code>, <code>visiblility.pdp</code> made required in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in request body
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in request body
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>PromotionSchedule</code> in request body
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>PromotionAuthor</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.description</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>display_meta.name</code> of schema <code>DisplayMeta1</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>ownership.payable_by</code> of schema <code>Ownership</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_total.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_quantity.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.less_than</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].item_criteria.cart_unique_item_amount.greater_than_equals</code> of schema <code>CompareObject</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>discount_rules[].meta</code> of schema <code>DiscountRule</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>discount_rules[].offer.max_usage_per_transaction</code> of schema <code>DiscountOffer</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>restrictions.payments.codes</code>, <code>restrictions.payments.iins</code>, <code>restrictions.payments.types</code>, <code>restrictions.payments.networks</code>, <code>restrictions.payments.uses</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule.status</code> of schema <code>PromotionSchedule</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.approved_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.rejected_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>author.reviewed_by</code> of schema <code>PromotionAuthor</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.approved_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.rejected_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>date_meta.reviewed_on</code> of schema <code>PromotionDateMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>is_archived</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>is_bank_offer</code> of schema <code>PromotionUpdateResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### deletePromotion
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deletePromotion</code>
+
+
+
+#### getPromosCouponConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ActivePromos</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ActivePromos</code> in response with status code 200
+
+
+#### getPromotionPaymentOffers
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getPromotionPaymentOffers</code>
+
+
+
+#### getCartMetaConfig
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>data</code> of schema <code>CartMetaConfigDetailResponse</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### updateCartMetaConfig
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>CartMetaConfigUpdate</code> in request body
+	- [Breaking] [Deleted] property <code>created_on</code> of schema <code>CartMetaConfigUpdate</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>CartMetaConfigUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_on</code> of schema <code>CartMetaConfigUpdate</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### deleteCartMetaConfig
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 404
+
+
+#### getCartMetaConfigs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].created_on</code> of schema <code>CartMetaConfigListObject</code> in response with status code 200
+
+
+#### createCartMetaConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>CartMetaConfigAdd</code> in request body
+
+
+#### addPriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>distribution_logic[]</code> of schema <code>PriceAdjustmentAdd</code> in request body
+	- [Added] property <code>data.distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 201
+	- [Added] property <code>price_adjustments</code> of schema <code>AddPriceAdjustmentResponse</code> in response with status code 201
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>distribution_logic.distribution_level</code>, <code>distribution_logic.distribution</code> in request body
+	- [Breaking] [Deleted] property <code>data.expire_at</code> of schema <code>PriceAdjustment</code> in response with status code 201
+	- [Breaking] [Deleted] properties <code>data.distribution_logic.distribution_level</code>, <code>data.distribution_logic.distribution</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[].distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Added] property <code>price_adjustments[].distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data[].expire_at</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data[].distribution_logic.distribution_level</code>, <code>data[].distribution_logic.distribution</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>price_adjustments[].expire_at</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>price_adjustments[].distribution_logic.distribution_level</code>, <code>price_adjustments[].distribution_logic.distribution</code> in response with status code 200
+
+
+#### updatePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>distribution_logic[]</code> of schema <code>PriceAdjustmentUpdate</code> in request body
+	- [Added] property <code>allow_refund</code> of schema <code>PriceAdjustmentUpdate</code> in request body
+	- [Added] property <code>data.distribution_logic[]</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>distribution_logic.distribution_level</code>, <code>distribution_logic.distribution</code> in request body
+	- [Breaking] [Deleted] property <code>data.expire_at</code> of schema <code>PriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.distribution_logic.distribution_level</code>, <code>data.distribution_logic.distribution</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### removePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>errors</code> of schema <code>OperationErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>OperationErrorResult</code> in response with status code 400
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>OpenapiCartDetailsResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>OpenApiCartServiceabilityResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>UpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>payment_identifier</code> of schema <code>OverrideCheckoutReq</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>OverrideCheckoutReq</code> in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+	- [Breaking] [Deleted] Default value from <code>1</code> from property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].price_marked</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].price_marked in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].amount_paid</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].amount_paid in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>cart_items[].item_id</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].discount</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] Value format from <code>float</code> from property <code>cart_items[].price_effective</code> of schema <code>OverrideCartItem</code> in request body
+	- [Deleted] minimum validator for cart_items[].price_effective in request body
+	- [Breaking] [Deleted] property <code>app_intercept_url</code> of schema <code>OverrideCheckoutResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>callback_url</code> of schema <code>OverrideCheckoutResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>payment_confirm_url</code> of schema <code>OverrideCheckoutResult</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>number</code> of property <code>cart_items[].quantity</code> of schema <code>OverrideCartItem</code> in request body
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 404
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Value format from <code>date-time</code> from property <code>cart.shared_cart_details.created_on</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.ordering_store</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.shared_cart_details.selected_staff</code> of schema <code>SharedCartDetails</code> in response with status code 404
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 404
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 404
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 404
+
+
+#### getCartList
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].created_on</code> of schema <code>CartList</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>user.email</code> of schema <code>CartMappingUserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>CartMappingUserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.modified_on</code> of schema <code>CartMappingUserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getItemCount
+
+- ##### What's New
+	- [Added] property <code>user_cart_article_count</code> of schema <code>CartItemCountResponse</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>AddCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].item_index</code> made required in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>UpdateCartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>free_gift_items</code> of schema <code>PlatformUpdateCartPayload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getAppCoupons
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>available_coupon_list[].start_date</code> of schema <code>Coupon</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>available_coupon_list[].end_date</code> of schema <code>Coupon</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### addAddress
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>PlatformAddress</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>PlatformAddress</code> in request body
+
+
+#### getAddresses
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address[].pincode</code> of schema <code>PlatformAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>address[].expire_at</code> of schema <code>PlatformAddress</code> in response with status code 200
+
+
+#### getAddressById
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>PlatformAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>PlatformAddress</code> in response with status code 200
+
+
+#### updateAddress
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>pincode</code> of schema <code>PlatformAddress</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>PlatformAddress</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address_id</code> of schema <code>UpdateAddressResult</code> in response with status code 200
+	- [Deleted] Type from <code>number</code> from property <code>address_id</code> of schema <code>UpdateAddressResult</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>address.address[].pincode</code> of schema <code>PlatformAddress</code> in response with status code 400
+	- [Deleted] Value format from <code>date-time</code> from property <code>address.address[].expire_at</code> of schema <code>PlatformAddress</code> in response with status code 400
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
+	- [Added] property <code>shipments[].distance</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>shipments[].order_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].box_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].dp_id</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].journey_wise_promise</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
+	- [Added] property <code>shipments[].distance</code> of schema <code>PlatformShipmentResponse</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>PlatformCartShipmentsResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>shipments[].items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>shipments[].order_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].box_type</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>shipments[].dp_id</code> of schema <code>PlatformShipmentResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].meta.debug</code> of schema <code>ShipmentMeta</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>shipments[].items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>customer_details</code> of schema <code>PlatformCartCheckoutDetailRequest</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].article_id</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].remove_articles</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].auto_remove</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].applied_articles_ids</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].message</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].restrictions</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._id</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.error_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.user_type</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_charges</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.delivery_charge_order_value</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_emps</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### validateCouponForPayment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>coupon_validity.error_en</code> of schema <code>CouponValidity</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>customer_details</code> of schema <code>PlatformCartCheckoutDetailV2Request</code> in request body
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].article_id</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].applied_quantity</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.price_adjustment_applied[].type</code> of schema <code>PriceAdjustmentApplied</code> in response with status code 200
+	- [Added] property <code>cart.error_code</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>custom_meta[]</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Breaking] [Deleted] properties <code>customer_details.name</code>, <code>customer_details.email</code>, <code>customer_details.mobile</code> in request body
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>order_type</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].remove_articles</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].auto_remove</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].applied_articles_ids</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].message</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._type</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[].restrictions</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.price_adjustment_applied[]._id</code> of schema <code>CartAppliedPriceAdjustment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.error_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.user_type</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_charges</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.cod_message</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.delivery_charge_order_value</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_code</code> of schema <code>CheckCart</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>cart.store_emps</code> of schema <code>CheckCart</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>custom_meta</code> of schema <code>PlatformCartCheckoutDetailV2Payload</code> in request body
+	- [Changed] <code>customer_details.mobile</code> made optional in request body
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>cart.items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].journey_wise_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>error_code</code> of schema <code>CartDetailResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>items[].promotions_applied[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_promo_details[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>applied_promo_details[].promotion_type</code> of schema <code>AppliedPromotion</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from <code>int32</code> to <code>int64</code> of property <code>items[].availability.other_store_quantity</code> of schema <code>ProductAvailability</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getApplicationBrandListing
+
+- ##### What's New
+	- [Added] property <code>items[].modified_on</code> of schema <code>ApplicationBrandListingItemSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>ApplicationBrandListingSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>page</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAppBrand
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getApplicationBrands
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getApplicationCategoryListing
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[].modified_by</code> of schema <code>UserInfo</code> in response with status code 200
+
+
+#### updateAppCategory
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createCollection
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Added] property <code>tag</code> of schema <code>CollectionCreateResponse</code> in response with status code 200
+	- [Added] property <code>id</code> of schema <code>CollectionCreateResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in request body
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in request body
+	- [Breaking] [Deleted] property <code>cron</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>true</code> from property <code>is_visible</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from <code>true</code> from property <code>published</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>_custom_json</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Default value from property <code>_locale_language</code> of schema <code>CollectionCreateResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getAllCollections
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>items[]._schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Added] properties <code>items[].badge.color</code>, <code>items[].badge.text</code> in response with status code 200
+	- [Added] property <code>items[]._id</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[].published</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[].tags</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[].sort_on</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[]._custom_json</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[]._locale_language</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[].seo</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Added] property <code>items[].is_visible</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].cron</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].logo.type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].logo.alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].logo.thumbnail</code> of schema <code>Media</code> in response with status code 200
+
+
+#### getApplicationFilterValues
+
+- ##### What's New
+	- [Added] property <code>values[].currency_code</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].currency_symbol</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].display_format</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].max</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].min</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].query_format</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].selected_max</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>values[].selected_min</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] <code>values[].display</code>, <code>values[].is_selected</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>values[].logo</code> of schema <code>ProductQueryFiltersValue</code> in response with status code 200
+
+
+#### getApplicationFilterKeys
+
+- ##### What's New
+	- [Added] property <code>sort_on[].display</code> of schema <code>ProductSortOn</code> in response with status code 200
+	- [Added] property <code>sort_on[].logo</code> of schema <code>ProductSortOn</code> in response with status code 200
+
+
+#### getQueryFilters
+
+- ##### What's New
+	- [Added] property <code>filters[].values[].currency_code</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].currency_symbol</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].display_format</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].max</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].min</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].query_format</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].selected_max</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] property <code>filters[].values[].selected_min</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] <code>filters[].key</code>, <code>filters[].values</code> made required in response with status code 200
+	- [Added] property <code>sort_on[].display</code> of schema <code>ProductSortOn</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>filters[].values[].logo</code> of schema <code>CollectionProductFiltersValue</code> in response with status code 200
+	- [Deleted] Value format from <code>url</code> from property <code>sort_on[].logo</code> of schema <code>CollectionProductSortOn</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>filters[].values[].value</code> made optional in response with status code 200
+
+
+#### getCollectionItems
+
+- ##### What's New
+	- [Added] property <code>items[].brand.type</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Added] property <code>items[].brand._custom_json</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Added] property <code>items[].is_excluded</code> of schema <code>ProductDetailV2</code> in response with status code 200
+	- [Added] property <code>items[].is_pinned</code> of schema <code>ProductDetailV2</code> in response with status code 200
+	- [Added] property <code>items[].priority</code> of schema <code>ProductDetailV2</code> in response with status code 200
+	- [Added] property <code>sort_on[].display</code> of schema <code>ProductSortOnv2</code> in response with status code 200
+	- [Added] property <code>sort_on[].logo</code> of schema <code>ProductSortOnv2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].attributes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand.action.page.params</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand.action.page.url</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,custom,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status,locate-us</code> from property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand.action.popup</code> of schema <code>Action</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].brand.logo.meta</code>, <code>items[].brand.logo.type</code>, <code>items[].brand.logo.url</code>, <code>items[].brand.logo.alt</code>, <code>items[].brand.logo.thumbnail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].color</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].description</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].discount</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].has_variant</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].highlights</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].image_nature</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>composite,digital,packaging,set,standard</code> from property <code>items[].item_type</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].medias[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].medias[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].medias[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].price</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].product_online_date</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].promo_meta</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].rating</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].rating_count</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sellable</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].similars</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].teaser_tag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].tryouts</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].type</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].popularity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand_uid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].category_uid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].verification_status</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].channel_identifier</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].category_slug</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].size_guide</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3_categories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_ids</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_ids</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].departments</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3_category_names</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sizes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].product_group_tag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multi_size</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_gift</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_cod</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_dependent</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_available</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].moq</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].seo</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variants</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variant_media</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variant_group</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multi_categories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].template_tag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].net_quantity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].custom_order</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].country_of_origin</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._custom_json</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].identifiers</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].item_id</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._custom_meta</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].discount_percentage</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].brand.action.page.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand.logo.url</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_dependent</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].category_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].item_code</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].multi_size</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].country_of_origin</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].item_type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].departments</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].image_nature</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].moq</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_cod</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_gift</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_available</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].l3_categories</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### clearCollectionItemsPriority
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### addCollectionItems
+
+- ##### What's New
+	- [Added] property <code>reset_items</code> of schema <code>CollectionItemUpdateSchema</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getCollectionDetail
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cron</code> of schema <code>GetCollectionDetailResponseSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>logo.type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>logo.alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>logo.thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_id</code> of schema <code>GetCollectionDetailResponseSchema</code> in response with status code 200
+
+
+#### updateCollection
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in response with status code 200
+	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>seo.breadcrumbs[].action.type</code>, <code>seo.breadcrumbs[].action.page</code> in request body
+	- [Breaking] [Deleted] properties <code>seo.breadcrumbs[].action.type</code>, <code>seo.breadcrumbs[].action.page</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in request body
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteCollection
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAppDepartment
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getAppInventory
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getAppLocations
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].company.created_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company.created_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].company.created_on</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company.modified_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company.modified_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].company.modified_on</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company.verified_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company.verified_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].store_type</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].verified_by._id</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].verified_by.uid</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verified_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_id</code> of schema <code>GetLocationSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>items[].address.pincode</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>items[].company.addresses[].pincode</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Breaking] [Changed] <code>items[].phone_number</code> made optional in response with status code 200
+
+
+#### getConfigurations
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+
+
+#### createConfigurationProductListing
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>AppConfiguration</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AppConfiguration</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createConfigurationByType
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>AppConfiguration</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AppConfiguration</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>AppCatalogConfiguration</code> in response with status code 200
+
+
+#### getAppProduct
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>moq</code> of schema <code>OwnerAppItemResponse</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code>seo</code> of schema <code>OwnerAppItemResponse</code> in response with status code 200
+	- [Added] property <code>size_promotion_threshold</code> of schema <code>OwnerAppItemResponse</code> in response with status code 200
+
+
+#### updateAppProduct
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>moq.increment_unit</code>, <code>moq.maximum</code>, <code>moq.minimum</code> in request body
+	- [Breaking] [Deleted] properties <code>seo.description</code>, <code>seo.title</code>, <code>seo.sitemap</code>, <code>seo.breadcrumbs</code>, <code>seo.meta_tags</code>, <code>seo.canonical_url</code> in request body
+	- [Breaking] [Deleted] properties <code>size_promotion_threshold.threshold_type</code>, <code>size_promotion_threshold.threshold_value</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getApplicationProducts
+
+- ##### What's New
+	- [Added] property <code>items[].brand.type</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Added] property <code>items[].brand._custom_json</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code>items[].price</code> of schema <code>ProductListingPrice</code> in response with status code 200
+	- [Added] property <code>items[].grouped_attributes</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].categories</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].action</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].is_tryout</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].all_company_ids</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].is_custom_order</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>items[].collections</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] property <code>sort_on[].display</code> of schema <code>ProductSortOn</code> in response with status code 200
+	- [Added] property <code>sort_on[].logo</code> of schema <code>ProductSortOn</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].brand.action.page.params</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand.action.page.url</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,custom,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status,locate-us</code> from property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand.action.popup</code> of schema <code>Action</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].brand.logo.meta</code>, <code>items[].brand.logo.type</code>, <code>items[].brand.logo.url</code>, <code>items[].brand.logo.alt</code>, <code>items[].brand.logo.thumbnail</code> in response with status code 200
+	- [Deleted] Possible values from <code>default,standard</code> from property <code>items[].image_nature</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>composite,digital,packaging,set,standard</code> from property <code>items[].item_type</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].medias[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].medias[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].medias[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.effective.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.marked.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>items[].price.selling.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].product_online_date</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].popularity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].brand_uid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].category_uid</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].verification_status</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].channel_identifier</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].category_slug</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].size_guide</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3_categories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_ids</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].company_ids</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].departments</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].l3_category_names</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].sizes</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].product_group_tag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multi_size</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_gift</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_cod</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_dependent</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_available</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].moq</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].seo</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variants</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variant_media</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].variant_group</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].multi_categories</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].template_tag</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].net_quantity</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].custom_order</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].country_of_origin</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._custom_json</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].identifiers</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].item_id</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[]._custom_meta[].key</code>, <code>items[]._custom_meta[].value</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].discount_percentage</code> of schema <code>ApplicationProductsSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>filters[].values[].value</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Breaking] [Changed] <code>filters[].values[].value</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand.action.page.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand.logo.url</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>items[]._custom_meta[]</code> of schema <code>CustomMeta</code> in response with status code 200
+	- [Breaking] [Changed] <code>items[]._custom_meta[].key</code>, <code>items[]._custom_meta[].value</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_dependent</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].category_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].item_code</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].multi_size</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].brand_uid</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].country_of_origin</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].item_type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].departments</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].image_nature</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].moq</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].seo</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_cod</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_gift</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].is_available</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].l3_categories</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getDiscountedInventoryBySizeIdentifier
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].brand.id</code>, <code>items[].brand.name</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].company.id</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].dimension.height</code>, <code>items[].dimension.is_default</code>, <code>items[].dimension.length</code>, <code>items[].dimension.unit</code>, <code>items[].dimension.width</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].expiration_date</code> of schema <code>InventorySellerResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].manufacturer.address</code>, <code>items[].manufacturer.is_default</code>, <code>items[].manufacturer.name</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].price.currency</code>, <code>items[].price.effective</code>, <code>items[].price.marked</code>, <code>items[].price.tp_notes</code>, <code>items[].price.transfer</code>, <code>items[].price.updated_at</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.damaged.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.not_available.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.order_committed.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.sellable.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].return_config.returnable</code>, <code>items[].return_config.time</code>, <code>items[].return_config.unit</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].store.id</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].weight.is_default</code>, <code>items[].weight.shipping</code>, <code>items[].weight.unit</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].brand.id</code>, <code>items[].brand.name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].company.id</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].dimension.height</code>, <code>items[].dimension.is_default</code>, <code>items[].dimension.length</code>, <code>items[].dimension.unit</code>, <code>items[].dimension.width</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].manufacturer.address</code>, <code>items[].manufacturer.is_default</code>, <code>items[].manufacturer.name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].price.currency</code>, <code>items[].price.effective</code>, <code>items[].price.marked</code>, <code>items[].price.transfer</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].store.id</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].weight.is_default</code>, <code>items[].weight.shipping</code>, <code>items[].weight.unit</code> made optional in response with status code 200
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Added] property <code>brand.type</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Added] property <code>brand._custom_json</code> of schema <code>ProductBrand</code> in response with status code 200
+	- [Added] property <code>color</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>brand.action.page.params</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>brand.action.page.url</code> of schema <code>ActionPage</code> in response with status code 200
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,custom,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status,locate-us</code> from property <code>brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>brand.action.popup</code> of schema <code>Action</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>brand.logo.meta</code>, <code>brand.logo.type</code>, <code>brand.logo.url</code>, <code>brand.logo.alt</code>, <code>brand.logo.thumbnail</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>item_type</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>medias[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>medias[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>medias[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>product_online_date</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>country_of_origin</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>categories</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>tags</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>no_of_boxes</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>custom_order</code> of schema <code>ProductDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>brand.action.page.type</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>brand.logo.url</code> made optional in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 404
+
+
+#### getAppProducts
+
+- ##### What's New
+	- [Added] property <code>items[].color</code> of schema <code>RawProduct</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verified_on</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].action</code> of schema <code>RawProduct</code> in response with status code 200
+
+
+#### getAppReturnConfiguration
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AppReturnConfigResponseSchema</code> in response with status code 200
+
+
+#### createAppReturnConfiguration
+
+- ##### What's New
+	- [Breaking] [Added] <code>company_id</code> made required in request body
+	- [Breaking] [Added] <code>return_config_level</code> made required in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAppReturnConfiguration
+
+- ##### What's New
+	- [Breaking] [Added] <code>company_id</code> made required in request body
+	- [Breaking] [Added] <code>return_config_level</code> made required in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] property <code>app_id</code> of schema <code>DeleteAppCategoryReturnConfig</code> in request body
+	- [Added] property <code>company_id</code> of schema <code>DeleteAppCategoryReturnConfig</code> in request body
+	- [Breaking] [Added] <code>category_ids</code> made required in request body
+	- [Breaking] [Added] <code>company_id</code> made required in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getAppCategoryReturnConfig
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>page.current</code> of schema <code>PageResponseSchema</code> in response with status code 200
+
+
+#### createAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] property <code>app_id</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
+	- [Added] property <code>company_id</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
+	- [Breaking] [Added] <code>company_id</code> made required in request body
+	- [Breaking] [Added] <code>data</code> made required in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>data[].return_config.returnable</code>, <code>data[].return_config.time</code>, <code>data[].return_config.unit</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>data[].return_config.returnable</code>, <code>data[].return_config.time</code>, <code>data[].return_config.unit</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] property <code>app_id</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
+	- [Added] property <code>company_id</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
+	- [Breaking] [Added] <code>company_id</code> made required in request body
+	- [Breaking] [Added] <code>data</code> made required in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>data[].return_config.returnable</code>, <code>data[].return_config.time</code>, <code>data[].return_config.unit</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>data[].return_config.returnable</code>, <code>data[].return_config.time</code>, <code>data[].return_config.unit</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createCustomAutocompleteRule
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAutocompleteKeyword
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteAutocompleteKeyword
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createSearchRerank
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateSearchRerankResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateSearchRerankResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getSearchRerank
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GetSearchRerankItemResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GetSearchRerankItemResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>page.current</code> of schema <code>PageResponseSchema</code> in response with status code 200
+
+
+#### getSearchRerankDetail
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetSearchRerankDetailResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetSearchRerankDetailResponseSchema</code> in response with status code 200
+
+
+#### updateSearchRerankConfiguration
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>UpdateSearchRerankResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>UpdateSearchRerankResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteSearchRerankConfiguration
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createSearchConfiguration
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by._id</code>, <code>created_by.contact</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateSearchConfigurationRequestSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>modified_by._id</code>, <code>modified_by.contact</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateSearchConfigurationRequestSchema</code> in request body
+
+
+#### getSearchConfiguration
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by._id</code>, <code>created_by.contact</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetSearchConfigurationResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by._id</code>, <code>modified_by.contact</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetSearchConfigurationResponseSchema</code> in response with status code 200
+
+
+#### updateSearchConfiguration
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>UpdateSearchConfigurationRequestSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>UpdateSearchConfigurationRequestSchema</code> in request body
+
+
+#### createCustomKeyword
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateSearchKeywords
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteSearchKeywords
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateAppLocation
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### listCategories
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>Category</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].marketplaces.ajio</code>, <code>items[].marketplaces.facebook</code>, <code>items[].marketplaces.google</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].media.landscape</code>, <code>items[].media.logo</code>, <code>items[].media.portrait</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>Category</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].media.landscape</code>, <code>items[].media.logo</code>, <code>items[].media.portrait</code> made optional in response with status code 200
+
+
+#### getCategoryData
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>Category</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.marketplaces.ajio</code>, <code>data.marketplaces.facebook</code>, <code>data.marketplaces.google</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.media.landscape</code>, <code>data.media.logo</code>, <code>data.media.portrait</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>Category</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.media.landscape</code>, <code>data.media.logo</code>, <code>data.media.portrait</code> made optional in response with status code 200
+
+
+#### listDepartmentsData
+
+- ##### What's New
+	- [Added] property <code>items[].page_no</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] property <code>items[].page_size</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] property <code>items[].search</code> of schema <code>GetDepartment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].id</code> of schema <code>GetDepartment</code> in response with status code 200
+
+
+#### getDepartmentData
+
+- ##### What's New
+	- [Added] property <code>items[].page_no</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] property <code>items[].page_size</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] property <code>items[].search</code> of schema <code>GetDepartment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].id</code> of schema <code>GetDepartment</code> in response with status code 200
+
+
+#### listTemplateBrandTypeValues
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getInventories
+
+- ##### What's New
+	- [Added] <code>items[].return_config.returnable</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.inventory_updated_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].expiration_date</code> of schema <code>GetInventories</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].identifier.primary</code>, <code>items[].identifier.gtin_value</code>, <code>items[].identifier.gtin_type</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].inventory_updated_on</code> of schema <code>GetInventories</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getInventoryBulkUploadHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>BulkInventoryGetItems</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>BulkInventoryGetItems</code> in response with status code 200
+
+
+#### createBulkInventoryJob
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by</code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_on</code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>is_active</code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by</code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_on</code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>InventoryBulkResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>batch_id</code>, <code>created_on</code> made optional in response with status code 200
+
+
+#### createBulkInventory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>sizes[].expiration_date</code> of schema <code>InventoryJobPayload</code> in request body
+
+
+#### createInventoryExportJob
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>InventoryExportResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>InventoryExportResponseSchema</code> in response with status code 200
+
+
+#### getInventoryExport
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].completed_on</code> of schema <code>InventoryExportItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>InventoryExportItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>InventoryExportItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+
+
+#### patchProductExportDetail
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>PatchProductDownloadsDataResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>PatchProductDownloadsDataResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getProductExportDetail
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetProductDownloadsResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetProductDownloadsResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### patchInventoryExportDetail
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>EditInventoryDataDownloadsResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>EditInventoryDataDownloadsResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getInventoryExportDetail
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>EditInventoryDataDownloadsResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>EditInventoryDataDownloadsResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### exportInventoryConfig
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### validateProductTemplateSchema
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getCompanyDetail
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>company_type</code> of schema <code>OptinCompanyDetail</code> in response with status code 200
+
+
+#### getStoreDetail
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>StoreDetail</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>StoreDetail</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].store_type</code> of schema <code>StoreDetail</code> in response with status code 200
+
+
+#### getProductAttributes
+
+- ##### What's New
+	- [Added] property <code>items[].filters.depends_on</code> of schema <code>AttributeMasterFilter</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>AttributeMasterSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].filters.ddepends_on</code> of schema <code>AttributeMasterFilter</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>AttributeMasterSchema</code> in response with status code 200
+
+
+#### getAttribute
+
+- ##### What's New
+	- [Added] property <code>filters.depends_on</code> of schema <code>AttributeMasterFilter</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>AttributeDetail</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AttributeDetail</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>filters.ddepends_on</code> of schema <code>AttributeMasterFilter</code> in response with status code 200
+
+
+#### createProductBundle
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>ProductBundleRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>ProductBundleRequestSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>created_by._id</code>, <code>created_by.contact</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by._id</code>, <code>modified_by.contact</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>company_id</code> of schema <code>ProductBundleRequestSchema</code> in request body
+
+
+#### getProductBundle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by._id</code>, <code>items[].created_by.contact</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by._id</code>, <code>items[].modified_by.contact</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+
+
+#### getProductBundleDetail
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateProductBundle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>ProductBundleUpdateRequestSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>created_by._id</code>, <code>created_by.contact</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by._id</code>, <code>modified_by.contact</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetProductBundleCreateResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>company_id</code> of schema <code>ProductBundleUpdateRequestSchema</code> in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getProductAssetsInBulk
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>Items</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>Items</code> in response with status code 200
+
+
+#### getProductBulkUploadHistory
+
+- ##### What's New
+	- [Added] Default value <code></code> to property <code>items[].template.attributes</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].template.attributes</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Default value <code></code> to property <code>items[].template.categories</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].template.categories</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Default value <code></code> to property <code>items[].template.departments</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].template.departments</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] property <code>items[].template.id</code> of schema <code>ProductTemplate</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ProductBulkRequestSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ProductBulkRequestSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].template.created_by.email</code>, <code>items[].template.created_by.uid</code>, <code>items[].template.created_by.user_id</code>, <code>items[].template.created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].template.created_on</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].template.modified_by.email</code>, <code>items[].template.modified_by.uid</code>, <code>items[].template.modified_by.user_id</code>, <code>items[].template.modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].template.modified_on</code> of schema <code>ProductTemplate</code> in response with status code 200
+
+
+#### createProductsInBulk
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### listProductTemplate
+
+- ##### What's New
+	- [Added] Default value <code></code> to property <code>items[].attributes</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].attributes</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Default value <code></code> to property <code>items[].categories</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].categories</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Default value <code></code> to property <code>items[].departments</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].departments</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Added] property <code>items[].id</code> of schema <code>ProductTemplate</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ProductTemplate</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ProductTemplate</code> in response with status code 200
+
+
+#### listProductTemplateCategories
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>slug</code> (type: <code>string</code>)
+
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### downloadProductTemplateViews
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### validateProductTemplate
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### validateProductGlobalTemplate
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>validateProductGlobalTemplate</code>
+
+
+
+#### getProductValidation
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getInventoryBySizeIdentifier
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].brand.id</code>, <code>items[].brand.name</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].company.id</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].dimension.height</code>, <code>items[].dimension.is_default</code>, <code>items[].dimension.length</code>, <code>items[].dimension.unit</code>, <code>items[].dimension.width</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].expiration_date</code> of schema <code>InventorySellerResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].manufacturer.address</code>, <code>items[].manufacturer.is_default</code>, <code>items[].manufacturer.name</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].price.currency</code>, <code>items[].price.effective</code>, <code>items[].price.marked</code>, <code>items[].price.tp_notes</code>, <code>items[].price.transfer</code>, <code>items[].price.updated_at</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.damaged.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.not_available.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.order_committed.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].quantities.sellable.updated_at</code> of schema <code>QuantityBase</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].return_config.returnable</code>, <code>items[].return_config.time</code>, <code>items[].return_config.unit</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].store.id</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].weight.is_default</code>, <code>items[].weight.shipping</code>, <code>items[].weight.unit</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>items[].brand.id</code>, <code>items[].brand.name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].company.id</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].dimension.height</code>, <code>items[].dimension.is_default</code>, <code>items[].dimension.length</code>, <code>items[].dimension.unit</code>, <code>items[].dimension.width</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].manufacturer.address</code>, <code>items[].manufacturer.is_default</code>, <code>items[].manufacturer.name</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].price.currency</code>, <code>items[].price.effective</code>, <code>items[].price.marked</code>, <code>items[].price.transfer</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].store.id</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>items[].weight.is_default</code>, <code>items[].weight.shipping</code>, <code>items[].weight.unit</code> made optional in response with status code 200
+
+
+#### getProductSize
+
+- ##### What's New
+	- [Added] property <code>multi_size</code> of schema <code>Product</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>itemCode</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>brandUid</code> (type: <code>integer</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>uid</code> (type: <code>integer</code>)
+
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>Product</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>item_type</code> of schema <code>Product</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>Product</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>tax_identifier.hsn_code</code>, <code>tax_identifier.hsn_code_id</code>, <code>tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>verified_on</code> of schema <code>Product</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteSize
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getInventoryBySize
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>InventoryResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getVariantsOfProducts
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>variants[].media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>variants[].media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>variants[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 404
+
+
+#### getCompanyVerification
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getProductVerificationDetails
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>ProductVerificationModel</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>ProductVerificationModel</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createSizeGuide
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>ValidateSizeGuide</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>ValidateSizeGuide</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>integer</code> of property <code>company_id</code> of schema <code>ValidateSizeGuide</code> in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getSizeGuides
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>url</code> to property <code>items[].image</code> of schema <code>SizeGuideResponse</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>page.current</code> of schema <code>Page</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>page.item_total</code> of schema <code>Page</code> in response with status code 200
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>page.size</code> of schema <code>Page</code> in response with status code 200
+	- [Added] property <code>page.next_id</code> of schema <code>Page</code> in response with status code 200
+	- [Added] property <code>page.type</code> of schema <code>Page</code> in response with status code 200
+	- [Added] property <code>page.total</code> of schema <code>Page</code> in response with status code 200
+	- [Added] <code>page.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>SizeGuideItem</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].guide.meta</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>SizeGuideItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].description</code> of schema <code>SizeGuideItem</code> in response with status code 200
+
+
+#### getSizeGuide
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>url</code> to property <code>image</code> of schema <code>SizeGuideResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SizeGuideResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>SizeGuideResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateSizeGuide
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>ValidateSizeGuide</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>ValidateSizeGuide</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>integer</code> of property <code>company_id</code> of schema <code>ValidateSizeGuide</code> in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createListingConfiguration
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createGroupConfiguration
+
+- ##### What's New
+	- [Added] property <code>id</code> of schema <code>AppConfigurationDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>app_id</code> made optional in response with status code 200
+
+
+#### getGroupConfigurations
+
+- ##### What's New
+	- [Added] property <code>data[].attributes[].unit</code> of schema <code>AttributeType</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] minimum validator for data[].attributes[].priority in response with status code 200
+	- [Deleted] minimum validator for data[].priority in response with status code 200
+	- [Breaking] [Deleted] property <code>data[].template_slugs</code> of schema <code>ConfigItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data[].seo</code> of schema <code>ConfigItem</code> in response with status code 200
+
+
+#### updateGroupConfiguration
+
+- ##### What's New
+	- [Added] property <code>id</code> of schema <code>AppConfigurationDetail</code> in request body
+	- [Added] property <code>id</code> of schema <code>AppConfigurationDetail</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>app_id</code> made optional in request body
+	- [Breaking] [Changed] <code>app_id</code> made optional in response with status code 200
+
+
+#### updateListingConfiguration
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getAllProductHsnCodes
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>string</code> to property <code>items[].reporting_hsn</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].taxes[].effective_date</code> of schema <code>TaxSlab</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>page.current</code> of schema <code>PageResponseSchema</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getSingleProductHSNCode
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>string</code> to property <code>reporting_hsn</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>taxes[].effective_date</code> of schema <code>TaxSlab</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateInventories
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload[].expiration_date</code> of schema <code>InventoryPayload</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### listInventoryExport
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>InventoryExportJobList</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>InventoryExportJobList</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createInventoryExport
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>filters.brand_ids</code>, <code>filters.from_date</code>, <code>filters.quantity</code>, <code>filters.store_ids</code>, <code>filters.to_date</code> in request body
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>InventoryExportResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>InventoryExportResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] <code>filters.store_ids</code> made optional in request body
+
+
+#### getProducts
+
+- ##### What's New
+	- [Added] properties <code>items[].category.l3</code>, <code>items[].category.l1</code>, <code>items[].category.l2</code> in response with status code 200
+	- [Added] property <code>items[].created_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].product_publish.product_online_date</code> of schema <code>ProductPublish</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].sizes[].size</code>, <code>items[].sizes[].store_count</code>, <code>items[].sizes[].sellable_quantity</code>, <code>items[].sizes[].sellable</code>, <code>items[].sizes[].size_priority</code>, <code>items[].sizes[].identifiers</code>, <code>items[].sizes[].price</code>, <code>items[].sizes[].seller_identifier</code>, <code>items[].sizes[].price_transfer</code>, <code>items[].sizes[].track_inventory</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verified_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+
+#### createProduct
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>days,hours</code> to property <code>custom_order.manufacturing_time_unit</code> of schema <code>CustomOrder</code> in request body
+	- [Added] Default value to property <code>custom_order.is_custom_order</code> of schema <code>CustomOrder</code> in request body
+	- [Added] Default value to property <code>custom_order.manufacturing_time</code> of schema <code>CustomOrder</code> in request body
+	- [Breaking] [Added] minimum validator for custom_order.manufacturing_time in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>highlights[]</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+	- [Added] properties <code>sizes[].size</code>, <code>sizes[].price</code>, <code>sizes[].price_effective</code>, <code>sizes[].price_transfer</code>, <code>sizes[].currency</code>, <code>sizes[].item_length</code>, <code>sizes[].item_width</code>, <code>sizes[].item_height</code>, <code>sizes[].item_weight</code>, <code>sizes[].item_dimensions_unit_of_measure</code>, <code>sizes[].item_weight_unit_of_measure</code>, <code>sizes[].track_inventory</code>, <code>sizes[].identifiers</code>, <code>sizes[]._custom_json</code>, <code>sizes[].name</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>media[].type</code> of schema <code>Media</code> in request body
+	- [Breaking] [Deleted] property <code>media[].alt</code> of schema <code>Media</code> in request body
+	- [Breaking] [Deleted] property <code>media[].thumbnail</code> of schema <code>Media</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>product_publish.product_online_date</code> of schema <code>ProductPublish</code> in request body
+	- [Breaking] [Deleted] property <code>requester</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+	- [Breaking] [Deleted] property <code>uid</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>custom_order.is_custom_order</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### uploadBulkProducts
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>product_type</code> of schema <code>BulkProductJob</code> in request body
+
+
+#### getProductExportJobs
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>items[].template_tags</code> of schema <code>ProductTemplateExportResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ProductTemplateExportResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createProductExportJob
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>filters.from_date</code> of schema <code>ProductTemplateExportFilterRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>filters.to_date</code> of schema <code>ProductTemplateExportFilterRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_on</code> of schema <code>CreateProductDownloadsDataResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>CreateProductDownloadsDataResponseSchema</code> in response with status code 200
+
+
+#### getProduct
+
+- ##### What's New
+	- [Added] properties <code>data.category.l3</code>, <code>data.category.l1</code>, <code>data.category.l2</code> in response with status code 200
+	- [Added] property <code>data.created_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>data.item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>data.media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.product_publish.product_online_date</code> of schema <code>ProductPublish</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.sizes[].size</code>, <code>data.sizes[].store_count</code>, <code>data.sizes[].sellable_quantity</code>, <code>data.sizes[].sellable</code>, <code>data.sizes[].size_priority</code>, <code>data.sizes[].identifiers</code>, <code>data.sizes[].price</code>, <code>data.sizes[].seller_identifier</code>, <code>data.sizes[].price_transfer</code>, <code>data.sizes[].track_inventory</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.tax_identifier.hsn_code</code>, <code>data.tax_identifier.hsn_code_id</code>, <code>data.tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.verified_on</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### editProduct
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>days,hours</code> to property <code>custom_order.manufacturing_time_unit</code> of schema <code>CustomOrder</code> in request body
+	- [Added] Default value to property <code>custom_order.is_custom_order</code> of schema <code>CustomOrder</code> in request body
+	- [Added] Default value to property <code>custom_order.manufacturing_time</code> of schema <code>CustomOrder</code> in request body
+	- [Breaking] [Added] minimum validator for custom_order.manufacturing_time in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>highlights[]</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+	- [Added] properties <code>sizes[].size</code>, <code>sizes[].price</code>, <code>sizes[].price_effective</code>, <code>sizes[].price_transfer</code>, <code>sizes[].currency</code>, <code>sizes[].item_length</code>, <code>sizes[].item_width</code>, <code>sizes[].item_height</code>, <code>sizes[].item_weight</code>, <code>sizes[].item_dimensions_unit_of_measure</code>, <code>sizes[].item_weight_unit_of_measure</code>, <code>sizes[].track_inventory</code>, <code>sizes[].identifiers</code>, <code>sizes[]._custom_json</code>, <code>sizes[].name</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>media[].type</code> of schema <code>Media</code> in request body
+	- [Breaking] [Deleted] property <code>media[].alt</code> of schema <code>Media</code> in request body
+	- [Breaking] [Deleted] property <code>media[].thumbnail</code> of schema <code>Media</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>product_publish.product_online_date</code> of schema <code>ProductPublish</code> in request body
+	- [Breaking] [Deleted] property <code>requester</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+	- [Breaking] [Deleted] property <code>uid</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>custom_order.is_custom_order</code> made optional in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteProduct
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### allSizes
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteRealtimeInventory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload[].expiration_date</code> of schema <code>InventoryPayload</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### updateRealtimeInventory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload[].expiration_date</code> of schema <code>InventoryPayload</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].data.expiration_date</code> of schema <code>InventoryPayload</code> in response with status code 400
+
+
+#### getProductTemplateBySlug
+
+- ##### What's New
+	- [Added] <code>items[].page</code>, <code>items[].items</code> made required in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>page</code>, <code>items</code> made optional in response with status code 200
+
+
+#### getMarketplaces
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>Marketplaces</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>Marketplaces</code> in response with status code 200
+
+
+#### updateMarketplaceOptin
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+
+
+#### createMarketplaceOptin
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 201
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 201
+
+
+#### getAutocompletePreview
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].logo.type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].logo.alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].logo.thumbnail</code> of schema <code>Media</code> in response with status code 200
+
+
+#### createMerchandisingRulePinAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateMerchandisingRulePinAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getMerchandisingRulePinAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createMerchandisingRuleHideAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateMerchandisingRuleHideAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getMerchandisingRuleHideAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createMerchandisingRuleBoostAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateMerchandisingRuleBoostAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getMerchandisingRuleBoostAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createMerchandisingRuleBuryAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### updateMerchandisingRuleBuryAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getMerchandisingRuleBuryAction
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### createMerchandisingRuleQuery
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>query.query.condition</code>, <code>query.query.search_query</code>, <code>query.query.synonyms</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>query.query.condition</code>, <code>query.query.search_query</code>, <code>query.query.synonyms</code> made optional in request body
+
+
+#### updateMerchandisingRuleQuery
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>query.query.condition</code>, <code>query.query.search_query</code>, <code>query.query.synonyms</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>query.query.condition</code>, <code>query.query.search_query</code>, <code>query.query.synonyms</code> made optional in request body
+
+
+#### saveMerchandisingRules
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.end</code> of schema <code>CollectionSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].end</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.next_schedule[].start</code> of schema <code>NextSchedule</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>_schedule.start</code> of schema <code>CollectionSchedule</code> in request body
+
+
+#### deleteMerchandisingRule
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### deleteMerchandisingRulesPreview
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getLivePreview
+
+- ##### What's New
+	- [Added] property <code>items[].multi_size</code> of schema <code>Product</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>Product</code> in response with status code 200
+	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].item_type</code> of schema <code>Product</code> in response with status code 200
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>Product</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].tax_identifier.hsn_code</code>, <code>items[].tax_identifier.hsn_code_id</code>, <code>items[].tax_identifier.reporting_hsn</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verified_on</code> of schema <code>Product</code> in response with status code 200
+
+
+#### createAppPriceFactory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryResponseSchema</code> in response with status code 200
+
+
+#### getAppPriceFactories
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>items[].created_by.email</code>, <code>items[].created_by.uid</code>, <code>items[].created_by.user_id</code>, <code>items[].created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>items[].modified_by.email</code>, <code>items[].modified_by.uid</code>, <code>items[].modified_by.user_id</code>, <code>items[].modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+
+
+#### getAppPriceFactory
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+
+
+#### editAppPriceFactory
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>AppPriceFactory</code> in response with status code 200
+
+
+#### addProductsInPriceFactoryByZoneId
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### getProductsInPriceFactoryByZoneId
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].alt</code> of schema <code>Media</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
+
+
+#### createProductPriceFactoryBulkJob
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobResponseSchema</code> in response with status code 200
+
+
+#### pollProductPriceFactoryBulkJob
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobPollResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobPollResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+
+
+#### validateProductPriceFactoryBulkJob
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobValidateResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobValidateResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### processProductPriceFactoryBulkJob
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>created_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.email</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>modified_by.uid</code> of schema <code>UserInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryProductBulkJobResponseSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### exportProductsInPriceFactory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CreateAppPriceFactoryProductExportJobResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CreateAppPriceFactoryProductExportJobResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>created_by.email</code>, <code>created_by.uid</code>, <code>created_by.user_id</code>, <code>created_by.username</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>modified_by.email</code>, <code>modified_by.uid</code>, <code>modified_by.user_id</code>, <code>modified_by.username</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 400
+
+
+#### pollPriceFactoryJobs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>AppPriceFactoryProductExportPollJobResponseSchema</code> in response with status code 200
+
+
+#### getSynonyms
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>SynonymResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>SynonymResponseSchema</code> in response with status code 200
+
+
+#### exportSynonyms
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SynonymExportResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>SynonymExportResponseSchema</code> in response with status code 200
+
+
+#### uploadSynonyms
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SynonymUploadResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>SynonymUploadResponseSchema</code> in response with status code 200
+
+
+#### getAppPriceById
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>data[].price</code> of schema <code>ProductListingPrice</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>data[].price.effective.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>data[].price.marked.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+	- [Deleted] Possible values from <code>INR,USD,EUR</code> from property <code>data[].price.selling.currency_code</code> of schema <code>CurrencyCodeEnum</code> in response with status code 200
+
+
+#### getHsnCode
+
+- ##### What's New
+	- [Added] method <code>getHsnCode</code>
+
+
+
+### Communication
+
+
+
+#### getEventSubscriptions
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>EventSubscriptionObj</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>EventSubscriptionObj</code> in response with status code 200
+
+
+#### createEventSubscriptionsByBulk
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].created_at</code> of schema <code>EventSubscriptionsBulkUpdateRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>EventSubscriptionsBulkUpdateRes</code> in response with status code 200
+
+
+#### getEmailTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+
+
+#### createEmailTemplate
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+
+
+#### getEmailTemplateById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+
+
+#### updateEmailTemplateById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+
+
+#### getSystemEmailTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].created_at</code> of schema <code>SystemEmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>SystemEmailTemplate</code> in response with status code 200
+
+
+#### getSubscribedEmailTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>EmailTemplate</code> in response with status code 200
+
+
+#### getEmailProviders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>EmailProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>EmailProvider</code> in response with status code 200
+
+
+#### createEmailProvider
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailProvider</code> in response with status code 200
+
+
+#### getEmailProviderById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailProvider</code> in response with status code 200
+
+
+#### updateEmailProviderById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>EmailProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>EmailProvider</code> in response with status code 200
+
+
+#### getSmsProviders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>SmsProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>SmsProvider</code> in response with status code 200
+
+
+#### createSmsProvider
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsProvider</code> in response with status code 200
+
+
+#### getSmsProviderById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsProvider</code> in response with status code 200
+
+
+#### updateSmsProviderById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsProvider</code> in response with status code 200
+
+
+#### getSmsTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+
+
+#### createSmsTemplate
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+
+
+#### getSmsTemplateById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+
+
+#### updateSmsTemplateById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+
+
+#### getSystemSmsTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].created_at</code> of schema <code>SystemSmsTemplates</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>SystemSmsTemplates</code> in response with status code 200
+
+
+#### getSubscribedSmsTemplates
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].items[].created_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].items[].updated_at</code> of schema <code>SmsTemplate</code> in response with status code 200
+
+
+#### getJobs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Job</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>Job</code> in response with status code 200
+
+
+#### getJobLogs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>JobLog</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>JobLog</code> in response with status code 200
+
+
+#### postGlobalVariables
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>GlobalVariablesPostRes</code> in response with status code 200
+
+
+#### getCommunicationLogs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].expire_at</code> of schema <code>Log</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Log</code> in response with status code 200
+
+
+#### updateAppProviders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AppProvider</code> in response with status code 200
+
+
+#### getAppProviders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppProvider</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>AppProvider</code> in response with status code 200
+
+
+#### getAudiences
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Audience</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>Audience</code> in response with status code 200
+
+
+#### createAudience
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Audience</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Audience</code> in response with status code 200
+
+
+#### getAudienceById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Audience</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Audience</code> in response with status code 200
+
+
+#### getCampaigns
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Campaign</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>Campaign</code> in response with status code 200
+
+
+#### createCampaign
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Campaign</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Campaign</code> in response with status code 200
+
+
+#### getCampaignById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Campaign</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Campaign</code> in response with status code 200
+
+
+#### updateCampaignById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Campaign</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Campaign</code> in response with status code 200
+
+
+#### getSystemNotifications
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>SystemNotification</code> in response with status code 200
+
+
+#### sendByCompanyCommunicationSynchronously
+
+- ##### What's New
+	- [Added] method <code>sendByCompanyCommunicationSynchronously</code>
+
+
+
+#### sendEngineCommunicationSynchronously
+
+- ##### What's New
+	- [Added] method <code>sendEngineCommunicationSynchronously</code>
+
+
+
+#### senByCompanyCommunicationAsynchronously
+
+- ##### What's New
+	- [Added] method <code>senByCompanyCommunicationAsynchronously</code>
+
+
+
+#### sendByCompanyCommunicationInstantly
+
+- ##### What's New
+	- [Added] method <code>sendByCompanyCommunicationInstantly</code>
+
+
+
+#### createEventSubscriptions
+
+- ##### What's New
+	- [Added] method <code>createEventSubscriptions</code>
+
+
+
+#### getEventSubscriptionsById
+
+- ##### What's New
+	- [Added] method <code>getEventSubscriptionsById</code>
+
+
+
+#### editEventSubscriptions
+
+- ##### What's New
+	- [Added] method <code>editEventSubscriptions</code>
+
+
+
+#### deleteEventSubscriptionsById
+
+- ##### What's New
+	- [Added] method <code>deleteEventSubscriptionsById</code>
+
+
+
+#### deleteEmailProviderById
+
+- ##### What's New
+	- [Added] method <code>deleteEmailProviderById</code>
+
+
+
+#### deleteSmsProviderById
+
+- ##### What's New
+	- [Added] method <code>deleteSmsProviderById</code>
+
+
+
+#### createJobs
+
+- ##### What's New
+	- [Added] method <code>createJobs</code>
+
+
+
+#### updateAppProvidersGlobalProvider
+
+- ##### What's New
+	- [Added] method <code>updateAppProvidersGlobalProvider</code>
+
+
+
+#### getDummyDatasourcesMeta
+
+- ##### What's New
+	- [Added] method <code>getDummyDatasourcesMeta</code>
+
+
+
+#### getDummyDatasources
+
+- ##### What's New
+	- [Added] method <code>getDummyDatasources</code>
+
+
+
+#### updateAudienceById
+
+- ##### What's New
+	- [Added] method <code>updateAudienceById</code>
+
+
+
+#### deleteAudienceById
+
+- ##### What's New
+	- [Added] method <code>deleteAudienceById</code>
+
+
+
+#### getNSampleRecordsFromCsvByGet
+
+- ##### What's New
+	- [Added] method <code>getNSampleRecordsFromCsvByGet</code>
+
+
+
+#### deleteCampaignById
+
+- ##### What's New
+	- [Added] method <code>deleteCampaignById</code>
+
+
+
+#### createAppPushtoken
+
+- ##### What's New
+	- [Added] method <code>createAppPushtoken</code>
+
+
+
+### CompanyProfile
+
+
+
+#### cbsOnboardGet
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>taxes[].effective_date</code> of schema <code>CompanyTaxesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>verified_on</code> of schema <code>GetCompanyProfileSerializerResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetCompanyProfileSerializerResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetCompanyProfileSerializerResponseSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>company_type</code> of schema <code>GetCompanyProfileSerializerResponseSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>addresses[].address_type</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### updateCompany
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>company_type</code> of schema <code>UpdateCompany</code> in request body
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getBrand
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetBrandResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetBrandResponseSchema</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### editBrand
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getBrands
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>items[].company.addresses[].address_type</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].brand.created_on</code> of schema <code>GetBrandResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].brand.modified_on</code> of schema <code>GetBrandResponseSchema</code> in response with status code 200
+
+
+#### createLocation
+
+- ##### What's New
+	- [Added] property <code>is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>store_type</code> of schema <code>LocationSchema</code> in request body
+
+
+#### getLocationDetail
+
+- ##### What's New
+	- [Added] property <code>is_hyperlocal_active</code> of schema <code>GetLocationSerializer</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>verified_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>company._custom_json</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>company.verified_on</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>company.created_on</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>company.company_type</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>company.modified_on</code> of schema <code>GetCompanySchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>company.addresses[].address_type</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>address.address_type</code> of schema <code>GetAddressSchema</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>store_type</code> of schema <code>GetLocationSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetLocationSchema</code> in response with status code 200
+
+
+#### updateLocation
+
+- ##### What's New
+	- [Added] property <code>is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>store_type</code> of schema <code>LocationSchema</code> in request body
+
+
+#### createLocationBulk
+
+- ##### What's New
+	- [Added] property <code>data[].is_hyperlocal_active</code> of schema <code>LocationSerializer</code> in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>data[].store_type</code> of schema <code>LocationSchema</code> in request body
+
+
+### Configuration
+
+
+
+#### getAppFeatures
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.created_at</code> of schema <code>AppFeature</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.modified_at</code> of schema <code>AppFeature</code> in response with status code 200
+
+
+#### updateAppFeatures
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.created_at</code> of schema <code>AppFeature</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.modified_at</code> of schema <code>AppFeature</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppFeature</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppFeature</code> in response with status code 200
+
+
+#### modifyAppFeatures
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.created_at</code> of schema <code>AppFeature</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>feature.modified_at</code> of schema <code>AppFeature</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppFeature</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppFeature</code> in response with status code 200
+
+
+#### getAppContactInfo
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+
+
+#### updateAppContactInfo
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInformation</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInformation</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInformation</code> in response with status code 200
+
+
+#### getAppApiTokens
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TokenResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>TokenResponseSchema</code> in response with status code 200
+
+
+#### updateAppApiTokens
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TokenResponseSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>TokenResponseSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TokenResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>TokenResponseSchema</code> in response with status code 200
+
+
+#### getAppStores
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>items[]</code> of schema <code>AppInventoryStores</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>AppInventoryStores</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].store_type</code> of schema <code>AppInventoryStores</code> in response with status code 200
+
+
+#### getInventoryConfig
+
+- ##### What's New
+	- [Added] property <code>inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+	- [Added] property <code>inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+
+
+#### updateInventoryConfig
+
+- ##### What's New
+	- [Added] property <code>inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in request body
+	- [Added] property <code>inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in request body
+	- [Added] property <code>inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+	- [Added] property <code>inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInventory</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInventory</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+
+
+#### partiallyUpdateInventoryConfig
+
+- ##### What's New
+	- [Added] property <code>inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+	- [Added] property <code>inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+
+
+#### getAppCurrencyConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+
+
+#### createAppCurrencyConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppSupportedCurrency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppSupportedCurrency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+
+
+#### updateAppCurrencyConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppSupportedCurrency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppSupportedCurrency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppSupportedCurrency</code> in response with status code 200
+
+
+#### getAppSupportedCurrency
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>supported_currency[].created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>supported_currency[].modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>supported_currency[].subunit</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AppCurrencyResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AppCurrencyResponseSchema</code> in response with status code 200
+
+
+#### createApplication
+
+- ##### What's New
+	- [Added] property <code>configuration.inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in request body
+	- [Added] property <code>configuration.inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in request body
+	- [Added] property <code>configuration.inventory.enable_zone_overlapping</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+	- [Added] property <code>configuration.inventory.sort_popular_first</code> of schema <code>AppInventoryConfig</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>configuration.created_at</code> of schema <code>ApplicationInventory</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>configuration.modified_at</code> of schema <code>ApplicationInventory</code> in request body
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>app.channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>app.created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>app.modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>app.tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>configuration.created_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>configuration.modified_at</code> of schema <code>ApplicationInventory</code> in response with status code 200
+
+
+#### getApplications
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>items[].channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getApplicationById
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### updateApplication
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>channel_type</code> of schema <code>Application</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in request body
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getCurrencies
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### createCurrency
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in request body
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### getCurrency
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### updateCurrency
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in request body
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Currency</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>subunit</code> of schema <code>Currency</code> in response with status code 200
+
+
+#### getDomainAvailibility
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>is_custom_domain</code> of schema <code>DomainSuggestionsRequestSchema</code> in request body
+
+
+#### getApplicationDomainAvailibility
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>is_custom_domain</code> of schema <code>DomainSuggestionsRequestSchema</code> in request body
+
+
+#### getStoreByBrands
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].store_type</code> of schema <code>BrandStoreInfo</code> in response with status code 200
+
+
+#### updateApplicationVersion
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>PlatformVersion</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PlatformVersion</code> in response with status code 200
+
+
+#### createTokens
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### deleteToken
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>website-and-mobile-apps,store</code> from property <code>channel_type</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>Application</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>tokens[].created_at</code> of schema <code>TokenSchema</code> in response with status code 200
+
+
+#### getStoresForACompany
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>stores[]</code> of schema <code>AppInventoryStores</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>stores[].modified_on</code> of schema <code>AppInventoryStores</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>stores[].store_type</code> of schema <code>AppInventoryStores</code> in response with status code 200
+
+
+#### getCurrencyExchangeRates
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCurrencyExchangeRates</code>
+
+
+
+### Content
+
+
+
+#### getAnnouncementsList
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+
+
+#### createAnnouncement
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AdminAnnouncementSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AdminAnnouncementSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 201
+
+
+#### getAnnouncementById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+
+
+#### updateAnnouncement
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>AdminAnnouncementSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>AdminAnnouncementSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+
+
+#### updateAnnouncementSchedule
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+
+
+#### deleteAnnouncement
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.modified_at</code> of schema <code>AdminAnnouncementSchema</code> in response with status code 200
+
+
+#### createBlog
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getBlogs
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### updateBlog
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### deleteBlog
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getComponentById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### addDataLoader
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+
+
+#### getDataLoaders
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>DataLoaderSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>DataLoaderSchema</code> in response with status code 200
+
+
+#### deleteDataLoader
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+
+
+#### editDataLoader
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+
+
+#### getDataLoadersByService
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+
+
+#### selectDataLoader
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>DataLoaderResponseSchema</code> in response with status code 200
+
+
+#### updateFaqCategory
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deleteFaqCategory
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deleteFaq
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getLandingPages
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### createLandingPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### updateLandingPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### deleteLandingPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getLegalInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+
+
+#### updateLegalInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ApplicationLegal</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationLegal</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ApplicationLegal</code> in response with status code 200
+
+
+#### getNavigations
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### createNavigation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getDefaultNavigations
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getNavigationBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### updateNavigation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### deleteNavigation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### createPagePreview
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### updatePagePreview
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### deletePage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### addPathRedirectionRules
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PathMappingSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PathMappingSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+
+
+#### getPathRedirectionRules
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.docs[].updated_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.docs[].created_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+
+
+#### getPathRedirectionRule
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+
+
+#### updatePathRedirectionRules
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PathMappingSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PathMappingSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+
+
+#### deletePathRedirectionRules
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.created_at</code> of schema <code>PathMappingSchema</code> in response with status code 200
+
+
+#### getSEOConfiguration
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.created_at</code> of schema <code>SeoSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.updated_at</code> of schema <code>SeoSchema</code> in response with status code 200
+
+
+#### updateSEOConfiguration
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.created_at</code> of schema <code>SeoSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>seo.updated_at</code> of schema <code>SeoSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SeoSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SeoSchema</code> in response with status code 200
+
+
+#### getDefaultSEOMarkupSchema
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>items[].page_type</code> of schema <code>DefaultSEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### getSEOMarkupSchemas
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>items[].page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### createSEOMarkupSchema
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplateRequestBody</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplateRequestBody</code> in request body
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### getSEOMarkupSchema
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### editSEOMarkupSchema
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplateRequestBody</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplateRequestBody</code> in request body
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### deleteSEOMarkupSchema
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>about-us,addresses,blog,brands,cards,cart,categories,brand,category,collection,collections,contact-us,external,faq,freshchat,home,notification-settings,orders,page,policy,product,product-request,products,profile,profile-order-shipment,profile-basic,profile-company,profile-emails,profile-phones,rate-us,refer-earn,settings,shared-cart,tnc,track-order,wishlist,sections,form,cart-delivery,cart-payment,cart-review,login,register,shipping-policy,return-policy,order-status</code> from property <code>page_type</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>SEOSchemaMarkupTemplate</code> in response with status code 200
+
+
+#### getDefaultSitemapConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getDefaultSitemapConfig</code>
+
+
+
+#### updateDefaultSitemapConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateDefaultSitemapConfig</code>
+
+
+
+#### getSitemaps
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSitemaps</code>
+
+
+
+#### createSitemap
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createSitemap</code>
+
+
+
+#### getSitemap
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSitemap</code>
+
+
+
+#### updateSitemap
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateSitemap</code>
+
+
+
+#### deleteSitemap
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteSitemap</code>
+
+
+
+#### getSupportInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Support</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Support</code> in response with status code 200
+
+
+#### updateSupportInformation
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Support</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Support</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Support</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Support</code> in response with status code 200
+
+
+#### removeInjectableTag
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### editInjectableTag
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>inline,external</code> from property <code>tag.sub_type</code> of schema <code>HandpickedTagSchema</code> in request body
+
+
+#### getBlogBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>publish_date</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### createPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getPages
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### updatePage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getPageBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.created_on</code> of schema <code>DateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>date_meta.modified_on</code> of schema <code>DateMeta</code> in response with status code 200
+
+
+#### getCustomFieldDefinitions
+
+- ##### What's New
+	- [Added] property <code>items[]._id</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].creator</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].key</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].created_by</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].updated_by</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].created_at</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].updated_at</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].slug</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/customfields/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/metafields/definitions</code>
+
+
+#### getCustomFieldDefinitionByResource
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomFieldDefinitionByResource</code>
+
+
+
+#### createCustomFieldDefinition
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomFieldDefinitionRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/customfields/resource/{resource}/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/metafields/definitions</code>
+
+
+#### getCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomFieldDefinitionBySlug</code>
+
+
+
+#### updateCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateCustomFieldDefinitionBySlug</code>
+
+
+
+#### deleteCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCustomFieldDefinitionBySlug</code>
+
+
+
+#### getCustomFieldsByResourceSlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomFieldsByResourceSlug</code>
+
+
+
+#### updateCustomFieldByResourceSlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateCustomFieldByResourceSlug</code>
+
+
+
+#### createCustomObjectDefinition
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>boolean_type,date,datetime,dropdown,duration,file,float_type,html,integer,json,metaobject,product,string_single_line,string_multi_line,url</code> to property <code>field_definitions[].type</code> of schema <code>CustomObjectCustomFieldDefinitionResSchema</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code>field_definitions[].validations[]</code> of schema <code>FieldValidations</code> in response with status code 200
+	- [Added] properties <code>field_definitions[].validations[].name</code>, <code>field_definitions[].validations[].type</code> in response with status code 200
+	- [Added] property <code>field_definitions[].metaobject_definition_id</code> of schema <code>CustomObjectCustomFieldDefinitionResSchema</code> in response with status code 200
+	- [Added] <code>field_definitions[].type</code> made required in response with status code 200
+	- [Added] property <code>_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>creator</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>created_by</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>updated_by</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>application_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>company_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>created_at</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>updated_at</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomObjectDefinitionRequestSchema</code> in request body
+	- [Breaking] [Deleted] property <code>id</code> of schema <code>CustomObjectDefinitionSlugSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomObjectDefinitionSlugSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>field_definitions[].updated_by</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>field_definitions[].created_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>field_definitions[].updated_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/customobjects/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/metaobjects/definitions</code>
+
+
+#### getCustomObjectDefinitions
+
+- ##### What's New
+	- [Added] property <code>items[]._id</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].slug</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/customobjects/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/metaobjects/definitions</code>
+
+
+#### getCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomObjectDefinitionBySlug</code>
+
+
+
+#### updateCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateCustomObjectDefinitionBySlug</code>
+
+
+
+#### deleteCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCustomObjectDefinitionBySlug</code>
+
+
+
+#### getCustomObjectsBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomObjectsBySlug</code>
+
+
+
+#### createCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createCustomObjectBySlug</code>
+
+
+
+#### getCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCustomObjectBySlug</code>
+
+
+
+#### deleteCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCustomObjectBySlug</code>
+
+
+
+#### updateCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateCustomObjectBySlug</code>
+
+
+
+#### getJobs
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>download,upload</code> from property <code>items[].action_type</code> of schema <code>JobSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>JobSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>JobSchema</code> in response with status code 200
+
+
+#### importCustomObjectEntriesBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>importCustomObjectEntriesBySlug</code>
+
+
+
+#### exportCustomObjectEntriesBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>exportCustomObjectEntriesBySlug</code>
+
+
+
+#### sampleCustomObjectBulkEntryBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>sampleCustomObjectBulkEntryBySlug</code>
+
+
+
+#### getAppResources
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+
+
+#### getAppCustomFieldDefinitions
+
+- ##### What's New
+	- [Added] property <code>items[]._id</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].creator</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].key</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].created_by</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].updated_by</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].created_at</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].updated_at</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>items[].application_id</code> of schema <code>ApplicationFieldDefinitionSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].slug</code> of schema <code>FieldDefinitionSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/application/{application_id}/customfields/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/application/{application_id}/metafields/definitions</code>
+
+
+#### getAppCustomFieldDefinitionByResource
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomFieldDefinitionByResource</code>
+
+
+
+#### createAppCustomFieldDefinition
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomFieldDefinitionRequestSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/application/{application_id}/customfields/resource/{resource}/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/application/{application_id}/metafields/definitions</code>
+
+
+#### getAppCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomFieldDefinitionBySlug</code>
+
+
+
+#### updateAppCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateAppCustomFieldDefinitionBySlug</code>
+
+
+
+#### deleteAppCustomFieldDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteAppCustomFieldDefinitionBySlug</code>
+
+
+
+#### getAppCustomFieldsByResourceSlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomFieldsByResourceSlug</code>
+
+
+
+#### updateAppCustomFieldByResourceSlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateAppCustomFieldByResourceSlug</code>
+
+
+
+#### createAppCustomObjectDefinition
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>boolean_type,date,datetime,dropdown,duration,file,float_type,html,integer,json,metaobject,product,string_single_line,string_multi_line,url</code> to property <code>field_definitions[].type</code> of schema <code>CustomObjectCustomFieldDefinitionResSchema</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code>field_definitions[].validations[]</code> of schema <code>FieldValidations</code> in response with status code 200
+	- [Added] properties <code>field_definitions[].validations[].name</code>, <code>field_definitions[].validations[].type</code> in response with status code 200
+	- [Added] property <code>field_definitions[].metaobject_definition_id</code> of schema <code>CustomObjectCustomFieldDefinitionResSchema</code> in response with status code 200
+	- [Added] <code>field_definitions[].type</code> made required in response with status code 200
+	- [Added] property <code>_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>creator</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>created_by</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>updated_by</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>application_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>company_id</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>created_at</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+	- [Added] property <code>updated_at</code> of schema <code>CustomObjectDefinitionSchema</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomObjectDefinitionRequestSchema</code> in request body
+	- [Breaking] [Deleted] property <code>id</code> of schema <code>CustomObjectDefinitionSlugSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>slug</code> of schema <code>CustomObjectDefinitionSlugSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>field_definitions[].updated_by</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>field_definitions[].created_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>field_definitions[].updated_at</code> of schema <code>CustomFieldDefinitionDetailResSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/application/{application_id}/customobjects/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/application/{application_id}/metaobjects/definitions</code>
+
+
+#### getAppCustomObjectDefinitions
+
+- ##### What's New
+	- [Added] property <code>items[]._id</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].slug</code> of schema <code>CustomObjectEntry</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+	- [Changed] Path From <code>/service/platform/content/v2.0/company/{company_id}/application/{application_id}/customobjects/definition</code> To <code>/service/platform/content/v1.0/company/{company_id}/application/{application_id}/metaobjects/definitions</code>
+
+
+#### getAppCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomObjectDefinitionBySlug</code>
+
+
+
+#### updateAppCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateAppCustomObjectDefinitionBySlug</code>
+
+
+
+#### deleteAppCustomObjectDefinitionBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteAppCustomObjectDefinitionBySlug</code>
+
+
+
+#### getAppCustomObjectsBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomObjectsBySlug</code>
+
+
+
+#### createAppCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createAppCustomObjectBySlug</code>
+
+
+
+#### getAppCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAppCustomObjectBySlug</code>
+
+
+
+#### deleteAppCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteAppCustomObjectBySlug</code>
+
+
+
+#### updateAppCustomObjectBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateAppCustomObjectBySlug</code>
+
+
+
+#### getAppJobs
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>download,upload</code> from property <code>items[].action_type</code> of schema <code>JobSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>JobSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>JobSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Security in Request
+
+
+#### importAppCustomObjectEntriesBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>importAppCustomObjectEntriesBySlug</code>
+
+
+
+#### exportAppCustomObjectEntriesBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>exportAppCustomObjectEntriesBySlug</code>
+
+
+
+#### sampleAppCustomObjectBulkEntryBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>sampleAppCustomObjectBulkEntryBySlug</code>
+
+
+
+#### getCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>getCustomFieldDefinition</code>
+
+
+
+#### updateCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>updateCustomFieldDefinition</code>
+
+
+
+#### deleteCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>deleteCustomFieldDefinition</code>
+
+
+
+#### getCustomFields
+
+- ##### What's New
+	- [Added] method <code>getCustomFields</code>
+
+
+
+#### getCustomFieldsByResourceId
+
+- ##### What's New
+	- [Added] method <code>getCustomFieldsByResourceId</code>
+
+
+
+#### createCustomFieldByResourceId
+
+- ##### What's New
+	- [Added] method <code>createCustomFieldByResourceId</code>
+
+
+
+#### updateCustomFieldByResourceId
+
+- ##### What's New
+	- [Added] method <code>updateCustomFieldByResourceId</code>
+
+
+
+#### deleteCustomFieldsByResourceId
+
+- ##### What's New
+	- [Added] method <code>deleteCustomFieldsByResourceId</code>
+
+
+
+#### getCustomFieldJobs
+
+- ##### What's New
+	- [Added] method <code>getCustomFieldJobs</code>
+
+
+
+#### getCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>getCustomObjectDefinition</code>
+
+
+
+#### updateCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>updateCustomObjectDefinition</code>
+
+
+
+#### deleteCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>deleteCustomObjectDefinition</code>
+
+
+
+#### getCustomObjects
+
+- ##### What's New
+	- [Added] method <code>getCustomObjects</code>
+
+
+
+#### createCustomObject
+
+- ##### What's New
+	- [Added] method <code>createCustomObject</code>
+
+
+
+#### getCustomObject
+
+- ##### What's New
+	- [Added] method <code>getCustomObject</code>
+
+
+
+#### updateCustomObject
+
+- ##### What's New
+	- [Added] method <code>updateCustomObject</code>
+
+
+
+#### deleteCustomObject
+
+- ##### What's New
+	- [Added] method <code>deleteCustomObject</code>
+
+
+
+#### importCustomObjectEntries
+
+- ##### What's New
+	- [Added] method <code>importCustomObjectEntries</code>
+
+
+
+#### exportCustomObjectEntries
+
+- ##### What's New
+	- [Added] method <code>exportCustomObjectEntries</code>
+
+
+
+#### sampleCustomObjectBulkEntry
+
+- ##### What's New
+	- [Added] method <code>sampleCustomObjectBulkEntry</code>
+
+
+
+#### getAppCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>getAppCustomFieldDefinition</code>
+
+
+
+#### updateAppCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>updateAppCustomFieldDefinition</code>
+
+
+
+#### deleteAppCustomFieldDefinition
+
+- ##### What's New
+	- [Added] method <code>deleteAppCustomFieldDefinition</code>
+
+
+
+#### getAppCustomFields
+
+- ##### What's New
+	- [Added] method <code>getAppCustomFields</code>
+
+
+
+#### getAppCustomFieldsByResourceId
+
+- ##### What's New
+	- [Added] method <code>getAppCustomFieldsByResourceId</code>
+
+
+
+#### createAppCustomFieldByResourceId
+
+- ##### What's New
+	- [Added] method <code>createAppCustomFieldByResourceId</code>
+
+
+
+#### updateAppCustomFieldByResourceId
+
+- ##### What's New
+	- [Added] method <code>updateAppCustomFieldByResourceId</code>
+
+
+
+#### deleteAppCustomFieldsByResourceId
+
+- ##### What's New
+	- [Added] method <code>deleteAppCustomFieldsByResourceId</code>
+
+
+
+#### getAppCustomFieldJobs
+
+- ##### What's New
+	- [Added] method <code>getAppCustomFieldJobs</code>
+
+
+
+#### getAppCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>getAppCustomObjectDefinition</code>
+
+
+
+#### updateAppCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>updateAppCustomObjectDefinition</code>
+
+
+
+#### deleteAppCustomObjectDefinition
+
+- ##### What's New
+	- [Added] method <code>deleteAppCustomObjectDefinition</code>
+
+
+
+#### getAppCustomObjects
+
+- ##### What's New
+	- [Added] method <code>getAppCustomObjects</code>
+
+
+
+#### createAppCustomObject
+
+- ##### What's New
+	- [Added] method <code>createAppCustomObject</code>
+
+
+
+#### getAppCustomObject
+
+- ##### What's New
+	- [Added] method <code>getAppCustomObject</code>
+
+
+
+#### updateAppCustomObject
+
+- ##### What's New
+	- [Added] method <code>updateAppCustomObject</code>
+
+
+
+#### deleteAppCustomObject
+
+- ##### What's New
+	- [Added] method <code>deleteAppCustomObject</code>
+
+
+
+#### importAppCustomObjectEntries
+
+- ##### What's New
+	- [Added] method <code>importAppCustomObjectEntries</code>
+
+
+
+#### exportAppCustomObjectEntries
+
+- ##### What's New
+	- [Added] method <code>exportAppCustomObjectEntries</code>
+
+
+
+#### sampleAppCustomObjectBulkEntry
+
+- ##### What's New
+	- [Added] method <code>sampleAppCustomObjectBulkEntry</code>
+
+
+
+### Discount
+
+
+
+#### getDiscounts
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>items[].job_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>items[].discount_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>DiscountJob</code> in response with status code 200
+
+
+#### createDiscount
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>job_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>discount_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>DiscountJob</code> in response with status code 200
+
+
+#### getDiscount
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>job_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>discount_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>DiscountJob</code> in response with status code 200
+
+
+#### updateDiscount
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>job_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>discount_type</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>DiscountJob</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>DiscountJob</code> in response with status code 200
+
+
+#### validateDiscountFile
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>job_type</code> of schema <code>FileJobRequestSchema</code> in request body
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>discount_type</code> of schema <code>FileJobRequestSchema</code> in request body
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>body.job_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>body.discount_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.created_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.modified_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+
+
+#### downloadDiscountFile
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>body.job_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>body.discount_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.created_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.modified_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+
+
+#### getValidationJob
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>body.job_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>body.discount_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.created_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.modified_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+
+
+#### getDownloadJob
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>app,app|brand,app|store,app|brand|store,app|brand|product,app|brand|store|product,app|brand|inventory,app|brand|store|inventory,app|factory,app|brand|factory,app|brand|product|factory,app|brand|inventory|factory</code> from property <code>body.job_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Possible values from <code>flat,percentage</code> from property <code>body.discount_type</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.created_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>body.modified_on</code> of schema <code>FileJobBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileJobResponseSchema</code> in response with status code 200
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>StartRequest</code> in request body
+
+
+#### completeUpload
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileUploadComplete</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileUploadComplete</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.user_id</code> of schema <code>CreatedBy</code> in response with status code 200
+
+
+#### appStartUpload
+
+- ##### What's New
+	- [Added] property <code>enc_key</code> of schema <code>StartRequest</code> in request body
+
+
+#### appCompleteUpload
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>FileUploadComplete</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>FileUploadComplete</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_by.user_id</code> of schema <code>CreatedBy</code> in response with status code 200
+
+
+#### getSignUrls
+
+- ##### What's New
+	- [Added] property <code>enc_url_mapping</code> of schema <code>SignUrlRequest</code> in request body
+
+
+#### browse
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.user_id</code> of schema <code></code> in response with status code 200
+
+
+#### appbrowse
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.user_id</code> of schema <code></code> in response with status code 200
+
+
+#### browsefiles
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].created_by.user_id</code> of schema <code></code> in response with status code 200
+
+
+#### fetchPdfTypeById
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>_id</code> of schema <code>PdfTypeByIdDetails</code> in response with status code 200
+
+
+#### getDefaultPdfData
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].payload.current_date</code> of schema <code>PdfPayloadDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].payload.invoice_detail.invoice_date</code> of schema <code>InvoiceDetail</code> in response with status code 200
+
+
+#### getPdfPayloadById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload.current_date</code> of schema <code>PdfPayloadDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload.invoice_detail.invoice_date</code> of schema <code>InvoiceDetail</code> in response with status code 200
+
+
+#### getConfigHtmlTemplateById
+
+- ##### What's New
+	- [Added] property <code>createdAt</code> of schema <code></code> in response with status code 200
+	- [Added] property <code>updatedAt</code> of schema <code></code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>application_id</code> of schema <code></code> in response with status code 200
+	- [Breaking] [Deleted] property <code>company_id</code> of schema <code></code> in response with status code 200
+	- [Breaking] [Deleted] property <code>created_at</code> of schema <code></code> in response with status code 200
+	- [Breaking] [Deleted] property <code>updated_at</code> of schema <code></code> in response with status code 200
+
+
+#### getHtmlTemplateConfig
+
+- ##### What's New
+	- [Added] property <code>data[].default_template</code> of schema <code>PdfConfigSuccessData</code> in response with status code 200
+
+
+#### saveHtmlTemplate
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### generatePaymentReceipt
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>payload.payments[].txn_date</code> of schema <code>PaymentReceiptPayments</code> in request body
+
+
+#### fetchPdfDefaultTemplateById
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+### Lead
+
+
+
+#### getPlatformTickets
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### createTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### getTickets
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### getPlatformTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### editPlatformTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### getTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### editTicket
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>Ticket</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>Ticket</code> in response with status code 200
+
+
+#### createPlatformTicketHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>TicketHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TicketHistory</code> in response with status code 200
+
+
+#### getPlatformTicketHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>TicketHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>TicketHistory</code> in response with status code 200
+
+
+#### createNewHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>TicketHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>TicketHistory</code> in response with status code 200
+
+
+#### getTicketHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>TicketHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>TicketHistory</code> in response with status code 200
+
+
+#### getCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+#### editCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+#### deleteCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+#### getCustomForms
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+#### createCustomForm
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>CustomForm</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>CustomForm</code> in response with status code 200
+
+
+### Serviceability
+
+
+
+#### getZones
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>storeUid</code> (type: <code>integer</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>regionUid</code> (type: <code>string</code>)
+
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>ListViewItemsV2</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>ListViewItemsV2</code> in response with status code 200
+
+
+#### getZone
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GetZoneByIdSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GetZoneByIdSchema</code> in response with status code 200
+
+
+#### getBulkZone
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>BulkZoneItems</code> in response with status code 200
+
+
+#### getBulkExport
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>ZoneBulkItem</code> in response with status code 200
+
+
+#### updatePincodeAuditHistory
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].updated_at</code> of schema <code>PincodeMopUpdateAuditHistoryResponseSchema</code> in response with status code 200
+
+
+#### createGeoArea
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GeoAreaResponseBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GeoAreaResponseBody</code> in response with status code 200
+
+
+#### getGeoAreas
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>GeoAreaItemResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>GeoAreaItemResponseSchema</code> in response with status code 200
+
+
+#### getGeoArea
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GeoAreaResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GeoAreaResponseSchema</code> in response with status code 200
+
+
+#### updateGeoArea
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>GeoAreaPutResponseBody</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>GeoAreaPutResponseBody</code> in response with status code 200
+
+
+#### getBulkGeoArea
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>BulkGeoAreaGetResponseSchema</code> in response with status code 200
+
+
+#### getCourierPartnerRules
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>q</code> (type: <code>string</code>)
+
+
+
+#### deleteCourierPartnerRule
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteCourierPartnerRule</code>
+
+
+
+#### deleteStoreRule
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteStoreRule</code>
+
+
+
+#### createPackageMaterial
+
+- ##### What's New
+	- [Added] property <code>item_id</code> of schema <code>PackageMaterialResponse</code> in response with status code 201
+
+
+#### getPackageMaterialList
+
+- ##### What's New
+	- [Added] property <code>items[].item_id</code> of schema <code>PackageMaterialResponse</code> in response with status code 200
+
+
+#### deletePackageMaterialRule
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deletePackageMaterialRule</code>
+
+
+
+#### updatePackageMaterials
+
+- ##### What's New
+	- [Added] property <code>item_id</code> of schema <code>PackageMaterialResponse</code> in response with status code 200
+
+
+#### getPackageMaterials
+
+- ##### What's New
+	- [Added] property <code>item_id</code> of schema <code>PackageMaterialResponse</code> in response with status code 200
+
+
+#### deletePackageMaterials
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deletePackageMaterials</code>
+
+
+
+#### getInstalledCourierPartnerExtensions
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>InstallCourierPartnerItemsSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>InstallCourierPartnerItemsSchema</code> in response with status code 200
+
+
+#### bulkServiceability
+
+- ##### What's New
+	- [Added] method <code>bulkServiceability</code>
+
+
+
+#### getBulkServiceability
+
+- ##### What's New
+	- [Added] method <code>getBulkServiceability</code>
+
+
+
+#### sampleFileServiceability
+
+- ##### What's New
+	- [Added] method <code>sampleFileServiceability</code>
+
+
+
+#### getSampleFileServiceabilityStatus
+
+- ##### What's New
+	- [Added] method <code>getSampleFileServiceabilityStatus</code>
+
+
+
+#### bulkTat
+
+- ##### What's New
+	- [Added] method <code>bulkTat</code>
+
+
+
+#### getBulkTat
+
+- ##### What's New
+	- [Added] method <code>getBulkTat</code>
+
+
+
+#### validateBulkGeoarea
+
+- ##### What's New
+	- [Added] method <code>validateBulkGeoarea</code>
+
+
+
+#### getBulkGeoareaValidation
+
+- ##### What's New
+	- [Added] method <code>getBulkGeoareaValidation</code>
+
+
+
+#### importBulkGeoarea
+
+- ##### What's New
+	- [Added] method <code>importBulkGeoarea</code>
+
+
+
+#### importBulkGeoareaStatus
+
+- ##### What's New
+	- [Added] method <code>importBulkGeoareaStatus</code>
+
+
+
+#### overrideBulkGeoarea
+
+- ##### What's New
+	- [Added] method <code>overrideBulkGeoarea</code>
+
+
+
+#### getGeoareaOverrideStatus
+
+- ##### What's New
+	- [Added] method <code>getGeoareaOverrideStatus</code>
+
+
+
+#### createCourierPartnerScheme
+
+- ##### What's New
+	- [Added] method <code>createCourierPartnerScheme</code>
+
+
+
+#### updateCourierPartnerScheme
+
+- ##### What's New
+	- [Added] method <code>updateCourierPartnerScheme</code>
+
+
+
+#### validateBulkZone
+
+- ##### What's New
+	- [Added] method <code>validateBulkZone</code>
+
+
+
+#### getBulkZoneValidation
+
+- ##### What's New
+	- [Added] method <code>getBulkZoneValidation</code>
+
+
+
+#### importBulkZone
+
+- ##### What's New
+	- [Added] method <code>importBulkZone</code>
+
+
+
+#### overrideZoneById
+
+- ##### What's New
+	- [Added] method <code>overrideZoneById</code>
+
+
+
+#### getZoneOverrideStatus
+
+- ##### What's New
+	- [Added] method <code>getZoneOverrideStatus</code>
+
+
+
+#### overrideBulkZone
+
+- ##### What's New
+	- [Added] method <code>overrideBulkZone</code>
+
+
+
+#### getBulkZoneOverrideStatus
+
+- ##### What's New
+	- [Added] method <code>getBulkZoneOverrideStatus</code>
+
+
+
+### Order
+
+
+
+#### postRefundStateConfiguration
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getRefundStateConfiguration
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getRefundEnableStateList
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### postRefundConfiguration
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getRefundConfiguration
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### reassignLocation
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponse</code> in response with status code 400
+
+
+#### getRefundOptions
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getAnnouncements
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### click2Call
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### updateShipmentStatus
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>statuses[].shipments[].data_updates.order</code> of schema <code>DataUpdates</code> in request body
+
+
+#### getShipmentHistory
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>activity_history[].created_ts</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>activity_history[].activity_type</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>activity_history[].meta</code> of schema <code>HistoryMeta</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>activity_history[].meta.store_id</code>, <code>activity_history[].meta.status</code>, <code>activity_history[].meta.status1</code>, <code>activity_history[].meta.call_id</code>, <code>activity_history[].meta.starttime</code>, <code>activity_history[].meta.reason</code>, <code>activity_history[].meta.short_link</code>, <code>activity_history[].meta.endtime</code>, <code>activity_history[].meta.store_name</code>, <code>activity_history[].meta.caller</code>, <code>activity_history[].meta.store_code</code>, <code>activity_history[].meta.billsec</code>, <code>activity_history[].meta.recordpath</code>, <code>activity_history[].meta.status2</code>, <code>activity_history[].meta.callerid</code>, <code>activity_history[].meta.duration</code>, <code>activity_history[].meta.channel_type</code>, <code>activity_history[].meta.activity_comment</code>, <code>activity_history[].meta.activity_type</code>, <code>activity_history[].meta.receiver</code>, <code>activity_history[].meta.recipient</code>, <code>activity_history[].meta.slug</code>, <code>activity_history[].meta.message</code>, <code>activity_history[].meta.type</code>, <code>activity_history[].meta.prev_store_name</code>, <code>activity_history[].meta.prev_store_code</code>, <code>activity_history[].meta.prev_store_id</code>, <code>activity_history[].meta.refund_to</code>, <code>activity_history[].meta.refund_information</code> in response with status code 200
+
+
+#### postShipmentHistory
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>activity_history[].created_ts</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>activity_history[].activity_type</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>activity_history[].meta</code> of schema <code>HistoryMeta</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>activity_history[].meta.store_id</code>, <code>activity_history[].meta.status</code>, <code>activity_history[].meta.status1</code>, <code>activity_history[].meta.call_id</code>, <code>activity_history[].meta.starttime</code>, <code>activity_history[].meta.reason</code>, <code>activity_history[].meta.short_link</code>, <code>activity_history[].meta.endtime</code>, <code>activity_history[].meta.store_name</code>, <code>activity_history[].meta.caller</code>, <code>activity_history[].meta.store_code</code>, <code>activity_history[].meta.billsec</code>, <code>activity_history[].meta.recordpath</code>, <code>activity_history[].meta.status2</code>, <code>activity_history[].meta.callerid</code>, <code>activity_history[].meta.duration</code>, <code>activity_history[].meta.channel_type</code>, <code>activity_history[].meta.activity_comment</code>, <code>activity_history[].meta.activity_type</code>, <code>activity_history[].meta.receiver</code>, <code>activity_history[].meta.recipient</code>, <code>activity_history[].meta.slug</code>, <code>activity_history[].meta.message</code>, <code>activity_history[].meta.type</code>, <code>activity_history[].meta.prev_store_name</code>, <code>activity_history[].meta.prev_store_code</code>, <code>activity_history[].meta.prev_store_id</code>, <code>activity_history[].meta.refund_to</code>, <code>activity_history[].meta.refund_information</code> in response with status code 200
+
+
+#### sendSmsNinja
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>int32</code> to property <code>data.days</code> of schema <code>SmsDataPayload</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>int32</code> from property <code>bag_id</code> of schema <code>SendSmsPayload</code> in request body
+	- [Deleted] Value format from <code>double</code> from property <code>data.amount_paid</code> of schema <code>SmsDataPayload</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>bag_id</code> of schema <code>SendSmsPayload</code> in request body
+
+
+#### updatePackagingDimensions
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponse</code> in response with status code 400
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>dimension[].weight</code> of schema <code>Dimension</code> in request body
+	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>dimension[].height</code> of schema <code>Dimension</code> in request body
+
+
+#### orderUpdate
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### fetchCreditBalanceDetail
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### fetchRefundModeConfig
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### downloadLanesReport
+
+- ##### What's New
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>start_date</code> of schema <code>BulkReportsDownloadRequest</code> in request body
+	- [Breaking] [Added] Value format <code>date-time</code> to property <code>end_date</code> of schema <code>BulkReportsDownloadRequest</code> in request body
+	- [Added] property <code>status</code> of schema <code>APIFailedResponse</code> in response with status code 400
+
+
+#### jobDetails
+
+- ##### What's New
+	- [Added] property <code>status</code> of schema <code>BulkFailedResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>APIFailedResponseSchema</code> in response with status code 400
+
+
+#### getFileByStatus
+
+- ##### What's New
+	- [Added] property <code>status</code> of schema <code>BulkFailedResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>APIFailedResponseSchema</code> in response with status code 400
+
+
+#### getManifestfilters
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### eInvoiceRetry
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>invoice,credit_note</code> from property <code>shipments_data[].einvoice_type</code> of schema <code>EInvoiceRetryShipmentData</code> in request body
+	- [Deleted] Possible values from <code>invoice,credit_note</code> from property <code>response_data[].einvoice_type</code> of schema <code>EInvoiceResponseData</code> in response with status code 200
+	- [Deleted] Possible values from <code>invoice,credit_note</code> from property <code>response_data[].einvoice_type</code> of schema <code>EInvoiceErrorResponseData</code> in response with status code 400
+
+
+#### trackShipment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>trackShipment</code>
+
+
+
+#### updateShipmentTracking
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateShipmentTracking</code>
+
+
+
+#### getFailedOrderLogs
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].error_message</code> of schema <code>FailedOrdersItem</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].display_message</code> of schema <code>FailedOrdersItem</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].meta</code> of schema <code>FailedOrdersItem</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>page.item_total</code> of schema <code>PageDetails</code> in response with status code 200
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponse</code> in response with status code 400
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>FailedOrdersItem</code> in response with status code 200
+
+
+#### failedOrderLogDetails
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>error_trace</code> of schema <code>FailedOrderLogDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>exception</code> of schema <code>FailedOrderLogDetails</code> in response with status code 200
+	- [Added] Response with status 500
+
+
+#### getRuleLaneConfig
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### createRule
+
+- ##### What's New
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### getRuleById
+
+- ##### What's New
+	- [Added] <code>items.position</code> made required in response with status code 200
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### updateRule
+
+- ##### What's New
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### deleteRule
+
+- ##### What's New
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### updateRulePosition
+
+- ##### What's New
+	- [Added] <code>items[].position</code> made required in response with status code 200
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### getRuleParameters
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getRuleList
+
+- ##### What's New
+	- [Added] <code>items[].position</code> made required in response with status code 200
+	- [Added] <code>error.type</code>, <code>error.value</code>, <code>error.message</code> made required in response with status code 200
+
+
+#### getRoleBasedActions
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### checkOrderStatus
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>checkOrderStatus</code>
+
+
+
+#### updateShipmentLock
+
+- ##### What's New
+	- [Added] property <code>remarks</code> of schema <code>ErrorResponse</code> in response with status code 400
+	- [Added] property <code>status_code</code> of schema <code>ErrorResponse</code> in response with status code 400
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] properties <code>shipping_info.phone</code>, <code>shipping_info.alternate_mobile_number</code>, <code>shipping_info.state</code>, <code>shipping_info.customer_code</code>, <code>shipping_info.shipping_type</code>, <code>shipping_info.middle_name</code>, <code>shipping_info.primary_mobile_number</code>, <code>shipping_info.last_name</code>, <code>shipping_info.geo_location</code>, <code>shipping_info.gender</code>, <code>shipping_info.house_no</code>, <code>shipping_info.first_name</code>, <code>shipping_info.title</code>, <code>shipping_info.landmark</code>, <code>shipping_info.country</code>, <code>shipping_info.address_type</code>, <code>shipping_info.state_code</code>, <code>shipping_info.city</code>, <code>shipping_info.external_customer_code</code>, <code>shipping_info.floor_no</code>, <code>shipping_info.alternate_email</code>, <code>shipping_info.slot</code>, <code>shipping_info.address</code>, <code>shipping_info.area</code>, <code>shipping_info.address1</code>, <code>shipping_info.pincode</code>, <code>shipping_info.primary_email</code>, <code>shipping_info.address2</code>, <code>shipping_info.country_code</code>, <code>shipping_info.country_iso_code</code> in request body
+	- [Added] properties <code>billing_info.phone</code>, <code>billing_info.alternate_mobile_number</code>, <code>billing_info.state</code>, <code>billing_info.customer_code</code>, <code>billing_info.shipping_type</code>, <code>billing_info.middle_name</code>, <code>billing_info.primary_mobile_number</code>, <code>billing_info.last_name</code>, <code>billing_info.geo_location</code>, <code>billing_info.gender</code>, <code>billing_info.house_no</code>, <code>billing_info.first_name</code>, <code>billing_info.title</code>, <code>billing_info.landmark</code>, <code>billing_info.country</code>, <code>billing_info.address_type</code>, <code>billing_info.state_code</code>, <code>billing_info.city</code>, <code>billing_info.external_customer_code</code>, <code>billing_info.floor_no</code>, <code>billing_info.alternate_email</code>, <code>billing_info.slot</code>, <code>billing_info.address</code>, <code>billing_info.area</code>, <code>billing_info.address1</code>, <code>billing_info.pincode</code>, <code>billing_info.primary_email</code>, <code>billing_info.address2</code>, <code>billing_info.country_code</code>, <code>billing_info.country_iso_code</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code>shipments[].line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>shipments[].line_items[].charges[].amount.ordering_currency</code>, <code>shipments[].line_items[].charges[].amount.base_currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].processing_dates.pack_by_date</code> of schema <code>ProcessingDates</code> in request body
+	- [Breaking] [Deleted] Possible values from <code>Digital</code> from property <code>shipments[].order_type</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] properties <code>shipments[].tags[].slug</code>, <code>shipments[].tags[].display_text</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].system_messages</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].process_after_config</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.address</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].billing_address_json.address_type</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].billing_address_json.address_category</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].billing_address_json.created_at</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].billing_address_json.updated_at</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.area_code_slug</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.country_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.country_iso_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.country_phone_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.delivery_address_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.geo_location</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.name</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.sector</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.state_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.uid</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.user_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.store_address_json</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.location_type</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.company_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json.store_email</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.address</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].delivery_address_json.address_type</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].delivery_address_json.address_category</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].delivery_address_json.created_at</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].delivery_address_json.updated_at</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.area_code_slug</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.country_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.country_iso_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.country_phone_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.delivery_address_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.geo_location</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.name</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.sector</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.state_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.uid</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.user_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.store_address_json</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.location_type</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.company_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json.store_email</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].created_at</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.address</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].hand_over_contact_json.address_type</code> of schema <code>Address</code> in request body
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].hand_over_contact_json.address_category</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].hand_over_contact_json.created_at</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].hand_over_contact_json.updated_at</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.area_code_slug</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.country_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.country_iso_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.country_phone_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.delivery_address_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.geo_location</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.name</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.sector</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.state_code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.uid</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.user_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.code</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.store_address_json</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.location_type</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.company_id</code> of schema <code>Address</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json.store_email</code> of schema <code>Address</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.status_created_at</code> of schema <code>ShipmentStatusData</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].status.name</code> of schema <code>ShipmentStatusData</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.added_to_fynd_cash</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.gst_tax_percentage</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.tcs_percentage</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.cn_refund_amount</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.applied_emi_discount</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price.applied_instant_discount</code> of schema <code>Prices</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>charges[].amount</code> of schema <code>AmountSchema</code> in request body
+	- [Breaking] [Deleted] properties <code>charges[].amount.ordering_currency</code>, <code>charges[].amount.base_currency</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>external_creation_date</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>config.lock_state_messages</code> of schema <code>CreateOrderConfig</code> in request body
+	- [Breaking] [Deleted] property <code>status</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>system_messages</code> of schema <code>CreateOrderAPI</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>shipments[].line_items[].charges[].amount.ordering_currency</code>, <code>shipments[].line_items[].charges[].amount.base_currency</code> made optional in request body
+	- [Breaking] [Changed] <code>charges[].amount.ordering_currency</code>, <code>charges[].amount.base_currency</code> made optional in request body
+
+
+#### updateShipment
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>statuses[].shipments[].data_updates.order</code> of schema <code>DataUpdates</code> in request body
+
+
+#### updateOrder
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].order_date</code> of schema <code>OrderData</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].fynd_order_id</code> of schema <code>OrderData</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in request body
+	- [Added] Possible nullable value <code>true</code> to property <code>data[].affiliate_order_id</code> of schema <code>OrderData</code> in request body
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data[].ordering_channel</code> of schema <code>OrderData</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>data[].order_date</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.tcs_percentage</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.cn_refund_amount</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.applied_emi_discount</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].prices.applied_instant_discount</code> of schema <code>Prices</code> in request body
+	- [Breaking] [Deleted] property <code>data[].ordering_currency_prices</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].affiliate_id</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].source</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].currency</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].created_at</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].raw_user_agent</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].comment</code> of schema <code>OrderData</code> in request body
+	- [Breaking] [Deleted] property <code>data[].currency_info</code> of schema <code>OrderData</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data[].fynd_order_id</code>, <code>data[].order_date</code> made optional in request body
+
+
+#### addStateManagerConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>addStateManagerConfig</code>
+
+
+
+#### getStateManagerConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getStateManagerConfig</code>
+
+
+
+#### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from property <code>reasons</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from property <code>success</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>rule_id</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>fromDate</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>toDate</code> (type: <code>string</code>)
+
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipment_status.status</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Added] property <code>items[].shipment_status.shipment_status_id</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Added] property <code>items[].user.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] property <code>items[].bags[].article.a_set</code> of schema <code>Article</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].total_bags</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].order_date</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.id</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.display_name</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_status.created_at</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_status.status_created_at</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.updated_ts</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].affiliate_details</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].forward_end_shipment_id</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].status_created_at</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Possible values from <code>forward_standard,</code> from property <code>items[].bags[].bag_type</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].financial_breakup[].refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].financial_breakup[].tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_expiry_date</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_operational_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_operational_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_operational_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].current_operational_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].article.set</code> of schema <code>Article</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].brand.created_on</code> of schema <code>ShipmentListingBrand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].item.last_updated_at</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].item.l2_category_id</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].ordering_currency_prices</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].dates.delivery_date</code> of schema <code>Dates</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,</code> from property <code>items[].bags[].entity_type</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse,</code> from property <code>items[].fulfilling_store.location_type</code> of schema <code>ShipmentItemFulFillingStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].ordering_currency_prices</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_created_at</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_lapa_enabled</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] Security in Request
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].order_status.order_details.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipments[].user.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].affiliate_details.shipment_meta.b2b_buyer_details.address</code> of schema <code>BuyerDetails</code> in response with status code 200
+	- [Added] property <code>shipments[].affiliate_details.ad_id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bags[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].logistics_meta</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].picked_date</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].tracking_list[].state</code> of schema <code>TrackingList</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order_status.order_details.affiliate_order_date</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order.order_date</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.payment_methods</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.payment_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.ordering_currency_prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.raw_user_agent</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.comment</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.currency</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.currency_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.charges</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_platform</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_return_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.amount_handling_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.eway_bill_number</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_otp</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.estimated_delivery_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.due_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.store_invoice_updated_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>shipments[].affiliate_details.shipment_meta.shipment_tags[].entity_type</code> of schema <code>ShipmentTags</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>shipments[].affiliate_details.shipment_meta.order_type</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external</code> from property <code>shipments[].affiliate_details.pdf_links.invoice_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external,parent_child</code> from property <code>shipments[].affiliate_details.pdf_links.label_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.config.app</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.config.inventory</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bag_status_history[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bag_status_history[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bag_status_history[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bag_status_history[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bags[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].financial_breakup.refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].financial_breakup.tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].bags[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].bags[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].article.group_info</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].article.group_info_ids</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].brand.created_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].brand.modified_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].item.last_updated_at</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].item.l2_category_id</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,</code> from property <code>shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].ordering_currency_prices</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics,</code> from property <code>shipments[].bags[].current_status.state_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bags[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>shipments[].bags[].entity_type</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].mark_as_returnable</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].returnable_date</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>shipments[].journey_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].ordering_currency_prices</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].shipment_created_at</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_lapa_enabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].rto_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].rto_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].rto_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].rto_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].forward_end_shipment_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].refund_information</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].manifest_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].company_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].pickup_slot</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_process</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].mark_as_returnable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_source_domain</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].actionable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].transition_config</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].next_possible_states</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_processing</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].total_bag_qty</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_created_time</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_created_ts</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].company</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].fyndstore_emp</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_not_fynd_source</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_fynd_coupon</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].email_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].escalation</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].beneficiary_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_break</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_packaging_order</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].delivery_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].current_shipment_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_cancel</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].enable_tracking</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_return</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_invoiced</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].child_nodes</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].status_progress</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].refund_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].financial_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].track_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>order.order_date</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>order.fynd_order_id</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>order.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>order.affiliate_order_id</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].order_status.order_details.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>shipments[].user.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].affiliate_details.shipment_meta.b2b_buyer_details.address</code> of schema <code>BuyerDetails</code> in response with status code 200
+	- [Added] property <code>shipments[].affiliate_details.ad_id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bags[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].logistics_meta</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>order.ordering_channel</code> of schema <code>OrderData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>order.order_date</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.ordering_currency_prices</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.affiliate_id</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.source</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.currency</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.created_at</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.raw_user_agent</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.comment</code> of schema <code>OrderData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>order.currency_info</code> of schema <code>OrderData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].picked_date</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].tracking_list[].state</code> of schema <code>TrackingList</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order_status.order_details.affiliate_order_date</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_status.order_details.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].order.order_date</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.payment_methods</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.payment_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.ordering_currency_prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.raw_user_agent</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.comment</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.currency</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.currency_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order.charges</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_platform</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_return_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.amount_handling_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.eway_bill_number</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].dp_details.dp_otp</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.estimated_delivery_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.due_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.shipment_meta.store_invoice_updated_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>shipments[].affiliate_details.shipment_meta.shipment_tags[].entity_type</code> of schema <code>ShipmentTags</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>shipments[].affiliate_details.shipment_meta.order_type</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].affiliate_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external</code> from property <code>shipments[].affiliate_details.pdf_links.invoice_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external,parent_child</code> from property <code>shipments[].affiliate_details.pdf_links.label_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.config.app</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.config.inventory</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_details.id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bag_status_history[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bag_status_history[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bag_status_history[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bag_status_history[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bag_status_history[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bags[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].financial_breakup.refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].financial_breakup.tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].bags[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].bags[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].article.group_info</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].article.group_info_ids</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].brand.created_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].brand.modified_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].bags[].item.last_updated_at</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].item.l2_category_id</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_methods[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].payment_info[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,</code> from property <code>shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].ordering_currency_prices</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics,</code> from property <code>shipments[].bags[].current_status.state_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>shipments[].bags[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>shipments[].bags[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>shipments[].bags[].entity_type</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].mark_as_returnable</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].bags[].returnable_date</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>shipments[].journey_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].ordering_currency_prices</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].shipment_created_at</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_lapa_enabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>shipments[].rto_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>shipments[].rto_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].rto_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].rto_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].rto_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].forward_end_shipment_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].refund_information</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].manifest_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].company_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].pickup_slot</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_process</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].mark_as_returnable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_source_domain</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].actionable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].transition_config</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].next_possible_states</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_processing</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].total_bag_qty</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_created_time</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_created_ts</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].company</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].fyndstore_emp</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_not_fynd_source</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_fynd_coupon</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].email_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].escalation</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].beneficiary_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_break</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_packaging_order</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].delivery_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].current_shipment_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].order_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_cancel</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].enable_tracking</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].can_return</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].is_invoiced</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].child_nodes</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].user_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].status_progress</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].items</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].refund_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].financial_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>shipments[].track_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>order.fynd_order_id</code>, <code>order.order_date</code> made optional in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].order_status.order_details.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].user.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].affiliate_details.shipment_meta.b2b_buyer_details.address</code> of schema <code>BuyerDetails</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].affiliate_details.ad_id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].bags[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].logistics_meta</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Added] property <code>items[].user_info.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date</code> from property <code>filters.date_range.to_date</code> of schema <code>DateRange</code> in response with status code 200
+	- [Deleted] Value format from <code>date</code> from property <code>filters.date_range.end_date</code> of schema <code>DateRange</code> in response with status code 200
+	- [Deleted] Value format from <code>date</code> from property <code>filters.date_range.start_date</code> of schema <code>DateRange</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].picked_date</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].tracking_list[].state</code> of schema <code>TrackingList</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].invoice.updated_date</code> of schema <code>InvoiceInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].order_status.order_details.affiliate_order_date</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_status.order_details.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].order.order_date</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.payment_methods</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.payment_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.created_at</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.ordering_currency_prices</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.raw_user_agent</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.comment</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.currency</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.currency_info</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order.charges</code> of schema <code>OrderDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_platform</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].dp_details.dp_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].dp_details.dp_return_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].dp_details.amount_handling_charges</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].dp_details.eway_bill_number</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].dp_details.dp_otp</code> of schema <code>DPDetailsData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].affiliate_details.shipment_meta.estimated_delivery_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].affiliate_details.shipment_meta.due_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].affiliate_details.shipment_meta.store_invoice_updated_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>items[].shipments[].affiliate_details.shipment_meta.shipment_tags[].entity_type</code> of schema <code>ShipmentTags</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>items[].shipments[].affiliate_details.shipment_meta.order_type</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].affiliate_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external</code> from property <code>items[].shipments[].affiliate_details.pdf_links.invoice_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external,parent_child</code> from property <code>items[].shipments[].affiliate_details.pdf_links.label_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].affiliate_details.config.app</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].affiliate_details.config.inventory</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].affiliate_details.id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].shipments[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bag_status_history[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bag_status_history[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].shipments[].bag_status_history[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].shipments[].bag_status_history[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bag_status_history[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bag_status_history[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bag_status_history[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].shipments[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].shipments[].bags[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].shipments[].bags[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].financial_breakup.refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].financial_breakup.tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].shipments[].bags[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].shipments[].bags[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].article.group_info</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].article.group_info_ids</code> of schema <code>OrderBagArticle</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].brand.created_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].brand.modified_on</code> of schema <code>OrderBrandName</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].bags[].item.last_updated_at</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].item.l2_category_id</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_methods[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_methods[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_methods[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_info[].refund_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_info[].collect_by</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].payment_info[].display_name</code> of schema <code>BagPaymentMethods</code> in response with status code 200
+	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,</code> from property <code>items[].shipments[].bags[].applied_promos[].promotion_type</code> of schema <code>AppliedPromos</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].ordering_currency_prices</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics,</code> from property <code>items[].shipments[].bags[].current_status.state_type</code> of schema <code>CurrentStatus</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].shipments[].bags[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].shipments[].bags[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>items[].shipments[].bags[].entity_type</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].mark_as_returnable</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].returnable_date</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward,</code> from property <code>items[].shipments[].journey_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].ordering_currency_prices</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].shipment_created_at</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_lapa_enabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].shipments[].rto_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].shipments[].rto_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].rto_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].rto_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].rto_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].forward_end_shipment_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].refund_information</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].manifest_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].company_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].pickup_slot</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].can_process</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].mark_as_returnable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_source_domain</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].actionable</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].transition_config</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].next_possible_states</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_processing</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].total_bag_qty</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_created_time</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_created_ts</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].company</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].fyndstore_emp</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_not_fynd_source</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_fynd_coupon</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].email_id</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].escalation</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].beneficiary_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].can_break</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_packaging_order</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].delivery_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].current_shipment_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].order_type</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].can_cancel</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].enable_tracking</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].can_return</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].is_invoiced</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].child_nodes</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].user_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].status_progress</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].items</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].refund_details</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].financial_status</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipments[].track_info</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user_info.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user_info.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user_info.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user_info.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices</code> of schema <code>PlatformOrderItems</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].ordering_currency_prices</code> of schema <code>PlatformOrderItems</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipment_status.status</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Added] property <code>items[].shipment_status.shipment_status_id</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Added] property <code>items[].user.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] property <code>items[].bags[].article.a_set</code> of schema <code>Article</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].bags[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].total_bags</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].order_date</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.id</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.display_name</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_status.created_at</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_status.status_created_at</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].shipment_status.updated_ts</code> of schema <code>ShipmentStatus</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.mongo_user_id</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].user.country_phone_code</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>items[].billing_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>items[].billing_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].billing_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].billing_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].billing_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].affiliate_details</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].forward_end_shipment_id</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].status_created_at</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Possible values from <code>forward_standard,</code> from property <code>items[].bags[].bag_type</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].financial_breakup[].refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].financial_breakup[].tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_expiry_date</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_operational_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_operational_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_operational_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].current_operational_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_operational_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].article.set</code> of schema <code>Article</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].brand.created_on</code> of schema <code>ShipmentListingBrand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].item.last_updated_at</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].item.l2_category_id</code> of schema <code>PlatformItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].ordering_currency_prices</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].dates.delivery_date</code> of schema <code>Dates</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].bags[].current_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>items[].bags[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>items[].bags[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].bags[].current_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,</code> from property <code>items[].bags[].entity_type</code> of schema <code>BagUnit</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse,</code> from property <code>items[].fulfilling_store.location_type</code> of schema <code>ShipmentItemFulFillingStore</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].ordering_currency_prices</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipment_created_at</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].is_lapa_enabled</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### trackShipmentPlatform
+
+- ##### What's New
+	- [Added] Response with status 404
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>results[].last_location_recieved_at</code> of schema <code>PlatformTrack</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>results[].updated_at</code> of schema <code>PlatformTrack</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>results[].updated_time</code> of schema <code>PlatformTrack</code> in response with status code 200
+	- [Deleted] Possible values from <code>forward,return</code> from property <code>results[].shipment_type</code> of schema <code>PlatformTrack</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>results[].reason</code> of schema <code>PlatformTrack</code> in response with status code 200
+
+
+#### updateUserViewPosition
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>CreateUpdateDeleteResponseSchema</code> in response with status code 200
+
+
+#### getUserViews
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### addUserViews
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>CreateUpdateDeleteResponseSchema</code> in response with status code 200
+
+
+#### updateUserViews
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>CreateUpdateDeleteResponseSchema</code> in response with status code 200
+
+
+#### deleteUserViews
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success</code> of schema <code>CreateUpdateDeleteResponseSchema</code> in response with status code 200
+
+
+#### getGlobalFilters
+
+- ##### What's New
+	- [Added] <code>show_in</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+
+#### getfilters
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getShipmentReasons
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPlatformShipmentReasons
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data.affiliate_details.shipment_meta.b2b_buyer_details.address</code> of schema <code>BuyerDetails</code> in response with status code 200
+	- [Added] property <code>data.affiliate_details.ad_id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Added] property <code>data.article.a_set</code> of schema <code>Article</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.fulfilling_store.address1</code> of schema <code>Store</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.fulfilling_store.store_address_json.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] property <code>data.fulfilling_store.meta.documents.gst.ds_type</code> of schema <code>Document</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.order.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.ordering_store.address1</code> of schema <code>Store</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.ordering_store.store_address_json.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] property <code>data.ordering_store.meta.documents.gst.ds_type</code> of schema <code>Document</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>200,400,500</code> from property <code>status_code</code> of schema <code>BagDetailsPlatformResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.affiliate_details.shipment_meta.estimated_delivery_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.affiliate_details.shipment_meta.due_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.affiliate_details.shipment_meta.store_invoice_updated_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>data.affiliate_details.shipment_meta.shipment_tags[].entity_type</code> of schema <code>ShipmentTags</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>data.affiliate_details.shipment_meta.order_type</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.affiliate_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external</code> from property <code>data.affiliate_details.pdf_links.invoice_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external,parent_child</code> from property <code>data.affiliate_details.pdf_links.label_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.affiliate_details.config.app</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.affiliate_details.config.inventory</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.affiliate_details.id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.article.set</code> of schema <code>Article</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.bag_status_history[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.bag_status_history[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.bag_status_history[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.bag_status_history[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status_history[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status_history[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.bag_status_history[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.brand.start_date</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.brand.created_on</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.brand.modified_on</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.company.created_on</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Possible values from <code>mbo,distributor,manufacturer-owner,franchise,</code> from property <code>data.company.company_type</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.company.modified_on</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.company.agreement_start_date</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.current_operational_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.current_operational_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.current_operational_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.current_operational_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_operational_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_operational_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_operational_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.current_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.current_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.current_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.dates.delivery_date</code> of schema <code>Dates</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,</code> from property <code>data.entity_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.financial_breakup[].refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.financial_breakup[].tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.fulfilling_store.created_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse</code> from property <code>data.fulfilling_store.location_type</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.fulfilling_store.updated_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.fulfilling_store.store_address_json.created_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>data.fulfilling_store.store_address_json.address_category</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.fulfilling_store.store_address_json.updated_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.fulfilling_store.meta.documents.gst.type</code> of schema <code>Document</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.invoice.updated_date</code> of schema <code>InvoiceDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.journey_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.order.affiliate_order_date</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.order.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>data.order_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.ordering_store.created_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse</code> from property <code>data.ordering_store.location_type</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.ordering_store.updated_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.ordering_store.store_address_json.created_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>data.ordering_store.store_address_json.address_category</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.ordering_store.store_address_json.updated_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.ordering_store.meta.documents.gst.type</code> of schema <code>Document</code> in response with status code 200
+	- [Deleted] Possible values from <code>partner,self,fynd,</code> from property <code>data.payment_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.rto_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.rto_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.rto_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.rto_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.rto_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>data.shipment.line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.shipment.line_items[].charges[].amount.base_currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.processing_dates.pack_by_date</code> of schema <code>ProcessingDates</code> in response with status code 200
+	- [Breaking] [Deleted] Possible values from <code>Digital</code> from property <code>data.shipment.order_type</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.shipment.tags[].slug</code>, <code>data.shipment.tags[].display_text</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.system_messages</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.process_after_config</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.shipment.billing_address_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.shipment.billing_address_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.billing_address_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.billing_address_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.billing_address_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.shipment.delivery_address_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.shipment.delivery_address_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.delivery_address_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.delivery_address_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.delivery_address_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.created_at</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.shipment.hand_over_contact_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.shipment.hand_over_contact_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.hand_over_contact_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.hand_over_contact_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.hand_over_contact_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment.status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment.price.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.box_type</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.shipments</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.fulfillment_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.articles</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>int32</code> from property <code>data.shipment_details.dp_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.meta</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_details.affiliate_shipment_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status_history[].created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.shipment_status_history[].status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.shipment_status_history[].name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Possible values from <code>shipment,</code> from property <code>data.transaction_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.updated_at</code> of schema <code>BagDetails</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.shipment.line_items[].charges[].amount.base_currency</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>data.shipment_details.affiliate_shipment_id</code>, <code>data.shipment_details.articles</code>, <code>data.shipment_details.fulfillment_id</code>, <code>data.shipment_details.shipments</code> made optional in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].affiliate_details.shipment_meta.b2b_buyer_details.address</code> of schema <code>BuyerDetails</code> in response with status code 200
+	- [Added] property <code>data.items[].affiliate_details.ad_id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Added] property <code>data.items[].article.a_set</code> of schema <code>Article</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].fulfilling_store.address1</code> of schema <code>Store</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].fulfilling_store.store_address_json.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] property <code>data.items[].fulfilling_store.meta.documents.gst.ds_type</code> of schema <code>Document</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].order.charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].ordering_store.address1</code> of schema <code>Store</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].ordering_store.store_address_json.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] property <code>data.items[].ordering_store.meta.documents.gst.ds_type</code> of schema <code>Document</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].charges[].name</code> of schema <code>PriceAdjustmentCharge</code> in response with status code 200
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>200,400,500</code> from property <code>status_code</code> of schema <code>GetBagsPlatformResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].affiliate_bag_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].affiliate_details.shipment_meta.estimated_delivery_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].affiliate_details.shipment_meta.due_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].affiliate_details.shipment_meta.store_invoice_updated_date</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,shipments,</code> from property <code>data.items[].affiliate_details.shipment_meta.shipment_tags[].entity_type</code> of schema <code>ShipmentTags</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>data.items[].affiliate_details.shipment_meta.order_type</code> of schema <code>ShipmentMeta</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].affiliate_details.affiliate_meta.due_date</code> of schema <code>AffiliateMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external</code> from property <code>data.items[].affiliate_details.pdf_links.invoice_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Deleted] Possible values from <code>fynd,external,parent_child</code> from property <code>data.items[].affiliate_details.pdf_links.label_type</code> of schema <code>PDFLinks</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].affiliate_details.config.app</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].affiliate_details.config.inventory</code> of schema <code>AffiliateConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].affiliate_details.id</code> of schema <code>AffiliateDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].article.set</code> of schema <code>Article</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].bag_status[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].bag_status[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].bag_status[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].bag_status[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.items[].bag_status[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].bag_status_history[].state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].bag_status_history[].created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].bag_status_history[].updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].bag_status_history[].bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.items[].bag_status_history[].bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status_history[].app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status_history[].action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].bag_status_history[].id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].brand.start_date</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].brand.created_on</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].brand.modified_on</code> of schema <code>Brand</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].company.created_on</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Possible values from <code>mbo,distributor,manufacturer-owner,franchise,</code> from property <code>data.items[].company.company_type</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].company.modified_on</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].company.agreement_start_date</code> of schema <code>Company</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].current_operational_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].current_operational_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].current_operational_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].current_operational_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.items[].current_operational_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_operational_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_operational_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_operational_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].current_status.state_type</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].current_status.created_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].current_status.updated_at</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Possible values from <code>operational,financial,logistics</code> from property <code>data.items[].current_status.bag_state_mapper.state_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.items[].current_status.bag_state_mapper.journey_type</code> of schema <code>BagStateMapper</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_status.app_facing</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_status.action_user</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].current_status.id</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].dates.delivery_date</code> of schema <code>Dates</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.items[].delivery_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.items[].delivery_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].delivery_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].delivery_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].delivery_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>bag,</code> from property <code>data.items[].entity_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].financial_breakup[].refund_amount</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].financial_breakup[].tcs_percentage</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].fulfilling_store.created_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse</code> from property <code>data.items[].fulfilling_store.location_type</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].fulfilling_store.updated_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].fulfilling_store.store_address_json.created_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>data.items[].fulfilling_store.store_address_json.address_category</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].fulfilling_store.store_address_json.updated_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].fulfilling_store.meta.documents.gst.type</code> of schema <code>Document</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].invoice.updated_date</code> of schema <code>InvoiceDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>return,forward</code> from property <code>data.items[].journey_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].order.affiliate_order_date</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].order.prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital,</code> from property <code>data.items[].order_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].ordering_store.created_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Possible values from <code>high_street,mall,store,warehouse</code> from property <code>data.items[].ordering_store.location_type</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].ordering_store.updated_at</code> of schema <code>Store</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].ordering_store.store_address_json.created_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing</code> from property <code>data.items[].ordering_store.store_address_json.address_category</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].ordering_store.store_address_json.updated_at</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].ordering_store.meta.documents.gst.type</code> of schema <code>Document</code> in response with status code 200
+	- [Deleted] Possible values from <code>partner,self,fynd,</code> from property <code>data.items[].payment_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].prices.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.items[].rto_address.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.items[].rto_address.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].rto_address.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].rto_address.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].rto_address.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>data.items[].shipment.line_items[].charges[].amount</code> of schema <code>AmountSchema</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.items[].shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.items[].shipment.line_items[].charges[].amount.base_currency</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.processing_dates.pack_by_date</code> of schema <code>ProcessingDates</code> in response with status code 200
+	- [Breaking] [Deleted] Possible values from <code>Digital</code> from property <code>data.items[].shipment.order_type</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] properties <code>data.items[].shipment.tags[].slug</code>, <code>data.items[].shipment.tags[].display_text</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.system_messages</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.process_after_config</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.items[].shipment.billing_address_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.items[].shipment.billing_address_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.billing_address_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.billing_address_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.billing_address_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.items[].shipment.delivery_address_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.items[].shipment.delivery_address_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.delivery_address_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.delivery_address_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.delivery_address_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.created_at</code> of schema <code>Shipment</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.address</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>home,office,other,</code> from property <code>data.items[].shipment.hand_over_contact_json.address_type</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Possible values from <code>store,delivery,billing,</code> from property <code>data.items[].shipment.hand_over_contact_json.address_category</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.hand_over_contact_json.created_at</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.hand_over_contact_json.updated_at</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.area_code_slug</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.country_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.country_iso_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.country_phone_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.delivery_address_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.geo_location</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.name</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.sector</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.state_code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.uid</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.user_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.code</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.store_address_json</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.location_type</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.company_id</code> of schema <code>Address</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.hand_over_contact_json.store_email</code> of schema <code>Address</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment.status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.added_to_fynd_cash</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.gst_tax_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.tcs_percentage</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.cn_refund_amount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.applied_emi_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment.price.applied_instant_discount</code> of schema <code>Prices</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.box_type</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.shipments</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.fulfillment_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.articles</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>int32</code> from property <code>data.items[].shipment_details.dp_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.meta</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_details.affiliate_shipment_id</code> of schema <code>ShipmentDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status.created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status.status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_status.name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status_history[].created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].shipment_status_history[].status_created_at</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data.items[].shipment_status_history[].name</code> of schema <code>ShipmentStatusData</code> in response with status code 200
+	- [Deleted] Possible values from <code>shipment,</code> from property <code>data.items[].transaction_type</code> of schema <code>BagDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>data.items[].updated_at</code> of schema <code>BagDetails</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>data.items[].shipment.line_items[].charges[].amount.ordering_currency</code>, <code>data.items[].shipment.line_items[].charges[].amount.base_currency</code> made optional in response with status code 200
+	- [Breaking] [Changed] <code>data.items[].shipment_details.affiliate_shipment_id</code>, <code>data.items[].shipment_details.articles</code>, <code>data.items[].shipment_details.fulfillment_id</code>, <code>data.items[].shipment_details.shipments</code> made optional in response with status code 200
+
+
+#### getOrderConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getOrderConfig</code>
+
+
+
+#### updateOrderConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateOrderConfig</code>
+
+
+
+#### invalidateShipmentCache
+
+- ##### What's New
+	- [Added] method <code>invalidateShipmentCache</code>
+
+
+
+#### consolidateShipments
+
+- ##### What's New
+	- [Added] method <code>consolidateShipments</code>
+
+
+
+### Partner
+
+
+
+#### addProxyPath
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ExtensionProxyPathCreation</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>ExtensionProxyPathCreation</code> in response with status code 200
+
+
+### Payment
+
+
+
+#### updatePayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### activateAndDectivatePayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deletePayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getAllPayout
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### savePayouts
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getBankAccountDetailsOpenAPI
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### addRefundBankAccountUsingOTP
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getUserOrderBeneficiaries
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>beneficiaries[].bank_name</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>beneficiaries[].account_no</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>bank[].bank_name</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>bank[].account_no</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+
+#### getUserBeneficiaries
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>beneficiaries[].bank_name</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>beneficiaries[].account_no</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>bank[].bank_name</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Possible nullable value <code>true</code> to property <code>bank[].account_no</code> of schema <code>OrderBeneficiaryDetails</code> in response with status code 200
+	- [Added] Response with status 500
+
+
+#### confirmPayment
+
+- ##### What's New
+	- [Added] Response with status 400
+	- [Added] Response with status 500
+
+
+#### getPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### createPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>success_redirection_url</code> of schema <code>CreatePaymentLinkCreation</code> in request body
+	- [Breaking] [Deleted] property <code>failure_redirection_url</code> of schema <code>CreatePaymentLinkCreation</code> in request body
+
+
+#### getPaymentLinkId
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### pollingPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### resendPaymentLink
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>ResendPaymentLinkDetails</code> in response with status code 200
+
+
+#### cancelPaymentLink
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>error</code> of schema <code>CancelPaymentLinkDetails</code> in response with status code 200
+
+
+#### getPaymentModeSequencing
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### patchPaymentModeSequencing
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPaymentMethodConfig
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPaymentSession
+
+- ##### What's New
+	- [Added] property <code>cart_details.custom_cart_meta</code> of schema <code>CartDetailsSerializer</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>cart_details.cart_charges[].charge_type</code>, <code>cart_details.cart_charges[].name</code>, <code>cart_details.cart_charges[].code</code>, <code>cart_details.cart_charges[].amount</code> in response with status code 200
+
+
+#### updatePaymentSession
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### updateRefundSession
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Changed
+	- [Changed] <code>checksum</code> made optional in request body
+	- [Breaking] [Changed] <code>success</code>, <code>message</code> made optional in response with status code 200
+
+
+#### getDevices
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getAggregatorCredentialHistory
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getAggregatorCredential
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### updateAggregatorCredential
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### copyConfigPaymentModes
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>error</code> made optional in response with status code 400
+
+
+#### copyConfigAggPaymentModes
+
+- ##### What's New
+	- [Added] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>error</code> made optional in response with status code 400
+
+
+#### addRefundBankAccount
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### deleteBeneficiaryDetails
+
+- ##### What's New
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+
+#### setRefundOptionforShipment
+
+- ##### What's New
+	- [Breaking] [Added] <code>shipment_ids</code> made required in request body
+	- [Added] Response with status 500
+
+
+#### getSelectedRefundOption
+
+- ##### What's New
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] <code>transfer_mode</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+
+#### getUserBeneficiariesDetailV2
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### validateBeneficiaryAddress
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### updateDefaultBeneficiary
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getPennyDropValidation
+
+- ##### What's New
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+
+#### updatePennyDropValidation
+
+- ##### What's New
+	- [Added] <code>success</code> made required in response with status code 200
+	- [Added] Response with status 500
+
+
+#### getShipmentBeneficiary
+
+- ##### What's New
+	- [Added] Response with status 500
+
+
+#### getTransactions
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getTransactions</code>
+
+
+
+### Share
+
+
+
+#### createShortLink
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 400
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkReq</code> in request body
+	- [Breaking] [Deleted] property <code>meta</code> of schema <code>ShortLinkReq</code> in request body
+	- [Breaking] [Deleted] property <code>url.short_url</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 4XX
+
+
+#### getShortLinks
+
+- ##### What's New
+	- [Breaking] [Added] <code>items[].redirects.expiry</code>, <code>items[].redirects.url</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].url.short_url</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 400
+
+
+#### getShortLinkByHash
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>url.short_url</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 4XX
+
+
+#### updateShortLinkById
+
+- ##### What's New
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
+	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkReq</code> in request body
+	- [Breaking] [Deleted] property <code>meta</code> of schema <code>ShortLinkReq</code> in request body
+	- [Breaking] [Deleted] property <code>url.short_url</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>expire_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ShortLinkRes</code> in response with status code 200
+	- [Breaking] [Deleted] Response with status 4XX
+
+
+### Theme
+
+
+
+#### updateThemeName
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_themes</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### createTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_themes</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getAppliedTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>ThemesSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>applied_themes</code> of schema <code>ThemesSchema</code> in response with status code 200
+
+
+#### getLatestVersionOfThemeBySlug
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>[].updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+#### getDefaultMarketplaceTheme
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>MarketplaceTheme</code> in response with status code 200
+
+
+### User
+
+
+
+#### getCustomers
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].__v</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].has_old_password_hash</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].debug</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+
+
+#### searchUsers
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>users[].__v</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>users[].has_old_password_hash</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>users[].debug</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>users[].created_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>users[].updated_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+
+
+#### createUser
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### updateUser
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.created_at</code> of schema <code>UserSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>user.updated_at</code> of schema <code>UserSchema</code> in response with status code 200
+
+
+#### getPlatformConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+
+
+#### updatePlatformConfig
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PlatformSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PlatformSchema</code> in request body
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>PlatformSchema</code> in response with status code 200
+
+
+#### createUserGroup
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>tags</code> of schema <code>UserGroupResponseSchema</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 201
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 201
+
+
+#### getUserGroups
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### updateUserGroup
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>tags</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### getUserGroupById
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>tags</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### updateUserGroupPartially
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>tags</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserGroupResponseSchema</code> in response with status code 200
+
+
+#### getUsersByByGroupId
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].__v</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].has_old_password_hash</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].debug</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_at</code> of schema <code>UserSearchSchema</code> in response with status code 200
+
+
+#### getUserAttributeDefinitions
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### updateUserAttributeDefinition
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### getUserAttributeDefinitionById
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_at</code> of schema <code>UserAttributeDefinition</code> in response with status code 200
+
+
+#### bulkUpdateUserAttributes
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>bulkUpdateUserAttributes</code>
+
+
+
+#### bulkUpdatePerUserAttributes
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>bulkUpdatePerUserAttributes</code>
+
+
+
+### Webhook
+
+
+
+#### registerSubscriberToEventV2
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>provider</code> of schema <code>SubscriberConfigPostRequestV2</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>association</code> of schema <code>Association</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>auth_meta</code> of schema <code>AuthMeta</code> in request body
+	- [Deleted] Possible values from <code>hmac</code> from property <code>auth_meta.type</code> of schema <code>AuthMeta</code> in request body
+	- [Breaking] [Deleted] property <code>events[].queue</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].event_bridge_name</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].workflow_name</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].detail_type</code> of schema <code>Events</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>provider</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>association</code> of schema <code>AssociationResp</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>hmac</code> from property <code>auth_meta.type</code> of schema <code>AuthMeta</code> in response with status code 200
+
+
+#### updateSubscriberV2
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>provider</code> of schema <code>SubscriberConfigUpdateRequestV2</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>association</code> of schema <code>Association</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code>auth_meta</code> of schema <code>AuthMeta</code> in request body
+	- [Deleted] Possible values from <code>hmac</code> from property <code>auth_meta.type</code> of schema <code>AuthMeta</code> in request body
+	- [Breaking] [Deleted] property <code>events[].queue</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].event_bridge_name</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].workflow_name</code> of schema <code>Events</code> in request body
+	- [Breaking] [Deleted] property <code>events[].detail_type</code> of schema <code>Events</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>provider</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>association</code> of schema <code>AssociationResp</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SubscriberConfigResult</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>hmac</code> from property <code>auth_meta.type</code> of schema <code>AuthMeta</code> in response with status code 200
+
+
+#### getSubscribersByCompany
+
+- ##### What's New
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.topic</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>SubscriberConfigList</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[]</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>items[].provider</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[].association</code> of schema <code>AssociationResp</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].custom_headers</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[].auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>hmac</code> from property <code>items[].auth_meta.type</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].type</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].modified_by</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].subscriber_event_mapping.broadcaster_config</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].subscriber_event_mapping.created_on</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].created_on</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].updated_on</code> of schema <code>EventConfig</code> in response with status code 200
+
+
+#### upsertSubscriberEvent
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>upsertSubscriberEvent</code>
+
+
+
+#### getSubscriberById
+
+- ##### What's New
+	- [Added] property <code>event_configs[].subscriber_event_mapping.topic</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>provider</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>association</code> of schema <code>AssociationResp</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>custom_headers</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>updated_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>hmac</code> from property <code>auth_meta.type</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>event_configs[].type</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>event_configs[].modified_by</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>event_configs[].subscriber_event_mapping.broadcaster_config</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>event_configs[].subscriber_event_mapping.created_on</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>event_configs[].created_on</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>event_configs[].updated_on</code> of schema <code>EventConfig</code> in response with status code 200
+
+
+#### getSubscribersByExtensionId
+
+- ##### What's New
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.topic</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>SubscriberConfigList</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[]</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>kafka,sqs,rest,event_bridge,pub_sub,temporal</code> from property <code>items[].provider</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[].association</code> of schema <code>AssociationResp</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>items[].custom_headers</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].updated_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>SubscriberDetails</code> in response with status code 200
+	- [Deleted] Type from <code>object</code> from property <code>items[].auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Deleted] Possible values from <code>hmac</code> from property <code>items[].auth_meta.type</code> of schema <code>AuthMeta</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].type</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].modified_by</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].event_configs[].subscriber_event_mapping.broadcaster_config</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].subscriber_event_mapping.created_on</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].created_on</code> of schema <code>EventConfig</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].event_configs[].updated_on</code> of schema <code>EventConfig</code> in response with status code 200
+
+
+#### fetchAllEventConfigurations
+
+- ##### What's New
+	- [Added] method <code>fetchAllEventConfigurations</code>
+
+
+
+#### registerSubscriberToEvent
+
+- ##### What's New
+	- [Added] method <code>registerSubscriberToEvent</code>
+
+
+
+#### updateSubscriberConfig
+
+- ##### What's New
+	- [Added] method <code>updateSubscriberConfig</code>
+
+
+
+## Public Client
+
+
+
+### Content
+
+
+
+#### getAnalyticsTags
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getAnalyticsTags</code>
+
+
+
+#### getCustomPage
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>CustomPageBySlugSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>CustomPageBySlugSchema</code> in response with status code 200
+
+
+#### getHomePageContent
+
+- ##### What's Deprecated
+	- [Deleted] Value format from <code>date-time</code> from property <code>created_on</code> of schema <code>HomePageContentSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>modified_on</code> of schema <code>HomePageContentSchema</code> in response with status code 200
+
+
+#### getAllTags
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>inline,external</code> from property <code>items[].sub_type</code> of schema <code>CustomItemSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].created_on</code> of schema <code>CustomItemSchema</code> in response with status code 200
+	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modified_on</code> of schema <code>CustomItemSchema</code> in response with status code 200
+
+
 # CHANGE LOG (3.4.0) - 2.7.0
 
 ## Application Client

@@ -14,7 +14,7 @@ declare class Partner {
      * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
      * @name getPanelExtensionDetails
      * @summary: Get panel extension details
-     * @description: Retrieve detailed information about panel extensions in the public server setup. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/public/partner/getPanelExtensionDetails/).
+     * @description: Retrieve detailed information about panel extensions in the public server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
      */
     getPanelExtensionDetails({ slug, requestHeaders }?: PartnerPublicValidator.GetPanelExtensionDetailsParam, { responseHeaders }?: object, ...args: any[]): Promise<PartnerPublicModel.ExtensionUsingSlug>;
 }

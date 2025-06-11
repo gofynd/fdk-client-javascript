@@ -19,11 +19,10 @@ class Partner {
    * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PartnerPlatformModel.ExtensionProxyPathCreation>} -
-   *   Success response
+   * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name addProxyPath
    * @summary: Create extension proxy
-   * @description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/addProxyPath/).
+   * @description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
    */
   async addProxyPath(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -78,10 +77,10 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerPlatformModel.ExtensionProxyPathCreation().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PartnerPlatformModel.AddProxyResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -101,11 +100,10 @@ class Partner {
    * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PartnerPlatformModel.ExtensionProxyPathDelete>} -
-   *   Success response
+   * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
    * @name removeProxyPath
    * @summary: Remove extension proxy
-   * @description: Remove the proxy which are created earlier for the extension. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/removeProxyPath/).
+   * @description: Remove the proxy which are created earlier for the extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
    */
   async removeProxyPath(
     { extensionId, attachedPath, requestHeaders } = { requestHeaders: {} },
@@ -160,7 +158,7 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerPlatformModel.ExtensionProxyPathDelete().validate(responseData, {
+    } = PartnerPlatformModel.RemoveProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

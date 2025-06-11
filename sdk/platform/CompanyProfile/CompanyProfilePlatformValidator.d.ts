@@ -2,28 +2,28 @@ export = CompanyProfilePlatformValidator;
 /** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateBrandRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 /**
  * @typedef CreateCompanyBrandMappingParam
- * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSchema} body
+ * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
  */
 /**
  * @typedef CreateLocationParam
- * @property {CompanyProfilePlatformModel.LocationSchema} body
+ * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 /**
  * @typedef CreateLocationBulkParam
- * @property {CompanyProfilePlatformModel.BulkLocationSchema} body
+ * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
  */
 /**
  * @typedef EditBrandParam
- * @property {string} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.UpdateBrandRequestSchema} body
+ * @property {number} brandId - Id of the brand to be viewed.
+ * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 /**
  * @typedef GetBrandParam
- * @property {string} brandId - Id of the brand to be viewed.
+ * @property {number} brandId - Id of the brand to be viewed.
  */
 /**
  * @typedef GetBrandsParam
@@ -36,13 +36,17 @@ export = CompanyProfilePlatformValidator;
 /** @typedef GetCompanyMetricsParam */
 /**
  * @typedef GetLocationDetailParam
- * @property {string} locationId - Id of the location which you want to view.
+ * @property {number} locationId - Id of the location which you want to view.
  */
 /** @typedef GetLocationTagsParam */
 /**
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
+ * @property {string[]} [storeCodes] - List of up to 50 store codes to fetch.
+ *   Specify multiple values by repeating the query parameter (e.g.,
+ *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
+ *   are not supported.
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [stage] - To filter companies on basis of verified or
  *   unverified companies.
@@ -62,8 +66,8 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef UpdateLocationParam
- * @property {string} locationId - Id of the location which you want to edit.
- * @property {CompanyProfilePlatformModel.LocationSchema} body
+ * @property {number} locationId - Id of the location which you want to edit.
+ * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 declare class CompanyProfilePlatformValidator {
     /** @returns {CbsOnboardGetParam} */
@@ -99,29 +103,29 @@ declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
-    body: CompanyProfilePlatformModel.CreateBrandRequestSchema;
+    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
 type CreateCompanyBrandMappingParam = {
-    body: CompanyProfilePlatformModel.CompanyBrandPostRequestSchema;
+    body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer;
 };
 type CreateLocationParam = {
-    body: CompanyProfilePlatformModel.LocationSchema;
+    body: CompanyProfilePlatformModel.LocationSerializer;
 };
 type CreateLocationBulkParam = {
-    body: CompanyProfilePlatformModel.BulkLocationSchema;
+    body: CompanyProfilePlatformModel.BulkLocationSerializer;
 };
 type EditBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: string;
-    body: CompanyProfilePlatformModel.UpdateBrandRequestSchema;
+    brandId: number;
+    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
 type GetBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: string;
+    brandId: number;
 };
 type GetBrandsParam = {
     /**
@@ -143,7 +147,7 @@ type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
-    locationId: string;
+    locationId: number;
 };
 type GetLocationsParam = {
     /**
@@ -151,6 +155,13 @@ type GetLocationsParam = {
      * of location type.
      */
     storeType?: string;
+    /**
+     * - List of up to 50 store codes to fetch.
+     * Specify multiple values by repeating the query parameter (e.g.,
+     * `?store_codes=high_street&store_codes=main_avenue`). Comma-separated values
+     * are not supported.
+     */
+    storeCodes?: string[];
     /**
      * - Query that is to be searched.
      */
@@ -192,8 +203,8 @@ type UpdateLocationParam = {
     /**
      * - Id of the location which you want to edit.
      */
-    locationId: string;
-    body: CompanyProfilePlatformModel.LocationSchema;
+    locationId: number;
+    body: CompanyProfilePlatformModel.LocationSerializer;
 };
 type CbsOnboardGetParam = any;
 type GetCompanyMetricsParam = any;

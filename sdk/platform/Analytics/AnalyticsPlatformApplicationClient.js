@@ -24,7 +24,7 @@ class Analytics {
    * @returns {Promise<AnalyticsPlatformModel.JobStatus>} - Success response
    * @name checkJobStatusByNameV2
    * @summary: Checks download job status
-   * @description: Takes job name in path param to check the status of job Returns file URL if downloading is done else returns status of job - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/analytics/checkJobStatusByNameV2/).
+   * @description: Takes job name in path param to check the status of job Returns file URL if downloading is done else returns status of job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/analytics/checkJobStatusByNameV2/).
    */
   async checkJobStatusByNameV2(
     { fileName, requestHeaders } = { requestHeaders: {} },
@@ -105,7 +105,7 @@ class Analytics {
    * @returns {Promise<AnalyticsPlatformModel.JobExecutionResult>} - Success response
    * @name executeJobForProvidedParametersV2
    * @summary: Executes given sql(Base64 Encoded) query
-   * @description: Query click events data - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/analytics/executeJobForProvidedParametersV2/).
+   * @description: Query click events data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/analytics/executeJobForProvidedParametersV2/).
    */
   async executeJobForProvidedParametersV2(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -186,7 +186,7 @@ class Analytics {
    * @returns {Promise<Object>} - Success response
    * @name startDownloadForQueryV2
    * @summary: Initiates download job
-   * @description: Initiates download job and returns job name - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/analytics/startDownloadForQueryV2/).
+   * @description: Initiates download job and returns job name - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/analytics/startDownloadForQueryV2/).
    */
   async startDownloadForQueryV2(
     { exportType, body, requestHeaders } = { requestHeaders: {} },

@@ -2,13 +2,7 @@ const Joi = require("joi");
 
 const ContentPublicModel = require("./ContentPublicModel");
 
-/** @typedef GetAllLanguagesParam */
-
 /** @typedef GetAllTagsParam */
-
-/** @typedef GetAllTranslatableResourcesParam */
-
-/** @typedef GetAnalyticsTagsParam */
 
 /** @typedef GetBasicDetailsParam */
 
@@ -30,11 +24,6 @@ const ContentPublicModel = require("./ContentPublicModel");
  * @property {string} pageType - The type of the page (e.g., pricing).
  */
 
-/**
- * @typedef GetLanguageByLocaleParam
- * @property {string} locale
- */
-
 /** @typedef GetMenuContentParam */
 
 /**
@@ -46,24 +35,16 @@ const ContentPublicModel = require("./ContentPublicModel");
 
 /** @typedef GetPricingBannerParam */
 
-class ContentPublicValidator {
-  /** @returns {GetAllLanguagesParam} */
-  static getAllLanguages() {
-    return Joi.object({});
-  }
+/** @typedef GetSDKDocumentationParam */
 
+/**
+ * @typedef GetSDKDocumentationByTypeParam
+ * @property {string} type - Type of SDK
+ */
+
+class ContentPublicValidator {
   /** @returns {GetAllTagsParam} */
   static getAllTags() {
-    return Joi.object({});
-  }
-
-  /** @returns {GetAllTranslatableResourcesParam} */
-  static getAllTranslatableResources() {
-    return Joi.object({});
-  }
-
-  /** @returns {GetAnalyticsTagsParam} */
-  static getAnalyticsTags() {
     return Joi.object({});
   }
 
@@ -98,13 +79,6 @@ class ContentPublicValidator {
     }).required();
   }
 
-  /** @returns {GetLanguageByLocaleParam} */
-  static getLanguageByLocale() {
-    return Joi.object({
-      locale: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetMenuContentParam} */
   static getMenuContent() {
     return Joi.object({});
@@ -125,6 +99,18 @@ class ContentPublicValidator {
   /** @returns {GetPricingBannerParam} */
   static getPricingBanner() {
     return Joi.object({});
+  }
+
+  /** @returns {GetSDKDocumentationParam} */
+  static getSDKDocumentation() {
+    return Joi.object({});
+  }
+
+  /** @returns {GetSDKDocumentationByTypeParam} */
+  static getSDKDocumentationByType() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+    }).required();
   }
 }
 
