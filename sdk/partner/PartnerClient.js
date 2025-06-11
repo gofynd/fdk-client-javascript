@@ -9,7 +9,7 @@ const Theme = require("./Theme/ThemePartnerClient");
 const Webhook = require("./Webhook/WebhookPartnerClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
-const { execute } = require("./PartnerAPIClient");
+const PartnerAPIClient = require("./PartnerAPIClient");
 
 /**
  * Represents the client for the partner APIs.
@@ -54,9 +54,17 @@ class PartnerClient {
     headers,
     responseHeaders = false,
   }) {
-    return await execute(this.config, method, url, query, body, headers, {
-      responseHeaders,
-    });
+    return await PartnerAPIClient.execute(
+      this.config,
+      method,
+      url,
+      query,
+      body,
+      headers,
+      {
+        responseHeaders,
+      }
+    );
   }
 }
 

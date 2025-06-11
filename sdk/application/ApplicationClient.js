@@ -18,7 +18,7 @@ const Webhook = require("./Webhook/WebhookApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const { convertStringToBase64 } = require("../common/utils");
-const { execute } = require("./ApplicationAPIClient");
+const ApplicationAPIClient = require("./ApplicationAPIClient");
 
 /**
  * Represents the client for the application.
@@ -113,9 +113,17 @@ class ApplicationClient {
     headers,
     responseHeaders = false,
   }) {
-    return await execute(this.config, method, url, query, body, headers, {
-      responseHeaders,
-    });
+    return await ApplicationAPIClient.execute(
+      this.config,
+      method,
+      url,
+      query,
+      body,
+      headers,
+      {
+        responseHeaders,
+      }
+    );
   }
 }
 
