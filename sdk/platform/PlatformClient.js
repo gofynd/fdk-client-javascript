@@ -34,7 +34,7 @@ const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
-const { execute } = require("./PlatformAPIClient");
+const PlatformAPIClient = require("./PlatformAPIClient");
 
 /**
  * Represents the client for the platform.
@@ -125,9 +125,17 @@ class PlatformClient {
     headers,
     responseHeaders = false,
   }) {
-    return await execute(this.config, method, url, query, body, headers, {
-      responseHeaders,
-    });
+    return await PlatformAPIClient.execute(
+      this.config,
+      method,
+      url,
+      query,
+      body,
+      headers,
+      {
+        responseHeaders,
+      }
+    );
   }
 }
 
