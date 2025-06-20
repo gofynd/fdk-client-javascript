@@ -1,14 +1,14 @@
 export = AnalyticsPlatformModel;
 /**
  * @typedef Page
- * @property {number} [item_total] - The total number of items on the page.
+ * @property {number} [item_total] - The total number of all items across all pages.
  * @property {string} [next_id] - The identifier for the next page.
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
- * @property {number} [total] - Total number of items.
+ * @property {number} [page_size] - The number of items per page.
  */
 /**
  * @typedef FileDownloadRequestBody
@@ -45,7 +45,7 @@ declare namespace AnalyticsPlatformModel {
 declare function Page(): Page;
 type Page = {
     /**
-     * - The total number of items on the page.
+     * - The total number of all items across all pages.
      */
     item_total?: number;
     /**
@@ -73,9 +73,9 @@ type Page = {
      */
     size?: number;
     /**
-     * - Total number of items.
+     * - The number of items per page.
      */
-    total?: number;
+    page_size?: number;
 };
 /** @returns {FileDownloadRequestBody} */
 declare function FileDownloadRequestBody(): FileDownloadRequestBody;

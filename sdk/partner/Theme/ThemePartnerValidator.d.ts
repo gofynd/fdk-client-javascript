@@ -17,15 +17,11 @@ declare class ThemeValidator {
     static deleteOrganizationTheme(): any;
     static getLatestVersionOfThemeBySlug(): any;
     static createNewThemeInOrganization(): any;
-    static getThemeRejectionReasons(): any;
     static createExtensionSectionDraft(): any;
-    static getExtensionbinding(): any;
     static publishExtensionSections(): any;
     static applyExtensionPreview(): any;
     static removeExtensionPreview(): any;
+    static getThemeRejectionReasons(): any;
     static getThemeVersions(): any;
     static createTheme(): any;
-    static getOrgnaizationDefaultTheme(): any;
-    static getSystemPage(): any;
-    static getAppliedTheme(): any;
 }

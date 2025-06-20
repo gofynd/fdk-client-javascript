@@ -13,12 +13,9 @@ declare class PartnerClient {
      */
     constructor(config: import("./PartnerConfig"));
     config: import("./PartnerConfig");
-    authorization: Authorization;
-    catalog: Catalog;
     fileStorage: FileStorage;
     lead: Lead;
     logistics: Logistics;
-    payment: Payment;
     theme: Theme;
     webhook: Webhook;
     /**
@@ -37,11 +34,8 @@ declare class PartnerClient {
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
 }
-import Authorization = require("./Authorization/AuthorizationPartnerClient");
-import Catalog = require("./Catalog/CatalogPartnerClient");
 import FileStorage = require("./FileStorage/FileStoragePartnerClient");
 import Lead = require("./Lead/LeadPartnerClient");
 import Logistics = require("./Logistics/LogisticsPartnerClient");
-import Payment = require("./Payment/PaymentPartnerClient");
 import Theme = require("./Theme/ThemePartnerClient");
 import Webhook = require("./Webhook/WebhookPartnerClient");

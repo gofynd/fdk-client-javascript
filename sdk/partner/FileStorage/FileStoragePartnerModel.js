@@ -7,14 +7,12 @@ const Joi = require("joi");
 
 /**
  * @typedef SaveProxy
- * @property {number} [id]
- * @property {string} [token]
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef ProxyFileData
- * @property {string} [email]
- * @property {string} [password]
+ * @property {string} [name]
  */
 
 /**
@@ -25,16 +23,11 @@ const Joi = require("joi");
  * @property {number} [price]
  * @property {ProxyFileData} [data]
  * @property {string} [url]
- * @property {Object} [headers] - A key-value map of HTTP headers to include in
- *   the proxied request. Common headers include "Content-Type", "Accept", and
- *   authentication headers such as "x-api-key". These headers will be forwarded
- *   as-is to the external API specified in the `url` field.
  */
 
 /**
  * @typedef FetchProxyDetails
- * @property {Object} [data]
- * @property {Object} [support]
+ * @property {boolean} [success]
  */
 
 /**
@@ -84,7 +77,6 @@ const Joi = require("joi");
  * @property {number} size
  * @property {string[]} [tags]
  * @property {Object} [params]
- * @property {string} [enc_key]
  */
 
 /**
@@ -115,6 +107,25 @@ const Joi = require("joi");
  * @property {string} message
  */
 
+/**
+ * @typedef SignedUrl
+ * @property {string} url - This is the original asset URL provided in the
+ *   request. This is the URL for which a signed URL has been generated.
+ * @property {string} signed_url - Generated signed URL.
+ * @property {number} expiry - The expiration time for the signed URL in seconds.
+ */
+
+/**
+ * @typedef SignUrlResult
+ * @property {SignedUrl[]} urls - Signed URL object.
+ */
+
+/**
+ * @typedef SignUrl
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string[]} urls - List of asset URLs to be signed.
+ */
+
 class FileStoragePartnerModel {
   /** @returns {SizeConstraints} */
   static SizeConstraints() {
@@ -126,16 +137,14 @@ class FileStoragePartnerModel {
   /** @returns {SaveProxy} */
   static SaveProxy() {
     return Joi.object({
-      id: Joi.number(),
-      token: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
   /** @returns {ProxyFileData} */
   static ProxyFileData() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      password: Joi.string().allow(""),
+      name: Joi.string().allow(""),
     });
   }
 
@@ -148,15 +157,13 @@ class FileStoragePartnerModel {
       price: Joi.number(),
       data: FileStoragePartnerModel.ProxyFileData(),
       url: Joi.string().allow(""),
-      headers: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
   /** @returns {FetchProxyDetails} */
   static FetchProxyDetails() {
     return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()),
-      support: Joi.object().pattern(/\S/, Joi.any()),
+      success: Joi.boolean(),
     });
   }
 
@@ -219,7 +226,6 @@ class FileStoragePartnerModel {
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
       params: Joi.object().pattern(/\S/, Joi.any()),
-      enc_key: Joi.string().allow(""),
     });
   }
 
@@ -254,6 +260,30 @@ class FileStoragePartnerModel {
   static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {SignedUrl} */
+  static SignedUrl() {
+    return Joi.object({
+      url: Joi.string().allow("").required(),
+      signed_url: Joi.string().allow("").required(),
+      expiry: Joi.number().required(),
+    });
+  }
+
+  /** @returns {SignUrlResult} */
+  static SignUrlResult() {
+    return Joi.object({
+      urls: Joi.array().items(FileStoragePartnerModel.SignedUrl()).required(),
+    });
+  }
+
+  /** @returns {SignUrl} */
+  static SignUrl() {
+    return Joi.object({
+      expiry: Joi.number().required(),
+      urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 }

@@ -18,10 +18,10 @@ class Theme {
    * @param {ThemePlatformValidator.AddMarketplaceThemeToCompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name addMarketplaceThemeToCompany
    * @summary: Create a company theme
-   * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
+   * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/addMarketplaceThemeToCompany/).
    */
   async addMarketplaceThemeToCompany(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -76,7 +76,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -99,10 +99,10 @@ class Theme {
    * @param {ThemePlatformValidator.DeleteCompanyThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name deleteCompanyTheme
    * @summary: Delete a company theme
-   * @description: Remove a theme associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
+   * @description: Remove a theme associated with a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/deleteCompanyTheme/).
    */
   async deleteCompanyTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -155,7 +155,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -178,10 +178,10 @@ class Theme {
    * @param {ThemePlatformValidator.GetCompanyLevelPrivateThemesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema[]>} - Success response
+   * @returns {Promise<ThemePlatformModel.CompanyPrivateTheme[]>} - Success response
    * @name getCompanyLevelPrivateThemes
    * @summary: List private company themes
-   * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelPrivateThemes/).
+   * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/getCompanyLevelPrivateThemes/).
    */
   async getCompanyLevelPrivateThemes(
     { searchText, requestHeaders } = { requestHeaders: {} },
@@ -236,7 +236,7 @@ class Theme {
     }
 
     const { error: res_error } = Joi.array()
-      .items(ThemePlatformModel.ThemesSchema())
+      .items(ThemePlatformModel.CompanyPrivateTheme())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -257,10 +257,10 @@ class Theme {
    * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema[]>} - Success response
+   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
    * @name getCompanyLevelThemes
    * @summary: List company themes
-   * @description: Retrieve themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
+   * @description: Retrieve themes added to a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/theme/getCompanyLevelThemes/).
    */
   async getCompanyLevelThemes(
     { searchText, requestHeaders } = { requestHeaders: {} },
@@ -313,7 +313,7 @@ class Theme {
     }
 
     const { error: res_error } = Joi.array()
-      .items(ThemePlatformModel.ThemesSchema())
+      .items(ThemePlatformModel.CompanyThemeSchema())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -323,83 +323,6 @@ class Theme {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Theme > getCompanyLevelThemes \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ThemePlatformValidator.GetDefaultMarketplaceThemeParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.MarketplaceTheme>} - Success response
-   * @name getDefaultMarketplaceTheme
-   * @summary: Get default marketplace theme.
-   * @description: Retrieve the most recent version of a theme using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getDefaultMarketplaceTheme/).
-   */
-  async getDefaultMarketplaceTheme(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ThemePlatformValidator.getDefaultMarketplaceTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ThemePlatformValidator.getDefaultMarketplaceTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Theme > getDefaultMarketplaceTheme \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v2.0/company/${this.config.companyId}/default`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ThemePlatformModel.MarketplaceTheme().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Theme > getDefaultMarketplaceTheme \n ${res_error}`,
         });
       }
     }

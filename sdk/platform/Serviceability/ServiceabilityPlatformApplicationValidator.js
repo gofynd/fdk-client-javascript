@@ -13,23 +13,13 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef CreateBulkGeoAreaExportParam
- * @property {ServiceabilityPlatformModel.PriceBulkGeoAreaExportRequestPayload} body
- */
-
-/**
- * @typedef CreateBulkGeoAreasParam
- * @property {ServiceabilityPlatformModel.PriceBulkGeoAreaPayload} body
- */
-
-/**
- * @typedef CreateBulkZoneParam
- * @property {ServiceabilityPlatformModel.CreateBulkZoneData} body
- */
-
-/**
  * @typedef CreateCourierPartnerRuleParam
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
+ */
+
+/**
+ * @typedef CreateFulfillmentOptionParam
+ * @property {ServiceabilityPlatformModel.FulfillmentOption} body
  */
 
 /**
@@ -44,12 +34,17 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef CreateStoreRulesParam
- * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
 
 /**
  * @typedef CreateZoneParam
- * @property {ServiceabilityPlatformModel.CreateZoneV2Data} body
+ * @property {ServiceabilityPlatformModel.CreateZoneDataSchema} body
+ */
+
+/**
+ * @typedef DeleteFulfillmentOptionsParam
+ * @property {string} slug - Slug of the fulfillment option for retrieving details.
  */
 
 /**
@@ -58,11 +53,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /** @typedef DownloadGeoareaSampleFileParam */
-
-/**
- * @typedef DownloadZoneSampleFileParam
- * @property {string} productType - It denotes the attribute of the product
- */
 
 /** @typedef GetApplicationConfigParam */
 
@@ -74,48 +64,50 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetBulkFulfillmentValidationStatusParam
+ * @property {string} bulkId - Unique id created by validate api.
+ */
+
+/**
  * @typedef GetBulkGeoAreaParam
  * @property {string} geoareaId - A unique identifier for the GeoArea.
  */
 
-/** @typedef GetBulkGeoAreasHistoryParam */
-
-/** @typedef GetBulkGeoAreasSampleParam */
-
-/**
- * @typedef GetBulkGeoareaValidationParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/** @typedef GetBulkZoneParam */
-
-/**
- * @typedef GetBulkZoneOverrideStatusParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- */
-
-/**
- * @typedef GetBulkZoneValidationParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
- */
-
-/**
- * @typedef GetCourierPartnerRuleDetailsParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
- *   courier partner rule.
+ * @property {string} ruleUid - Unique identifier of the courier partner rule
  */
 
 /**
  * @typedef GetCourierPartnerRulesParam
- * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageNo] - The current page number for paginated results.
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [status] - Filter rules based on rule status
+ */
+
+/**
+ * @typedef GetCourierPartnersParam
+ * @property {ServiceabilityPlatformModel.ShipmentCourierPartnerDetails} body
+ */
+
+/**
+ * @typedef GetFulfillmentOptionProductsParam
+ * @property {string} slug - Slug of the fulfillment option for retrieving details.
+ * @property {string} [q] - Query to search product by name.
+ * @property {number} storeId - The unique identifier of the store.
+ */
+
+/**
+ * @typedef GetFulfillmentOptionStoresParam
+ * @property {string} slug - Slug of the fulfillment option for retrieving details.
+ * @property {string} [q] - Query to search product by name.
+ */
+
+/**
+ * @typedef GetFulfillmentOptionsParam
+ * @property {string} slug - Slug of the fulfillment option for retrieving details.
+ * @property {number} [productId] - The unique identifier of the product.
+ * @property {number} [storeId] - The unique identifier of the store.
  */
 
 /**
@@ -134,22 +126,13 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {boolean} [isActive] - Status of GeoAreas (either active or inactive)
  * @property {number} [pageNo] - Current page number
  * @property {string} [type] - To fetch the type of a specific geoarea.
- * @property {string} [q] - Search with name as a free text
+ * @property {string} [q] - Used to search for matching results based on the
+ *   provided input.
  * @property {string} [countryIsoCode] - ISO2 code of the country
  * @property {string} [state] - State name
  * @property {string} [city] - City name
  * @property {string} [pincode] - Pincode value to search geoareas
  * @property {string} [sector] - Sector value to search geoareas
- */
-
-/**
- * @typedef GetGeoAreasExportStatusParam
- * @property {string} batchId - The unique identifier for the sales channel.
- */
-
-/**
- * @typedef GetGeoareaOverrideStatusParam
- * @property {string} batchId - The unique identifier of the bulk job.
  */
 
 /**
@@ -159,16 +142,10 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetStoreRuleDetailsParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a order
- *   routing rule.
- */
-
-/**
  * @typedef GetStoreRulesParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {string} [status]
+ * @property {number} [pageNo] - The current page number for paginated results.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {string} [status] - Filter rules based on rule status
  */
 
 /**
@@ -177,27 +154,15 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetZoneDetailsParam
- * @property {string} zoneId - Unique identifier of a particular zone
- */
-
-/**
- * @typedef GetZoneOverrideStatusParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- */
-
-/**
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
- * @property {string} [type] - Using type, you can filter custom or default zones
- * @property {string} [accessLevel] - Using access level, you can filter public
- *   and private zones as marketplace owner
- * @property {string} [status] - Using status zones listing can be filttered for
- *   marketplace owner and 3p sellers
  * @property {number} [pageSize] - Defines the number of items displayed per page.
  * @property {number} [pageNo] - Current page number.
+ * @property {string} [fulfillmentOptionSlug] - Slug identifier for filtering by
+ *   fulfillment option.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [q] - Search with name as a free text.
+ * @property {string} [q] - Used to search for matching results based on the
+ *   provided input.
  * @property {string} [countryIsoCode] - ISO2 code of the country.
  * @property {string} [pincode] - PIN Code of the country.
  * @property {string} [state] - State of the country.
@@ -206,53 +171,24 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef ImportBulkGeoareaParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/**
- * @typedef ImportBulkGeoareaStatusParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/**
- * @typedef ImportBulkZoneParam
- * @property {string} batchId - The batch identifier returned from validation request.
- */
-
-/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
 
 /**
- * @typedef OverrideBulkGeoareaParam
- * @property {string} batchId - The unique identifier for current batch of
- *   geoareas to be updated.
- * @property {ServiceabilityPlatformModel.BulkZoneOverrideSchema} body
- */
-
-/**
- * @typedef OverrideBulkZoneParam
- * @property {string} batchId - The unique identifier for current batch of zones
- *   to be updated.
- * @property {ServiceabilityPlatformModel.BulkZoneOverrideSchema} body
- */
-
-/**
- * @typedef OverrideZoneByIdParam
- * @property {string} zoneId - The unique identifier of the delivery zone.
- * @property {ServiceabilityPlatformModel.ZoneOverrideSchema} body
- */
-
-/**
  * @typedef PatchApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPatch} body
+ */
+
+/**
+ * @typedef PutFulfillmentOptionParam
+ * @property {string} slug - Slug of the fulfillment option for retrieving details.
+ * @property {ServiceabilityPlatformModel.FulfillmentOption} body
  */
 
 /**
  * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequest} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPutDetail} body
  */
 
 /**
@@ -263,12 +199,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
+ * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
  */
 
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
+ * @property {string} ruleUid - Unique identifier of the courier partner rule.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 
@@ -280,7 +216,9 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeAuditHistoryParam
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails} body
  */
 
 /**
@@ -290,7 +228,9 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeCoDListingParam
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {ServiceabilityPlatformModel.PincodeCodStatusListingDetails} body
  */
 
 /**
@@ -300,14 +240,14 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateStoreRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
+ * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
  */
 
 /**
  * @typedef UpdateStoreRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
- * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
 
 /**
@@ -318,17 +258,18 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /**
  * @typedef UpdateZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
- * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
+ * @property {ServiceabilityPlatformModel.UpdateZoneData} body
  */
 
 /**
- * @typedef ValidateBulkGeoareaParam
- * @property {ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema} body
+ * @typedef UploadBulkFulfillmentOptionsParam
+ * @property {ServiceabilityPlatformModel.FulfillmentOptionBulk} body
  */
 
 /**
- * @typedef ValidateBulkZoneParam
- * @property {ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema} body
+ * @typedef ValidateBulkFulfillmentOptionsParam
+ * @property {string} type - Type of entity being validated (stores or products).
+ * @property {ServiceabilityPlatformModel.FulfillmentOptionBulkValidate} body
  */
 
 class ServiceabilityPlatformApplicationValidator {
@@ -346,31 +287,17 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateBulkGeoAreaExportParam} */
-  static createBulkGeoAreaExport() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.PriceBulkGeoAreaExportRequestPayload().required(),
-    }).required();
-  }
-
-  /** @returns {CreateBulkGeoAreasParam} */
-  static createBulkGeoAreas() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.PriceBulkGeoAreaPayload().required(),
-    }).required();
-  }
-
-  /** @returns {CreateBulkZoneParam} */
-  static createBulkZone() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.CreateBulkZoneData().required(),
-    }).required();
-  }
-
   /** @returns {CreateCourierPartnerRuleParam} */
   static createCourierPartnerRule() {
     return Joi.object({
       body: ServiceabilityPlatformModel.CourierPartnerRule().required(),
+    }).required();
+  }
+
+  /** @returns {CreateFulfillmentOptionParam} */
+  static createFulfillmentOption() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.FulfillmentOption().required(),
     }).required();
   }
 
@@ -391,14 +318,21 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {CreateStoreRulesParam} */
   static createStoreRules() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema().required(),
+      body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema().required(),
     }).required();
   }
 
   /** @returns {CreateZoneParam} */
   static createZone() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CreateZoneV2Data().required(),
+      body: ServiceabilityPlatformModel.CreateZoneDataSchema().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteFulfillmentOptionsParam} */
+  static deleteFulfillmentOptions() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -412,13 +346,6 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {DownloadGeoareaSampleFileParam} */
   static downloadGeoareaSampleFile() {
     return Joi.object({}).required();
-  }
-
-  /** @returns {DownloadZoneSampleFileParam} */
-  static downloadZoneSampleFile() {
-    return Joi.object({
-      productType: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {GetApplicationConfigParam} */
@@ -438,6 +365,13 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetBulkFulfillmentValidationStatusParam} */
+  static getBulkFulfillmentValidationStatus() {
+    return Joi.object({
+      bulkId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetBulkGeoAreaParam} */
   static getBulkGeoArea() {
     return Joi.object({
@@ -445,51 +379,8 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetBulkGeoAreasHistoryParam} */
-  static getBulkGeoAreasHistory() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetBulkGeoAreasSampleParam} */
-  static getBulkGeoAreasSample() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetBulkGeoareaValidationParam} */
-  static getBulkGeoareaValidation() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBulkZoneParam} */
-  static getBulkZone() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetBulkZoneOverrideStatusParam} */
-  static getBulkZoneOverrideStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBulkZoneValidationParam} */
-  static getBulkZoneValidation() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetCourierPartnerRuleParam} */
   static getCourierPartnerRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetCourierPartnerRuleDetailsParam} */
-  static getCourierPartnerRuleDetails() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
     }).required();
@@ -501,6 +392,39 @@ class ServiceabilityPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       status: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetCourierPartnersParam} */
+  static getCourierPartners() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ShipmentCourierPartnerDetails().required(),
+    }).required();
+  }
+
+  /** @returns {GetFulfillmentOptionProductsParam} */
+  static getFulfillmentOptionProducts() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      q: Joi.string().allow(""),
+      storeId: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {GetFulfillmentOptionStoresParam} */
+  static getFulfillmentOptionStores() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetFulfillmentOptionsParam} */
+  static getFulfillmentOptions() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      productId: Joi.number(),
+      storeId: Joi.number(),
     }).required();
   }
 
@@ -534,29 +458,8 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetGeoAreasExportStatusParam} */
-  static getGeoAreasExportStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetGeoareaOverrideStatusParam} */
-  static getGeoareaOverrideStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetStoreRuleParam} */
   static getStoreRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetStoreRuleDetailsParam} */
-  static getStoreRuleDetails() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
     }).required();
@@ -578,29 +481,13 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetZoneDetailsParam} */
-  static getZoneDetails() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetZoneOverrideStatusParam} */
-  static getZoneOverrideStatus() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetZonesParam} */
   static getZones() {
     return Joi.object({
       stage: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      accessLevel: Joi.string().allow(""),
-      status: Joi.string().allow(""),
       pageSize: Joi.number(),
       pageNo: Joi.number(),
+      fulfillmentOptionSlug: Joi.string().allow(""),
       isActive: Joi.boolean(),
       q: Joi.string().allow(""),
       countryIsoCode: Joi.string().allow(""),
@@ -611,27 +498,6 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {ImportBulkGeoareaParam} */
-  static importBulkGeoarea() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {ImportBulkGeoareaStatusParam} */
-  static importBulkGeoareaStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {ImportBulkZoneParam} */
-  static importBulkZone() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {InsertApplicationConfigParam} */
   static insertApplicationConfig() {
     return Joi.object({
@@ -639,41 +505,25 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {OverrideBulkGeoareaParam} */
-  static overrideBulkGeoarea() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkZoneOverrideSchema().required(),
-    }).required();
-  }
-
-  /** @returns {OverrideBulkZoneParam} */
-  static overrideBulkZone() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkZoneOverrideSchema().required(),
-    }).required();
-  }
-
-  /** @returns {OverrideZoneByIdParam} */
-  static overrideZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.ZoneOverrideSchema().required(),
-    }).required();
-  }
-
   /** @returns {PatchApplicationConfigurationParam} */
   static patchApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPatch().required(),
+    }).required();
+  }
+
+  /** @returns {PutFulfillmentOptionParam} */
+  static putFulfillmentOption() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.FulfillmentOption().required(),
     }).required();
   }
 
   /** @returns {UpdateApplicationConfigurationParam} */
   static updateApplicationConfiguration() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPutRequest().required(),
+      body: ServiceabilityPlatformModel.ApplicationConfigPutDetail().required(),
     }).required();
   }
 
@@ -688,7 +538,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateCourierPartnerRulePriorityParam} */
   static updateCourierPartnerRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
+      body: ServiceabilityPlatformModel.RulePriorityDetails().required(),
     }).required();
   }
 
@@ -712,7 +562,9 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest().required(),
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails().required(),
     }).required();
   }
 
@@ -726,7 +578,9 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest().required(),
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+      body: ServiceabilityPlatformModel.PincodeCodStatusListingDetails().required(),
     }).required();
   }
 
@@ -740,7 +594,7 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdateStoreRulePriorityParam} */
   static updateStoreRulePriority() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
+      body: ServiceabilityPlatformModel.RulePriorityDetails().required(),
     }).required();
   }
 
@@ -748,7 +602,7 @@ class ServiceabilityPlatformApplicationValidator {
   static updateStoreRules() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema().required(),
+      body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema().required(),
     }).required();
   }
 
@@ -764,21 +618,22 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
 
-      body: ServiceabilityPlatformModel.UpdateZoneDataV2().required(),
+      body: ServiceabilityPlatformModel.UpdateZoneData().required(),
     }).required();
   }
 
-  /** @returns {ValidateBulkGeoareaParam} */
-  static validateBulkGeoarea() {
+  /** @returns {UploadBulkFulfillmentOptionsParam} */
+  static uploadBulkFulfillmentOptions() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema().required(),
+      body: ServiceabilityPlatformModel.FulfillmentOptionBulk().required(),
     }).required();
   }
 
-  /** @returns {ValidateBulkZoneParam} */
-  static validateBulkZone() {
+  /** @returns {ValidateBulkFulfillmentOptionsParam} */
+  static validateBulkFulfillmentOptions() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ZoneBulkValidationRequestSchema().required(),
+      type: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.FulfillmentOptionBulkValidate().required(),
     }).required();
   }
 }

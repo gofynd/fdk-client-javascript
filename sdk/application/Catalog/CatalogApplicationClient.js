@@ -13,55 +13,55 @@ class Catalog {
     this._conf = _conf;
     this._relativeUrls = {
       followById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}",
-      getBrandDetailBySlug: "/service/application/catalog/v1.0/brands/{slug}",
-      getBrands: "/service/application/catalog/v1.0/brands",
-      getCategories: "/service/application/catalog/v1.0/categories",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      getBrandDetailBySlug: "/service/application/catalog/v1.0/brands/{slug}/",
+      getBrands: "/service/application/catalog/v1.0/brands/",
+      getCategories: "/service/application/catalog/v1.0/categories/",
       getCategoryDetailBySlug:
-        "/service/application/catalog/v1.0/categories/{slug}",
+        "/service/application/catalog/v1.0/categories/{slug}/",
       getCollectionDetailBySlug:
-        "/service/application/catalog/v1.0/collections/{slug}",
+        "/service/application/catalog/v1.0/collections/{slug}/",
       getCollectionItemsBySlug:
-        "/service/application/catalog/v1.0/collections/{slug}/items",
-      getCollections: "/service/application/catalog/v1.0/collections",
+        "/service/application/catalog/v1.0/collections/{slug}/items/",
+      getCollections: "/service/application/catalog/v1.0/collections/",
       getComparedFrequentlyProductBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently",
-      getDepartments: "/service/application/catalog/v1.0/departments",
-      getFollowIds: "/service/application/catalog/v1.0/follow/ids",
+        "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/",
+      getDepartments: "/service/application/catalog/v1.0/departments/",
+      getFollowIds: "/service/application/catalog/v1.0/follow/ids/",
       getFollowedListing:
-        "/service/application/catalog/v1.0/follow/{collection_type}",
+        "/service/application/catalog/v1.0/follow/{collection_type}/",
       getFollowerCountById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count",
-      getHomeProducts: "/service/application/catalog/v1.0/home/listing",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
+      getHomeProducts: "/service/application/catalog/v1.0/home/listing/",
       getInStockLocations:
-        "/service/application/catalog/v2.0/in-stock/locations",
+        "/service/application/catalog/v2.0/in-stock/locations/",
       getLocationDetailsById:
-        "/service/application/catalog/v2.0/locations/{location_id}",
+        "/service/application/catalog/v2.0/locations/{location_id}/",
       getProductBundlesBySlug:
-        "/service/application/catalog/v2.0/product-grouping",
+        "/service/application/catalog/v1.0/product-grouping/",
       getProductComparisonBySlugs:
-        "/service/application/catalog/v1.0/products/compare",
+        "/service/application/catalog/v1.0/products/compare/",
       getProductDetailBySlug:
-        "/service/application/catalog/v1.0/products/{slug}",
+        "/service/application/catalog/v1.0/products/{slug}/",
       getProductPriceBySlug:
-        "/service/application/catalog/v1.0/products/sizes/price",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers/",
       getProductSizesBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/sizes",
+        "/service/application/catalog/v1.0/products/{slug}/sizes/",
       getProductStockByIds:
-        "/service/application/catalog/v1.0/products/stock-status",
+        "/service/application/catalog/v1.0/products/stock-status/",
       getProductStockForTimeByIds:
-        "/service/application/catalog/v1.0/products/stock-status/poll",
+        "/service/application/catalog/v1.0/products/stock-status/poll/",
       getProductVariantsBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/variants",
-      getProducts: "/service/application/catalog/v1.0/products",
-      getSearchResults: "/service/application/catalog/v1.0/auto-complete",
+        "/service/application/catalog/v1.0/products/{slug}/variants/",
+      getProducts: "/service/application/catalog/v1.0/products/",
+      getSearchResults: "/service/application/catalog/v1.0/auto-complete/",
       getSimilarComparisonProductBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/similar/compare",
-      getStores: "/service/application/catalog/v2.0/locations",
+        "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
+      getStores: "/service/application/catalog/v2.0/locations/",
       unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -82,10 +82,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FollowPostResponse>} - Success response
+   * @returns {Promise<FollowPostResponseSchema>} - Success response
    * @name followById
-   * @summary: Follows an item by ID.
-   * @description: Add a product, brand, or item to the user's followed list by collection Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/followById/).
+   * @summary: Create item, brand, product
+   * @description: Add a product, brand, or item to the user's followed list by collection Id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/followById/).
    */
   async followById(
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
@@ -131,10 +131,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BrandDetailResponse>} - Success response
+   * @returns {Promise<BrandDetailResponseSchema>} - Success response
    * @name getBrandDetailBySlug
-   * @summary: Retrieves detailed brand info by slug.
-   * @description: Get metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrandDetailBySlug/).
+   * @summary: Get a brand
+   * @description: Get metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getBrandDetailBySlug/).
    */
   async getBrandDetailBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -177,10 +177,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<BrandListingResponse>} - Success response
+   * @returns {Promise<BrandListingResponseSchema>} - Success response
    * @name getBrands
-   * @summary: Fetches all available brands.
-   * @description: Get a list of all the available brands. Filtering can be applied to the department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrands/).
+   * @summary: List brands
+   * @description: Get a list of all the available brands. Filtering can be applied to the department. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getBrands/).
    */
   async getBrands(
     { department, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -221,8 +221,8 @@ class Catalog {
    *   of available departments below. Also, you can get available departments
    *   from the endpoint /service/application/catalog/v1.0/departments/.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<BrandListingResponse>}
-   * @summary: Fetches all available brands.
+   * @returns {Paginator<BrandListingResponseSchema>}
+   * @summary: List brands
    * @description: Get a list of all the available brands. Filtering can be applied to the department.
    */
   getBrandsPaginator({ department, pageSize } = {}) {
@@ -249,10 +249,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CategoryListingResponse>} - Success response
+   * @returns {Promise<CategoryListingResponseSchema>} - Success response
    * @name getCategories
-   * @summary: Lists all product categories.
-   * @description: List all available product categories. Also, users can filter the categories by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategories/).
+   * @summary: List product categories
+   * @description: List all available product categories. Also, users can filter the categories by department. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCategories/).
    */
   async getCategories(
     { department, requestHeaders } = { requestHeaders: {} },
@@ -287,10 +287,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CategoryMetaResponse>} - Success response
+   * @returns {Promise<CategoryMetaResponseSchema>} - Success response
    * @name getCategoryDetailBySlug
-   * @summary: Retrieves category details by slug.
-   * @description: Get detailed information about a specific product category using its slug and get metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategoryDetailBySlug/).
+   * @summary: Get category by slug
+   * @description: Get detailed information about a specific product category using its slug and get metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCategoryDetailBySlug/).
    */
   async getCategoryDetailBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -333,10 +333,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CollectionDetailResponse>} - Success response
+   * @returns {Promise<CollectionDetailResponseSchema>} - Success response
    * @name getCollectionDetailBySlug
-   * @summary: Retrieves collection details by slug.
-   * @description: Get detailed information about a specific collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionDetailBySlug/).
+   * @summary: Get a collection
+   * @description: Get detailed information about a specific collection using its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCollectionDetailBySlug/).
    */
   async getCollectionDetailBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -379,10 +379,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @returns {Promise<ProductListingResponseSchema>} - Success response
    * @name getCollectionItemsBySlug
-   * @summary: Lists items in a collection by slug.
-   * @description: Fetch items within a particular collection identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionItemsBySlug/).
+   * @summary: Lists items of collection
+   * @description: Fetch items within a particular collection identified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCollectionItemsBySlug/).
    */
   async getCollectionItemsBySlug(
     {
@@ -458,8 +458,8 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order. See the supported values below.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<ProductListingResponse>}
-   * @summary: Lists items in a collection by slug.
+   * @returns {Paginator<ProductListingResponseSchema>}
+   * @summary: Lists items of collection
    * @description: Fetch items within a particular collection identified by its slug.
    */
   getCollectionItemsBySlugPaginator({
@@ -499,10 +499,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetCollectionListingResponse>} - Success response
+   * @returns {Promise<GetCollectionListingResponseSchema>} - Success response
    * @name getCollections
-   * @summary: Fetches all available collections.
-   * @description: List of curated product collections with filtering options based on tags and collection names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
+   * @summary: List collections
+   * @description: List of curated product collections with filtering options based on tags and collection names. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCollections/).
    */
   async getCollections(
     { pageNo, pageSize, tag, q, requestHeaders } = { requestHeaders: {} },
@@ -542,8 +542,8 @@ class Catalog {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections.
    * @param {string} [arg.q] - Name of the collection to filter collection.
-   * @returns {Paginator<GetCollectionListingResponse>}
-   * @summary: Fetches all available collections.
+   * @returns {Paginator<GetCollectionListingResponseSchema>}
+   * @summary: List collections
    * @description: List of curated product collections with filtering options based on tags and collection names.
    */
   getCollectionsPaginator({ pageSize, tag, q } = {}) {
@@ -571,10 +571,11 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductFrequentlyComparedSimilarResponse>} - Success response
+   * @returns {Promise<ProductFrequentlyComparedSimilarResponseSchema>} -
+   *   Success response
    * @name getComparedFrequentlyProductBySlug
-   * @summary: Retrieves products frequently compared with a given product.
-   * @description: Get products that are often compared to the product specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
+   * @summary: List frequent products
+   * @description: Get products that are often compared to the product specified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
    */
   async getComparedFrequentlyProductBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -617,10 +618,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DepartmentResponse>} - Success response
+   * @returns {Promise<DepartmentResponseSchema>} - Success response
    * @name getDepartments
-   * @summary: Lists all departments.
-   * @description: List all departments associated with available products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getDepartments/).
+   * @summary: List departments
+   * @description: List all departments associated with available products. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getDepartments/).
    */
   async getDepartments(
     { requestHeaders } = { requestHeaders: {} },
@@ -654,10 +655,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FollowIdsResponse>} - Success response
+   * @returns {Promise<FollowIdsResponseSchema>} - Success response
    * @name getFollowIds
-   * @summary: Fetches IDs of followed items.
-   * @description: Get the IDs of all items the user is currently following, such as Products, Brands, and Collections. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowIds/).
+   * @summary: List Ids of followed item, brand, product
+   * @description: Get the IDs of all items the user is currently following, such as Products, Brands, and Collections. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getFollowIds/).
    */
   async getFollowIds(
     { collectionType, requestHeaders } = { requestHeaders: {} },
@@ -692,10 +693,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetFollowListingResponse>} - Success response
+   * @returns {Promise<GetFollowListingResponseSchema>} - Success response
    * @name getFollowedListing
-   * @summary: Retrieves user's followed listings.
-   * @description: Get a list of products or brands the user is following. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
+   * @summary: List followed products, brands
+   * @description: Get a list of products or brands the user is following. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getFollowedListing/).
    */
   async getFollowedListing(
     { collectionType, pageId, pageSize, requestHeaders } = {
@@ -744,8 +745,8 @@ class Catalog {
    * @param {string} arg.collectionType - Type of collection followed, i.e.
    *   products, brands, or collections.
    * @param {number} [arg.pageSize] - Page ID to retrieve next set of results.
-   * @returns {Paginator<GetFollowListingResponse>}
-   * @summary: Retrieves user's followed listings.
+   * @returns {Paginator<GetFollowListingResponseSchema>}
+   * @summary: List followed products, brands
    * @description: Get a list of products or brands the user is following.
    */
   getFollowedListingPaginator({ collectionType, pageSize } = {}) {
@@ -772,10 +773,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FollowerCountResponse>} - Success response
+   * @returns {Promise<FollowerCountResponseSchema>} - Success response
    * @name getFollowerCountById
-   * @summary: Retrieves follower count for an item.
-   * @description: Get the total number of followers for a specific item by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowerCountById/).
+   * @summary: Get follower count
+   * @description: Get the total number of followers for a specific item by its ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getFollowerCountById/).
    */
   async getFollowerCountById(
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
@@ -821,10 +822,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<HomeListingResponse>} - Success response
+   * @returns {Promise<HomeListingResponseSchema>} - Success response
    * @name getHomeProducts
-   * @summary: Fetches homepage-featured products.
-   * @description: List all the products associated with a brand, collection or category in a random order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getHomeProducts/).
+   * @summary: List homepage-featured products
+   * @description: List all the products associated with a brand, collection or category in a random order. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getHomeProducts/).
    */
   async getHomeProducts(
     { sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -864,8 +865,8 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<HomeListingResponse>}
-   * @summary: Fetches homepage-featured products.
+   * @returns {Paginator<HomeListingResponseSchema>}
+   * @summary: List homepage-featured products
    * @description: List all the products associated with a brand, collection or category in a random order.
    */
   getHomeProductsPaginator({ sortOn, pageSize } = {}) {
@@ -894,8 +895,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ApplicationStoreListing>} - Success response
    * @name getInStockLocations
-   * @summary: Get store meta information.
-   * @description: List stores where specified products are currently in stock. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
+   * @summary: List stores with inventory
+   * @description: List stores where specified products are currently in stock. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getInStockLocations/).
    */
   async getInStockLocations(
     {
@@ -954,7 +955,7 @@ class Catalog {
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retrieve the nearest stores, e.g. 19.1174114.
    * @returns {Paginator<ApplicationStoreListing>}
-   * @summary: Get store meta information.
+   * @summary: List stores with inventory
    * @description: List stores where specified products are currently in stock.
    */
   getInStockLocationsPaginator({
@@ -994,8 +995,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<StoreDetails>} - Success response
    * @name getLocationDetailsById
-   * @summary: Get store meta information.
-   * @description: Get details about a store based on its location Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
+   * @summary: Get selling location
+   * @description: Get details about a store based on its location Id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getLocationDetailsById/).
    */
   async getLocationDetailsById(
     { locationId, requestHeaders } = { requestHeaders: {} },
@@ -1040,18 +1041,16 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductBundle>} - Success response
    * @name getProductBundlesBySlug
-   * @summary: Fetches product bundles by slug.
-   * @description: Get products bundles to the one specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductBundlesBySlug/).
+   * @summary: List product bundles
+   * @description: Get products bundles to the one specified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundlesBySlug/).
    */
   async getProductBundlesBySlug(
-    { slug, id, size, sellerId, requestHeaders } = { requestHeaders: {} },
+    { slug, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
     query_params["slug"] = slug;
     query_params["id"] = id;
-    query_params["size"] = size;
-    query_params["seller_id"] = sellerId;
 
     const xHeaders = {};
 
@@ -1079,10 +1078,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductsComparisonResponse>} - Success response
+   * @returns {Promise<ProductsComparisonResponseSchema>} - Success response
    * @name getProductComparisonBySlugs
-   * @summary: Compares multiple products by slugs.
-   * @description: Get all the products that have the same category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductComparisonBySlugs/).
+   * @summary: List products for comparison
+   * @description: Get all the products that have the same category. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductComparisonBySlugs/).
    */
   async getProductComparisonBySlugs(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -1119,8 +1118,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductDetail>} - Success response
    * @name getProductDetailBySlug
-   * @summary: Fetches detailed product information by slug.
-   * @description: Get product details such as price, attributes, HSN code, SKU code, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductDetailBySlug/).
+   * @summary: Get a product
+   * @description: Get product details such as price, attributes, HSN code, SKU code, etc. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductDetailBySlug/).
    */
   async getProductDetailBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -1163,28 +1162,42 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductSizePriceResponseV1>} - Success response
+   * @returns {Promise<ProductSizePriceResponseV4>} - Success response
    * @name getProductPriceBySlug
-   * @summary: get size price for multiple products
-   * @description: Get the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
+   * @summary: Get product price
+   * @description: Get the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductPriceBySlug/).
    */
   async getProductPriceBySlug(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { slug, size, storeId, moq, fulfillmentOptionSlug, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    const errors = validateRequiredParams(arguments[0], ["slug", "size"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
+    query_params["store_id"] = storeId;
+    query_params["moq"] = moq;
+    query_params["fulfillment_option_slug"] = fulfillmentOptionSlug;
 
     const xHeaders = {};
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
-      "post",
+      "get",
       constructUrl({
         url: this._urls["getProductPriceBySlug"],
-        params: {},
+        params: { slug, size },
       }),
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -1202,13 +1215,19 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductSizeSellersResponseV4>} - Success response
    * @name getProductSellersBySlug
-   * @summary: Get the sellers of a product size at a PIN Code
-   * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
+   * @summary: List sellers
+   * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSellersBySlug/).
    */
   async getProductSellersBySlug(
-    { slug, size, pincode, strategy, pageNo, pageSize, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      slug,
+      size,
+      strategy,
+      fulfillmentOptionSlug,
+      pageNo,
+      pageSize,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["slug", "size"]);
@@ -1221,8 +1240,8 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["pincode"] = pincode;
     query_params["strategy"] = strategy;
+    query_params["fulfillment_option_slug"] = fulfillmentOptionSlug;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
@@ -1257,20 +1276,20 @@ class Catalog {
    * @param {string} arg.size - A string indicating the size of the product,
    *   e.g. S, M, XL. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/sizes.
-   * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
-   *   which the selling locations should be searched, e.g. 400059
    * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
    *   eg, fast-delivery, low-price, optimal.
+   * @param {string} [arg.fulfillmentOptionSlug] - Specifies the fulfillment
+   *   method, indicating whether an order is for home delivery or store pickup
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ProductSizeSellersResponseV4>}
-   * @summary: Get the sellers of a product size at a PIN Code
+   * @summary: List sellers
    * @description: List all sellers offering a specific product identified by its slug and size.
    */
   getProductSellersBySlugPaginator({
     slug,
     size,
-    pincode,
     strategy,
+    fulfillmentOptionSlug,
     pageSize,
   } = {}) {
     const paginator = new Paginator();
@@ -1281,8 +1300,8 @@ class Catalog {
       const data = await this.getProductSellersBySlug({
         slug: slug,
         size: size,
-        pincode: pincode,
         strategy: strategy,
+        fulfillmentOptionSlug: fulfillmentOptionSlug,
         pageNo: pageNo,
         pageSize: pageSize,
       });
@@ -1301,8 +1320,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductSizes>} - Success response
    * @name getProductSizesBySlug
-   * @summary: Retrieves available sizes for a product by slug.
-   * @description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSizesBySlug/).
+   * @summary: List sizes
+   * @description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSizesBySlug/).
    */
   async getProductSizesBySlug(
     { slug, storeId, requestHeaders } = { requestHeaders: {} },
@@ -1346,10 +1365,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductStockStatusResponse>} - Success response
+   * @returns {Promise<ProductStockStatusResponseSchema>} - Success response
    * @name getProductStockByIds
-   * @summary: Checks product stock by IDs.
-   * @description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockByIds/).
+   * @summary: Get product stocks
+   * @description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductStockByIds/).
    */
   async getProductStockByIds(
     { itemId, alu, skuCode, ean, upc, requestHeaders } = { requestHeaders: {} },
@@ -1390,8 +1409,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductStockPolling>} - Success response
    * @name getProductStockForTimeByIds
-   * @summary: Fetches future stock data for products.
-   * @description: Get the available stock levels for all products associated with a particular sales channel at a specified future time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockForTimeByIds/).
+   * @summary: List future stock
+   * @description: Get the available stock levels for all products associated with a particular sales channel at a specified future time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductStockForTimeByIds/).
    */
   async getProductStockForTimeByIds(
     { timestamp, pageSize, pageId, requestHeaders } = { requestHeaders: {} },
@@ -1430,7 +1449,7 @@ class Catalog {
    * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z).
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ProductStockPolling>}
-   * @summary: Fetches future stock data for products.
+   * @summary: List future stock
    * @description: Get the available stock levels for all products associated with a particular sales channel at a specified future time.
    */
   getProductStockForTimeByIdsPaginator({ timestamp, pageSize } = {}) {
@@ -1457,10 +1476,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductVariantsResponse>} - Success response
+   * @returns {Promise<ProductVariantsResponseSchema>} - Success response
    * @name getProductVariantsBySlug
-   * @summary: Retrieves product variants by slug.
-   * @description: Get all available variants of a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
+   * @summary: List product variants
+   * @description: Get all available variants of a specific product identified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductVariantsBySlug/).
    */
   async getProductVariantsBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -1503,10 +1522,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @returns {Promise<ProductListingResponseSchema>} - Success response
    * @name getProducts
-   * @summary: Lists all products.
-   * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProducts/).
+   * @summary: List products
+   * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProducts/).
    */
   async getProducts(
     {
@@ -1569,8 +1588,8 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order. See the supported values below.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<ProductListingResponse>}
-   * @summary: Lists all products.
+   * @returns {Paginator<ProductListingResponseSchema>}
+   * @summary: List products
    * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
    */
   getProductsPaginator({ q, f, filters, sortOn, pageSize } = {}) {
@@ -1602,10 +1621,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AutoCompleteResponse>} - Success response
+   * @returns {Promise<AutoCompleteResponseSchema>} - Success response
    * @name getSearchResults
-   * @summary: Retrieves search result listings.
-   * @description: Get products, brands, or categories based on a search query, which can be a partial or full name match. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
+   * @summary: List product, brand, category
+   * @description: Get products, brands, or categories based on a search query, which can be a partial or full name match. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getSearchResults/).
    */
   async getSearchResults(
     { q, requestHeaders } = { requestHeaders: {} },
@@ -1640,10 +1659,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductCompareResponse>} - Success response
+   * @returns {Promise<ProductCompareResponseSchema>} - Success response
    * @name getSimilarComparisonProductBySlug
-   * @summary: Fetches similar products for comparison.
-   * @description: Get all products within the same category as the one specified by the provided slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSimilarComparisonProductBySlug/).
+   * @summary: List similar products
+   * @description: Get all products within the same category as the one specified by the provided slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getSimilarComparisonProductBySlug/).
    */
   async getSimilarComparisonProductBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -1686,10 +1705,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<StoreListingResponse>} - Success response
+   * @returns {Promise<StoreListingResponseSchema>} - Success response
    * @name getStores
-   * @summary: Get store meta information.
-   * @description: List all stores associated with the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
+   * @summary: List available stores
+   * @description: List all stores associated with the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getStores/).
    */
   async getStores(
     {
@@ -1700,6 +1719,7 @@ class Catalog {
       range,
       latitude,
       longitude,
+      tags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1712,6 +1732,7 @@ class Catalog {
     query_params["range"] = range;
     query_params["latitude"] = latitude;
     query_params["longitude"] = longitude;
+    query_params["tags"] = tags;
 
     const xHeaders = {};
 
@@ -1747,11 +1768,20 @@ class Catalog {
    *   wants to retrieve the nearest stores, e.g. 72.8691788.
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retrieve the nearest stores, e.g. 19.1174114.
-   * @returns {Paginator<StoreListingResponse>}
-   * @summary: Get store meta information.
+   * @param {string} [arg.tags] - Search stores based on tags.
+   * @returns {Paginator<StoreListingResponseSchema>}
+   * @summary: List available stores
    * @description: List all stores associated with the sales channel.
    */
-  getStoresPaginator({ pageSize, q, city, range, latitude, longitude } = {}) {
+  getStoresPaginator({
+    pageSize,
+    q,
+    city,
+    range,
+    latitude,
+    longitude,
+    tags,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -1765,6 +1795,7 @@ class Catalog {
         range: range,
         latitude: latitude,
         longitude: longitude,
+        tags: tags,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -1779,10 +1810,10 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FollowPostResponse>} - Success response
+   * @returns {Promise<FollowPostResponseSchema>} - Success response
    * @name unfollowById
-   * @summary: Unfollows an item by ID.
-   * @description: Remove a followed item, brand, or product using its collection ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/unfollowById/).
+   * @summary: Delete item, brand, product
+   * @description: Remove a followed item, brand, or product using its collection ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/unfollowById/).
    */
   async unfollowById(
     { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },

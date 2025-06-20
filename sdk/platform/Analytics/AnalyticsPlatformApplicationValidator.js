@@ -14,7 +14,7 @@ const AnalyticsPlatformModel = require("./AnalyticsPlatformModel");
 
 /**
  * @typedef StartDownloadForQueryV2Param
- * @property {string} exportType
+ * @property {string} exportType - Format in which to be exported(eg. CSV or excel).
  * @property {AnalyticsPlatformModel.FileDownloadRequestBody} body
  */
 
