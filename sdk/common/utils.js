@@ -57,9 +57,12 @@ const generateUrlWithParams = (item = {}, params) => {
   let url = "";
   for (let linkSubString of linkArr) {
     if (linkSubString.startsWith(":")) {
-      linkSubString = linkSubString.slice(1);
-      url += `${joinedParamsObj[linkSubString]}`;
-    } else url += `${linkSubString}`;
+      const paramKey = linkSubString.slice(1);
+      const paramVal = joinedParamsObj[paramKey];
+      url += paramVal || ""; // Prevent undefined
+    } else {
+      url += linkSubString;
+    }
     url += "/";
   }
   url = trimChar(url);

@@ -11,8 +11,8 @@ declare class PartnerClient {
      * @param {import("./PartnerConfig")} config - The configuration for the
      *   partner client.
      */
-    constructor(config: import("./PartnerConfig"));
-    config: import("./PartnerConfig");
+    constructor(config: import("./PartnerConfig"), options: any);
+    config: PartnerConfig;
     fileStorage: FileStorage;
     lead: Lead;
     logistics: Logistics;
@@ -33,7 +33,10 @@ declare class PartnerClient {
         headers: any;
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
+    getAccesstokenObj(options: any): Promise<import("axios").AxiosResponse<any, any>>;
+    setToken(token: any): void;
 }
+import PartnerConfig = require("./PartnerConfig");
 import FileStorage = require("./FileStorage/FileStoragePartnerClient");
 import Lead = require("./Lead/LeadPartnerClient");
 import Logistics = require("./Logistics/LogisticsPartnerClient");

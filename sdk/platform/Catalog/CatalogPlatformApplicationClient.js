@@ -1525,6 +1525,90 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.FollowProductByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.FollowProduct>} - Success response
+   * @name followProductById
+   * @summary: Follow a Specific Product by ID
+   * @description: This endpoint enables a user to follow a specific product identified by its unique item ID for a sales channel.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/followProductById/).
+   */
+  async followProductById(
+    { userId, itemId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.followProductById().validate(
+      {
+        userId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.followProductById().validate(
+      {
+        userId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > followProductById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user/${userId}/products/${itemId}/follow`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.FollowProduct().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > followProductById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
    *   - Arg object
    *
@@ -4495,6 +4579,94 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.GetFollowedProductsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.FollowedProducts>} - Success response
+   * @name getFollowedProducts
+   * @summary: Retrieve followed products by user
+   * @description: List all product ids a user has wishlisted or is following for sales channel.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getFollowedProducts/).
+   */
+  async getFollowedProducts(
+    { userId, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getFollowedProducts().validate(
+      {
+        userId,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getFollowedProducts().validate(
+      {
+        userId,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getFollowedProducts \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user/${userId}/products/follow`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.FollowedProducts().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getFollowedProducts \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
    *   - Arg object
    *
@@ -4993,6 +5165,90 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getSearchKeywords \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.UnfollowProductByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.FollowProduct>} - Success response
+   * @name unfollowProductById
+   * @summary: Unfollow a Specific Product by ID
+   * @description: This endpoint allows a user to unfollow a previously followed product using its unique item ID for a sales channel.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/unfollowProductById/).
+   */
+  async unfollowProductById(
+    { userId, itemId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.unfollowProductById().validate(
+      {
+        userId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.unfollowProductById().validate(
+      {
+        userId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > unfollowProductById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user/${userId}/products/${itemId}/follow`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.FollowProduct().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > unfollowProductById \n ${res_error}`,
         });
       }
     }

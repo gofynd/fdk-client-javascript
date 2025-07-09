@@ -10,8 +10,8 @@ declare class PublicClient {
      *
      * @param {import("./PublicConfig")} config - The configuration for the public client.
      */
-    constructor(config: import("./PublicConfig"));
-    config: import("./PublicConfig");
+    constructor(config: import("./PublicConfig"), options: any);
+    config: PublicConfig;
     catalog: Catalog;
     configuration: Configuration;
     content: Content;
@@ -25,6 +25,7 @@ declare class PublicClient {
      */
     setExtraHeaders(header: object): void;
 }
+import PublicConfig = require("./PublicConfig");
 import Catalog = require("./Catalog/CatalogPublicClient");
 import Configuration = require("./Configuration/ConfigurationPublicClient");
 import Content = require("./Content/ContentPublicClient");

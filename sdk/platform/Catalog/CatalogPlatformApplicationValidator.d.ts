@@ -93,6 +93,11 @@ export = CatalogPlatformApplicationValidator;
  *   detail. Pass the `id` of the keywords which you want to delete.
  */
 /**
+ * @typedef FollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
+ */
+/**
  * @typedef GetAllCollectionsParam
  * @property {string} [q] - Get collection list filtered by q string,
  * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
@@ -332,6 +337,13 @@ export = CatalogPlatformApplicationValidator;
  * @property {number[]} [locationIds] - Search by store ids.
  */
 /**
+ * @typedef GetFollowedProductsParam
+ * @property {string} userId - User ID to fetch the followed list
+ * @property {string} [pageId] - The identifier used to retrieve the next set of
+ *   results. This parameter follows cursor-based pagination.
+ * @property {number} [pageSize] - Number of items per page
+ */
+/**
  * @typedef GetGroupConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
@@ -365,6 +377,11 @@ export = CatalogPlatformApplicationValidator;
  * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
+ */
+/**
+ * @typedef UnfollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
  */
 /**
  * @typedef UpdateAllowSingleParam
@@ -484,6 +501,8 @@ declare class CatalogPlatformApplicationValidator {
     static deleteSearchConfiguration(): any;
     /** @returns {DeleteSearchKeywordsParam} */
     static deleteSearchKeywords(): DeleteSearchKeywordsParam;
+    /** @returns {FollowProductByIdParam} */
+    static followProductById(): FollowProductByIdParam;
     /** @returns {GetAllCollectionsParam} */
     static getAllCollections(): GetAllCollectionsParam;
     /** @returns {GetAllSearchKeywordParam} */
@@ -538,6 +557,8 @@ declare class CatalogPlatformApplicationValidator {
     static getDepartments(): any;
     /** @returns {GetDiscountedInventoryBySizeIdentifierParam} */
     static getDiscountedInventoryBySizeIdentifier(): GetDiscountedInventoryBySizeIdentifierParam;
+    /** @returns {GetFollowedProductsParam} */
+    static getFollowedProducts(): GetFollowedProductsParam;
     /** @returns {GetGroupConfigurationsParam} */
     static getGroupConfigurations(): GetGroupConfigurationsParam;
     /** @returns {GetListingConfigurationsParam} */
@@ -550,6 +571,8 @@ declare class CatalogPlatformApplicationValidator {
     static getSearchConfiguration(): any;
     /** @returns {GetSearchKeywordsParam} */
     static getSearchKeywords(): GetSearchKeywordsParam;
+    /** @returns {UnfollowProductByIdParam} */
+    static unfollowProductById(): UnfollowProductByIdParam;
     /** @returns {UpdateAllowSingleParam} */
     static updateAllowSingle(): UpdateAllowSingleParam;
     /** @returns {UpdateAppBrandParam} */
@@ -582,7 +605,7 @@ declare class CatalogPlatformApplicationValidator {
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, FollowProductByIdParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetFollowedProductsParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UnfollowProductByIdParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -712,6 +735,16 @@ type DeleteSearchKeywordsParam = {
      * detail. Pass the `id` of the keywords which you want to delete.
      */
     id: string;
+};
+type FollowProductByIdParam = {
+    /**
+     * - User ID of User
+     */
+    userId: string;
+    /**
+     * - Item ID of Product
+     */
+    itemId: string;
 };
 type GetAllCollectionsParam = {
     /**
@@ -1204,6 +1237,21 @@ type GetDiscountedInventoryBySizeIdentifierParam = {
      */
     locationIds?: number[];
 };
+type GetFollowedProductsParam = {
+    /**
+     * - User ID to fetch the followed list
+     */
+    userId: string;
+    /**
+     * - The identifier used to retrieve the next set of
+     * results. This parameter follows cursor-based pagination.
+     */
+    pageId?: string;
+    /**
+     * - Number of items per page
+     */
+    pageSize?: number;
+};
 type GetGroupConfigurationsParam = {
     /**
      * - A `config_type` is an identifier that defines
@@ -1265,6 +1313,16 @@ type GetSearchKeywordsParam = {
      * detail. Pass the `id` of the keywords which you want to retrieve.
      */
     id: string;
+};
+type UnfollowProductByIdParam = {
+    /**
+     * - User ID of User
+     */
+    userId: string;
+    /**
+     * - Item ID of Product
+     */
+    itemId: string;
 };
 type UpdateAllowSingleParam = {
     body: CatalogPlatformModel.AllowSingleRequestSchema;

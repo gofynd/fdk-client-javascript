@@ -6,8 +6,8 @@ export = ApplicationClient;
  */
 declare class ApplicationClient {
     /** @param {import("./ApplicationConfig")} config - The application configuration. */
-    constructor(config: import("./ApplicationConfig"));
-    config: import("./ApplicationConfig");
+    constructor(config: import("./ApplicationConfig"), options: any);
+    config: ApplicationConfig;
     cart: Cart;
     catalog: Catalog;
     common: Common;
@@ -65,6 +65,7 @@ declare class ApplicationClient {
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
 }
+import ApplicationConfig = require("./ApplicationConfig");
 import Cart = require("./Cart/CartApplicationClient");
 import Catalog = require("./Catalog/CatalogApplicationClient");
 import Common = require("./Common/CommonApplicationClient");

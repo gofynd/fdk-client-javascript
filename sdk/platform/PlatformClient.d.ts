@@ -10,8 +10,8 @@ declare class PlatformClient {
      *
      * @param {import("./PlatformConfig")} config - The application configuration.
      */
-    constructor(config: import("./PlatformConfig"));
-    config: import("./PlatformConfig");
+    constructor(config: import("./PlatformConfig"), options: any);
+    config: PlatformConfig;
     auditTrail: AuditTrail;
     billing: Billing;
     catalog: Catalog;
@@ -53,7 +53,10 @@ declare class PlatformClient {
         headers: any;
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
+    getAccesstokenObj(options: any): Promise<import("axios").AxiosResponse<any, any>>;
+    setToken(token: any): void;
 }
+import PlatformConfig = require("./PlatformConfig");
 import AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 import Billing = require("./Billing/BillingPlatformClient");
 import Catalog = require("./Catalog/CatalogPlatformClient");

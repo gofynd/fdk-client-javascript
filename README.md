@@ -23,14 +23,13 @@ Using this method, you can `require` fdk-client-javascript like so:
 
 ```js
 const {
-  ApplicationConfig,
   ApplicationClient,
 } = require("fdk-client-javascript");
 ```
 
 #### Browser
 
-you can load fdk-client-javascript's application browser bundle from CDN; `ApplicationConfig` and `ApplicationClient` will be attached to browser's `window` object.
+you can load fdk-client-javascript's application browser bundle from CDN; `ApplicationClient` and `ApplicationModels` will be attached to browser's `window` object.
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@<version>/dist/application.js"></script>
@@ -43,12 +42,12 @@ Install Specific version
 ```
 
 ```js
-const { ApplicationConfig, ApplicationClient } = window;
+const { ApplicationClient } = window;
 ```
 
 ### Logging
 
-For logging support user can pass `logLevel` in `ApplicationConfig` or `PlatformConfig` while declaration.
+For logging support user can pass `logLevel` in `ApplicationClient` or `PlatformClient` while declaration.
 
 ```
 Available logging levels: TRACE, DEBUG, INFO, WARN, ERROR.
@@ -59,13 +58,11 @@ Default log level: ERROR
 ### Sample Usage - ApplicationClient
 
 ```javascript
-const config = new ApplicationConfig({
+const applicationClient = new ApplicationClient({
   applicationID: "YOUR_APPLICATION_ID",
   applicationToken: "YOUR_APPLICATION_TOKEN",
   locationDetails: "LOCATION_DETAILS_OBJECT"
 });
-
-const applicationClient = new ApplicationClient(config);
 
 applicationClient.setLocationDetails({ 
   pincode:"385001",
@@ -92,21 +89,23 @@ getProductDetails();
 ### Sample Usage - PlatformClient
 
 ```javascript
-const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
-
-let platformConfig = new PlatformConfig({
-  companyId: "COMPANY_ID",
-  apiKey: "API_KEY", 
-  apiSecret: "API_SECRET", 
-  domain: "DOMAIN",
-  useAutoRenewTimer: true // Setting `true` will use timer based logic to refresh the access token. With `false` will issue refresh token just before any api call when it is expired. 
-});
+const { PlatformClient } = require("fdk-client-javascript");
 
 async function getData() {
   try {
-    // TODO: get token using OAuth
-    platformConfig.oauthClient.setToken(token.access_token);
-    const client = new PlatformClient(platformConfig);
+    const client = new PlatformClient({
+      companyId: "COMPANY_ID",
+      apiKey: "API_KEY", 
+      apiSecret: "API_SECRET", 
+      domain: "DOMAIN",
+      useAutoRenewTimer: true // Setting `true` will use timer based logic to refresh the access token. With `false` will issue refresh token just before any api call when it is expired. 
+    });
+
+    const token = await platformClient.getAccesstokenObj({
+      grant_type: 'client_credentials'    
+    })
+    
+    platformClient.setToken(token);
 
     // API's without application_id
     const tickets = await client.lead.getTickets();
@@ -219,16 +218,14 @@ To print the curl command in the console for all network calls made using `appli
 
 ```javascript
 const {
-  ApplicationClient, ApplicationConfig,
+  ApplicationClient,
 } = require("fdk-client-javascript");
 
-let applicationConfig = new ApplicationConfig({
+let applicationClient = new ApplicationClient({
   applicationID: "YOUR_APPLICATION_ID",
   applicationToken: "YOUR_APPLICATION_TOKEN",
+  logLevel: "debug"
 });
-
-applicationConfig.setLogLevel("debug");
-let applicationClient = new ApplicationClient(applicationConfig);
 
 let response = await applicationClient.theme.getAppliedTheme(); 
 console.log("Active Theme: ", response.information.name);
@@ -237,7 +234,7 @@ console.log("Active Theme: ", response.information.name);
 The above code will log the curl command in the console
 
 ```bash
-curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 3.4.1' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
+curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 3.4.2' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
 Active Theme: Emerge
 ```
 
@@ -248,7 +245,7 @@ Active Theme: Emerge
 fdk-client-javascript includes Typescript definitions.
 
 ```typescript
-import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
+import { ApplicationClient } from "fdk-client-javascript";
 ```
 
 

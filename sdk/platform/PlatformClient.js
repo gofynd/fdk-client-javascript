@@ -33,6 +33,7 @@ const Webhook = require("./Webhook/WebhookPlatformClient");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 const { execute } = require("./PlatformAPIClient");
+const PlatformConfig = require("./PlatformConfig");
 
 /**
  * Represents the client for the platform.
@@ -45,40 +46,45 @@ class PlatformClient {
    *
    * @param {import("./PlatformConfig")} config - The application configuration.
    */
-  constructor(config) {
-    this.config = config;
+  constructor(config, options) {
+    if (config instanceof PlatformConfig) {
+      this.config = config;
+    } else {
+      let platformConfig = new PlatformConfig(config, options);
+      this.config = platformConfig;
+    }
 
-    this.auditTrail = new AuditTrail(config);
+    this.auditTrail = new AuditTrail(this.config);
 
-    this.billing = new Billing(config);
+    this.billing = new Billing(this.config);
 
-    this.catalog = new Catalog(config);
+    this.catalog = new Catalog(this.config);
 
-    this.common = new Common(config);
+    this.common = new Common(this.config);
 
-    this.communication = new Communication(config);
+    this.communication = new Communication(this.config);
 
-    this.companyProfile = new CompanyProfile(config);
+    this.companyProfile = new CompanyProfile(this.config);
 
-    this.configuration = new Configuration(config);
+    this.configuration = new Configuration(this.config);
 
-    this.content = new Content(config);
+    this.content = new Content(this.config);
 
-    this.discount = new Discount(config);
+    this.discount = new Discount(this.config);
 
-    this.fileStorage = new FileStorage(config);
+    this.fileStorage = new FileStorage(this.config);
 
-    this.lead = new Lead(config);
+    this.lead = new Lead(this.config);
 
-    this.serviceability = new Serviceability(config);
+    this.serviceability = new Serviceability(this.config);
 
-    this.order = new Order(config);
+    this.order = new Order(this.config);
 
-    this.payment = new Payment(config);
+    this.payment = new Payment(this.config);
 
-    this.theme = new Theme(config);
+    this.theme = new Theme(this.config);
 
-    this.webhook = new Webhook(config);
+    this.webhook = new Webhook(this.config);
   }
 
   /**
@@ -124,6 +130,14 @@ class PlatformClient {
     return await execute(this.config, method, url, query, body, headers, {
       responseHeaders,
     });
+  }
+
+  getAccesstokenObj(options) {
+    return this.config.oauthClient.getAccesstokenObj(options);
+  }
+
+  setToken(token) {
+    this.config.oauthClient.setToken(token);
   }
 }
 

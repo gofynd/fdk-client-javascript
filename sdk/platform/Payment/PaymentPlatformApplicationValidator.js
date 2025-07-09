@@ -142,9 +142,8 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef GetPosPaymentModeRoutesParam
- * @property {PaymentPlatformModel.OrderingSource} [xOrderingSource] - Optional
- *   header to identify the ordering source used to determine\ applicable
- *   payment options for business unit.
+ * @property {string} [xOrderingSource] - Optional header to identify the
+ *   ordering source used to determine\ applicable payment options for business unit.
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -493,7 +492,7 @@ class PaymentPlatformApplicationValidator {
   /** @returns {GetPosPaymentModeRoutesParam} */
   static getPosPaymentModeRoutes() {
     return Joi.object({
-      xOrderingSource: PaymentPlatformModel.OrderingSource(),
+      xOrderingSource: Joi.string().allow(""),
 
       amount: Joi.number().required(),
       cartId: Joi.string().allow(""),

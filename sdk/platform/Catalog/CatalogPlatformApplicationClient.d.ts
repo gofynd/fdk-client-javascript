@@ -232,6 +232,19 @@ declare class Catalog {
      */
     deleteSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteResponseSchema>;
     /**
+     * @param {CatalogPlatformApplicationValidator.FollowProductByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.FollowProduct>} - Success response
+     * @name followProductById
+     * @summary: Follow a Specific Product by ID
+     * @description: This endpoint enables a user to follow a specific product identified by its unique item ID for a sales channel.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/followProductById/).
+     */
+    followProductById({ userId, itemId, requestHeaders }?: CatalogPlatformApplicationValidator.FollowProductByIdParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FollowProduct>;
+    /**
      * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
      *   - Arg object
      *
@@ -837,6 +850,19 @@ declare class Catalog {
         locationIds?: number[];
     }): Paginator<CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated>;
     /**
+     * @param {CatalogPlatformApplicationValidator.GetFollowedProductsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.FollowedProducts>} - Success response
+     * @name getFollowedProducts
+     * @summary: Retrieve followed products by user
+     * @description: List all product ids a user has wishlisted or is following for sales channel.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getFollowedProducts/).
+     */
+    getFollowedProducts({ userId, pageId, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetFollowedProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FollowedProducts>;
+    /**
      * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
      *   - Arg object
      *
@@ -911,6 +937,19 @@ declare class Catalog {
      * @description: Retrieve a list of a specific list of keywords by its id for a specific company and sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getSearchKeywords/).
      */
     getSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsDetailResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.UnfollowProductByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.FollowProduct>} - Success response
+     * @name unfollowProductById
+     * @summary: Unfollow a Specific Product by ID
+     * @description: This endpoint allows a user to unfollow a previously followed product using its unique item ID for a sales channel.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/unfollowProductById/).
+     */
+    unfollowProductById({ userId, itemId, requestHeaders }?: CatalogPlatformApplicationValidator.UnfollowProductByIdParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FollowProduct>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAllowSingleParam} arg
      *   - Arg object

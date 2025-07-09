@@ -4720,6 +4720,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FollowedProducts
+ * @property {number[]} [item_ids]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef FollowProduct
+ * @property {string} [message] - A message indicating the result of the follow
+ *   or unfollow operation.
+ */
+
+/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -9854,6 +9866,21 @@ class CatalogPlatformModel {
       quantity: CatalogPlatformModel.InventoryExportQuantityFilter(),
       stores: Joi.array().items(Joi.string().allow("")),
       to_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FollowedProducts} */
+  static FollowedProducts() {
+    return Joi.object({
+      item_ids: Joi.array().items(Joi.number()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {FollowProduct} */
+  static FollowProduct() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 

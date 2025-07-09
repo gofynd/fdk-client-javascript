@@ -1,3 +1,34 @@
+# CHANGE LOG (3.4.2) - 2.7.2
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### getFollowedProducts
+
+- ##### What's New
+	- [Added] method <code>getFollowedProducts</code>
+
+
+
+#### followProductById
+
+- ##### What's New
+	- [Added] method <code>followProductById</code>
+
+
+
+#### unfollowProductById
+
+- ##### What's New
+	- [Added] method <code>unfollowProductById</code>
+
+
+
 # CHANGE LOG (3.4.1) - 2.7.1
 
 ## Application Client

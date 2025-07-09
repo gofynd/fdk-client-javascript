@@ -1290,99 +1290,10 @@ export = PaymentPlatformModel;
  * @property {string} [cart_id] - Unique identifier for the shopping cart.
  * @property {CreditAccountSummary} [account]
  */
-/**
- * @typedef {| "storefront"
- *   | "store_os_pos"
- *   | "kiosk"
- *   | "scan_go"
- *   | "smart_trolley"
- *   | "gofynd"
- *   | "uniket"
- *   | "marketplace"
- *   | "social_commerce"
- *   | "ondc"
- *   | "nexus"
- *   | "nykaa_fashion"
- *   | "etsy"
- *   | "vuivui"
- *   | "zilingo"
- *   | "firstcry"
- *   | "bukalapak"
- *   | "myntra_ppmp"
- *   | "lazada"
- *   | "tiktok"
- *   | "sfcc"
- *   | "debenhams"
- *   | "prestomall"
- *   | "meesho"
- *   | "amazon_vdf"
- *   | "bigcommerce"
- *   | "sendo"
- *   | "storehippo"
- *   | "cdiscount"
- *   | "nykaa"
- *   | "trendyol"
- *   | "weloveshopping"
- *   | "jollee"
- *   | "wish"
- *   | "tiki"
- *   | "central_online"
- *   | "q10"
- *   | "cred"
- *   | "walmart"
- *   | "snapdeal"
- *   | "flipkart"
- *   | "blibli"
- *   | "ajio_jit"
- *   | "pharmeasy"
- *   | "ezmall"
- *   | "adobe_commerce"
- *   | "kartmax"
- *   | "shopee"
- *   | "zalora"
- *   | "prestashop"
- *   | "smytten"
- *   | "amazon_sc"
- *   | "urbanpiper"
- *   | "flipkart_quick"
- *   | "woocommerce"
- *   | "zivame"
- *   | "lelong"
- *   | "facebook"
- *   | "jiomart"
- *   | "gmc"
- *   | "robins"
- *   | "akulaku"
- *   | "noon"
- *   | "tatacliq"
- *   | "kartrocket"
- *   | "inorbit"
- *   | "ajio_business"
- *   | "swiggy"
- *   | "asos"
- *   | "tokopedia"
- *   | "limeroad"
- *   | "myntra_omni"
- *   | "spoyl"
- *   | "amazon_mlf"
- *   | "fulfilled_by_lazada"
- *   | "ebay"
- *   | "jd"
- *   | "amazon_pharmacy"
- *   | "ajio_vms"
- *   | "daraz"
- *   | "oker"
- *   | "flipkart_b2b"
- *   | "amazon_mlf_ss"
- *   | "woovly"
- *   | "tata1mg"
- *   | "zomato"
- *   | "shopify"} OrderingSource
- */
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OrderingSource };
+    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema };
 }
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
@@ -4781,10 +4692,3 @@ type ValidateCustomerCreditSchema = {
     cart_id?: string;
     account?: CreditAccountSummary;
 };
-/**
- * Enum: OrderingSource Used By: Payment
- *
- * @returns {OrderingSource}
- */
-declare function OrderingSource(): OrderingSource;
-type OrderingSource = "storefront" | "store_os_pos" | "kiosk" | "scan_go" | "smart_trolley" | "gofynd" | "uniket" | "marketplace" | "social_commerce" | "ondc" | "nexus" | "nykaa_fashion" | "etsy" | "vuivui" | "zilingo" | "firstcry" | "bukalapak" | "myntra_ppmp" | "lazada" | "tiktok" | "sfcc" | "debenhams" | "prestomall" | "meesho" | "amazon_vdf" | "bigcommerce" | "sendo" | "storehippo" | "cdiscount" | "nykaa" | "trendyol" | "weloveshopping" | "jollee" | "wish" | "tiki" | "central_online" | "q10" | "cred" | "walmart" | "snapdeal" | "flipkart" | "blibli" | "ajio_jit" | "pharmeasy" | "ezmall" | "adobe_commerce" | "kartmax" | "shopee" | "zalora" | "prestashop" | "smytten" | "amazon_sc" | "urbanpiper" | "flipkart_quick" | "woocommerce" | "zivame" | "lelong" | "facebook" | "jiomart" | "gmc" | "robins" | "akulaku" | "noon" | "tatacliq" | "kartrocket" | "inorbit" | "ajio_business" | "swiggy" | "asos" | "tokopedia" | "limeroad" | "myntra_omni" | "spoyl" | "amazon_mlf" | "fulfilled_by_lazada" | "ebay" | "jd" | "amazon_pharmacy" | "ajio_vms" | "daraz" | "oker" | "flipkart_b2b" | "amazon_mlf_ss" | "woovly" | "tata1mg" | "zomato" | "shopify";

@@ -114,6 +114,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef FollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
+ */
+
+/**
  * @typedef GetAllCollectionsParam
  * @property {string} [q] - Get collection list filtered by q string,
  * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
@@ -380,6 +386,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef GetFollowedProductsParam
+ * @property {string} userId - User ID to fetch the followed list
+ * @property {string} [pageId] - The identifier used to retrieve the next set of
+ *   results. This parameter follows cursor-based pagination.
+ * @property {number} [pageSize] - Number of items per page
+ */
+
+/**
  * @typedef GetGroupConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
@@ -418,6 +432,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
+ */
+
+/**
+ * @typedef UnfollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
  */
 
 /**
@@ -651,6 +671,14 @@ class CatalogPlatformApplicationValidator {
   static deleteSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FollowProductByIdParam} */
+  static followProductById() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -903,6 +931,15 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetFollowedProductsParam} */
+  static getFollowedProducts() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetGroupConfigurationsParam} */
   static getGroupConfigurations() {
     return Joi.object({
@@ -945,6 +982,14 @@ class CatalogPlatformApplicationValidator {
   static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {UnfollowProductByIdParam} */
+  static unfollowProductById() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
