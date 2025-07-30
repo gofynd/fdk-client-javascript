@@ -3520,6 +3520,8 @@ const Joi = require("joi");
  *   with the product.
  * @property {string[]} [images] - Array of image URLs representing different
  *   views or angles of the item.
+ * @property {string[]} [tags] - Custom labels or keywords associated with the
+ *   item for categorization, filtering, or business logic purposes.
  */
 
 /**
@@ -8547,6 +8549,7 @@ class OrderPlatformModel {
       color: Joi.string().allow("").allow(null),
       department_id: Joi.number().allow(null),
       images: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
     });
   }
 

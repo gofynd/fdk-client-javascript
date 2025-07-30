@@ -632,7 +632,6 @@ export = CatalogPlatformModel;
  * @property {string} [template_tag]
  * @property {number} [total]
  * @property {string} [tracking_url]
- * @property {string[]} [tags]
  */
 /**
  * @typedef BulkProductRequestSchema
@@ -4253,6 +4252,7 @@ export = CatalogPlatformModel;
  *   either price or quantity.
  * @property {string} file_path - URL of the uploaded file containing inventory
  *   update data.
+ * @property {string[]} [tags] - Tags associated with the inventory update job.
  * @property {BulkMeta} [meta]
  */
 /**
@@ -5748,7 +5748,6 @@ type BulkJob = {
     template_tag?: string;
     total?: number;
     tracking_url?: string;
-    tags?: string[];
 };
 /** @returns {BulkProductRequestSchema} */
 declare function BulkProductRequestSchema(): BulkProductRequestSchema;
@@ -13679,6 +13678,10 @@ type BulkInventoryJob = {
      * update data.
      */
     file_path: string;
+    /**
+     * - Tags associated with the inventory update job.
+     */
+    tags?: string[];
     meta?: BulkMeta;
 };
 /** @returns {Marketplaces} */

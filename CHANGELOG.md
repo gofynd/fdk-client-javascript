@@ -1,3 +1,63 @@
+# CHANGE LOG (3.4.3) - 2.7.3
+
+## Application Client
+
+
+
+### Communication
+
+
+
+#### getCommunicationConsent
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>channels.whatsapp.value</code> of schema <code>CommunicationConsentChannelsWhatsapp</code> in response with status code 200
+
+
+#### upsertCommunicationConsent
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>channels.whatsapp.value</code> of schema <code>CommunicationConsentChannelsWhatsapp</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].item.tags</code> of schema <code>PlatformItem</code> in response with status code 200
+
+
 # CHANGE LOG (3.4.2) - 2.7.2
 
 ## Platform Client

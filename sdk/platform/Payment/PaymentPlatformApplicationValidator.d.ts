@@ -1,10 +1,5 @@
 export = PaymentPlatformApplicationValidator;
 /**
- * @typedef AddEdcDeviceParam
- * @property {string} terminalUniqueIdentifier - Terminal unique identifier
- * @property {PaymentPlatformModel.EdcUpdate} body
- */
-/**
  * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation} body
  */
@@ -33,16 +28,6 @@ export = PaymentPlatformApplicationValidator;
  * @typedef CreatePaymentOrderParam
  * @property {PaymentPlatformModel.PaymentOrderCreation} body
  */
-/** @typedef EdcAggregatorsAndModelListParam */
-/**
- * @typedef EdcDeviceListParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {boolean} [isActive]
- * @property {number} [storeId]
- * @property {string} [deviceTag]
- */
-/** @typedef EdcDeviceStatsParam */
 /**
  * @typedef GetBankAccountDetailsOpenAPIParam
  * @property {string} orderId
@@ -52,10 +37,6 @@ export = PaymentPlatformApplicationValidator;
  * @typedef GetBrandPaymentGatewayConfigParam
  * @property {string} aggregator - Aggregator slug
  * @property {string} [configType]
- */
-/**
- * @typedef GetEdcDeviceParam
- * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  */
 /**
  * @typedef GetMerchantAggregatorAppVersionParam
@@ -218,10 +199,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {PaymentPlatformModel.SetCODForUserCreation} body
  */
 /**
- * @typedef UpdateEdcDeviceParam
- * @property {PaymentPlatformModel.EdcAddCreation} body
- */
-/**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
  * @property {PaymentPlatformModel.RefundPriorityCreation} body
@@ -251,8 +228,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {PaymentPlatformModel.ValidateCustomerCreation} body
  */
 declare class PaymentPlatformApplicationValidator {
-    /** @returns {AddEdcDeviceParam} */
-    static addEdcDevice(): AddEdcDeviceParam;
     /** @returns {AddRefundBankAccountUsingOTPParam} */
     static addRefundBankAccountUsingOTP(): AddRefundBankAccountUsingOTPParam;
     /** @returns {CancelPaymentLinkParam} */
@@ -267,18 +242,10 @@ declare class PaymentPlatformApplicationValidator {
     static createPaymentLink(): CreatePaymentLinkParam;
     /** @returns {CreatePaymentOrderParam} */
     static createPaymentOrder(): CreatePaymentOrderParam;
-    /** @returns {EdcAggregatorsAndModelListParam} */
-    static edcAggregatorsAndModelList(): any;
-    /** @returns {EdcDeviceListParam} */
-    static edcDeviceList(): EdcDeviceListParam;
-    /** @returns {EdcDeviceStatsParam} */
-    static edcDeviceStats(): any;
     /** @returns {GetBankAccountDetailsOpenAPIParam} */
     static getBankAccountDetailsOpenAPI(): GetBankAccountDetailsOpenAPIParam;
     /** @returns {GetBrandPaymentGatewayConfigParam} */
     static getBrandPaymentGatewayConfig(): GetBrandPaymentGatewayConfigParam;
-    /** @returns {GetEdcDeviceParam} */
-    static getEdcDevice(): GetEdcDeviceParam;
     /** @returns {GetMerchantAggregatorAppVersionParam} */
     static getMerchantAggregatorAppVersion(): GetMerchantAggregatorAppVersionParam;
     /** @returns {GetMerchantAggregatorPaymentModeDetailsParam} */
@@ -341,8 +308,6 @@ declare class PaymentPlatformApplicationValidator {
     static setPaymentModeCustomConfig(): SetPaymentModeCustomConfigParam;
     /** @returns {SetUserCODlimitRoutesParam} */
     static setUserCODlimitRoutes(): SetUserCODlimitRoutesParam;
-    /** @returns {UpdateEdcDeviceParam} */
-    static updateEdcDevice(): UpdateEdcDeviceParam;
     /** @returns {UpdateMerchantRefundPriorityParam} */
     static updateMerchantRefundPriority(): UpdateMerchantRefundPriorityParam;
     /** @returns {UpdatePaymentSessionParam} */
@@ -355,15 +320,8 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
+    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
 }
-type AddEdcDeviceParam = {
-    /**
-     * - Terminal unique identifier
-     */
-    terminalUniqueIdentifier: string;
-    body: PaymentPlatformModel.EdcUpdate;
-};
 type AddRefundBankAccountUsingOTPParam = {
     body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
 };
@@ -389,13 +347,6 @@ type CreatePaymentLinkParam = {
 type CreatePaymentOrderParam = {
     body: PaymentPlatformModel.PaymentOrderCreation;
 };
-type EdcDeviceListParam = {
-    pageNo?: number;
-    pageSize?: number;
-    isActive?: boolean;
-    storeId?: number;
-    deviceTag?: string;
-};
 type GetBankAccountDetailsOpenAPIParam = {
     orderId: string;
     requestHash?: string;
@@ -406,12 +357,6 @@ type GetBrandPaymentGatewayConfigParam = {
      */
     aggregator: string;
     configType?: string;
-};
-type GetEdcDeviceParam = {
-    /**
-     * - Terminal unique identifier
-     */
-    terminalUniqueIdentifier: string;
 };
 type GetMerchantAggregatorAppVersionParam = {
     /**
@@ -629,9 +574,6 @@ type SetPaymentModeCustomConfigParam = {
 type SetUserCODlimitRoutesParam = {
     body: PaymentPlatformModel.SetCODForUserCreation;
 };
-type UpdateEdcDeviceParam = {
-    body: PaymentPlatformModel.EdcAddCreation;
-};
 type UpdateMerchantRefundPriorityParam = {
     /**
      * - Configuration for merchant or customer
@@ -668,8 +610,6 @@ type ValidateCustomerAndCreditSummaryParam = {
 type VerifyCustomerForPaymentParam = {
     body: PaymentPlatformModel.ValidateCustomerCreation;
 };
-type EdcAggregatorsAndModelListParam = any;
-type EdcDeviceStatsParam = any;
 type GetMerchantPaymentOptionParam = any;
 type GetPGConfigAggregatorsParam = any;
 type GetPaymentCodeOptionParam = any;

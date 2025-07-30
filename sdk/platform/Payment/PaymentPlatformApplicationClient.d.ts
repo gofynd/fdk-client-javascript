@@ -4,16 +4,6 @@ declare class Payment {
     config: any;
     applicationId: any;
     /**
-     * @param {PaymentPlatformApplicationValidator.AddEdcDeviceParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateDetails>} - Success response
-     * @name addEdcDevice
-     * @summary: Create an EDC device
-     * @description: Registration and addition of a new EDC device to the system - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/addEdcDevice/).
-     */
-    addEdcDevice({ terminalUniqueIdentifier, body, requestHeaders }?: PaymentPlatformApplicationValidator.AddEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceUpdateDetails>;
-    /**
      * @param {PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
      *   - Arg object
      *
@@ -100,40 +90,6 @@ declare class Payment {
      */
     createPaymentOrder({ body, requestHeaders }?: PaymentPlatformApplicationValidator.CreatePaymentOrderParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentOrderDetails>;
     /**
-     * @param {PaymentPlatformApplicationValidator.EdcAggregatorsAndModelListParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListDetails>}
-     *   - Success response
-     *
-     * @name edcAggregatorsAndModelList
-     * @summary: EDC aggregators and model list
-     * @description: Retrieve a list of EDC (Electronic Data Capture) aggregators and models. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/edcAggregatorsAndModelList/).
-     */
-    edcAggregatorsAndModelList({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcAggregatorAndModelListDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.EdcDeviceListParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcDeviceListDetails>} - Success response
-     * @name edcDeviceList
-     * @summary: List EDC devices
-     * @description: Retrieves a list of available Electronic Data Capture (EDC) devices. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/edcDeviceList/).
-     */
-    edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag, requestHeaders }?: PaymentPlatformApplicationValidator.EdcDeviceListParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceListDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.EdcDeviceStatsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsDetails>} - Success response
-     * @name edcDeviceStats
-     * @summary: EDC device stats
-     * @description: Information about EDC (Electronic Data Capture) devices linked to a specific application within a company. It provides statistics such as the count of active and inactive devices. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/edcDeviceStats/).
-     */
-    edcDeviceStats({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceStatsDetails>;
-    /**
      * @param {PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam} arg
      *   - Arg object
      *
@@ -158,16 +114,6 @@ declare class Payment {
      * @description: Retrieve configuration settings like key, secret, webhook url, merchant salt for brand payment gateways. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getBrandPaymentGatewayConfig/).
      */
     getBrandPaymentGatewayConfig({ aggregator, configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayConfigDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcDeviceDetails>} - Success response
-     * @name getEdcDevice
-     * @summary: Get an EDC device
-     * @description: Retrieve comprehensive details regarding an Electronic Data Capture (EDC) device associated with a particular terminal unique identifier within a company's application.Upon success, it returns the detailed information of the EDC device, including terminal serial number, EDC device serial number, merchant store POS code, store ID, aggregator ID and name, device tag, activation status, and EDC model. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getEdcDevice/).
-     */
-    getEdcDevice({ terminalUniqueIdentifier, requestHeaders }?: PaymentPlatformApplicationValidator.GetEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceDetails>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorAppVersionParam} arg
      *   - Arg object
@@ -556,16 +502,6 @@ declare class Payment {
      * @description: This allows access to seller to enable disable cod of specific user - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/setUserCODlimitRoutes/).
      */
     setUserCODlimitRoutes({ body, requestHeaders }?: PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.SetCODOptionDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.UpdateEdcDeviceParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.EdcDeviceAddDetails>} - Success response
-     * @name updateEdcDevice
-     * @summary: Update EDC device
-     * @description: Enables the modification of settings and details associated with an Electronic Data Capture (EDC) device linked to a specific application within a company. Upon success, it returns the updated information of the EDC device. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/updateEdcDevice/).
-     */
-    updateEdcDevice({ body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceAddDetails>;
     /**
      * @param {PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam} arg
      *   - Arg object

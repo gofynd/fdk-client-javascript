@@ -694,7 +694,6 @@ const Joi = require("joi");
  * @property {string} [template_tag]
  * @property {number} [total]
  * @property {string} [tracking_url]
- * @property {string[]} [tags]
  */
 
 /**
@@ -4659,6 +4658,7 @@ const Joi = require("joi");
  *   either price or quantity.
  * @property {string} file_path - URL of the uploaded file containing inventory
  *   update data.
+ * @property {string[]} [tags] - Tags associated with the inventory update job.
  * @property {BulkMeta} [meta]
  */
 
@@ -5574,7 +5574,6 @@ class CatalogPlatformModel {
       template_tag: Joi.string().allow(""),
       total: Joi.number(),
       tracking_url: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -9801,6 +9800,7 @@ class CatalogPlatformModel {
       company_id: Joi.string().allow("").required(),
       file_type: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
+      tags: Joi.array().items(Joi.string().allow("")),
       meta: CatalogPlatformModel.BulkMeta(),
     });
   }

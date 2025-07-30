@@ -3253,6 +3253,8 @@ export = OrderPlatformModel;
  *   with the product.
  * @property {string[]} [images] - Array of image URLs representing different
  *   views or angles of the item.
+ * @property {string[]} [tags] - Custom labels or keywords associated with the
+ *   item for categorization, filtering, or business logic purposes.
  */
 /**
  * @typedef Dates
@@ -11783,6 +11785,11 @@ type PlatformItem = {
      * views or angles of the item.
      */
     images?: string[];
+    /**
+     * - Custom labels or keywords associated with the
+     * item for categorization, filtering, or business logic purposes.
+     */
+    tags?: string[];
 };
 /** @returns {Dates} */
 declare function Dates(): Dates;

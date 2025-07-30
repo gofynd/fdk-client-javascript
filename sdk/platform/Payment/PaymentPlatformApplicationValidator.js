@@ -3,12 +3,6 @@ const Joi = require("joi");
 const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
- * @typedef AddEdcDeviceParam
- * @property {string} terminalUniqueIdentifier - Terminal unique identifier
- * @property {PaymentPlatformModel.EdcUpdate} body
- */
-
-/**
  * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation} body
  */
@@ -44,19 +38,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {PaymentPlatformModel.PaymentOrderCreation} body
  */
 
-/** @typedef EdcAggregatorsAndModelListParam */
-
-/**
- * @typedef EdcDeviceListParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {boolean} [isActive]
- * @property {number} [storeId]
- * @property {string} [deviceTag]
- */
-
-/** @typedef EdcDeviceStatsParam */
-
 /**
  * @typedef GetBankAccountDetailsOpenAPIParam
  * @property {string} orderId
@@ -67,11 +48,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @typedef GetBrandPaymentGatewayConfigParam
  * @property {string} aggregator - Aggregator slug
  * @property {string} [configType]
- */
-
-/**
- * @typedef GetEdcDeviceParam
- * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  */
 
 /**
@@ -266,11 +242,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
- * @typedef UpdateEdcDeviceParam
- * @property {PaymentPlatformModel.EdcAddCreation} body
- */
-
-/**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
  * @property {PaymentPlatformModel.RefundPriorityCreation} body
@@ -305,14 +276,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 class PaymentPlatformApplicationValidator {
-  /** @returns {AddEdcDeviceParam} */
-  static addEdcDevice() {
-    return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.EdcUpdate().required(),
-    }).required();
-  }
-
   /** @returns {AddRefundBankAccountUsingOTPParam} */
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
@@ -363,27 +326,6 @@ class PaymentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {EdcAggregatorsAndModelListParam} */
-  static edcAggregatorsAndModelList() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {EdcDeviceListParam} */
-  static edcDeviceList() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      isActive: Joi.boolean(),
-      storeId: Joi.number(),
-      deviceTag: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {EdcDeviceStatsParam} */
-  static edcDeviceStats() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetBankAccountDetailsOpenAPIParam} */
   static getBankAccountDetailsOpenAPI() {
     return Joi.object({
@@ -397,13 +339,6 @@ class PaymentPlatformApplicationValidator {
     return Joi.object({
       aggregator: Joi.string().allow("").required(),
       configType: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetEdcDeviceParam} */
-  static getEdcDevice() {
-    return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -647,13 +582,6 @@ class PaymentPlatformApplicationValidator {
   static setUserCODlimitRoutes() {
     return Joi.object({
       body: PaymentPlatformModel.SetCODForUserCreation().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateEdcDeviceParam} */
-  static updateEdcDevice() {
-    return Joi.object({
-      body: PaymentPlatformModel.EdcAddCreation().required(),
     }).required();
   }
 
