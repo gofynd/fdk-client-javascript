@@ -133,6 +133,7 @@ const Joi = require("joi");
  * @property {string} [name]
  * @property {string} [file_url]
  * @property {string} [type]
+ * @property {string} [datasource_type] - Type of the datasource (audience or user_group)
  * @property {number} [records_count]
  * @property {string} [application]
  */
@@ -171,6 +172,7 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [datasource]
  * @property {string} [type]
+ * @property {string} [datasource_type] - Type of the datasource (audience or user_group)
  * @property {string} [name]
  * @property {string} [application]
  * @property {string} [created_at]
@@ -1178,6 +1180,7 @@ class CommunicationPlatformModel {
       name: Joi.string().allow(""),
       file_url: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      datasource_type: Joi.string().allow(""),
       records_count: Joi.number(),
       application: Joi.string().allow(""),
     });
@@ -1226,6 +1229,7 @@ class CommunicationPlatformModel {
       _id: Joi.string().allow(""),
       datasource: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      datasource_type: Joi.string().allow(""),
       name: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

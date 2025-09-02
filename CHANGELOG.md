@@ -1,3 +1,19 @@
+# CHANGE LOG (3.4.4) - 2.7.5
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### updateLocationQuantity
+
+- ##### What's New
+	- [Added] property <code>mode</code> of schema <code>LocationQuantityRequestSchema</code> in request body
+
+
 # CHANGE LOG (3.4.3) - 2.7.3
 
 ## Application Client

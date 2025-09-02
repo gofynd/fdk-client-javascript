@@ -2890,9 +2890,16 @@ const Joi = require("joi");
 /**
  * @typedef LocationQuantityRequestSchema
  * @property {string} [expiration_date] - The expiration date of the inventory item.
- * @property {number} [total_quantity] - The total quantity of the inventory item.
- * @property {number} [damaged_quantity] - The total quantity of the inventory item.
- * @property {number} [not_available_quantity] - The total quantity of the inventory item.
+ * @property {number} [total_quantity] - The total quantity of the inventory
+ *   item. Any one of total_quantity, damaged_quantity, not_available_quantity
+ *   should be provided.
+ * @property {number} [damaged_quantity] - The damaged quantity of the inventory
+ *   item. Any one of total_quantity, damaged_quantity, not_available_quantity
+ *   should be provided.
+ * @property {number} [not_available_quantity] - The not available quantity of
+ *   the inventory item. Any one of total_quantity, damaged_quantity,
+ *   not_available_quantity should be provided.
+ * @property {string} [mode] - Indicates whether delta or replace operation for inventory
  */
 
 /**
@@ -7961,6 +7968,7 @@ class CatalogPlatformModel {
       total_quantity: Joi.number(),
       damaged_quantity: Joi.number(),
       not_available_quantity: Joi.number(),
+      mode: Joi.string().allow(""),
     });
   }
 

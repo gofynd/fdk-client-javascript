@@ -105,7 +105,7 @@ fdkAxios.interceptors.request.use(
     Logger({
       level: "ERROR",
       message: error.data || error.message,
-      stack: error.data.stack || error.stack,
+      stack: error?.data?.stack || error.stack,
     });
   }
 );

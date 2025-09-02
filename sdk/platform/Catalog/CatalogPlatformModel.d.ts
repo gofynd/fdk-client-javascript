@@ -2628,9 +2628,16 @@ export = CatalogPlatformModel;
 /**
  * @typedef LocationQuantityRequestSchema
  * @property {string} [expiration_date] - The expiration date of the inventory item.
- * @property {number} [total_quantity] - The total quantity of the inventory item.
- * @property {number} [damaged_quantity] - The total quantity of the inventory item.
- * @property {number} [not_available_quantity] - The total quantity of the inventory item.
+ * @property {number} [total_quantity] - The total quantity of the inventory
+ *   item. Any one of total_quantity, damaged_quantity, not_available_quantity
+ *   should be provided.
+ * @property {number} [damaged_quantity] - The damaged quantity of the inventory
+ *   item. Any one of total_quantity, damaged_quantity, not_available_quantity
+ *   should be provided.
+ * @property {number} [not_available_quantity] - The not available quantity of
+ *   the inventory item. Any one of total_quantity, damaged_quantity,
+ *   not_available_quantity should be provided.
+ * @property {string} [mode] - Indicates whether delta or replace operation for inventory
  */
 /**
  * @typedef LocationPriceQuantitySuccessResponseSchema
@@ -10042,17 +10049,27 @@ type LocationQuantityRequestSchema = {
      */
     expiration_date?: string;
     /**
-     * - The total quantity of the inventory item.
+     * - The total quantity of the inventory
+     * item. Any one of total_quantity, damaged_quantity, not_available_quantity
+     * should be provided.
      */
     total_quantity?: number;
     /**
-     * - The total quantity of the inventory item.
+     * - The damaged quantity of the inventory
+     * item. Any one of total_quantity, damaged_quantity, not_available_quantity
+     * should be provided.
      */
     damaged_quantity?: number;
     /**
-     * - The total quantity of the inventory item.
+     * - The not available quantity of
+     * the inventory item. Any one of total_quantity, damaged_quantity,
+     * not_available_quantity should be provided.
      */
     not_available_quantity?: number;
+    /**
+     * - Indicates whether delta or replace operation for inventory
+     */
+    mode?: string;
 };
 /** @returns {LocationPriceQuantitySuccessResponseSchema} */
 declare function LocationPriceQuantitySuccessResponseSchema(): LocationPriceQuantitySuccessResponseSchema;

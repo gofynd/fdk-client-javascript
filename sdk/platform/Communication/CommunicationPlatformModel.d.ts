@@ -114,6 +114,7 @@ export = CommunicationPlatformModel;
  * @property {string} [name]
  * @property {string} [file_url]
  * @property {string} [type]
+ * @property {string} [datasource_type] - Type of the datasource (audience or user_group)
  * @property {number} [records_count]
  * @property {string} [application]
  */
@@ -147,6 +148,7 @@ export = CommunicationPlatformModel;
  * @property {string} [_id]
  * @property {string} [datasource]
  * @property {string} [type]
+ * @property {string} [datasource_type] - Type of the datasource (audience or user_group)
  * @property {string} [name]
  * @property {string} [application]
  * @property {string} [created_at]
@@ -1027,6 +1029,10 @@ type CampaignReq = {
     name?: string;
     file_url?: string;
     type?: string;
+    /**
+     * - Type of the datasource (audience or user_group)
+     */
+    datasource_type?: string;
     records_count?: number;
     application?: string;
 };
@@ -1065,6 +1071,10 @@ type Campaign = {
     _id?: string;
     datasource?: string;
     type?: string;
+    /**
+     * - Type of the datasource (audience or user_group)
+     */
+    datasource_type?: string;
     name?: string;
     application?: string;
     created_at?: string;
