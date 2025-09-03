@@ -1835,6 +1835,95 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetFulfillmentOptionsListParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.FulfillmentOptionsList>} -
+   *   Success response
+   * @name getFulfillmentOptionsList
+   * @summary: Retrieve fulfillment options with optional filters.
+   * @description: Fetches fulfillment options for an application. Queryable by product_slug, store_id, and status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getFulfillmentOptionsList/).
+   */
+  async getFulfillmentOptionsList(
+    { productSlug, storeId, status, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getFulfillmentOptionsList().validate(
+      {
+        productSlug,
+        storeId,
+        status,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getFulfillmentOptionsList().validate(
+      {
+        productSlug,
+        storeId,
+        status,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getFulfillmentOptionsList \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["product_slug"] = productSlug;
+    query_params["store_id"] = storeId;
+    query_params["status"] = status;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fulfillment-options`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.FulfillmentOptionsList().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getFulfillmentOptionsList \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreaParam} arg
    *   - Arg object
    *

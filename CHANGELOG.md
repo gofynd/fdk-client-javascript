@@ -1,3 +1,64 @@
+# CHANGE LOG (3.5.0) - 2.7.7
+
+## Application Client
+
+
+
+### Logistic
+
+
+
+#### getFulfillmentOptions
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>items[].type</code> of schema <code>FulfillmentOptionItem</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Configuration
+
+
+
+#### getInventoryConfig
+
+- ##### What's New
+	- [Added] property <code>search.skg_identification</code> of schema <code>SearchConfig</code> in response with status code 200
+
+
+### Serviceability
+
+
+
+#### createFulfillmentOption
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>type</code> of schema <code>FulfillmentOption</code> in request body
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>type</code> of schema <code>FulfillmentOption</code> in response with status code 200
+
+
+#### getFulfillmentOptions
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>type</code> of schema <code>FulfillmentOption</code> in response with status code 200
+
+
+#### putFulfillmentOption
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>type</code> of schema <code>FulfillmentOption</code> in request body
+	- [Breaking] [Changed] Possible values from <code>StorePickup</code> to <code>PickAtStore</code> of property <code>type</code> of schema <code>FulfillmentOption</code> in response with status code 200
+
+
+#### getFulfillmentOptionsList
+
+- ##### What's New
+	- [Added] method <code>getFulfillmentOptionsList</code>
+
+
+
 # CHANGE LOG (3.4.4) - 2.7.5
 
 ## Platform Client

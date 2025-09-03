@@ -111,6 +111,14 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetFulfillmentOptionsListParam
+ * @property {string} [productSlug] - The unique identifier (slug) of the product.
+ * @property {number} [storeId] - The unique identifier of the store.
+ * @property {string} [status] - Status of the fulfillment option. Must be
+ *   either `ACTIVE` or `INACTIVE`.
+ */
+
+/**
  * @typedef GetGeoAreaParam
  * @property {string} geoareaId - A unique identifier for the GeoArea.
  */
@@ -425,6 +433,15 @@ class ServiceabilityPlatformApplicationValidator {
       slug: Joi.string().allow("").required(),
       productId: Joi.number(),
       storeId: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {GetFulfillmentOptionsListParam} */
+  static getFulfillmentOptionsList() {
+    return Joi.object({
+      productSlug: Joi.string().allow(""),
+      storeId: Joi.number(),
+      status: Joi.string().allow(""),
     }).required();
   }
 

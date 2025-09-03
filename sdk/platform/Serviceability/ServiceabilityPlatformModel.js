@@ -18,6 +18,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FulfillmentOptionsList
+ * @property {FulfillmentOptionItem[]} [items] - List of fulfillment option items.
+ */
+
+/**
  * @typedef FulfillmentOptionProducts
  * @property {FulfillmentOptionProduct} [items]
  * @property {Page} [page]
@@ -1307,6 +1312,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FulfillmentOptionItem
+ * @property {string} [slug] - Unique identifier for the delivery type.
+ * @property {string} [description] - Description of the delivery service.
+ * @property {boolean} [is_default] - Indicates if this is the default delivery option.
+ * @property {string} [id] - Unique ID of the delivery service.
+ * @property {string} [type] - Type of fulfillment option.
+ * @property {string} [name] - Name of the delivery service.
+ */
+
+/**
  * @typedef FulfillmentOptionProduct
  * @property {number} [uid] - Unique identifier for the product.
  * @property {string} [name] - Name of the product.
@@ -2532,6 +2547,15 @@ class ServiceabilityPlatformModel {
       products: ServiceabilityPlatformModel.FulfillmentProducts(),
       cp_schemes: ServiceabilityPlatformModel.CourierPartnerSchemes(),
       id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FulfillmentOptionsList} */
+  static FulfillmentOptionsList() {
+    return Joi.object({
+      items: Joi.array().items(
+        ServiceabilityPlatformModel.FulfillmentOptionItem()
+      ),
     });
   }
 
@@ -3907,6 +3931,18 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       scheme_id: Joi.string().allow(""),
       cp_ext_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FulfillmentOptionItem} */
+  static FulfillmentOptionItem() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
     });
   }
 

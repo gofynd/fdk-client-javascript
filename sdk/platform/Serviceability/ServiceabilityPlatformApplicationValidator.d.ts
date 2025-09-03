@@ -86,6 +86,13 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {number} [storeId] - The unique identifier of the store.
  */
 /**
+ * @typedef GetFulfillmentOptionsListParam
+ * @property {string} [productSlug] - The unique identifier (slug) of the product.
+ * @property {number} [storeId] - The unique identifier of the store.
+ * @property {string} [status] - Status of the fulfillment option. Must be
+ *   either `ACTIVE` or `INACTIVE`.
+ */
+/**
  * @typedef GetGeoAreaParam
  * @property {string} geoareaId - A unique identifier for the GeoArea.
  */
@@ -267,6 +274,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getFulfillmentOptionStores(): GetFulfillmentOptionStoresParam;
     /** @returns {GetFulfillmentOptionsParam} */
     static getFulfillmentOptions(): GetFulfillmentOptionsParam;
+    /** @returns {GetFulfillmentOptionsListParam} */
+    static getFulfillmentOptionsList(): GetFulfillmentOptionsListParam;
     /** @returns {GetGeoAreaParam} */
     static getGeoArea(): GetGeoAreaParam;
     /** @returns {GetGeoAreaExportJobStatusParam} */
@@ -319,7 +328,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static validateBulkFulfillmentOptions(): ValidateBulkFulfillmentOptionsParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -438,6 +447,21 @@ type GetFulfillmentOptionsParam = {
      * - The unique identifier of the store.
      */
     storeId?: number;
+};
+type GetFulfillmentOptionsListParam = {
+    /**
+     * - The unique identifier (slug) of the product.
+     */
+    productSlug?: string;
+    /**
+     * - The unique identifier of the store.
+     */
+    storeId?: number;
+    /**
+     * - Status of the fulfillment option. Must be
+     * either `ACTIVE` or `INACTIVE`.
+     */
+    status?: string;
 };
 type GetGeoAreaParam = {
     /**

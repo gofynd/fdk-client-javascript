@@ -66,6 +66,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SkgIdentification
+ * @property {boolean} [enabled] - Indicates whether semantic knowledge
+ *   graph-based search is enabled for the application.
+ */
+
+/**
  * @typedef QuerySuggestions
  * @property {boolean} [enabled] - Indicates whether to enable or disable query
  *   suggestions powered by the GPT model using the current live catalog within
@@ -78,6 +84,7 @@ const Joi = require("joi");
  * @typedef SearchConfig
  * @property {FstIdentification} [fst_identification]
  * @property {QuerySuggestions} [query_suggestions]
+ * @property {SkgIdentification} [skg_identification]
  */
 
 /**
@@ -1657,6 +1664,13 @@ class ConfigurationPlatformModel {
     });
   }
 
+  /** @returns {SkgIdentification} */
+  static SkgIdentification() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
   /** @returns {QuerySuggestions} */
   static QuerySuggestions() {
     return Joi.object({
@@ -1670,6 +1684,7 @@ class ConfigurationPlatformModel {
     return Joi.object({
       fst_identification: ConfigurationPlatformModel.FstIdentification(),
       query_suggestions: ConfigurationPlatformModel.QuerySuggestions(),
+      skg_identification: ConfigurationPlatformModel.SkgIdentification(),
     });
   }
 

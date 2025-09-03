@@ -298,6 +298,19 @@ declare class Serviceability {
      */
     getFulfillmentOptions({ slug, productId, storeId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetFulfillmentOptionsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.FulfillmentOption>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetFulfillmentOptionsListParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.FulfillmentOptionsList>} -
+     *   Success response
+     * @name getFulfillmentOptionsList
+     * @summary: Retrieve fulfillment options with optional filters.
+     * @description: Fetches fulfillment options for an application. Queryable by product_slug, store_id, and status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getFulfillmentOptionsList/).
+     */
+    getFulfillmentOptionsList({ productSlug, storeId, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetFulfillmentOptionsListParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.FulfillmentOptionsList>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetGeoAreaParam} arg
      *   - Arg object
      *
