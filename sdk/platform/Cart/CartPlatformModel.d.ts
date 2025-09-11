@@ -725,6 +725,10 @@ export = CartPlatformModel;
  * @property {Object} [meta] - Meta data related to article
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
  *   allowed at article level
+ * @property {number} [min_price_threshold] - Minimum allowed net price for the
+ *   article. If the article's price after all discounts and adjustments falls
+ *   below this threshold, the price adjustment will be automatically removed.
+ *   (Applicable only for price adjustment discount type)
  */
 /**
  * @typedef PriceAdjustmentRestrictions
@@ -4234,6 +4238,13 @@ type Article = {
      * allowed at article level
      */
     allowed_refund?: boolean;
+    /**
+     * - Minimum allowed net price for the
+     * article. If the article's price after all discounts and adjustments falls
+     * below this threshold, the price adjustment will be automatically removed.
+     * (Applicable only for price adjustment discount type)
+     */
+    min_price_threshold?: number;
 };
 /** @returns {PriceAdjustmentRestrictions} */
 declare function PriceAdjustmentRestrictions(): PriceAdjustmentRestrictions;

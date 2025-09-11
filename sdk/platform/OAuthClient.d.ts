@@ -20,7 +20,7 @@ declare class OAuthClient {
         grant_type: any;
         refresh_token: any;
         code: any;
-    }): Promise<import("axios").AxiosResponse<any, any>>;
-    getOfflineAccessToken(scopes: any, code: any): Promise<import("axios").AxiosResponse<any, any>>;
-    getOfflineAccessTokenObj(scopes: any, code: any): Promise<import("axios").AxiosResponse<any, any>>;
+    }): Promise<import("axios").AxiosResponse<any, any, {}>>;
+    getOfflineAccessToken(scopes: any, code: any): Promise<import("axios").AxiosResponse<any, any, {}>>;
+    getOfflineAccessTokenObj(scopes: any, code: any): Promise<import("axios").AxiosResponse<any, any, {}>>;
 }

@@ -27,6 +27,10 @@ export = CatalogPlatformValidator;
  * @property {CatalogPlatformModel.BulkJob} body
  */
 /**
+ * @typedef CreateHsCodeParam
+ * @property {CatalogPlatformModel.HSCodeItem} body
+ */
+/**
  * @typedef CreateInventoryExportParam
  * @property {CatalogPlatformModel.InventoryCreateRequestSchema} body
  */
@@ -42,7 +46,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateProductParam
- * @property {CatalogPlatformModel.ProductCreateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductCreateSchemaV3} body
  */
 /**
  * @typedef CreateProductAssetsInBulkParam
@@ -64,6 +68,19 @@ export = CatalogPlatformValidator;
 /**
  * @typedef CreateSizeGuideParam
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
+ */
+/**
+ * @typedef CreateTaxParam
+ * @property {CatalogPlatformModel.CreateTaxRequestBody} body
+ */
+/**
+ * @typedef CreateTaxComponentNameParam
+ * @property {CatalogPlatformModel.CreateTaxComponentName} body
+ */
+/**
+ * @typedef CreateTaxVersionParam
+ * @property {string} ruleId - The ID of the tax rule.
+ * @property {CatalogPlatformModel.CreateTaxVersionRequestBody} body
  */
 /**
  * @typedef DeleteBulkInventoryJobParam
@@ -90,6 +107,15 @@ export = CatalogPlatformValidator;
  * @property {string} size - Size to be deleted.
  */
 /**
+ * @typedef DeleteTaxRuleParam
+ * @property {string} ruleId - The ID of the tax rule to be deleted.
+ */
+/**
+ * @typedef DeleteTaxVersionParam
+ * @property {string} ruleId - The ID of the tax rule to be deleted.
+ * @property {string} versionId - The ID of the tax version to be deleted.
+ */
+/**
  * @typedef DownloadInventoryTemplateViewParam
  * @property {string} schemaType - Specifies the type of template to download.
  *   Either quantity or price
@@ -105,7 +131,7 @@ export = CatalogPlatformValidator;
 /**
  * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
- * @property {CatalogPlatformModel.ProductUpdateSchemaV2} body
+ * @property {CatalogPlatformModel.ProductUpdateSchemaV3} body
  */
 /**
  * @typedef ExportInventoryConfigParam
@@ -118,6 +144,14 @@ export = CatalogPlatformValidator;
  * @property {number} [pageSize] - Indicates page size
  * @property {string} [q] - Search using hsn code, description, reporting_hsn
  * @property {string} [type] - Search using type
+ */
+/**
+ * @typedef GetAllTaxRulesParam
+ * @property {string} [q] - The search query to filter tax rules.
+ * @property {string} [statuses] - The status of the tax rules to filter.
+ * @property {number} [page] - The page number to retrieve.
+ * @property {number} [limit] - The number of items per page.
+ * @property {string} [versionStatus] - The status of the tax rule versions to filter.
  */
 /**
  * @typedef GetAttributeParam
@@ -143,6 +177,13 @@ export = CatalogPlatformValidator;
 /**
  * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
+ */
+/**
+ * @typedef GetHsCodesParam
+ * @property {number} [page] - The page number for pagination.
+ * @property {number} [limit] - The number of items to return per page.
+ * @property {CatalogPlatformModel.HsTypeEnum} [type] - Filter by HS/SAC code type.
+ * @property {string} [q] - Search query to filter HS/SAC codes by code or description.
  */
 /**
  * @typedef GetHsnCodeParam
@@ -341,6 +382,15 @@ export = CatalogPlatformValidator;
  * @property {number} [pageSize] - Number of records that can be seen on the
  *   page for the company id.
  */
+/** @typedef GetTaxComponentNamesParam */
+/**
+ * @typedef GetTaxVersionDetailsParam
+ * @property {string} ruleId - The ID of the tax rule.
+ * @property {string} [versionStatus] - Filter by tax version status.
+ * @property {string} [limit] - The number of items to return per page for
+ *   paginated past versions.
+ * @property {string} [page] - The page number for paginated past versions.
+ */
 /**
  * @typedef GetVariantsOfProductsParam
  * @property {number} itemId - Get list of variants of item Id
@@ -463,6 +513,17 @@ export = CatalogPlatformValidator;
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 /**
+ * @typedef UpdateTaxRuleParam
+ * @property {string} ruleId - Tax rule id that you want to update.
+ * @property {CatalogPlatformModel.UpdateTaxRequestBody} body
+ */
+/**
+ * @typedef UpdateTaxVersionParam
+ * @property {string} ruleId - The ID of the tax rule to be updated.
+ * @property {string} versionId - The ID of the tax version to be updated.
+ * @property {CatalogPlatformModel.UpdateTaxVersionRequestBody} body
+ */
+/**
  * @typedef UploadBulkProductsParam
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
@@ -507,6 +568,8 @@ declare class CatalogPlatformValidator {
     static createBulkInventoryJob(): CreateBulkInventoryJobParam;
     /** @returns {CreateBulkProductUploadJobParam} */
     static createBulkProductUploadJob(): CreateBulkProductUploadJobParam;
+    /** @returns {CreateHsCodeParam} */
+    static createHsCode(): CreateHsCodeParam;
     /** @returns {CreateInventoryExportParam} */
     static createInventoryExport(): CreateInventoryExportParam;
     /** @returns {CreateInventoryExportJobParam} */
@@ -525,6 +588,12 @@ declare class CatalogPlatformValidator {
     static createProductsInBulk(): CreateProductsInBulkParam;
     /** @returns {CreateSizeGuideParam} */
     static createSizeGuide(): CreateSizeGuideParam;
+    /** @returns {CreateTaxParam} */
+    static createTax(): CreateTaxParam;
+    /** @returns {CreateTaxComponentNameParam} */
+    static createTaxComponentName(): CreateTaxComponentNameParam;
+    /** @returns {CreateTaxVersionParam} */
+    static createTaxVersion(): CreateTaxVersionParam;
     /** @returns {DeleteBulkInventoryJobParam} */
     static deleteBulkInventoryJob(): DeleteBulkInventoryJobParam;
     /** @returns {DeleteProductParam} */
@@ -535,6 +604,10 @@ declare class CatalogPlatformValidator {
     static deleteRealtimeInventory(): DeleteRealtimeInventoryParam;
     /** @returns {DeleteSizeParam} */
     static deleteSize(): DeleteSizeParam;
+    /** @returns {DeleteTaxRuleParam} */
+    static deleteTaxRule(): DeleteTaxRuleParam;
+    /** @returns {DeleteTaxVersionParam} */
+    static deleteTaxVersion(): DeleteTaxVersionParam;
     /** @returns {DownloadInventoryTemplateViewParam} */
     static downloadInventoryTemplateView(): DownloadInventoryTemplateViewParam;
     /** @returns {DownloadProductTemplateViewsParam} */
@@ -545,6 +618,8 @@ declare class CatalogPlatformValidator {
     static exportInventoryConfig(): ExportInventoryConfigParam;
     /** @returns {GetAllProductHsnCodesParam} */
     static getAllProductHsnCodes(): GetAllProductHsnCodesParam;
+    /** @returns {GetAllTaxRulesParam} */
+    static getAllTaxRules(): GetAllTaxRulesParam;
     /** @returns {GetAttributeParam} */
     static getAttribute(): GetAttributeParam;
     /** @returns {GetCategoryDataParam} */
@@ -557,6 +632,8 @@ declare class CatalogPlatformValidator {
     static getCompanyMetrics(): any;
     /** @returns {GetDepartmentDataParam} */
     static getDepartmentData(): GetDepartmentDataParam;
+    /** @returns {GetHsCodesParam} */
+    static getHsCodes(): GetHsCodesParam;
     /** @returns {GetHsnCodeParam} */
     static getHsnCode(): GetHsnCodeParam;
     /** @returns {GetInventoriesParam} */
@@ -607,6 +684,10 @@ declare class CatalogPlatformValidator {
     static getSizeGuides(): GetSizeGuidesParam;
     /** @returns {GetStoreDetailParam} */
     static getStoreDetail(): GetStoreDetailParam;
+    /** @returns {GetTaxComponentNamesParam} */
+    static getTaxComponentNames(): any;
+    /** @returns {GetTaxVersionDetailsParam} */
+    static getTaxVersionDetails(): GetTaxVersionDetailsParam;
     /** @returns {GetVariantsOfProductsParam} */
     static getVariantsOfProducts(): GetVariantsOfProductsParam;
     /** @returns {ListCategoriesParam} */
@@ -641,6 +722,10 @@ declare class CatalogPlatformValidator {
     static updateRealtimeInventory(): UpdateRealtimeInventoryParam;
     /** @returns {UpdateSizeGuideParam} */
     static updateSizeGuide(): UpdateSizeGuideParam;
+    /** @returns {UpdateTaxRuleParam} */
+    static updateTaxRule(): UpdateTaxRuleParam;
+    /** @returns {UpdateTaxVersionParam} */
+    static updateTaxVersion(): UpdateTaxVersionParam;
     /** @returns {UploadBulkProductsParam} */
     static uploadBulkProducts(): UploadBulkProductsParam;
     /** @returns {ValidateProductGlobalTemplateParam} */
@@ -651,7 +736,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, UploadBulkProductsParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AddInventoryParam = {
     /**
@@ -686,6 +771,9 @@ type CreateBulkInventoryJobParam = {
 type CreateBulkProductUploadJobParam = {
     body: CatalogPlatformModel.BulkJob;
 };
+type CreateHsCodeParam = {
+    body: CatalogPlatformModel.HSCodeItem;
+};
 type CreateInventoryExportParam = {
     body: CatalogPlatformModel.InventoryCreateRequestSchema;
 };
@@ -701,7 +789,7 @@ type CreateMarketplaceOptinParam = {
     body: CatalogPlatformModel.OptInPostRequestSchema;
 };
 type CreateProductParam = {
-    body: CatalogPlatformModel.ProductCreateSchemaV2;
+    body: CatalogPlatformModel.ProductCreateSchemaV3;
 };
 type CreateProductAssetsInBulkParam = {
     body: CatalogPlatformModel.ProductBulkAssets;
@@ -721,6 +809,19 @@ type CreateProductsInBulkParam = {
 };
 type CreateSizeGuideParam = {
     body: CatalogPlatformModel.ValidateSizeGuide;
+};
+type CreateTaxParam = {
+    body: CatalogPlatformModel.CreateTaxRequestBody;
+};
+type CreateTaxComponentNameParam = {
+    body: CatalogPlatformModel.CreateTaxComponentName;
+};
+type CreateTaxVersionParam = {
+    /**
+     * - The ID of the tax rule.
+     */
+    ruleId: string;
+    body: CatalogPlatformModel.CreateTaxVersionRequestBody;
 };
 type DeleteBulkInventoryJobParam = {
     /**
@@ -762,6 +863,22 @@ type DeleteSizeParam = {
      */
     size: string;
 };
+type DeleteTaxRuleParam = {
+    /**
+     * - The ID of the tax rule to be deleted.
+     */
+    ruleId: string;
+};
+type DeleteTaxVersionParam = {
+    /**
+     * - The ID of the tax rule to be deleted.
+     */
+    ruleId: string;
+    /**
+     * - The ID of the tax version to be deleted.
+     */
+    versionId: string;
+};
 type DownloadInventoryTemplateViewParam = {
     /**
      * - Specifies the type of template to download.
@@ -793,7 +910,7 @@ type EditProductParam = {
      * - Id of the product to be updated.
      */
     itemId: number;
-    body: CatalogPlatformModel.ProductUpdateSchemaV2;
+    body: CatalogPlatformModel.ProductUpdateSchemaV3;
 };
 type ExportInventoryConfigParam = {
     /**
@@ -819,6 +936,28 @@ type GetAllProductHsnCodesParam = {
      * - Search using type
      */
     type?: string;
+};
+type GetAllTaxRulesParam = {
+    /**
+     * - The search query to filter tax rules.
+     */
+    q?: string;
+    /**
+     * - The status of the tax rules to filter.
+     */
+    statuses?: string;
+    /**
+     * - The page number to retrieve.
+     */
+    page?: number;
+    /**
+     * - The number of items per page.
+     */
+    limit?: number;
+    /**
+     * - The status of the tax rule versions to filter.
+     */
+    versionStatus?: string;
 };
 type GetAttributeParam = {
     /**
@@ -862,6 +1001,24 @@ type GetDepartmentDataParam = {
      * - A `uid` is a unique identifier of a department.
      */
     uid: string;
+};
+type GetHsCodesParam = {
+    /**
+     * - The page number for pagination.
+     */
+    page?: number;
+    /**
+     * - The number of items to return per page.
+     */
+    limit?: number;
+    /**
+     * - Filter by HS/SAC code type.
+     */
+    type?: CatalogPlatformModel.HsTypeEnum;
+    /**
+     * - Search query to filter HS/SAC codes by code or description.
+     */
+    q?: string;
 };
 type GetHsnCodeParam = {
     /**
@@ -1302,6 +1459,25 @@ type GetStoreDetailParam = {
      */
     pageSize?: number;
 };
+type GetTaxVersionDetailsParam = {
+    /**
+     * - The ID of the tax rule.
+     */
+    ruleId: string;
+    /**
+     * - Filter by tax version status.
+     */
+    versionStatus?: string;
+    /**
+     * - The number of items to return per page for
+     * paginated past versions.
+     */
+    limit?: string;
+    /**
+     * - The page number for paginated past versions.
+     */
+    page?: string;
+};
 type GetVariantsOfProductsParam = {
     /**
      * - Get list of variants of item Id
@@ -1532,6 +1708,24 @@ type UpdateSizeGuideParam = {
     id: string;
     body: CatalogPlatformModel.ValidateSizeGuide;
 };
+type UpdateTaxRuleParam = {
+    /**
+     * - Tax rule id that you want to update.
+     */
+    ruleId: string;
+    body: CatalogPlatformModel.UpdateTaxRequestBody;
+};
+type UpdateTaxVersionParam = {
+    /**
+     * - The ID of the tax rule to be updated.
+     */
+    ruleId: string;
+    /**
+     * - The ID of the tax version to be updated.
+     */
+    versionId: string;
+    body: CatalogPlatformModel.UpdateTaxVersionRequestBody;
+};
 type UploadBulkProductsParam = {
     /**
      * - Department of the product to be uploaded.
@@ -1594,6 +1788,7 @@ type GetMarketplaceOptinDetailParam = any;
 type GetMarketplacesParam = any;
 type GetProductTagsParam = any;
 type GetProductValidationParam = any;
+type GetTaxComponentNamesParam = any;
 type ListHSNCodesParam = any;
 type ListProductTemplateExportDetailsParam = any;
 import CatalogPlatformModel = require("./CatalogPlatformModel");

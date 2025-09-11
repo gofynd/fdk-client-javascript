@@ -32,8 +32,8 @@ declare class PartnerClient {
         body: any;
         headers: any;
         responseHeaders?: boolean;
-    }): Promise<import("axios").AxiosResponse<any, any>>;
-    getAccesstokenObj(options: any): Promise<import("axios").AxiosResponse<any, any>>;
+    }): Promise<import("axios").AxiosResponse<any, any, {}>>;
+    getAccesstokenObj(options: any): Promise<import("axios").AxiosResponse<any, any, {}>>;
     setToken(token: any): void;
 }
 import PartnerConfig = require("./PartnerConfig");

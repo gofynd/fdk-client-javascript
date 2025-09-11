@@ -390,7 +390,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} userId - User ID to fetch the followed list
  * @property {string} [pageId] - The identifier used to retrieve the next set of
  *   results. This parameter follows cursor-based pagination.
- * @property {number} [pageSize] - Number of items per page
  */
 
 /**
@@ -936,7 +935,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       userId: Joi.string().allow("").required(),
       pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
     }).required();
   }
 

@@ -1276,6 +1276,7 @@ export = CatalogPlatformModel;
  *   the product.
  * @property {string} [description] - Detailed description of the product.
  * @property {string[]} [highlights] - List of highlights for the product.
+ * @property {string} [hs_code] - HSN code associated with the product for tax purposes.
  * @property {string} [hsn_code] - HSN code associated with the product for tax purposes.
  * @property {string} [id] - Unique identifier of the product.
  * @property {string} [image_nature] - Nature or type of product images.
@@ -1948,6 +1949,7 @@ export = CatalogPlatformModel;
  * @property {string} [created_on] - Date and time when the HSN data was created.
  * @property {string} description - Description of the HSN data.
  * @property {string} hsn_code
+ * @property {string} [tax_rule_id] - Unique identifier of the tax rule.
  * @property {string} [hsn_code_id] - Unique identifier of the HSN code.
  * @property {string} [modified_on] - Date and time when the HSN data was last modified.
  * @property {Object} reporting_hsn - HSN code.
@@ -2794,6 +2796,8 @@ export = CatalogPlatformModel;
  * @property {number[]} [departments] - List of department IDs related to the product.
  * @property {string} [description] - Full description of the product.
  * @property {string[]} [highlights] - List of key highlights of the product.
+ * @property {string} [hs_code] - HSN (Harmonized System Nomenclature) code for
+ *   tax classification.
  * @property {string} [hsn_code] - HSN (Harmonized System Nomenclature) code for
  *   tax classification.
  * @property {string} [id] - Unique identifier for the product in the system.
@@ -3008,6 +3012,7 @@ export = CatalogPlatformModel;
  * @property {string} slug - URL-friendly identifier for the product.
  * @property {string[]} [tags] - List of tags associated with the product.
  * @property {TaxIdentifier} tax_identifier
+ * @property {string} [hs_code] - HS Code for the product.
  * @property {TeaserTag} [teaser_tag]
  * @property {string} template_tag - Template tag for the product, used for
  *   classification.
@@ -3069,6 +3074,123 @@ export = CatalogPlatformModel;
  * @property {string} template_tag - Template tag for the product, used for
  *   classification.
  * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ */
+/**
+ * @typedef ProductCreateSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {string} [action] - The action to perform wrt to the product (e.g.,
+ *   upsert, update, delete).
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {number} brand_uid - Unique identifier for the product's brand.
+ * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
+ * @property {string} category_slug - The category to which the product belongs.
+ * @property {string} [change_request_id] - Change request identifier for product updates.
+ * @property {number} company_id - Unique identifier for the company associated
+ *   with the product.
+ * @property {string} country_of_origin - The country where the product was
+ *   manufactured or sourced.
+ * @property {string} currency - The currency in which the product's price is listed.
+ * @property {CustomOrder} [custom_order]
+ * @property {number[]} departments - List of department IDs associated with the product.
+ * @property {string} [description] - A detailed description of the product.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {boolean} [is_image_less_product] - Flag to indicate if the product
+ *   does not have associated images.
+ * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
+ * @property {string} item_code - Unique item code or SKU of the product.
+ * @property {string} item_type - Type of the product (e.g., standard, set,
+ *   composite, digital).
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} name - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {string} [requester] - The role requesting the product operation
+ *   (admin or user).
+ * @property {ReturnConfig} return_config
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {Object[]} sizes - List of sizes available for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} tax_identifier
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} template_tag - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ */
+/**
+ * @typedef ProductUpdateSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {string} [action] - The action to perform wrt to the product (e.g.,
+ *   upsert, update, delete).
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {number} brand_uid - Unique identifier for the product's brand.
+ * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
+ * @property {string} category_slug - The category to which the product belongs.
+ * @property {string} [change_request_id] - Change request identifier for product updates.
+ * @property {number} company_id - Unique identifier for the company associated
+ *   with the product.
+ * @property {string} country_of_origin - The country where the product was
+ *   manufactured or sourced.
+ * @property {string} currency - The currency in which the product's price is listed.
+ * @property {CustomOrder} [custom_order]
+ * @property {number[]} departments - List of department IDs associated with the product.
+ * @property {string} [description] - A detailed description of the product.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {boolean} [is_image_less_product] - Flag to indicate if the product
+ *   does not have associated images.
+ * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
+ * @property {string} item_code - Unique item code or SKU of the product.
+ * @property {string} item_type - Type of the product (e.g., standard, set,
+ *   composite, digital).
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} name - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {string} [requester] - The role requesting the product operation
+ *   (admin or user).
+ * @property {ReturnConfig} return_config
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {Object[]} sizes - List of sizes available for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} tax_identifier
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} template_tag - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {number} [uid] - Unique identifier for the product.
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
@@ -3489,8 +3611,12 @@ export = CatalogPlatformModel;
  *   the product.
  * @property {string} [description] - Long description of the product.
  * @property {string[]} [highlights] - Key features or highlights of the product.
- * @property {string} [hsn_code] - Harmonized System Nomenclature (HSN) code for
- *   taxation purposes.
+ * @property {string} [hs_code] - Harmonized System Nomenclature (HSN) code for
+ *   taxation purposes. This is required for indian products.
+ * @property {string} [hsn_code] - **Deprecated**: Harmonized System
+ *   Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
+ *   field instead.\
+ *   _Deprecated_*
  * @property {string} [id] - Unique identifier of the product in the database.
  * @property {string} [image_nature] - Describes the nature of the product
  *   images (e.g., "standard").
@@ -3636,6 +3762,8 @@ export = CatalogPlatformModel;
 /**
  * @typedef ProductTemplateExportFilterRequestSchema
  * @property {string[]} [brands] - The list of the brands that needs to be exported.
+ * @property {string[]} [tax_rule_ids] - The list of the tax rule ids that needs
+ *   to be exported.
  * @property {string[]} catalogue_types - The list of the type of the catalog
  *   such as set, standard and composite.
  * @property {string} [from_date] - The modified on date from which the data
@@ -3686,6 +3814,7 @@ export = CatalogPlatformModel;
  * @property {Object} [custom_order]
  * @property {Object} [description]
  * @property {Object} [highlights]
+ * @property {Object} [hs_code]
  * @property {Object} [hsn_code]
  * @property {Object} [is_active]
  * @property {Object} [is_dependent]
@@ -3999,9 +4128,14 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef TaxIdentifier
- * @property {string} [hsn_code]
- * @property {string} [hsn_code_id]
- * @property {string} [reporting_hsn]
+ * @property {string} [tax_rule_id] - The unique identifier of the tax rule.
+ * @property {string} [hsn_code] _Deprecated_*
+ * @property {string} [hsn_code_id] _Deprecated_*
+ * @property {string} [reporting_hsn] _Deprecated_*
+ */
+/**
+ * @typedef TaxIdentifierV3
+ * @property {string} tax_rule_id - The unique identifier of the tax rule.
  */
 /**
  * @typedef TaxSlab
@@ -4325,6 +4459,154 @@ export = CatalogPlatformModel;
  *   or unfollow operation.
  */
 /**
+ * @typedef TaxReqBodyRule
+ * @property {string} name - Tax rule name
+ * @property {string} [description] - Tax rule description
+ */
+/**
+ * @typedef TaxThreshold
+ * @property {number} value - Tax rate is applied to products above or equal to
+ *   this price.
+ * @property {number} rate - Tax rate ranging from 0 to 1.
+ */
+/**
+ * @typedef TaxComponent
+ * @property {string} name - Name of the component.
+ * @property {TaxThreshold[]} slabs - List of thresholds.
+ */
+/**
+ * @typedef TaxComponentRes
+ * @property {string} name - Name of the component.
+ * @property {string} [description] - Description of the tax component.
+ * @property {TaxThreshold[]} slabs - List of thresholds.
+ * @property {string} _id - Unique identifier of the tax component. This _id is
+ *   required for updating any tax component; If _id field is not in "update tax
+ *   version" request then that component will be created.
+ */
+/**
+ * @typedef TaxReqBodyVersion
+ * @property {TaxComponent[]} components - List of tax components with their
+ *   respective slabs and rates.
+ */
+/**
+ * @typedef CreateTaxRequestBody
+ * @property {TaxReqBodyRule} rule
+ * @property {TaxReqBodyVersion[]} versions - List of tax versions for the tax rule.
+ */
+/**
+ * @typedef TaxVersion
+ * @property {string} [_id]
+ * @property {string} [rule_id] - Tax Rule ID.
+ * @property {string} [applicable_date] - It is the date from when this rule
+ *   will come in effect.
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {number} [company_id] - Company ID.
+ * @property {TaxStatusEnum} [status]
+ * @property {TaxComponentRes[]} [components] - List of tax components.
+ */
+/**
+ * @typedef UpdateTaxVersionRequestBody
+ * @property {TaxComponentRes[]} components - List of tax components.
+ * @property {string} applicable_date - It is the date from when this rule will
+ *   come in effect. It should be atleast one minute in the future from the current time.
+ */
+/**
+ * @typedef CreateTaxVersionRequestBody
+ * @property {TaxComponent[]} components - List of tax components.
+ * @property {string} applicable_date - It is the date from when this rule will
+ *   come in effect. It should be atleast one minute in the future from the current time.
+ */
+/**
+ * @typedef TaxRule
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description] - Description of the tax rule.
+ * @property {boolean} [is_default] - Flag to set any tax rule as default, in
+ *   case any tax rule is inactive on a product then default tax rule gets applied
+ * @property {number} [company_id]
+ * @property {TaxStatusEnum} [status]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+/**
+ * @typedef TaxVersionDetail
+ * @property {string} _id
+ * @property {string} rule_id
+ * @property {string} applicable_date
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {number} company_id
+ * @property {TaxStatusEnum} [status]
+ * @property {TaxComponent[]} components - List of components.
+ * @property {string} version_status - Specifies the type of tax version.
+ */
+/**
+ * @typedef CreateTax
+ * @property {TaxRule} [rule]
+ * @property {TaxVersion} [versions]
+ */
+/**
+ * @typedef UpdateTaxVersion
+ * @property {TaxComponent[]} components - List of components.
+ * @property {string} applicable_date
+ */
+/**
+ * @typedef UpdateTaxRequestBody
+ * @property {TaxStatusEnum} status
+ * @property {boolean} is_default - Flag to set any tax rule as default, in case
+ *   any tax rule is inactive or not available on a product then default tax
+ *   rule gets applied.
+ * @property {string} name - New name of the tax rule.
+ */
+/**
+ * @typedef TaxRuleItem
+ * @property {TaxVersionDetail[]} versions
+ * @property {TaxRule} rule
+ */
+/**
+ * @typedef TaxRules
+ * @property {TaxRuleItem[]} items - List of tax rules with their versions.
+ * @property {Page} page
+ */
+/**
+ * @typedef TaxVersionPastData
+ * @property {TaxVersion[]} [data]
+ * @property {Page} [pagination]
+ */
+/**
+ * @typedef TaxRuleVersion
+ * @property {TaxVersionDetail[]} items - List of tax versions.
+ * @property {TaxRule} rule
+ * @property {Page} page
+ */
+/**
+ * @typedef HSCodeItem
+ * @property {string} [created_on] - Timestamp of when the HS code was created.
+ * @property {string} [modified_on] - Timestamp of when the HS code was last modified.
+ * @property {HsTypeEnum} type
+ * @property {number} [company_id] - Company ID associated with this HS code.
+ * @property {string} [description] - Description of the HS code.
+ * @property {string} hs_code - The HS code of the product.
+ * @property {string} [_id] - Unique identifier for the HS code entry.
+ * @property {string} [country_iso] - ISO 2-digit country code. Will be set by
+ *   default according to company's country.
+ */
+/**
+ * @typedef HSCodes
+ * @property {HSCodeItem[]} items - Array of HS code responses.
+ * @property {Page} page
+ */
+/**
+ * @typedef CreateTaxComponentName
+ * @property {string} name - Name of a tax component
+ */
+/**
+ * @typedef GetTaxComponents
+ * @property {TaxComponentRes[]} items
+ * @property {Page} page
+ */
+/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -4366,6 +4648,8 @@ export = CatalogPlatformModel;
  * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
  */
+/** @typedef {"ACTIVE" | "INACTIVE" | "DELETED"} TaxStatusEnum */
+/** @typedef {"HS" | "SAC"} HsTypeEnum */
 /**
  * @typedef {| "about-us"
  *   | "addresses"
@@ -4419,7 +4703,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProductBundleCreateResponseSchema, GetProductBundleListingResponseSchema, GetProductBundleResponseSchema, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductBundleItem, ProductBundleRequestSchema, ProductBundleUpdateRequestSchema, ProductConfigurationDownloads, ProductUpdateSchemaV2, ProductCreateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, PageType };
+    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProductBundleCreateResponseSchema, GetProductBundleListingResponseSchema, GetProductBundleResponseSchema, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductBundleItem, ProductBundleRequestSchema, ProductBundleUpdateRequestSchema, ProductConfigurationDownloads, ProductUpdateSchemaV2, ProductCreateSchemaV2, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentRes, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, CreateTaxComponentName, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -7004,6 +7288,10 @@ type RawProduct = {
     /**
      * - HSN code associated with the product for tax purposes.
      */
+    hs_code?: string;
+    /**
+     * - HSN code associated with the product for tax purposes.
+     */
     hsn_code?: string;
     /**
      * - Unique identifier of the product.
@@ -8479,6 +8767,10 @@ type HSNDataInsertV2 = {
      */
     description: string;
     hsn_code: string;
+    /**
+     * - Unique identifier of the tax rule.
+     */
+    tax_rule_id?: string;
     /**
      * - Unique identifier of the HSN code.
      */
@@ -10397,6 +10689,11 @@ type Product = {
      * - HSN (Harmonized System Nomenclature) code for
      * tax classification.
      */
+    hs_code?: string;
+    /**
+     * - HSN (Harmonized System Nomenclature) code for
+     * tax classification.
+     */
     hsn_code?: string;
     /**
      * - Unique identifier for the product in the system.
@@ -10899,6 +11196,10 @@ type ProductUpdateSchemaV2 = {
      */
     tags?: string[];
     tax_identifier: TaxIdentifier;
+    /**
+     * - HS Code for the product.
+     */
+    hs_code?: string;
     teaser_tag?: TeaserTag;
     /**
      * - Template tag for the product, used for
@@ -11075,6 +11376,344 @@ type ProductCreateSchemaV2 = {
      * - List of traders associated with the product.
      */
     trader: Trader[];
+    /**
+     * - Variant group information for the product.
+     */
+    variant_group?: any;
+    /**
+     * - Media related to product variants.
+     */
+    variant_media?: any;
+    /**
+     * - Variants information for the product.
+     */
+    variants?: any;
+};
+/** @returns {ProductCreateSchemaV3} */
+declare function ProductCreateSchemaV3(): ProductCreateSchemaV3;
+type ProductCreateSchemaV3 = {
+    /**
+     * - Custom JSON data that can be used for
+     * additional product properties.
+     */
+    _custom_json?: any;
+    /**
+     * - The action to perform wrt to the product (e.g.,
+     * upsert, update, delete).
+     */
+    action?: string;
+    /**
+     * - Additional attributes related to the product.
+     */
+    attributes?: any;
+    /**
+     * - Unique identifier for the product's brand.
+     */
+    brand_uid: number;
+    /**
+     * - Job ID associated with bulk operations.
+     */
+    bulk_job_id?: string;
+    /**
+     * - The category to which the product belongs.
+     */
+    category_slug: string;
+    /**
+     * - Change request identifier for product updates.
+     */
+    change_request_id?: string;
+    /**
+     * - Unique identifier for the company associated
+     * with the product.
+     */
+    company_id: number;
+    /**
+     * - The country where the product was
+     * manufactured or sourced.
+     */
+    country_of_origin: string;
+    /**
+     * - The currency in which the product's price is listed.
+     */
+    currency: string;
+    custom_order?: CustomOrder;
+    /**
+     * - List of department IDs associated with the product.
+     */
+    departments: number[];
+    /**
+     * - A detailed description of the product.
+     */
+    description?: string;
+    /**
+     * - Product highlights or key features.
+     */
+    highlights?: string[];
+    /**
+     * - Flag to indicate if the product is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Flag to indicate if the product is
+     * dependent on other products.
+     */
+    is_dependent?: boolean;
+    /**
+     * - Flag to indicate if the product
+     * does not have associated images.
+     */
+    is_image_less_product?: boolean;
+    /**
+     * - Flag to indicate if the product is part of a set.
+     */
+    is_set?: boolean;
+    /**
+     * - Unique item code or SKU of the product.
+     */
+    item_code: string;
+    /**
+     * - Type of the product (e.g., standard, set,
+     * composite, digital).
+     */
+    item_type: string;
+    /**
+     * - List of media URLs (images, videos) associated
+     * with the product.
+     */
+    media?: Media[];
+    /**
+     * - Indicates if the product supports multiple sizes.
+     */
+    multi_size?: boolean;
+    /**
+     * - The name of the product.
+     */
+    name: string;
+    net_quantity?: NetQuantity;
+    /**
+     * - Number of boxes required to package the product.
+     */
+    no_of_boxes?: number;
+    /**
+     * - Tags to group products together
+     * for classification.
+     */
+    product_group_tag?: string[];
+    product_publish?: ProductPublish;
+    /**
+     * - The role requesting the product operation
+     * (admin or user).
+     */
+    requester?: string;
+    return_config: ReturnConfig;
+    /**
+     * - A short description of the product,
+     * up to 50 characters.
+     */
+    short_description?: string;
+    /**
+     * - Identifier for the product's size guide.
+     */
+    size_guide?: string;
+    /**
+     * - List of sizes available for the product.
+     */
+    sizes: any[];
+    /**
+     * - URL-friendly identifier for the product.
+     */
+    slug: string;
+    /**
+     * - List of tags associated with the product.
+     */
+    tags?: string[];
+    tax_identifier: TaxIdentifierV3;
+    teaser_tag?: TeaserTag;
+    /**
+     * - Template tag for the product, used for
+     * classification.
+     */
+    template_tag: string;
+    /**
+     * - List of traders associated with the product.
+     */
+    trader: Trader[];
+    /**
+     * - Variant group information for the product.
+     */
+    variant_group?: any;
+    /**
+     * - Media related to product variants.
+     */
+    variant_media?: any;
+    /**
+     * - Variants information for the product.
+     */
+    variants?: any;
+    /**
+     * - HS Code for the product. This is required for
+     * indian companies.
+     */
+    hs_code?: string;
+};
+/** @returns {ProductUpdateSchemaV3} */
+declare function ProductUpdateSchemaV3(): ProductUpdateSchemaV3;
+type ProductUpdateSchemaV3 = {
+    /**
+     * - Custom JSON data that can be used for
+     * additional product properties.
+     */
+    _custom_json?: any;
+    /**
+     * - The action to perform wrt to the product (e.g.,
+     * upsert, update, delete).
+     */
+    action?: string;
+    /**
+     * - Additional attributes related to the product.
+     */
+    attributes?: any;
+    /**
+     * - Unique identifier for the product's brand.
+     */
+    brand_uid: number;
+    /**
+     * - Job ID associated with bulk operations.
+     */
+    bulk_job_id?: string;
+    /**
+     * - The category to which the product belongs.
+     */
+    category_slug: string;
+    /**
+     * - Change request identifier for product updates.
+     */
+    change_request_id?: string;
+    /**
+     * - Unique identifier for the company associated
+     * with the product.
+     */
+    company_id: number;
+    /**
+     * - The country where the product was
+     * manufactured or sourced.
+     */
+    country_of_origin: string;
+    /**
+     * - The currency in which the product's price is listed.
+     */
+    currency: string;
+    custom_order?: CustomOrder;
+    /**
+     * - List of department IDs associated with the product.
+     */
+    departments: number[];
+    /**
+     * - A detailed description of the product.
+     */
+    description?: string;
+    /**
+     * - Product highlights or key features.
+     */
+    highlights?: string[];
+    /**
+     * - Flag to indicate if the product is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Flag to indicate if the product is
+     * dependent on other products.
+     */
+    is_dependent?: boolean;
+    /**
+     * - Flag to indicate if the product
+     * does not have associated images.
+     */
+    is_image_less_product?: boolean;
+    /**
+     * - Flag to indicate if the product is part of a set.
+     */
+    is_set?: boolean;
+    /**
+     * - Unique item code or SKU of the product.
+     */
+    item_code: string;
+    /**
+     * - Type of the product (e.g., standard, set,
+     * composite, digital).
+     */
+    item_type: string;
+    /**
+     * - List of media URLs (images, videos) associated
+     * with the product.
+     */
+    media?: Media[];
+    /**
+     * - Indicates if the product supports multiple sizes.
+     */
+    multi_size?: boolean;
+    /**
+     * - The name of the product.
+     */
+    name: string;
+    net_quantity?: NetQuantity;
+    /**
+     * - Number of boxes required to package the product.
+     */
+    no_of_boxes?: number;
+    /**
+     * - Tags to group products together
+     * for classification.
+     */
+    product_group_tag?: string[];
+    product_publish?: ProductPublish;
+    /**
+     * - The role requesting the product operation
+     * (admin or user).
+     */
+    requester?: string;
+    return_config: ReturnConfig;
+    /**
+     * - A short description of the product,
+     * up to 50 characters.
+     */
+    short_description?: string;
+    /**
+     * - Identifier for the product's size guide.
+     */
+    size_guide?: string;
+    /**
+     * - List of sizes available for the product.
+     */
+    sizes: any[];
+    /**
+     * - URL-friendly identifier for the product.
+     */
+    slug: string;
+    /**
+     * - List of tags associated with the product.
+     */
+    tags?: string[];
+    tax_identifier: TaxIdentifierV3;
+    /**
+     * - HS Code for the product. This is required for
+     * indian companies.
+     */
+    hs_code?: string;
+    teaser_tag?: TeaserTag;
+    /**
+     * - Template tag for the product, used for
+     * classification.
+     */
+    template_tag: string;
+    /**
+     * - List of traders associated with the product.
+     */
+    trader: Trader[];
+    /**
+     * - Unique identifier for the product.
+     */
+    uid?: number;
     /**
      * - Variant group information for the product.
      */
@@ -12167,7 +12806,14 @@ type ProductSchemaV2 = {
     highlights?: string[];
     /**
      * - Harmonized System Nomenclature (HSN) code for
-     * taxation purposes.
+     * taxation purposes. This is required for indian products.
+     */
+    hs_code?: string;
+    /**
+     * - **Deprecated**: Harmonized System
+     * Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
+     * field instead.\
+     * _Deprecated_*
      */
     hsn_code?: string;
     /**
@@ -12534,6 +13180,11 @@ type ProductTemplateExportFilterRequestSchema = {
      */
     brands?: string[];
     /**
+     * - The list of the tax rule ids that needs
+     * to be exported.
+     */
+    tax_rule_ids?: string[];
+    /**
      * - The list of the type of the catalog
      * such as set, standard and composite.
      */
@@ -12647,6 +13298,7 @@ type Properties = {
     custom_order?: any;
     description?: any;
     highlights?: any;
+    hs_code?: any;
     hsn_code?: any;
     is_active?: any;
     is_dependent?: any;
@@ -13181,9 +13833,30 @@ type SuccessResponseObject = {
 /** @returns {TaxIdentifier} */
 declare function TaxIdentifier(): TaxIdentifier;
 type TaxIdentifier = {
+    /**
+     * - The unique identifier of the tax rule.
+     */
+    tax_rule_id?: string;
+    /**
+     * _Deprecated_*
+     */
     hsn_code?: string;
+    /**
+     * _Deprecated_*
+     */
     hsn_code_id?: string;
+    /**
+     * _Deprecated_*
+     */
     reporting_hsn?: string;
+};
+/** @returns {TaxIdentifierV3} */
+declare function TaxIdentifierV3(): TaxIdentifierV3;
+type TaxIdentifierV3 = {
+    /**
+     * - The unique identifier of the tax rule.
+     */
+    tax_rule_id: string;
 };
 /** @returns {TaxSlab} */
 declare function TaxSlab(): TaxSlab;
@@ -13788,6 +14461,290 @@ type FollowProduct = {
      */
     message?: string;
 };
+/** @returns {TaxReqBodyRule} */
+declare function TaxReqBodyRule(): TaxReqBodyRule;
+type TaxReqBodyRule = {
+    /**
+     * - Tax rule name
+     */
+    name: string;
+    /**
+     * - Tax rule description
+     */
+    description?: string;
+};
+/** @returns {TaxThreshold} */
+declare function TaxThreshold(): TaxThreshold;
+type TaxThreshold = {
+    /**
+     * - Tax rate is applied to products above or equal to
+     * this price.
+     */
+    value: number;
+    /**
+     * - Tax rate ranging from 0 to 1.
+     */
+    rate: number;
+};
+/** @returns {TaxComponent} */
+declare function TaxComponent(): TaxComponent;
+type TaxComponent = {
+    /**
+     * - Name of the component.
+     */
+    name: string;
+    /**
+     * - List of thresholds.
+     */
+    slabs: TaxThreshold[];
+};
+/** @returns {TaxComponentRes} */
+declare function TaxComponentRes(): TaxComponentRes;
+type TaxComponentRes = {
+    /**
+     * - Name of the component.
+     */
+    name: string;
+    /**
+     * - Description of the tax component.
+     */
+    description?: string;
+    /**
+     * - List of thresholds.
+     */
+    slabs: TaxThreshold[];
+    /**
+     * - Unique identifier of the tax component. This _id is
+     * required for updating any tax component; If _id field is not in "update tax
+     * version" request then that component will be created.
+     */
+    _id: string;
+};
+/** @returns {TaxReqBodyVersion} */
+declare function TaxReqBodyVersion(): TaxReqBodyVersion;
+type TaxReqBodyVersion = {
+    /**
+     * - List of tax components with their
+     * respective slabs and rates.
+     */
+    components: TaxComponent[];
+};
+/** @returns {CreateTaxRequestBody} */
+declare function CreateTaxRequestBody(): CreateTaxRequestBody;
+type CreateTaxRequestBody = {
+    rule: TaxReqBodyRule;
+    /**
+     * - List of tax versions for the tax rule.
+     */
+    versions: TaxReqBodyVersion[];
+};
+/** @returns {TaxVersion} */
+declare function TaxVersion(): TaxVersion;
+type TaxVersion = {
+    _id?: string;
+    /**
+     * - Tax Rule ID.
+     */
+    rule_id?: string;
+    /**
+     * - It is the date from when this rule
+     * will come in effect.
+     */
+    applicable_date?: string;
+    created_on?: string;
+    modified_on?: string;
+    /**
+     * - Company ID.
+     */
+    company_id?: number;
+    status?: TaxStatusEnum;
+    /**
+     * - List of tax components.
+     */
+    components?: TaxComponentRes[];
+};
+/** @returns {UpdateTaxVersionRequestBody} */
+declare function UpdateTaxVersionRequestBody(): UpdateTaxVersionRequestBody;
+type UpdateTaxVersionRequestBody = {
+    /**
+     * - List of tax components.
+     */
+    components: TaxComponentRes[];
+    /**
+     * - It is the date from when this rule will
+     * come in effect. It should be atleast one minute in the future from the current time.
+     */
+    applicable_date: string;
+};
+/** @returns {CreateTaxVersionRequestBody} */
+declare function CreateTaxVersionRequestBody(): CreateTaxVersionRequestBody;
+type CreateTaxVersionRequestBody = {
+    /**
+     * - List of tax components.
+     */
+    components: TaxComponent[];
+    /**
+     * - It is the date from when this rule will
+     * come in effect. It should be atleast one minute in the future from the current time.
+     */
+    applicable_date: string;
+};
+/** @returns {TaxRule} */
+declare function TaxRule(): TaxRule;
+type TaxRule = {
+    _id?: string;
+    name?: string;
+    /**
+     * - Description of the tax rule.
+     */
+    description?: string;
+    /**
+     * - Flag to set any tax rule as default, in
+     * case any tax rule is inactive on a product then default tax rule gets applied
+     */
+    is_default?: boolean;
+    company_id?: number;
+    status?: TaxStatusEnum;
+    created_on?: string;
+    modified_on?: string;
+};
+/** @returns {TaxVersionDetail} */
+declare function TaxVersionDetail(): TaxVersionDetail;
+type TaxVersionDetail = {
+    _id: string;
+    rule_id: string;
+    applicable_date: string;
+    created_on: string;
+    modified_on: string;
+    company_id: number;
+    status?: TaxStatusEnum;
+    /**
+     * - List of components.
+     */
+    components: TaxComponent[];
+    /**
+     * - Specifies the type of tax version.
+     */
+    version_status: string;
+};
+/** @returns {CreateTax} */
+declare function CreateTax(): CreateTax;
+type CreateTax = {
+    rule?: TaxRule;
+    versions?: TaxVersion;
+};
+/** @returns {UpdateTaxVersion} */
+declare function UpdateTaxVersion(): UpdateTaxVersion;
+type UpdateTaxVersion = {
+    /**
+     * - List of components.
+     */
+    components: TaxComponent[];
+    applicable_date: string;
+};
+/** @returns {UpdateTaxRequestBody} */
+declare function UpdateTaxRequestBody(): UpdateTaxRequestBody;
+type UpdateTaxRequestBody = {
+    status: TaxStatusEnum;
+    /**
+     * - Flag to set any tax rule as default, in case
+     * any tax rule is inactive or not available on a product then default tax
+     * rule gets applied.
+     */
+    is_default: boolean;
+    /**
+     * - New name of the tax rule.
+     */
+    name: string;
+};
+/** @returns {TaxRuleItem} */
+declare function TaxRuleItem(): TaxRuleItem;
+type TaxRuleItem = {
+    versions: TaxVersionDetail[];
+    rule: TaxRule;
+};
+/** @returns {TaxRules} */
+declare function TaxRules(): TaxRules;
+type TaxRules = {
+    /**
+     * - List of tax rules with their versions.
+     */
+    items: TaxRuleItem[];
+    page: Page;
+};
+/** @returns {TaxVersionPastData} */
+declare function TaxVersionPastData(): TaxVersionPastData;
+type TaxVersionPastData = {
+    data?: TaxVersion[];
+    pagination?: Page;
+};
+/** @returns {TaxRuleVersion} */
+declare function TaxRuleVersion(): TaxRuleVersion;
+type TaxRuleVersion = {
+    /**
+     * - List of tax versions.
+     */
+    items: TaxVersionDetail[];
+    rule: TaxRule;
+    page: Page;
+};
+/** @returns {HSCodeItem} */
+declare function HSCodeItem(): HSCodeItem;
+type HSCodeItem = {
+    /**
+     * - Timestamp of when the HS code was created.
+     */
+    created_on?: string;
+    /**
+     * - Timestamp of when the HS code was last modified.
+     */
+    modified_on?: string;
+    type: HsTypeEnum;
+    /**
+     * - Company ID associated with this HS code.
+     */
+    company_id?: number;
+    /**
+     * - Description of the HS code.
+     */
+    description?: string;
+    /**
+     * - The HS code of the product.
+     */
+    hs_code: string;
+    /**
+     * - Unique identifier for the HS code entry.
+     */
+    _id?: string;
+    /**
+     * - ISO 2-digit country code. Will be set by
+     * default according to company's country.
+     */
+    country_iso?: string;
+};
+/** @returns {HSCodes} */
+declare function HSCodes(): HSCodes;
+type HSCodes = {
+    /**
+     * - Array of HS code responses.
+     */
+    items: HSCodeItem[];
+    page: Page;
+};
+/** @returns {CreateTaxComponentName} */
+declare function CreateTaxComponentName(): CreateTaxComponentName;
+type CreateTaxComponentName = {
+    /**
+     * - Name of a tax component
+     */
+    name: string;
+};
+/** @returns {GetTaxComponents} */
+declare function GetTaxComponents(): GetTaxComponents;
+type GetTaxComponents = {
+    items: TaxComponentRes[];
+    page: Page;
+};
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;
 type ActionPage = {
@@ -13881,6 +14838,20 @@ type CustomMeta = {
      */
     value: string;
 };
+/**
+ * Enum: TaxStatusEnum Used By: Catalog
+ *
+ * @returns {TaxStatusEnum}
+ */
+declare function TaxStatusEnum(): TaxStatusEnum;
+type TaxStatusEnum = "ACTIVE" | "INACTIVE" | "DELETED";
+/**
+ * Enum: HsTypeEnum Used By: Catalog
+ *
+ * @returns {HsTypeEnum}
+ */
+declare function HsTypeEnum(): HsTypeEnum;
+type HsTypeEnum = "HS" | "SAC";
 /**
  * Enum: PageType Used By: Catalog
  *

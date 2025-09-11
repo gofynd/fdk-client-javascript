@@ -341,7 +341,6 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} userId - User ID to fetch the followed list
  * @property {string} [pageId] - The identifier used to retrieve the next set of
  *   results. This parameter follows cursor-based pagination.
- * @property {number} [pageSize] - Number of items per page
  */
 /**
  * @typedef GetGroupConfigurationsParam
@@ -1247,10 +1246,6 @@ type GetFollowedProductsParam = {
      * results. This parameter follows cursor-based pagination.
      */
     pageId?: string;
-    /**
-     * - Number of items per page
-     */
-    pageSize?: number;
 };
 type GetGroupConfigurationsParam = {
     /**
