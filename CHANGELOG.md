@@ -1,158 +1,4 @@
-# CHANGE LOG (3.6.0) - 2.8.0
-
-## Application Client
-
-
-
-### Cart
-
-
-
-#### getCart
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### addItems
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### updateCart
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### updateCartBreakup
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### applyCoupon
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 201
-
-
-#### removeCoupon
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### applyRewardPoints
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### selectAddress
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 201
-
-
-#### selectPaymentMode
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### getShipments
-
-- ##### What's New
-	- [Added] property <code>breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### getCartSharedItems
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 404
-
-
-#### updateCartWithSharedItems
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-#### checkoutCartV2
-
-- ##### What's New
-	- [Added] property <code>cart.breakup_values.raw.taxes</code> of schema <code>RawBreakup</code> in response with status code 200
-
-
-### Order
-
-
-
-#### getOrders
-
-- ##### What's New
-	- [Added] property <code>items[].shipments[].bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-#### getOrderById
-
-- ##### What's New
-	- [Added] property <code>order.shipments[].bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-#### getPosOrderById
-
-- ##### What's New
-	- [Added] property <code>order.shipments[].bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-#### getShipmentById
-
-- ##### What's New
-	- [Added] property <code>shipment.bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-### Payment
-
-
-
-#### getRefundBeneficiaries
-
-- ##### What's New
-	- [Added] method <code>getRefundBeneficiaries</code>
-
-
-
-#### addBeneficiary
-
-- ##### What's New
-	- [Added] method <code>addBeneficiary</code>
-
-
-
-#### deleteBeneficiary
-
-- ##### What's New
-	- [Added] method <code>deleteBeneficiary</code>
-
-
-
-#### getRefundBeneficiariesUsingOTPSession
-
-- ##### What's New
-	- [Added] method <code>getRefundBeneficiariesUsingOTPSession</code>
-
-
-
-#### addRefundBeneficiaryUsingOTPSession
-
-- ##### What's New
-	- [Added] method <code>addRefundBeneficiaryUsingOTPSession</code>
-
-
+# CHANGE LOG (3.7.0) - 2.7.8
 
 ## Platform Client
 
@@ -186,240 +32,10 @@
 
 
 
-#### getDiscountedInventoryBySizeIdentifier
+#### updateAppProduct
 
 - ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-
-
-#### getAppProducts
-
-- ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-	- [Added] property <code>items[].hs_code</code> of schema <code>RawProduct</code> in response with status code 200
-
-
-#### getInventories
-
-- ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-
-
-#### validateProductGlobalTemplate
-
-- ##### What's New
-	- [Added] property <code>data.global_validation.properties.hs_code</code> of schema <code>Properties</code> in response with status code 200
-
-
-#### getInventoryBySizeIdentifier
-
-- ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-
-
-#### getProductSize
-
-- ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-	- [Added] property <code>items[].hs_code</code> of schema <code>Product</code> in response with status code 200
-
-
-#### getAllProductHsnCodes
-
-- ##### What's New
-	- [Added] property <code>items[].tax_rule_id</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
-
-
-#### getSingleProductHSNCode
-
-- ##### What's New
-	- [Added] property <code>tax_rule_id</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
-
-
-#### getProducts
-
-- ##### What's New
-	- [Added] property <code>items[].tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-	- [Added] property <code>items[].hs_code</code> of schema <code>ProductSchemaV2</code> in response with status code 200
-
-
-#### createProduct
-
-- ##### What's New
-	- [Added] property <code>tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifierV3</code> in request body
-	- [Breaking] [Added] <code>tax_identifier.tax_rule_id</code> made required in request body
-	- [Added] property <code>hs_code</code> of schema <code>ProductCreateSchemaV3</code> in request body
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>tax_identifier.hsn_code</code> of schema <code>TaxIdentifier</code> in request body
-	- [Breaking] [Deleted] property <code>tax_identifier.hsn_code_id</code> of schema <code>TaxIdentifier</code> in request body
-	- [Breaking] [Deleted] property <code>tax_identifier.reporting_hsn</code> of schema <code>TaxIdentifier</code> in request body
-
-- ##### What's Changed
-	- [Changed] Path From <code>/service/platform/catalog/v2.0/company/{company_id}/products/</code> To <code>/service/platform/catalog/v3.0/company/{company_id}/products/</code>
-
-
-#### uploadBulkProducts
-
-- ##### What's Changed
-	- [Changed] Path From <code>/service/platform/catalog/v2.0/company/{company_id}/products/bulk</code> To <code>/service/platform/catalog/v3.0/company/{company_id}/products/bulk</code>
-
-
-#### getProduct
-
-- ##### What's New
-	- [Added] property <code>data.tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifier</code> in response with status code 200
-	- [Added] property <code>data.hs_code</code> of schema <code>ProductSchemaV2</code> in response with status code 200
-
-
-#### editProduct
-
-- ##### What's New
-	- [Added] property <code>tax_identifier.tax_rule_id</code> of schema <code>TaxIdentifierV3</code> in request body
-	- [Breaking] [Added] <code>tax_identifier.tax_rule_id</code> made required in request body
-	- [Added] property <code>hs_code</code> of schema <code>ProductUpdateSchemaV3</code> in request body
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>tax_identifier.hsn_code</code> of schema <code>TaxIdentifier</code> in request body
-	- [Breaking] [Deleted] property <code>tax_identifier.hsn_code_id</code> of schema <code>TaxIdentifier</code> in request body
-	- [Breaking] [Deleted] property <code>tax_identifier.reporting_hsn</code> of schema <code>TaxIdentifier</code> in request body
-
-- ##### What's Changed
-	- [Changed] Path From <code>/service/platform/catalog/v2.0/company/{company_id}/products/{item_id}/</code> To <code>/service/platform/catalog/v3.0/company/{company_id}/products/{item_id}/</code>
-
-
-#### getFollowedProducts
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] <code>query</code> parameter <code>pageSize</code> (type: <code>integer</code>)
-
-	- [Breaking] [Deleted] Response with status 400
-
-
-#### createTax
-
-- ##### What's New
-	- [Added] method <code>createTax</code>
-
-
-
-#### getAllTaxRules
-
-- ##### What's New
-	- [Added] method <code>getAllTaxRules</code>
-
-
-
-#### updateTaxRule
-
-- ##### What's New
-	- [Added] method <code>updateTaxRule</code>
-
-
-
-#### deleteTaxRule
-
-- ##### What's New
-	- [Added] method <code>deleteTaxRule</code>
-
-
-
-#### getTaxVersionDetails
-
-- ##### What's New
-	- [Added] method <code>getTaxVersionDetails</code>
-
-
-
-#### createTaxVersion
-
-- ##### What's New
-	- [Added] method <code>createTaxVersion</code>
-
-
-
-#### deleteTaxVersion
-
-- ##### What's New
-	- [Added] method <code>deleteTaxVersion</code>
-
-
-
-#### updateTaxVersion
-
-- ##### What's New
-	- [Added] method <code>updateTaxVersion</code>
-
-
-
-#### getHsCodes
-
-- ##### What's New
-	- [Added] method <code>getHsCodes</code>
-
-
-
-#### createHsCode
-
-- ##### What's New
-	- [Added] method <code>createHsCode</code>
-
-
-
-#### createTaxComponentName
-
-- ##### What's New
-	- [Added] method <code>createTaxComponentName</code>
-
-
-
-#### getTaxComponentNames
-
-- ##### What's New
-	- [Added] method <code>getTaxComponentNames</code>
-
-
-
-### FileStorage
-
-
-
-#### proxy
-
-- ##### What's New
-	- [Added] property <code>success</code> of schema <code>ProxyFileAccess</code> in response with status code 200
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>data</code> of schema <code>ProxyFileAccess</code> in response with status code 200
-	- [Breaking] [Deleted] property <code>support</code> of schema <code>ProxyFileAccess</code> in response with status code 200
-
-
-### Serviceability
-
-
-
-#### createPackageMaterial
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>item_id</code> of schema <code>PackageMaterialResult</code> in response with status code 201
-
-
-#### getPackageMaterialList
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>items[].item_id</code> of schema <code>PackageItem</code> in response with status code 200
-
-
-#### updatePackageMaterials
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>item_id</code> of schema <code>PackageMaterialResult</code> in response with status code 200
-
-
-#### getPackageMaterials
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property <code>item_id</code> of schema <code>PackageItem</code> in response with status code 200
+	- [Added] property <code>scores</code> of schema <code>ApplicationItemMeta</code> in request body
 
 
 ### Order
@@ -429,43 +45,37 @@
 #### getShipments
 
 - ##### What's New
-	- [Added] property <code>items[].bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Added] property <code>items[].bags[].article._custom_json</code> of schema <code>Article</code> in response with status code 200
 
-
-#### getShipmentById
-
-- ##### What's New
-	- [Added] property <code>shipments[].bags[].financial_breakup.taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-#### getOrderById
-
-- ##### What's New
-	- [Added] property <code>shipments[].bags[].financial_breakup.taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
-
-
-#### getOrders
-
-- ##### What's New
-	- [Added] property <code>items[].shipments[].bags[].financial_breakup.taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].bags[].article.child_details</code> of schema <code>Article</code> in response with status code 200
 
 
 #### getApplicationShipments
 
 - ##### What's New
-	- [Added] property <code>items[].bags[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Added] property <code>items[].bags[].article._custom_json</code> of schema <code>Article</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].bags[].article.child_details</code> of schema <code>Article</code> in response with status code 200
 
 
 #### getBagById
 
 - ##### What's New
-	- [Added] property <code>data.financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Added] property <code>data.article._custom_json</code> of schema <code>Article</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.article.child_details</code> of schema <code>Article</code> in response with status code 200
 
 
 #### getBags
 
 - ##### What's New
-	- [Added] property <code>data.items[].financial_breakup[].taxes</code> of schema <code>FinancialBreakup</code> in response with status code 200
+	- [Added] property <code>data.items[].article._custom_json</code> of schema <code>Article</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.items[].article.child_details</code> of schema <code>Article</code> in response with status code 200
 
 
 # CHANGE LOG (3.5.0) - 2.7.7

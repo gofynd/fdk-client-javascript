@@ -66,9 +66,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ProxyFileAccess
- * @property {boolean} [success] - A boolean value indicating whether the proxy
- *   request was successful. Returns true when the external URL was successfully
- *   fetched and processed.
+ * @property {Object} [data]
+ * @property {Object} [support]
  */
 
 /**
@@ -311,7 +310,8 @@ class FileStoragePlatformModel {
   /** @returns {ProxyFileAccess} */
   static ProxyFileAccess() {
     return Joi.object({
-      success: Joi.boolean(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

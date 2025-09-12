@@ -11,7 +11,7 @@ declare class Partner {
      *   Success response
      * @name addProxyPath
      * @summary: Create extension proxy
-     * @description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/addProxyPath/).
+     * @description: Use this endpoint to register a proxy for calling an extension's API from your storefront. This enables your storefront to interact with extension APIs seamlessly, helps enhance and extend your storefront's existing functionality using extensions, and simplifies integration by avoiding CORS issues when accessing extension APIs. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/addProxyPath/).
      */
     addProxyPath({ extensionId, body, requestHeaders }?: PartnerPlatformApplicationValidator.AddProxyPathParam, { responseHeaders }?: object): Promise<PartnerPlatformModel.ExtensionProxyPathCreation>;
     /**
@@ -22,7 +22,7 @@ declare class Partner {
      *   Success response
      * @name removeProxyPath
      * @summary: Remove extension proxy
-     * @description: Remove the proxy which are created earlier for the extension. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/removeProxyPath/).
+     * @description: Remove the proxy that was created earlier for the extension. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/partner/removeProxyPath/).
      */
     removeProxyPath({ extensionId, attachedPath, requestHeaders }?: PartnerPlatformApplicationValidator.RemoveProxyPathParam, { responseHeaders }?: object): Promise<PartnerPlatformModel.ExtensionProxyPathDelete>;
 }

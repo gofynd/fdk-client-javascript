@@ -730,6 +730,7 @@ export = ServiceabilityPlatformModel;
  * @property {number} [company_id] - The unique identifier for the company.
  * @property {string} name - The name of the package material.
  * @property {string} [id] - Unique identifier for the package material.
+ * @property {number} [item_id] - Unique identifier for the item.
  * @property {number} width - The width of the package material.
  * @property {number} height - The height of the package material.
  * @property {number} length - The length of the package material.
@@ -804,6 +805,7 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [is_active] - Indicates if the package item is active.
  * @property {string} [size] - The size of the package item.
  * @property {number} [company_id] - The company ID associated with the package item.
+ * @property {number} [item_id] - The unique identifier for the package item.
  * @property {number} [max_weight] - The maximum weight(grams) of the package item.
  * @property {Object[]} [media] - Additional media associated with the package item.
  * @property {number} [package_vol_weight] - The volumetric weight(grams) of the
@@ -4150,6 +4152,10 @@ type PackageMaterialResult = {
      */
     id?: string;
     /**
+     * - Unique identifier for the item.
+     */
+    item_id?: number;
+    /**
      * - The width of the package material.
      */
     width: number;
@@ -4347,6 +4353,10 @@ type PackageItem = {
      * - The company ID associated with the package item.
      */
     company_id?: number;
+    /**
+     * - The unique identifier for the package item.
+     */
+    item_id?: number;
     /**
      * - The maximum weight(grams) of the package item.
      */

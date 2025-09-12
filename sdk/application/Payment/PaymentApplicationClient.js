@@ -12,13 +12,9 @@ class Payment {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      addBeneficiary:
-        "/service/application/payment/v2.0/refund/user/beneficiary",
       addBeneficiaryDetails: "/service/application/payment/v1.0/refund/account",
       addRefundBankAccountUsingOTP:
         "/service/application/payment/v1.0/refund/account/otp",
-      addRefundBeneficiaryUsingOTPSession:
-        "/service/application/payment/v2.0/refund/user/beneficiary-otp",
       attachCardToCustomer: "/service/application/payment/v1.0/card/attach",
       cancelPaymentLink:
         "/service/application/payment/v1.0/cancel-payment-link/",
@@ -36,8 +32,6 @@ class Payment {
       customerCreditSummary:
         "/service/application/payment/v1.0/payment/credit-summary/",
       customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
-      deleteBeneficiary:
-        "/service/application/payment/v1.0/refund/account/{id}",
       deleteUserCard: "/service/application/payment/v1.0/card/remove",
       delinkWallet:
         "/service/application/payment/v1.0/payment/options/wallet/delink",
@@ -60,10 +54,6 @@ class Payment {
         "/service/application/payment/v1.0/payment/options/link/",
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
-      getRefundBeneficiaries:
-        "/service/application/payment/v2.0/refund/user/beneficiary",
-      getRefundBeneficiariesUsingOTPSession:
-        "/service/application/payment/v2.0/refund/user/beneficiary-otp",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
       getUserBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/user/beneficiary",
@@ -114,43 +104,6 @@ class Payment {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AddBeneficiaryResponseDetails>} - Success response
-   * @name addBeneficiary
-   * @summary: Add a beneficiary for refunds
-   * @description: Adds a bank or UPI beneficiary to the user account for processing refunds. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/addBeneficiary/).
-   */
-  async addBeneficiary(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["addBeneficiary"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
   }
 
   /**
@@ -211,43 +164,6 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["addRefundBankAccountUsingOTP"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<AddBeneficiaryResponseDetails>} - Success response
-   * @name addRefundBeneficiaryUsingOTPSession
-   * @summary: Add a beneficiary for refunds using OTP session
-   * @description: Adds a bank or UPI beneficiary to the user account after completing an OTP verification session. The beneficiary details are securely linked with the user's refund preferences and will be used for processing refunds against specific orders and shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/addRefundBeneficiaryUsingOTPSession/).
-   */
-  async addRefundBeneficiaryUsingOTPSession(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["addRefundBeneficiaryUsingOTPSession"],
         params: {},
       }),
       query_params,
@@ -671,52 +587,6 @@ class Payment {
       }),
       query_params,
       body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<DeleteBeneficiaryDetails>} - Success response
-   * @name deleteBeneficiary
-   * @summary: Delete a refund beneficiary
-   * @description: This API endpoint is used to delete a refund beneficiary using their beneficiary ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/deleteBeneficiary/).
-   */
-  async deleteBeneficiary(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["id"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["deleteBeneficiary"],
-        params: { id },
-      }),
-      query_params,
-      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -1240,86 +1110,6 @@ class Payment {
       "get",
       constructUrl({
         url: this._urls["getPosPaymentModeRoutes"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundBeneficiaries>} - Success response
-   * @name getRefundBeneficiaries
-   * @summary: Get Refund Beneficiaries
-   * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user.   Both `order_id` and `shipment_id` are optional query parameters.   Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiaries/).
-   */
-  async getRefundBeneficiaries(
-    { orderId, shipmentId, filterBy, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["order_id"] = orderId;
-    query_params["shipment_id"] = shipmentId;
-    query_params["filter_by"] = filterBy;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getRefundBeneficiaries"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RefundBeneficiaries>} - Success response
-   * @name getRefundBeneficiariesUsingOTPSession
-   * @summary: Get Refund Beneficiaries using OTP session
-   * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user for a given order and shipment. Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiariesUsingOTPSession/).
-   */
-  async getRefundBeneficiariesUsingOTPSession(
-    { orderId, shipmentId, filterBy, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-    query_params["order_id"] = orderId;
-    query_params["shipment_id"] = shipmentId;
-    query_params["filter_by"] = filterBy;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getRefundBeneficiariesUsingOTPSession"],
         params: {},
       }),
       query_params,

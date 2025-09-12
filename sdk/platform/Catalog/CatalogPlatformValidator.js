@@ -36,11 +36,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef CreateHsCodeParam
- * @property {CatalogPlatformModel.HSCodeItem} body
- */
-
-/**
  * @typedef CreateInventoryExportParam
  * @property {CatalogPlatformModel.InventoryCreateRequestSchema} body
  */
@@ -59,7 +54,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateProductParam
- * @property {CatalogPlatformModel.ProductCreateSchemaV3} body
+ * @property {CatalogPlatformModel.ProductCreateSchemaV2} body
  */
 
 /**
@@ -86,22 +81,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef CreateSizeGuideParam
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
- */
-
-/**
- * @typedef CreateTaxParam
- * @property {CatalogPlatformModel.CreateTaxRequestBody} body
- */
-
-/**
- * @typedef CreateTaxComponentNameParam
- * @property {CatalogPlatformModel.CreateTaxComponentName} body
- */
-
-/**
- * @typedef CreateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule.
- * @property {CatalogPlatformModel.CreateTaxVersionRequestBody} body
  */
 
 /**
@@ -134,17 +113,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef DeleteTaxRuleParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
- */
-
-/**
- * @typedef DeleteTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
- * @property {string} versionId - The ID of the tax version to be deleted.
- */
-
-/**
  * @typedef DownloadInventoryTemplateViewParam
  * @property {string} schemaType - Specifies the type of template to download.
  *   Either quantity or price
@@ -162,7 +130,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
- * @property {CatalogPlatformModel.ProductUpdateSchemaV3} body
+ * @property {CatalogPlatformModel.ProductUpdateSchemaV2} body
  */
 
 /**
@@ -177,15 +145,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number} [pageSize] - Indicates page size
  * @property {string} [q] - Search using hsn code, description, reporting_hsn
  * @property {string} [type] - Search using type
- */
-
-/**
- * @typedef GetAllTaxRulesParam
- * @property {string} [q] - The search query to filter tax rules.
- * @property {string} [statuses] - The status of the tax rules to filter.
- * @property {number} [page] - The page number to retrieve.
- * @property {number} [limit] - The number of items per page.
- * @property {string} [versionStatus] - The status of the tax rule versions to filter.
  */
 
 /**
@@ -217,14 +176,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
- */
-
-/**
- * @typedef GetHsCodesParam
- * @property {number} [page] - The page number for pagination.
- * @property {number} [limit] - The number of items to return per page.
- * @property {CatalogPlatformModel.HsTypeEnum} [type] - Filter by HS/SAC code type.
- * @property {string} [q] - Search query to filter HS/SAC codes by code or description.
  */
 
 /**
@@ -449,17 +400,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   page for the company id.
  */
 
-/** @typedef GetTaxComponentNamesParam */
-
-/**
- * @typedef GetTaxVersionDetailsParam
- * @property {string} ruleId - The ID of the tax rule.
- * @property {string} [versionStatus] - Filter by tax version status.
- * @property {string} [limit] - The number of items to return per page for
- *   paginated past versions.
- * @property {string} [page] - The page number for paginated past versions.
- */
-
 /**
  * @typedef GetVariantsOfProductsParam
  * @property {number} itemId - Get list of variants of item Id
@@ -599,19 +539,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef UpdateTaxRuleParam
- * @property {string} ruleId - Tax rule id that you want to update.
- * @property {CatalogPlatformModel.UpdateTaxRequestBody} body
- */
-
-/**
- * @typedef UpdateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be updated.
- * @property {string} versionId - The ID of the tax version to be updated.
- * @property {CatalogPlatformModel.UpdateTaxVersionRequestBody} body
- */
-
-/**
  * @typedef UploadBulkProductsParam
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
@@ -693,13 +620,6 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {CreateHsCodeParam} */
-  static createHsCode() {
-    return Joi.object({
-      body: CatalogPlatformModel.HSCodeItem().required(),
-    }).required();
-  }
-
   /** @returns {CreateInventoryExportParam} */
   static createInventoryExport() {
     return Joi.object({
@@ -725,7 +645,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateProductParam} */
   static createProduct() {
     return Joi.object({
-      body: CatalogPlatformModel.ProductCreateSchemaV3().required(),
+      body: CatalogPlatformModel.ProductCreateSchemaV2().required(),
     }).required();
   }
 
@@ -762,28 +682,6 @@ class CatalogPlatformValidator {
   static createSizeGuide() {
     return Joi.object({
       body: CatalogPlatformModel.ValidateSizeGuide().required(),
-    }).required();
-  }
-
-  /** @returns {CreateTaxParam} */
-  static createTax() {
-    return Joi.object({
-      body: CatalogPlatformModel.CreateTaxRequestBody().required(),
-    }).required();
-  }
-
-  /** @returns {CreateTaxComponentNameParam} */
-  static createTaxComponentName() {
-    return Joi.object({
-      body: CatalogPlatformModel.CreateTaxComponentName().required(),
-    }).required();
-  }
-
-  /** @returns {CreateTaxVersionParam} */
-  static createTaxVersion() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateTaxVersionRequestBody().required(),
     }).required();
   }
 
@@ -825,21 +723,6 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {DeleteTaxRuleParam} */
-  static deleteTaxRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteTaxVersionParam} */
-  static deleteTaxVersion() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      versionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {DownloadInventoryTemplateViewParam} */
   static downloadInventoryTemplateView() {
     return Joi.object({
@@ -861,7 +744,7 @@ class CatalogPlatformValidator {
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
-      body: CatalogPlatformModel.ProductUpdateSchemaV3().required(),
+      body: CatalogPlatformModel.ProductUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -879,17 +762,6 @@ class CatalogPlatformValidator {
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
       type: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetAllTaxRulesParam} */
-  static getAllTaxRules() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-      statuses: Joi.string().allow(""),
-      page: Joi.number(),
-      limit: Joi.number(),
-      versionStatus: Joi.string().allow(""),
     }).required();
   }
 
@@ -932,16 +804,6 @@ class CatalogPlatformValidator {
   static getDepartmentData() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetHsCodesParam} */
-  static getHsCodes() {
-    return Joi.object({
-      page: Joi.number(),
-      limit: Joi.number(),
-      type: CatalogPlatformModel.HsTypeEnum(),
-      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -1180,21 +1042,6 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetTaxComponentNamesParam} */
-  static getTaxComponentNames() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetTaxVersionDetailsParam} */
-  static getTaxVersionDetails() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      versionStatus: Joi.string().allow(""),
-      limit: Joi.string().allow(""),
-      page: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetVariantsOfProductsParam} */
   static getVariantsOfProducts() {
     return Joi.object({
@@ -1342,23 +1189,6 @@ class CatalogPlatformValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CatalogPlatformModel.ValidateSizeGuide().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateTaxRuleParam} */
-  static updateTaxRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateTaxRequestBody().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateTaxVersionParam} */
-  static updateTaxVersion() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      versionId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateTaxVersionRequestBody().required(),
     }).required();
   }
 

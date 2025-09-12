@@ -2,9 +2,11 @@ const Joi = require("joi");
 
 /**
  * @typedef AddProxyReq
- * @property {string} [attached_path] - Proxy path slug
- * @property {string} [proxy_url] - The external URL for which the proxy URL
- *   will be generated
+ * @property {string} [attached_path] - Attached path can be any slug that will
+ *   be appended to the base URL to create a proxy endpoint, e.g.,
+ *   /ext/{attached_path}. Note: attached_path should be unique for each
+ *   extension within the same application.
+ * @property {string} [proxy_url] - External URL for which the proxy URL will be generated
  */
 
 /**

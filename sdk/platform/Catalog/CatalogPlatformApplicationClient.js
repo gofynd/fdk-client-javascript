@@ -4591,7 +4591,7 @@ class Catalog {
    *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getFollowedProducts/).
    */
   async getFollowedProducts(
-    { userId, pageId, requestHeaders } = { requestHeaders: {} },
+    { userId, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4600,6 +4600,7 @@ class Catalog {
       {
         userId,
         pageId,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4614,6 +4615,7 @@ class Catalog {
       {
         userId,
         pageId,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4626,6 +4628,7 @@ class Catalog {
 
     const query_params = {};
     query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,

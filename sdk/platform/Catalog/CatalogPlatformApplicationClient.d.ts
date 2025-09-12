@@ -861,7 +861,7 @@ declare class Catalog {
      * @description: List all product ids a user has wishlisted or is following for sales channel.
      *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getFollowedProducts/).
      */
-    getFollowedProducts({ userId, pageId, requestHeaders }?: CatalogPlatformApplicationValidator.GetFollowedProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FollowedProducts>;
+    getFollowedProducts({ userId, pageId, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetFollowedProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FollowedProducts>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
      *   - Arg object

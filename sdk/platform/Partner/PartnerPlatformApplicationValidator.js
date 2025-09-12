@@ -4,13 +4,14 @@ const PartnerPlatformModel = require("./PartnerPlatformModel");
 
 /**
  * @typedef AddProxyPathParam
- * @property {string} extensionId - Extension id for which a proxy URL will be generated
+ * @property {string} extensionId - Extension's unique identifier for which a
+ *   proxy URL will be generated
  * @property {PartnerPlatformModel.AddProxyReq} body
  */
 
 /**
  * @typedef RemoveProxyPathParam
- * @property {string} extensionId - Extension id for which proxy URL needs to be removed
+ * @property {string} extensionId - Extension ID for which proxy URL needs to be removed
  * @property {string} attachedPath - Attached path slug
  */
 
