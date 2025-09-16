@@ -58,8 +58,9 @@ export = FileStoragePlatformModel;
  */
 /**
  * @typedef ProxyFileAccess
- * @property {Object} [data]
- * @property {Object} [support]
+ * @property {boolean} [success] - A boolean value indicating whether the proxy
+ *   request was successful. Returns true when the external URL was successfully
+ *   fetched and processed.
  */
 /**
  * @typedef DestinationNamespace
@@ -271,8 +272,12 @@ type FileUploadComplete = {
 /** @returns {ProxyFileAccess} */
 declare function ProxyFileAccess(): ProxyFileAccess;
 type ProxyFileAccess = {
-    data?: any;
-    support?: any;
+    /**
+     * - A boolean value indicating whether the proxy
+     * request was successful. Returns true when the external URL was successfully
+     * fetched and processed.
+     */
+    success?: boolean;
 };
 /** @returns {DestinationNamespace} */
 declare function DestinationNamespace(): DestinationNamespace;

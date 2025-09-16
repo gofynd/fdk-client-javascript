@@ -3172,6 +3172,22 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TaxComponent
+ * @property {string} [name] - The name or type of the tax component (e.g., GST,
+ *   VAT, Service Tax). This helps in identifying the specific tax being applied
+ *   to the transaction or item.
+ * @property {number} [rate] - The percentage rate at which the tax is applied
+ *   to the taxable amount. This value is typically represented as a decimal
+ *   (e.g., 0.18 for 18% tax).
+ * @property {number} [tax_amount] - The total monetary value of the tax
+ *   calculated for this component. This is derived by applying the tax rate to
+ *   the taxable amount.
+ * @property {number} [taxable_amount] - The base amount on which the tax is
+ *   calculated, excluding the tax itself. This represents the value of goods or
+ *   services before tax is applied.
+ */
+
+/**
  * @typedef FinancialBreakup
  * @property {number} refund_credit - The amount of refund credits applicable
  *   for the transaction.
@@ -3224,6 +3240,7 @@ const Joi = require("joi");
  * @property {number} total_units - The total number of units involved in the transaction.
  * @property {boolean} added_to_fynd_cash - Indicates whether the amount has
  *   been added to Fynd cash for future use.
+ * @property {TaxComponent[]} [taxes] - Applied Tax Components
  */
 
 /**
@@ -8317,6 +8334,16 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {TaxComponent} */
+  static TaxComponent() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      rate: Joi.number(),
+      tax_amount: Joi.number(),
+      taxable_amount: Joi.number(),
+    });
+  }
+
   /** @returns {FinancialBreakup} */
   static FinancialBreakup() {
     return Joi.object({
@@ -8348,6 +8375,7 @@ class OrderPlatformModel {
       identifiers: OrderPlatformModel.Identifier().required(),
       total_units: Joi.number().required(),
       added_to_fynd_cash: Joi.boolean().required(),
+      taxes: Joi.array().items(OrderPlatformModel.TaxComponent()),
     });
   }
 

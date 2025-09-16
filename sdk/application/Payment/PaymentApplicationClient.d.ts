@@ -3,8 +3,10 @@ declare class Payment {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
+        addBeneficiary: string;
         addBeneficiaryDetails: string;
         addRefundBankAccountUsingOTP: string;
+        addRefundBeneficiaryUsingOTPSession: string;
         attachCardToCustomer: string;
         cancelPaymentLink: string;
         cardDetails: string;
@@ -16,6 +18,7 @@ declare class Payment {
         createPaymentOrder: string;
         customerCreditSummary: string;
         customerOnboard: string;
+        deleteBeneficiary: string;
         deleteUserCard: string;
         delinkWallet: string;
         enableOrDisableRefundTransferMode: string;
@@ -29,6 +32,8 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPaymentModeRoutesPaymentLink: string;
         getPosPaymentModeRoutes: string;
+        getRefundBeneficiaries: string;
+        getRefundBeneficiariesUsingOTPSession: string;
         getRupifiBannerDetails: string;
         getUserBeneficiariesDetail: string;
         initialisePayment: string;
@@ -55,6 +60,15 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<AddBeneficiaryResponseDetails>} - Success response
+     * @name addBeneficiary
+     * @summary: Add a beneficiary for refunds
+     * @description: Adds a bank or UPI beneficiary to the user account for processing refunds. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/addBeneficiary/).
+     */
+    addBeneficiary({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddBeneficiaryResponseDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<RefundAccountDetails>} - Success response
      * @name addBeneficiaryDetails
      * @summary: Add beneficiary for refund
@@ -70,6 +84,15 @@ declare class Payment {
      * @description: Add bank account specifically for refunds, employing OTP verification for security. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/addRefundBankAccountUsingOTP/).
      */
     addRefundBankAccountUsingOTP({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundAccountDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<AddBeneficiaryResponseDetails>} - Success response
+     * @name addRefundBeneficiaryUsingOTPSession
+     * @summary: Add a beneficiary for refunds using OTP session
+     * @description: Adds a bank or UPI beneficiary to the user account after completing an OTP verification session. The beneficiary details are securely linked with the user's refund preferences and will be used for processing refunds against specific orders and shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/addRefundBeneficiaryUsingOTPSession/).
+     */
+    addRefundBeneficiaryUsingOTPSession({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddBeneficiaryResponseDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -169,6 +192,15 @@ declare class Payment {
      * @description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/customerOnboard/).
      */
     customerOnboard({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomerOnboardingDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<DeleteBeneficiaryDetails>} - Success response
+     * @name deleteBeneficiary
+     * @summary: Delete a refund beneficiary
+     * @description: This API endpoint is used to delete a refund beneficiary using their beneficiary ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/deleteBeneficiary/).
+     */
+    deleteBeneficiary({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<DeleteBeneficiaryDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -286,6 +318,24 @@ declare class Payment {
      * @description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getPosPaymentModeRoutes/).
      */
     getPosPaymentModeRoutes({ amount, cartId, pincode, orderType, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<RefundBeneficiaries>} - Success response
+     * @name getRefundBeneficiaries
+     * @summary: Get Refund Beneficiaries
+     * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user.   Both `order_id` and `shipment_id` are optional query parameters.   Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiaries/).
+     */
+    getRefundBeneficiaries({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundBeneficiaries>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<RefundBeneficiaries>} - Success response
+     * @name getRefundBeneficiariesUsingOTPSession
+     * @summary: Get Refund Beneficiaries using OTP session
+     * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user for a given order and shipment. Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiariesUsingOTPSession/).
+     */
+    getRefundBeneficiariesUsingOTPSession({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundBeneficiaries>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

@@ -1488,6 +1488,7 @@ const Joi = require("joi");
  *   the product.
  * @property {string} [description] - Detailed description of the product.
  * @property {string[]} [highlights] - List of highlights for the product.
+ * @property {string} [hs_code] - HSN code associated with the product for tax purposes.
  * @property {string} [hsn_code] - HSN code associated with the product for tax purposes.
  * @property {string} [id] - Unique identifier of the product.
  * @property {string} [image_nature] - Nature or type of product images.
@@ -2219,6 +2220,7 @@ const Joi = require("joi");
  * @property {string} [created_on] - Date and time when the HSN data was created.
  * @property {string} description - Description of the HSN data.
  * @property {string} hsn_code
+ * @property {string} [tax_rule_id] - Unique identifier of the tax rule.
  * @property {string} [hsn_code_id] - Unique identifier of the HSN code.
  * @property {string} [modified_on] - Date and time when the HSN data was last modified.
  * @property {Object} reporting_hsn - HSN code.
@@ -3152,6 +3154,8 @@ const Joi = require("joi");
  * @property {number[]} [departments] - List of department IDs related to the product.
  * @property {string} [description] - Full description of the product.
  * @property {string[]} [highlights] - List of key highlights of the product.
+ * @property {string} [hs_code] - HSN (Harmonized System Nomenclature) code for
+ *   tax classification.
  * @property {string} [hsn_code] - HSN (Harmonized System Nomenclature) code for
  *   tax classification.
  * @property {string} [id] - Unique identifier for the product in the system.
@@ -3376,6 +3380,7 @@ const Joi = require("joi");
  * @property {string} slug - URL-friendly identifier for the product.
  * @property {string[]} [tags] - List of tags associated with the product.
  * @property {TaxIdentifier} tax_identifier
+ * @property {string} [hs_code] - HS Code for the product.
  * @property {TeaserTag} [teaser_tag]
  * @property {string} template_tag - Template tag for the product, used for
  *   classification.
@@ -3438,6 +3443,125 @@ const Joi = require("joi");
  * @property {string} template_tag - Template tag for the product, used for
  *   classification.
  * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ */
+
+/**
+ * @typedef ProductCreateSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {string} [action] - The action to perform wrt to the product (e.g.,
+ *   upsert, update, delete).
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {number} brand_uid - Unique identifier for the product's brand.
+ * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
+ * @property {string} category_slug - The category to which the product belongs.
+ * @property {string} [change_request_id] - Change request identifier for product updates.
+ * @property {number} company_id - Unique identifier for the company associated
+ *   with the product.
+ * @property {string} country_of_origin - The country where the product was
+ *   manufactured or sourced.
+ * @property {string} currency - The currency in which the product's price is listed.
+ * @property {CustomOrder} [custom_order]
+ * @property {number[]} departments - List of department IDs associated with the product.
+ * @property {string} [description] - A detailed description of the product.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {boolean} [is_image_less_product] - Flag to indicate if the product
+ *   does not have associated images.
+ * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
+ * @property {string} item_code - Unique item code or SKU of the product.
+ * @property {string} item_type - Type of the product (e.g., standard, set,
+ *   composite, digital).
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} name - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {string} [requester] - The role requesting the product operation
+ *   (admin or user).
+ * @property {ReturnConfig} return_config
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {Object[]} sizes - List of sizes available for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} tax_identifier
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} template_tag - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ */
+
+/**
+ * @typedef ProductUpdateSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {string} [action] - The action to perform wrt to the product (e.g.,
+ *   upsert, update, delete).
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {number} brand_uid - Unique identifier for the product's brand.
+ * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
+ * @property {string} category_slug - The category to which the product belongs.
+ * @property {string} [change_request_id] - Change request identifier for product updates.
+ * @property {number} company_id - Unique identifier for the company associated
+ *   with the product.
+ * @property {string} country_of_origin - The country where the product was
+ *   manufactured or sourced.
+ * @property {string} currency - The currency in which the product's price is listed.
+ * @property {CustomOrder} [custom_order]
+ * @property {number[]} departments - List of department IDs associated with the product.
+ * @property {string} [description] - A detailed description of the product.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {boolean} [is_image_less_product] - Flag to indicate if the product
+ *   does not have associated images.
+ * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
+ * @property {string} item_code - Unique item code or SKU of the product.
+ * @property {string} item_type - Type of the product (e.g., standard, set,
+ *   composite, digital).
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} name - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {string} [requester] - The role requesting the product operation
+ *   (admin or user).
+ * @property {ReturnConfig} return_config
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {Object[]} sizes - List of sizes available for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} tax_identifier
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} template_tag - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} trader - List of traders associated with the product.
+ * @property {number} [uid] - Unique identifier for the product.
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
@@ -3892,8 +4016,12 @@ const Joi = require("joi");
  *   the product.
  * @property {string} [description] - Long description of the product.
  * @property {string[]} [highlights] - Key features or highlights of the product.
- * @property {string} [hsn_code] - Harmonized System Nomenclature (HSN) code for
- *   taxation purposes.
+ * @property {string} [hs_code] - Harmonized System Nomenclature (HSN) code for
+ *   taxation purposes. This is required for indian products.
+ * @property {string} [hsn_code] - **Deprecated**: Harmonized System
+ *   Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
+ *   field instead.\
+ *   _Deprecated_*
  * @property {string} [id] - Unique identifier of the product in the database.
  * @property {string} [image_nature] - Describes the nature of the product
  *   images (e.g., "standard").
@@ -4050,6 +4178,8 @@ const Joi = require("joi");
 /**
  * @typedef ProductTemplateExportFilterRequestSchema
  * @property {string[]} [brands] - The list of the brands that needs to be exported.
+ * @property {string[]} [tax_rule_ids] - The list of the tax rule ids that needs
+ *   to be exported.
  * @property {string[]} catalogue_types - The list of the type of the catalog
  *   such as set, standard and composite.
  * @property {string} [from_date] - The modified on date from which the data
@@ -4104,6 +4234,7 @@ const Joi = require("joi");
  * @property {Object} [custom_order]
  * @property {Object} [description]
  * @property {Object} [highlights]
+ * @property {Object} [hs_code]
  * @property {Object} [hsn_code]
  * @property {Object} [is_active]
  * @property {Object} [is_dependent]
@@ -4455,9 +4586,15 @@ const Joi = require("joi");
 
 /**
  * @typedef TaxIdentifier
- * @property {string} [hsn_code]
- * @property {string} [hsn_code_id]
- * @property {string} [reporting_hsn]
+ * @property {string} [tax_rule_id] - The unique identifier of the tax rule.
+ * @property {string} [hsn_code] _Deprecated_*
+ * @property {string} [hsn_code_id] _Deprecated_*
+ * @property {string} [reporting_hsn] _Deprecated_*
+ */
+
+/**
+ * @typedef TaxIdentifierV3
+ * @property {string} tax_rule_id - The unique identifier of the tax rule.
  */
 
 /**
@@ -4818,6 +4955,194 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TaxReqBodyRule
+ * @property {string} name - Tax rule name
+ * @property {string} [description] - Tax rule description
+ */
+
+/**
+ * @typedef TaxThreshold
+ * @property {number} value - Tax rate is applied to products above or equal to
+ *   this price.
+ * @property {number} rate - Tax rate ranging from 0 to 1.
+ */
+
+/**
+ * @typedef TaxComponent
+ * @property {string} name - Name represent different types of taxes that may be
+ *   applied to products or transactions, such as sales tax, value-added tax
+ *   (VAT), goods and services tax, consumption tax, or other region-specific
+ *   taxation systems.
+ * @property {TaxThreshold[]} slabs - List of slabs which comprises of tax rate
+ *   and their respective threshold value
+ */
+
+/**
+ * @typedef TaxComponentResponseSchema
+ * @property {string} name - Name of the component.
+ * @property {string} [description] - Description of the tax component.
+ * @property {TaxThreshold[]} slabs - List of slabs that comprises of tax rate
+ *   and their respective threshold.
+ * @property {string} _id - Unique identifier of the tax component. This _id is
+ *   required for updating any tax component; If _id field is not in "update tax
+ *   version" request then that component will be created.
+ */
+
+/**
+ * @typedef TaxComponentName
+ * @property {string} _id - Unique identifier for the tax component name
+ * @property {number} company_id - Identifier of the company this component name
+ *   belongs to
+ * @property {string} name - Name of the tax component
+ * @property {string} [description] - Description of the tax component name
+ * @property {string} [created_on] - Timestamp when the component name was created
+ * @property {string} [modified_on] - Timestamp when the component name was last modified
+ */
+
+/**
+ * @typedef CreateTaxComponentNameRequestSchema
+ * @property {string} name - Name of the tax component
+ * @property {string} [description] - Description of the tax component name
+ */
+
+/**
+ * @typedef TaxReqBodyVersion
+ * @property {TaxComponent[]} components - List of tax components with their
+ *   respective slabs and rates.
+ */
+
+/**
+ * @typedef CreateTaxRequestBody
+ * @property {TaxReqBodyRule} rule
+ * @property {TaxReqBodyVersion[]} versions - List of tax versions for the tax rule.
+ */
+
+/**
+ * @typedef TaxVersion
+ * @property {string} [_id]
+ * @property {string} [rule_id] - Tax Rule ID.
+ * @property {string} [applicable_date] - It is the date from when this rule
+ *   will come in effect.
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {number} [company_id] - Company ID.
+ * @property {TaxStatusEnum} [status]
+ * @property {TaxComponentResponseSchema[]} [components] - List of tax components.
+ */
+
+/**
+ * @typedef UpdateTaxVersionRequestBody
+ * @property {TaxComponentResponseSchema[]} components - List of tax components.
+ * @property {string} applicable_date - It is the date from when this rule will
+ *   come in effect. It should be atleast one minute in the future from the current time.
+ */
+
+/**
+ * @typedef CreateTaxVersionRequestBody
+ * @property {TaxComponent[]} components - List of tax components.
+ * @property {string} applicable_date - It is the date from when this rule will
+ *   come in effect. It should be atleast one minute in the future from the
+ *   current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ */
+
+/**
+ * @typedef TaxRule
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description] - Description of the tax rule.
+ * @property {boolean} [is_default] - Flag to set any tax rule as default, in
+ *   case any tax rule is inactive on a product then default tax rule gets applied
+ * @property {number} [company_id]
+ * @property {TaxStatusEnum} [status]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef TaxVersionDetail
+ * @property {string} _id
+ * @property {string} rule_id
+ * @property {string} applicable_date
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {number} company_id
+ * @property {TaxStatusEnum} [status]
+ * @property {TaxComponent[]} components - List of components.
+ * @property {string} version_status - Specifies the type of tax version.
+ */
+
+/**
+ * @typedef CreateTax
+ * @property {TaxRule} [rule]
+ * @property {TaxVersion} [versions]
+ */
+
+/**
+ * @typedef UpdateTaxVersion
+ * @property {TaxComponent[]} components - List of components.
+ * @property {string} applicable_date
+ */
+
+/**
+ * @typedef UpdateTaxRequestBody
+ * @property {TaxStatusEnum} status
+ * @property {boolean} is_default - Flag to set any tax rule as default, in case
+ *   any tax rule is inactive or not available on a product then default tax
+ *   rule gets applied.
+ * @property {string} name - New name of the tax rule.
+ */
+
+/**
+ * @typedef TaxRuleItem
+ * @property {TaxVersionDetail[]} versions
+ * @property {TaxRule} rule
+ */
+
+/**
+ * @typedef TaxRules
+ * @property {TaxRuleItem[]} items - List of tax rules with their versions.
+ * @property {Page} page
+ */
+
+/**
+ * @typedef TaxVersionPastData
+ * @property {TaxVersion[]} [data]
+ * @property {Page} [pagination]
+ */
+
+/**
+ * @typedef TaxRuleVersion
+ * @property {TaxVersionDetail[]} items - List of tax versions.
+ * @property {TaxRule} rule
+ * @property {Page} page
+ */
+
+/**
+ * @typedef HSCodeItem
+ * @property {string} [created_on] - Timestamp of when the HS code was created.
+ * @property {string} [modified_on] - Timestamp of when the HS code was last modified.
+ * @property {HsTypeEnum} type
+ * @property {number} [company_id] - Company ID associated with this HS code.
+ * @property {string} [description] - Description of the HS code.
+ * @property {string} hs_code - The HS code of the product.
+ * @property {string} [_id] - Unique identifier for the HS code entry.
+ * @property {string} [country_iso] - ISO 2-digit country code. Will be set by
+ *   default according to company's country.
+ */
+
+/**
+ * @typedef HSCodes
+ * @property {HSCodeItem[]} items - Array of HS code responses.
+ * @property {Page} page
+ */
+
+/**
+ * @typedef GetTaxComponents
+ * @property {TaxComponentResponseSchema[]} items
+ * @property {Page} page
+ */
+
+/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -4864,6 +5189,10 @@ const Joi = require("joi");
  * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
  */
+
+/** @typedef {"ACTIVE" | "INACTIVE" | "DELETED"} TaxStatusEnum */
+
+/** @typedef {"HS" | "SAC"} HsTypeEnum */
 
 /**
  * @typedef {| "about-us"
@@ -6460,6 +6789,7 @@ class CatalogPlatformModel {
       departments: Joi.array().items(Joi.number()),
       description: Joi.string().allow(""),
       highlights: Joi.array().items(Joi.string().allow("")),
+      hs_code: Joi.string().allow(""),
       hsn_code: Joi.string().allow(""),
       id: Joi.string().allow(""),
       image_nature: Joi.string().allow(""),
@@ -7238,6 +7568,7 @@ class CatalogPlatformModel {
       created_on: Joi.string().allow(""),
       description: Joi.string().allow("").required(),
       hsn_code: Joi.string().allow("").required(),
+      tax_rule_id: Joi.string().allow(""),
       hsn_code_id: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
       reporting_hsn: Joi.any().required(),
@@ -8257,6 +8588,7 @@ class CatalogPlatformModel {
       departments: Joi.array().items(Joi.number()),
       description: Joi.string().allow(""),
       highlights: Joi.array().items(Joi.string().allow("")),
+      hs_code: Joi.string().allow(""),
       hsn_code: Joi.string().allow(""),
       id: Joi.string().allow(""),
       image_nature: Joi.string().allow(""),
@@ -8462,6 +8794,7 @@ class CatalogPlatformModel {
       slug: Joi.string().allow("").required(),
       tags: Joi.array().items(Joi.string().allow("")),
       tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
+      hs_code: Joi.string().allow(""),
       teaser_tag: CatalogPlatformModel.TeaserTag(),
       template_tag: Joi.string().allow("").required(),
       trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
@@ -8515,6 +8848,107 @@ class CatalogPlatformModel {
       teaser_tag: CatalogPlatformModel.TeaserTag(),
       template_tag: Joi.string().allow("").required(),
       trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
+      variant_group: Joi.object().pattern(/\S/, Joi.any()),
+      variant_media: Joi.object().pattern(/\S/, Joi.any()),
+      variants: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {ProductCreateSchemaV3} */
+  static ProductCreateSchemaV3() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      action: Joi.string().allow(""),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      brand_uid: Joi.number().required(),
+      bulk_job_id: Joi.string().allow(""),
+      category_slug: Joi.string().allow("").required(),
+      change_request_id: Joi.string().allow("").allow(null),
+      company_id: Joi.number().required(),
+      country_of_origin: Joi.string().allow("").required(),
+      currency: Joi.string().allow("").required(),
+      custom_order: CatalogPlatformModel.CustomOrder(),
+      departments: Joi.array().items(Joi.number()).required(),
+      description: Joi.string().allow(""),
+      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      is_active: Joi.boolean(),
+      is_dependent: Joi.boolean(),
+      is_image_less_product: Joi.boolean(),
+      is_set: Joi.boolean(),
+      item_code: Joi.string().allow("").required(),
+      item_type: Joi.string().allow("").required(),
+      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
+      multi_size: Joi.boolean(),
+      name: Joi.string().allow("").required(),
+      net_quantity: CatalogPlatformModel.NetQuantity(),
+      no_of_boxes: Joi.number(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+      product_publish: CatalogPlatformModel.ProductPublish(),
+      requester: Joi.string().allow(""),
+      return_config: CatalogPlatformModel.ReturnConfig().required(),
+      short_description: Joi.string().allow(""),
+      size_guide: Joi.string().allow(""),
+      sizes: Joi.array()
+        .items(Joi.object().pattern(/\S/, Joi.any()))
+        .required(),
+      slug: Joi.string().allow("").required(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      tax_identifier: CatalogPlatformModel.TaxIdentifierV3().required(),
+      teaser_tag: CatalogPlatformModel.TeaserTag(),
+      template_tag: Joi.string().allow("").required(),
+      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
+      variant_group: Joi.object().pattern(/\S/, Joi.any()),
+      variant_media: Joi.object().pattern(/\S/, Joi.any()),
+      variants: Joi.object().pattern(/\S/, Joi.any()),
+      hs_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProductUpdateSchemaV3} */
+  static ProductUpdateSchemaV3() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      action: Joi.string().allow(""),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      brand_uid: Joi.number().required(),
+      bulk_job_id: Joi.string().allow(""),
+      category_slug: Joi.string().allow("").required(),
+      change_request_id: Joi.string().allow("").allow(null),
+      company_id: Joi.number().required(),
+      country_of_origin: Joi.string().allow("").required(),
+      currency: Joi.string().allow("").required(),
+      custom_order: CatalogPlatformModel.CustomOrder(),
+      departments: Joi.array().items(Joi.number()).required(),
+      description: Joi.string().allow(""),
+      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      is_active: Joi.boolean(),
+      is_dependent: Joi.boolean(),
+      is_image_less_product: Joi.boolean(),
+      is_set: Joi.boolean(),
+      item_code: Joi.string().allow("").required(),
+      item_type: Joi.string().allow("").required(),
+      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
+      multi_size: Joi.boolean(),
+      name: Joi.string().allow("").required(),
+      net_quantity: CatalogPlatformModel.NetQuantity(),
+      no_of_boxes: Joi.number(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+      product_publish: CatalogPlatformModel.ProductPublish(),
+      requester: Joi.string().allow(""),
+      return_config: CatalogPlatformModel.ReturnConfig().required(),
+      short_description: Joi.string().allow(""),
+      size_guide: Joi.string().allow(""),
+      sizes: Joi.array()
+        .items(Joi.object().pattern(/\S/, Joi.any()))
+        .required(),
+      slug: Joi.string().allow("").required(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      tax_identifier: CatalogPlatformModel.TaxIdentifierV3().required(),
+      hs_code: Joi.string().allow(""),
+      teaser_tag: CatalogPlatformModel.TeaserTag(),
+      template_tag: Joi.string().allow("").required(),
+      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
+      uid: Joi.number().allow(null),
       variant_group: Joi.object().pattern(/\S/, Joi.any()),
       variant_media: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.object().pattern(/\S/, Joi.any()),
@@ -8990,6 +9424,7 @@ class CatalogPlatformModel {
       departments: Joi.array().items(Joi.number()),
       description: Joi.string().allow(""),
       highlights: Joi.array().items(Joi.string().allow("")),
+      hs_code: Joi.string().allow(""),
       hsn_code: Joi.string().allow(""),
       id: Joi.string().allow(""),
       image_nature: Joi.string().allow(""),
@@ -9137,6 +9572,7 @@ class CatalogPlatformModel {
   static ProductTemplateExportFilterRequestSchema() {
     return Joi.object({
       brands: Joi.array().items(Joi.string().allow("")),
+      tax_rule_ids: Joi.array().items(Joi.string().allow("")),
       catalogue_types: Joi.array().items(Joi.string().allow("")).required(),
       from_date: Joi.string().allow(""),
       templates: Joi.array().items(Joi.string().allow("")).required(),
@@ -9191,6 +9627,7 @@ class CatalogPlatformModel {
       custom_order: Joi.object().pattern(/\S/, Joi.any()),
       description: Joi.object().pattern(/\S/, Joi.any()),
       highlights: Joi.object().pattern(/\S/, Joi.any()),
+      hs_code: Joi.object().pattern(/\S/, Joi.any()),
       hsn_code: Joi.object().pattern(/\S/, Joi.any()),
       is_active: Joi.object().pattern(/\S/, Joi.any()),
       is_dependent: Joi.object().pattern(/\S/, Joi.any()),
@@ -9590,9 +10027,17 @@ class CatalogPlatformModel {
   /** @returns {TaxIdentifier} */
   static TaxIdentifier() {
     return Joi.object({
+      tax_rule_id: Joi.string().allow(""),
       hsn_code: Joi.string().allow(""),
       hsn_code_id: Joi.string().allow(""),
       reporting_hsn: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TaxIdentifierV3} */
+  static TaxIdentifierV3() {
+    return Joi.object({
+      tax_rule_id: Joi.string().allow("").required(),
     });
   }
 
@@ -9989,6 +10434,242 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {TaxReqBodyRule} */
+  static TaxReqBodyRule() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TaxThreshold} */
+  static TaxThreshold() {
+    return Joi.object({
+      value: Joi.number().required(),
+      rate: Joi.number().required(),
+    });
+  }
+
+  /** @returns {TaxComponent} */
+  static TaxComponent() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      slabs: Joi.array().items(CatalogPlatformModel.TaxThreshold()).required(),
+    });
+  }
+
+  /** @returns {TaxComponentResponseSchema} */
+  static TaxComponentResponseSchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow(""),
+      slabs: Joi.array().items(CatalogPlatformModel.TaxThreshold()).required(),
+      _id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TaxComponentName} */
+  static TaxComponentName() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateTaxComponentNameRequestSchema} */
+  static CreateTaxComponentNameRequestSchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TaxReqBodyVersion} */
+  static TaxReqBodyVersion() {
+    return Joi.object({
+      components: Joi.array()
+        .items(CatalogPlatformModel.TaxComponent())
+        .required(),
+    });
+  }
+
+  /** @returns {CreateTaxRequestBody} */
+  static CreateTaxRequestBody() {
+    return Joi.object({
+      rule: CatalogPlatformModel.TaxReqBodyRule().required(),
+      versions: Joi.array()
+        .items(CatalogPlatformModel.TaxReqBodyVersion())
+        .required(),
+    });
+  }
+
+  /** @returns {TaxVersion} */
+  static TaxVersion() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      rule_id: Joi.string().allow(""),
+      applicable_date: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      company_id: Joi.number(),
+      status: CatalogPlatformModel.TaxStatusEnum(),
+      components: Joi.array().items(
+        CatalogPlatformModel.TaxComponentResponseSchema()
+      ),
+    });
+  }
+
+  /** @returns {UpdateTaxVersionRequestBody} */
+  static UpdateTaxVersionRequestBody() {
+    return Joi.object({
+      components: Joi.array()
+        .items(CatalogPlatformModel.TaxComponentResponseSchema())
+        .required(),
+      applicable_date: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CreateTaxVersionRequestBody} */
+  static CreateTaxVersionRequestBody() {
+    return Joi.object({
+      components: Joi.array()
+        .items(CatalogPlatformModel.TaxComponent())
+        .required(),
+      applicable_date: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TaxRule} */
+  static TaxRule() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      company_id: Joi.number(),
+      status: CatalogPlatformModel.TaxStatusEnum(),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TaxVersionDetail} */
+  static TaxVersionDetail() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      rule_id: Joi.string().allow("").required(),
+      applicable_date: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      status: CatalogPlatformModel.TaxStatusEnum(),
+      components: Joi.array()
+        .items(CatalogPlatformModel.TaxComponent())
+        .required(),
+      version_status: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CreateTax} */
+  static CreateTax() {
+    return Joi.object({
+      rule: CatalogPlatformModel.TaxRule(),
+      versions: CatalogPlatformModel.TaxVersion(),
+    });
+  }
+
+  /** @returns {UpdateTaxVersion} */
+  static UpdateTaxVersion() {
+    return Joi.object({
+      components: Joi.array()
+        .items(CatalogPlatformModel.TaxComponent())
+        .required(),
+      applicable_date: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {UpdateTaxRequestBody} */
+  static UpdateTaxRequestBody() {
+    return Joi.object({
+      status: CatalogPlatformModel.TaxStatusEnum().required(),
+      is_default: Joi.boolean().required(),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TaxRuleItem} */
+  static TaxRuleItem() {
+    return Joi.object({
+      versions: Joi.array()
+        .items(CatalogPlatformModel.TaxVersionDetail())
+        .required(),
+      rule: CatalogPlatformModel.TaxRule().required(),
+    });
+  }
+
+  /** @returns {TaxRules} */
+  static TaxRules() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.TaxRuleItem()).required(),
+      page: CatalogPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {TaxVersionPastData} */
+  static TaxVersionPastData() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.TaxVersion()),
+      pagination: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {TaxRuleVersion} */
+  static TaxRuleVersion() {
+    return Joi.object({
+      items: Joi.array()
+        .items(CatalogPlatformModel.TaxVersionDetail())
+        .required(),
+      rule: CatalogPlatformModel.TaxRule().required(),
+      page: CatalogPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {HSCodeItem} */
+  static HSCodeItem() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      type: CatalogPlatformModel.HsTypeEnum().required(),
+      company_id: Joi.number(),
+      description: Joi.string().allow(""),
+      hs_code: Joi.string().allow("").required(),
+      _id: Joi.string().allow(""),
+      country_iso: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {HSCodes} */
+  static HSCodes() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.HSCodeItem()).required(),
+      page: CatalogPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {GetTaxComponents} */
+  static GetTaxComponents() {
+    return Joi.object({
+      items: Joi.array()
+        .items(CatalogPlatformModel.TaxComponentResponseSchema())
+        .required(),
+      page: CatalogPlatformModel.Page().required(),
+    });
+  }
+
   /** @returns {ActionPage} */
   static ActionPage() {
     return Joi.object({
@@ -10048,6 +10729,34 @@ class CatalogPlatformModel {
       key: Joi.string().allow("").required(),
       value: Joi.string().allow("").required(),
     });
+  }
+
+  /**
+   * Enum: TaxStatusEnum Used By: Catalog
+   *
+   * @returns {TaxStatusEnum}
+   */
+  static TaxStatusEnum() {
+    return Joi.string().valid(
+      "ACTIVE",
+
+      "INACTIVE",
+
+      "DELETED"
+    );
+  }
+
+  /**
+   * Enum: HsTypeEnum Used By: Catalog
+   *
+   * @returns {HsTypeEnum}
+   */
+  static HsTypeEnum() {
+    return Joi.string().valid(
+      "HS",
+
+      "SAC"
+    );
   }
 
   /**

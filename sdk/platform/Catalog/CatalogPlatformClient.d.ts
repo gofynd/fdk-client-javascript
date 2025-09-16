@@ -63,6 +63,16 @@ declare class Catalog {
      */
     createBulkProductUploadJob({ body, requestHeaders }?: CatalogPlatformValidator.CreateBulkProductUploadJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkResponseSchema>;
     /**
+     * @param {CatalogPlatformValidator.CreateHsCodeParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.HSCodeItem>} - Success response
+     * @name createHsCode
+     * @summary: Create HS/SAC code
+     * @description: Create HS/SAC code. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createHsCode/).
+     */
+    createHsCode({ body, requestHeaders }?: CatalogPlatformValidator.CreateHsCodeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HSCodeItem>;
+    /**
      * @param {CatalogPlatformValidator.CreateInventoryExportParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -161,6 +171,40 @@ declare class Catalog {
      */
     createSizeGuide({ body, requestHeaders }?: CatalogPlatformValidator.CreateSizeGuideParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
+     * @param {CatalogPlatformValidator.CreateTaxParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.CreateTax>} - Success response
+     * @name createTax
+     * @summary: Create Tax Rule
+     * @description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
+     */
+    createTax({ body, requestHeaders }?: CatalogPlatformValidator.CreateTaxParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateTax>;
+    /**
+     * @param {CatalogPlatformValidator.CreateTaxComponentNameParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TaxComponentName>} - Success response
+     * @name createTaxComponentName
+     * @summary: Create tax component name
+     * @description: Tax components represent different types of taxes that may be applied to products or transactions,
+     * such as sales tax, value-added tax (VAT), goods and services tax, consumption tax,
+     * or other region-specific taxation systems. This endpoint allows companies to define and
+     * customize the names of tax components according to their local tax regulations and business requirements.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxComponentName/).
+     */
+    createTaxComponentName({ body, requestHeaders }?: CatalogPlatformValidator.CreateTaxComponentNameParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxComponentName>;
+    /**
+     * @param {CatalogPlatformValidator.CreateTaxVersionParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
+     * @name createTaxVersion
+     * @summary: Create a tax version
+     * @description: Creates a tax rule using the provided rule_id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxVersion/).
+     */
+    createTaxVersion({ ruleId, body, requestHeaders }?: CatalogPlatformValidator.CreateTaxVersionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxVersion>;
+    /**
      * @param {CatalogPlatformValidator.DeleteBulkInventoryJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -213,6 +257,27 @@ declare class Catalog {
      * @description: Allows to delete size associated with product. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteSize/).
      */
     deleteSize({ itemId, size, requestHeaders }?: CatalogPlatformValidator.DeleteSizeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductSizeDeleteResponseSchema>;
+    /**
+     * @param {CatalogPlatformValidator.DeleteTaxRuleParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name deleteTaxRule
+     * @summary: Delete a tax rule
+     * @description: Deletes a tax rule along with all its versions using the provided rule_id. You can not delete a rule if 1. it is the default tax rule 2. it is applied to any product. You will need to set any other tax rule as default or will need to attach a different tax rule to the products, then only you can delete the rule.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxRule/).
+     */
+    deleteTaxRule({ ruleId, requestHeaders }?: CatalogPlatformValidator.DeleteTaxRuleParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {CatalogPlatformValidator.DeleteTaxVersionParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name deleteTaxVersion
+     * @summary: Delete a tax version
+     * @description: Deletes a tax rule using the provided rule_id. On future/scheduled version can be deleted. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxVersion/).
+     */
+    deleteTaxVersion({ ruleId, versionId, requestHeaders }?: CatalogPlatformValidator.DeleteTaxVersionParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {CatalogPlatformValidator.DownloadInventoryTemplateViewParam} arg
      *   - Arg object
@@ -269,6 +334,16 @@ declare class Catalog {
      * @description: Retrieve all HSN codes associated with company products and provide search capabilities based on HSN code, reporting HSN, etc - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAllProductHsnCodes/).
      */
     getAllProductHsnCodes({ pageNo, pageSize, q, type, requestHeaders }?: CatalogPlatformValidator.GetAllProductHsnCodesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HsnCodesListingResponseSchemaV2>;
+    /**
+     * @param {CatalogPlatformValidator.GetAllTaxRulesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TaxRules>} - Success response
+     * @name getAllTaxRules
+     * @summary: Get all tax rules of a company
+     * @description: Returns array of all tax rules of a company - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAllTaxRules/).
+     */
+    getAllTaxRules({ q, statuses, page, limit, versionStatus, requestHeaders }?: CatalogPlatformValidator.GetAllTaxRulesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxRules>;
     /**
      * @param {CatalogPlatformValidator.GetAttributeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -332,6 +407,19 @@ declare class Catalog {
      * @description: Retrieve detailed information about a specific department for a specific company by uid. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getDepartmentData/).
      */
     getDepartmentData({ uid, requestHeaders }?: CatalogPlatformValidator.GetDepartmentDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponseSchema>;
+    /**
+     * @param {CatalogPlatformValidator.GetHsCodesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.HSCodes>} - Success response
+     * @name getHsCodes
+     * @summary: Get HS/SAC codes
+     * @description: Retrieve a list of HS (Harmonized System) or SAC (Service Accounting Code) codes for a company.
+     * HS codes are used for classifying goods in international trade, while SAC codes are used for classifying services for taxation purposes.
+     * Supports optional filtering and pagination.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getHsCodes/).
+     */
+    getHsCodes({ page, limit, type, q, requestHeaders }?: CatalogPlatformValidator.GetHsCodesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HSCodes>;
     /**
      * @param {CatalogPlatformValidator.GetHsnCodeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -787,6 +875,26 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogPlatformModel.OptinStoreDetails>;
     /**
+     * @param {CatalogPlatformValidator.GetTaxComponentNamesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetTaxComponents>} - Success response
+     * @name getTaxComponentNames
+     * @summary: Get component names
+     * @description: Get component names for a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxComponentNames/).
+     */
+    getTaxComponentNames({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetTaxComponents>;
+    /**
+     * @param {CatalogPlatformValidator.GetTaxVersionDetailsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TaxRuleVersion>} - Success response
+     * @name getTaxVersionDetails
+     * @summary: Get tax versions for a tax rule
+     * @description: Retrieve versions of a tax rule with support for filtering by query parameters (e.g., live, past, all). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
+     */
+    getTaxVersionDetails({ ruleId, versionStatus, limit, page, requestHeaders }?: CatalogPlatformValidator.GetTaxVersionDetailsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxRuleVersion>;
+    /**
      * @param {CatalogPlatformValidator.GetVariantsOfProductsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -1040,15 +1148,25 @@ declare class Catalog {
      */
     updateSizeGuide({ id, body, requestHeaders }?: CatalogPlatformValidator.UpdateSizeGuideParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
-     * @param {CatalogPlatformValidator.UploadBulkProductsParam} arg - Arg object
+     * @param {CatalogPlatformValidator.UpdateTaxRuleParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.BulkResponseSchema>} - Success response
-     * @name uploadBulkProducts
-     * @summary: Upload bulk products
-     * @description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/uploadBulkProducts/).
+     * @returns {Promise<CatalogPlatformModel.TaxRule>} - Success response
+     * @name updateTaxRule
+     * @summary: Update Tax Rule
+     * @description: Update an existing tax rule under a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxRule/).
      */
-    uploadBulkProducts({ department, productType, body, requestHeaders }?: CatalogPlatformValidator.UploadBulkProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkResponseSchema>;
+    updateTaxRule({ ruleId, body, requestHeaders }?: CatalogPlatformValidator.UpdateTaxRuleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxRule>;
+    /**
+     * @param {CatalogPlatformValidator.UpdateTaxVersionParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
+     * @name updateTaxVersion
+     * @summary: Update a tax version
+     * @description: Updates a tax rule using the provided rule_id. You can update any part of a scheduled version but only tax name of live version can be updated. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
+     */
+    updateTaxVersion({ ruleId, versionId, body, requestHeaders }?: CatalogPlatformValidator.UpdateTaxVersionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TaxVersion>;
     /**
      * @param {CatalogPlatformValidator.ValidateProductGlobalTemplateParam} arg
      *   - Arg object

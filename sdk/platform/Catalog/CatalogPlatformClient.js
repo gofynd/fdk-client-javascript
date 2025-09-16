@@ -495,6 +495,85 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformValidator.CreateHsCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HSCodeItem>} - Success response
+   * @name createHsCode
+   * @summary: Create HS/SAC code
+   * @description: Create HS/SAC code. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createHsCode/).
+   */
+  async createHsCode(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createHsCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createHsCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createHsCode \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/hscodes`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.HSCodeItem().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createHsCode \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformValidator.CreateInventoryExportParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -787,7 +866,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
+      `/service/platform/catalog/v3.0/company/${this.config.companyId}/products/`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1032,7 +1111,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
+      `/service/platform/catalog/v3.0/company/${this.config.companyId}/products/downloads/`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1218,6 +1297,249 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > createSizeGuide \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.CreateTaxParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CreateTax>} - Success response
+   * @name createTax
+   * @summary: Create Tax Rule
+   * @description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
+   */
+  async createTax(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createTax().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogPlatformValidator.createTax().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createTax \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/versions`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.CreateTax().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createTax \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.CreateTaxComponentNameParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TaxComponentName>} - Success response
+   * @name createTaxComponentName
+   * @summary: Create tax component name
+   * @description: Tax components represent different types of taxes that may be applied to products or transactions,
+   * such as sales tax, value-added tax (VAT), goods and services tax, consumption tax,
+   * or other region-specific taxation systems. This endpoint allows companies to define and
+   * customize the names of tax components according to their local tax regulations and business requirements.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxComponentName/).
+   */
+  async createTaxComponentName(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createTaxComponentName().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createTaxComponentName().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createTaxComponentName \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/component-names`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TaxComponentName().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createTaxComponentName \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.CreateTaxVersionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
+   * @name createTaxVersion
+   * @summary: Create a tax version
+   * @description: Creates a tax rule using the provided rule_id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxVersion/).
+   */
+  async createTaxVersion(
+    { ruleId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createTaxVersion().validate(
+      {
+        ruleId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createTaxVersion().validate(
+      {
+        ruleId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createTaxVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}/versions`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TaxVersion().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createTaxVersion \n ${res_error}`,
         });
       }
     }
@@ -1632,6 +1954,153 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformValidator.DeleteTaxRuleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name deleteTaxRule
+   * @summary: Delete a tax rule
+   * @description: Deletes a tax rule along with all its versions using the provided rule_id. You can not delete a rule if 1. it is the default tax rule 2. it is applied to any product. You will need to set any other tax rule as default or will need to attach a different tax rule to the products, then only you can delete the rule.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxRule/).
+   */
+  async deleteTaxRule(
+    { ruleId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteTaxRule().validate(
+      { ruleId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.deleteTaxRule().validate(
+      { ruleId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteTaxRule \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteTaxRule \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.DeleteTaxVersionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name deleteTaxVersion
+   * @summary: Delete a tax version
+   * @description: Deletes a tax rule using the provided rule_id. On future/scheduled version can be deleted. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxVersion/).
+   */
+  async deleteTaxVersion(
+    { ruleId, versionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteTaxVersion().validate(
+      { ruleId, versionId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.deleteTaxVersion().validate(
+      { ruleId, versionId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteTaxVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}/versions/${versionId}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteTaxVersion \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformValidator.DownloadInventoryTemplateViewParam} arg
    *   - Arg object
    *
@@ -1847,7 +2316,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
+      `/service/platform/catalog/v3.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -2044,6 +2513,100 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getAllProductHsnCodes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.GetAllTaxRulesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TaxRules>} - Success response
+   * @name getAllTaxRules
+   * @summary: Get all tax rules of a company
+   * @description: Returns array of all tax rules of a company - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAllTaxRules/).
+   */
+  async getAllTaxRules(
+    { q, statuses, page, limit, versionStatus, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getAllTaxRules().validate(
+      {
+        q,
+        statuses,
+        page,
+        limit,
+        versionStatus,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getAllTaxRules().validate(
+      {
+        q,
+        statuses,
+        page,
+        limit,
+        versionStatus,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getAllTaxRules \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+    query_params["statuses"] = statuses;
+    query_params["page"] = page;
+    query_params["limit"] = limit;
+    query_params["version_status"] = versionStatus;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TaxRules().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAllTaxRules \n ${res_error}`,
         });
       }
     }
@@ -2528,6 +3091,96 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getDepartmentData \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.GetHsCodesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HSCodes>} - Success response
+   * @name getHsCodes
+   * @summary: Get HS/SAC codes
+   * @description: Retrieve a list of HS (Harmonized System) or SAC (Service Accounting Code) codes for a company.
+   * HS codes are used for classifying goods in international trade, while SAC codes are used for classifying services for taxation purposes.
+   * Supports optional filtering and pagination.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getHsCodes/).
+   */
+  async getHsCodes(
+    { page, limit, type, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getHsCodes().validate(
+      {
+        page,
+        limit,
+        type,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogPlatformValidator.getHsCodes().validate(
+      {
+        page,
+        limit,
+        type,
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getHsCodes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page"] = page;
+    query_params["limit"] = limit;
+    query_params["type"] = type;
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/hscodes`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.HSCodes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getHsCodes \n ${res_error}`,
         });
       }
     }
@@ -5159,6 +5812,171 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformValidator.GetTaxComponentNamesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetTaxComponents>} - Success response
+   * @name getTaxComponentNames
+   * @summary: Get component names
+   * @description: Get component names for a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxComponentNames/).
+   */
+  async getTaxComponentNames(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getTaxComponentNames().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getTaxComponentNames().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getTaxComponentNames \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/component-names`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetTaxComponents().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getTaxComponentNames \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.GetTaxVersionDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TaxRuleVersion>} - Success response
+   * @name getTaxVersionDetails
+   * @summary: Get tax versions for a tax rule
+   * @description: Retrieve versions of a tax rule with support for filtering by query parameters (e.g., live, past, all). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
+   */
+  async getTaxVersionDetails(
+    { ruleId, versionStatus, limit, page, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getTaxVersionDetails().validate(
+      {
+        ruleId,
+        versionStatus,
+        limit,
+        page,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getTaxVersionDetails().validate(
+      {
+        ruleId,
+        versionStatus,
+        limit,
+        page,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getTaxVersionDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["version_status"] = versionStatus;
+    query_params["limit"] = limit;
+    query_params["page"] = page;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}/versions`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TaxRuleVersion().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getTaxVersionDetails \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformValidator.GetVariantsOfProductsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -6766,22 +7584,21 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.UploadBulkProductsParam} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateTaxRuleParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.BulkResponseSchema>} - Success response
-   * @name uploadBulkProducts
-   * @summary: Upload bulk products
-   * @description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/uploadBulkProducts/).
+   * @returns {Promise<CatalogPlatformModel.TaxRule>} - Success response
+   * @name updateTaxRule
+   * @summary: Update Tax Rule
+   * @description: Update an existing tax rule under a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxRule/).
    */
-  async uploadBulkProducts(
-    { department, productType, body, requestHeaders } = { requestHeaders: {} },
+  async updateTaxRule(
+    { ruleId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = CatalogPlatformValidator.uploadBulkProducts().validate(
+    const { error } = CatalogPlatformValidator.updateTaxRule().validate(
       {
-        department,
-        productType,
+        ruleId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -6793,10 +7610,9 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogPlatformValidator.uploadBulkProducts().validate(
+    } = CatalogPlatformValidator.updateTaxRule().validate(
       {
-        department,
-        productType,
+        ruleId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -6804,20 +7620,18 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > uploadBulkProducts \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Catalog > updateTaxRule \n ${warrning}`,
       });
     }
 
     const query_params = {};
-    query_params["department"] = department;
-    query_params["product_type"] = productType;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/bulk`,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -6831,7 +7645,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.BulkResponseSchema().validate(responseData, {
+    } = CatalogPlatformModel.TaxRule().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -6842,7 +7656,92 @@ class Catalog {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > uploadBulkProducts \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Catalog > updateTaxRule \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.UpdateTaxVersionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
+   * @name updateTaxVersion
+   * @summary: Update a tax version
+   * @description: Updates a tax rule using the provided rule_id. You can update any part of a scheduled version but only tax name of live version can be updated. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
+   */
+  async updateTaxVersion(
+    { ruleId, versionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateTaxVersion().validate(
+      {
+        ruleId,
+        versionId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateTaxVersion().validate(
+      {
+        ruleId,
+        versionId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updateTaxVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/taxes/rules/${ruleId}/versions/${versionId}`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TaxVersion().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateTaxVersion \n ${res_error}`,
         });
       }
     }
