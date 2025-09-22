@@ -1,6 +1,12 @@
 const Joi = require("joi");
 
 /**
+ * @typedef RedeemLoyaltyPoints
+ * @property {boolean} redeem_points - Marks if engage points are to be redeemed
+ *   for the given cart.
+ */
+
+/**
  * @typedef CouponDateMeta
  * @property {string} [modified_on] - Date time format when the coupon last modified
  * @property {string} [created_on] - Date time format when the coupon created
@@ -787,6 +793,7 @@ const Joi = require("joi");
  * @property {Object} [meta] - Meta data related to article
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
  *   allowed at article level
+ * @property {number} [article_index] - Index of the line item in the cart
  * @property {number} [min_price_threshold] - Minimum allowed net price for the
  *   article. If the article's price after all discounts and adjustments falls
  *   below this threshold, the price adjustment will be automatically removed.
@@ -962,6 +969,18 @@ const Joi = require("joi");
  * @property {number} [applicable] - Whether the loyalty points are applicable
  *   for the cart
  * @property {string} [description] - Description for loyalty points
+ * @property {number} [total_points] - Total engage points available.
+ * @property {number} [points] - Engage points applied on the cart.
+ * @property {number} [amount] - Engage points amount applied on the cart.
+ * @property {number} [mop_amount] - Engage discount amount applied on the cart
+ *   as payment mode.
+ * @property {number} [earn_points] - Engage points that can be earned on the
+ *   cart. for ex. (You’ll earn 56 points from this order!)
+ * @property {number} [earn_points_amount] - Engage points amount that can be
+ *   earned on the cart. for ex. or ex. (You’ll earn ₹56 from this order!)
+ * @property {string} [earn_title] - Title to show how many earn points are
+ *   gained for this order.
+ * @property {string} [title] - Unique title for loyalty program applicable.
  */
 
 /**
@@ -969,6 +988,8 @@ const Joi = require("joi");
  * @property {number} [coupon] - Coupon amount applied to cart
  * @property {number} [gst_charges] - GST charges applied on cart
  * @property {number} [mrp_total] - Maximum price total amount of all products in cart
+ * @property {number} [engage_amount] - Engage points amount applied on the cart.
+ * @property {number} [engage_mop_amount] - Engage mop amount applied on the cart.
  * @property {number} [fynd_cash] - Loyalty points applied on cart
  * @property {number} [vog] - Total value of goods after all discount, coupons
  *   and promotion applied of all products in cart
@@ -1781,7 +1802,7 @@ const Joi = require("joi");
  * @property {string} promo_id - Promotion id applied on product
  * @property {string} promo_amount - Promotion amount applied on product
  * @property {string} [promo_desc] - Promotion description applied on product
- * @property {string} [rwrd_tndr]
+ * @property {string} [rwrd_tndr] _Deprecated_*
  * @property {Object[]} [item_list] - List of items
  * @property {string} [parent_promo_id] - Parent promotion unique identifier
  */
@@ -1806,9 +1827,7 @@ const Joi = require("joi");
  * @property {string} cart_id - The cart id of user cart
  * @property {string} payment_mode - Payment mode from which the payment to be
  *   done for the order
- * @property {Object} [billing_address] - Billing address json which includes
- *   customer address, customer phone, customer email, customer pincode,
- *   customer landmark and customer name
+ * @property {ShippingAddress} [billing_address]
  * @property {string} merchant_code - Merchant code of the payment mode selected
  *   to do the payment
  * @property {string} payment_identifier - Payment identifier of the payment
@@ -1823,16 +1842,31 @@ const Joi = require("joi");
  *   their size, id, discount and promo details
  * @property {number} [ordering_store] - Ordering store id of the store from
  *   which the order is getting placed
- * @property {Object} [shipping_address] - Shipping address json which includes
- *   name, area, address, phone, area_code, state, country, country code and email
+ * @property {string} [device_id] - A unique identifier for the EDC (Electronic
+ *   Data Capture) machine. This value may be null if the identifier is not available.
+ * @property {ShippingAddress} [shipping_address]
+ */
+
+/**
+ * @typedef OverrideCheckoutData
+ * @property {number} [amount] - Amount for the order in smallest currency unit
+ *   (e.g., paise for INR)
+ * @property {string} [order_id] - Order id generated at the payment gateway
+ * @property {string} [email] - Customer email used for the payment
+ * @property {string} [contact] - Customer contact number used for the payment
+ * @property {string} [currency] - Currency code for the transaction
+ * @property {string} [customer_id] - Customer id generated/linked at the payment gateway
+ * @property {string} [callback_url] - Callback URL where the payment status
+ *   will be posted
+ * @property {string} [bank] - Bank code used for the payment (if method is netbanking)
+ * @property {string} [method] - Payment method used for the transaction
+ * @property {string} [vpa] - Virtual Payment Address used for UPI transactions
  */
 
 /**
  * @typedef OverrideCheckoutResult
- * @property {Object} data - Data of the user cart checkout includes cart data,
- *   address, user id, order type etc
- * @property {Object} cart - Cart details in API response which included cart
- *   id, items in cart, promise, order type, breakup values etc.
+ * @property {OverrideCheckoutData} data
+ * @property {CheckCart} cart
  * @property {string} success - Success flag of cart override checkout API response
  * @property {string} order_id - Order id generated after placing order
  * @property {string} message - Message of the cart override checkout API response
@@ -2676,6 +2710,13 @@ const Joi = require("joi");
  */
 
 class CartPlatformModel {
+  /** @returns {RedeemLoyaltyPoints} */
+  static RedeemLoyaltyPoints() {
+    return Joi.object({
+      redeem_points: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {CouponDateMeta} */
   static CouponDateMeta() {
     return Joi.object({
@@ -3485,6 +3526,7 @@ class CartPlatformModel {
       quantity: Joi.number(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       allowed_refund: Joi.boolean(),
+      article_index: Joi.number(),
       min_price_threshold: Joi.number(),
     });
   }
@@ -3659,6 +3701,14 @@ class CartPlatformModel {
       total: Joi.number(),
       applicable: Joi.number(),
       description: Joi.string().allow(""),
+      total_points: Joi.number(),
+      points: Joi.number(),
+      amount: Joi.number(),
+      mop_amount: Joi.number(),
+      earn_points: Joi.number(),
+      earn_points_amount: Joi.number(),
+      earn_title: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     });
   }
 
@@ -3668,6 +3718,8 @@ class CartPlatformModel {
       coupon: Joi.number(),
       gst_charges: Joi.number(),
       mrp_total: Joi.number(),
+      engage_amount: Joi.number(),
+      engage_mop_amount: Joi.number(),
       fynd_cash: Joi.number(),
       vog: Joi.number(),
       gift_card: Joi.number(),
@@ -4536,7 +4588,7 @@ class CartPlatformModel {
     return Joi.object({
       cart_id: Joi.string().allow("").required(),
       payment_mode: Joi.string().allow("").required(),
-      billing_address: Joi.object().pattern(/\S/, Joi.any()),
+      billing_address: CartPlatformModel.ShippingAddress(),
       merchant_code: Joi.string().allow("").required(),
       payment_identifier: Joi.string().allow("").required(),
       currency_code: Joi.string().allow("").required(),
@@ -4547,15 +4599,32 @@ class CartPlatformModel {
         .items(CartPlatformModel.OverrideCartItem())
         .required(),
       ordering_store: Joi.number().allow(null),
-      shipping_address: Joi.object().pattern(/\S/, Joi.any()),
+      device_id: Joi.string().allow("").allow(null),
+      shipping_address: CartPlatformModel.ShippingAddress(),
+    });
+  }
+
+  /** @returns {OverrideCheckoutData} */
+  static OverrideCheckoutData() {
+    return Joi.object({
+      amount: Joi.number(),
+      order_id: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      contact: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      customer_id: Joi.string().allow(""),
+      callback_url: Joi.string().allow(""),
+      bank: Joi.string().allow(""),
+      method: Joi.string().allow(""),
+      vpa: Joi.string().allow(""),
     });
   }
 
   /** @returns {OverrideCheckoutResult} */
   static OverrideCheckoutResult() {
     return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()).required(),
-      cart: Joi.object().pattern(/\S/, Joi.any()).required(),
+      data: CartPlatformModel.OverrideCheckoutData().required(),
+      cart: CartPlatformModel.CheckCart().required(),
       success: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),

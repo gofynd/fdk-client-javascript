@@ -32,6 +32,17 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
+ * @typedef ApplyLoyaltyPointsParam
+ * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
+ *   source header, to be used to identify source of order creation.
+ * @property {string} [id] - The unique identifier of the cart.
+ * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
+ * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is boolean to get buy_now cart.
+ * @property {CartPlatformModel.RedeemLoyaltyPoints} body
+ */
+
+/**
  * @typedef CheckCartServiceabilityParam
  * @property {CartPlatformModel.OrderingSource} [xOrderingSource] - Ordering
  *   source header, to be used to identify source of order creation.
@@ -535,6 +546,19 @@ class CartPlatformApplicationValidator {
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: CartPlatformModel.ApplyCouponDetails().required(),
+    }).required();
+  }
+
+  /** @returns {ApplyLoyaltyPointsParam} */
+  static applyLoyaltyPoints() {
+    return Joi.object({
+      xOrderingSource: CartPlatformModel.OrderingSource(),
+
+      id: Joi.string().allow(""),
+      i: Joi.boolean(),
+      b: Joi.boolean(),
+      buyNow: Joi.boolean(),
+      body: CartPlatformModel.RedeemLoyaltyPoints().required(),
     }).required();
   }
 

@@ -1,5 +1,8 @@
 export = ContentPublicValidator;
-/** @typedef GetAllLanguagesParam */
+/**
+ * @typedef GetAllLanguagesParam
+ * @property {boolean} [isEnabled] - Filter languages by enabled status.
+ */
 /** @typedef GetAllTagsParam */
 /** @typedef GetAllTranslatableResourcesParam */
 /** @typedef GetAnalyticsTagsParam */
@@ -31,7 +34,7 @@ export = ContentPublicValidator;
 /** @typedef GetPricingBannerParam */
 declare class ContentPublicValidator {
     /** @returns {GetAllLanguagesParam} */
-    static getAllLanguages(): any;
+    static getAllLanguages(): GetAllLanguagesParam;
     /** @returns {GetAllTagsParam} */
     static getAllTags(): any;
     /** @returns {GetAllTranslatableResourcesParam} */
@@ -62,6 +65,12 @@ declare class ContentPublicValidator {
 declare namespace ContentPublicValidator {
     export { GetAllLanguagesParam, GetAllTagsParam, GetAllTranslatableResourcesParam, GetAnalyticsTagsParam, GetBasicDetailsParam, GetCredentialsByEntityParam, GetCustomPageParam, GetFooterContentParam, GetHomePageContentParam, GetLanguageByLocaleParam, GetMenuContentParam, GetMenuContentByTypeParam, GetNavbarParam, GetPricingBannerParam };
 }
+type GetAllLanguagesParam = {
+    /**
+     * - Filter languages by enabled status.
+     */
+    isEnabled?: boolean;
+};
 type GetCredentialsByEntityParam = {
     /**
      * - Server Type
@@ -90,7 +99,6 @@ type GetMenuContentByTypeParam = {
      */
     type: string;
 };
-type GetAllLanguagesParam = any;
 type GetAllTagsParam = any;
 type GetAllTranslatableResourcesParam = any;
 type GetAnalyticsTagsParam = any;

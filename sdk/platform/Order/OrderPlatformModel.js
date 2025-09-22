@@ -1353,7 +1353,9 @@ const Joi = require("joi");
  * @typedef PaymentMethod
  * @property {string} collect_by - A string indicating the entity responsible
  *   for collecting the payment.
- * @property {string} mode - A string that specifies the mode of payment.
+ * @property {string} mode - A string that specifies the mode of payment. Refer
+ *   to [API & references (in Nav bar) → Payment Modes] for a list of valid
+ *   payment methods.
  * @property {string} refund_by - A string that indicates the entity responsible
  *   for processing refunds.
  * @property {string} name - A string representing the name of the payment method.

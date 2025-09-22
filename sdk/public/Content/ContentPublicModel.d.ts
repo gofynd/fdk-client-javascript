@@ -290,6 +290,7 @@ export = ContentPublicModel;
  *   reference and display at the merchant panel.
  * @property {string} [display_name] - Translated name of the language in
  *   English for easy reference and display at the website.
+ * @property {boolean} [is_enabled] - Indicates whether the language is enabled for use.
  */
 /**
  * @typedef Error
@@ -672,6 +673,10 @@ type Language = {
      * English for easy reference and display at the website.
      */
     display_name?: string;
+    /**
+     * - Indicates whether the language is enabled for use.
+     */
+    is_enabled?: boolean;
 };
 /** @returns {Error} */
 declare function Error(): Error;

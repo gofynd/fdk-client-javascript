@@ -60,11 +60,11 @@ class Content {
    * @description: Fetches complete list of languages supported by the platform with their locale codes and text directions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/public/content/getAllLanguages/).
    */
   async getAllLanguages(
-    { requestHeaders } = { requestHeaders: {} },
+    { isEnabled, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPublicValidator.getAllLanguages().validate(
-      {},
+      { isEnabled },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -75,7 +75,7 @@ class Content {
     const {
       error: warrning,
     } = ContentPublicValidator.getAllLanguages().validate(
-      {},
+      { isEnabled },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -86,6 +86,7 @@ class Content {
     }
 
     const query_params = {};
+    query_params["is_enabled"] = isEnabled;
 
     const xHeaders = {};
 

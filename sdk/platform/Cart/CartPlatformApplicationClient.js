@@ -350,6 +350,101 @@ class Cart {
   }
 
   /**
+   * @param {CartPlatformApplicationValidator.ApplyLoyaltyPointsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.CartDetailResult>} - Success response
+   * @name applyLoyaltyPoints
+   * @summary: Redeem loyalty points.
+   * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/applyLoyaltyPoints/).
+   */
+  async applyLoyaltyPoints(
+    { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.applyLoyaltyPoints().validate(
+      {
+        body,
+        xOrderingSource,
+        id,
+        i,
+        b,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.applyLoyaltyPoints().validate(
+      {
+        body,
+        xOrderingSource,
+        id,
+        i,
+        b,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > applyLoyaltyPoints \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["i"] = i;
+    query_params["b"] = b;
+    query_params["buy_now"] = buyNow;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v2.0/company/${this.config.companyId}/application/${this.applicationId}/redeem`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.CartDetailResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > applyLoyaltyPoints \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CartPlatformApplicationValidator.CheckCartServiceabilityParam} arg
    *   - Arg object
    *
@@ -3649,7 +3744,7 @@ class Cart {
    * @returns {Promise<CartPlatformModel.CartCheckoutDetails>} - Success response
    * @name platformCheckoutCartV2
    * @summary: Checkout cart
-   * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
+   * @description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
    */
   async platformCheckoutCartV2(
     { body, xOrderingSource, id, requestHeaders } = { requestHeaders: {} },

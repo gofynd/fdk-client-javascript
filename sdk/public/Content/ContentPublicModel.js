@@ -326,6 +326,7 @@ const Joi = require("joi");
  *   reference and display at the merchant panel.
  * @property {string} [display_name] - Translated name of the language in
  *   English for easy reference and display at the website.
+ * @property {boolean} [is_enabled] - Indicates whether the language is enabled for use.
  */
 
 /**
@@ -763,6 +764,7 @@ class ContentPublicModel {
       direction: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
       display_name: Joi.string().allow(""),
+      is_enabled: Joi.boolean(),
     });
   }
 

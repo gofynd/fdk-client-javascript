@@ -34,9 +34,9 @@ declare class Theme {
      * @returns {Promise<AvailablePageSchema>} - Success response
      * @name getPage
      * @summary: Get theme page
-     * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/theme/getPage/).
+     * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. Supports dynamic URL parameter for custom sections. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/theme/getPage/).
      */
-    getPage({ themeId, pageValue, filters, sectionPreviewHash, company, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<AvailablePageSchema>;
+    getPage({ themeId, pageValue, filters, sectionPreviewHash, company, urlParams, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<AvailablePageSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

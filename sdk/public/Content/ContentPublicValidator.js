@@ -2,7 +2,10 @@ const Joi = require("joi");
 
 const ContentPublicModel = require("./ContentPublicModel");
 
-/** @typedef GetAllLanguagesParam */
+/**
+ * @typedef GetAllLanguagesParam
+ * @property {boolean} [isEnabled] - Filter languages by enabled status.
+ */
 
 /** @typedef GetAllTagsParam */
 
@@ -49,7 +52,9 @@ const ContentPublicModel = require("./ContentPublicModel");
 class ContentPublicValidator {
   /** @returns {GetAllLanguagesParam} */
   static getAllLanguages() {
-    return Joi.object({});
+    return Joi.object({
+      isEnabled: Joi.boolean(),
+    });
   }
 
   /** @returns {GetAllTagsParam} */

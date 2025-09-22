@@ -1,5 +1,10 @@
 export = CartPlatformModel;
 /**
+ * @typedef RedeemLoyaltyPoints
+ * @property {boolean} redeem_points - Marks if engage points are to be redeemed
+ *   for the given cart.
+ */
+/**
  * @typedef CouponDateMeta
  * @property {string} [modified_on] - Date time format when the coupon last modified
  * @property {string} [created_on] - Date time format when the coupon created
@@ -725,6 +730,7 @@ export = CartPlatformModel;
  * @property {Object} [meta] - Meta data related to article
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
  *   allowed at article level
+ * @property {number} [article_index] - Index of the line item in the cart
  * @property {number} [min_price_threshold] - Minimum allowed net price for the
  *   article. If the article's price after all discounts and adjustments falls
  *   below this threshold, the price adjustment will be automatically removed.
@@ -885,12 +891,26 @@ export = CartPlatformModel;
  * @property {number} [applicable] - Whether the loyalty points are applicable
  *   for the cart
  * @property {string} [description] - Description for loyalty points
+ * @property {number} [total_points] - Total engage points available.
+ * @property {number} [points] - Engage points applied on the cart.
+ * @property {number} [amount] - Engage points amount applied on the cart.
+ * @property {number} [mop_amount] - Engage discount amount applied on the cart
+ *   as payment mode.
+ * @property {number} [earn_points] - Engage points that can be earned on the
+ *   cart. for ex. (You’ll earn 56 points from this order!)
+ * @property {number} [earn_points_amount] - Engage points amount that can be
+ *   earned on the cart. for ex. or ex. (You’ll earn ₹56 from this order!)
+ * @property {string} [earn_title] - Title to show how many earn points are
+ *   gained for this order.
+ * @property {string} [title] - Unique title for loyalty program applicable.
  */
 /**
  * @typedef RawBreakup
  * @property {number} [coupon] - Coupon amount applied to cart
  * @property {number} [gst_charges] - GST charges applied on cart
  * @property {number} [mrp_total] - Maximum price total amount of all products in cart
+ * @property {number} [engage_amount] - Engage points amount applied on the cart.
+ * @property {number} [engage_mop_amount] - Engage mop amount applied on the cart.
  * @property {number} [fynd_cash] - Loyalty points applied on cart
  * @property {number} [vog] - Total value of goods after all discount, coupons
  *   and promotion applied of all products in cart
@@ -1636,7 +1656,7 @@ export = CartPlatformModel;
  * @property {string} promo_id - Promotion id applied on product
  * @property {string} promo_amount - Promotion amount applied on product
  * @property {string} [promo_desc] - Promotion description applied on product
- * @property {string} [rwrd_tndr]
+ * @property {string} [rwrd_tndr] _Deprecated_*
  * @property {Object[]} [item_list] - List of items
  * @property {string} [parent_promo_id] - Parent promotion unique identifier
  */
@@ -1659,9 +1679,7 @@ export = CartPlatformModel;
  * @property {string} cart_id - The cart id of user cart
  * @property {string} payment_mode - Payment mode from which the payment to be
  *   done for the order
- * @property {Object} [billing_address] - Billing address json which includes
- *   customer address, customer phone, customer email, customer pincode,
- *   customer landmark and customer name
+ * @property {ShippingAddress} [billing_address]
  * @property {string} merchant_code - Merchant code of the payment mode selected
  *   to do the payment
  * @property {string} payment_identifier - Payment identifier of the payment
@@ -1676,15 +1694,29 @@ export = CartPlatformModel;
  *   their size, id, discount and promo details
  * @property {number} [ordering_store] - Ordering store id of the store from
  *   which the order is getting placed
- * @property {Object} [shipping_address] - Shipping address json which includes
- *   name, area, address, phone, area_code, state, country, country code and email
+ * @property {string} [device_id] - A unique identifier for the EDC (Electronic
+ *   Data Capture) machine. This value may be null if the identifier is not available.
+ * @property {ShippingAddress} [shipping_address]
+ */
+/**
+ * @typedef OverrideCheckoutData
+ * @property {number} [amount] - Amount for the order in smallest currency unit
+ *   (e.g., paise for INR)
+ * @property {string} [order_id] - Order id generated at the payment gateway
+ * @property {string} [email] - Customer email used for the payment
+ * @property {string} [contact] - Customer contact number used for the payment
+ * @property {string} [currency] - Currency code for the transaction
+ * @property {string} [customer_id] - Customer id generated/linked at the payment gateway
+ * @property {string} [callback_url] - Callback URL where the payment status
+ *   will be posted
+ * @property {string} [bank] - Bank code used for the payment (if method is netbanking)
+ * @property {string} [method] - Payment method used for the transaction
+ * @property {string} [vpa] - Virtual Payment Address used for UPI transactions
  */
 /**
  * @typedef OverrideCheckoutResult
- * @property {Object} data - Data of the user cart checkout includes cart data,
- *   address, user id, order type etc
- * @property {Object} cart - Cart details in API response which included cart
- *   id, items in cart, promise, order type, breakup values etc.
+ * @property {OverrideCheckoutData} data
+ * @property {CheckCart} cart
  * @property {string} success - Success flag of cart override checkout API response
  * @property {string} order_id - Order id generated after placing order
  * @property {string} message - Message of the cart override checkout API response
@@ -2464,8 +2496,17 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OrderingSource };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OrderingSource };
 }
+/** @returns {RedeemLoyaltyPoints} */
+declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
+type RedeemLoyaltyPoints = {
+    /**
+     * - Marks if engage points are to be redeemed
+     * for the given cart.
+     */
+    redeem_points: boolean;
+};
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
 type CouponDateMeta = {
@@ -4239,6 +4280,10 @@ type Article = {
      */
     allowed_refund?: boolean;
     /**
+     * - Index of the line item in the cart
+     */
+    article_index?: number;
+    /**
      * - Minimum allowed net price for the
      * article. If the article's price after all discounts and adjustments falls
      * below this threshold, the price adjustment will be automatically removed.
@@ -4635,6 +4680,42 @@ type LoyaltyPoints = {
      * - Description for loyalty points
      */
     description?: string;
+    /**
+     * - Total engage points available.
+     */
+    total_points?: number;
+    /**
+     * - Engage points applied on the cart.
+     */
+    points?: number;
+    /**
+     * - Engage points amount applied on the cart.
+     */
+    amount?: number;
+    /**
+     * - Engage discount amount applied on the cart
+     * as payment mode.
+     */
+    mop_amount?: number;
+    /**
+     * - Engage points that can be earned on the
+     * cart. for ex. (You’ll earn 56 points from this order!)
+     */
+    earn_points?: number;
+    /**
+     * - Engage points amount that can be
+     * earned on the cart. for ex. or ex. (You’ll earn ₹56 from this order!)
+     */
+    earn_points_amount?: number;
+    /**
+     * - Title to show how many earn points are
+     * gained for this order.
+     */
+    earn_title?: string;
+    /**
+     * - Unique title for loyalty program applicable.
+     */
+    title?: string;
 };
 /** @returns {RawBreakup} */
 declare function RawBreakup(): RawBreakup;
@@ -4651,6 +4732,14 @@ type RawBreakup = {
      * - Maximum price total amount of all products in cart
      */
     mrp_total?: number;
+    /**
+     * - Engage points amount applied on the cart.
+     */
+    engage_amount?: number;
+    /**
+     * - Engage mop amount applied on the cart.
+     */
+    engage_mop_amount?: number;
     /**
      * - Loyalty points applied on cart
      */
@@ -6555,6 +6644,9 @@ type OverrideCartItemPromo = {
      * - Promotion description applied on product
      */
     promo_desc?: string;
+    /**
+     * _Deprecated_*
+     */
     rwrd_tndr?: string;
     /**
      * - List of items
@@ -6622,12 +6714,7 @@ type OverrideCheckoutReq = {
      * done for the order
      */
     payment_mode: string;
-    /**
-     * - Billing address json which includes
-     * customer address, customer phone, customer email, customer pincode,
-     * customer landmark and customer name
-     */
-    billing_address?: any;
+    billing_address?: ShippingAddress;
     /**
      * - Merchant code of the payment mode selected
      * to do the payment
@@ -6667,24 +6754,63 @@ type OverrideCheckoutReq = {
      */
     ordering_store?: number;
     /**
-     * - Shipping address json which includes
-     * name, area, address, phone, area_code, state, country, country code and email
+     * - A unique identifier for the EDC (Electronic
+     * Data Capture) machine. This value may be null if the identifier is not available.
      */
-    shipping_address?: any;
+    device_id?: string;
+    shipping_address?: ShippingAddress;
+};
+/** @returns {OverrideCheckoutData} */
+declare function OverrideCheckoutData(): OverrideCheckoutData;
+type OverrideCheckoutData = {
+    /**
+     * - Amount for the order in smallest currency unit
+     * (e.g., paise for INR)
+     */
+    amount?: number;
+    /**
+     * - Order id generated at the payment gateway
+     */
+    order_id?: string;
+    /**
+     * - Customer email used for the payment
+     */
+    email?: string;
+    /**
+     * - Customer contact number used for the payment
+     */
+    contact?: string;
+    /**
+     * - Currency code for the transaction
+     */
+    currency?: string;
+    /**
+     * - Customer id generated/linked at the payment gateway
+     */
+    customer_id?: string;
+    /**
+     * - Callback URL where the payment status
+     * will be posted
+     */
+    callback_url?: string;
+    /**
+     * - Bank code used for the payment (if method is netbanking)
+     */
+    bank?: string;
+    /**
+     * - Payment method used for the transaction
+     */
+    method?: string;
+    /**
+     * - Virtual Payment Address used for UPI transactions
+     */
+    vpa?: string;
 };
 /** @returns {OverrideCheckoutResult} */
 declare function OverrideCheckoutResult(): OverrideCheckoutResult;
 type OverrideCheckoutResult = {
-    /**
-     * - Data of the user cart checkout includes cart data,
-     * address, user id, order type etc
-     */
-    data: any;
-    /**
-     * - Cart details in API response which included cart
-     * id, items in cart, promise, order type, breakup values etc.
-     */
-    cart: any;
+    data: OverrideCheckoutData;
+    cart: CheckCart;
     /**
      * - Success flag of cart override checkout API response
      */

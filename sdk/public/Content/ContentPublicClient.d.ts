@@ -29,7 +29,7 @@ declare class Content {
      * @summary: Get All Languages
      * @description: Fetches complete list of languages supported by the platform with their locale codes and text directions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/public/content/getAllLanguages/).
      */
-    getAllLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
+    getAllLanguages({ isEnabled, requestHeaders }?: ContentPublicValidator.GetAllLanguagesParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {ContentPublicValidator.GetAllTagsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -161,5 +161,5 @@ declare class Content {
      */
     getPricingBanner({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPublicModel.PricingBannerSchema>;
 }
-import ContentPublicModel = require("./ContentPublicModel");
 import ContentPublicValidator = require("./ContentPublicValidator");
+import ContentPublicModel = require("./ContentPublicModel");

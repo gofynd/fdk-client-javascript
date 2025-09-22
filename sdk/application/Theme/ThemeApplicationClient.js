@@ -123,7 +123,7 @@ class Theme {
    * @returns {Promise<AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get theme page
-   * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/theme/getPage/).
+   * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. Supports dynamic URL parameter for custom sections. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/theme/getPage/).
    */
   async getPage(
     {
@@ -132,6 +132,7 @@ class Theme {
       filters,
       sectionPreviewHash,
       company,
+      urlParams,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -152,6 +153,7 @@ class Theme {
     query_params["filters"] = filters;
     query_params["section_preview_hash"] = sectionPreviewHash;
     query_params["company"] = company;
+    query_params["url_params"] = urlParams;
 
     const xHeaders = {};
 

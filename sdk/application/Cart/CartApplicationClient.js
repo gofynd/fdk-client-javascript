@@ -15,7 +15,7 @@ class Cart {
       addAddress: "/service/application/cart/v1.0/address",
       addItems: "/service/application/cart/v1.0/detail",
       applyCoupon: "/service/application/cart/v1.0/coupon",
-      applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
+      applyLoyaltyPoints: "/service/application/cart/v1.0/redeem",
       checkoutCart: "/service/application/cart/v1.0/checkout",
       checkoutCartV2: "/service/application/cart/v2.0/checkout",
       deleteCart: "/service/application/cart/v1.0/cart_archive",
@@ -203,11 +203,11 @@ class Cart {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartDetailResult>} - Success response
-   * @name applyRewardPoints
-   * @summary: Use reward points
-   * @description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyRewardPoints/).
+   * @name applyLoyaltyPoints
+   * @summary: Use loyalty points
+   * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyLoyaltyPoints/).
    */
-  async applyRewardPoints(
+  async applyLoyaltyPoints(
     { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
@@ -226,7 +226,7 @@ class Cart {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["applyRewardPoints"],
+        url: this._urls["applyLoyaltyPoints"],
         params: {},
       }),
       query_params,
@@ -291,7 +291,7 @@ class Cart {
    * @returns {Promise<CartCheckoutResult>} - Success response
    * @name checkoutCartV2
    * @summary: Checkout cart
-   * @description: The checkout cart initiates the order creation process based on the items in the user's cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCartV2/).
+   * @description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
     { body, xOrderingSource, buyNow, cartType, requestHeaders } = {
@@ -1240,7 +1240,7 @@ class Cart {
    * @returns {Promise<UpdateCartDetailResult>} - Success response
    * @name updateCartBreakup
    * @summary: Update store credits into cart and their items
-   * @description: Update cart. Customers can adjust the cart breakup by  applying or removing store credits as needed. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateCartBreakup/).
+   * @description: Update cart. Customers can adjust the cart breakup by applying or removing store credits as needed. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateCartBreakup/).
    */
   async updateCartBreakup(
     { body, xOrderingSource, id, i, b, buyNow, cartType, requestHeaders } = {

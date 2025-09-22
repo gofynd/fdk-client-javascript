@@ -44,6 +44,16 @@ declare class Cart {
      */
     applyCoupon({ body, xOrderingSource, i, b, p, id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
+     * @param {CartPlatformApplicationValidator.ApplyLoyaltyPointsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.CartDetailResult>} - Success response
+     * @name applyLoyaltyPoints
+     * @summary: Redeem loyalty points.
+     * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/applyLoyaltyPoints/).
+     */
+    applyLoyaltyPoints({ body, xOrderingSource, id, i, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.ApplyLoyaltyPointsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    /**
      * @param {CartPlatformApplicationValidator.CheckCartServiceabilityParam} arg
      *   - Arg object
      *
@@ -448,7 +458,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.CartCheckoutDetails>} - Success response
      * @name platformCheckoutCartV2
      * @summary: Checkout cart
-     * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
+     * @description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
      */
     platformCheckoutCartV2({ body, xOrderingSource, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutDetails>;
     /**
