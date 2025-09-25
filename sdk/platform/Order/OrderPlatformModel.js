@@ -988,6 +988,7 @@ const Joi = require("joi");
  * @property {string} [ordering_channel_logo]
  * @property {Prices} [prices]
  * @property {PriceAdjustmentCharge[]} [charges]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 
 /**
@@ -3061,6 +3062,8 @@ const Joi = require("joi");
  *   used in the transaction.
  * @property {number} [amount_to_be_collected] - Total amount to be collected in
  *   scenarios involving multiple payment methods.
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 
 /**
@@ -3149,6 +3152,8 @@ const Joi = require("joi");
  *   purchased by the customer, usable for future transactions.
  * @property {number} [amount_to_be_collected] - Amount to be collected from the
  *   customer when multiple payment methods are utilized for a single order.
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 
 /**
@@ -3243,6 +3248,8 @@ const Joi = require("joi");
  * @property {boolean} added_to_fynd_cash - Indicates whether the amount has
  *   been added to Fynd cash for future use.
  * @property {TaxComponent[]} [taxes] - Applied Tax Components
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 
 /**
@@ -3823,6 +3830,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef LoyaltyDiscountDetails
+ * @property {number} [discount] - Discount amount applied by redeeming loyalty
+ *   points while placing the order. Represents the monetary value of loyalty
+ *   points redeemed.
+ * @property {string} [ownership] - Indicates who bears the cost of the loyalty
+ *   discount, such as the seller or the marketplace.
+ * @property {boolean} [is_applied] - Specifies whether the loyalty discount has
+ *   been applied to the order.
+ */
+
+/**
  * @typedef OrderDetailsData
  * @property {string} [order_date] - Represents the date and time when the order
  *   was placed by the customer. This timestamp is essential for tracking the
@@ -3851,6 +3869,7 @@ const Joi = require("joi");
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
  * @property {string} [ordering_source] - To uniquely identify the source
  *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -4692,6 +4711,7 @@ const Joi = require("joi");
  *   is created, including mobile applications, web interfaces, social media
  *   integrations, or external APIs.
  * @property {CurrencySchema} [currency]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 
 /**
@@ -4767,6 +4787,7 @@ const Joi = require("joi");
  * @property {CurrencyInfo} [currency_info]
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 
 /**
@@ -6432,6 +6453,7 @@ class OrderPlatformModel {
       ordering_channel_logo: Joi.string().allow("").allow(null),
       prices: OrderPlatformModel.Prices(),
       charges: Joi.array().items(OrderPlatformModel.PriceAdjustmentCharge()),
+      loyalty_discount_details: OrderPlatformModel.LoyaltyDiscountDetails(),
     });
   }
 
@@ -8251,6 +8273,7 @@ class OrderPlatformModel {
       fynd_credits: Joi.number().allow(null),
       gift_price: Joi.number().allow(null),
       amount_to_be_collected: Joi.number().allow(null),
+      loyalty_discount: Joi.number(),
     });
   }
 
@@ -8322,6 +8345,7 @@ class OrderPlatformModel {
       fynd_credits: Joi.number().allow(null),
       gift_price: Joi.number().allow(null),
       amount_to_be_collected: Joi.number().allow(null),
+      loyalty_discount: Joi.number(),
     });
   }
 
@@ -8378,6 +8402,7 @@ class OrderPlatformModel {
       total_units: Joi.number().required(),
       added_to_fynd_cash: Joi.boolean().required(),
       taxes: Joi.array().items(OrderPlatformModel.TaxComponent()),
+      loyalty_discount: Joi.number(),
     });
   }
 
@@ -8522,7 +8547,7 @@ class OrderPlatformModel {
       box_type: Joi.string().allow("").allow(null),
       quantity: Joi.number().allow(null),
       size_level_total_qty: Joi.number().allow(null),
-      loyalty_discount: Joi.number().allow(null),
+      loyalty_discount: Joi.number(),
       replacement_details: OrderPlatformModel.ReplacementDetails(),
       channel_shipment_id: Joi.string().allow("").allow(null),
       marketplace_invoice_id: Joi.string().allow("").allow(null),
@@ -8542,7 +8567,7 @@ class OrderPlatformModel {
       affiliate_order_id: Joi.string().allow("").required(),
       employee_discount: Joi.number().allow(null),
       affiliate_bag_id: Joi.string().allow("").required(),
-      loyalty_discount: Joi.number().allow(null),
+      loyalty_discount: Joi.number(),
     });
   }
 
@@ -8774,6 +8799,15 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {LoyaltyDiscountDetails} */
+  static LoyaltyDiscountDetails() {
+    return Joi.object({
+      discount: Joi.number(),
+      ownership: Joi.string().allow(""),
+      is_applied: Joi.boolean(),
+    });
+  }
+
   /** @returns {OrderDetailsData} */
   static OrderDetailsData() {
     return Joi.object({
@@ -8791,6 +8825,7 @@ class OrderPlatformModel {
       order_value: Joi.string().allow("").allow(null),
       ordering_channel: Joi.string().allow("").allow(null),
       ordering_source: Joi.string().allow(""),
+      loyalty_discount_details: OrderPlatformModel.LoyaltyDiscountDetails(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -9426,6 +9461,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow(""),
       source: Joi.string().allow(""),
       currency: OrderPlatformModel.CurrencySchema(),
+      loyalty_discount_details: OrderPlatformModel.LoyaltyDiscountDetails(),
     });
   }
 
@@ -9503,6 +9539,7 @@ class OrderPlatformModel {
       currency_info: OrderPlatformModel.CurrencyInfo(),
       prices: OrderPlatformModel.Prices(),
       ordering_currency_prices: OrderPlatformModel.OrderingCurrencyPrices(),
+      loyalty_discount_details: OrderPlatformModel.LoyaltyDiscountDetails(),
     });
   }
 

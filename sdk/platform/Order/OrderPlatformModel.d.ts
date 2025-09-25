@@ -901,6 +901,7 @@ export = OrderPlatformModel;
  * @property {string} [ordering_channel_logo]
  * @property {Prices} [prices]
  * @property {PriceAdjustmentCharge[]} [charges]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 /**
  * @typedef Meta
@@ -2815,6 +2816,8 @@ export = OrderPlatformModel;
  *   used in the transaction.
  * @property {number} [amount_to_be_collected] - Total amount to be collected in
  *   scenarios involving multiple payment methods.
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 /**
  * @typedef ChargeDistributionSchema
@@ -2897,6 +2900,8 @@ export = OrderPlatformModel;
  *   purchased by the customer, usable for future transactions.
  * @property {number} [amount_to_be_collected] - Amount to be collected from the
  *   customer when multiple payment methods are utilized for a single order.
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 /**
  * @typedef Identifier
@@ -2988,6 +2993,8 @@ export = OrderPlatformModel;
  * @property {boolean} added_to_fynd_cash - Indicates whether the amount has
  *   been added to Fynd cash for future use.
  * @property {TaxComponent[]} [taxes] - Applied Tax Components
+ * @property {number} [loyalty_discount] - Amount reduced from the payable price
+ *   when the customer applies loyalty program points while placing the order.
  */
 /**
  * @typedef GSTDetailsData
@@ -3542,6 +3549,16 @@ export = OrderPlatformModel;
  *   to the invoice, which may include related documents or resources.
  */
 /**
+ * @typedef LoyaltyDiscountDetails
+ * @property {number} [discount] - Discount amount applied by redeeming loyalty
+ *   points while placing the order. Represents the monetary value of loyalty
+ *   points redeemed.
+ * @property {string} [ownership] - Indicates who bears the cost of the loyalty
+ *   discount, such as the seller or the marketplace.
+ * @property {boolean} [is_applied] - Specifies whether the loyalty discount has
+ *   been applied to the order.
+ */
+/**
  * @typedef OrderDetailsData
  * @property {string} [order_date] - Represents the date and time when the order
  *   was placed by the customer. This timestamp is essential for tracking the
@@ -3570,6 +3587,7 @@ export = OrderPlatformModel;
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
  * @property {string} [ordering_source] - To uniquely identify the source
  *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -4369,6 +4387,7 @@ export = OrderPlatformModel;
  *   is created, including mobile applications, web interfaces, social media
  *   integrations, or external APIs.
  * @property {CurrencySchema} [currency]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 /**
  * @typedef OrderDetailsResponseSchema
@@ -4437,6 +4456,7 @@ export = OrderPlatformModel;
  * @property {CurrencyInfo} [currency_info]
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
+ * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  */
 /**
  * @typedef OrderListingResponseSchema
@@ -5100,7 +5120,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponseSchema, InvalidateShipmentCacheResponseSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, ValidationError, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, CurrencySchema, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema, OrderingSource };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponseSchema, InvalidateShipmentCacheResponseSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, ValidationError, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, CurrencySchema, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema, OrderingSource };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -6853,6 +6873,7 @@ type OrderDetails = {
     ordering_channel_logo?: string;
     prices?: Prices;
     charges?: PriceAdjustmentCharge[];
+    loyalty_discount_details?: LoyaltyDiscountDetails;
 };
 /** @returns {Meta} */
 declare function Meta(): Meta;
@@ -10815,6 +10836,11 @@ type Prices = {
      * scenarios involving multiple payment methods.
      */
     amount_to_be_collected?: number;
+    /**
+     * - Amount reduced from the payable price
+     * when the customer applies loyalty program points while placing the order.
+     */
+    loyalty_discount?: number;
 };
 /** @returns {ChargeDistributionSchema} */
 declare function ChargeDistributionSchema(): ChargeDistributionSchema;
@@ -10993,6 +11019,11 @@ type OrderingCurrencyPrices = {
      * customer when multiple payment methods are utilized for a single order.
      */
     amount_to_be_collected?: number;
+    /**
+     * - Amount reduced from the payable price
+     * when the customer applies loyalty program points while placing the order.
+     */
+    loyalty_discount?: number;
 };
 /** @returns {Identifier} */
 declare function Identifier(): Identifier;
@@ -11198,6 +11229,11 @@ type FinancialBreakup = {
      * - Applied Tax Components
      */
     taxes?: TaxComponent[];
+    /**
+     * - Amount reduced from the payable price
+     * when the customer applies loyalty program points while placing the order.
+     */
+    loyalty_discount?: number;
 };
 /** @returns {GSTDetailsData} */
 declare function GSTDetailsData(): GSTDetailsData;
@@ -12384,6 +12420,26 @@ type InvoiceInfo = {
      */
     links?: any;
 };
+/** @returns {LoyaltyDiscountDetails} */
+declare function LoyaltyDiscountDetails(): LoyaltyDiscountDetails;
+type LoyaltyDiscountDetails = {
+    /**
+     * - Discount amount applied by redeeming loyalty
+     * points while placing the order. Represents the monetary value of loyalty
+     * points redeemed.
+     */
+    discount?: number;
+    /**
+     * - Indicates who bears the cost of the loyalty
+     * discount, such as the seller or the marketplace.
+     */
+    ownership?: string;
+    /**
+     * - Specifies whether the loyalty discount has
+     * been applied to the order.
+     */
+    is_applied?: boolean;
+};
 /** @returns {OrderDetailsData} */
 declare function OrderDetailsData(): OrderDetailsData;
 type OrderDetailsData = {
@@ -12450,6 +12506,7 @@ type OrderDetailsData = {
      * through which order has been placed (e.g, marketplace, gofynd).
      */
     ordering_source?: string;
+    loyalty_discount_details?: LoyaltyDiscountDetails;
     /**
      * - Meta data of the order contains additional,
      * potentially dynamic information about the order.
@@ -14151,6 +14208,7 @@ type OrderData = {
      */
     source?: string;
     currency?: CurrencySchema;
+    loyalty_discount_details?: LoyaltyDiscountDetails;
 };
 /** @returns {OrderDetailsResponseSchema} */
 declare function OrderDetailsResponseSchema(): OrderDetailsResponseSchema;
@@ -14262,6 +14320,7 @@ type PlatformOrderItems = {
     currency_info?: CurrencyInfo;
     prices?: Prices;
     ordering_currency_prices?: OrderingCurrencyPrices;
+    loyalty_discount_details?: LoyaltyDiscountDetails;
 };
 /** @returns {OrderListingResponseSchema} */
 declare function OrderListingResponseSchema(): OrderListingResponseSchema;

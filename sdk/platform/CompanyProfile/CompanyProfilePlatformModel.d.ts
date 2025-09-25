@@ -400,10 +400,12 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef LocationSchema
- * @property {string} code
+ * @property {string} code - A unique identifier for the store location. Must be
+ *   a non-empty string with a maximum length of 100 characters.
  * @property {InvoiceDetailsSchema} [gst_credentials]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {string} name
+ * @property {string} name - The value of the name. Should be a non-empty string
+ *   and length should not exceed 300 characters.
  * @property {Object} [_custom_json]
  * @property {Object} [warnings]
  * @property {AddressSchema} address
@@ -418,7 +420,8 @@ export = CompanyProfilePlatformModel;
  * @property {boolean} [credit_note]
  * @property {HolidaySchemaSchema[]} [holiday]
  * @property {ProductReturnConfigSchema} [product_return_config]
- * @property {string} display_name
+ * @property {string} display_name - The value of the display_name. Should be a
+ *   non-empty string and length should not exceed 300 characters.
  * @property {string[]} [notification_emails]
  * @property {string[]} [tags]
  * @property {boolean} [default_order_acceptance_timing] - Flag to set
@@ -921,9 +924,17 @@ type AddressSchema = {
 /** @returns {LocationSchema} */
 declare function LocationSchema(): LocationSchema;
 type LocationSchema = {
+    /**
+     * - A unique identifier for the store location. Must be
+     * a non-empty string with a maximum length of 100 characters.
+     */
     code: string;
     gst_credentials?: InvoiceDetailsSchema;
     contact_numbers?: SellerPhoneNumber[];
+    /**
+     * - The value of the name. Should be a non-empty string
+     * and length should not exceed 300 characters.
+     */
     name: string;
     _custom_json?: any;
     warnings?: any;
@@ -939,6 +950,10 @@ type LocationSchema = {
     credit_note?: boolean;
     holiday?: HolidaySchemaSchema[];
     product_return_config?: ProductReturnConfigSchema;
+    /**
+     * - The value of the display_name. Should be a
+     * non-empty string and length should not exceed 300 characters.
+     */
     display_name: string;
     notification_emails?: string[];
     tags?: string[];

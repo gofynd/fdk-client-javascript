@@ -793,7 +793,6 @@ const Joi = require("joi");
  * @property {Object} [meta] - Meta data related to article
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
  *   allowed at article level
- * @property {number} [article_index] - Index of the line item in the cart
  * @property {number} [min_price_threshold] - Minimum allowed net price for the
  *   article. If the article's price after all discounts and adjustments falls
  *   below this threshold, the price adjustment will be automatically removed.
@@ -3526,7 +3525,6 @@ class CartPlatformModel {
       quantity: Joi.number(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       allowed_refund: Joi.boolean(),
-      article_index: Joi.number(),
       min_price_threshold: Joi.number(),
     });
   }
