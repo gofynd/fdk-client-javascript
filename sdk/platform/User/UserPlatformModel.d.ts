@@ -399,7 +399,7 @@ export = UserPlatformModel;
  */
 /**
  * @typedef CreateUserRequestSchema
- * @property {string} phone_number
+ * @property {string} [phone_number]
  * @property {string} [email]
  * @property {string} [first_name]
  * @property {string} [last_name]
@@ -1487,7 +1487,7 @@ type CreateUserGroup = {
 /** @returns {CreateUserRequestSchema} */
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
 type CreateUserRequestSchema = {
-    phone_number: string;
+    phone_number?: string;
     email?: string;
     first_name?: string;
     last_name?: string;

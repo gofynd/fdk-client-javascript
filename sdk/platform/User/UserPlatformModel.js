@@ -446,7 +446,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateUserRequestSchema
- * @property {string} phone_number
+ * @property {string} [phone_number]
  * @property {string} [email]
  * @property {string} [first_name]
  * @property {string} [last_name]
@@ -1266,7 +1266,7 @@ class UserPlatformModel {
   /** @returns {CreateUserRequestSchema} */
   static CreateUserRequestSchema() {
     return Joi.object({
-      phone_number: Joi.string().allow("").required(),
+      phone_number: Joi.string().allow(""),
       email: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),

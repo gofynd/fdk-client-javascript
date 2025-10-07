@@ -1,3 +1,81 @@
+# CHANGE LOG (3.11.0) - 2.8.3
+
+## Application Client
+
+
+
+### Catalog
+
+
+
+#### getProductComparisonBySlugs
+
+- ##### What's New
+	- [Added] property <code>attributes_metadata[].id</code> of schema <code>AttributeMetadata</code> in response with status code 200
+
+
+#### getSimilarComparisonProductBySlug
+
+- ##### What's New
+	- [Added] property <code>attributes_metadata[].id</code> of schema <code>AttributeMetadata</code> in response with status code 200
+
+
+#### getComparedFrequentlyProductBySlug
+
+- ##### What's New
+	- [Added] property <code>similars.attributes_metadata[].id</code> of schema <code>AttributeMetadata</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getPromotions
+
+- ##### What's New
+	- [Added] property <code>items[].discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in response with status code 200
+
+
+#### createPromotion
+
+- ##### What's New
+	- [Added] property <code>discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in request body
+	- [Added] property <code>discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in response with status code 201
+
+
+#### getPromotionById
+
+- ##### What's New
+	- [Added] property <code>discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in response with status code 200
+
+
+#### updatePromotion
+
+- ##### What's New
+	- [Added] property <code>discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in request body
+	- [Added] property <code>discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in response with status code 200
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] property <code>available_promotions[].discount_rules[].offer.item_sequence_number</code> of schema <code>DiscountOffer</code> in response with status code 200
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's Changed
+	- [Changed] <code>phone_number</code> made optional in request body
+
+
 # CHANGE LOG (3.10.0) - 2.8.2
 
 ## Application Client

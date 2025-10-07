@@ -796,7 +796,7 @@ declare class Order {
      *
      * @name updateShipmentStatus
      * @summary: Update a shipment's status
-     * @description: It is used for updating the shipment in the following scenarios:\n• Full Confirmation\n• Partial Confirmation\n• Change the status of a shipment\n• Full Cancellation\n• Partial Cancellation\n• Assign the shipment to DP. Click <a href=\"https://docs.fynd.com/partners/commerce/miscellaneous/updateShipmentStatus\">here</a> to get the example payload. Also, refer to the <a href=\"https://docs.fynd.com/partners/commerce/getting-started/oms-states/\">OMS Sates</a> for the complete status list. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateShipmentStatus/).
+     * @description: It is used for updating the shipment in the following scenarios: Full Confirmation, Partial Confirmation, Change the status of a shipment, Full Cancellation, Partial Cancellation, Assign the shipment to DP. Click <a href='/commerce/miscellaneous/updateShipmentStatus'>here</a> to get the example payload. Also, refer to the <a href='/commerce/getting-started/oms-states/'>OMS States</a> for the complete status list. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateShipmentStatus/).
      */
     updateShipmentStatus({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>;
     /**

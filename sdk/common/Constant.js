@@ -47,6 +47,7 @@ const AVAILABLE_PAGE_TYPE = {
   RETURN_POLICY: "return-policy",
   ORDER_STATUS: "order-status",
   LOCATE_US: "locate-us",
+  SINGLE_PAGE_CHECKOUT: "single-page-checkout",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -333,6 +334,10 @@ const NAVIGATORS = {
   "locate-us": {
     name: "Locate us",
     link: "/locate-us",
+  },
+  "single-page-checkout": {
+    name: "Single Page Checkout",
+    link: "/cart/checkout",
   },
 };
 

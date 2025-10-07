@@ -367,8 +367,8 @@ const Joi = require("joi");
  * @property {CompareObject} [cart_quantity]
  * @property {string[]} [available_zones] - List of all zones on which promotion
  *   is applicable
- * @property {number[]} [item_exclude_company] - List of all company id on which
- *   promotion is not applicable
+ * @property {number[]} [item_exclude_company] - List of all company ids on
+ *   which promotion is not applicable
  * @property {number[]} [item_id] - List of all item ids on which promotion is applicable
  * @property {number[]} [item_l1_category] - List of all L1 category on which
  *   promotion is applicable
@@ -389,8 +389,8 @@ const Joi = require("joi");
  *   promotion is not applicable
  * @property {number[]} [item_department] - List of all departments ids on which
  *   promotion is applicable
- * @property {number[]} [item_exclude_store] - List of all item store ids on
- *   which promotion is not applicable
+ * @property {number[]} [item_exclude_store] - List of all store ids on which
+ *   promotion is not applicable
  * @property {number[]} [item_brand] - List of all brand ids on which promotion
  *   is applicable
  * @property {number[]} [item_exclude_department] - List of all department ids
@@ -415,9 +415,46 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DiscountItemCriteria
+ * @property {number[]} [item_store] - List of all store ids on which promotion
+ *   is applicable
+ * @property {number[]} [item_company] - List of all company ids on which
+ *   promotion is applicable
+ * @property {number[]} [item_brand] - List of all brand ids on which promotion
+ *   is applicable
+ * @property {number[]} [item_exclude_brand] - List of all brand ids on which
+ *   promotion is not applicable
+ * @property {number[]} [item_category] - List of all L3 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_category] - List of all L3 category on
+ *   which promotion is not applicable
+ * @property {number[]} [item_l1_category] - List of all L1 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_l1_category] - List of all item ids on
+ *   which promotion is not applicable
+ * @property {number[]} [item_l2_category] - List of all L2 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_l2_category] - List of all L2 category on
+ *   which promotion is not applicable
+ * @property {number[]} [item_department] - List of all departments ids on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_department] - List of all department ids
+ *   on which promotion is not applicable
+ * @property {number[]} [item_id] - List of all item ids on which promotion is applicable
+ * @property {number[]} [item_exclude_id] - List of all item ids on which
+ *   promotion is not applicable
+ * @property {string[]} [buy_rules] - Buy rules that apply to this discount
+ * @property {string[]} [available_zones] - List of all zones ids on which
+ *   promotion is applicable
+ * @property {string[]} [product_tags] - Product tags that qualify for the discount
+ * @property {boolean} [all_items] - Whether the discount applies to all items
+ */
+
+/**
  * @typedef DiscountOffer
  * @property {number} [max_discount_amount] - Maximum discount amount in promotion
- * @property {number} [discount_price] - Discount price in promotion
+ * @property {number} [discount_price] - Discount price which is price after
+ *   deducting discount amount in fixed price promotion
  * @property {boolean} [apportion_discount] - Flag to distribute discount for each article
  * @property {boolean} [partial_can_ret] - Flag indicated return the product partially
  * @property {number} [max_usage_per_transaction] - Maximum usage per
@@ -427,6 +464,8 @@ const Joi = require("joi");
  * @property {number} [discount_amount] - Discount amount in promotion
  * @property {number} [discount_percentage] - Discount percentage in promotion
  * @property {number} [max_offer_quantity] - Maximum quantity of product in promotion
+ * @property {number} [item_sequence_number] - Cart sequence number of item for
+ *   which offer is valid
  */
 
 /**
@@ -2650,16 +2689,30 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DiscountOfferRule
+ * @property {string} [discount_type] - Discount offer type of the promotion
+ * @property {DiscountOffer} [offer]
+ * @property {DiscountItemCriteria} [item_criteria]
+ * @property {string} [buy_condition] - Logical condition expression for buy rules
+ * @property {number} [discounted_price] - Price of product after applying this
+ *   discount rule of promotion. Note - returned only when store id is provided
+ *   in request params.
+ * @property {string[]} [matched_buy_rules] - List of buy rules that are
+ *   matching with item for this promotion
+ * @property {ItemSizeMapping} [meta]
+ */
+
+/**
  * @typedef PromotionOffer
  * @property {string} [id] - Promotion unique identifier
- * @property {Object} [buy_rules] - Buy rules of promotions
+ * @property {BuyRuleItemCriteria} [buy_rules]
  * @property {string} [offer_text] - Offer title of promotion that used to display
  * @property {string} [promotion_type] - Type of Promotion like percentage,
  *   amount, bogo etc.
  * @property {string} [promotion_name] - Name of the promotion
  * @property {string} [promotion_group] - Group of promotion belongs to
  * @property {string} [valid_till] - Datetime ISOString for promotion end date
- * @property {Object[]} [discount_rules] - Discount rules of promotions
+ * @property {DiscountOfferRule[]} [discount_rules] - Discount rules of promotions
  * @property {FreeGiftItems[]} [free_gift_items] - Details of free gift items
  * @property {string} [description] - Offer details including T&C
  */
@@ -3137,6 +3190,30 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {DiscountItemCriteria} */
+  static DiscountItemCriteria() {
+    return Joi.object({
+      item_store: Joi.array().items(Joi.number()),
+      item_company: Joi.array().items(Joi.number()),
+      item_brand: Joi.array().items(Joi.number()),
+      item_exclude_brand: Joi.array().items(Joi.number()),
+      item_category: Joi.array().items(Joi.number()),
+      item_exclude_category: Joi.array().items(Joi.number()),
+      item_l1_category: Joi.array().items(Joi.number()),
+      item_exclude_l1_category: Joi.array().items(Joi.number()),
+      item_l2_category: Joi.array().items(Joi.number()),
+      item_exclude_l2_category: Joi.array().items(Joi.number()),
+      item_department: Joi.array().items(Joi.number()),
+      item_exclude_department: Joi.array().items(Joi.number()),
+      item_id: Joi.array().items(Joi.number()),
+      item_exclude_id: Joi.array().items(Joi.number()),
+      buy_rules: Joi.array().items(Joi.string().allow("")),
+      available_zones: Joi.array().items(Joi.string().allow("")),
+      product_tags: Joi.array().items(Joi.string().allow("")),
+      all_items: Joi.boolean(),
+    });
+  }
+
   /** @returns {DiscountOffer} */
   static DiscountOffer() {
     return Joi.object({
@@ -3144,12 +3221,13 @@ class CartPlatformModel {
       discount_price: Joi.number(),
       apportion_discount: Joi.boolean(),
       partial_can_ret: Joi.boolean(),
-      max_usage_per_transaction: Joi.number().allow(null),
+      max_usage_per_transaction: Joi.number(),
       min_offer_quantity: Joi.number(),
       code: Joi.string().allow(""),
       discount_amount: Joi.number(),
       discount_percentage: Joi.number(),
       max_offer_quantity: Joi.number(),
+      item_sequence_number: Joi.number(),
     });
   }
 
@@ -5408,17 +5486,30 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {DiscountOfferRule} */
+  static DiscountOfferRule() {
+    return Joi.object({
+      discount_type: Joi.string().allow(""),
+      offer: CartPlatformModel.DiscountOffer(),
+      item_criteria: CartPlatformModel.DiscountItemCriteria(),
+      buy_condition: Joi.string().allow(""),
+      discounted_price: Joi.number(),
+      matched_buy_rules: Joi.array().items(Joi.string().allow("")),
+      meta: CartPlatformModel.ItemSizeMapping(),
+    });
+  }
+
   /** @returns {PromotionOffer} */
   static PromotionOffer() {
     return Joi.object({
       id: Joi.string().allow(""),
-      buy_rules: Joi.object().pattern(/\S/, Joi.any()),
+      buy_rules: CartPlatformModel.BuyRuleItemCriteria(),
       offer_text: Joi.string().allow(""),
       promotion_type: Joi.string().allow(""),
       promotion_name: Joi.string().allow(""),
       promotion_group: Joi.string().allow(""),
       valid_till: Joi.string().allow(""),
-      discount_rules: Joi.array().items(Joi.any()),
+      discount_rules: Joi.array().items(CartPlatformModel.DiscountOfferRule()),
       free_gift_items: Joi.array().items(CartPlatformModel.FreeGiftItems()),
       description: Joi.string().allow(""),
     });

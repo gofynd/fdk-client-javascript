@@ -765,7 +765,8 @@ const Joi = require("joi");
  *   | "shipping-policy"
  *   | "return-policy"
  *   | "order-status"
- *   | "locate-us"} PageType
+ *   | "locate-us"
+ *   | "single-page-checkout"} PageType
  */
 
 class ThemePartnerModel {
@@ -1774,7 +1775,9 @@ class ThemePartnerModel {
 
       "order-status",
 
-      "locate-us"
+      "locate-us",
+
+      "single-page-checkout"
     );
   }
 }

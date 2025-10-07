@@ -331,8 +331,8 @@ export = CartPlatformModel;
  * @property {CompareObject} [cart_quantity]
  * @property {string[]} [available_zones] - List of all zones on which promotion
  *   is applicable
- * @property {number[]} [item_exclude_company] - List of all company id on which
- *   promotion is not applicable
+ * @property {number[]} [item_exclude_company] - List of all company ids on
+ *   which promotion is not applicable
  * @property {number[]} [item_id] - List of all item ids on which promotion is applicable
  * @property {number[]} [item_l1_category] - List of all L1 category on which
  *   promotion is applicable
@@ -353,8 +353,8 @@ export = CartPlatformModel;
  *   promotion is not applicable
  * @property {number[]} [item_department] - List of all departments ids on which
  *   promotion is applicable
- * @property {number[]} [item_exclude_store] - List of all item store ids on
- *   which promotion is not applicable
+ * @property {number[]} [item_exclude_store] - List of all store ids on which
+ *   promotion is not applicable
  * @property {number[]} [item_brand] - List of all brand ids on which promotion
  *   is applicable
  * @property {number[]} [item_exclude_department] - List of all department ids
@@ -378,9 +378,45 @@ export = CartPlatformModel;
  * @property {ItemSizeMapping} [meta]
  */
 /**
+ * @typedef DiscountItemCriteria
+ * @property {number[]} [item_store] - List of all store ids on which promotion
+ *   is applicable
+ * @property {number[]} [item_company] - List of all company ids on which
+ *   promotion is applicable
+ * @property {number[]} [item_brand] - List of all brand ids on which promotion
+ *   is applicable
+ * @property {number[]} [item_exclude_brand] - List of all brand ids on which
+ *   promotion is not applicable
+ * @property {number[]} [item_category] - List of all L3 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_category] - List of all L3 category on
+ *   which promotion is not applicable
+ * @property {number[]} [item_l1_category] - List of all L1 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_l1_category] - List of all item ids on
+ *   which promotion is not applicable
+ * @property {number[]} [item_l2_category] - List of all L2 category on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_l2_category] - List of all L2 category on
+ *   which promotion is not applicable
+ * @property {number[]} [item_department] - List of all departments ids on which
+ *   promotion is applicable
+ * @property {number[]} [item_exclude_department] - List of all department ids
+ *   on which promotion is not applicable
+ * @property {number[]} [item_id] - List of all item ids on which promotion is applicable
+ * @property {number[]} [item_exclude_id] - List of all item ids on which
+ *   promotion is not applicable
+ * @property {string[]} [buy_rules] - Buy rules that apply to this discount
+ * @property {string[]} [available_zones] - List of all zones ids on which
+ *   promotion is applicable
+ * @property {string[]} [product_tags] - Product tags that qualify for the discount
+ * @property {boolean} [all_items] - Whether the discount applies to all items
+ */
+/**
  * @typedef DiscountOffer
  * @property {number} [max_discount_amount] - Maximum discount amount in promotion
- * @property {number} [discount_price] - Discount price in promotion
+ * @property {number} [discount_price] - Discount price which is price after
+ *   deducting discount amount in fixed price promotion
  * @property {boolean} [apportion_discount] - Flag to distribute discount for each article
  * @property {boolean} [partial_can_ret] - Flag indicated return the product partially
  * @property {number} [max_usage_per_transaction] - Maximum usage per
@@ -390,6 +426,8 @@ export = CartPlatformModel;
  * @property {number} [discount_amount] - Discount amount in promotion
  * @property {number} [discount_percentage] - Discount percentage in promotion
  * @property {number} [max_offer_quantity] - Maximum quantity of product in promotion
+ * @property {number} [item_sequence_number] - Cart sequence number of item for
+ *   which offer is valid
  */
 /**
  * @typedef DiscountRule
@@ -2440,16 +2478,29 @@ export = CartPlatformModel;
  * @property {string[]} [item_images_url] - List of free gift product images URL
  */
 /**
+ * @typedef DiscountOfferRule
+ * @property {string} [discount_type] - Discount offer type of the promotion
+ * @property {DiscountOffer} [offer]
+ * @property {DiscountItemCriteria} [item_criteria]
+ * @property {string} [buy_condition] - Logical condition expression for buy rules
+ * @property {number} [discounted_price] - Price of product after applying this
+ *   discount rule of promotion. Note - returned only when store id is provided
+ *   in request params.
+ * @property {string[]} [matched_buy_rules] - List of buy rules that are
+ *   matching with item for this promotion
+ * @property {ItemSizeMapping} [meta]
+ */
+/**
  * @typedef PromotionOffer
  * @property {string} [id] - Promotion unique identifier
- * @property {Object} [buy_rules] - Buy rules of promotions
+ * @property {BuyRuleItemCriteria} [buy_rules]
  * @property {string} [offer_text] - Offer title of promotion that used to display
  * @property {string} [promotion_type] - Type of Promotion like percentage,
  *   amount, bogo etc.
  * @property {string} [promotion_name] - Name of the promotion
  * @property {string} [promotion_group] - Group of promotion belongs to
  * @property {string} [valid_till] - Datetime ISOString for promotion end date
- * @property {Object[]} [discount_rules] - Discount rules of promotions
+ * @property {DiscountOfferRule[]} [discount_rules] - Discount rules of promotions
  * @property {FreeGiftItems[]} [free_gift_items] - Details of free gift items
  * @property {string} [description] - Offer details including T&C
  */
@@ -2495,7 +2546,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OrderingSource };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OrderingSource };
 }
 /** @returns {RedeemLoyaltyPoints} */
 declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
@@ -3286,8 +3337,8 @@ type BuyRuleItemCriteria = {
      */
     available_zones?: string[];
     /**
-     * - List of all company id on which
-     * promotion is not applicable
+     * - List of all company ids on
+     * which promotion is not applicable
      */
     item_exclude_company?: number[];
     /**
@@ -3338,8 +3389,8 @@ type BuyRuleItemCriteria = {
      */
     item_department?: number[];
     /**
-     * - List of all item store ids on
-     * which promotion is not applicable
+     * - List of all store ids on which
+     * promotion is not applicable
      */
     item_exclude_store?: number[];
     /**
@@ -3394,6 +3445,96 @@ type BuyRuleItemCriteria = {
     item_sku?: string[];
     meta?: ItemSizeMapping;
 };
+/** @returns {DiscountItemCriteria} */
+declare function DiscountItemCriteria(): DiscountItemCriteria;
+type DiscountItemCriteria = {
+    /**
+     * - List of all store ids on which promotion
+     * is applicable
+     */
+    item_store?: number[];
+    /**
+     * - List of all company ids on which
+     * promotion is applicable
+     */
+    item_company?: number[];
+    /**
+     * - List of all brand ids on which promotion
+     * is applicable
+     */
+    item_brand?: number[];
+    /**
+     * - List of all brand ids on which
+     * promotion is not applicable
+     */
+    item_exclude_brand?: number[];
+    /**
+     * - List of all L3 category on which
+     * promotion is applicable
+     */
+    item_category?: number[];
+    /**
+     * - List of all L3 category on
+     * which promotion is not applicable
+     */
+    item_exclude_category?: number[];
+    /**
+     * - List of all L1 category on which
+     * promotion is applicable
+     */
+    item_l1_category?: number[];
+    /**
+     * - List of all item ids on
+     * which promotion is not applicable
+     */
+    item_exclude_l1_category?: number[];
+    /**
+     * - List of all L2 category on which
+     * promotion is applicable
+     */
+    item_l2_category?: number[];
+    /**
+     * - List of all L2 category on
+     * which promotion is not applicable
+     */
+    item_exclude_l2_category?: number[];
+    /**
+     * - List of all departments ids on which
+     * promotion is applicable
+     */
+    item_department?: number[];
+    /**
+     * - List of all department ids
+     * on which promotion is not applicable
+     */
+    item_exclude_department?: number[];
+    /**
+     * - List of all item ids on which promotion is applicable
+     */
+    item_id?: number[];
+    /**
+     * - List of all item ids on which
+     * promotion is not applicable
+     */
+    item_exclude_id?: number[];
+    /**
+     * - Buy rules that apply to this discount
+     */
+    buy_rules?: string[];
+    /**
+     * - List of all zones ids on which
+     * promotion is applicable
+     */
+    available_zones?: string[];
+    /**
+     * - Product tags that qualify for the discount
+     */
+    product_tags?: string[];
+    /**
+     * - Whether the discount applies to all items
+     */
+    all_items?: boolean;
+};
 /** @returns {DiscountOffer} */
 declare function DiscountOffer(): DiscountOffer;
 type DiscountOffer = {
@@ -3402,7 +3543,8 @@ type DiscountOffer = {
      */
     max_discount_amount?: number;
     /**
-     * - Discount price in promotion
+     * - Discount price which is price after
+     * deducting discount amount in fixed price promotion
      */
     discount_price?: number;
     /**
@@ -3438,6 +3580,11 @@ type DiscountOffer = {
      * - Maximum quantity of product in promotion
      */
     max_offer_quantity?: number;
+    /**
+     * - Cart sequence number of item for
+     * which offer is valid
+     */
+    item_sequence_number?: number;
 };
 /** @returns {DiscountRule} */
 declare function DiscountRule(): DiscountRule;
@@ -8614,6 +8761,32 @@ type FreeGiftItems = {
      */
     item_images_url?: string[];
 };
+/** @returns {DiscountOfferRule} */
+declare function DiscountOfferRule(): DiscountOfferRule;
+type DiscountOfferRule = {
+    /**
+     * - Discount offer type of the promotion
+     */
+    discount_type?: string;
+    offer?: DiscountOffer;
+    item_criteria?: DiscountItemCriteria;
+    /**
+     * - Logical condition expression for buy rules
+     */
+    buy_condition?: string;
+    /**
+     * - Price of product after applying this
+     * discount rule of promotion. Note - returned only when store id is provided
+     * in request params.
+     */
+    discounted_price?: number;
+    /**
+     * - List of buy rules that are
+     * matching with item for this promotion
+     */
+    matched_buy_rules?: string[];
+    meta?: ItemSizeMapping;
+};
 /** @returns {PromotionOffer} */
 declare function PromotionOffer(): PromotionOffer;
 type PromotionOffer = {
@@ -8621,10 +8794,7 @@ type PromotionOffer = {
      * - Promotion unique identifier
      */
     id?: string;
-    /**
-     * - Buy rules of promotions
-     */
-    buy_rules?: any;
+    buy_rules?: BuyRuleItemCriteria;
     /**
      * - Offer title of promotion that used to display
      */
@@ -8649,7 +8819,7 @@ type PromotionOffer = {
     /**
      * - Discount rules of promotions
      */
-    discount_rules?: any[];
+    discount_rules?: DiscountOfferRule[];
     /**
      * - Details of free gift items
      */

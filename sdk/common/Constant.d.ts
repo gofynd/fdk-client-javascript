@@ -47,6 +47,7 @@ export namespace AVAILABLE_PAGE_TYPE {
     const RETURN_POLICY: string;
     const ORDER_STATUS: string;
     const LOCATE_US: string;
+    const SINGLE_PAGE_CHECKOUT: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -298,6 +299,10 @@ export const NAVIGATORS: {
         link: string;
     };
     "locate-us": {
+        name: string;
+        link: string;
+    };
+    "single-page-checkout": {
         name: string;
         link: string;
     };
