@@ -36,14 +36,36 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef CreateAccountParam
+ * @property {OrderPlatformModel.CreateAccount} body
+ */
+
+/**
  * @typedef CreateChannelConfigParam
  * @property {OrderPlatformModel.CreateChannelConfigData} body
  */
 
 /**
  * @typedef CreateOrderParam
- * @property {OrderPlatformModel.OrderingSource} [xOrderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} xOrderingSource - To uniquely identify the source through
+ *   which order has been placed.
+ * @property {string} [xApplicationId] - Application id
+ * @property {string} [xExtensionId] - Extension id
+ * @property {OrderPlatformModel.CreateOrderRequestSchema} body
+ */
+
+/**
+ * @typedef CreateOrderDeprecatedParam
+ * @property {string} xOrderingSource - To uniquely identify the source through
+ *   which order has been placed.
+ * @property {string} [xApplicationId] - The Application ID is a unique
+ *   identifier assigned to a storefront that typically follows a 24-character
+ *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
+ *   mandatory. At least one of them must be provided.
+ * @property {string} [xExtensionId] - The Extension ID is a unique identifier
+ *   assigned to an extension that typically follows a 24-character hexadecimal
+ *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
+ *   At least one of them must be provided.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 
@@ -105,12 +127,18 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetAccountByIdParam
+ * @property {string} channelAccountId - Unique identifier of the channel
+ *   account to retrieve.
+ */
+
+/**
  * @typedef GetAllowedStateTransitionParam
  * @property {string} [orderingChannel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {OrderPlatformModel.OrderingSource} [orderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -311,6 +339,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   Listing Orders, This is use when we want to get list of shipments or orders
  *   by cross store or cross company or fulfilling Store (by default), this is
  *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -419,14 +451,18 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   Listing Orders, This is use when we want to get list of shipments or orders
  *   by cross store or cross company or fulfilling Store (by default), this is
  *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
  */
 
 /**
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
- * @property {OrderPlatformModel.OrderingSource} [orderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 
@@ -452,6 +488,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef JobDetailsParam
  * @property {string} batchId - A unique identifier for the batch associated
  *   with this bulk action.
+ */
+
+/**
+ * @typedef ListAccountsParam
+ * @property {number} [page] - The page number to retrieve in the paginated
+ *   results. Default is page 1.
+ * @property {number} [size] - Number of channel accounts to return per page.
+ *   Default is 20 items per page.
  */
 
 /**
@@ -485,6 +529,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [awb] - AWB number
  * @property {number} [pageNo] - Page number for pagination.
  * @property {number} [pageSize] - Number of records per page for pagination.
+ */
+
+/**
+ * @typedef UpdateAccountParam
+ * @property {string} channelAccountId - Unique identifier of the account.
+ * @property {OrderPlatformModel.CreateAccount} body
  */
 
 /**
@@ -570,6 +620,13 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {CreateAccountParam} */
+  static createAccount() {
+    return Joi.object({
+      body: OrderPlatformModel.CreateAccount().required(),
+    }).required();
+  }
+
   /** @returns {CreateChannelConfigParam} */
   static createChannelConfig() {
     return Joi.object({
@@ -580,7 +637,19 @@ class OrderPlatformValidator {
   /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
-      xOrderingSource: OrderPlatformModel.OrderingSource(),
+      xOrderingSource: Joi.string().allow("").required(),
+      xApplicationId: Joi.string().allow(""),
+      xExtensionId: Joi.string().allow(""),
+      body: OrderPlatformModel.CreateOrderRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {CreateOrderDeprecatedParam} */
+  static createOrderDeprecated() {
+    return Joi.object({
+      xOrderingSource: Joi.string().allow("").required(),
+      xApplicationId: Joi.string().allow(""),
+      xExtensionId: Joi.string().allow(""),
       body: OrderPlatformModel.CreateOrderAPI().required(),
     }).required();
   }
@@ -662,11 +731,18 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetAccountByIdParam} */
+  static getAccountById() {
+    return Joi.object({
+      channelAccountId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetAllowedStateTransitionParam} */
   static getAllowedStateTransition() {
     return Joi.object({
       orderingChannel: Joi.string().allow(""),
-      orderingSource: OrderPlatformModel.OrderingSource(),
+      orderingSource: Joi.string().allow(""),
       status: Joi.string().allow("").required(),
     }).required();
   }
@@ -858,6 +934,8 @@ class OrderPlatformValidator {
       groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
       fulfillmentType: Joi.string().allow(""),
+      orderingSource: Joi.string().allow(""),
+      channelAccountId: Joi.string().allow(""),
     }).required();
   }
 
@@ -933,6 +1011,8 @@ class OrderPlatformValidator {
       groupEntity: Joi.string().allow(""),
       enforceDateFilter: Joi.boolean(),
       fulfillmentType: Joi.string().allow(""),
+      orderingSource: Joi.string().allow(""),
+      channelAccountId: Joi.string().allow(""),
     }).required();
   }
 
@@ -941,7 +1021,7 @@ class OrderPlatformValidator {
     return Joi.object({
       appId: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
-      orderingSource: OrderPlatformModel.OrderingSource(),
+      orderingSource: Joi.string().allow(""),
       entity: Joi.string().allow(""),
     }).required();
   }
@@ -977,6 +1057,14 @@ class OrderPlatformValidator {
   static jobDetails() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {ListAccountsParam} */
+  static listAccounts() {
+    return Joi.object({
+      page: Joi.number(),
+      size: Joi.number(),
     }).required();
   }
 
@@ -1022,6 +1110,14 @@ class OrderPlatformValidator {
       awb: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {UpdateAccountParam} */
+  static updateAccount() {
+    return Joi.object({
+      channelAccountId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.CreateAccount().required(),
     }).required();
   }
 

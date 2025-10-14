@@ -19,7 +19,8 @@ declare class Catalog {
         getHomeProducts: string;
         getInStockLocations: string;
         getLocationDetailsById: string;
-        getProductBundlesBySlug: string;
+        getProductBundleItems: string;
+        getProductBundlesByChildSku: string;
         getProductComparisonBySlugs: string;
         getProductDetailBySlug: string;
         getProductPriceBySlug: string;
@@ -292,12 +293,21 @@ declare class Catalog {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ProductBundle>} - Success response
-     * @name getProductBundlesBySlug
-     * @summary: List product bundles
-     * @description: Get products bundles to the one specified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundlesBySlug/).
+     * @returns {Promise<ProductBundleItems>} - Success response
+     * @name getProductBundleItems
+     * @summary: Get children for a bundled product
+     * @description: Retrieve bundle children for a given bundled product slug with pricing, brand, media, and seller information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundleItems/).
      */
-    getProductBundlesBySlug({ slug, id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ProductBundle>;
+    getProductBundleItems({ slug, pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductBundleItems>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ProductBundleItemsWithSlug>} - Success response
+     * @name getProductBundlesByChildSku
+     * @summary: Get bundled items for a specific product size
+     * @description: Retrieve bundled items for a given product slug and size with pricing, brand, media, and seller information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundlesByChildSku/).
+     */
+    getProductBundlesByChildSku({ slug, size, pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductBundleItemsWithSlug>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

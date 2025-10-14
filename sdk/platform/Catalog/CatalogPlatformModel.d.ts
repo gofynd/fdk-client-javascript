@@ -1755,51 +1755,6 @@ export = CatalogPlatformModel;
  * @property {Page} page
  */
 /**
- * @typedef GetProductBundleCreateResponseSchema
- * @property {string} choice - Specifies the type of bundle, e.g., single or multi.
- * @property {number} [company_id] - Unique identifier for the company that owns
- *   the product bundle.
- * @property {CreatedBy} [created_by]
- * @property {string} [created_on] - Timestamp when the product bundle was created.
- * @property {string} [id] - Unique identifier for the product bundle.
- * @property {boolean} is_active - Indicates if the product bundle is active or not.
- * @property {string} [logo] - URL of the product bundle's logo, or null if not available.
- * @property {Object} [meta] - Additional metadata about the product bundle.
- * @property {ModifiedBy} [modified_by]
- * @property {string} [modified_on] - Timestamp when the product bundle was last modified.
- * @property {string} name - Name of the product bundle.
- * @property {string[]} [page_visibility] - Visibility settings for the product
- *   bundle across different pages.
- * @property {ProductBundleItem[]} products - List of products that are part of
- *   the product bundle.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle belong to the same store.
- * @property {string} slug - Unique slug used to identify the product bundle in URLs.
- */
-/**
- * @typedef GetProductBundleListingResponseSchema
- * @property {GetProductBundleCreateResponseSchema[]} [items] - List of product
- *   bundles that are returned in the response.
- * @property {Page} [page]
- */
-/**
- * @typedef GetProductBundleResponseSchema
- * @property {string} [choice] - Specifies the type of product bundle, e.g.,
- *   'single' or 'multi'.
- * @property {number} [company_id] - The unique identifier of the company that
- *   owns the product bundle.
- * @property {boolean} [is_active] - Indicates whether the product bundle is active.
- * @property {string} [logo] - URL of the logo associated with the product bundle.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {string} [name] - The name of the product bundle.
- * @property {string[]} [page_visibility] - List of pages where the product
- *   bundle is visible, e.g., 'pdp'.
- * @property {GetProducts[]} [products] - A list of products included in the bundle.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} [slug] - Unique URL-friendly identifier for the product bundle.
- */
-/**
  * @typedef GetProducts
  * @property {boolean} [allow_remove] - Indicates whether the product can be
  *   removed from the bundle.
@@ -2646,6 +2601,13 @@ export = CatalogPlatformModel;
  *   a link to an image or video resource.
  */
 /**
+ * @typedef BundleDetails
+ * @property {string} seller_identifier - Seller identifier of child sku.
+ * @property {number} net_quantity - The net quantity of the product in the bundle.
+ * @property {boolean} [is_base] - Indicates whether this product is the base
+ *   product in the bundle.
+ */
+/**
  * @typedef Meta
  * @property {Object} [headers]
  * @property {string} [unit]
@@ -2977,184 +2939,9 @@ export = CatalogPlatformModel;
  * @property {Page} [page]
  */
 /**
- * @typedef ProductBundleItem
- * @property {boolean} [allow_remove] - Indicates whether the product can be
- *   removed from the bundle.
- * @property {boolean} [auto_add_to_cart] - Specifies if the product is
- *   automatically added to the cart.
- * @property {boolean} [auto_select] - Indicates if the product is automatically
- *   selected in the bundle.
- * @property {number} max_quantity - Maximum quantity of the product that can be
- *   added to the bundle.
- * @property {number} min_quantity - Minimum quantity of the product that must
- *   be added to the bundle.
- * @property {number} product_uid - Unique identifier for the product.
- */
-/**
- * @typedef ProductBundleRequestSchema
- * @property {string} choice - Specifies the type of product bundle (e.g.,
- *   'single' or 'multi').
- * @property {number} [company_id] - The unique identifier of the company to
- *   which the product bundle belongs.
- * @property {Object} [created_by] - Information about the user who created the
- *   product bundle, including user ID and username.
- * @property {string} [created_on] - The timestamp when the product bundle was created.
- * @property {boolean} is_active - Indicates whether the product bundle is
- *   currently active.
- * @property {string} [logo] - URL of the logo associated with the product
- *   bundle, if available. Can be null.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {Object} [modified_by] - Information about the user who last
- *   modified the product bundle, including user ID and username.
- * @property {string} [modified_on] - The timestamp when the product bundle was
- *   last modified.
- * @property {string} name - The name of the product bundle.
- * @property {string[]} [page_visibility] - Pages where the product bundle is
- *   visible (e.g., 'pdp' for product display page).
- * @property {ProductBundleItem[]} products - A list of products included in the
- *   bundle. A maximum of 10 products can be added.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} slug - A URL-friendly unique identifier for the product bundle.
- */
-/**
- * @typedef ProductBundleUpdateRequestSchema
- * @property {string} choice - Specifies the type of product bundle (e.g.,
- *   'single' or 'multi').
- * @property {number} [company_id] - The unique identifier of the company to
- *   which the product bundle belongs.
- * @property {boolean} is_active - Indicates whether the product bundle is
- *   currently active.
- * @property {string} [logo] - URL of the logo associated with the product
- *   bundle, if available. Can be null.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {string} name - The name of the product bundle.
- * @property {string[]} [page_visibility] - Pages where the product bundle is
- *   visible (e.g., 'pdp' for product display page).
- * @property {ProductBundleItem[]} products - A list of products included in the
- *   bundle. A maximum of 10 products can be added.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} slug - A URL-friendly unique identifier for the product bundle.
- */
-/**
  * @typedef ProductConfigurationDownloads
  * @property {Object[]} [data]
  * @property {boolean} [multivalue]
- */
-/**
- * @typedef ProductUpdateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {string} [hs_code] - HS Code for the product.
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
- * @property {number} [uid] - Unique identifier for the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
- */
-/**
- * @typedef ProductCreateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
  */
 /**
  * @typedef ProductCreateSchemaV3
@@ -3183,8 +2970,11 @@ export = CatalogPlatformModel;
  *   does not have associated images.
  * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
  * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
+ * @property {string} item_type - Specifies the type of product, such as
+ *   standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+ *   bundle types (virtual_bundle or physical_bundle), use the category,
+ *   department, and brand of the base child SKU. In this case, attributes are
+ *   optional. The bundle_details attribute must be included for bundle types.
  * @property {Media[]} [media] - List of media URLs (images, videos) associated
  *   with the product.
  * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
@@ -3213,6 +3003,8 @@ export = CatalogPlatformModel;
  * @property {Object} [variants] - Variants information for the product.
  * @property {string} [hs_code] - HS Code for the product. This is required for
  *   indian companies.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle.
  */
 /**
  * @typedef ProductUpdateSchemaV3
@@ -3241,8 +3033,11 @@ export = CatalogPlatformModel;
  *   does not have associated images.
  * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
  * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
+ * @property {string} item_type - Specifies the type of product, such as
+ *   standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+ *   bundle types (virtual_bundle or physical_bundle), use the category,
+ *   department, and brand of the base child SKU. In this case, attributes are
+ *   optional. The bundle_details attribute must be included for bundle types.
  * @property {Media[]} [media] - List of media URLs (images, videos) associated
  *   with the product.
  * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
@@ -3272,6 +3067,65 @@ export = CatalogPlatformModel;
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle. This will have child skus along with
+ *   net quantity used in bundle formation.
+ */
+/**
+ * @typedef ProductPatchSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {string} [country_of_origin] - The country where the product was
+ *   manufactured or sourced.
+ * @property {CustomOrder} [custom_order]
+ * @property {string} [description] - A detailed description of the product.
+ *   Provide base64 encoded value in input.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} [name] - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {ReturnConfig} [return_config]
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {ProductSizePatch[]} [sizes] - List of sizes available for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} [tax_identifier]
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} [template_tag] - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} [trader] - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ */
+/**
+ * @typedef ProductSizePatch
+ * @property {number} [item_width] - Width of the item in the specified dimension unit.
+ * @property {number} [item_height] - Height of the item in the specified dimension unit.
+ * @property {number} [item_weight] - Weight of the item in the specified weight unit.
+ * @property {number} [price] - Listed price of the product before discounts.
+ * @property {boolean} [track_inventory] - Indicates whether inventory tracking
+ *   is enabled for this item.
+ * @property {Object} [_custom_json] - Custom attributes or additional metadata
+ *   for the product.
+ * @property {string} [seller_identifier] - Unique identifier assigned by the
+ *   seller for this product or size variant.
+ * @property {number} [item_length] - Length of the item in the specified dimension unit.
+ * @property {number} [price_effective] - Effective or discounted price after
+ *   applying promotions.
  */
 /**
  * @typedef ProductDetail
@@ -3656,6 +3510,9 @@ export = CatalogPlatformModel;
  *   typically used in business transactions.
  * @property {boolean} [track_inventory] - Indicates if inventory is being
  *   tracked for this size.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle. This will have child skus along with
+ *   net quantity used in bundle formation.
  */
 /**
  * @typedef ProductSchemaV2
@@ -3713,7 +3570,8 @@ export = CatalogPlatformModel;
  * @property {string} [item_code] - Unique code used to identify the product,
  *   often used internally or by sellers.
  * @property {string} [item_type] - Describes the type of product (e.g.,
- *   "standard" or "set").
+ *   "standard" or "set"). In case of bundle items type will be
+ *   ("virtual_bundle" or "physical_bundle")
  * @property {string[]} [l3_mapping] - Hierarchical mapping of the product to
  *   categories (e.g., "electronics>qled_television").
  * @property {Media[]} [media] - Media assets associated with the product, such
@@ -4799,7 +4657,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProductBundleCreateResponseSchema, GetProductBundleListingResponseSchema, GetProductBundleResponseSchema, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductBundleItem, ProductBundleRequestSchema, ProductBundleUpdateRequestSchema, ProductConfigurationDownloads, ProductUpdateSchemaV2, ProductCreateSchemaV2, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
+    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponseSchema, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -8391,126 +8249,6 @@ type GetOptInPlatform = {
     items: CompanyOptIn[];
     page: Page;
 };
-/** @returns {GetProductBundleCreateResponseSchema} */
-declare function GetProductBundleCreateResponseSchema(): GetProductBundleCreateResponseSchema;
-type GetProductBundleCreateResponseSchema = {
-    /**
-     * - Specifies the type of bundle, e.g., single or multi.
-     */
-    choice: string;
-    /**
-     * - Unique identifier for the company that owns
-     * the product bundle.
-     */
-    company_id?: number;
-    created_by?: CreatedBy;
-    /**
-     * - Timestamp when the product bundle was created.
-     */
-    created_on?: string;
-    /**
-     * - Unique identifier for the product bundle.
-     */
-    id?: string;
-    /**
-     * - Indicates if the product bundle is active or not.
-     */
-    is_active: boolean;
-    /**
-     * - URL of the product bundle's logo, or null if not available.
-     */
-    logo?: string;
-    /**
-     * - Additional metadata about the product bundle.
-     */
-    meta?: any;
-    modified_by?: ModifiedBy;
-    /**
-     * - Timestamp when the product bundle was last modified.
-     */
-    modified_on?: string;
-    /**
-     * - Name of the product bundle.
-     */
-    name: string;
-    /**
-     * - Visibility settings for the product
-     * bundle across different pages.
-     */
-    page_visibility?: string[];
-    /**
-     * - List of products that are part of
-     * the product bundle.
-     */
-    products: ProductBundleItem[];
-    /**
-     * - Indicates whether all products
-     * in the bundle belong to the same store.
-     */
-    same_store_assignment?: boolean;
-    /**
-     * - Unique slug used to identify the product bundle in URLs.
-     */
-    slug: string;
-};
-/** @returns {GetProductBundleListingResponseSchema} */
-declare function GetProductBundleListingResponseSchema(): GetProductBundleListingResponseSchema;
-type GetProductBundleListingResponseSchema = {
-    /**
-     * - List of product
-     * bundles that are returned in the response.
-     */
-    items?: GetProductBundleCreateResponseSchema[];
-    page?: Page;
-};
-/** @returns {GetProductBundleResponseSchema} */
-declare function GetProductBundleResponseSchema(): GetProductBundleResponseSchema;
-type GetProductBundleResponseSchema = {
-    /**
-     * - Specifies the type of product bundle, e.g.,
-     * 'single' or 'multi'.
-     */
-    choice?: string;
-    /**
-     * - The unique identifier of the company that
-     * owns the product bundle.
-     */
-    company_id?: number;
-    /**
-     * - Indicates whether the product bundle is active.
-     */
-    is_active?: boolean;
-    /**
-     * - URL of the logo associated with the product bundle.
-     */
-    logo?: string;
-    /**
-     * - Additional metadata for the product bundle.
-     */
-    meta?: any;
-    /**
-     * - The name of the product bundle.
-     */
-    name?: string;
-    /**
-     * - List of pages where the product
-     * bundle is visible, e.g., 'pdp'.
-     */
-    page_visibility?: string[];
-    /**
-     * - A list of products included in the bundle.
-     */
-    products?: GetProducts[];
-    /**
-     * - Indicates whether all products
-     * in the bundle are assigned to the same store.
-     */
-    same_store_assignment?: boolean;
-    /**
-     * - Unique URL-friendly identifier for the product bundle.
-     */
-    slug?: string;
-};
 /** @returns {GetProducts} */
 declare function GetProducts(): GetProducts;
 type GetProducts = {
@@ -10437,6 +10175,23 @@ type BrandMedia = {
      */
     url?: string;
 };
+/** @returns {BundleDetails} */
+declare function BundleDetails(): BundleDetails;
+type BundleDetails = {
+    /**
+     * - Seller identifier of child sku.
+     */
+    seller_identifier: string;
+    /**
+     * - The net quantity of the product in the bundle.
+     */
+    net_quantity: number;
+    /**
+     * - Indicates whether this product is the base
+     * product in the bundle.
+     */
+    is_base?: boolean;
+};
 /** @returns {Meta} */
 declare function Meta(): Meta;
 type Meta = {
@@ -11105,497 +10860,11 @@ type ProductBulkRequestList = {
     items?: any;
     page?: Page;
 };
-/** @returns {ProductBundleItem} */
-declare function ProductBundleItem(): ProductBundleItem;
-type ProductBundleItem = {
-    /**
-     * - Indicates whether the product can be
-     * removed from the bundle.
-     */
-    allow_remove?: boolean;
-    /**
-     * - Specifies if the product is
-     * automatically added to the cart.
-     */
-    auto_add_to_cart?: boolean;
-    /**
-     * - Indicates if the product is automatically
-     * selected in the bundle.
-     */
-    auto_select?: boolean;
-    /**
-     * - Maximum quantity of the product that can be
-     * added to the bundle.
-     */
-    max_quantity: number;
-    /**
-     * - Minimum quantity of the product that must
-     * be added to the bundle.
-     */
-    min_quantity: number;
-    /**
-     * - Unique identifier for the product.
-     */
-    product_uid: number;
-};
-/** @returns {ProductBundleRequestSchema} */
-declare function ProductBundleRequestSchema(): ProductBundleRequestSchema;
-type ProductBundleRequestSchema = {
-    /**
-     * - Specifies the type of product bundle (e.g.,
-     * 'single' or 'multi').
-     */
-    choice: string;
-    /**
-     * - The unique identifier of the company to
-     * which the product bundle belongs.
-     */
-    company_id?: number;
-    /**
-     * - Information about the user who created the
-     * product bundle, including user ID and username.
-     */
-    created_by?: any;
-    /**
-     * - The timestamp when the product bundle was created.
-     */
-    created_on?: string;
-    /**
-     * - Indicates whether the product bundle is
-     * currently active.
-     */
-    is_active: boolean;
-    /**
-     * - URL of the logo associated with the product
-     * bundle, if available. Can be null.
-     */
-    logo?: string;
-    /**
-     * - Additional metadata for the product bundle.
-     */
-    meta?: any;
-    /**
-     * - Information about the user who last
-     * modified the product bundle, including user ID and username.
-     */
-    modified_by?: any;
-    /**
-     * - The timestamp when the product bundle was
-     * last modified.
-     */
-    modified_on?: string;
-    /**
-     * - The name of the product bundle.
-     */
-    name: string;
-    /**
-     * - Pages where the product bundle is
-     * visible (e.g., 'pdp' for product display page).
-     */
-    page_visibility?: string[];
-    /**
-     * - A list of products included in the
-     * bundle. A maximum of 10 products can be added.
-     */
-    products: ProductBundleItem[];
-    /**
-     * - Indicates whether all products
-     * in the bundle are assigned to the same store.
-     */
-    same_store_assignment?: boolean;
-    /**
-     * - A URL-friendly unique identifier for the product bundle.
-     */
-    slug: string;
-};
-/** @returns {ProductBundleUpdateRequestSchema} */
-declare function ProductBundleUpdateRequestSchema(): ProductBundleUpdateRequestSchema;
-type ProductBundleUpdateRequestSchema = {
-    /**
-     * - Specifies the type of product bundle (e.g.,
-     * 'single' or 'multi').
-     */
-    choice: string;
-    /**
-     * - The unique identifier of the company to
-     * which the product bundle belongs.
-     */
-    company_id?: number;
-    /**
-     * - Indicates whether the product bundle is
-     * currently active.
-     */
-    is_active: boolean;
-    /**
-     * - URL of the logo associated with the product
-     * bundle, if available. Can be null.
-     */
-    logo?: string;
-    /**
-     * - Additional metadata for the product bundle.
-     */
-    meta?: any;
-    /**
-     * - The name of the product bundle.
-     */
-    name: string;
-    /**
-     * - Pages where the product bundle is
-     * visible (e.g., 'pdp' for product display page).
-     */
-    page_visibility?: string[];
-    /**
-     * - A list of products included in the
-     * bundle. A maximum of 10 products can be added.
-     */
-    products: ProductBundleItem[];
-    /**
-     * - Indicates whether all products
-     * in the bundle are assigned to the same store.
-     */
-    same_store_assignment?: boolean;
-    /**
-     * - A URL-friendly unique identifier for the product bundle.
-     */
-    slug: string;
-};
 /** @returns {ProductConfigurationDownloads} */
 declare function ProductConfigurationDownloads(): ProductConfigurationDownloads;
 type ProductConfigurationDownloads = {
     data?: any[];
     multivalue?: boolean;
-};
-/** @returns {ProductUpdateSchemaV2} */
-declare function ProductUpdateSchemaV2(): ProductUpdateSchemaV2;
-type ProductUpdateSchemaV2 = {
-    /**
-     * - Custom JSON data that can be used for
-     * additional product properties.
-     */
-    _custom_json?: any;
-    /**
-     * - The action to perform wrt to the product (e.g.,
-     * upsert, update, delete).
-     */
-    action?: string;
-    /**
-     * - Additional attributes related to the product.
-     */
-    attributes?: any;
-    /**
-     * - Unique identifier for the product's brand.
-     */
-    brand_uid: number;
-    /**
-     * - Job ID associated with bulk operations.
-     */
-    bulk_job_id?: string;
-    /**
-     * - The category to which the product belongs.
-     */
-    category_slug: string;
-    /**
-     * - Change request identifier for product updates.
-     */
-    change_request_id?: string;
-    /**
-     * - Unique identifier for the company associated
-     * with the product.
-     */
-    company_id: number;
-    /**
-     * - The country where the product was
-     * manufactured or sourced.
-     */
-    country_of_origin: string;
-    /**
-     * - The currency in which the product's price is listed.
-     */
-    currency: string;
-    custom_order?: CustomOrder;
-    /**
-     * - List of department IDs associated with the product.
-     */
-    departments: number[];
-    /**
-     * - A detailed description of the product.
-     */
-    description?: string;
-    /**
-     * - Product highlights or key features.
-     */
-    highlights?: string[];
-    /**
-     * - Flag to indicate if the product is active.
-     */
-    is_active?: boolean;
-    /**
-     * - Flag to indicate if the product is
-     * dependent on other products.
-     */
-    is_dependent?: boolean;
-    /**
-     * - Flag to indicate if the product
-     * does not have associated images.
-     */
-    is_image_less_product?: boolean;
-    /**
-     * - Flag to indicate if the product is part of a set.
-     */
-    is_set?: boolean;
-    /**
-     * - Unique item code or SKU of the product.
-     */
-    item_code: string;
-    /**
-     * - Type of the product (e.g., standard, set,
-     * composite, digital).
-     */
-    item_type: string;
-    /**
-     * - List of media URLs (images, videos) associated
-     * with the product.
-     */
-    media?: Media[];
-    /**
-     * - Indicates if the product supports multiple sizes.
-     */
-    multi_size?: boolean;
-    /**
-     * - The name of the product.
-     */
-    name: string;
-    net_quantity?: NetQuantity;
-    /**
-     * - Number of boxes required to package the product.
-     */
-    no_of_boxes?: number;
-    /**
-     * - Tags to group products together
-     * for classification.
-     */
-    product_group_tag?: string[];
-    product_publish?: ProductPublish;
-    /**
-     * - The role requesting the product operation
-     * (admin or user).
-     */
-    requester?: string;
-    return_config: ReturnConfig;
-    /**
-     * - A short description of the product,
-     * up to 50 characters.
-     */
-    short_description?: string;
-    /**
-     * - Identifier for the product's size guide.
-     */
-    size_guide?: string;
-    /**
-     * - List of sizes available for the product.
-     */
-    sizes: any[];
-    /**
-     * - URL-friendly identifier for the product.
-     */
-    slug: string;
-    /**
-     * - List of tags associated with the product.
-     */
-    tags?: string[];
-    tax_identifier: TaxIdentifier;
-    /**
-     * - HS Code for the product.
-     */
-    hs_code?: string;
-    teaser_tag?: TeaserTag;
-    /**
-     * - Template tag for the product, used for
-     * classification.
-     */
-    template_tag: string;
-    /**
-     * - List of traders associated with the product.
-     */
-    trader: Trader[];
-    /**
-     * - Unique identifier for the product.
-     */
-    uid?: number;
-    /**
-     * - Variant group information for the product.
-     */
-    variant_group?: any;
-    /**
-     * - Media related to product variants.
-     */
-    variant_media?: any;
-    /**
-     * - Variants information for the product.
-     */
-    variants?: any;
-};
-/** @returns {ProductCreateSchemaV2} */
-declare function ProductCreateSchemaV2(): ProductCreateSchemaV2;
-type ProductCreateSchemaV2 = {
-    /**
-     * - Custom JSON data that can be used for
-     * additional product properties.
-     */
-    _custom_json?: any;
-    /**
-     * - The action to perform wrt to the product (e.g.,
-     * upsert, update, delete).
-     */
-    action?: string;
-    /**
-     * - Additional attributes related to the product.
-     */
-    attributes?: any;
-    /**
-     * - Unique identifier for the product's brand.
-     */
-    brand_uid: number;
-    /**
-     * - Job ID associated with bulk operations.
-     */
-    bulk_job_id?: string;
-    /**
-     * - The category to which the product belongs.
-     */
-    category_slug: string;
-    /**
-     * - Change request identifier for product updates.
-     */
-    change_request_id?: string;
-    /**
-     * - Unique identifier for the company associated
-     * with the product.
-     */
-    company_id: number;
-    /**
-     * - The country where the product was
-     * manufactured or sourced.
-     */
-    country_of_origin: string;
-    /**
-     * - The currency in which the product's price is listed.
-     */
-    currency: string;
-    custom_order?: CustomOrder;
-    /**
-     * - List of department IDs associated with the product.
-     */
-    departments: number[];
-    /**
-     * - A detailed description of the product.
-     */
-    description?: string;
-    /**
-     * - Product highlights or key features.
-     */
-    highlights?: string[];
-    /**
-     * - Flag to indicate if the product is active.
-     */
-    is_active?: boolean;
-    /**
-     * - Flag to indicate if the product is
-     * dependent on other products.
-     */
-    is_dependent?: boolean;
-    /**
-     * - Flag to indicate if the product
-     * does not have associated images.
-     */
-    is_image_less_product?: boolean;
-    /**
-     * - Flag to indicate if the product is part of a set.
-     */
-    is_set?: boolean;
-    /**
-     * - Unique item code or SKU of the product.
-     */
-    item_code: string;
-    /**
-     * - Type of the product (e.g., standard, set,
-     * composite, digital).
-     */
-    item_type: string;
-    /**
-     * - List of media URLs (images, videos) associated
-     * with the product.
-     */
-    media?: Media[];
-    /**
-     * - Indicates if the product supports multiple sizes.
-     */
-    multi_size?: boolean;
-    /**
-     * - The name of the product.
-     */
-    name: string;
-    net_quantity?: NetQuantity;
-    /**
-     * - Number of boxes required to package the product.
-     */
-    no_of_boxes?: number;
-    /**
-     * - Tags to group products together
-     * for classification.
-     */
-    product_group_tag?: string[];
-    product_publish?: ProductPublish;
-    /**
-     * - The role requesting the product operation
-     * (admin or user).
-     */
-    requester?: string;
-    return_config: ReturnConfig;
-    /**
-     * - A short description of the product,
-     * up to 50 characters.
-     */
-    short_description?: string;
-    /**
-     * - Identifier for the product's size guide.
-     */
-    size_guide?: string;
-    /**
-     * - List of sizes available for the product.
-     */
-    sizes: any[];
-    /**
-     * - URL-friendly identifier for the product.
-     */
-    slug: string;
-    /**
-     * - List of tags associated with the product.
-     */
-    tags?: string[];
-    tax_identifier: TaxIdentifier;
-    teaser_tag?: TeaserTag;
-    /**
-     * - Template tag for the product, used for
-     * classification.
-     */
-    template_tag: string;
-    /**
-     * - List of traders associated with the product.
-     */
-    trader: Trader[];
-    /**
-     * - Variant group information for the product.
-     */
-    variant_group?: any;
-    /**
-     * - Media related to product variants.
-     */
-    variant_media?: any;
-    /**
-     * - Variants information for the product.
-     */
-    variants?: any;
 };
 /** @returns {ProductCreateSchemaV3} */
 declare function ProductCreateSchemaV3(): ProductCreateSchemaV3;
@@ -11680,8 +10949,11 @@ type ProductCreateSchemaV3 = {
      */
     item_code: string;
     /**
-     * - Type of the product (e.g., standard, set,
-     * composite, digital).
+     * - Specifies the type of product, such as
+     * standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+     * bundle types (virtual_bundle or physical_bundle), use the category,
+     * department, and brand of the base child SKU. In this case, attributes are
+     * optional. The bundle_details attribute must be included for bundle types.
      */
     item_type: string;
     /**
@@ -11763,6 +11035,11 @@ type ProductCreateSchemaV3 = {
      * indian companies.
      */
     hs_code?: string;
+    /**
+     * - List of bundle details for
+     * products that are part of a bundle.
+     */
+    bundle_details?: BundleDetails[];
 };
 /** @returns {ProductUpdateSchemaV3} */
 declare function ProductUpdateSchemaV3(): ProductUpdateSchemaV3;
@@ -11847,8 +11124,11 @@ type ProductUpdateSchemaV3 = {
      */
     item_code: string;
     /**
-     * - Type of the product (e.g., standard, set,
-     * composite, digital).
+     * - Specifies the type of product, such as
+     * standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+     * bundle types (virtual_bundle or physical_bundle), use the category,
+     * department, and brand of the base child SKU. In this case, attributes are
+     * optional. The bundle_details attribute must be included for bundle types.
      */
     item_type: string;
     /**
@@ -11934,6 +11214,163 @@ type ProductUpdateSchemaV3 = {
      * - Variants information for the product.
      */
     variants?: any;
+    /**
+     * - List of bundle details for
+     * products that are part of a bundle. This will have child skus along with
+     * net quantity used in bundle formation.
+     */
+    bundle_details?: BundleDetails[];
+};
+/** @returns {ProductPatchSchemaV3} */
+declare function ProductPatchSchemaV3(): ProductPatchSchemaV3;
+type ProductPatchSchemaV3 = {
+    /**
+     * - Custom JSON data that can be used for
+     * additional product properties.
+     */
+    _custom_json?: any;
+    /**
+     * - Additional attributes related to the product.
+     */
+    attributes?: any;
+    /**
+     * - The country where the product was
+     * manufactured or sourced.
+     */
+    country_of_origin?: string;
+    custom_order?: CustomOrder;
+    /**
+     * - A detailed description of the product.
+     * Provide base64 encoded value in input.
+     */
+    description?: string;
+    /**
+     * - Product highlights or key features.
+     */
+    highlights?: string[];
+    /**
+     * - Flag to indicate if the product is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Flag to indicate if the product is
+     * dependent on other products.
+     */
+    is_dependent?: boolean;
+    /**
+     * - List of media URLs (images, videos) associated
+     * with the product.
+     */
+    media?: Media[];
+    /**
+     * - Indicates if the product supports multiple sizes.
+     */
+    multi_size?: boolean;
+    /**
+     * - The name of the product.
+     */
+    name?: string;
+    net_quantity?: NetQuantity;
+    /**
+     * - Number of boxes required to package the product.
+     */
+    no_of_boxes?: number;
+    /**
+     * - Tags to group products together
+     * for classification.
+     */
+    product_group_tag?: string[];
+    product_publish?: ProductPublish;
+    return_config?: ReturnConfig;
+    /**
+     * - A short description of the product,
+     * up to 50 characters.
+     */
+    short_description?: string;
+    /**
+     * - Identifier for the product's size guide.
+     */
+    size_guide?: string;
+    /**
+     * - List of sizes available for the product.
+     */
+    sizes?: ProductSizePatch[];
+    /**
+     * - List of tags associated with the product.
+     */
+    tags?: string[];
+    tax_identifier?: TaxIdentifierV3;
+    /**
+     * - HS Code for the product. This is required for
+     * indian companies.
+     */
+    hs_code?: string;
+    teaser_tag?: TeaserTag;
+    /**
+     * - Template tag for the product, used for
+     * classification.
+     */
+    template_tag?: string;
+    /**
+     * - List of traders associated with the product.
+     */
+    trader?: Trader[];
+    /**
+     * - Variant group information for the product.
+     */
+    variant_group?: any;
+    /**
+     * - Media related to product variants.
+     */
+    variant_media?: any;
+    /**
+     * - Variants information for the product.
+     */
+    variants?: any;
+};
+/** @returns {ProductSizePatch} */
+declare function ProductSizePatch(): ProductSizePatch;
+type ProductSizePatch = {
+    /**
+     * - Width of the item in the specified dimension unit.
+     */
+    item_width?: number;
+    /**
+     * - Height of the item in the specified dimension unit.
+     */
+    item_height?: number;
+    /**
+     * - Weight of the item in the specified weight unit.
+     */
+    item_weight?: number;
+    /**
+     * - Listed price of the product before discounts.
+     */
+    price?: number;
+    /**
+     * - Indicates whether inventory tracking
+     * is enabled for this item.
+     */
+    track_inventory?: boolean;
+    /**
+     * - Custom attributes or additional metadata
+     * for the product.
+     */
+    _custom_json?: any;
+    /**
+     * - Unique identifier assigned by the
+     * seller for this product or size variant.
+     */
+    seller_identifier?: string;
+    /**
+     * - Length of the item in the specified dimension unit.
+     */
+    item_length?: number;
+    /**
+     * - Effective or discounted price after
+     * applying promotions.
+     */
+    price_effective?: number;
 };
 /** @returns {ProductDetail} */
 declare function ProductDetail(): ProductDetail;
@@ -12924,6 +12361,12 @@ type SizeDetails = {
      * tracked for this size.
      */
     track_inventory?: boolean;
+    /**
+     * - List of bundle details for
+     * products that are part of a bundle. This will have child skus along with
+     * net quantity used in bundle formation.
+     */
+    bundle_details?: BundleDetails[];
 };
 /** @returns {ProductSchemaV2} */
 declare function ProductSchemaV2(): ProductSchemaV2;
@@ -13073,7 +12516,8 @@ type ProductSchemaV2 = {
     item_code?: string;
     /**
      * - Describes the type of product (e.g.,
-     * "standard" or "set").
+     * "standard" or "set"). In case of bundle items type will be
+     * ("virtual_bundle" or "physical_bundle")
      */
     item_type?: string;
     /**

@@ -37,8 +37,10 @@ class Catalog {
         "/service/application/catalog/v2.0/in-stock/locations/",
       getLocationDetailsById:
         "/service/application/catalog/v2.0/locations/{location_id}/",
-      getProductBundlesBySlug:
-        "/service/application/catalog/v1.0/product-grouping/",
+      getProductBundleItems:
+        "/service/application/catalog/v1.0/products/{slug}/bundle/items",
+      getProductBundlesByChildSku:
+        "/service/application/catalog/v1.0/products/{slug}/size/{size}/bundle",
       getProductComparisonBySlugs:
         "/service/application/catalog/v1.0/products/compare/",
       getProductDetailBySlug:
@@ -1039,18 +1041,27 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ProductBundle>} - Success response
-   * @name getProductBundlesBySlug
-   * @summary: List product bundles
-   * @description: Get products bundles to the one specified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundlesBySlug/).
+   * @returns {Promise<ProductBundleItems>} - Success response
+   * @name getProductBundleItems
+   * @summary: Get children for a bundled product
+   * @description: Retrieve bundle children for a given bundled product slug with pricing, brand, media, and seller information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundleItems/).
    */
-  async getProductBundlesBySlug(
-    { slug, id, requestHeaders } = { requestHeaders: {} },
+  async getProductBundleItems(
+    { slug, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
-    query_params["slug"] = slug;
-    query_params["id"] = id;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
@@ -1058,8 +1069,56 @@ class Catalog {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getProductBundlesBySlug"],
-        params: {},
+        url: this._urls["getProductBundleItems"],
+        params: { slug },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ProductBundleItemsWithSlug>} - Success response
+   * @name getProductBundlesByChildSku
+   * @summary: Get bundled items for a specific product size
+   * @description: Retrieve bundled items for a given product slug and size with pricing, brand, media, and seller information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductBundlesByChildSku/).
+   */
+  async getProductBundlesByChildSku(
+    { slug, size, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["slug", "size"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getProductBundlesByChildSku"],
+        params: { slug, size },
       }),
       query_params,
       undefined,

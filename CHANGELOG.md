@@ -1,3 +1,596 @@
+# CHANGE LOG (3.12.0) - 2.9.0
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getProductSizesBySlug
+
+- ##### What's New
+	- [Added] property <code>sizes[].is_bundle_item</code> of schema <code>ProductSize</code> in response with status code 200
+
+
+#### getProductBundlesBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getProductBundlesBySlug</code>
+
+
+
+#### getProductBundleItems
+
+- ##### What's New
+	- [Added] method <code>getProductBundleItems</code>
+
+
+
+#### getProductBundlesByChildSku
+
+- ##### What's New
+	- [Added] method <code>getProductBundlesByChildSku</code>
+
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].bags[].is_bundle_item</code> of schema <code>Bags</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].bundle_details</code> of schema <code>Bags</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].bags[].is_bundle_item</code> of schema <code>Bags</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].bundle_details</code> of schema <code>Bags</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].bags[].is_bundle_item</code> of schema <code>Bags</code> in response with status code 200
+	- [Added] property <code>order.shipments[].bags[].bundle_details</code> of schema <code>Bags</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.bags[].is_bundle_item</code> of schema <code>Bags</code> in response with status code 200
+	- [Added] property <code>shipment.bags[].bundle_details</code> of schema <code>Bags</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### getProductBundle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getProductBundle</code>
+
+
+
+#### createProductBundle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createProductBundle</code>
+
+
+
+#### getProductBundleDetail
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getProductBundleDetail</code>
+
+
+
+#### updateProductBundle
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateProductBundle</code>
+
+
+
+#### getProducts
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>items[].item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>items[].item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] property <code>items[].sizes[].bundle_details</code> of schema <code>SizeDetails</code> in response with status code 200
+
+
+#### createProduct
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>item_type</code> of schema <code>ProductCreateSchemaV3</code> in request body
+	- [Added] Possible values <code>physical_bundle</code> to property <code>item_type</code> of schema <code>ProductCreateSchemaV3</code> in request body
+	- [Added] property <code>bundle_details</code> of schema <code>ProductCreateSchemaV3</code> in request body
+
+
+#### editProduct
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>item_type</code> of schema <code>ProductUpdateSchemaV3</code> in request body
+	- [Added] Possible values <code>physical_bundle</code> to property <code>item_type</code> of schema <code>ProductUpdateSchemaV3</code> in request body
+	- [Added] property <code>bundle_details</code> of schema <code>ProductUpdateSchemaV3</code> in request body
+
+
+#### getProduct
+
+- ##### What's New
+	- [Added] Possible values <code>virtual_bundle</code> to property <code>data.item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] Possible values <code>physical_bundle</code> to property <code>data.item_type</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] property <code>data.sizes[].bundle_details</code> of schema <code>SizeDetails</code> in response with status code 200
+
+
+#### partialUpdateProduct
+
+- ##### What's New
+	- [Added] method <code>partialUpdateProduct</code>
+
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] <code>header</code> parameter <code>xApplicationId</code> (type: <code>string</code>)
+
+	- [Added] <code>header</code> parameter <code>xExtensionId</code> (type: <code>string</code>)
+
+	- [Added] property <code>shipments[].line_items[].payment_methods</code> of schema <code>LineItemSchema</code> in request body
+	- [Added] property <code>shipments[].line_items[].monetary_values</code> of schema <code>LineItemSchema</code> in request body
+	- [Added] property <code>shipments[].line_items[].gift_details</code> of schema <code>LineItemSchema</code> in request body
+	- [Added] property <code>shipments[].line_items[].special_instructions</code> of schema <code>LineItemSchema</code> in request body
+	- [Added] property <code>shipments[].line_items[].dimension</code> of schema <code>LineItemSchema</code> in request body
+	- [Added] property <code>shipments[].line_items[].bundle_details</code> of schema <code>LineItemSchema</code> in request body
+	- [Breaking] [Added] <code>shipments[].line_items[].payment_methods</code> made required in request body
+	- [Breaking] [Added] Possible values <code>Digital,PickAtStore,HomeDelivery</code> to property <code>shipments[].type</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].is_mto</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].shipment_lifecycle_messages</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].fulfillment_option</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].order_fulfillment_timeline</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].external_location_id</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].return_location_id</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].courier_partner_details</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].tax_details</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].promise_details</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>shipments[].allow_processing_after</code> of schema <code>CreateOrderShipmentSchema</code> in request body
+	- [Added] property <code>tags</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>currency_details</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>coupon_details</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>billing_details</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>primary_payment_mode</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>cp_configuration</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>ordering_location_id</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>allow_location_reassignment</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>shipping_details</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>user_details</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>order_lifecycle_messages</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>channel_application_id</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>b2b_gstin_number</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>channel_company_id</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>is_draft</code> of schema <code>CreateOrderRequestSchema</code> in request body
+	- [Added] property <code>message</code> of schema <code></code> in response with status code 200
+	- [Added] <code>fynd_order_id</code> made required in response with status code 200
+	- [Added] Header parameters  in Response 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>shipments[].line_items[].charges</code> of schema <code>LineItem</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].line_items[].custom_message</code> of schema <code>LineItem</code> in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>shipments[].line_items[].quantity</code> of schema <code>LineItem</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].processing_dates</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].meta</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].priority</code> of schema <code>Shipment</code> in request body
+	- [Deleted] Value format from <code>int32</code> from property <code>shipments[].location_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].order_type</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] properties <code>shipments[].tags[].slug</code>, <code>shipments[].tags[].display_text</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].tags</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].system_messages</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].process_after_config</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].parent_type</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].store_invoice_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].lock_status</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>shipments[].type</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].billing_address_json</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].fulfilment_priority</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].is_active</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].previous_shipment_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].pdf_links</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_address_json</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].eway_bill_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_shipment_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].fynd_order_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].created_at</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].delivery_awb_number</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].hand_over_contact_json</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].credit_note_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].parent_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].affiliate_id</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].packaging_type</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].vertical</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].quantity</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].status</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].price</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipments[].gst</code> of schema <code>Shipment</code> in request body
+	- [Breaking] [Deleted] property <code>shipping_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>billing_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>currency_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>charges</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>meta</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>tax_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>config</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>payment_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>user_info</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>ordering_store_id</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>order_platform</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>status</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>system_messages</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>order_type</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>fynd_order_id</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>application_id</code> of schema <code>CreateOrderAPI</code> in request body
+	- [Breaking] [Deleted] property <code>external_shipment_id</code> of schema <code>CreateOrderAPI</code> in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Required status of header parameter <code>xOrderingSource</code>
+	- [Breaking] [Changed] Type from <code>integer</code> to <code>number</code> of property <code>shipments[].line_items[].quantity</code> of schema <code>LineItem</code> in request body
+	- [Changed] <code>shipments[].line_items</code> made optional in request body
+	- [Changed] <code>shipping_info</code> made optional in request body
+	- [Changed] Path From <code>/service/platform/order-manage/v1.0/company/{company_id}/create-order</code> To <code>/service/platform/order-manage/v1.0/company/{company_id}/orders</code>
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>orderingSource</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>channelAccountId</code> (type: <code>string</code>)
+
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>items[].ordering_source</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].bags[].bag_configs.is_bundle_item</code> of schema <code>BagConfigs</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].bag_configs.bundle_details</code> of schema <code>BagConfigs</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.currency.ordering_currency</code> of schema <code>CurrencySchema</code> in response with status code 200
+	- [Added] property <code>order.currency.conversion_rate</code> of schema <code>CurrencySchema</code> in response with status code 200
+	- [Added] <code>order.currency.ordering_currency</code>, <code>order.currency.conversion_rate</code> made required in response with status code 200
+	- [Added] property <code>shipments[].bags[].bag_configs.is_bundle_item</code> of schema <code>BagConfigs</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].bag_configs.bundle_details</code> of schema <code>BagConfigs</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>order.ordering_source</code> of schema <code>OrderData</code> in response with status code 200
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>orderingSource</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>channelAccountId</code> (type: <code>string</code>)
+
+	- [Added] property <code>items[].shipments[].bags[].bag_configs.is_bundle_item</code> of schema <code>BagConfigs</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].bag_configs.bundle_details</code> of schema <code>BagConfigs</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>items[].shipments[].order_status.order_details.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>items[].shipments[].order.ordering_source</code> of schema <code>OrderDetailsData</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>items[].ordering_source</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getBagById
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>data.order.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+
+
+#### getBags
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from <code>storefront,store_os_pos,kiosk,scan_go,smart_trolley,gofynd,uniket,marketplace,social_commerce,ondc,nexus,nykaa_fashion,etsy,vuivui,zilingo,firstcry,bukalapak,myntra_ppmp,lazada,tiktok,sfcc,debenhams,prestomall,meesho,amazon_vdf,bigcommerce,sendo,storehippo,cdiscount,nykaa,trendyol,weloveshopping,jollee,wish,tiki,central_online,q10,cred,walmart,snapdeal,flipkart,blibli,ajio_jit,pharmeasy,ezmall,adobe_commerce,kartmax,shopee,zalora,prestashop,smytten,amazon_sc,urbanpiper,flipkart_quick,woocommerce,zivame,lelong,facebook,jiomart,gmc,robins,akulaku,noon,tatacliq,kartrocket,inorbit,ajio_business,swiggy,asos,tokopedia,limeroad,myntra_omni,spoyl,amazon_mlf,fulfilled_by_lazada,ebay,jd,amazon_pharmacy,ajio_vms,daraz,oker,flipkart_b2b,amazon_mlf_ss,woovly,tata1mg,zomato,shopify</code> from property <code>data.items[].order.ordering_source</code> of schema <code>OrderDetails</code> in response with status code 200
+
+
+#### getOrderingSourceConfigBySlug
+
+- ##### What's New
+	- [Added] method <code>getOrderingSourceConfigBySlug</code>
+
+
+
+#### updateOrderingSourceConfigBySlug
+
+- ##### What's New
+	- [Added] method <code>updateOrderingSourceConfigBySlug</code>
+
+
+
+#### listOrderingSources
+
+- ##### What's New
+	- [Added] method <code>listOrderingSources</code>
+
+
+
+#### createAccount
+
+- ##### What's New
+	- [Added] method <code>createAccount</code>
+
+
+
+#### listAccounts
+
+- ##### What's New
+	- [Added] method <code>listAccounts</code>
+
+
+
+#### getAccountById
+
+- ##### What's New
+	- [Added] method <code>getAccountById</code>
+
+
+
+#### updateAccount
+
+- ##### What's New
+	- [Added] method <code>updateAccount</code>
+
+
+
 # CHANGE LOG (3.11.0) - 2.8.3
 
 ## Application Client

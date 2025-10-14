@@ -440,6 +440,83 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.CreateAccountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.Account>} - Success response
+   * @name createAccount
+   * @summary: Create channel account
+   * @description: Creates a new channel account for the company. Channel accounts represent  different sales channels or marketplace integrations (e.g., Shopify, custom  marketplaces) through which the company receives and processes orders. Each  account is identified by a unique name and can be used to segregate orders  from different sources. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createAccount/).
+   */
+  async createAccount(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.createAccount().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderPlatformValidator.createAccount().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > createAccount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/account`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.Account().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > createAccount \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.CreateChannelConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -524,19 +601,23 @@ class Order {
    * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name createOrder
-   * @summary: Create order
-   * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
+   * @summary: Create Order
+   * @description: Creates an order in the OMS. Note: Use the Serviceability API (getShipments) to determine shipments before creating an order. OMS no longer auto-selects fulfillment stores and only creates shipments as provided in the request payload. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
    */
   async createOrder(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.createOrder().validate(
       {
-        body,
         xOrderingSource,
+        body,
+        xApplicationId,
+        xExtensionId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -547,8 +628,10 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = OrderPlatformValidator.createOrder().validate(
       {
-        body,
         xOrderingSource,
+        body,
+        xApplicationId,
+        xExtensionId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -563,6 +646,98 @@ class Order {
 
     const xHeaders = {};
     xHeaders["x-ordering-source"] = xOrderingSource;
+    xHeaders["x-application-id"] = xApplicationId;
+    xHeaders["x-extension-id"] = xExtensionId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > createOrder \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.CreateOrderDeprecatedParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
+   * @name createOrderDeprecated
+   * @summary: Create order
+   * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrderDeprecated/).
+   */
+  async createOrderDeprecated(
+    { xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.createOrderDeprecated().validate(
+      {
+        xOrderingSource,
+
+        body,
+        xApplicationId,
+        xExtensionId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.createOrderDeprecated().validate(
+      {
+        xOrderingSource,
+
+        body,
+        xApplicationId,
+        xExtensionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > createOrderDeprecated \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+    xHeaders["x-ordering-source"] = xOrderingSource;
+    xHeaders["x-application-id"] = xApplicationId;
+    xHeaders["x-extension-id"] = xExtensionId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -592,7 +767,7 @@ class Order {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Order > createOrder \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Order > createOrderDeprecated \n ${res_error}`,
         });
       }
     }
@@ -1423,6 +1598,85 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > generateProcessManifest \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GetAccountByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.Account>} - Success response
+   * @name getAccountById
+   * @summary: Get channel account details
+   * @description: Retrieves detailed information about a specific channel account using its unique  identifier. This endpoint returns the complete account details including the  account ID, associated company ID, and the channel account name. Use this to  fetch information about a particular sales channel or marketplace integration. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getAccountById/).
+   */
+  async getAccountById(
+    { channelAccountId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.getAccountById().validate(
+      {
+        channelAccountId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getAccountById().validate(
+      {
+        channelAccountId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getAccountById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/account/${channelAccountId}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.Account().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > getAccountById \n ${res_error}`,
         });
       }
     }
@@ -2945,6 +3199,8 @@ class Order {
       groupEntity,
       enforceDateFilter,
       fulfillmentType,
+      orderingSource,
+      channelAccountId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2977,6 +3233,8 @@ class Order {
         groupEntity,
         enforceDateFilter,
         fulfillmentType,
+        orderingSource,
+        channelAccountId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3013,6 +3271,8 @@ class Order {
         groupEntity,
         enforceDateFilter,
         fulfillmentType,
+        orderingSource,
+        channelAccountId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3050,6 +3310,8 @@ class Order {
     query_params["group_entity"] = groupEntity;
     query_params["enforce_date_filter"] = enforceDateFilter;
     query_params["fulfillment_type"] = fulfillmentType;
+    query_params["ordering_source"] = orderingSource;
+    query_params["channel_account_id"] = channelAccountId;
 
     const xHeaders = {};
 
@@ -3138,6 +3400,10 @@ class Order {
    *   Listing Orders, This is use when we want to get list of shipments or
    *   orders by cross store or cross company or fulfilling Store (by
    *   default), this is also depends on the login user accessType and store access
+   * @param {string} [arg.orderingSource] - Filter orders by ordering source.
+   *   Accepts comma-separated values for multiple sources.
+   * @param {string} [arg.channelAccountId] - Comma-separated channel account
+   *   IDs to filter orders by specific channel accounts.
    * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
    * @summary: List orders
    * @description: Get a list of orders based on the filters provided.
@@ -3168,6 +3434,8 @@ class Order {
     groupEntity,
     enforceDateFilter,
     fulfillmentType,
+    orderingSource,
+    channelAccountId,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -3201,6 +3469,8 @@ class Order {
         groupEntity: groupEntity,
         enforceDateFilter: enforceDateFilter,
         fulfillmentType: fulfillmentType,
+        orderingSource: orderingSource,
+        channelAccountId: channelAccountId,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -3602,6 +3872,8 @@ class Order {
       groupEntity,
       enforceDateFilter,
       fulfillmentType,
+      orderingSource,
+      channelAccountId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3645,6 +3917,8 @@ class Order {
         groupEntity,
         enforceDateFilter,
         fulfillmentType,
+        orderingSource,
+        channelAccountId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3692,6 +3966,8 @@ class Order {
         groupEntity,
         enforceDateFilter,
         fulfillmentType,
+        orderingSource,
+        channelAccountId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3740,6 +4016,8 @@ class Order {
     query_params["group_entity"] = groupEntity;
     query_params["enforce_date_filter"] = enforceDateFilter;
     query_params["fulfillment_type"] = fulfillmentType;
+    query_params["ordering_source"] = orderingSource;
+    query_params["channel_account_id"] = channelAccountId;
 
     const xHeaders = {};
 
@@ -3858,6 +4136,10 @@ class Order {
    *   Listing Orders, This is use when we want to get list of shipments or
    *   orders by cross store or cross company or fulfilling Store (by
    *   default), this is also depends on the login user accessType and store access
+   * @param {string} [arg.orderingSource] - Filter orders by ordering source.
+   *   Accepts comma-separated values for multiple sources.
+   * @param {string} [arg.channelAccountId] - Comma-separated channel account
+   *   IDs to filter orders by specific channel accounts.
    * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
    * @summary: List shipments
    * @description: Get a list of shipments based on the filters provided
@@ -3899,6 +4181,8 @@ class Order {
     groupEntity,
     enforceDateFilter,
     fulfillmentType,
+    orderingSource,
+    channelAccountId,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -3943,6 +4227,8 @@ class Order {
         groupEntity: groupEntity,
         enforceDateFilter: enforceDateFilter,
         fulfillmentType: fulfillmentType,
+        orderingSource: orderingSource,
+        channelAccountId: channelAccountId,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -4438,6 +4724,87 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.ListAccountsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.AccountsList>} - Success response
+   * @name listAccounts
+   * @summary: Get channel accounts list
+   * @description: Retrieves a paginated list of all channel accounts configured for the company.  Channel accounts represent different sales channels or marketplace integrations  from which orders are received. This endpoint returns account details including  the account ID, company ID, and channel account name for each configured channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/listAccounts/).
+   */
+  async listAccounts(
+    { page, size, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.listAccounts().validate(
+      {
+        page,
+        size,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderPlatformValidator.listAccounts().validate(
+      {
+        page,
+        size,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > listAccounts \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page"] = page;
+    query_params["size"] = size;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/account`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.AccountsList().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > listAccounts \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -4915,6 +5282,85 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > trackShipment \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.UpdateAccountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.Account>} - Success response
+   * @name updateAccount
+   * @summary: Update account
+   * @description: Updates the details of a specific channel account. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateAccount/).
+   */
+  async updateAccount(
+    { channelAccountId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.updateAccount().validate(
+      {
+        channelAccountId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderPlatformValidator.updateAccount().validate(
+      {
+        channelAccountId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > updateAccount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/account/${channelAccountId}`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.Account().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > updateAccount \n ${res_error}`,
         });
       }
     }

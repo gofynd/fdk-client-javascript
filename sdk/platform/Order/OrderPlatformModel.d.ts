@@ -395,8 +395,8 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef DPConfiguration
- * @property {string} [shipping_by] - Shipping_by denotes dp assignment
- *   strategy- if shipping_by is fynd dp assignment would be handled by OMS
+ * @property {string} [shipping_by] - It denotes DP assignment strategy. If it
+ *   is fynd, DP assignment will be handled by Fynd's OMS.
  */
 /**
  * @typedef PaymentConfig
@@ -413,17 +413,18 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef CreateOrderConfig
- * @property {DPConfiguration} dp_configuration
- * @property {boolean} [location_reassignment] - Flag denotes if the location
- *   for the store needs to be reassigned post cancellation. If true,location
- *   for the store gets auto reassigned post cancellation, if set false location
- *   reassignment will not be performed as its disabled.
+ * @property {DPConfiguration} [dp_configuration]
+ * @property {boolean} [location_reassignment] - The flag denotes if the
+ *   location for the shipment needs to be reassigned after cancellation. If the
+ *   flag is set to true, location for the shipment gets auto reassigned post
+ *   cancellation. If set to false, location reassignment will not be performed
+ *   as it is disabled.
  * @property {PaymentConfig} [payment]
  * @property {boolean} [optimal_shipment_creation] - Denotes the shipment
- *   breaking strategy. If the flag is set true, the shipment is created using
- *   optimal shipment creation strategy based on the servicability & packaging
- *   dimensions by OMS .If false, shipment details, including location_id, must
- *   be passed to FDK for processing.
+ *   breaking strategy. If the flag is set to true, the shipment is created
+ *   using an optimal shipment creation strategy based on the serviceability &
+ *   packaging dimensions by OMS. If the flag is set to false, shipment details
+ *   and location_id, must be passed to FDK for processing.
  * @property {LockStateMessage[]} [lock_state_messages] - A list of
  *   state-specific custom lock messages.
  * @property {string} [integration_type] - Flag denotes integration type which
@@ -663,8 +664,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef CreateOrderResponseSchema
- * @property {string} fynd_order_id - A string that represents the unique
- *   identifier assigned to the order.
+ * @property {string} fynd_order_id - Unique identifier assigned to the order
  */
 /**
  * @typedef DispatchManifest
@@ -873,8 +873,8 @@ export = OrderPlatformModel;
  * @property {string} [ordering_channel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
  * @property {Object} [meta] - Meta data of the order data contains additional,
  *   potentially dynamic information about the order data.
  * @property {number} [cod_charges]
@@ -978,7 +978,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Tax
- * @property {string} name - The name of the tax, indicating its purpose (e.g.,
+ * @property {string} name - The name of the tax indicating its purpose (e.g.,
  *   VAT, sales tax).
  * @property {number} rate - The tax rate as a decimal, applied to the transaction amount.
  * @property {Object[]} [breakup] - An array of objects detailing the components
@@ -994,16 +994,20 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Charge
- * @property {string} name - The name of the charge that indicates its purpose.
  * @property {AmountSchema} amount
- * @property {Tax} [tax]
+ * @property {string} type - The category or type of the charge.
+ * @property {string} name - The name of the charge that indicates its purpose.
  * @property {string} [code] - An optional code associated with the charge for
  *   internal tracking.
- * @property {string} type - The category or type of the charge.
+ * @property {Tax} [tax]
  */
 /**
  * @typedef LineItem
- * @property {Charge[]} [charges] - An array of Charge objects related to the line item.
+ * @property {Charge[]} [charges] - An array of Charge objects related to the
+ *   line item. This array must include three mandatory charge types:
+ *   amount_paid, price_effective and price_marked. Formula to calculate
+ *   amount_paid = price_effective + cod_charges + delivery_charges -
+ *   coupon_discount - promo_discount
  * @property {Object} [meta] - An object containing metadata relevant to
  *   articles or line items.
  * @property {string} [custom_message] - A string for any special instructions
@@ -1055,37 +1059,33 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Shipment
- * @property {LineItem[]} line_items - An array of LineItem objects that
- *   represent the items included in the shipment.
+ * @property {LineItem[]} line_items - An array of objects that represent the
+ *   items included in the shipment.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
  * @property {ProcessingDates} [processing_dates]
  * @property {Object} [meta] - Meta data of the shipment contains additional,
  *   potentially dynamic information about the shipment.
- * @property {number} [priority] - An integer indicating the priority level of
- *   the shipment.
- * @property {number} [location_id] - Location Identifier or Store/Fulfillment
- *   Identifier of the shipment- This field is mandatory when
- *   optimal_shipment_creation flag is set to false, indicating that shipments
- *   must be associated with a specific location. When
- *   `optimal_shipment_creation` is true, the optimal location for order
- *   creation would be assigned, location_id becomes optional.
+ * @property {number} [priority] - Priority level of the shipment.
+ * @property {number} [location_id] - Location/store/fulfillment identifier of
+ *   the shipment. This field is mandatory when optimal_shipment_creation flag
+ *   is set to false, indicating that shipments must be associated with a
+ *   specific location. When optimal_shipment_creation is true, location_id
+ *   becomes optional and the system automatically assigns the optimal location
+ *   for order creation.
  * @property {string} [order_type] - Defines the specific journey a shipment
  *   will follow based on the application's operational needs and customer
  *   preferences. This field categorizes orders into distinct types, each
- *   associated with a unique processing flow. For example:
- *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages
- *       and facilitating a quicker transition to the final handover stage.
- *   - "Digital": This order type likely refers to orders that involve digital goods
- *       or services, such as software, digital subscriptions, e-books, online
- *       courses, or any other item that can be delivered electronically.
- *
+ *   associated with a unique processing flow. For example, "HomeDelivery": The
+ *   order undergoes all state transitions typical for a delivery, from
+ *   processing the shipment to final delivery at the customer's address.
+ *   "PickAtStore": The order is prepared for pickup and moved to a state where
+ *   it is ready to be handed over directly to the customer at the store. This
+ *   type streamlines the process by bypassing traditional shipping stages and
+ *   facilitating a quicker transition to the final handover stage. "Digital":
+ *   This order type likely refers to orders that involve digital goods or
+ *   services, such as software, digital subscriptions, e-books, online courses,
+ *   or any other item that can be delivered electronically.
  * @property {string[]} [tags]
  * @property {SystemMessages[]} [system_messages]
  * @property {ProcessAfterConfig} [process_after_config]
@@ -1127,55 +1127,46 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef ShippingInfo
- * @property {string} [alternate_mobile_number] - A string for an alternate
- *   mobile number to reach the customer, providing an additional contact method.
- * @property {string} [state] - A string representing the name of the state for
- *   shipping purposes.
- * @property {string} [customer_code] - A string representing the customer's
- *   unique identifier in the seller's system.
+ * @property {string} [alternate_mobile_number] - Alternate mobile number to
+ *   reach the customer, providing an additional contact method.
+ * @property {string} [state] - The name of the state for shipping purposes.
+ * @property {string} [customer_code] - Customer's unique identifier in the
+ *   seller's system.
  * @property {string} [shipping_type] - Specifies the method or service used for
  *   the shipping of the shipment.
- * @property {string} [middle_name] - A string containing the customer's middle name.
- * @property {string} [primary_mobile_number] - A string for the customer's
- *   primary mobile number.
- * @property {string} [last_name] - A string containing the customer's last name.
+ * @property {string} [middle_name] - Customer's middle name
+ * @property {string} [primary_mobile_number] - Customer's primary mobile number
+ * @property {string} [last_name] - Customer's last name
  * @property {GeoLocationSchema} [geo_location]
- * @property {string} [gender] - A string representing the customer's gender.
- * @property {string} [house_no] - A string representing the house or apartment
- *   number of the customer.
- * @property {string} [first_name] - A string representing the customer's first name.
- * @property {string} [title] - A string representing the customer's title or prefix.
- * @property {string} [landmark] - A string representing a landmark or reference
- *   point near the customer's location.
- * @property {string} [country] - A string representing the customer's country.
- * @property {string} [address_type] - A string representing the address type in
- *   the seller's system.
- * @property {string} [state_code] - A string representing the state code of the
- *   customer's location.
- * @property {string} [city] - A string representing the city of the customer's location.
- * @property {string} [external_customer_code] - A string representing an
- *   external customer code in the seller's system.
- * @property {string} [floor_no] - A string representing the floor number of the
- *   customer's location.
- * @property {string} [alternate_email] - A string representing an alternate
- *   email address for the customer.
+ * @property {string} [gender] - Customer's gender
+ * @property {string} [house_no] - The house or apartment number of the customer.
+ * @property {string} [first_name] - Customer's first name
+ * @property {string} [title] - Customer's title or prefix
+ * @property {string} [landmark] - Landmark or reference point near the
+ *   customer's location
+ * @property {string} [country] - Customer's country
+ * @property {string} [address_type] - Address type in the seller's system
+ * @property {string} [state_code] - State code of the customer's location
+ * @property {string} [city] - City of the customer's location
+ * @property {string} [external_customer_code] - External customer code in the
+ *   seller's system
+ * @property {string} [floor_no] - Floor number of the customer's location
+ * @property {string} [alternate_email] - Alternate email address for the customer
  * @property {Object[]} [slot] - A list of objects representing available time
  *   slot for delivery or pickup.
  * @property {string} [address] - A comma-separated string representing the address.
- * @property {string} [area] - A string representing the area of the customer's location.
- * @property {string} [address1] - A string representing the first line of the address.
- * @property {string} [pincode] - A string representing the pincode of the
- *   customer's location.
- * @property {string} [primary_email] - A string representing the primary email
- *   address for the customer.
- * @property {string} [address2] - A string representing the second line of the address.
+ * @property {string} [area] - Area of the customer's location
+ * @property {string} [address1] - First line of the address
+ * @property {string} [pincode] - Pincode of the customer's location
+ * @property {string} [primary_email] - Primary email address for the customer
+ * @property {string} [address2] - Second line of the address
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the shipping address. This code is essential for
  *   international shipments, ensuring accurate routing and delivery across
  *   global postal and customs services. Examples include 'US' for the United
  *   States, 'IN' for India.
  * @property {string} [country_iso_code] - Specifies the country's unique
- *   identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+ *   identifier allowing the ISO 3166-1 alpha-2 standard. This two-letter code
  *   is crucial for distinguishing countries in international transactions, data
  *   processing, and shipping logistics.
  */
@@ -1203,13 +1194,11 @@ export = OrderPlatformModel;
  * @property {string} [floor_no]
  * @property {string} [alternate_email]
  * @property {string} [address]
- * @property {string} [area] - A string representing the area of the customer's location.
- * @property {string} [address1] - A string representing the first line of the address.
- * @property {string} [pincode] - A string representing the pincode of the
- *   customer's location.
- * @property {string} [primary_email] - A string representing the primary email
- *   address for the customer.
- * @property {string} [address2] - A string representing the second line of the address.
+ * @property {string} [area] - Area of the customer's location
+ * @property {string} [address1] - First line of the address
+ * @property {string} [pincode] - Pincode of the customer's location
+ * @property {string} [primary_email] - Primary email address for the customer
+ * @property {string} [address2] - Second line of the address
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the billing address details. This code is essential for
  *   international shipments, ensuring accurate routing and delivery across
@@ -1222,34 +1211,28 @@ export = OrderPlatformModel;
 /**
  * @typedef UserInfo
  * @property {string} [user_id] - The unique identifier assigned to the user.
- * @property {string} [user_type] - A string representing the type of the user.
- * @property {string} [primary_email] - A string representing the primary email
- *   address for the user.
- * @property {string} [gender] - A string specifying the gender of the user.
- * @property {string} first_name - A string which specifies the user's first name.
- * @property {string} [last_name] - A string which specifies the user's last name.
- * @property {string} primary_mobile_number - A string representing the primary
- *   mobile number for the user.
+ * @property {string} [user_type] - Type of the user
+ * @property {string} [primary_email] - Primary email address for the user
+ * @property {string} [gender] - Gender of the user
+ * @property {string} first_name - User's first name
+ * @property {string} [last_name] - User's last name
+ * @property {string} primary_mobile_number - Primary mobile number for the user
  */
 /**
  * @typedef TaxInfo
- * @property {string} [b2b_gstin_number] - A string representing the GSTIN
- *   (Goods and Services Tax Identification Number) for business-to-business
- *   transactions.
- * @property {string} [gstin] - A string that specifies the GSTIN for the seller.
- * @property {string} [pan_no] - A string representing the PAN assigned to
- *   individuals or entities for tax purposes in India.
+ * @property {string} [b2b_gstin_number] - Goods and Services Tax Identification
+ *   Number (GSTIN) for business-to-business transactions
+ * @property {string} [gstin] - GSTIN of the customer
+ * @property {string} [pan_no] - PAN assigned to individuals or entities for tax
+ *   purposes in India
  */
 /**
  * @typedef PaymentMethod
- * @property {string} collect_by - A string indicating the entity responsible
- *   for collecting the payment.
- * @property {string} mode - A string that specifies the mode of payment. Refer
- *   to [API & references (in Nav bar) → Payment Modes] for a list of valid
- *   payment methods.
- * @property {string} refund_by - A string that indicates the entity responsible
- *   for processing refunds.
- * @property {string} name - A string representing the name of the payment method.
+ * @property {string} collect_by - Entity responsible for collecting the payment
+ * @property {string} mode - Mode of payment. Refer to [API & references (in Nav
+ *   bar) → Payment Modes] for a list of valid payment methods.
+ * @property {string} refund_by - Entity responsible for processing refunds
+ * @property {string} name - Name of the payment method
  * @property {number} amount - A number representing the monetary value
  *   associated with the payment method.
  * @property {Object} [meta] - An object for any additional metadata related to
@@ -1259,18 +1242,16 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef PaymentInfo
- * @property {string} primary_mode - A string that indicates the primary payment
- *   method used for the order.
- * @property {string} [payment_mode] - A string that indicates the payment mode
- *   used for the order.
+ * @property {string} primary_mode - Primary payment method used for the order
+ * @property {string} [payment_mode] - Payment mode used for the order
  * @property {PaymentMethod[]} [payment_methods] - A lists all available payment
  *   methods used in the transaction.
  */
 /**
  * @typedef CreateOrderAPI
  * @property {Shipment[]} shipments - List of Shipments which includes shipment
- *   data like shipment items, shipment promise, Shipment type, shipment order
- *   type, shipment dp options etc.
+ *   data like shipment items, shipment promise, shipment type, shipment order
+ *   type, shipment DP options etc.
  * @property {ShippingInfo} shipping_info
  * @property {ShippingInfo} billing_info
  * @property {Object} [currency_info] - This object can accommodate a range of
@@ -1278,10 +1259,9 @@ export = OrderPlatformModel;
  *   comprehensive details about the currency or currencies involved in a transaction.
  * @property {string} [external_order_id] - A unique identifier for the order
  *   assigned by an external system.
- * @property {Charge[]} [charges] - An array of charge objects that detail the
- *   various fees associated with the order.
- * @property {string} [external_creation_date] - A string that specifies the
- *   date and time when the order was created in an external system
+ * @property {Charge[]} [charges] - It details the various fees associated with the order.
+ * @property {string} [external_creation_date] - Date and time when the order
+ *   was created in an external system
  * @property {Object} [meta] - Meta data of the order that contains additional,
  *   potentially dynamic information about the order.
  * @property {TaxInfo} [tax_info]
@@ -1295,8 +1275,7 @@ export = OrderPlatformModel;
  *   specifying whether the order is in a 'pendency' state (awaiting further
  *   action) or marked as 'complete'.
  * @property {SystemMessages[]} [system_messages]
- * @property {string} [order_type] - A string that specifies the type of order
- *   being placed.
+ * @property {string} [order_type] - Type of order being placed
  * @property {string} [fynd_order_id] - Unique identifier for the order.
  * @property {string} [application_id] - A unique identifier for the application
  *   or system that is making the order request.
@@ -2378,8 +2357,8 @@ export = OrderPlatformModel;
  * @property {string} [ordering_channel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
  * @property {string} entity - The type of entity that the configuration pertains to.
  */
 /**
@@ -2592,9 +2571,412 @@ export = OrderPlatformModel;
  * @property {string} small - URL for the small version of the payment method's logo.
  */
 /**
- * @typedef ValidationError
- * @property {string} message - A brief description of the error encountered.
- * @property {string} field - The field in the request that caused the error.
+ * @typedef FulfillmentOptionSchema
+ * @property {string} [name] - The name of the fulfillment option (e.g.,
+ *   'Standard Shipping', 'Express Delivery').
+ * @property {string} [slug] - A unique identifier for the fulfillment option.
+ * @property {boolean} [is_default] - The category or method of fulfillment
+ *   (e.g., 'Pickup', 'Delivery', 'Courier').
+ * @property {string} [type] - Indicates whether this fulfillment option is the
+ *   default choice for customers.
+ */
+/**
+ * @typedef PaymentMethodGatewaySchema
+ * @property {string} name - Payment Gateway Name.
+ * @property {string} [logo]
+ */
+/**
+ * @typedef SubModeOfPaymentSchema
+ * @property {string} name - Name of the Sub MOP Used.
+ */
+/**
+ * @typedef PaymentMethodModeOfPaymentSchema
+ * @property {string} name - Payment Mode Name.
+ * @property {string} slug - Slug of the Payment Mode.
+ * @property {SubModeOfPaymentSchema} [sub_mode_of_payment]
+ */
+/**
+ * @typedef PaymentMethodTransactionPartySchema
+ * @property {string} refund_bearer - Entity responsible for refunds (e.g., SELLER/FYND).
+ * @property {string} collection_bearer - Entity responsible for collection
+ *   charges (e.g., SELLER/FYND).
+ */
+/**
+ * @typedef LineItemPaymentMethodSchema
+ * @property {PaymentMethodGatewaySchema} [gateway]
+ * @property {PaymentMethodModeOfPaymentSchema} [mode_of_payment]
+ * @property {number} [amount_paid] - Total Amount Paid by this Payment Method.
+ * @property {string} [payment_identifier] - Transaction id
+ * @property {PaymentMethodTransactionPartySchema} [transaction_party]
+ */
+/**
+ * @typedef BundleDetailsSchema
+ * @property {boolean} [is_base] - A flag that determines if bag is base bag of bundle.
+ * @property {string[]} [images] - An array of image URLs associated with the bundle.
+ * @property {string} [group_id] - Unique group identifier for the bundle.
+ * @property {string} [name] - Name of the bundle.
+ * @property {string} [item_type] - Type of the item (physical_bundle, virtual_bundle).
+ * @property {number} [item_id] - Unique identifier for the item.
+ * @property {string} [item_code] - Item code for the item.
+ * @property {string} [item_name] - Name of the item.
+ * @property {string} [seller_identifier] - Identifier for the seller of the bundle.
+ * @property {number} [bundle_article_quantity] - Article net_quantity in bundle Product.
+ * @property {string} [brand_name] - Identifier for the brand name.
+ * @property {string} [size] - Size associated with the bundle item.
+ */
+/**
+ * @typedef LineItemMonetaryValuesSchema
+ * @property {number} amount_paid - Amount Paid by Customer
+ * @property {number} price_effective - The final effective price after applying
+ *   discounts, promotional offers, and adjustments.
+ * @property {number} [discount] - Discount amount apart from promo and coupon discount
+ * @property {number} price_marked - The original marked price of the item
+ *   before any discounts or promotions.
+ * @property {number} [coupon_discount] - Coupon Discount Applied for this Line Item
+ * @property {number} [cod_charges] - Cash on Delivery Charges Applied for this Article.
+ * @property {number} [promo_discount] - Promotion Discount
+ * @property {number} [gift_price] - Gift Price
+ * @property {number} [delivery_charges] - Delivery Charges Applied for this Article.
+ */
+/**
+ * @typedef DimensionSchema
+ * @property {number} height - Height of the Product.
+ * @property {number} length - Length of the product.
+ * @property {boolean} is_default - Not Modified, meaning these are same as
+ *   product uploaded while loading catelogue.
+ * @property {string} unit - Unit of the measurement used.
+ * @property {number} width - Width of the Product.
+ */
+/**
+ * @typedef GiftDetailsSchema
+ * @property {number} amount - Specifies the value or cost of the gift
+ *   associated with the order line item.
+ * @property {string} display_text - A short description or label intended for
+ *   display purposes. This can be a message to the customer, such as "Gift wrap
+ *   included" or "Gift card value applied."
+ */
+/**
+ * @typedef CPRiderDetailsSchema
+ * @property {string} name
+ * @property {string} phone
+ */
+/**
+ * @typedef CPAreaCodeSchema
+ * @property {string} source
+ * @property {string} destination
+ */
+/**
+ * @typedef CPTatToDeliverTheShipmentSchema
+ * @property {number} min
+ * @property {number} max
+ */
+/**
+ * @typedef CPOptionsSchema
+ * @property {string} [extension_id]
+ * @property {string} [scheme_id]
+ * @property {CPAreaCodeSchema} [area_code]
+ * @property {boolean} [is_self_ship]
+ * @property {number} [max_reattempts_for_delivery_allowed]
+ * @property {string} [cp_sort_key] - A sorting key used for categorizing or
+ *   sorting courier partners, often related to their performance, costs, or
+ *   some other factor.
+ * @property {string} [name] - The name of the courier partner or the delivery
+ *   agent handling the shipment.
+ * @property {CPRiderDetailsSchema} [rider_details]
+ * @property {boolean} [using_own_creds] - Specifies whether the seller's
+ *   credentials are being used for the courier partner.
+ * @property {boolean} [qc_supported] - Specifies that Assigned CP support's
+ *   quality checks
+ */
+/**
+ * @typedef CourierPartnerDetailsSchema
+ * @property {string} [cp_sort_key] - A sorting key used for categorizing or
+ *   sorting courier partners, often related to their performance, costs, or
+ *   some other factor.
+ * @property {CPOptionsSchema[]} [cp_options] - Other Available CP's
+ * @property {string} scheme_id
+ * @property {string} name - The name of the courier partner or the delivery
+ *   agent handling the shipment.
+ * @property {string} extension_id
+ * @property {CPRiderDetailsSchema} [rider_details]
+ * @property {boolean} [qc_supported] - Specifies that Assigned CP support's
+ *   quality checks
+ * @property {boolean} using_own_creds - Specifies weather the Seller's Creds or
+ *   Fynd's Creds are being used.
+ * @property {number} [max_reattempts_for_delivery_allowed] - Reattempts Allowed
+ *   (required for ndr)
+ * @property {CPTatToDeliverTheShipmentSchema} [tat_to_deliver_the_shipment]
+ * @property {boolean} [is_self_ship] - Is every logistic action handled by seller.
+ */
+/**
+ * @typedef TaxDetailsSchema
+ * @property {string} hs_code - The HS code of the product
+ * @property {string} tax_rule_id - Tax identifier.
+ */
+/**
+ * @typedef PromiseDetailsSchema
+ * @property {number} min_sla - Min TimeStamp (EPOCH) that will be taken to
+ *   deliver the product
+ * @property {number} max_sla - Max TimeStamp (EPOCH) that will be taken to
+ *   deliver the product.
+ */
+/**
+ * @typedef CustomerPickupSlotSchema
+ * @property {string} start_time
+ * @property {string} end_time
+ */
+/**
+ * @typedef DpPickupSlotSchema
+ * @property {string} start_time
+ * @property {string} end_time
+ */
+/**
+ * @typedef OrderFulfillmentTimelineSchema
+ * @property {DpPickupSlotSchema} [dp_pickup_slot]
+ * @property {string} [dispatch_after_date] - A date indicating when the order
+ *   can be dispatched (e.g., the earliest possible dispatch date).
+ * @property {string} [dispatch_by_date] - The latest date the order must be
+ *   dispatched to meet delivery expectations.
+ * @property {string} [confirm_by_date] - The deadline by which the merchant
+ *   must confirm the order.
+ * @property {CustomerPickupSlotSchema} [customer_pickup_slot]
+ * @property {string} [pack_by_date] - The latest time the package should be
+ *   packed and ready to dispatch.
+ */
+/**
+ * @typedef LineItemSchema
+ * @property {string} [seller_identifier] - Identifier for the seller providing the item.
+ * @property {LineItemPaymentMethodSchema[]} payment_methods - Payment Methods
+ *   Used to fulfil this Order.
+ * @property {LineItemMonetaryValuesSchema} monetary_values
+ * @property {GiftDetailsSchema} [gift_details]
+ * @property {string} [special_instructions] - A string for any special
+ *   instructions or messages.
+ * @property {DimensionSchema} [dimension]
+ * @property {number} [quantity] - Quantity of the Line Item
+ * @property {string} [external_line_id] - Unique identifier for the LineItem as
+ *   assigned by an external system. You can use this to map external id to
+ *   Fynd's generated id
+ * @property {BundleDetailsSchema} [bundle_details]
+ * @property {Object} [meta] - An object containing metadata related to the shipment.
+ */
+/**
+ * @typedef CreateOrderShipmentSchema
+ * @property {boolean} [is_mto] - Indicates if the shipment belongs to the
+ *   made-to-order category, i.e., the seller will start creating this order
+ *   after receiving an order creation request.
+ * @property {LifecycleMessageSchema[]} [shipment_lifecycle_messages] - List of
+ *   general-purpose messages shown across different points in the shipment's
+ *   journey at Order Details Screen.
+ * @property {string[]} [tags] - Tags that can be attached to the shipment for
+ *   filtering and categorization.
+ * @property {string} [type] - The shipment type defining the fulfillment method
+ *   and processing flow. Each type determines the specific journey a shipment
+ *   will follow based on operational needs and customer preferences:
+ *
+ *   - "HomeDelivery": Standard delivery to the customer's address, undergoing all
+ *       typical state transitions from processing to final delivery.
+ *   - "PickAtStore": Order prepared for in-store pickup, bypassing traditional
+ *       shipping stages for direct handover to the customer.
+ *   - "Digital": Orders involving digital goods or services (e.g., software,
+ *       e-books, subscriptions) delivered electronically.
+ *
+ * @property {FulfillmentOptionSchema} [fulfillment_option]
+ * @property {string} [external_shipment_id] - Unique identifier for the
+ *   shipment as assigned by an external system. Use this to map the external ID
+ *   to Fynd's generated ID.
+ * @property {LineItemSchema[]} [line_items] - A list of items included in the shipment.
+ * @property {OrderFulfillmentTimelineSchema} [order_fulfillment_timeline]
+ * @property {number} [location_id] - The location ID from which this shipment
+ *   is being fulfilled.
+ * @property {string} [external_location_id] - The external location ID from
+ *   which this shipment is being fulfilled.
+ * @property {number} [return_location_id] - Overrides the article's default
+ *   return location.
+ * @property {CourierPartnerDetailsSchema} [courier_partner_details]
+ * @property {TaxDetailsSchema} [tax_details]
+ * @property {PromiseDetailsSchema} [promise_details]
+ * @property {string} [allow_processing_after] - Defines the UTC time at which
+ *   the shipment will automatically move to the placed state.
+ * @property {Object} [meta] - Additional metadata related to the shipment.
+ */
+/**
+ * @typedef OrderingCurrencySchema
+ * @property {string} currency_code - The ISO 4217 currency code, such as 'INR'
+ *   for Indian Rupee. This field represents the standardized three-letter code
+ *   of a currency.
+ * @property {string} currency_symbol - The symbol representing the currency,
+ *   such as '₹' for Indian Rupee. This is used for display purposes alongside
+ *   currency amounts.
+ */
+/**
+ * @typedef ConversionRateSchema
+ * @property {number} rate - The exchange rate used to convert monetary values
+ *   from the ordering currency to the seller's currency.
+ * @property {number} timestamp_ms - The timestamp (in milliseconds) when the
+ *   conversion rate was applied.
+ */
+/**
+ * @typedef CurrencySchema
+ * @property {OrderingCurrencySchema} ordering_currency
+ * @property {ConversionRateSchema} conversion_rate
+ * @property {string} [currency_code] - The ISO 4217 currency code, such as
+ *   'INR' for Indian Rupee. This field represents the standardized three-letter
+ *   code of a currency.
+ * @property {string} [currency_symbol] - The symbol representing the currency,
+ *   such as '₹' for Indian Rupee. This is used for display purposes alongside
+ *   currency amounts.
+ */
+/**
+ * @typedef CouponOwnershipSchema
+ * @property {string} payable_category - Indicates who issued the coupon
+ *   (MARKETPLACE or SELLER).
+ */
+/**
+ * @typedef CouponSchema
+ * @property {string} code - The coupon code that was applied.
+ * @property {string} id - Unique identifier of the coupon.
+ * @property {CouponOwnershipSchema} ownership
+ * @property {boolean} is_return_allowed - Indicates whether returns are allowed
+ *   when this coupon is applied.
+ * @property {boolean} is_cancellation_allowed - Indicates whether cancellations
+ *   are allowed when this coupon is applied.
+ */
+/**
+ * @typedef BillingDetailsSchema
+ * @property {string} [first_name] - First Name of the User
+ * @property {string} [phone_code] - Country phone code ex: +91
+ * @property {string} [country] - Country of the User
+ * @property {string} [city] - City of the User
+ * @property {string} [pincode] - Pincode of the User
+ * @property {string} [last_name] - Last Name of the User
+ * @property {string} [mobile_number] - Primary Phone number of the User
+ * @property {string} [email] - Primary Email of the User
+ * @property {string} [state] - State of the User
+ * @property {string} [alternate_mobile_number] - Alternate Mobile Number
+ * @property {string} [address] - Full Address of the Billing User
+ * @property {string} [middle_name] - A string containing the customer's middle name.
+ * @property {string} [title] - A string representing the customer's title or prefix.
+ * @property {string} [house_no] - A string representing the house or apartment
+ *   number of the customer.
+ * @property {GeoLocationSchema} [geo_location]
+ * @property {string} [gender] - Gender of user
+ * @property {string} [landmark] - A string representing a landmark or reference
+ *   point near the customer's location.
+ * @property {string} [address_type] - A string representing the address type in
+ *   the seller's system.
+ * @property {string} [state_code] - A string representing the state code of the
+ *   customer's location.
+ * @property {string} [floor_no] - A string representing the floor number of the
+ *   customer's location.
+ * @property {string} [alternate_email] - Alternate Email Address
+ * @property {string} [address1] - A string representing the first line of the address.
+ * @property {string} [address2] - A string representing the second line of the address.
+ * @property {string} [country_iso_code] - Specifies the country's unique
+ *   identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+ *   is crucial for distinguishing countries in international transactions, data
+ *   processing, and shipping logistics.
+ * @property {string} [user_id] - The unique identifier assigned to the user.
+ *   refer /user in platform documentation to get more details.
+ * @property {string} [area_code] - Area Code
+ * @property {string} [area_code_slug]
+ * @property {string} [country_phone_code]
+ */
+/**
+ * @typedef CPConfigurationSchema
+ * @property {string} shipping_by - Shipping Handled by FYND or SELLER
+ */
+/**
+ * @typedef ShippingDetailsSchema
+ * @property {string} [first_name] - First Name of the User
+ * @property {string} [phone_code] - Country phone code ex: +91
+ * @property {string} [country] - Country of the User
+ * @property {string} [city] - City of the User
+ * @property {string} [pincode] - Pincode of the User
+ * @property {string} [last_name] - Last Name of the User
+ * @property {string} [mobile_number] - Primary Phone number of the User
+ * @property {string} [email] - Primary Email of the User
+ * @property {string} [state] - State of the User
+ * @property {string} [alternate_mobile_number] - Alternate Mobile Number
+ * @property {string} [address] - Full Address of the Billing User
+ * @property {string} [middle_name] - A string containing the customer's middle name.
+ * @property {string} [title] - A string representing the customer's title or prefix.
+ * @property {string} [house_no] - A string representing the house or apartment
+ *   number of the customer.
+ * @property {GeoLocationSchema} [geo_location]
+ * @property {string} [gender] - Gender of user
+ * @property {string} [landmark] - A string representing a landmark or reference
+ *   point near the customer's location.
+ * @property {string} [address_type] - A string representing the address type in
+ *   the seller's system.
+ * @property {string} [state_code] - A string representing the state code of the
+ *   customer's location.
+ * @property {string} [floor_no] - A string representing the floor number of the
+ *   customer's location.
+ * @property {string} [alternate_email] - Alternate Email Address
+ * @property {string} [address1] - A string representing the first line of the address.
+ * @property {string} [address2] - A string representing the second line of the address.
+ * @property {string} [country_iso_code] - Specifies the country's unique
+ *   identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+ *   is crucial for distinguishing countries in international transactions, data
+ *   processing, and shipping logistics.
+ * @property {string} [user_id] - The unique identifier assigned to the user.
+ *   refer /user in platform documentation to get more details.
+ * @property {string} [area_code] - Area Code
+ * @property {string} [area_code_slug]
+ * @property {string} [country_phone_code]
+ */
+/**
+ * @typedef UserDetailsSchema
+ * @property {string} [gstin] - The user's GSTIN (Goods and Services Tax
+ *   Identification Number).
+ * @property {string} [pan_no] - The user's PAN (Permanent Account Number).
+ */
+/**
+ * @typedef LifecycleMessageSchema
+ * @property {string} message - The message text to display to users at specific
+ *   order states (e.g., PLACED, SHIPPED).
+ * @property {string} type - The message type, which determines the color of the
+ *   message bar.
+ * @property {string[]} states - List of OMS states at which the message should
+ *   be visible.
+ * @property {number} priority - Determines the message display sequence, with 1
+ *   being the highest priority.
+ */
+/**
+ * @typedef CreateOrderRequestSchema
+ * @property {CreateOrderShipmentSchema[]} [shipments] - List of shipments
+ *   included in the order.
+ * @property {string[]} [tags] - Tags that can be used to filter and categorize
+ *   orders and shipments.
+ * @property {CurrencySchema} currency_details
+ * @property {string} [external_creation_date] - Timestamp indicating when the
+ *   order was created in an external system.
+ * @property {CouponSchema} [coupon_details]
+ * @property {BillingDetailsSchema} billing_details
+ * @property {string} primary_payment_mode - The primary payment method used for
+ *   the entire order transaction.
+ * @property {CPConfigurationSchema} [cp_configuration]
+ * @property {number} [ordering_location_id] - The location ID where the order
+ *   is placed. Required when the order is placed from one location but
+ *   fulfilled by another.
+ * @property {boolean} [allow_location_reassignment] - Allows location
+ *   reassignment before order confirmation.
+ * @property {ShippingDetailsSchema} shipping_details
+ * @property {string} [external_order_id] - A unique identifier assigned to the
+ *   order by an external system or service.
+ * @property {UserDetailsSchema} [user_details]
+ * @property {LifecycleMessageSchema[]} [order_lifecycle_messages] - List of
+ *   order lifecycle messages to be displayed to the user at Order Details.
+ * @property {string} [channel_application_id] - Identifies the application from
+ *   which the order was created. Pass this when it differs from the fulfilling
+ *   company's application.
+ * @property {string} [b2b_gstin_number] - The GSTIN (Goods and Services Tax
+ *   Identification Number) for business-to-business transactions.
+ * @property {string} [channel_company_id] - The company ID where the order is
+ *   placed. Required when the order is placed from one company but fulfilled by another.
+ * @property {boolean} [is_draft] - Indicates whether the order is a draft.
+ *   Draft orders will be moved to upcoming state instead of placed status.
  */
 /**
  * @typedef Page
@@ -2606,6 +2988,58 @@ export = OrderPlatformModel;
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
+ */
+/**
+ * @typedef OrderingSourceConfig
+ * @property {string} [slug] - Slug of the ordering source.
+ * @property {OrderingSourceFeature[]} [configs]
+ * @property {string} [logo] - Logo of the ordering source.
+ */
+/**
+ * @typedef OrderingSourceFeature
+ * @property {string} [name] - Name of the ordering source config item.
+ * @property {string} [slug] - Slug of the ordering source config item.
+ * @property {string} [description] - Description of the ordering source config item.
+ * @property {boolean} [enabled] - Whether the config/feature is enabled or not.
+ */
+/**
+ * @typedef ListOrderingSources
+ * @property {OrderingSourceSummary[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef OrderingSourceSummary
+ * @property {string} [text] - Display Text of the ordering source.
+ * @property {string} [value] - Value of the ordering source.
+ */
+/**
+ * @typedef CreateAccount
+ * @property {string} channel_account_name - Unique name identifier for the
+ *   channel account. This represents the sales channel or marketplace through
+ *   which orders are received and processed.
+ */
+/**
+ * @typedef Account
+ * @property {string} [channel_account_id] - Unique identifier for the channel
+ *   account. This is a system-generated identifier used to reference the
+ *   account across the platform.
+ * @property {number} [company_id] - Unique identifier of the company on the
+ *   platform to which this channel account belongs.
+ * @property {string} [channel_account_name] - Name of the channel account. This
+ *   identifies the specific sales channel or marketplace (e.g., SHOPIFY,
+ *   MARKETPLACE, etc.) through which the company receives and processes orders.
+ */
+/**
+ * @typedef AccountsList
+ * @property {Account[]} [data] - List of channel accounts associated with the
+ *   company. Each account represents a different sales channel or marketplace
+ *   integration.
+ * @property {Page} [page]
+ */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
  */
 /**
  * @typedef BagReasonMeta
@@ -2692,6 +3126,35 @@ export = OrderPlatformModel;
  * @property {string} [gender] - The gender of the user.
  * @property {string} [country_phone_code] - The country-specific phone code,
  *   useful for formatting mobile numbers correctly.
+ */
+/**
+ * @typedef BundleReturnConfig
+ * @property {boolean} [allow_partial_return] - Indicates whether partial
+ *   returns are allowed for bundle products.
+ * @property {boolean} [returnable] - Indicates whether the bundle product is returnable.
+ * @property {boolean} [unit] - Time unit for the return window (e.g., "week",
+ *   "day", "hour").
+ * @property {boolean} [time] - Duration value for the return window, expressed
+ *   in the specified unit.
+ */
+/**
+ * @typedef BundleDetails
+ * @property {string} [bundle_group_id] - Unique group identifier for the bundle.
+ * @property {string} [name] - Name of the bundle.
+ * @property {string} [slug] - URL-friendly identifier for the bundle.
+ * @property {number} [bundle_count] - Indicates bundle count of the bag.
+ * @property {string} [article_bundle_id] - Unique identifier for the article bundle.
+ * @property {number} [bundle_article_quantity] - Article net_quantity in bundle Product.
+ * @property {boolean} [is_base] - A flag that determines if bag is base bag of bundle.
+ * @property {number} [price_marked] - Maximum Retail Price of the bundle.
+ * @property {number} [price_effective] - Current selling price of the bundle.
+ * @property {number} [item_id] - Unique identifier for the item.
+ * @property {string} [item_type] - Type of the item (physical_bundle, virtual_bundle).
+ * @property {BundleReturnConfig} [return_config]
+ * @property {string} [seller_identifier] - Identifier for the seller of the bundle.
+ * @property {string[]} [images] - An array of image URLs associated with the bundle.
+ * @property {string} [brand_name] - Identifier for the brand name.
+ * @property {string} [size] - Size associated with the bundle item.
  */
 /**
  * @typedef Address
@@ -3475,8 +3938,8 @@ export = OrderPlatformModel;
  * @property {string} [ordering_channnel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
  * @property {string} [shipment_id] - The unique identifier for the shipment itself.
  * @property {string} [customer_note] - Any special notes or instructions
  *   provided by the customer related to the shipment.
@@ -3585,8 +4048,8 @@ export = OrderPlatformModel;
  * @property {string} [ordering_channel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
  * @property {LoyaltyDiscountDetails} [loyalty_discount_details]
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
@@ -3892,6 +4355,9 @@ export = OrderPlatformModel;
  *   tracking is enabled for the bag.
  * @property {boolean} is_customer_return_allowed - A flag that determines if
  *   customer return is allowed for the bag.
+ * @property {boolean} [is_bundle_item] - Flag to indicate whether the bag is
+ *   part of a bundle.
+ * @property {BundleDetails} [bundle_details]
  */
 /**
  * @typedef OrderBagArticle
@@ -4344,21 +4810,12 @@ export = OrderPlatformModel;
  *   track and reference the specific transaction within the merchant's system.
  */
 /**
- * @typedef CurrencySchema
- * @property {string} [currency_code] - The ISO 4217 currency code, such as
- *   'INR' for Indian Rupee. This field represents the standardized three-letter
- *   code of a currency.
- * @property {string} [currency_symbol] - The symbol representing the currency,
- *   such as '₹' for Indian Rupee. This is used for display purposes alongside
- *   currency amounts.
- */
-/**
  * @typedef OrderData
  * @property {string} [ordering_channel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {string} [ordering_source] - To uniquely identify the source
- *   through which order has been placed (e.g, marketplace, gofynd).
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -5028,99 +5485,10 @@ export = OrderPlatformModel;
  * @property {boolean} [status]
  * @property {string} [error]
  */
-/**
- * @typedef {| "storefront"
- *   | "store_os_pos"
- *   | "kiosk"
- *   | "scan_go"
- *   | "smart_trolley"
- *   | "gofynd"
- *   | "uniket"
- *   | "marketplace"
- *   | "social_commerce"
- *   | "ondc"
- *   | "nexus"
- *   | "nykaa_fashion"
- *   | "etsy"
- *   | "vuivui"
- *   | "zilingo"
- *   | "firstcry"
- *   | "bukalapak"
- *   | "myntra_ppmp"
- *   | "lazada"
- *   | "tiktok"
- *   | "sfcc"
- *   | "debenhams"
- *   | "prestomall"
- *   | "meesho"
- *   | "amazon_vdf"
- *   | "bigcommerce"
- *   | "sendo"
- *   | "storehippo"
- *   | "cdiscount"
- *   | "nykaa"
- *   | "trendyol"
- *   | "weloveshopping"
- *   | "jollee"
- *   | "wish"
- *   | "tiki"
- *   | "central_online"
- *   | "q10"
- *   | "cred"
- *   | "walmart"
- *   | "snapdeal"
- *   | "flipkart"
- *   | "blibli"
- *   | "ajio_jit"
- *   | "pharmeasy"
- *   | "ezmall"
- *   | "adobe_commerce"
- *   | "kartmax"
- *   | "shopee"
- *   | "zalora"
- *   | "prestashop"
- *   | "smytten"
- *   | "amazon_sc"
- *   | "urbanpiper"
- *   | "flipkart_quick"
- *   | "woocommerce"
- *   | "zivame"
- *   | "lelong"
- *   | "facebook"
- *   | "jiomart"
- *   | "gmc"
- *   | "robins"
- *   | "akulaku"
- *   | "noon"
- *   | "tatacliq"
- *   | "kartrocket"
- *   | "inorbit"
- *   | "ajio_business"
- *   | "swiggy"
- *   | "asos"
- *   | "tokopedia"
- *   | "limeroad"
- *   | "myntra_omni"
- *   | "spoyl"
- *   | "amazon_mlf"
- *   | "fulfilled_by_lazada"
- *   | "ebay"
- *   | "jd"
- *   | "amazon_pharmacy"
- *   | "ajio_vms"
- *   | "daraz"
- *   | "oker"
- *   | "flipkart_b2b"
- *   | "amazon_mlf_ss"
- *   | "woovly"
- *   | "tata1mg"
- *   | "zomato"
- *   | "shopify"} OrderingSource
- */
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponseSchema, InvalidateShipmentCacheResponseSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, ValidationError, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, CurrencySchema, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema, OrderingSource };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponseSchema, InvalidateShipmentCacheResponseSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -5963,8 +6331,8 @@ type ShipmentsResponseSchema = {
 declare function DPConfiguration(): DPConfiguration;
 type DPConfiguration = {
     /**
-     * - Shipping_by denotes dp assignment
-     * strategy- if shipping_by is fynd dp assignment would be handled by OMS
+     * - It denotes DP assignment strategy. If it
+     * is fynd, DP assignment will be handled by Fynd's OMS.
      */
     shipping_by?: string;
 };
@@ -5998,21 +6366,22 @@ type LockStateMessage = {
 /** @returns {CreateOrderConfig} */
 declare function CreateOrderConfig(): CreateOrderConfig;
 type CreateOrderConfig = {
-    dp_configuration: DPConfiguration;
+    dp_configuration?: DPConfiguration;
     /**
-     * - Flag denotes if the location
-     * for the store needs to be reassigned post cancellation. If true,location
-     * for the store gets auto reassigned post cancellation, if set false location
-     * reassignment will not be performed as its disabled.
+     * - The flag denotes if the
+     * location for the shipment needs to be reassigned after cancellation. If the
+     * flag is set to true, location for the shipment gets auto reassigned post
+     * cancellation. If set to false, location reassignment will not be performed
+     * as it is disabled.
      */
     location_reassignment?: boolean;
     payment?: PaymentConfig;
     /**
      * - Denotes the shipment
-     * breaking strategy. If the flag is set true, the shipment is created using
-     * optimal shipment creation strategy based on the servicability & packaging
-     * dimensions by OMS .If false, shipment details, including location_id, must
-     * be passed to FDK for processing.
+     * breaking strategy. If the flag is set to true, the shipment is created
+     * using an optimal shipment creation strategy based on the serviceability &
+     * packaging dimensions by OMS. If the flag is set to false, shipment details
+     * and location_id, must be passed to FDK for processing.
      */
     optimal_shipment_creation?: boolean;
     /**
@@ -6359,8 +6728,7 @@ type OrderConfig = {
 declare function CreateOrderResponseSchema(): CreateOrderResponseSchema;
 type CreateOrderResponseSchema = {
     /**
-     * - A string that represents the unique
-     * identifier assigned to the order.
+     * - Unique identifier assigned to the order
      */
     fynd_order_id: string;
 };
@@ -6834,8 +7202,8 @@ type OrderDetails = {
      */
     ordering_channel?: string;
     /**
-     * - To uniquely identify the source
-     * through which order has been placed (e.g, marketplace, gofynd).
+     * - Ordering source, to be used to
+     * identify source of order creation.
      */
     ordering_source?: string;
     /**
@@ -7035,7 +7403,7 @@ type UpdatePackagingDimensionsResponseSchema = {
 declare function Tax(): Tax;
 type Tax = {
     /**
-     * - The name of the tax, indicating its purpose (e.g.,
+     * - The name of the tax indicating its purpose (e.g.,
      * VAT, sales tax).
      */
     name: string;
@@ -7070,27 +7438,31 @@ type AmountSchema = {
 /** @returns {Charge} */
 declare function Charge(): Charge;
 type Charge = {
+    amount: AmountSchema;
+    /**
+     * - The category or type of the charge.
+     */
+    type: string;
     /**
      * - The name of the charge that indicates its purpose.
      */
     name: string;
-    amount: AmountSchema;
-    tax?: Tax;
     /**
      * - An optional code associated with the charge for
      * internal tracking.
      */
     code?: string;
-    /**
-     * - The category or type of the charge.
-     */
-    type: string;
+    tax?: Tax;
 };
 /** @returns {LineItem} */
 declare function LineItem(): LineItem;
 type LineItem = {
     /**
-     * - An array of Charge objects related to the line item.
+     * - An array of Charge objects related to the
+     * line item. This array must include three mandatory charge types:
+     * amount_paid, price_effective and price_marked. Formula to calculate
+     * amount_paid = price_effective + cod_charges + delivery_charges -
+     * coupon_discount - promo_discount
      */
     charges?: Charge[];
     /**
@@ -7207,8 +7579,8 @@ type SystemMessages = {
 declare function Shipment(): Shipment;
 type Shipment = {
     /**
-     * - An array of LineItem objects that
-     * represent the items included in the shipment.
+     * - An array of objects that represent the
+     * items included in the shipment.
      */
     line_items: LineItem[];
     /**
@@ -7223,35 +7595,32 @@ type Shipment = {
      */
     meta?: any;
     /**
-     * - An integer indicating the priority level of
-     * the shipment.
+     * - Priority level of the shipment.
      */
     priority?: number;
     /**
-     * - Location Identifier or Store/Fulfillment
-     * Identifier of the shipment- This field is mandatory when
-     * optimal_shipment_creation flag is set to false, indicating that shipments
-     * must be associated with a specific location. When
-     * `optimal_shipment_creation` is true, the optimal location for order
-     * creation would be assigned, location_id becomes optional.
+     * - Location/store/fulfillment identifier of
+     * the shipment. This field is mandatory when optimal_shipment_creation flag
+     * is set to false, indicating that shipments must be associated with a
+     * specific location. When optimal_shipment_creation is true, location_id
+     * becomes optional and the system automatically assigns the optimal location
+     * for order creation.
      */
     location_id?: number;
     /**
      * - Defines the specific journey a shipment
      * will follow based on the application's operational needs and customer
      * preferences. This field categorizes orders into distinct types, each
-     * associated with a unique processing flow. For example:
-     *
-     * - "HomeDelivery": The order undergoes all state transitions typical for a
-     * delivery, from processing the shipment to final delivery at the
-     * customer's address.
-     * - "PickAtStore": The order is prepared for pickup and moved to a state where it
-     * is ready to be handed over directly to the customer at the store. This
-     * type streamlines the process by bypassing traditional shipping stages
-     * and facilitating a quicker transition to the final handover stage.
-     * - "Digital": This order type likely refers to orders that involve digital goods
-     * or services, such as software, digital subscriptions, e-books, online
-     * courses, or any other item that can be delivered electronically.
+     * associated with a unique processing flow. For example, "HomeDelivery": The
+     * order undergoes all state transitions typical for a delivery, from
+     * processing the shipment to final delivery at the customer's address.
+     * "PickAtStore": The order is prepared for pickup and moved to a state where
+     * it is ready to be handed over directly to the customer at the store. This
+     * type streamlines the process by bypassing traditional shipping stages and
+     * facilitating a quicker transition to the final handover stage. "Digital":
+     * This order type likely refers to orders that involve digital goods or
+     * services, such as software, digital subscriptions, e-books, online courses,
+     * or any other item that can be delivered electronically.
      */
     order_type?: string;
     tags?: string[];
@@ -7313,18 +7682,17 @@ type GeoLocationSchema = {
 declare function ShippingInfo(): ShippingInfo;
 type ShippingInfo = {
     /**
-     * - A string for an alternate
-     * mobile number to reach the customer, providing an additional contact method.
+     * - Alternate mobile number to
+     * reach the customer, providing an additional contact method.
      */
     alternate_mobile_number?: string;
     /**
-     * - A string representing the name of the state for
-     * shipping purposes.
+     * - The name of the state for shipping purposes.
      */
     state?: string;
     /**
-     * - A string representing the customer's
-     * unique identifier in the seller's system.
+     * - Customer's unique identifier in the
+     * seller's system.
      */
     customer_code?: string;
     /**
@@ -7333,72 +7701,66 @@ type ShippingInfo = {
      */
     shipping_type?: string;
     /**
-     * - A string containing the customer's middle name.
+     * - Customer's middle name
      */
     middle_name?: string;
     /**
-     * - A string for the customer's
-     * primary mobile number.
+     * - Customer's primary mobile number
      */
     primary_mobile_number?: string;
     /**
-     * - A string containing the customer's last name.
+     * - Customer's last name
      */
     last_name?: string;
     geo_location?: GeoLocationSchema;
     /**
-     * - A string representing the customer's gender.
+     * - Customer's gender
      */
     gender?: string;
     /**
-     * - A string representing the house or apartment
-     * number of the customer.
+     * - The house or apartment number of the customer.
      */
     house_no?: string;
     /**
-     * - A string representing the customer's first name.
+     * - Customer's first name
      */
     first_name?: string;
     /**
-     * - A string representing the customer's title or prefix.
+     * - Customer's title or prefix
      */
     title?: string;
     /**
-     * - A string representing a landmark or reference
-     * point near the customer's location.
+     * - Landmark or reference point near the
+     * customer's location
      */
     landmark?: string;
     /**
-     * - A string representing the customer's country.
+     * - Customer's country
      */
     country?: string;
     /**
-     * - A string representing the address type in
-     * the seller's system.
+     * - Address type in the seller's system
      */
     address_type?: string;
     /**
-     * - A string representing the state code of the
-     * customer's location.
+     * - State code of the customer's location
      */
     state_code?: string;
     /**
-     * - A string representing the city of the customer's location.
+     * - City of the customer's location
      */
     city?: string;
     /**
-     * - A string representing an
-     * external customer code in the seller's system.
+     * - External customer code in the
+     * seller's system
      */
     external_customer_code?: string;
     /**
-     * - A string representing the floor number of the
-     * customer's location.
+     * - Floor number of the customer's location
      */
     floor_no?: string;
     /**
-     * - A string representing an alternate
-     * email address for the customer.
+     * - Alternate email address for the customer
      */
     alternate_email?: string;
     /**
@@ -7411,25 +7773,23 @@ type ShippingInfo = {
      */
     address?: string;
     /**
-     * - A string representing the area of the customer's location.
+     * - Area of the customer's location
      */
     area?: string;
     /**
-     * - A string representing the first line of the address.
+     * - First line of the address
      */
     address1?: string;
     /**
-     * - A string representing the pincode of the
-     * customer's location.
+     * - Pincode of the customer's location
      */
     pincode?: string;
     /**
-     * - A string representing the primary email
-     * address for the customer.
+     * - Primary email address for the customer
      */
     primary_email?: string;
     /**
-     * - A string representing the second line of the address.
+     * - Second line of the address
      */
     address2?: string;
     /**
@@ -7442,7 +7802,7 @@ type ShippingInfo = {
     country_code?: string;
     /**
      * - Specifies the country's unique
-     * identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+     * identifier allowing the ISO 3166-1 alpha-2 standard. This two-letter code
      * is crucial for distinguishing countries in international transactions, data
      * processing, and shipping logistics.
      */
@@ -7483,25 +7843,23 @@ type BillingInfo = {
     alternate_email?: string;
     address?: string;
     /**
-     * - A string representing the area of the customer's location.
+     * - Area of the customer's location
      */
     area?: string;
     /**
-     * - A string representing the first line of the address.
+     * - First line of the address
      */
     address1?: string;
     /**
-     * - A string representing the pincode of the
-     * customer's location.
+     * - Pincode of the customer's location
      */
     pincode?: string;
     /**
-     * - A string representing the primary email
-     * address for the customer.
+     * - Primary email address for the customer
      */
     primary_email?: string;
     /**
-     * - A string representing the second line of the address.
+     * - Second line of the address
      */
     address2?: string;
     /**
@@ -7527,29 +7885,27 @@ type UserInfo = {
      */
     user_id?: string;
     /**
-     * - A string representing the type of the user.
+     * - Type of the user
      */
     user_type?: string;
     /**
-     * - A string representing the primary email
-     * address for the user.
+     * - Primary email address for the user
      */
     primary_email?: string;
     /**
-     * - A string specifying the gender of the user.
+     * - Gender of the user
      */
     gender?: string;
     /**
-     * - A string which specifies the user's first name.
+     * - User's first name
      */
     first_name: string;
     /**
-     * - A string which specifies the user's last name.
+     * - User's last name
      */
     last_name?: string;
     /**
-     * - A string representing the primary
-     * mobile number for the user.
+     * - Primary mobile number for the user
      */
     primary_mobile_number: string;
 };
@@ -7557,18 +7913,17 @@ type UserInfo = {
 declare function TaxInfo(): TaxInfo;
 type TaxInfo = {
     /**
-     * - A string representing the GSTIN
-     * (Goods and Services Tax Identification Number) for business-to-business
-     * transactions.
+     * - Goods and Services Tax Identification
+     * Number (GSTIN) for business-to-business transactions
      */
     b2b_gstin_number?: string;
     /**
-     * - A string that specifies the GSTIN for the seller.
+     * - GSTIN of the customer
      */
     gstin?: string;
     /**
-     * - A string representing the PAN assigned to
-     * individuals or entities for tax purposes in India.
+     * - PAN assigned to individuals or entities for tax
+     * purposes in India
      */
     pan_no?: string;
 };
@@ -7576,23 +7931,20 @@ type TaxInfo = {
 declare function PaymentMethod(): PaymentMethod;
 type PaymentMethod = {
     /**
-     * - A string indicating the entity responsible
-     * for collecting the payment.
+     * - Entity responsible for collecting the payment
      */
     collect_by: string;
     /**
-     * - A string that specifies the mode of payment. Refer
-     * to [API & references (in Nav bar) → Payment Modes] for a list of valid
-     * payment methods.
+     * - Mode of payment. Refer to [API & references (in Nav
+     * bar) → Payment Modes] for a list of valid payment methods.
      */
     mode: string;
     /**
-     * - A string that indicates the entity responsible
-     * for processing refunds.
+     * - Entity responsible for processing refunds
      */
     refund_by: string;
     /**
-     * - A string representing the name of the payment method.
+     * - Name of the payment method
      */
     name: string;
     /**
@@ -7615,13 +7967,11 @@ type PaymentMethod = {
 declare function PaymentInfo(): PaymentInfo;
 type PaymentInfo = {
     /**
-     * - A string that indicates the primary payment
-     * method used for the order.
+     * - Primary payment method used for the order
      */
     primary_mode: string;
     /**
-     * - A string that indicates the payment mode
-     * used for the order.
+     * - Payment mode used for the order
      */
     payment_mode?: string;
     /**
@@ -7635,8 +7985,8 @@ declare function CreateOrderAPI(): CreateOrderAPI;
 type CreateOrderAPI = {
     /**
      * - List of Shipments which includes shipment
-     * data like shipment items, shipment promise, Shipment type, shipment order
-     * type, shipment dp options etc.
+     * data like shipment items, shipment promise, shipment type, shipment order
+     * type, shipment DP options etc.
      */
     shipments: Shipment[];
     shipping_info: ShippingInfo;
@@ -7653,13 +8003,12 @@ type CreateOrderAPI = {
      */
     external_order_id?: string;
     /**
-     * - An array of charge objects that detail the
-     * various fees associated with the order.
+     * - It details the various fees associated with the order.
      */
     charges?: Charge[];
     /**
-     * - A string that specifies the
-     * date and time when the order was created in an external system
+     * - Date and time when the order
+     * was created in an external system
      */
     external_creation_date?: string;
     /**
@@ -7688,8 +8037,7 @@ type CreateOrderAPI = {
     status?: string;
     system_messages?: SystemMessages[];
     /**
-     * - A string that specifies the type of order
-     * being placed.
+     * - Type of order being placed
      */
     order_type?: string;
     /**
@@ -9844,8 +10192,8 @@ type TransitionConfigCondition = {
      */
     ordering_channel?: string;
     /**
-     * - To uniquely identify the source
-     * through which order has been placed (e.g, marketplace, gofynd).
+     * - Ordering source, to be used to
+     * identify source of order creation.
      */
     ordering_source?: string;
     /**
@@ -10289,17 +10637,913 @@ type PaymentMetaLogoURLSchema = {
      */
     small: string;
 };
-/** @returns {ValidationError} */
-declare function ValidationError(): ValidationError;
-type ValidationError = {
+/** @returns {FulfillmentOptionSchema} */
+declare function FulfillmentOptionSchema(): FulfillmentOptionSchema;
+type FulfillmentOptionSchema = {
     /**
-     * - A brief description of the error encountered.
+     * - The name of the fulfillment option (e.g.,
+     * 'Standard Shipping', 'Express Delivery').
+     */
+    name?: string;
+    /**
+     * - A unique identifier for the fulfillment option.
+     */
+    slug?: string;
+    /**
+     * - The category or method of fulfillment
+     * (e.g., 'Pickup', 'Delivery', 'Courier').
+     */
+    is_default?: boolean;
+    /**
+     * - Indicates whether this fulfillment option is the
+     * default choice for customers.
+     */
+    type?: string;
+};
+/** @returns {PaymentMethodGatewaySchema} */
+declare function PaymentMethodGatewaySchema(): PaymentMethodGatewaySchema;
+type PaymentMethodGatewaySchema = {
+    /**
+     * - Payment Gateway Name.
+     */
+    name: string;
+    logo?: string;
+};
+/** @returns {SubModeOfPaymentSchema} */
+declare function SubModeOfPaymentSchema(): SubModeOfPaymentSchema;
+type SubModeOfPaymentSchema = {
+    /**
+     * - Name of the Sub MOP Used.
+     */
+    name: string;
+};
+/** @returns {PaymentMethodModeOfPaymentSchema} */
+declare function PaymentMethodModeOfPaymentSchema(): PaymentMethodModeOfPaymentSchema;
+type PaymentMethodModeOfPaymentSchema = {
+    /**
+     * - Payment Mode Name.
+     */
+    name: string;
+    /**
+     * - Slug of the Payment Mode.
+     */
+    slug: string;
+    sub_mode_of_payment?: SubModeOfPaymentSchema;
+};
+/** @returns {PaymentMethodTransactionPartySchema} */
+declare function PaymentMethodTransactionPartySchema(): PaymentMethodTransactionPartySchema;
+type PaymentMethodTransactionPartySchema = {
+    /**
+     * - Entity responsible for refunds (e.g., SELLER/FYND).
+     */
+    refund_bearer: string;
+    /**
+     * - Entity responsible for collection
+     * charges (e.g., SELLER/FYND).
+     */
+    collection_bearer: string;
+};
+/** @returns {LineItemPaymentMethodSchema} */
+declare function LineItemPaymentMethodSchema(): LineItemPaymentMethodSchema;
+type LineItemPaymentMethodSchema = {
+    gateway?: PaymentMethodGatewaySchema;
+    mode_of_payment?: PaymentMethodModeOfPaymentSchema;
+    /**
+     * - Total Amount Paid by this Payment Method.
+     */
+    amount_paid?: number;
+    /**
+     * - Transaction id
+     */
+    payment_identifier?: string;
+    transaction_party?: PaymentMethodTransactionPartySchema;
+};
+/** @returns {BundleDetailsSchema} */
+declare function BundleDetailsSchema(): BundleDetailsSchema;
+type BundleDetailsSchema = {
+    /**
+     * - A flag that determines if bag is base bag of bundle.
+     */
+    is_base?: boolean;
+    /**
+     * - An array of image URLs associated with the bundle.
+     */
+    images?: string[];
+    /**
+     * - Unique group identifier for the bundle.
+     */
+    group_id?: string;
+    /**
+     * - Name of the bundle.
+     */
+    name?: string;
+    /**
+     * - Type of the item (physical_bundle, virtual_bundle).
+     */
+    item_type?: string;
+    /**
+     * - Unique identifier for the item.
+     */
+    item_id?: number;
+    /**
+     * - Item code for the item.
+     */
+    item_code?: string;
+    /**
+     * - Name of the item.
+     */
+    item_name?: string;
+    /**
+     * - Identifier for the seller of the bundle.
+     */
+    seller_identifier?: string;
+    /**
+     * - Article net_quantity in bundle Product.
+     */
+    bundle_article_quantity?: number;
+    /**
+     * - Identifier for the brand name.
+     */
+    brand_name?: string;
+    /**
+     * - Size associated with the bundle item.
+     */
+    size?: string;
+};
+/** @returns {LineItemMonetaryValuesSchema} */
+declare function LineItemMonetaryValuesSchema(): LineItemMonetaryValuesSchema;
+type LineItemMonetaryValuesSchema = {
+    /**
+     * - Amount Paid by Customer
+     */
+    amount_paid: number;
+    /**
+     * - The final effective price after applying
+     * discounts, promotional offers, and adjustments.
+     */
+    price_effective: number;
+    /**
+     * - Discount amount apart from promo and coupon discount
+     */
+    discount?: number;
+    /**
+     * - The original marked price of the item
+     * before any discounts or promotions.
+     */
+    price_marked: number;
+    /**
+     * - Coupon Discount Applied for this Line Item
+     */
+    coupon_discount?: number;
+    /**
+     * - Cash on Delivery Charges Applied for this Article.
+     */
+    cod_charges?: number;
+    /**
+     * - Promotion Discount
+     */
+    promo_discount?: number;
+    /**
+     * - Gift Price
+     */
+    gift_price?: number;
+    /**
+     * - Delivery Charges Applied for this Article.
+     */
+    delivery_charges?: number;
+};
+/** @returns {DimensionSchema} */
+declare function DimensionSchema(): DimensionSchema;
+type DimensionSchema = {
+    /**
+     * - Height of the Product.
+     */
+    height: number;
+    /**
+     * - Length of the product.
+     */
+    length: number;
+    /**
+     * - Not Modified, meaning these are same as
+     * product uploaded while loading catelogue.
+     */
+    is_default: boolean;
+    /**
+     * - Unit of the measurement used.
+     */
+    unit: string;
+    /**
+     * - Width of the Product.
+     */
+    width: number;
+};
+/** @returns {GiftDetailsSchema} */
+declare function GiftDetailsSchema(): GiftDetailsSchema;
+type GiftDetailsSchema = {
+    /**
+     * - Specifies the value or cost of the gift
+     * associated with the order line item.
+     */
+    amount: number;
+    /**
+     * - A short description or label intended for
+     * display purposes. This can be a message to the customer, such as "Gift wrap
+     * included" or "Gift card value applied."
+     */
+    display_text: string;
+};
+/** @returns {CPRiderDetailsSchema} */
+declare function CPRiderDetailsSchema(): CPRiderDetailsSchema;
+type CPRiderDetailsSchema = {
+    name: string;
+    phone: string;
+};
+/** @returns {CPAreaCodeSchema} */
+declare function CPAreaCodeSchema(): CPAreaCodeSchema;
+type CPAreaCodeSchema = {
+    source: string;
+    destination: string;
+};
+/** @returns {CPTatToDeliverTheShipmentSchema} */
+declare function CPTatToDeliverTheShipmentSchema(): CPTatToDeliverTheShipmentSchema;
+type CPTatToDeliverTheShipmentSchema = {
+    min: number;
+    max: number;
+};
+/** @returns {CPOptionsSchema} */
+declare function CPOptionsSchema(): CPOptionsSchema;
+type CPOptionsSchema = {
+    extension_id?: string;
+    scheme_id?: string;
+    area_code?: CPAreaCodeSchema;
+    is_self_ship?: boolean;
+    max_reattempts_for_delivery_allowed?: number;
+    /**
+     * - A sorting key used for categorizing or
+     * sorting courier partners, often related to their performance, costs, or
+     * some other factor.
+     */
+    cp_sort_key?: string;
+    /**
+     * - The name of the courier partner or the delivery
+     * agent handling the shipment.
+     */
+    name?: string;
+    rider_details?: CPRiderDetailsSchema;
+    /**
+     * - Specifies whether the seller's
+     * credentials are being used for the courier partner.
+     */
+    using_own_creds?: boolean;
+    /**
+     * - Specifies that Assigned CP support's
+     * quality checks
+     */
+    qc_supported?: boolean;
+};
+/** @returns {CourierPartnerDetailsSchema} */
+declare function CourierPartnerDetailsSchema(): CourierPartnerDetailsSchema;
+type CourierPartnerDetailsSchema = {
+    /**
+     * - A sorting key used for categorizing or
+     * sorting courier partners, often related to their performance, costs, or
+     * some other factor.
+     */
+    cp_sort_key?: string;
+    /**
+     * - Other Available CP's
+     */
+    cp_options?: CPOptionsSchema[];
+    scheme_id: string;
+    /**
+     * - The name of the courier partner or the delivery
+     * agent handling the shipment.
+     */
+    name: string;
+    extension_id: string;
+    rider_details?: CPRiderDetailsSchema;
+    /**
+     * - Specifies that Assigned CP support's
+     * quality checks
+     */
+    qc_supported?: boolean;
+    /**
+     * - Specifies weather the Seller's Creds or
+     * Fynd's Creds are being used.
+     */
+    using_own_creds: boolean;
+    /**
+     * - Reattempts Allowed
+     * (required for ndr)
+     */
+    max_reattempts_for_delivery_allowed?: number;
+    tat_to_deliver_the_shipment?: CPTatToDeliverTheShipmentSchema;
+    /**
+     * - Is every logistic action handled by seller.
+     */
+    is_self_ship?: boolean;
+};
+/** @returns {TaxDetailsSchema} */
+declare function TaxDetailsSchema(): TaxDetailsSchema;
+type TaxDetailsSchema = {
+    /**
+     * - The HS code of the product
+     */
+    hs_code: string;
+    /**
+     * - Tax identifier.
+     */
+    tax_rule_id: string;
+};
+/** @returns {PromiseDetailsSchema} */
+declare function PromiseDetailsSchema(): PromiseDetailsSchema;
+type PromiseDetailsSchema = {
+    /**
+     * - Min TimeStamp (EPOCH) that will be taken to
+     * deliver the product
+     */
+    min_sla: number;
+    /**
+     * - Max TimeStamp (EPOCH) that will be taken to
+     * deliver the product.
+     */
+    max_sla: number;
+};
+/** @returns {CustomerPickupSlotSchema} */
+declare function CustomerPickupSlotSchema(): CustomerPickupSlotSchema;
+type CustomerPickupSlotSchema = {
+    start_time: string;
+    end_time: string;
+};
+/** @returns {DpPickupSlotSchema} */
+declare function DpPickupSlotSchema(): DpPickupSlotSchema;
+type DpPickupSlotSchema = {
+    start_time: string;
+    end_time: string;
+};
+/** @returns {OrderFulfillmentTimelineSchema} */
+declare function OrderFulfillmentTimelineSchema(): OrderFulfillmentTimelineSchema;
+type OrderFulfillmentTimelineSchema = {
+    dp_pickup_slot?: DpPickupSlotSchema;
+    /**
+     * - A date indicating when the order
+     * can be dispatched (e.g., the earliest possible dispatch date).
+     */
+    dispatch_after_date?: string;
+    /**
+     * - The latest date the order must be
+     * dispatched to meet delivery expectations.
+     */
+    dispatch_by_date?: string;
+    /**
+     * - The deadline by which the merchant
+     * must confirm the order.
+     */
+    confirm_by_date?: string;
+    customer_pickup_slot?: CustomerPickupSlotSchema;
+    /**
+     * - The latest time the package should be
+     * packed and ready to dispatch.
+     */
+    pack_by_date?: string;
+};
+/** @returns {LineItemSchema} */
+declare function LineItemSchema(): LineItemSchema;
+type LineItemSchema = {
+    /**
+     * - Identifier for the seller providing the item.
+     */
+    seller_identifier?: string;
+    /**
+     * - Payment Methods
+     * Used to fulfil this Order.
+     */
+    payment_methods: LineItemPaymentMethodSchema[];
+    monetary_values: LineItemMonetaryValuesSchema;
+    gift_details?: GiftDetailsSchema;
+    /**
+     * - A string for any special
+     * instructions or messages.
+     */
+    special_instructions?: string;
+    dimension?: DimensionSchema;
+    /**
+     * - Quantity of the Line Item
+     */
+    quantity?: number;
+    /**
+     * - Unique identifier for the LineItem as
+     * assigned by an external system. You can use this to map external id to
+     * Fynd's generated id
+     */
+    external_line_id?: string;
+    bundle_details?: BundleDetailsSchema;
+    /**
+     * - An object containing metadata related to the shipment.
+     */
+    meta?: any;
+};
+/** @returns {CreateOrderShipmentSchema} */
+declare function CreateOrderShipmentSchema(): CreateOrderShipmentSchema;
+type CreateOrderShipmentSchema = {
+    /**
+     * - Indicates if the shipment belongs to the
+     * made-to-order category, i.e., the seller will start creating this order
+     * after receiving an order creation request.
+     */
+    is_mto?: boolean;
+    /**
+     * - List of
+     * general-purpose messages shown across different points in the shipment's
+     * journey at Order Details Screen.
+     */
+    shipment_lifecycle_messages?: LifecycleMessageSchema[];
+    /**
+     * - Tags that can be attached to the shipment for
+     * filtering and categorization.
+     */
+    tags?: string[];
+    /**
+     * - The shipment type defining the fulfillment method
+     * and processing flow. Each type determines the specific journey a shipment
+     * will follow based on operational needs and customer preferences:
+     *
+     * - "HomeDelivery": Standard delivery to the customer's address, undergoing all
+     * typical state transitions from processing to final delivery.
+     * - "PickAtStore": Order prepared for in-store pickup, bypassing traditional
+     * shipping stages for direct handover to the customer.
+     * - "Digital": Orders involving digital goods or services (e.g., software,
+     * e-books, subscriptions) delivered electronically.
+     */
+    type?: string;
+    fulfillment_option?: FulfillmentOptionSchema;
+    /**
+     * - Unique identifier for the
+     * shipment as assigned by an external system. Use this to map the external ID
+     * to Fynd's generated ID.
+     */
+    external_shipment_id?: string;
+    /**
+     * - A list of items included in the shipment.
+     */
+    line_items?: LineItemSchema[];
+    order_fulfillment_timeline?: OrderFulfillmentTimelineSchema;
+    /**
+     * - The location ID from which this shipment
+     * is being fulfilled.
+     */
+    location_id?: number;
+    /**
+     * - The external location ID from
+     * which this shipment is being fulfilled.
+     */
+    external_location_id?: string;
+    /**
+     * - Overrides the article's default
+     * return location.
+     */
+    return_location_id?: number;
+    courier_partner_details?: CourierPartnerDetailsSchema;
+    tax_details?: TaxDetailsSchema;
+    promise_details?: PromiseDetailsSchema;
+    /**
+     * - Defines the UTC time at which
+     * the shipment will automatically move to the placed state.
+     */
+    allow_processing_after?: string;
+    /**
+     * - Additional metadata related to the shipment.
+     */
+    meta?: any;
+};
+/** @returns {OrderingCurrencySchema} */
+declare function OrderingCurrencySchema(): OrderingCurrencySchema;
+type OrderingCurrencySchema = {
+    /**
+     * - The ISO 4217 currency code, such as 'INR'
+     * for Indian Rupee. This field represents the standardized three-letter code
+     * of a currency.
+     */
+    currency_code: string;
+    /**
+     * - The symbol representing the currency,
+     * such as '₹' for Indian Rupee. This is used for display purposes alongside
+     * currency amounts.
+     */
+    currency_symbol: string;
+};
+/** @returns {ConversionRateSchema} */
+declare function ConversionRateSchema(): ConversionRateSchema;
+type ConversionRateSchema = {
+    /**
+     * - The exchange rate used to convert monetary values
+     * from the ordering currency to the seller's currency.
+     */
+    rate: number;
+    /**
+     * - The timestamp (in milliseconds) when the
+     * conversion rate was applied.
+     */
+    timestamp_ms: number;
+};
+/** @returns {CurrencySchema} */
+declare function CurrencySchema(): CurrencySchema;
+type CurrencySchema = {
+    ordering_currency: OrderingCurrencySchema;
+    conversion_rate: ConversionRateSchema;
+    /**
+     * - The ISO 4217 currency code, such as
+     * 'INR' for Indian Rupee. This field represents the standardized three-letter
+     * code of a currency.
+     */
+    currency_code?: string;
+    /**
+     * - The symbol representing the currency,
+     * such as '₹' for Indian Rupee. This is used for display purposes alongside
+     * currency amounts.
+     */
+    currency_symbol?: string;
+};
+/** @returns {CouponOwnershipSchema} */
+declare function CouponOwnershipSchema(): CouponOwnershipSchema;
+type CouponOwnershipSchema = {
+    /**
+     * - Indicates who issued the coupon
+     * (MARKETPLACE or SELLER).
+     */
+    payable_category: string;
+};
+/** @returns {CouponSchema} */
+declare function CouponSchema(): CouponSchema;
+type CouponSchema = {
+    /**
+     * - The coupon code that was applied.
+     */
+    code: string;
+    /**
+     * - Unique identifier of the coupon.
+     */
+    id: string;
+    ownership: CouponOwnershipSchema;
+    /**
+     * - Indicates whether returns are allowed
+     * when this coupon is applied.
+     */
+    is_return_allowed: boolean;
+    /**
+     * - Indicates whether cancellations
+     * are allowed when this coupon is applied.
+     */
+    is_cancellation_allowed: boolean;
+};
+/** @returns {BillingDetailsSchema} */
+declare function BillingDetailsSchema(): BillingDetailsSchema;
+type BillingDetailsSchema = {
+    /**
+     * - First Name of the User
+     */
+    first_name?: string;
+    /**
+     * - Country phone code ex: +91
+     */
+    phone_code?: string;
+    /**
+     * - Country of the User
+     */
+    country?: string;
+    /**
+     * - City of the User
+     */
+    city?: string;
+    /**
+     * - Pincode of the User
+     */
+    pincode?: string;
+    /**
+     * - Last Name of the User
+     */
+    last_name?: string;
+    /**
+     * - Primary Phone number of the User
+     */
+    mobile_number?: string;
+    /**
+     * - Primary Email of the User
+     */
+    email?: string;
+    /**
+     * - State of the User
+     */
+    state?: string;
+    /**
+     * - Alternate Mobile Number
+     */
+    alternate_mobile_number?: string;
+    /**
+     * - Full Address of the Billing User
+     */
+    address?: string;
+    /**
+     * - A string containing the customer's middle name.
+     */
+    middle_name?: string;
+    /**
+     * - A string representing the customer's title or prefix.
+     */
+    title?: string;
+    /**
+     * - A string representing the house or apartment
+     * number of the customer.
+     */
+    house_no?: string;
+    geo_location?: GeoLocationSchema;
+    /**
+     * - Gender of user
+     */
+    gender?: string;
+    /**
+     * - A string representing a landmark or reference
+     * point near the customer's location.
+     */
+    landmark?: string;
+    /**
+     * - A string representing the address type in
+     * the seller's system.
+     */
+    address_type?: string;
+    /**
+     * - A string representing the state code of the
+     * customer's location.
+     */
+    state_code?: string;
+    /**
+     * - A string representing the floor number of the
+     * customer's location.
+     */
+    floor_no?: string;
+    /**
+     * - Alternate Email Address
+     */
+    alternate_email?: string;
+    /**
+     * - A string representing the first line of the address.
+     */
+    address1?: string;
+    /**
+     * - A string representing the second line of the address.
+     */
+    address2?: string;
+    /**
+     * - Specifies the country's unique
+     * identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+     * is crucial for distinguishing countries in international transactions, data
+     * processing, and shipping logistics.
+     */
+    country_iso_code?: string;
+    /**
+     * - The unique identifier assigned to the user.
+     * refer /user in platform documentation to get more details.
+     */
+    user_id?: string;
+    /**
+     * - Area Code
+     */
+    area_code?: string;
+    area_code_slug?: string;
+    country_phone_code?: string;
+};
+/** @returns {CPConfigurationSchema} */
+declare function CPConfigurationSchema(): CPConfigurationSchema;
+type CPConfigurationSchema = {
+    /**
+     * - Shipping Handled by FYND or SELLER
+     */
+    shipping_by: string;
+};
+/** @returns {ShippingDetailsSchema} */
+declare function ShippingDetailsSchema(): ShippingDetailsSchema;
+type ShippingDetailsSchema = {
+    /**
+     * - First Name of the User
+     */
+    first_name?: string;
+    /**
+     * - Country phone code ex: +91
+     */
+    phone_code?: string;
+    /**
+     * - Country of the User
+     */
+    country?: string;
+    /**
+     * - City of the User
+     */
+    city?: string;
+    /**
+     * - Pincode of the User
+     */
+    pincode?: string;
+    /**
+     * - Last Name of the User
+     */
+    last_name?: string;
+    /**
+     * - Primary Phone number of the User
+     */
+    mobile_number?: string;
+    /**
+     * - Primary Email of the User
+     */
+    email?: string;
+    /**
+     * - State of the User
+     */
+    state?: string;
+    /**
+     * - Alternate Mobile Number
+     */
+    alternate_mobile_number?: string;
+    /**
+     * - Full Address of the Billing User
+     */
+    address?: string;
+    /**
+     * - A string containing the customer's middle name.
+     */
+    middle_name?: string;
+    /**
+     * - A string representing the customer's title or prefix.
+     */
+    title?: string;
+    /**
+     * - A string representing the house or apartment
+     * number of the customer.
+     */
+    house_no?: string;
+    geo_location?: GeoLocationSchema;
+    /**
+     * - Gender of user
+     */
+    gender?: string;
+    /**
+     * - A string representing a landmark or reference
+     * point near the customer's location.
+     */
+    landmark?: string;
+    /**
+     * - A string representing the address type in
+     * the seller's system.
+     */
+    address_type?: string;
+    /**
+     * - A string representing the state code of the
+     * customer's location.
+     */
+    state_code?: string;
+    /**
+     * - A string representing the floor number of the
+     * customer's location.
+     */
+    floor_no?: string;
+    /**
+     * - Alternate Email Address
+     */
+    alternate_email?: string;
+    /**
+     * - A string representing the first line of the address.
+     */
+    address1?: string;
+    /**
+     * - A string representing the second line of the address.
+     */
+    address2?: string;
+    /**
+     * - Specifies the country's unique
+     * identifier ollowing the ISO 3166-1 alpha-2 standard. This two-letter code
+     * is crucial for distinguishing countries in international transactions, data
+     * processing, and shipping logistics.
+     */
+    country_iso_code?: string;
+    /**
+     * - The unique identifier assigned to the user.
+     * refer /user in platform documentation to get more details.
+     */
+    user_id?: string;
+    /**
+     * - Area Code
+     */
+    area_code?: string;
+    area_code_slug?: string;
+    country_phone_code?: string;
+};
+/** @returns {UserDetailsSchema} */
+declare function UserDetailsSchema(): UserDetailsSchema;
+type UserDetailsSchema = {
+    /**
+     * - The user's GSTIN (Goods and Services Tax
+     * Identification Number).
+     */
+    gstin?: string;
+    /**
+     * - The user's PAN (Permanent Account Number).
+     */
+    pan_no?: string;
+};
+/** @returns {LifecycleMessageSchema} */
+declare function LifecycleMessageSchema(): LifecycleMessageSchema;
+type LifecycleMessageSchema = {
+    /**
+     * - The message text to display to users at specific
+     * order states (e.g., PLACED, SHIPPED).
      */
     message: string;
     /**
-     * - The field in the request that caused the error.
+     * - The message type, which determines the color of the
+     * message bar.
      */
-    field: string;
+    type: string;
+    /**
+     * - List of OMS states at which the message should
+     * be visible.
+     */
+    states: string[];
+    /**
+     * - Determines the message display sequence, with 1
+     * being the highest priority.
+     */
+    priority: number;
+};
+/** @returns {CreateOrderRequestSchema} */
+declare function CreateOrderRequestSchema(): CreateOrderRequestSchema;
+type CreateOrderRequestSchema = {
+    /**
+     * - List of shipments
+     * included in the order.
+     */
+    shipments?: CreateOrderShipmentSchema[];
+    /**
+     * - Tags that can be used to filter and categorize
+     * orders and shipments.
+     */
+    tags?: string[];
+    currency_details: CurrencySchema;
+    /**
+     * - Timestamp indicating when the
+     * order was created in an external system.
+     */
+    external_creation_date?: string;
+    coupon_details?: CouponSchema;
+    billing_details: BillingDetailsSchema;
+    /**
+     * - The primary payment method used for
+     * the entire order transaction.
+     */
+    primary_payment_mode: string;
+    cp_configuration?: CPConfigurationSchema;
+    /**
+     * - The location ID where the order
+     * is placed. Required when the order is placed from one location but
+     * fulfilled by another.
+     */
+    ordering_location_id?: number;
+    /**
+     * - Allows location
+     * reassignment before order confirmation.
+     */
+    allow_location_reassignment?: boolean;
+    shipping_details: ShippingDetailsSchema;
+    /**
+     * - A unique identifier assigned to the
+     * order by an external system or service.
+     */
+    external_order_id?: string;
+    user_details?: UserDetailsSchema;
+    /**
+     * - List of
+     * order lifecycle messages to be displayed to the user at Order Details.
+     */
+    order_lifecycle_messages?: LifecycleMessageSchema[];
+    /**
+     * - Identifies the application from
+     * which the order was created. Pass this when it differs from the fulfilling
+     * company's application.
+     */
+    channel_application_id?: string;
+    /**
+     * - The GSTIN (Goods and Services Tax
+     * Identification Number) for business-to-business transactions.
+     */
+    b2b_gstin_number?: string;
+    /**
+     * - The company ID where the order is
+     * placed. Required when the order is placed from one company but fulfilled by another.
+     */
+    channel_company_id?: string;
+    /**
+     * - Indicates whether the order is a draft.
+     * Draft orders will be moved to upcoming state instead of placed status.
+     */
+    is_draft?: boolean;
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -10336,6 +11580,111 @@ type Page = {
      * - The number of items per page.
      */
     page_size?: number;
+};
+/** @returns {OrderingSourceConfig} */
+declare function OrderingSourceConfig(): OrderingSourceConfig;
+type OrderingSourceConfig = {
+    /**
+     * - Slug of the ordering source.
+     */
+    slug?: string;
+    configs?: OrderingSourceFeature[];
+    /**
+     * - Logo of the ordering source.
+     */
+    logo?: string;
+};
+/** @returns {OrderingSourceFeature} */
+declare function OrderingSourceFeature(): OrderingSourceFeature;
+type OrderingSourceFeature = {
+    /**
+     * - Name of the ordering source config item.
+     */
+    name?: string;
+    /**
+     * - Slug of the ordering source config item.
+     */
+    slug?: string;
+    /**
+     * - Description of the ordering source config item.
+     */
+    description?: string;
+    /**
+     * - Whether the config/feature is enabled or not.
+     */
+    enabled?: boolean;
+};
+/** @returns {ListOrderingSources} */
+declare function ListOrderingSources(): ListOrderingSources;
+type ListOrderingSources = {
+    items?: OrderingSourceSummary[];
+    page?: Page;
+};
+/** @returns {OrderingSourceSummary} */
+declare function OrderingSourceSummary(): OrderingSourceSummary;
+type OrderingSourceSummary = {
+    /**
+     * - Display Text of the ordering source.
+     */
+    text?: string;
+    /**
+     * - Value of the ordering source.
+     */
+    value?: string;
+};
+/** @returns {CreateAccount} */
+declare function CreateAccount(): CreateAccount;
+type CreateAccount = {
+    /**
+     * - Unique name identifier for the
+     * channel account. This represents the sales channel or marketplace through
+     * which orders are received and processed.
+     */
+    channel_account_name: string;
+};
+/** @returns {Account} */
+declare function Account(): Account;
+type Account = {
+    /**
+     * - Unique identifier for the channel
+     * account. This is a system-generated identifier used to reference the
+     * account across the platform.
+     */
+    channel_account_id?: string;
+    /**
+     * - Unique identifier of the company on the
+     * platform to which this channel account belongs.
+     */
+    company_id?: number;
+    /**
+     * - Name of the channel account. This
+     * identifies the specific sales channel or marketplace (e.g., SHOPIFY,
+     * MARKETPLACE, etc.) through which the company receives and processes orders.
+     */
+    channel_account_name?: string;
+};
+/** @returns {AccountsList} */
+declare function AccountsList(): AccountsList;
+type AccountsList = {
+    /**
+     * - List of channel accounts associated with the
+     * company. Each account represents a different sales channel or marketplace
+     * integration.
+     */
+    data?: Account[];
+    page?: Page;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
 };
 /** @returns {BagReasonMeta} */
 declare function BagReasonMeta(): BagReasonMeta;
@@ -10536,6 +11885,94 @@ type UserDataInfo = {
      * useful for formatting mobile numbers correctly.
      */
     country_phone_code?: string;
+};
+/** @returns {BundleReturnConfig} */
+declare function BundleReturnConfig(): BundleReturnConfig;
+type BundleReturnConfig = {
+    /**
+     * - Indicates whether partial
+     * returns are allowed for bundle products.
+     */
+    allow_partial_return?: boolean;
+    /**
+     * - Indicates whether the bundle product is returnable.
+     */
+    returnable?: boolean;
+    /**
+     * - Time unit for the return window (e.g., "week",
+     * "day", "hour").
+     */
+    unit?: boolean;
+    /**
+     * - Duration value for the return window, expressed
+     * in the specified unit.
+     */
+    time?: boolean;
+};
+/** @returns {BundleDetails} */
+declare function BundleDetails(): BundleDetails;
+type BundleDetails = {
+    /**
+     * - Unique group identifier for the bundle.
+     */
+    bundle_group_id?: string;
+    /**
+     * - Name of the bundle.
+     */
+    name?: string;
+    /**
+     * - URL-friendly identifier for the bundle.
+     */
+    slug?: string;
+    /**
+     * - Indicates bundle count of the bag.
+     */
+    bundle_count?: number;
+    /**
+     * - Unique identifier for the article bundle.
+     */
+    article_bundle_id?: string;
+    /**
+     * - Article net_quantity in bundle Product.
+     */
+    bundle_article_quantity?: number;
+    /**
+     * - A flag that determines if bag is base bag of bundle.
+     */
+    is_base?: boolean;
+    /**
+     * - Maximum Retail Price of the bundle.
+     */
+    price_marked?: number;
+    /**
+     * - Current selling price of the bundle.
+     */
+    price_effective?: number;
+    /**
+     * - Unique identifier for the item.
+     */
+    item_id?: number;
+    /**
+     * - Type of the item (physical_bundle, virtual_bundle).
+     */
+    item_type?: string;
+    return_config?: BundleReturnConfig;
+    /**
+     * - Identifier for the seller of the bundle.
+     */
+    seller_identifier?: string;
+    /**
+     * - An array of image URLs associated with the bundle.
+     */
+    images?: string[];
+    /**
+     * - Identifier for the brand name.
+     */
+    brand_name?: string;
+    /**
+     * - Size associated with the bundle item.
+     */
+    size?: string;
 };
 /** @returns {Address} */
 declare function Address(): Address;
@@ -12264,8 +13701,8 @@ type ShipmentItem = {
      */
     ordering_channnel?: string;
     /**
-     * - To uniquely identify the source
-     * through which order has been placed (e.g, marketplace, gofynd).
+     * - Ordering source, to be used to
+     * identify source of order creation.
      */
     ordering_source?: string;
     /**
@@ -12502,8 +13939,8 @@ type OrderDetailsData = {
      */
     ordering_channel?: string;
     /**
-     * - To uniquely identify the source
-     * through which order has been placed (e.g, marketplace, gofynd).
+     * - Ordering source, to be used to
+     * identify source of order creation.
      */
     ordering_source?: string;
     loyalty_discount_details?: LoyaltyDiscountDetails;
@@ -13197,6 +14634,12 @@ type BagConfigs = {
      * customer return is allowed for the bag.
      */
     is_customer_return_allowed: boolean;
+    /**
+     * - Flag to indicate whether the bag is
+     * part of a bundle.
+     */
+    is_bundle_item?: boolean;
+    bundle_details?: BundleDetails;
 };
 /** @returns {OrderBagArticle} */
 declare function OrderBagArticle(): OrderBagArticle;
@@ -14132,22 +15575,6 @@ type PaymentInfoData = {
      */
     merchant_transaction_id?: string;
 };
-/** @returns {CurrencySchema} */
-declare function CurrencySchema(): CurrencySchema;
-type CurrencySchema = {
-    /**
-     * - The ISO 4217 currency code, such as
-     * 'INR' for Indian Rupee. This field represents the standardized three-letter
-     * code of a currency.
-     */
-    currency_code?: string;
-    /**
-     * - The symbol representing the currency,
-     * such as '₹' for Indian Rupee. This is used for display purposes alongside
-     * currency amounts.
-     */
-    currency_symbol?: string;
-};
 /** @returns {OrderData} */
 declare function OrderData(): OrderData;
 type OrderData = {
@@ -14158,8 +15585,8 @@ type OrderData = {
      */
     ordering_channel?: string;
     /**
-     * - To uniquely identify the source
-     * through which order has been placed (e.g, marketplace, gofynd).
+     * - Ordering source, to be used to
+     * identify source of order creation.
      */
     ordering_source?: string;
     /**
@@ -15252,10 +16679,3 @@ type BulkFailedResponseSchema = {
     status?: boolean;
     error?: string;
 };
-/**
- * Enum: OrderingSource Used By: Order
- *
- * @returns {OrderingSource}
- */
-declare function OrderingSource(): OrderingSource;
-type OrderingSource = "storefront" | "store_os_pos" | "kiosk" | "scan_go" | "smart_trolley" | "gofynd" | "uniket" | "marketplace" | "social_commerce" | "ondc" | "nexus" | "nykaa_fashion" | "etsy" | "vuivui" | "zilingo" | "firstcry" | "bukalapak" | "myntra_ppmp" | "lazada" | "tiktok" | "sfcc" | "debenhams" | "prestomall" | "meesho" | "amazon_vdf" | "bigcommerce" | "sendo" | "storehippo" | "cdiscount" | "nykaa" | "trendyol" | "weloveshopping" | "jollee" | "wish" | "tiki" | "central_online" | "q10" | "cred" | "walmart" | "snapdeal" | "flipkart" | "blibli" | "ajio_jit" | "pharmeasy" | "ezmall" | "adobe_commerce" | "kartmax" | "shopee" | "zalora" | "prestashop" | "smytten" | "amazon_sc" | "urbanpiper" | "flipkart_quick" | "woocommerce" | "zivame" | "lelong" | "facebook" | "jiomart" | "gmc" | "robins" | "akulaku" | "noon" | "tatacliq" | "kartrocket" | "inorbit" | "ajio_business" | "swiggy" | "asos" | "tokopedia" | "limeroad" | "myntra_omni" | "spoyl" | "amazon_mlf" | "fulfilled_by_lazada" | "ebay" | "jd" | "amazon_pharmacy" | "ajio_vms" | "daraz" | "oker" | "flipkart_b2b" | "amazon_mlf_ss" | "woovly" | "tata1mg" | "zomato" | "shopify";

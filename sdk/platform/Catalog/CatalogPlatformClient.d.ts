@@ -127,18 +127,6 @@ declare class Catalog {
      */
     createProductAssetsInBulk({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductAssetsInBulkParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
-     * @param {CatalogPlatformValidator.CreateProductBundleParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>}
-     *   - Success response
-     *
-     * @name createProductBundle
-     * @summary: Create product bundle
-     * @description: Create product bundle in the catalog associated to a specific company - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createProductBundle/).
-     */
-    createProductBundle({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>;
-    /**
      * @param {CatalogPlatformValidator.CreateProductExportJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -695,30 +683,6 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogPlatformModel.ProductBulkRequestList>;
     /**
-     * @param {CatalogPlatformValidator.GetProductBundleParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetProductBundleListingResponseSchema>}
-     *   - Success response
-     *
-     * @name getProductBundle
-     * @summary: List product bundles
-     * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getProductBundle/).
-     */
-    getProductBundle({ q, slug, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleListingResponseSchema>;
-    /**
-     * @param {CatalogPlatformValidator.GetProductBundleDetailParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetProductBundleResponseSchema>}
-     *   - Success response
-     *
-     * @name getProductBundleDetail
-     * @summary: Get product bundle
-     * @description: Retrieve detailed information about a specific product bundle associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getProductBundleDetail/).
-     */
-    getProductBundleDetail({ id, requestHeaders }?: CatalogPlatformValidator.GetProductBundleDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleResponseSchema>;
-    /**
      * @param {CatalogPlatformValidator.GetProductExportJobsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -1058,6 +1022,20 @@ declare class Catalog {
      */
     listTemplateBrandTypeValues({ filter, templateTag, itemType, requestHeaders }?: CatalogPlatformValidator.ListTemplateBrandTypeValuesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductConfigurationDownloads>;
     /**
+     * @param {CatalogPlatformValidator.PartialUpdateProductParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+     * @name partialUpdateProduct
+     * @summary: Patch a product
+     * @description: Partially update an existing product in the catalog using PATCH method. This operation allows you to modify specific fields of a product without affecting other attributes. Only the fields provided in the request body will be updated, while all other existing product data remains unchanged.
+     * For objects (e.g. attributes), merge keys shallowly: any key in the patch overrides the existing value.
+     * For arrays of primitives (e.g. tags): replaced wholesale when present.
+     * For arrays of objects (e.g. sizes): match on a unique identifier (seller_identifier) and apply the merge-patch per element; unmentioned elements remain unchanged.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/partialUpdateProduct/).
+     */
+    partialUpdateProduct({ itemId, body, requestHeaders }?: CatalogPlatformValidator.PartialUpdateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    /**
      * @param {CatalogPlatformValidator.UpdateHsnCodeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -1114,18 +1092,6 @@ declare class Catalog {
      * @description: Allows to update marketplace optin for a company by marketplace_slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateMarketplaceOptin/).
      */
     updateMarketplaceOptin({ marketplaceSlug, body, requestHeaders }?: CatalogPlatformValidator.UpdateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateMarketplaceOptinResponseSchema>;
-    /**
-     * @param {CatalogPlatformValidator.UpdateProductBundleParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>}
-     *   - Success response
-     *
-     * @name updateProductBundle
-     * @summary: Update product bundle
-     * @description: Modify the details of an existing product bundle in the catalog associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateProductBundle/).
-     */
-    updateProductBundle({ id, body, requestHeaders }?: CatalogPlatformValidator.UpdateProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.UpdateRealtimeInventoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

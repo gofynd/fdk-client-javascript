@@ -18,6 +18,18 @@ declare class Order {
      */
     getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
+     * @param {OrderPlatformApplicationValidator.GetOrderingSourceConfigBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.OrderingSourceConfig>} - Success response
+     * @name getOrderingSourceConfigBySlug
+     * @summary: Get ordering source config for a given company and application.
+     * @description: Retrieves the ordering source config for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrderingSourceConfigBySlug/).
+     */
+    getOrderingSourceConfigBySlug({ slug, requestHeaders }?: OrderPlatformApplicationValidator.GetOrderingSourceConfigBySlugParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderingSourceConfig>;
+    /**
      * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
      *   - Arg object
      *
@@ -53,6 +65,18 @@ declare class Order {
      */
     getShipmentBagReasons({ shipmentId, lineNumber, requestHeaders }?: OrderPlatformApplicationValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentBagReasons>;
     /**
+     * @param {OrderPlatformApplicationValidator.ListOrderingSourcesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ListOrderingSources>} - Success response
+     * @name listOrderingSources
+     * @summary: List ordering sources for a given company and application.
+     * @description: Retrieves the list of ordering sources for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/listOrderingSources/).
+     */
+    listOrderingSources({ type, pageNo, pageSize, requestHeaders }?: OrderPlatformApplicationValidator.ListOrderingSourcesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ListOrderingSources>;
+    /**
      * @param {OrderPlatformApplicationValidator.TrackShipmentPlatformParam} arg
      *   - Arg object
      *
@@ -64,6 +88,18 @@ declare class Order {
      * @description: Track shipment by shipment Id for an application - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/trackShipmentPlatform/).
      */
     trackShipmentPlatform({ shipmentId, requestHeaders }?: OrderPlatformApplicationValidator.TrackShipmentPlatformParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PlatformShipmentTrack>;
+    /**
+     * @param {OrderPlatformApplicationValidator.UpdateOrderingSourceConfigBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.OrderingSourceConfig>} - Success response
+     * @name updateOrderingSourceConfigBySlug
+     * @summary: Update ordering source config for a given company and application.
+     * @description: Updates the ordering source config for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateOrderingSourceConfigBySlug/).
+     */
+    updateOrderingSourceConfigBySlug({ slug, body, requestHeaders }?: OrderPlatformApplicationValidator.UpdateOrderingSourceConfigBySlugParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderingSourceConfig>;
 }
 import OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
 import OrderPlatformModel = require("./OrderPlatformModel");

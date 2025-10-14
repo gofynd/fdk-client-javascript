@@ -27,6 +27,10 @@ export = OrderPlatformApplicationValidator;
  *   are currently locked from the results.
  */
 /**
+ * @typedef GetOrderingSourceConfigBySlugParam
+ * @property {string} slug
+ */
+/**
  * @typedef GetPlatformShipmentReasonsParam
  * @property {string} action
  */
@@ -40,23 +44,40 @@ export = OrderPlatformApplicationValidator;
  * @property {number} lineNumber - A unique identifier of the bag's line number.
  */
 /**
+ * @typedef ListOrderingSourcesParam
+ * @property {string} [type]
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+/**
  * @typedef TrackShipmentPlatformParam
  * @property {string} shipmentId - The unique identifier for the shipment
+ */
+/**
+ * @typedef UpdateOrderingSourceConfigBySlugParam
+ * @property {string} slug
+ * @property {OrderPlatformModel.OrderingSourceConfig} body
  */
 declare class OrderPlatformApplicationValidator {
     /** @returns {GetApplicationShipmentsParam} */
     static getApplicationShipments(): GetApplicationShipmentsParam;
+    /** @returns {GetOrderingSourceConfigBySlugParam} */
+    static getOrderingSourceConfigBySlug(): GetOrderingSourceConfigBySlugParam;
     /** @returns {GetPlatformShipmentReasonsParam} */
     static getPlatformShipmentReasons(): GetPlatformShipmentReasonsParam;
     /** @returns {GetRulesParam} */
     static getRules(): GetRulesParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
+    /** @returns {ListOrderingSourcesParam} */
+    static listOrderingSources(): ListOrderingSourcesParam;
     /** @returns {TrackShipmentPlatformParam} */
     static trackShipmentPlatform(): TrackShipmentPlatformParam;
+    /** @returns {UpdateOrderingSourceConfigBySlugParam} */
+    static updateOrderingSourceConfigBySlug(): UpdateOrderingSourceConfigBySlugParam;
 }
 declare namespace OrderPlatformApplicationValidator {
-    export { GetApplicationShipmentsParam, GetPlatformShipmentReasonsParam, GetRulesParam, GetShipmentBagReasonsParam, TrackShipmentPlatformParam };
+    export { GetApplicationShipmentsParam, GetOrderingSourceConfigBySlugParam, GetPlatformShipmentReasonsParam, GetRulesParam, GetShipmentBagReasonsParam, ListOrderingSourcesParam, TrackShipmentPlatformParam, UpdateOrderingSourceConfigBySlugParam };
 }
 type GetApplicationShipmentsParam = {
     /**
@@ -129,6 +150,9 @@ type GetApplicationShipmentsParam = {
      */
     excludeLockedShipments?: boolean;
 };
+type GetOrderingSourceConfigBySlugParam = {
+    slug: string;
+};
 type GetPlatformShipmentReasonsParam = {
     action: string;
 };
@@ -145,10 +169,19 @@ type GetShipmentBagReasonsParam = {
      */
     lineNumber: number;
 };
+type ListOrderingSourcesParam = {
+    type?: string;
+    pageNo?: number;
+    pageSize?: number;
+};
 type TrackShipmentPlatformParam = {
     /**
      * - The unique identifier for the shipment
      */
     shipmentId: string;
+};
+type UpdateOrderingSourceConfigBySlugParam = {
+    slug: string;
+    body: OrderPlatformModel.OrderingSourceConfig;
 };
 import OrderPlatformModel = require("./OrderPlatformModel");

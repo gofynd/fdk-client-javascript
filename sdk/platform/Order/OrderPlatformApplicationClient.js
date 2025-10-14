@@ -159,6 +159,87 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformApplicationValidator.GetOrderingSourceConfigBySlugParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.OrderingSourceConfig>} - Success response
+   * @name getOrderingSourceConfigBySlug
+   * @summary: Get ordering source config for a given company and application.
+   * @description: Retrieves the ordering source config for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrderingSourceConfigBySlug/).
+   */
+  async getOrderingSourceConfigBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.getOrderingSourceConfigBySlug().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.getOrderingSourceConfigBySlug().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getOrderingSourceConfigBySlug \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-sources/${slug}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.OrderingSourceConfig().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > getOrderingSourceConfigBySlug \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
    *   - Arg object
    *
@@ -401,6 +482,94 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformApplicationValidator.ListOrderingSourcesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.ListOrderingSources>} - Success response
+   * @name listOrderingSources
+   * @summary: List ordering sources for a given company and application.
+   * @description: Retrieves the list of ordering sources for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/listOrderingSources/).
+   */
+  async listOrderingSources(
+    { type, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.listOrderingSources().validate(
+      {
+        type,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.listOrderingSources().validate(
+      {
+        type,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > listOrderingSources \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["type"] = type;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-sources`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.ListOrderingSources().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > listOrderingSources \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformApplicationValidator.TrackShipmentPlatformParam} arg
    *   - Arg object
    *
@@ -474,6 +643,89 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > trackShipmentPlatform \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformApplicationValidator.UpdateOrderingSourceConfigBySlugParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.OrderingSourceConfig>} - Success response
+   * @name updateOrderingSourceConfigBySlug
+   * @summary: Update ordering source config for a given company and application.
+   * @description: Updates the ordering source config for a given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateOrderingSourceConfigBySlug/).
+   */
+  async updateOrderingSourceConfigBySlug(
+    { slug, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.updateOrderingSourceConfigBySlug().validate(
+      {
+        slug,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.updateOrderingSourceConfigBySlug().validate(
+      {
+        slug,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > updateOrderingSourceConfigBySlug \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-sources/${slug}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.OrderingSourceConfig().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > updateOrderingSourceConfigBySlug \n ${res_error}`,
         });
       }
     }

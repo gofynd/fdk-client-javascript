@@ -57,6 +57,16 @@ declare class Order {
      */
     checkOrderStatus({ body, requestHeaders }?: OrderPlatformValidator.CheckOrderStatusParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderStatusResult>;
     /**
+     * @param {OrderPlatformValidator.CreateAccountParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.Account>} - Success response
+     * @name createAccount
+     * @summary: Create channel account
+     * @description: Creates a new channel account for the company. Channel accounts represent  different sales channels or marketplace integrations (e.g., Shopify, custom  marketplaces) through which the company receives and processes orders. Each  account is identified by a unique name and can be used to segregate orders  from different sources. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createAccount/).
+     */
+    createAccount({ body, requestHeaders }?: OrderPlatformValidator.CreateAccountParam, { responseHeaders }?: object): Promise<OrderPlatformModel.Account>;
+    /**
      * @param {OrderPlatformValidator.CreateChannelConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -72,12 +82,22 @@ declare class Order {
      * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
+     * @returns {Promise<Object>} - Success response
      * @name createOrder
-     * @summary: Create order
-     * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
+     * @summary: Create Order
+     * @description: Creates an order in the OMS. Note: Use the Serviceability API (getShipments) to determine shipments before creating an order. OMS no longer auto-selects fulfillment stores and only creates shipments as provided in the request payload. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
      */
-    createOrder({ body, xOrderingSource, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponseSchema>;
+    createOrder({ xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.CreateOrderDeprecatedParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
+     * @name createOrderDeprecated
+     * @summary: Create order
+     * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrderDeprecated/).
+     */
+    createOrderDeprecated({ xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders }?: OrderPlatformValidator.CreateOrderDeprecatedParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponseSchema>;
     /**
      * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -185,6 +205,16 @@ declare class Order {
      * @description: Endpoint to save and process order manifests. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/generateProcessManifest/).
      */
     generateProcessManifest({ body, requestHeaders }?: OrderPlatformValidator.GenerateProcessManifestParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestResponseSchema>;
+    /**
+     * @param {OrderPlatformValidator.GetAccountByIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.Account>} - Success response
+     * @name getAccountById
+     * @summary: Get channel account details
+     * @description: Retrieves detailed information about a specific channel account using its unique  identifier. This endpoint returns the complete account details including the  account ID, associated company ID, and the channel account name. Use this to  fetch information about a particular sales channel or marketplace integration. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getAccountById/).
+     */
+    getAccountById({ channelAccountId, requestHeaders }?: OrderPlatformValidator.GetAccountByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.Account>;
     /**
      * @param {OrderPlatformValidator.GetAllowedStateTransitionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -355,7 +385,7 @@ declare class Order {
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Lane refers to a section where orders are
@@ -405,11 +435,15 @@ declare class Order {
      *   Listing Orders, This is use when we want to get list of shipments or
      *   orders by cross store or cross company or fulfilling Store (by
      *   default), this is also depends on the login user accessType and store access
+     * @param {string} [arg.orderingSource] - Filter orders by ordering source.
+     *   Accepts comma-separated values for multiple sources.
+     * @param {string} [arg.channelAccountId] - Comma-separated channel account
+     *   IDs to filter orders by specific channel accounts.
      * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided.
      */
-    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, }?: {
+    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -435,6 +469,8 @@ declare class Order {
         groupEntity?: string;
         enforceDateFilter?: boolean;
         fulfillmentType?: string;
+        orderingSource?: string;
+        channelAccountId?: string;
     }): Paginator<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
@@ -491,7 +527,7 @@ declare class Order {
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
+    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
@@ -571,11 +607,15 @@ declare class Order {
      *   Listing Orders, This is use when we want to get list of shipments or
      *   orders by cross store or cross company or fulfilling Store (by
      *   default), this is also depends on the login user accessType and store access
+     * @param {string} [arg.orderingSource] - Filter orders by ordering source.
+     *   Accepts comma-separated values for multiple sources.
+     * @param {string} [arg.channelAccountId] - Comma-separated channel account
+     *   IDs to filter orders by specific channel accounts.
      * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided
      */
-    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, }?: {
+    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, }?: {
         lane?: string;
         bagStatus?: string;
         statusAssigned?: string;
@@ -612,6 +652,8 @@ declare class Order {
         groupEntity?: string;
         enforceDateFilter?: boolean;
         fulfillmentType?: string;
+        orderingSource?: string;
+        channelAccountId?: string;
     }): Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetStateManagerConfigParam} arg - Arg object
@@ -679,6 +721,16 @@ declare class Order {
      */
     jobDetails({ batchId, requestHeaders }?: OrderPlatformValidator.JobDetailsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.JobDetailsResponseSchema>;
     /**
+     * @param {OrderPlatformValidator.ListAccountsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.AccountsList>} - Success response
+     * @name listAccounts
+     * @summary: Get channel accounts list
+     * @description: Retrieves a paginated list of all channel accounts configured for the company.  Channel accounts represent different sales channels or marketplace integrations  from which orders are received. This endpoint returns account details including  the account ID, company ID, and channel account name for each configured channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/listAccounts/).
+     */
+    listAccounts({ page, size, requestHeaders }?: OrderPlatformValidator.ListAccountsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.AccountsList>;
+    /**
      * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -743,6 +795,16 @@ declare class Order {
      * @description: Retrieve courier partner tracking details for a given shipment Id or AWB number - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/trackShipment/).
      */
     trackShipment({ shipmentId, awb, pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.TrackShipmentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingResponseSchema>;
+    /**
+     * @param {OrderPlatformValidator.UpdateAccountParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.Account>} - Success response
+     * @name updateAccount
+     * @summary: Update account
+     * @description: Updates the details of a specific channel account. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateAccount/).
+     */
+    updateAccount({ channelAccountId, body, requestHeaders }?: OrderPlatformValidator.UpdateAccountParam, { responseHeaders }?: object): Promise<OrderPlatformModel.Account>;
     /**
      * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -28,13 +28,33 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.OrderStatus} body
  */
 /**
+ * @typedef CreateAccountParam
+ * @property {OrderPlatformModel.CreateAccount} body
+ */
+/**
  * @typedef CreateChannelConfigParam
  * @property {OrderPlatformModel.CreateChannelConfigData} body
  */
 /**
  * @typedef CreateOrderParam
- * @property {OrderPlatformModel.OrderingSource} [xOrderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} xOrderingSource - To uniquely identify the source through
+ *   which order has been placed.
+ * @property {string} [xApplicationId] - Application id
+ * @property {string} [xExtensionId] - Extension id
+ * @property {OrderPlatformModel.CreateOrderRequestSchema} body
+ */
+/**
+ * @typedef CreateOrderDeprecatedParam
+ * @property {string} xOrderingSource - To uniquely identify the source through
+ *   which order has been placed.
+ * @property {string} [xApplicationId] - The Application ID is a unique
+ *   identifier assigned to a storefront that typically follows a 24-character
+ *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
+ *   mandatory. At least one of them must be provided.
+ * @property {string} [xExtensionId] - The Extension ID is a unique identifier
+ *   assigned to an extension that typically follows a 24-character hexadecimal
+ *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
+ *   At least one of them must be provided.
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
@@ -85,12 +105,17 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.ProcessManifestRequestSchema} body
  */
 /**
+ * @typedef GetAccountByIdParam
+ * @property {string} channelAccountId - Unique identifier of the channel
+ *   account to retrieve.
+ */
+/**
  * @typedef GetAllowedStateTransitionParam
  * @property {string} [orderingChannel] - The specific channel through which
  *   your order was placed. This field will be phased out after version 2.4.0.
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
- * @property {OrderPlatformModel.OrderingSource} [orderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} status - The status key indicates the current status for
  *   which the API will provide a list of possible next state transitions.
  */
@@ -276,6 +301,10 @@ export = OrderPlatformValidator;
  *   Listing Orders, This is use when we want to get list of shipments or orders
  *   by cross store or cross company or fulfilling Store (by default), this is
  *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -379,13 +408,17 @@ export = OrderPlatformValidator;
  *   Listing Orders, This is use when we want to get list of shipments or orders
  *   by cross store or cross company or fulfilling Store (by default), this is
  *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
  */
 /**
  * @typedef GetStateManagerConfigParam
  * @property {string} [appId] - The unique identifier of the application.
  * @property {string} [orderingChannel] - The channel through which orders are placed.
- * @property {OrderPlatformModel.OrderingSource} [orderingSource] - To uniquely
- *   identify the source through which order has been placed.
+ * @property {string} [orderingSource] - To uniquely identify the source through
+ *   which order has been placed.
  * @property {string} [entity] - The entity for which the configuration is applied.
  */
 /** @typedef GetStateTransitionMapParam */
@@ -406,6 +439,13 @@ export = OrderPlatformValidator;
  * @typedef JobDetailsParam
  * @property {string} batchId - A unique identifier for the batch associated
  *   with this bulk action.
+ */
+/**
+ * @typedef ListAccountsParam
+ * @property {number} [page] - The page number to retrieve in the paginated
+ *   results. Default is page 1.
+ * @property {number} [size] - Number of channel accounts to return per page.
+ *   Default is 20 items per page.
  */
 /**
  * @typedef OrderUpdateParam
@@ -433,6 +473,11 @@ export = OrderPlatformValidator;
  * @property {string} [awb] - AWB number
  * @property {number} [pageNo] - Page number for pagination.
  * @property {number} [pageSize] - Number of records per page for pagination.
+ */
+/**
+ * @typedef UpdateAccountParam
+ * @property {string} channelAccountId - Unique identifier of the account.
+ * @property {OrderPlatformModel.CreateAccount} body
  */
 /**
  * @typedef UpdateAddressParam
@@ -478,10 +523,14 @@ declare class OrderPlatformValidator {
     static bulkStateTransistion(): BulkStateTransistionParam;
     /** @returns {CheckOrderStatusParam} */
     static checkOrderStatus(): CheckOrderStatusParam;
+    /** @returns {CreateAccountParam} */
+    static createAccount(): CreateAccountParam;
     /** @returns {CreateChannelConfigParam} */
     static createChannelConfig(): CreateChannelConfigParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
+    /** @returns {CreateOrderDeprecatedParam} */
+    static createOrderDeprecated(): CreateOrderDeprecatedParam;
     /** @returns {DispatchManifestsParam} */
     static dispatchManifests(): DispatchManifestsParam;
     /** @returns {DownloadBulkActionTemplateParam} */
@@ -502,6 +551,8 @@ declare class OrderPlatformValidator {
     static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
     /** @returns {GenerateProcessManifestParam} */
     static generateProcessManifest(): GenerateProcessManifestParam;
+    /** @returns {GetAccountByIdParam} */
+    static getAccountById(): GetAccountByIdParam;
     /** @returns {GetAllowedStateTransitionParam} */
     static getAllowedStateTransition(): GetAllowedStateTransitionParam;
     /** @returns {GetAllowedTemplatesForBulkParam} */
@@ -556,6 +607,8 @@ declare class OrderPlatformValidator {
     static invalidateShipmentCache(): InvalidateShipmentCacheParam;
     /** @returns {JobDetailsParam} */
     static jobDetails(): JobDetailsParam;
+    /** @returns {ListAccountsParam} */
+    static listAccounts(): ListAccountsParam;
     /** @returns {OrderUpdateParam} */
     static orderUpdate(): OrderUpdateParam;
     /** @returns {PostShipmentHistoryParam} */
@@ -568,6 +621,8 @@ declare class OrderPlatformValidator {
     static sendUserMobileOTP(): SendUserMobileOTPParam;
     /** @returns {TrackShipmentParam} */
     static trackShipment(): TrackShipmentParam;
+    /** @returns {UpdateAccountParam} */
+    static updateAccount(): UpdateAccountParam;
     /** @returns {UpdateAddressParam} */
     static updateAddress(): UpdateAddressParam;
     /** @returns {UpdatePackagingDimensionsParam} */
@@ -586,7 +641,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateOrderDeprecatedParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -632,15 +687,48 @@ type BulkStateTransistionParam = {
 type CheckOrderStatusParam = {
     body: OrderPlatformModel.OrderStatus;
 };
+type CreateAccountParam = {
+    body: OrderPlatformModel.CreateAccount;
+};
 type CreateChannelConfigParam = {
     body: OrderPlatformModel.CreateChannelConfigData;
 };
 type CreateOrderParam = {
     /**
-     * - To uniquely
-     * identify the source through which order has been placed.
+     * - To uniquely identify the source through
+     * which order has been placed.
      */
-    xOrderingSource?: OrderPlatformModel.OrderingSource;
+    xOrderingSource: string;
+    /**
+     * - Application id
+     */
+    xApplicationId?: string;
+    /**
+     * - Extension id
+     */
+    xExtensionId?: string;
+    body: OrderPlatformModel.CreateOrderRequestSchema;
+};
+type CreateOrderDeprecatedParam = {
+    /**
+     * - To uniquely identify the source through
+     * which order has been placed.
+     */
+    xOrderingSource: string;
+    /**
+     * - The Application ID is a unique
+     * identifier assigned to a storefront that typically follows a 24-character
+     * hexadecimal string. Either `x-application-id` or `x-extension-id` header is
+     * mandatory. At least one of them must be provided.
+     */
+    xApplicationId?: string;
+    /**
+     * - The Extension ID is a unique identifier
+     * assigned to an extension that typically follows a 24-character hexadecimal
+     * string. Either `x-application-id` or `x-extension-id` header is mandatory.
+     * At least one of them must be provided.
+     */
+    xExtensionId?: string;
     body: OrderPlatformModel.CreateOrderAPI;
 };
 type DispatchManifestsParam = {
@@ -704,6 +792,13 @@ type GeneratePOSReceiptByOrderIdParam = {
 type GenerateProcessManifestParam = {
     body: OrderPlatformModel.ProcessManifestRequestSchema;
 };
+type GetAccountByIdParam = {
+    /**
+     * - Unique identifier of the channel
+     * account to retrieve.
+     */
+    channelAccountId: string;
+};
 type GetAllowedStateTransitionParam = {
     /**
      * - The specific channel through which
@@ -712,10 +807,10 @@ type GetAllowedStateTransitionParam = {
      */
     orderingChannel?: string;
     /**
-     * - To uniquely
-     * identify the source through which order has been placed.
+     * - To uniquely identify the source through
+     * which order has been placed.
      */
-    orderingSource?: OrderPlatformModel.OrderingSource;
+    orderingSource?: string;
     /**
      * - The status key indicates the current status for
      * which the API will provide a list of possible next state transitions.
@@ -1156,6 +1251,16 @@ type GetOrdersParam = {
      * also depends on the login user accessType and store access
      */
     fulfillmentType?: string;
+    /**
+     * - Filter orders by ordering source.
+     * Accepts comma-separated values for multiple sources.
+     */
+    orderingSource?: string;
+    /**
+     * - Comma-separated channel account IDs
+     * to filter orders by specific channel accounts.
+     */
+    channelAccountId?: string;
 };
 type GetShipmentByIdParam = {
     /**
@@ -1392,6 +1497,16 @@ type GetShipmentsParam = {
      * also depends on the login user accessType and store access
      */
     fulfillmentType?: string;
+    /**
+     * - Filter orders by ordering source.
+     * Accepts comma-separated values for multiple sources.
+     */
+    orderingSource?: string;
+    /**
+     * - Comma-separated channel account IDs
+     * to filter orders by specific channel accounts.
+     */
+    channelAccountId?: string;
 };
 type GetStateManagerConfigParam = {
     /**
@@ -1403,10 +1518,10 @@ type GetStateManagerConfigParam = {
      */
     orderingChannel?: string;
     /**
-     * - To uniquely
-     * identify the source through which order has been placed.
+     * - To uniquely identify the source through
+     * which order has been placed.
      */
-    orderingSource?: OrderPlatformModel.OrderingSource;
+    orderingSource?: string;
     /**
      * - The entity for which the configuration is applied.
      */
@@ -1434,6 +1549,18 @@ type JobDetailsParam = {
      * with this bulk action.
      */
     batchId: string;
+};
+type ListAccountsParam = {
+    /**
+     * - The page number to retrieve in the paginated
+     * results. Default is page 1.
+     */
+    page?: number;
+    /**
+     * - Number of channel accounts to return per page.
+     * Default is 20 items per page.
+     */
+    size?: number;
 };
 type OrderUpdateParam = {
     body: OrderPlatformModel.PlatformOrderUpdate;
@@ -1467,6 +1594,13 @@ type TrackShipmentParam = {
      * - Number of records per page for pagination.
      */
     pageSize?: number;
+};
+type UpdateAccountParam = {
+    /**
+     * - Unique identifier of the account.
+     */
+    channelAccountId: string;
+    body: OrderPlatformModel.CreateAccount;
 };
 type UpdateAddressParam = {
     /**

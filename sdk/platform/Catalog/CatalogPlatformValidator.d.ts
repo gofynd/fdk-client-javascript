@@ -53,10 +53,6 @@ export = CatalogPlatformValidator;
  * @property {CatalogPlatformModel.ProductBulkAssets} body
  */
 /**
- * @typedef CreateProductBundleParam
- * @property {CatalogPlatformModel.ProductBundleRequestSchema} body
- */
-/**
  * @typedef CreateProductExportJobParam
  * @property {CatalogPlatformModel.ProductTemplateDownloadsExport} body
  */
@@ -289,20 +285,6 @@ export = CatalogPlatformValidator;
  *   Default is 12.
  */
 /**
- * @typedef GetProductBundleParam
- * @property {string} [q] - A search string that is searched with product bundle name.
- * @property {string[]} [slug] - Slugs of bundles to be retrieved.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- */
-/**
- * @typedef GetProductBundleDetailParam
- * @property {string} id - A `id` is a unique identifier for a particular
- *   detail. Pass the `id` of the keywords which you want to retrieve.
- */
-/**
  * @typedef GetProductExportJobsParam
  * @property {string} [status] - This is a parameter used to find all the jobs
  *   with the specified status.
@@ -466,6 +448,11 @@ export = CatalogPlatformValidator;
  *   of template required.
  */
 /**
+ * @typedef PartialUpdateProductParam
+ * @property {number} itemId - Item ID of the product to be patched.
+ * @property {CatalogPlatformModel.ProductPatchSchemaV3} body
+ */
+/**
  * @typedef UpdateHsnCodeParam
  * @property {string} id - Unique id
  * @property {CatalogPlatformModel.HsnUpsert} body
@@ -493,12 +480,6 @@ export = CatalogPlatformValidator;
  * @typedef UpdateMarketplaceOptinParam
  * @property {string} marketplaceSlug - Slug of the marketplace .
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
- */
-/**
- * @typedef UpdateProductBundleParam
- * @property {string} id - A `id` is a unique identifier for a particular
- *   detail. Pass the `id` of the keywords which you want to delete.
- * @property {CatalogPlatformModel.ProductBundleUpdateRequestSchema} body
  */
 /**
  * @typedef UpdateRealtimeInventoryParam
@@ -573,8 +554,6 @@ declare class CatalogPlatformValidator {
     static createProduct(): CreateProductParam;
     /** @returns {CreateProductAssetsInBulkParam} */
     static createProductAssetsInBulk(): CreateProductAssetsInBulkParam;
-    /** @returns {CreateProductBundleParam} */
-    static createProductBundle(): CreateProductBundleParam;
     /** @returns {CreateProductExportJobParam} */
     static createProductExportJob(): CreateProductExportJobParam;
     /** @returns {CreateProductsInBulkParam} */
@@ -653,10 +632,6 @@ declare class CatalogPlatformValidator {
     static getProductAttributes(): GetProductAttributesParam;
     /** @returns {GetProductBulkUploadHistoryParam} */
     static getProductBulkUploadHistory(): GetProductBulkUploadHistoryParam;
-    /** @returns {GetProductBundleParam} */
-    static getProductBundle(): GetProductBundleParam;
-    /** @returns {GetProductBundleDetailParam} */
-    static getProductBundleDetail(): GetProductBundleDetailParam;
     /** @returns {GetProductExportJobsParam} */
     static getProductExportJobs(): GetProductExportJobsParam;
     /** @returns {GetProductSizeParam} */
@@ -699,6 +674,8 @@ declare class CatalogPlatformValidator {
     static listProductTemplateExportDetails(): any;
     /** @returns {ListTemplateBrandTypeValuesParam} */
     static listTemplateBrandTypeValues(): ListTemplateBrandTypeValuesParam;
+    /** @returns {PartialUpdateProductParam} */
+    static partialUpdateProduct(): PartialUpdateProductParam;
     /** @returns {UpdateHsnCodeParam} */
     static updateHsnCode(): UpdateHsnCodeParam;
     /** @returns {UpdateInventoriesParam} */
@@ -709,8 +686,6 @@ declare class CatalogPlatformValidator {
     static updateLocationQuantity(): UpdateLocationQuantityParam;
     /** @returns {UpdateMarketplaceOptinParam} */
     static updateMarketplaceOptin(): UpdateMarketplaceOptinParam;
-    /** @returns {UpdateProductBundleParam} */
-    static updateProductBundle(): UpdateProductBundleParam;
     /** @returns {UpdateRealtimeInventoryParam} */
     static updateRealtimeInventory(): UpdateRealtimeInventoryParam;
     /** @returns {UpdateSizeGuideParam} */
@@ -727,7 +702,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PartialUpdateProductParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AddInventoryParam = {
     /**
@@ -784,9 +759,6 @@ type CreateProductParam = {
 };
 type CreateProductAssetsInBulkParam = {
     body: CatalogPlatformModel.ProductBulkAssets;
-};
-type CreateProductBundleParam = {
-    body: CatalogPlatformModel.ProductBundleRequestSchema;
 };
 type CreateProductExportJobParam = {
     body: CatalogPlatformModel.ProductTemplateDownloadsExport;
@@ -1242,33 +1214,6 @@ type GetProductBulkUploadHistoryParam = {
      */
     pageSize?: number;
 };
-type GetProductBundleParam = {
-    /**
-     * - A search string that is searched with product bundle name.
-     */
-    q?: string;
-    /**
-     * - Slugs of bundles to be retrieved.
-     */
-    slug?: string[];
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-};
-type GetProductBundleDetailParam = {
-    /**
-     * - A `id` is a unique identifier for a particular
-     * detail. Pass the `id` of the keywords which you want to retrieve.
-     */
-    id: string;
-};
 type GetProductExportJobsParam = {
     /**
      * - This is a parameter used to find all the jobs
@@ -1630,6 +1575,13 @@ type ListTemplateBrandTypeValuesParam = {
      */
     itemType?: string;
 };
+type PartialUpdateProductParam = {
+    /**
+     * - Item ID of the product to be patched.
+     */
+    itemId: number;
+    body: CatalogPlatformModel.ProductPatchSchemaV3;
+};
 type UpdateHsnCodeParam = {
     /**
      * - Unique id
@@ -1671,14 +1623,6 @@ type UpdateMarketplaceOptinParam = {
      */
     marketplaceSlug: string;
     body: CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema;
-};
-type UpdateProductBundleParam = {
-    /**
-     * - A `id` is a unique identifier for a particular
-     * detail. Pass the `id` of the keywords which you want to delete.
-     */
-    id: string;
-    body: CatalogPlatformModel.ProductBundleUpdateRequestSchema;
 };
 type UpdateRealtimeInventoryParam = {
     /**

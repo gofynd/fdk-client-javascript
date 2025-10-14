@@ -981,87 +981,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.CreateProductBundleParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>}
-   *   - Success response
-   *
-   * @name createProductBundle
-   * @summary: Create product bundle
-   * @description: Create product bundle in the catalog associated to a specific company - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createProductBundle/).
-   */
-  async createProductBundle(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CatalogPlatformValidator.createProductBundle().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformValidator.createProductBundle().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createProductBundle \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetProductBundleCreateResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createProductBundle \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformValidator.CreateProductExportJobParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -4641,180 +4560,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.GetProductBundleParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetProductBundleListingResponseSchema>}
-   *   - Success response
-   *
-   * @name getProductBundle
-   * @summary: List product bundles
-   * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getProductBundle/).
-   */
-  async getProductBundle(
-    { q, slug, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CatalogPlatformValidator.getProductBundle().validate(
-      {
-        q,
-        slug,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformValidator.getProductBundle().validate(
-      {
-        q,
-        slug,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getProductBundle \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["slug"] = slug;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetProductBundleListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getProductBundle \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformValidator.GetProductBundleDetailParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetProductBundleResponseSchema>}
-   *   - Success response
-   *
-   * @name getProductBundleDetail
-   * @summary: Get product bundle
-   * @description: Retrieve detailed information about a specific product bundle associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getProductBundleDetail/).
-   */
-  async getProductBundleDetail(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformValidator.getProductBundleDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformValidator.getProductBundleDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getProductBundleDetail \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetProductBundleResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getProductBundleDetail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformValidator.GetProductExportJobsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -6912,6 +6657,91 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformValidator.PartialUpdateProductParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @name partialUpdateProduct
+   * @summary: Patch a product
+   * @description: Partially update an existing product in the catalog using PATCH method. This operation allows you to modify specific fields of a product without affecting other attributes. Only the fields provided in the request body will be updated, while all other existing product data remains unchanged.
+   * For objects (e.g. attributes), merge keys shallowly: any key in the patch overrides the existing value.
+   * For arrays of primitives (e.g. tags): replaced wholesale when present.
+   * For arrays of objects (e.g. sizes): match on a unique identifier (seller_identifier) and apply the merge-patch per element; unmentioned elements remain unchanged.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/partialUpdateProduct/).
+   */
+  async partialUpdateProduct(
+    { itemId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.partialUpdateProduct().validate(
+      {
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.partialUpdateProduct().validate(
+      {
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > partialUpdateProduct \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/catalog/v3.0/company/${this.config.companyId}/products/${itemId}/`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > partialUpdateProduct \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformValidator.UpdateHsnCodeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -7326,89 +7156,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > updateMarketplaceOptin \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformValidator.UpdateProductBundleParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponseSchema>}
-   *   - Success response
-   *
-   * @name updateProductBundle
-   * @summary: Update product bundle
-   * @description: Modify the details of an existing product bundle in the catalog associated to a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateProductBundle/).
-   */
-  async updateProductBundle(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CatalogPlatformValidator.updateProductBundle().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformValidator.updateProductBundle().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateProductBundle \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetProductBundleCreateResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateProductBundle \n ${res_error}`,
         });
       }
     }

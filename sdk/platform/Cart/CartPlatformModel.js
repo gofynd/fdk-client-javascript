@@ -1405,6 +1405,7 @@ const Joi = require("joi");
  * @property {ProductPriceInfo} [price_per_unit]
  * @property {PromoMeta} [promo_meta]
  * @property {Object} [custom_order] - Whether MTO (Make to Order) is enabled or not.
+ * @property {string} [item_type] - Type of the item in cart.
  */
 
 /**
@@ -2748,17 +2749,6 @@ const Joi = require("joi");
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
- */
-
-/**
- * @typedef {| "storefront"
- *   | "store_os_pos"
- *   | "kiosk"
- *   | "scan_go"
- *   | "smart_trolley"
- *   | "marketplace"
- *   | "social_commerce"
- *   | "ondc"} OrderingSource
  */
 
 class CartPlatformModel {
@@ -4196,6 +4186,7 @@ class CartPlatformModel {
       price_per_unit: CartPlatformModel.ProductPriceInfo(),
       promo_meta: CartPlatformModel.PromoMeta(),
       custom_order: Joi.object().pattern(/\S/, Joi.any()),
+      item_type: Joi.string().allow(""),
     });
   }
 
@@ -5554,31 +5545,6 @@ class CartPlatformModel {
       message: Joi.string().allow("").required(),
       field: Joi.string().allow("").required(),
     });
-  }
-
-  /**
-   * Enum: OrderingSource Used By: Cart
-   *
-   * @returns {OrderingSource}
-   */
-  static OrderingSource() {
-    return Joi.string().valid(
-      "storefront",
-
-      "store_os_pos",
-
-      "kiosk",
-
-      "scan_go",
-
-      "smart_trolley",
-
-      "marketplace",
-
-      "social_commerce",
-
-      "ondc"
-    );
   }
 }
 module.exports = CartPlatformModel;

@@ -68,11 +68,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef CreateProductBundleParam
- * @property {CatalogPlatformModel.ProductBundleRequestSchema} body
- */
-
-/**
  * @typedef CreateProductExportJobParam
  * @property {CatalogPlatformModel.ProductTemplateDownloadsExport} body
  */
@@ -344,22 +339,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef GetProductBundleParam
- * @property {string} [q] - A search string that is searched with product bundle name.
- * @property {string[]} [slug] - Slugs of bundles to be retrieved.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- */
-
-/**
- * @typedef GetProductBundleDetailParam
- * @property {string} id - A `id` is a unique identifier for a particular
- *   detail. Pass the `id` of the keywords which you want to retrieve.
- */
-
-/**
  * @typedef GetProductExportJobsParam
  * @property {string} [status] - This is a parameter used to find all the jobs
  *   with the specified status.
@@ -544,6 +523,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef PartialUpdateProductParam
+ * @property {number} itemId - Item ID of the product to be patched.
+ * @property {CatalogPlatformModel.ProductPatchSchemaV3} body
+ */
+
+/**
  * @typedef UpdateHsnCodeParam
  * @property {string} id - Unique id
  * @property {CatalogPlatformModel.HsnUpsert} body
@@ -575,13 +560,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef UpdateMarketplaceOptinParam
  * @property {string} marketplaceSlug - Slug of the marketplace .
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
- */
-
-/**
- * @typedef UpdateProductBundleParam
- * @property {string} id - A `id` is a unique identifier for a particular
- *   detail. Pass the `id` of the keywords which you want to delete.
- * @property {CatalogPlatformModel.ProductBundleUpdateRequestSchema} body
  */
 
 /**
@@ -725,13 +703,6 @@ class CatalogPlatformValidator {
   static createProductAssetsInBulk() {
     return Joi.object({
       body: CatalogPlatformModel.ProductBulkAssets().required(),
-    }).required();
-  }
-
-  /** @returns {CreateProductBundleParam} */
-  static createProductBundle() {
-    return Joi.object({
-      body: CatalogPlatformModel.ProductBundleRequestSchema().required(),
     }).required();
   }
 
@@ -1060,23 +1031,6 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetProductBundleParam} */
-  static getProductBundle() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-      slug: Joi.array().items(Joi.string().allow("")),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetProductBundleDetailParam} */
-  static getProductBundleDetail() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetProductExportJobsParam} */
   static getProductExportJobs() {
     return Joi.object({
@@ -1271,6 +1225,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
+  /** @returns {PartialUpdateProductParam} */
+  static partialUpdateProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      body: CatalogPlatformModel.ProductPatchSchemaV3().required(),
+    }).required();
+  }
+
   /** @returns {UpdateHsnCodeParam} */
   static updateHsnCode() {
     return Joi.object({
@@ -1309,14 +1271,6 @@ class CatalogPlatformValidator {
     return Joi.object({
       marketplaceSlug: Joi.string().allow("").required(),
       body: CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateProductBundleParam} */
-  static updateProductBundle() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.ProductBundleUpdateRequestSchema().required(),
     }).required();
   }
 

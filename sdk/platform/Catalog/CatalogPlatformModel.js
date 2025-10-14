@@ -1923,54 +1923,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetProductBundleCreateResponseSchema
- * @property {string} choice - Specifies the type of bundle, e.g., single or multi.
- * @property {number} [company_id] - Unique identifier for the company that owns
- *   the product bundle.
- * @property {CreatedBy} [created_by]
- * @property {string} [created_on] - Timestamp when the product bundle was created.
- * @property {string} [id] - Unique identifier for the product bundle.
- * @property {boolean} is_active - Indicates if the product bundle is active or not.
- * @property {string} [logo] - URL of the product bundle's logo, or null if not available.
- * @property {Object} [meta] - Additional metadata about the product bundle.
- * @property {ModifiedBy} [modified_by]
- * @property {string} [modified_on] - Timestamp when the product bundle was last modified.
- * @property {string} name - Name of the product bundle.
- * @property {string[]} [page_visibility] - Visibility settings for the product
- *   bundle across different pages.
- * @property {ProductBundleItem[]} products - List of products that are part of
- *   the product bundle.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle belong to the same store.
- * @property {string} slug - Unique slug used to identify the product bundle in URLs.
- */
-
-/**
- * @typedef GetProductBundleListingResponseSchema
- * @property {GetProductBundleCreateResponseSchema[]} [items] - List of product
- *   bundles that are returned in the response.
- * @property {Page} [page]
- */
-
-/**
- * @typedef GetProductBundleResponseSchema
- * @property {string} [choice] - Specifies the type of product bundle, e.g.,
- *   'single' or 'multi'.
- * @property {number} [company_id] - The unique identifier of the company that
- *   owns the product bundle.
- * @property {boolean} [is_active] - Indicates whether the product bundle is active.
- * @property {string} [logo] - URL of the logo associated with the product bundle.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {string} [name] - The name of the product bundle.
- * @property {string[]} [page_visibility] - List of pages where the product
- *   bundle is visible, e.g., 'pdp'.
- * @property {GetProducts[]} [products] - A list of products included in the bundle.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} [slug] - Unique URL-friendly identifier for the product bundle.
- */
-
-/**
  * @typedef GetProducts
  * @property {boolean} [allow_remove] - Indicates whether the product can be
  *   removed from the bundle.
@@ -2898,6 +2850,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BundleDetails
+ * @property {string} seller_identifier - Seller identifier of child sku.
+ * @property {number} net_quantity - The net quantity of the product in the bundle.
+ * @property {boolean} [is_base] - Indicates whether this product is the base
+ *   product in the bundle.
+ */
+
+/**
  * @typedef Meta
  * @property {Object} [headers]
  * @property {string} [unit]
@@ -3263,189 +3223,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductBundleItem
- * @property {boolean} [allow_remove] - Indicates whether the product can be
- *   removed from the bundle.
- * @property {boolean} [auto_add_to_cart] - Specifies if the product is
- *   automatically added to the cart.
- * @property {boolean} [auto_select] - Indicates if the product is automatically
- *   selected in the bundle.
- * @property {number} max_quantity - Maximum quantity of the product that can be
- *   added to the bundle.
- * @property {number} min_quantity - Minimum quantity of the product that must
- *   be added to the bundle.
- * @property {number} product_uid - Unique identifier for the product.
- */
-
-/**
- * @typedef ProductBundleRequestSchema
- * @property {string} choice - Specifies the type of product bundle (e.g.,
- *   'single' or 'multi').
- * @property {number} [company_id] - The unique identifier of the company to
- *   which the product bundle belongs.
- * @property {Object} [created_by] - Information about the user who created the
- *   product bundle, including user ID and username.
- * @property {string} [created_on] - The timestamp when the product bundle was created.
- * @property {boolean} is_active - Indicates whether the product bundle is
- *   currently active.
- * @property {string} [logo] - URL of the logo associated with the product
- *   bundle, if available. Can be null.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {Object} [modified_by] - Information about the user who last
- *   modified the product bundle, including user ID and username.
- * @property {string} [modified_on] - The timestamp when the product bundle was
- *   last modified.
- * @property {string} name - The name of the product bundle.
- * @property {string[]} [page_visibility] - Pages where the product bundle is
- *   visible (e.g., 'pdp' for product display page).
- * @property {ProductBundleItem[]} products - A list of products included in the
- *   bundle. A maximum of 10 products can be added.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} slug - A URL-friendly unique identifier for the product bundle.
- */
-
-/**
- * @typedef ProductBundleUpdateRequestSchema
- * @property {string} choice - Specifies the type of product bundle (e.g.,
- *   'single' or 'multi').
- * @property {number} [company_id] - The unique identifier of the company to
- *   which the product bundle belongs.
- * @property {boolean} is_active - Indicates whether the product bundle is
- *   currently active.
- * @property {string} [logo] - URL of the logo associated with the product
- *   bundle, if available. Can be null.
- * @property {Object} [meta] - Additional metadata for the product bundle.
- * @property {string} name - The name of the product bundle.
- * @property {string[]} [page_visibility] - Pages where the product bundle is
- *   visible (e.g., 'pdp' for product display page).
- * @property {ProductBundleItem[]} products - A list of products included in the
- *   bundle. A maximum of 10 products can be added.
- * @property {boolean} [same_store_assignment] - Indicates whether all products
- *   in the bundle are assigned to the same store.
- * @property {string} slug - A URL-friendly unique identifier for the product bundle.
- */
-
-/**
  * @typedef ProductConfigurationDownloads
  * @property {Object[]} [data]
  * @property {boolean} [multivalue]
- */
-
-/**
- * @typedef ProductUpdateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {string} [hs_code] - HS Code for the product.
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
- * @property {number} [uid] - Unique identifier for the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
- */
-
-/**
- * @typedef ProductCreateSchemaV2
- * @property {Object} [_custom_json] - Custom JSON data that can be used for
- *   additional product properties.
- * @property {string} [action] - The action to perform wrt to the product (e.g.,
- *   upsert, update, delete).
- * @property {Object} [attributes] - Additional attributes related to the product.
- * @property {number} brand_uid - Unique identifier for the product's brand.
- * @property {string} [bulk_job_id] - Job ID associated with bulk operations.
- * @property {string} category_slug - The category to which the product belongs.
- * @property {string} [change_request_id] - Change request identifier for product updates.
- * @property {number} company_id - Unique identifier for the company associated
- *   with the product.
- * @property {string} country_of_origin - The country where the product was
- *   manufactured or sourced.
- * @property {string} currency - The currency in which the product's price is listed.
- * @property {CustomOrder} [custom_order]
- * @property {number[]} departments - List of department IDs associated with the product.
- * @property {string} [description] - A detailed description of the product.
- * @property {string[]} [highlights] - Product highlights or key features.
- * @property {boolean} [is_active] - Flag to indicate if the product is active.
- * @property {boolean} [is_dependent] - Flag to indicate if the product is
- *   dependent on other products.
- * @property {boolean} [is_image_less_product] - Flag to indicate if the product
- *   does not have associated images.
- * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
- * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
- * @property {Media[]} [media] - List of media URLs (images, videos) associated
- *   with the product.
- * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
- * @property {string} name - The name of the product.
- * @property {NetQuantity} [net_quantity]
- * @property {number} [no_of_boxes] - Number of boxes required to package the product.
- * @property {string[]} [product_group_tag] - Tags to group products together
- *   for classification.
- * @property {ProductPublish} [product_publish]
- * @property {string} [requester] - The role requesting the product operation
- *   (admin or user).
- * @property {ReturnConfig} return_config
- * @property {string} [short_description] - A short description of the product,
- *   up to 50 characters.
- * @property {string} [size_guide] - Identifier for the product's size guide.
- * @property {Object[]} sizes - List of sizes available for the product.
- * @property {string} slug - URL-friendly identifier for the product.
- * @property {string[]} [tags] - List of tags associated with the product.
- * @property {TaxIdentifier} tax_identifier
- * @property {TeaserTag} [teaser_tag]
- * @property {string} template_tag - Template tag for the product, used for
- *   classification.
- * @property {Trader[]} trader - List of traders associated with the product.
- * @property {Object} [variant_group] - Variant group information for the product.
- * @property {Object} [variant_media] - Media related to product variants.
- * @property {Object} [variants] - Variants information for the product.
  */
 
 /**
@@ -3475,8 +3255,11 @@ const Joi = require("joi");
  *   does not have associated images.
  * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
  * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
+ * @property {string} item_type - Specifies the type of product, such as
+ *   standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+ *   bundle types (virtual_bundle or physical_bundle), use the category,
+ *   department, and brand of the base child SKU. In this case, attributes are
+ *   optional. The bundle_details attribute must be included for bundle types.
  * @property {Media[]} [media] - List of media URLs (images, videos) associated
  *   with the product.
  * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
@@ -3505,6 +3288,8 @@ const Joi = require("joi");
  * @property {Object} [variants] - Variants information for the product.
  * @property {string} [hs_code] - HS Code for the product. This is required for
  *   indian companies.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle.
  */
 
 /**
@@ -3534,8 +3319,11 @@ const Joi = require("joi");
  *   does not have associated images.
  * @property {boolean} [is_set] - Flag to indicate if the product is part of a set.
  * @property {string} item_code - Unique item code or SKU of the product.
- * @property {string} item_type - Type of the product (e.g., standard, set,
- *   composite, digital).
+ * @property {string} item_type - Specifies the type of product, such as
+ *   standard, set, composite, digital, virtual_bundle, or physical_bundle. For
+ *   bundle types (virtual_bundle or physical_bundle), use the category,
+ *   department, and brand of the base child SKU. In this case, attributes are
+ *   optional. The bundle_details attribute must be included for bundle types.
  * @property {Media[]} [media] - List of media URLs (images, videos) associated
  *   with the product.
  * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
@@ -3565,6 +3353,67 @@ const Joi = require("joi");
  * @property {Object} [variant_group] - Variant group information for the product.
  * @property {Object} [variant_media] - Media related to product variants.
  * @property {Object} [variants] - Variants information for the product.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle. This will have child skus along with
+ *   net quantity used in bundle formation.
+ */
+
+/**
+ * @typedef ProductPatchSchemaV3
+ * @property {Object} [_custom_json] - Custom JSON data that can be used for
+ *   additional product properties.
+ * @property {Object} [attributes] - Additional attributes related to the product.
+ * @property {string} [country_of_origin] - The country where the product was
+ *   manufactured or sourced.
+ * @property {CustomOrder} [custom_order]
+ * @property {string} [description] - A detailed description of the product.
+ *   Provide base64 encoded value in input.
+ * @property {string[]} [highlights] - Product highlights or key features.
+ * @property {boolean} [is_active] - Flag to indicate if the product is active.
+ * @property {boolean} [is_dependent] - Flag to indicate if the product is
+ *   dependent on other products.
+ * @property {Media[]} [media] - List of media URLs (images, videos) associated
+ *   with the product.
+ * @property {boolean} [multi_size] - Indicates if the product supports multiple sizes.
+ * @property {string} [name] - The name of the product.
+ * @property {NetQuantity} [net_quantity]
+ * @property {number} [no_of_boxes] - Number of boxes required to package the product.
+ * @property {string[]} [product_group_tag] - Tags to group products together
+ *   for classification.
+ * @property {ProductPublish} [product_publish]
+ * @property {ReturnConfig} [return_config]
+ * @property {string} [short_description] - A short description of the product,
+ *   up to 50 characters.
+ * @property {string} [size_guide] - Identifier for the product's size guide.
+ * @property {ProductSizePatch[]} [sizes] - List of sizes available for the product.
+ * @property {string[]} [tags] - List of tags associated with the product.
+ * @property {TaxIdentifierV3} [tax_identifier]
+ * @property {string} [hs_code] - HS Code for the product. This is required for
+ *   indian companies.
+ * @property {TeaserTag} [teaser_tag]
+ * @property {string} [template_tag] - Template tag for the product, used for
+ *   classification.
+ * @property {Trader[]} [trader] - List of traders associated with the product.
+ * @property {Object} [variant_group] - Variant group information for the product.
+ * @property {Object} [variant_media] - Media related to product variants.
+ * @property {Object} [variants] - Variants information for the product.
+ */
+
+/**
+ * @typedef ProductSizePatch
+ * @property {number} [item_width] - Width of the item in the specified dimension unit.
+ * @property {number} [item_height] - Height of the item in the specified dimension unit.
+ * @property {number} [item_weight] - Weight of the item in the specified weight unit.
+ * @property {number} [price] - Listed price of the product before discounts.
+ * @property {boolean} [track_inventory] - Indicates whether inventory tracking
+ *   is enabled for this item.
+ * @property {Object} [_custom_json] - Custom attributes or additional metadata
+ *   for the product.
+ * @property {string} [seller_identifier] - Unique identifier assigned by the
+ *   seller for this product or size variant.
+ * @property {number} [item_length] - Length of the item in the specified dimension unit.
+ * @property {number} [price_effective] - Effective or discounted price after
+ *   applying promotions.
  */
 
 /**
@@ -3982,6 +3831,9 @@ const Joi = require("joi");
  *   typically used in business transactions.
  * @property {boolean} [track_inventory] - Indicates if inventory is being
  *   tracked for this size.
+ * @property {BundleDetails[]} [bundle_details] - List of bundle details for
+ *   products that are part of a bundle. This will have child skus along with
+ *   net quantity used in bundle formation.
  */
 
 /**
@@ -4040,7 +3892,8 @@ const Joi = require("joi");
  * @property {string} [item_code] - Unique code used to identify the product,
  *   often used internally or by sellers.
  * @property {string} [item_type] - Describes the type of product (e.g.,
- *   "standard" or "set").
+ *   "standard" or "set"). In case of bundle items type will be
+ *   ("virtual_bundle" or "physical_bundle")
  * @property {string[]} [l3_mapping] - Hierarchical mapping of the product to
  *   categories (e.g., "electronics>qled_television").
  * @property {Media[]} [media] - Media assets associated with the product, such
@@ -7255,55 +7108,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {GetProductBundleCreateResponseSchema} */
-  static GetProductBundleCreateResponseSchema() {
-    return Joi.object({
-      choice: Joi.string().allow("").required(),
-      company_id: Joi.number(),
-      created_by: CatalogPlatformModel.CreatedBy(),
-      created_on: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      is_active: Joi.boolean().required(),
-      logo: Joi.string().allow("").allow(null),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      modified_by: CatalogPlatformModel.ModifiedBy(),
-      modified_on: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      page_visibility: Joi.array().items(Joi.string().allow("")),
-      products: Joi.array()
-        .items(CatalogPlatformModel.ProductBundleItem())
-        .required(),
-      same_store_assignment: Joi.boolean(),
-      slug: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {GetProductBundleListingResponseSchema} */
-  static GetProductBundleListingResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(
-        CatalogPlatformModel.GetProductBundleCreateResponseSchema()
-      ),
-      page: CatalogPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {GetProductBundleResponseSchema} */
-  static GetProductBundleResponseSchema() {
-    return Joi.object({
-      choice: Joi.string().allow(""),
-      company_id: Joi.number(),
-      is_active: Joi.boolean(),
-      logo: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      name: Joi.string().allow(""),
-      page_visibility: Joi.array().items(Joi.string().allow("")),
-      products: Joi.array().items(CatalogPlatformModel.GetProducts()),
-      same_store_assignment: Joi.boolean(),
-      slug: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {GetProducts} */
   static GetProducts() {
     return Joi.object({
@@ -8296,6 +8100,15 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {BundleDetails} */
+  static BundleDetails() {
+    return Joi.object({
+      seller_identifier: Joi.string().allow("").required(),
+      net_quantity: Joi.number().required(),
+      is_base: Joi.boolean(),
+    });
+  }
+
   /** @returns {Meta} */
   static Meta() {
     return Joi.object({
@@ -8695,163 +8508,11 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ProductBundleItem} */
-  static ProductBundleItem() {
-    return Joi.object({
-      allow_remove: Joi.boolean(),
-      auto_add_to_cart: Joi.boolean(),
-      auto_select: Joi.boolean(),
-      max_quantity: Joi.number().required(),
-      min_quantity: Joi.number().required(),
-      product_uid: Joi.number().required(),
-    });
-  }
-
-  /** @returns {ProductBundleRequestSchema} */
-  static ProductBundleRequestSchema() {
-    return Joi.object({
-      choice: Joi.string().allow("").required(),
-      company_id: Joi.number(),
-      created_by: Joi.object().pattern(/\S/, Joi.any()),
-      created_on: Joi.string().allow(""),
-      is_active: Joi.boolean().required(),
-      logo: Joi.string().allow("").allow(null),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      modified_by: Joi.object().pattern(/\S/, Joi.any()),
-      modified_on: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      page_visibility: Joi.array().items(Joi.string().allow("")),
-      products: Joi.array()
-        .items(CatalogPlatformModel.ProductBundleItem())
-        .required(),
-      same_store_assignment: Joi.boolean(),
-      slug: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ProductBundleUpdateRequestSchema} */
-  static ProductBundleUpdateRequestSchema() {
-    return Joi.object({
-      choice: Joi.string().allow("").required(),
-      company_id: Joi.number(),
-      is_active: Joi.boolean().required(),
-      logo: Joi.string().allow("").allow(null),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      name: Joi.string().allow("").required(),
-      page_visibility: Joi.array().items(Joi.string().allow("")),
-      products: Joi.array()
-        .items(CatalogPlatformModel.ProductBundleItem())
-        .required(),
-      same_store_assignment: Joi.boolean(),
-      slug: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ProductConfigurationDownloads} */
   static ProductConfigurationDownloads() {
     return Joi.object({
       data: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       multivalue: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ProductUpdateSchemaV2} */
-  static ProductUpdateSchemaV2() {
-    return Joi.object({
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-      action: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
-      brand_uid: Joi.number().required(),
-      bulk_job_id: Joi.string().allow(""),
-      category_slug: Joi.string().allow("").required(),
-      change_request_id: Joi.string().allow("").allow(null),
-      company_id: Joi.number().required(),
-      country_of_origin: Joi.string().allow("").required(),
-      currency: Joi.string().allow("").required(),
-      custom_order: CatalogPlatformModel.CustomOrder(),
-      departments: Joi.array().items(Joi.number()).required(),
-      description: Joi.string().allow(""),
-      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
-      is_active: Joi.boolean(),
-      is_dependent: Joi.boolean(),
-      is_image_less_product: Joi.boolean(),
-      is_set: Joi.boolean(),
-      item_code: Joi.string().allow("").required(),
-      item_type: Joi.string().allow("").required(),
-      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
-      multi_size: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-      net_quantity: CatalogPlatformModel.NetQuantity(),
-      no_of_boxes: Joi.number(),
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish(),
-      requester: Joi.string().allow(""),
-      return_config: CatalogPlatformModel.ReturnConfig().required(),
-      short_description: Joi.string().allow(""),
-      size_guide: Joi.string().allow(""),
-      sizes: Joi.array()
-        .items(Joi.object().pattern(/\S/, Joi.any()))
-        .required(),
-      slug: Joi.string().allow("").required(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
-      hs_code: Joi.string().allow(""),
-      teaser_tag: CatalogPlatformModel.TeaserTag(),
-      template_tag: Joi.string().allow("").required(),
-      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
-      uid: Joi.number().allow(null),
-      variant_group: Joi.object().pattern(/\S/, Joi.any()),
-      variant_media: Joi.object().pattern(/\S/, Joi.any()),
-      variants: Joi.object().pattern(/\S/, Joi.any()),
-    });
-  }
-
-  /** @returns {ProductCreateSchemaV2} */
-  static ProductCreateSchemaV2() {
-    return Joi.object({
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-      action: Joi.string().allow(""),
-      attributes: Joi.object().pattern(/\S/, Joi.any()),
-      brand_uid: Joi.number().required(),
-      bulk_job_id: Joi.string().allow(""),
-      category_slug: Joi.string().allow("").required(),
-      change_request_id: Joi.string().allow("").allow(null),
-      company_id: Joi.number().required(),
-      country_of_origin: Joi.string().allow("").required(),
-      currency: Joi.string().allow("").required(),
-      custom_order: CatalogPlatformModel.CustomOrder(),
-      departments: Joi.array().items(Joi.number()).required(),
-      description: Joi.string().allow(""),
-      highlights: Joi.array().items(Joi.string().allow("")).allow(null, ""),
-      is_active: Joi.boolean(),
-      is_dependent: Joi.boolean(),
-      is_image_less_product: Joi.boolean(),
-      is_set: Joi.boolean(),
-      item_code: Joi.string().allow("").required(),
-      item_type: Joi.string().allow("").required(),
-      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
-      multi_size: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-      net_quantity: CatalogPlatformModel.NetQuantity(),
-      no_of_boxes: Joi.number(),
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish(),
-      requester: Joi.string().allow(""),
-      return_config: CatalogPlatformModel.ReturnConfig().required(),
-      short_description: Joi.string().allow(""),
-      size_guide: Joi.string().allow(""),
-      sizes: Joi.array()
-        .items(Joi.object().pattern(/\S/, Joi.any()))
-        .required(),
-      slug: Joi.string().allow("").required(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
-      teaser_tag: CatalogPlatformModel.TeaserTag(),
-      template_tag: Joi.string().allow("").required(),
-      trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
-      variant_group: Joi.object().pattern(/\S/, Joi.any()),
-      variant_media: Joi.object().pattern(/\S/, Joi.any()),
-      variants: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -8902,6 +8563,9 @@ class CatalogPlatformModel {
       variant_media: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.object().pattern(/\S/, Joi.any()),
       hs_code: Joi.string().allow(""),
+      bundle_details: Joi.array()
+        .items(CatalogPlatformModel.BundleDetails())
+        .allow(null, ""),
     });
   }
 
@@ -8953,6 +8617,56 @@ class CatalogPlatformModel {
       variant_group: Joi.object().pattern(/\S/, Joi.any()),
       variant_media: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.object().pattern(/\S/, Joi.any()),
+      bundle_details: Joi.array().items(CatalogPlatformModel.BundleDetails()),
+    });
+  }
+
+  /** @returns {ProductPatchSchemaV3} */
+  static ProductPatchSchemaV3() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      country_of_origin: Joi.string().allow(""),
+      custom_order: CatalogPlatformModel.CustomOrder(),
+      description: Joi.string().allow(""),
+      highlights: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      is_dependent: Joi.boolean(),
+      media: Joi.array().items(CatalogPlatformModel.Media()),
+      multi_size: Joi.boolean(),
+      name: Joi.string().allow(""),
+      net_quantity: CatalogPlatformModel.NetQuantity(),
+      no_of_boxes: Joi.number(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+      product_publish: CatalogPlatformModel.ProductPublish(),
+      return_config: CatalogPlatformModel.ReturnConfig(),
+      short_description: Joi.string().allow(""),
+      size_guide: Joi.string().allow(""),
+      sizes: Joi.array().items(CatalogPlatformModel.ProductSizePatch()),
+      tags: Joi.array().items(Joi.string().allow("")),
+      tax_identifier: CatalogPlatformModel.TaxIdentifierV3(),
+      hs_code: Joi.string().allow(""),
+      teaser_tag: CatalogPlatformModel.TeaserTag(),
+      template_tag: Joi.string().allow(""),
+      trader: Joi.array().items(CatalogPlatformModel.Trader()),
+      variant_group: Joi.object().pattern(/\S/, Joi.any()),
+      variant_media: Joi.object().pattern(/\S/, Joi.any()),
+      variants: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {ProductSizePatch} */
+  static ProductSizePatch() {
+    return Joi.object({
+      item_width: Joi.number(),
+      item_height: Joi.number(),
+      item_weight: Joi.number(),
+      price: Joi.number(),
+      track_inventory: Joi.boolean(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      seller_identifier: Joi.string().allow(""),
+      item_length: Joi.number(),
+      price_effective: Joi.number(),
     });
   }
 
@@ -9400,6 +9114,7 @@ class CatalogPlatformModel {
       seller_identifier: Joi.string().allow(""),
       price_transfer: Joi.number(),
       track_inventory: Joi.boolean(),
+      bundle_details: Joi.array().items(CatalogPlatformModel.BundleDetails()),
     });
   }
 

@@ -31,6 +31,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetOrderingSourceConfigBySlugParam
+ * @property {string} slug
+ */
+
+/**
  * @typedef GetPlatformShipmentReasonsParam
  * @property {string} action
  */
@@ -47,8 +52,21 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef ListOrderingSourcesParam
+ * @property {string} [type]
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+
+/**
  * @typedef TrackShipmentPlatformParam
  * @property {string} shipmentId - The unique identifier for the shipment
+ */
+
+/**
+ * @typedef UpdateOrderingSourceConfigBySlugParam
+ * @property {string} slug
+ * @property {OrderPlatformModel.OrderingSourceConfig} body
  */
 
 class OrderPlatformApplicationValidator {
@@ -70,6 +88,13 @@ class OrderPlatformApplicationValidator {
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetOrderingSourceConfigBySlugParam} */
+  static getOrderingSourceConfigBySlug() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -95,10 +120,27 @@ class OrderPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {ListOrderingSourcesParam} */
+  static listOrderingSources() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {TrackShipmentPlatformParam} */
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {UpdateOrderingSourceConfigBySlugParam} */
+  static updateOrderingSourceConfigBySlug() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      body: OrderPlatformModel.OrderingSourceConfig().required(),
     }).required();
   }
 }
