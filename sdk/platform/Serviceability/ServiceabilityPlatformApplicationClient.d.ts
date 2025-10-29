@@ -83,6 +83,20 @@ declare class Serviceability {
      */
     createGeoAreaExportJob({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateGeoAreaExportJobParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaBulkCreationResult>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.CreateShipmentsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.PlatformShipmentsResponseSchema>}
+     *   - Success response
+     *
+     * @name createShipments
+     * @summary: Create and return shipments
+     * @description: Create and return shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createShipments/).
+     */
+    createShipments({ body, xOrderingSource, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateShipmentsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PlatformShipmentsResponseSchema>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam} arg
      *   - Arg object
      *

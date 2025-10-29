@@ -49,8 +49,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef CreateOrderParam
  * @property {string} xOrderingSource - To uniquely identify the source through
  *   which order has been placed.
- * @property {string} [xApplicationId] - Application id
- * @property {string} [xExtensionId] - Extension id
+ * @property {string} [xApplicationId] - The Application ID is a unique
+ *   identifier assigned to a storefront that typically follows a 24-character
+ *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
+ *   mandatory. At least one of them must be provided.
+ * @property {string} [xExtensionId] - The Extension ID is a unique identifier
+ *   assigned to an extension that typically follows a 24-character hexadecimal
+ *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
+ *   At least one of them must be provided.
  * @property {OrderPlatformModel.CreateOrderRequestSchema} body
  */
 

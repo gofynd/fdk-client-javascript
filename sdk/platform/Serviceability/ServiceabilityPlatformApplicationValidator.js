@@ -33,6 +33,13 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef CreateShipmentsParam
+ * @property {string} [xOrderingSource] - Ordering source header, to be used to
+ *   identify source of order creation.
+ * @property {ServiceabilityPlatformModel.PlatformShipmentsRequestSchema} body
+ */
+
+/**
  * @typedef CreateStoreRulesParam
  * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
@@ -320,6 +327,15 @@ class ServiceabilityPlatformApplicationValidator {
   static createGeoAreaExportJob() {
     return Joi.object({
       geoareaId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {CreateShipmentsParam} */
+  static createShipments() {
+    return Joi.object({
+      xOrderingSource: Joi.string().allow(""),
+
+      body: ServiceabilityPlatformModel.PlatformShipmentsRequestSchema().required(),
     }).required();
   }
 

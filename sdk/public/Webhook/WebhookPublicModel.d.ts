@@ -46,6 +46,7 @@ export = WebhookPublicModel;
  */
 /**
  * @typedef TransformEventData
+ * @property {string} [region] - The region of the transformation event.
  * @property {InternalTransformEvent} [event]
  * @property {number} [company_id] - The company ID associated with the event.
  * @property {string[]} [contains] - List of strings related to the event.
@@ -229,6 +230,10 @@ type InternalTransformEvent = {
 /** @returns {TransformEventData} */
 declare function TransformEventData(): TransformEventData;
 type TransformEventData = {
+    /**
+     * - The region of the transformation event.
+     */
+    region?: string;
     event?: InternalTransformEvent;
     /**
      * - The company ID associated with the event.

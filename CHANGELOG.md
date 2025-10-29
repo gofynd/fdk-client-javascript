@@ -1,3 +1,33 @@
+# CHANGE LOG (v3.13.0) - 2.9.2
+
+## Platform Client
+
+
+
+### Serviceability
+
+
+
+#### createShipments
+
+- ##### What's New
+	- [Added] method <code>createShipments</code>
+
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>message</code> of schema <code></code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>message</code> made optional in response with status code 200
+
+
 # CHANGE LOG (3.12.0) - 2.9.0
 
 ## Application Client

@@ -604,7 +604,7 @@ class Order {
    * @returns {Promise<Object>} - Success response
    * @name createOrder
    * @summary: Create Order
-   * @description: Creates an order in the OMS. Note: Use the Serviceability API (getShipments) to determine shipments before creating an order. OMS no longer auto-selects fulfillment stores and only creates shipments as provided in the request payload. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
+   * @description: Creates an order in the OMS. Note: Use the Serviceability API (<a href='/commerce/sdk/latest/platform/company/serviceability#createShipments'>createShipments</a>) to determine shipments before creating an order. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
    */
   async createOrder(
     { xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders } = {

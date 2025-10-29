@@ -1,6 +1,31 @@
 const Joi = require("joi");
 
 /**
+ * @typedef PlatformShipmentsRequestSchema
+ * @property {string} journey - The journey or route for the shipment.
+ * @property {PlatformLocationArticles[]} location_articles - A list of articles
+ *   associated with the shipment location, grouped by fulfillment details.
+ * @property {PlatformShipmentsToServiceability} to_serviceability
+ * @property {string} [payment_mode] - The payment mode for the shipment,
+ *   nullable if not applicable.
+ */
+
+/**
+ * @typedef PlatformShipmentsResponseSchema
+ * @property {boolean} is_cod_available - Flag indicating whether Cash on
+ *   Delivery (COD) is available for the shipment.
+ * @property {PlatformShipmentsSchema[]} shipments - List of shipments generated
+ *   for the courier partner.
+ */
+
+/**
+ * @typedef ShipmentsErrorResult
+ * @property {string} [message] - The error message describing the issue.
+ * @property {string} type - A string property defining error type
+ * @property {string} value - A string property providing value which is causing error
+ */
+
+/**
  * @typedef FulfillmentOption
  * @property {string} [name] - Name of the fulfillment option.
  * @property {string} [slug] - Unique identifier for the fulfillment option.
@@ -1274,6 +1299,230 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PlatformLocationArticles
+ * @property {PlatformLocationArticle[]} articles - List of articles for this
+ *   fulfillment location.
+ * @property {number} [fulfillment_location_id] - Unique identifier for the
+ *   fulfillment location.
+ * @property {string[]} [fulfillment_tags] - Tags associated with the
+ *   fulfillment location.
+ * @property {string} fulfillment_type - Type of fulfillment (e.g., store, warehouse).
+ */
+
+/**
+ * @typedef PlatformLocationArticle
+ * @property {number} price - The price of the article.
+ * @property {number} item_id - Unique identifier for the item.
+ * @property {string} size - The size of the article.
+ * @property {number} quantity - The quantity of the article.
+ * @property {ParentItemIdentifiers} [parent_item_identifiers]
+ */
+
+/**
+ * @typedef ParentItemIdentifiers
+ * @property {string} identifier - Identifier of the parent item.
+ * @property {string} parent_item_id - Parent item id.
+ * @property {string} parent_item_size - Parent item size.
+ */
+
+/**
+ * @typedef PlatformShipmentsToServiceability
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} [country] - The country of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ * @property {string} [country_iso_code] - The ISO code of the country.
+ */
+
+/**
+ * @typedef PlatformShipmentsSchema
+ * @property {string[]} [tags] - Additional tags associated with the shipment.
+ * @property {Packaging} [packaging]
+ * @property {FulfillmentOptionItem} [fulfillment_option]
+ * @property {number} [weight] - The total weight of the shipment.
+ * @property {string} [shipment_type] - The type of shipment.
+ * @property {boolean} [is_auto_assign] - Indicates whether courier partners
+ *   should be automatically assigned to this shipment based on the store's
+ *   auto-assignment configuration.
+ * @property {number} [volumetric_weight] - Volumetric weight of the shipment.
+ * @property {string[]} [fulfillment_tags] - Tags associated with the fulfillment.
+ * @property {ShipmentsPromise} [promise]
+ * @property {boolean} [is_ewaybill_enabled] - Flag indicating whether an
+ *   ewaybill is enabled for the shipment.
+ * @property {boolean} [is_mto] - Flag indicating whether the shipment is MTO
+ *   (Make to Order).
+ * @property {ShipmentsArticle[]} [articles] - List of articles in the shipment.
+ * @property {string} [fulfillment_type] - Type of fulfillment (e.g., high_street).
+ * @property {boolean} [mps] - Flag indicating whether MPS (Multi-Part Shipment)
+ *   is enabled for the shipment.
+ * @property {number} [fulfillment_location_id] - Unique identifier for the
+ *   fulfillment location.
+ * @property {ShipmentsCourierPartner[]} [courier_partners] - List of courier
+ *   partners handling the shipment.
+ */
+
+/**
+ * @typedef Packaging
+ * @property {string} [name] - The name of the packaging.
+ * @property {string} [id] - A string serving as the unique identifier.
+ * @property {Dimension} [dimension]
+ */
+
+/**
+ * @typedef Dimension
+ * @property {number} [length] - Length of the packaging.
+ * @property {number} [width] - Width of the packaging.
+ * @property {number} [height] - Height of the packaging.
+ */
+
+/**
+ * @typedef FulfillmentOptionItem
+ * @property {string} [slug] - Unique identifier for the delivery type.
+ * @property {string} [description] - Description of the delivery service.
+ * @property {boolean} [is_default] - Indicates if this is the default delivery option.
+ * @property {string} [id] - Unique ID of the delivery service.
+ * @property {string} [type] - Type of fulfillment option.
+ * @property {string} [name] - Name of the delivery service.
+ */
+
+/**
+ * @typedef ShipmentsPromise
+ * @property {string} [min] - The minimum shipment promise time.
+ * @property {string} [max] - The maximum shipment promise time.
+ * @property {CustomerPromise} [customer_promise]
+ * @property {ShipmentPromiseMeta} [meta]
+ */
+
+/**
+ * @typedef CustomerPromise
+ * @property {string} [min] - The earliest possible date and time when the
+ *   shipment is expected to be delivered. This timestamp is in ISO 8601 format
+ * @property {string} [max] - The latest possible date and time when the
+ *   shipment is expected to be delivered. This timestamp is in ISO 8601 format
+ */
+
+/**
+ * @typedef ShipmentPromiseMeta
+ * @property {SellerPromise} [seller_promise]
+ * @property {CourierPartnerPromise} [courier_partner_promise]
+ * @property {CustomerInitialPromise} [customer_initial_promise]
+ */
+
+/**
+ * @typedef SellerPromise
+ * @property {string} [min] - Minimum seller delivery promise time.
+ * @property {string} [max] - Maximum seller delivery promise time.
+ */
+
+/**
+ * @typedef CourierPartnerPromise
+ * @property {string} min - Minimum courier partner delivery promise time.
+ * @property {string} max - Maximum courier partner delivery promise time.
+ * @property {CourierPartnerAttributes} [attributes]
+ */
+
+/**
+ * @typedef CourierPartnerAttributes
+ * @property {CourierPartnerTAT} [tat]
+ */
+
+/**
+ * @typedef CourierPartnerTAT
+ * @property {number} [min] - Minimum turnaround time.
+ * @property {number} [max] - Maximum turnaround time.
+ */
+
+/**
+ * @typedef CustomerInitialPromise
+ * @property {string} [min] - Minimum initial customer delivery promise time.
+ * @property {string} [max] - Maximum initial customer delivery promise time.
+ */
+
+/**
+ * @typedef ShipmentsArticle
+ * @property {string} [id] - A string serving as the unique identifier.
+ * @property {number} [quantity] - The quantity of the shipment article.
+ * @property {number} [item_id] - The Item Id of the article.
+ * @property {string} [size] - The size of the article.
+ * @property {number} [price] - Final Price of the article after discounts
+ * @property {number} [price_marked] - Marked price before discounts (nullable).
+ * @property {number} [department_id] - Department of the item
+ * @property {number} [weight] - Weight of the article.
+ * @property {Object} [attributes] - Additional attributes for the article.
+ * @property {number} [category_id] - Category Id of the article.
+ * @property {number} [brand_id] - Brand Id of the article.
+ * @property {ShipmentDimension} [dimension]
+ * @property {string[]} [tags] - List of tags associated with the article.
+ * @property {number} [manufacturing_time] - Time required for manufacturing.
+ * @property {string} [manufacturing_time_unit] - Unit for manufacturing time.
+ * @property {Object} [set] - Additional properties related to sets.
+ * @property {boolean} [is_set] - Indicates if the article is part of a set.
+ * @property {Object} [_custom_json] - Custom JSON metadata.
+ * @property {string} [return_reason] - Reason for returning the article (nullable).
+ * @property {string} [group_id] - Group Id for the article.
+ * @property {ShipmentsMeta} [meta]
+ * @property {boolean} [is_mto] - Indicates whether the article is made-to-order (MTO)
+ * @property {string} [sla] - Service level agreement (SLA) for the article,
+ *   represented as a date-time
+ */
+
+/**
+ * @typedef ShipmentDimension
+ * @property {number} height - Height of the shipment in centimeters.
+ * @property {number} length - Length of the shipment in centimeters.
+ * @property {number} width - Width of the shipment in centimeters.
+ * @property {boolean} [is_default] - If the dimensions are default.
+ * @property {string} [unit] - Measurement unit for dimensions.
+ */
+
+/**
+ * @typedef ShipmentsMeta
+ * @property {boolean} [is_set] - Whether the article is part of a set
+ * @property {Object} [set] - Set details for the article, if applicable
+ * @property {boolean} [is_set_article] - Whether the article is a set item
+ * @property {number} [set_quantity] - Quantity of the set item
+ * @property {string} [split_article_id] - Id of the split article, if applicable
+ * @property {string[]} [promo_ids] - List of promotion Ids applicable to the article
+ */
+
+/**
+ * @typedef ShipmentsCourierPartner
+ * @property {string} [extension_id] - A string that uniquely identifies the
+ *   courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier for the scheme, used to
+ *   fetch or modify scheme details.
+ * @property {AreaCode} [area_code]
+ * @property {TAT} [tat]
+ * @property {string} [display_name] - The display name of the courier partner.
+ * @property {boolean} [is_qc_enabled] - A boolean indicating quality control by
+ *   the courier partner.
+ * @property {boolean} [is_self_ship] - Indicates whether the courier account
+ *   supports self-shipping (true if it does, false otherwise).
+ * @property {boolean} [is_own_account] - Indicates whether the courier account
+ *   is an own account (true if it is, false otherwise).
+ * @property {number} [ndr_attempts] - The number of non-delivery report (NDR) attempts.
+ * @property {string} [forward_pickup_cutoff] - Cutoff time for forward pickup (nullable).
+ * @property {string} [reverse_pickup_cutoff] - Cutoff time for reverse pickup (nullable).
+ * @property {number} [qc_shipment_item_quantity] - Quantity of items under
+ *   quality control (nullable).
+ * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
+ *   under quality control (nullable).
+ */
+
+/**
+ * @typedef AreaCode
+ * @property {string} [source] - The starting area code.
+ * @property {string} [destination] - The ending area code.
+ */
+
+/**
+ * @typedef TAT
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+
+/**
  * @typedef BusinessUnit
  * @property {string} [name] - Name of the business unit.
  * @property {boolean} [is_active] - Whether the business unit is active.
@@ -1307,16 +1556,6 @@ const Joi = require("joi");
  * @typedef CourierPartnerScheme
  * @property {string} [scheme_id] - Unique identifier for the courier partner scheme.
  * @property {string} [cp_ext_id] - Unique identifier for the courier partner.
- */
-
-/**
- * @typedef FulfillmentOptionItem
- * @property {string} [slug] - Unique identifier for the delivery type.
- * @property {string} [description] - Description of the delivery service.
- * @property {boolean} [is_default] - Indicates if this is the default delivery option.
- * @property {string} [id] - Unique ID of the delivery service.
- * @property {string} [type] - Type of fulfillment option.
- * @property {string} [name] - Name of the delivery service.
  */
 
 /**
@@ -1847,15 +2086,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ShipmentDimension
- * @property {number} height - Height of the shipment in centimeters.
- * @property {number} length - Length of the shipment in centimeters.
- * @property {number} width - Width of the shipment in centimeters.
- * @property {boolean} [is_default] - If the dimensions are default.
- * @property {string} [unit] - Measurement unit for dimensions.
- */
-
-/**
  * @typedef ShipmentsArticles
  * @property {string} [id] - A string serving as the unique identifier.
  * @property {number} [item_id] - The Item Id of the article.
@@ -1948,24 +2178,6 @@ const Joi = require("joi");
  * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
  * @property {string} [name] - Name of the courier partner.
  * @property {CourierPartnerPromise} [delivery_promise]
- */
-
-/**
- * @typedef CourierPartnerPromise
- * @property {string} min - Minimum courier partner delivery promise time.
- * @property {string} max - Maximum courier partner delivery promise time.
- * @property {CourierPartnerAttributes} [attributes]
- */
-
-/**
- * @typedef CourierPartnerAttributes
- * @property {CourierPartnerTAT} [tat]
- */
-
-/**
- * @typedef CourierPartnerTAT
- * @property {number} [min] - Minimum turnaround time.
- * @property {number} [max] - Maximum turnaround time.
  */
 
 /**
@@ -2527,6 +2739,37 @@ const Joi = require("joi");
  */
 
 class ServiceabilityPlatformModel {
+  /** @returns {PlatformShipmentsRequestSchema} */
+  static PlatformShipmentsRequestSchema() {
+    return Joi.object({
+      journey: Joi.string().allow("").required(),
+      location_articles: Joi.array()
+        .items(ServiceabilityPlatformModel.PlatformLocationArticles())
+        .required(),
+      to_serviceability: ServiceabilityPlatformModel.PlatformShipmentsToServiceability().required(),
+      payment_mode: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {PlatformShipmentsResponseSchema} */
+  static PlatformShipmentsResponseSchema() {
+    return Joi.object({
+      is_cod_available: Joi.boolean().required(),
+      shipments: Joi.array()
+        .items(ServiceabilityPlatformModel.PlatformShipmentsSchema())
+        .required(),
+    });
+  }
+
+  /** @returns {ShipmentsErrorResult} */
+  static ShipmentsErrorResult() {
+    return Joi.object({
+      message: Joi.string().allow("").allow(null),
+      type: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {FulfillmentOption} */
   static FulfillmentOption() {
     return Joi.object({
@@ -3888,6 +4131,260 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {PlatformLocationArticles} */
+  static PlatformLocationArticles() {
+    return Joi.object({
+      articles: Joi.array()
+        .items(ServiceabilityPlatformModel.PlatformLocationArticle())
+        .required(),
+      fulfillment_location_id: Joi.number(),
+      fulfillment_tags: Joi.array().items(Joi.string().allow("")),
+      fulfillment_type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PlatformLocationArticle} */
+  static PlatformLocationArticle() {
+    return Joi.object({
+      price: Joi.number().required(),
+      item_id: Joi.number().required(),
+      size: Joi.string().allow("").required(),
+      quantity: Joi.number().required(),
+      parent_item_identifiers: ServiceabilityPlatformModel.ParentItemIdentifiers(),
+    });
+  }
+
+  /** @returns {ParentItemIdentifiers} */
+  static ParentItemIdentifiers() {
+    return Joi.object({
+      identifier: Joi.string().allow("").required(),
+      parent_item_id: Joi.string().allow("").required(),
+      parent_item_size: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PlatformShipmentsToServiceability} */
+  static PlatformShipmentsToServiceability() {
+    return Joi.object({
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PlatformShipmentsSchema} */
+  static PlatformShipmentsSchema() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
+      packaging: ServiceabilityPlatformModel.Packaging(),
+      fulfillment_option: ServiceabilityPlatformModel.FulfillmentOptionItem(),
+      weight: Joi.number(),
+      shipment_type: Joi.string().allow(""),
+      is_auto_assign: Joi.boolean(),
+      volumetric_weight: Joi.number(),
+      fulfillment_tags: Joi.array().items(Joi.string().allow("")),
+      promise: ServiceabilityPlatformModel.ShipmentsPromise(),
+      is_ewaybill_enabled: Joi.boolean(),
+      is_mto: Joi.boolean(),
+      articles: Joi.array().items(
+        ServiceabilityPlatformModel.ShipmentsArticle()
+      ),
+      fulfillment_type: Joi.string().allow(""),
+      mps: Joi.boolean(),
+      fulfillment_location_id: Joi.number(),
+      courier_partners: Joi.array().items(
+        ServiceabilityPlatformModel.ShipmentsCourierPartner()
+      ),
+    });
+  }
+
+  /** @returns {Packaging} */
+  static Packaging() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      dimension: ServiceabilityPlatformModel.Dimension(),
+    });
+  }
+
+  /** @returns {Dimension} */
+  static Dimension() {
+    return Joi.object({
+      length: Joi.number(),
+      width: Joi.number(),
+      height: Joi.number(),
+    });
+  }
+
+  /** @returns {FulfillmentOptionItem} */
+  static FulfillmentOptionItem() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShipmentsPromise} */
+  static ShipmentsPromise() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+      customer_promise: ServiceabilityPlatformModel.CustomerPromise(),
+      meta: ServiceabilityPlatformModel.ShipmentPromiseMeta(),
+    });
+  }
+
+  /** @returns {CustomerPromise} */
+  static CustomerPromise() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShipmentPromiseMeta} */
+  static ShipmentPromiseMeta() {
+    return Joi.object({
+      seller_promise: ServiceabilityPlatformModel.SellerPromise(),
+      courier_partner_promise: ServiceabilityPlatformModel.CourierPartnerPromise(),
+      customer_initial_promise: ServiceabilityPlatformModel.CustomerInitialPromise(),
+    });
+  }
+
+  /** @returns {SellerPromise} */
+  static SellerPromise() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CourierPartnerPromise} */
+  static CourierPartnerPromise() {
+    return Joi.object({
+      min: Joi.string().allow("").required(),
+      max: Joi.string().allow("").required(),
+      attributes: ServiceabilityPlatformModel.CourierPartnerAttributes(),
+    });
+  }
+
+  /** @returns {CourierPartnerAttributes} */
+  static CourierPartnerAttributes() {
+    return Joi.object({
+      tat: ServiceabilityPlatformModel.CourierPartnerTAT(),
+    });
+  }
+
+  /** @returns {CourierPartnerTAT} */
+  static CourierPartnerTAT() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {CustomerInitialPromise} */
+  static CustomerInitialPromise() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShipmentsArticle} */
+  static ShipmentsArticle() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      quantity: Joi.number(),
+      item_id: Joi.number(),
+      size: Joi.string().allow(""),
+      price: Joi.number(),
+      price_marked: Joi.number().allow(null),
+      department_id: Joi.number(),
+      weight: Joi.number(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      category_id: Joi.number(),
+      brand_id: Joi.number(),
+      dimension: ServiceabilityPlatformModel.ShipmentDimension(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      manufacturing_time: Joi.number(),
+      manufacturing_time_unit: Joi.string().allow(""),
+      set: Joi.object().pattern(/\S/, Joi.any()),
+      is_set: Joi.boolean(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      return_reason: Joi.string().allow("").allow(null),
+      group_id: Joi.string().allow(""),
+      meta: ServiceabilityPlatformModel.ShipmentsMeta(),
+      is_mto: Joi.boolean(),
+      sla: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShipmentDimension} */
+  static ShipmentDimension() {
+    return Joi.object({
+      height: Joi.number().required(),
+      length: Joi.number().required(),
+      width: Joi.number().required(),
+      is_default: Joi.boolean(),
+      unit: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShipmentsMeta} */
+  static ShipmentsMeta() {
+    return Joi.object({
+      is_set: Joi.boolean(),
+      set: Joi.object().pattern(/\S/, Joi.any()),
+      is_set_article: Joi.boolean(),
+      set_quantity: Joi.number(),
+      split_article_id: Joi.string().allow(""),
+      promo_ids: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ShipmentsCourierPartner} */
+  static ShipmentsCourierPartner() {
+    return Joi.object({
+      extension_id: Joi.string().allow(""),
+      scheme_id: Joi.string().allow(""),
+      area_code: ServiceabilityPlatformModel.AreaCode(),
+      tat: ServiceabilityPlatformModel.TAT(),
+      display_name: Joi.string().allow(""),
+      is_qc_enabled: Joi.boolean(),
+      is_self_ship: Joi.boolean(),
+      is_own_account: Joi.boolean(),
+      ndr_attempts: Joi.number(),
+      forward_pickup_cutoff: Joi.string().allow("").allow(null),
+      reverse_pickup_cutoff: Joi.string().allow("").allow(null),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {AreaCode} */
+  static AreaCode() {
+    return Joi.object({
+      source: Joi.string().allow(""),
+      destination: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TAT} */
+  static TAT() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
   /** @returns {BusinessUnit} */
   static BusinessUnit() {
     return Joi.object({
@@ -3927,18 +4424,6 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       scheme_id: Joi.string().allow(""),
       cp_ext_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FulfillmentOptionItem} */
-  static FulfillmentOptionItem() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      is_default: Joi.boolean(),
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      name: Joi.string().allow(""),
     });
   }
 
@@ -4523,17 +5008,6 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ShipmentDimension} */
-  static ShipmentDimension() {
-    return Joi.object({
-      height: Joi.number().required(),
-      length: Joi.number().required(),
-      width: Joi.number().required(),
-      is_default: Joi.boolean(),
-      unit: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {ShipmentsArticles} */
   static ShipmentsArticles() {
     return Joi.object({
@@ -4640,30 +5114,6 @@ class ServiceabilityPlatformModel {
       scheme_id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       delivery_promise: ServiceabilityPlatformModel.CourierPartnerPromise(),
-    });
-  }
-
-  /** @returns {CourierPartnerPromise} */
-  static CourierPartnerPromise() {
-    return Joi.object({
-      min: Joi.string().allow("").required(),
-      max: Joi.string().allow("").required(),
-      attributes: ServiceabilityPlatformModel.CourierPartnerAttributes(),
-    });
-  }
-
-  /** @returns {CourierPartnerAttributes} */
-  static CourierPartnerAttributes() {
-    return Joi.object({
-      tat: ServiceabilityPlatformModel.CourierPartnerTAT(),
-    });
-  }
-
-  /** @returns {CourierPartnerTAT} */
-  static CourierPartnerTAT() {
-    return Joi.object({
-      min: Joi.number(),
-      max: Joi.number(),
     });
   }
 

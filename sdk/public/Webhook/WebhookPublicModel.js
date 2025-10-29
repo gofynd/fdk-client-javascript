@@ -53,6 +53,7 @@ const Joi = require("joi");
 
 /**
  * @typedef TransformEventData
+ * @property {string} [region] - The region of the transformation event.
  * @property {InternalTransformEvent} [event]
  * @property {number} [company_id] - The company ID associated with the event.
  * @property {string[]} [contains] - List of strings related to the event.
@@ -174,6 +175,7 @@ class WebhookPublicModel {
   /** @returns {TransformEventData} */
   static TransformEventData() {
     return Joi.object({
+      region: Joi.string().allow(""),
       event: WebhookPublicModel.InternalTransformEvent(),
       company_id: Joi.number(),
       contains: Joi.array().items(Joi.string().allow("")),

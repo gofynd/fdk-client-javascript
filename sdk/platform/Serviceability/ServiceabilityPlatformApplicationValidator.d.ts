@@ -24,6 +24,12 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} geoareaId - The unique identifier of the Geoarea.
  */
 /**
+ * @typedef CreateShipmentsParam
+ * @property {string} [xOrderingSource] - Ordering source header, to be used to
+ *   identify source of order creation.
+ * @property {ServiceabilityPlatformModel.PlatformShipmentsRequestSchema} body
+ */
+/**
  * @typedef CreateStoreRulesParam
  * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
  */
@@ -242,6 +248,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static createGeoArea(): CreateGeoAreaParam;
     /** @returns {CreateGeoAreaExportJobParam} */
     static createGeoAreaExportJob(): CreateGeoAreaExportJobParam;
+    /** @returns {CreateShipmentsParam} */
+    static createShipments(): CreateShipmentsParam;
     /** @returns {CreateStoreRulesParam} */
     static createStoreRules(): CreateStoreRulesParam;
     /** @returns {CreateZoneParam} */
@@ -328,7 +336,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static validateBulkFulfillmentOptions(): ValidateBulkFulfillmentOptionsParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -350,6 +358,14 @@ type CreateGeoAreaExportJobParam = {
      * - The unique identifier of the Geoarea.
      */
     geoareaId: string;
+};
+type CreateShipmentsParam = {
+    /**
+     * - Ordering source header, to be used to
+     * identify source of order creation.
+     */
+    xOrderingSource?: string;
+    body: ServiceabilityPlatformModel.PlatformShipmentsRequestSchema;
 };
 type CreateStoreRulesParam = {
     body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema;
