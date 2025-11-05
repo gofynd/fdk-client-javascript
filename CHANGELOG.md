@@ -1,3 +1,81 @@
+# CHANGE LOG (3.14.0) - 2.9.3
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>default_cart</code> of schema <code>PlatformAddCartDetails</code> in request body
+
+
+### Catalog
+
+
+
+#### getAppProducts
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].hs_code</code> of schema <code>RawProduct</code> in response with status code 200
+
+
+#### validateProductGlobalTemplate
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data.global_validation.properties.hs_code</code> of schema <code>Properties</code> in response with status code 200
+
+
+#### getProductSize
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].hs_code</code> of schema <code>Product</code> in response with status code 200
+
+
+#### getProducts
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>items[].hs_code</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+
+#### createProduct
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>hs_code</code> of schema <code>ProductCreateSchemaV3</code> in request body
+
+
+#### editProduct
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>hs_code</code> of schema <code>ProductUpdateSchemaV3</code> in request body
+
+
+#### partialUpdateProduct
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>hs_code</code> of schema <code>ProductPatchSchemaV3</code> in request body
+
+
+#### getProduct
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>data.hs_code</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property <code>meta</code> of schema <code>CreateOrderRequestSchema</code> in request body
+
+
 # CHANGE LOG (v3.13.0) - 2.9.2
 
 ## Platform Client

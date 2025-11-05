@@ -434,7 +434,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.AddCartDetailResult>} - Success response
      * @name platformAddItems
      * @summary: Add items to cart
-     * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformAddItems/).
+     * @description: Adds product items to a customer's shopping cart. If the customer does not have an existing cart, a new one is created automatically. - The `new_cart` flag forces creation of a new cart even if one already exists. - The `default_cart` flag determines whether the item is added to the user's default storefront-visible cart. If `true`, the item is added to the user's default cart that is accessible via the storefront. If `false`, an existing active cart is fetched if available; otherwise, a new hidden cart is created. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformAddItems/).
      */
     platformAddItems({ body, xOrderingSource, i, b, buyNow, orderType, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResult>;
     /**

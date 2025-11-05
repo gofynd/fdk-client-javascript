@@ -2986,6 +2986,9 @@ export = OrderPlatformModel;
  *   placed. Required when the order is placed from one company but fulfilled by another.
  * @property {boolean} [is_draft] - Indicates whether the order is a draft.
  *   Draft orders will be moved to upcoming state instead of placed status.
+ * @property {Object} [meta] - Metadata related to the order may include
+ *   additional, dynamic information that provides further context about the
+ *   order. This information can also be viewed on the Order or Shipment Details page.
  */
 /**
  * @typedef Page
@@ -11569,6 +11572,12 @@ type CreateOrderRequestSchema = {
      * Draft orders will be moved to upcoming state instead of placed status.
      */
     is_draft?: boolean;
+    /**
+     * - Metadata related to the order may include
+     * additional, dynamic information that provides further context about the
+     * order. This information can also be viewed on the Order or Shipment Details page.
+     */
+    meta?: any;
 };
 /** @returns {Page} */
 declare function Page(): Page;

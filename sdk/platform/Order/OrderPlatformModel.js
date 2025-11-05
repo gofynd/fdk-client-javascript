@@ -3254,6 +3254,9 @@ const Joi = require("joi");
  *   placed. Required when the order is placed from one company but fulfilled by another.
  * @property {boolean} [is_draft] - Indicates whether the order is a draft.
  *   Draft orders will be moved to upcoming state instead of placed status.
+ * @property {Object} [meta] - Metadata related to the order may include
+ *   additional, dynamic information that provides further context about the
+ *   order. This information can also be viewed on the Order or Shipment Details page.
  */
 
 /**
@@ -8932,6 +8935,7 @@ class OrderPlatformModel {
       b2b_gstin_number: Joi.string().allow(""),
       channel_company_id: Joi.string().allow(""),
       is_draft: Joi.boolean(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

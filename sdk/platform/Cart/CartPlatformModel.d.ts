@@ -1884,10 +1884,15 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PlatformAddCartDetails
- * @property {string} [user_id] - The user id of user, for which we need to add
- *   item into cart
- * @property {boolean} [new_cart] - Field to create to new cart whille user adds
- *   item to cart
+ * @property {string} [user_id] - The unique identifier of the user for whom
+ *   items are being added to the cart
+ * @property {boolean} [new_cart] - Indicates whether a new cart should be
+ *   created. If `true`, a new cart is created even if one already exists.
+ * @property {boolean} [default_cart] - Determines whether the item is added to
+ *   the user's default visible cart on the storefront. If `true`, the item is
+ *   added to the user's default cart that is accessible via the storefront. If
+ *   `false`, an existing active cart is fetched if available; otherwise, a new
+ *   hidden cart is created. Defaults to `true`.
  * @property {AddProductCart[]} [items] - List of items detail which need to be
  *   added to cart like item id, item size, and item quantity
  */
@@ -7278,15 +7283,23 @@ type UserCartMappingResult = {
 declare function PlatformAddCartDetails(): PlatformAddCartDetails;
 type PlatformAddCartDetails = {
     /**
-     * - The user id of user, for which we need to add
-     * item into cart
+     * - The unique identifier of the user for whom
+     * items are being added to the cart
      */
     user_id?: string;
     /**
-     * - Field to create to new cart whille user adds
-     * item to cart
+     * - Indicates whether a new cart should be
+     * created. If `true`, a new cart is created even if one already exists.
      */
     new_cart?: boolean;
+    /**
+     * - Determines whether the item is added to
+     * the user's default visible cart on the storefront. If `true`, the item is
+     * added to the user's default cart that is accessible via the storefront. If
+     * `false`, an existing active cart is fetched if available; otherwise, a new
+     * hidden cart is created. Defaults to `true`.
+     */
+    default_cart?: boolean;
     /**
      * - List of items detail which need to be
      * added to cart like item id, item size, and item quantity
