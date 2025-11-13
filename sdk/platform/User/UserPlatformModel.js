@@ -6,6 +6,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef UserAttributeDefinitionList
+ * @property {UserAttributeDefinition[]} [items] - Array of user attribute
+ *   definition objects.
+ * @property {PaginationSchema} [page]
+ */
+
+/**
  * @typedef UserAttributeDefinition
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
@@ -777,6 +784,14 @@ class UserPlatformModel {
   static SuccessMessage() {
     return Joi.object({
       success: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserAttributeDefinitionList} */
+  static UserAttributeDefinitionList() {
+    return Joi.object({
+      items: Joi.array().items(UserPlatformModel.UserAttributeDefinition()),
+      page: UserPlatformModel.PaginationSchema(),
     });
   }
 

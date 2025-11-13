@@ -4,6 +4,12 @@ export = UserPlatformModel;
  * @property {string} [success]
  */
 /**
+ * @typedef UserAttributeDefinitionList
+ * @property {UserAttributeDefinition[]} [items] - Array of user attribute
+ *   definition objects.
+ * @property {PaginationSchema} [page]
+ */
+/**
  * @typedef UserAttributeDefinition
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
@@ -691,12 +697,22 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
+    export { SuccessMessage, UserAttributeDefinitionList, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
 type SuccessMessage = {
     success?: string;
+};
+/** @returns {UserAttributeDefinitionList} */
+declare function UserAttributeDefinitionList(): UserAttributeDefinitionList;
+type UserAttributeDefinitionList = {
+    /**
+     * - Array of user attribute
+     * definition objects.
+     */
+    items?: UserAttributeDefinition[];
+    page?: PaginationSchema;
 };
 /** @returns {UserAttributeDefinition} */
 declare function UserAttributeDefinition(): UserAttributeDefinition;

@@ -428,7 +428,6 @@ class UserPlatformApplicationValidator {
       pinOrder: Joi.number(),
       isLocked: Joi.boolean(),
       name: Joi.string().allow(""),
-
       pageSize: Joi.number(),
       pageNo: Joi.number(),
     }).required();

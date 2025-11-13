@@ -1,3 +1,668 @@
+# CHANGE LOG (3.15.0) - 2.9.4
+
+## Application Client
+
+
+
+### Content
+
+
+
+#### getBlog
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getBlogs
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getLandingPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getNavigations
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+### Theme
+
+
+
+#### getAllPages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+## Partner Client
+
+
+
+### Theme
+
+
+
+#### getAllPages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### createPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updateMultiplePages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updatePage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### deletePage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### getApplicationBrands
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getCategories
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>data[].items[].childs[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].childs[].childs[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>data[].items[].childs[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>data[].items[].childs[].childs[].childs[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getAllCollections
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getCollectionItems
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getApplicationProducts
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>brand.action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+### Content
+
+
+
+#### createBlog
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getBlogs
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updateBlog
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### deleteBlog
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getLandingPages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### createLandingPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updateLandingPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### deleteLandingPage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getNavigations
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### createNavigation
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getDefaultNavigations
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getNavigationBySlug
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updateNavigation
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### deleteNavigation
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPageMeta
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>system_pages[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>system_pages[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>custom_pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>custom_pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>system_pages[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>system_pages[].navigation[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>system_pages[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>system_pages[].navigation[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>custom_pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>custom_pages[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>custom_pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>custom_pages[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### updatePagePreview
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getBlogBySlug
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPages
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+#### getPageBySlug
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+### Theme
+
+
+
+#### updatePage
+
+- ##### What's New
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Added] Possible values <code>request-reattempt</code> to property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-emails</code> to <code>profile-email</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Changed] Possible values from <code>profile-phones</code> to <code>profile-phone</code> of property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+
+
+### User
+
+
+
+#### getUserAttributeDefinitions
+
+- ##### What's New
+	- [Added] property <code>page.total</code> of schema <code>PaginationSchema</code> in response with status code 200
+
+
 # CHANGE LOG (3.14.0) - 2.9.3
 
 ## Platform Client

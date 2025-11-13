@@ -5076,8 +5076,8 @@ const Joi = require("joi");
  *   | "profile-order-shipment"
  *   | "profile-basic"
  *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
+ *   | "profile-email"
+ *   | "profile-phone"
  *   | "rate-us"
  *   | "refer-earn"
  *   | "settings"
@@ -5096,7 +5096,8 @@ const Joi = require("joi");
  *   | "return-policy"
  *   | "order-status"
  *   | "locate-us"
- *   | "single-page-checkout"} PageType
+ *   | "single-page-checkout"
+ *   | "request-reattempt"} PageType
  */
 
 class CatalogPlatformModel {
@@ -10538,9 +10539,9 @@ class CatalogPlatformModel {
 
       "profile-company",
 
-      "profile-emails",
+      "profile-email",
 
-      "profile-phones",
+      "profile-phone",
 
       "rate-us",
 
@@ -10578,7 +10579,9 @@ class CatalogPlatformModel {
 
       "locate-us",
 
-      "single-page-checkout"
+      "single-page-checkout",
+
+      "request-reattempt"
     );
   }
 }
