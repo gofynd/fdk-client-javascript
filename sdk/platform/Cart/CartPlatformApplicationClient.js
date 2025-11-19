@@ -4602,6 +4602,101 @@ class Cart {
   }
 
   /**
+   * @param {CartPlatformApplicationValidator.UpdateCartBreakupParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.UpdateCartDetailResult>} - Success response
+   * @name updateCartBreakup
+   * @summary: Update cart breakup values
+   * @description: Updates the cart breakup based on the enabled features and user preferences.   This endpoint allows customers to modify how their cart totals are calculated —  including options such as applying store credits, loyalty points, discounts,  and other promotional benefits.   The API recalculates and returns the updated breakup reflecting the selected  configurations in real-time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCartBreakup/).
+   */
+  async updateCartBreakup(
+    { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.updateCartBreakup().validate(
+      {
+        body,
+        xOrderingSource,
+        id,
+        i,
+        b,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.updateCartBreakup().validate(
+      {
+        body,
+        xOrderingSource,
+        id,
+        i,
+        b,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > updateCartBreakup \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["i"] = i;
+    query_params["b"] = b;
+    query_params["buy_now"] = buyNow;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.UpdateCartDetailResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCartBreakup \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CartPlatformApplicationValidator.UpdateCartMetaParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

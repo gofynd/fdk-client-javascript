@@ -31,7 +31,8 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [is_default] - Whether this is the default fulfillment option.
  * @property {string} [type] - Type of fulfillment option.
  * @property {string} [status] - Status of the fulfillment option.
- * @property {BusinessUnit[]} [business_unit]
+ * @property {BusinessUnit[]} [business_unit] - Name of the ordering-channel or
+ *   business, e.g. storefront, storeos.
  * @property {FulfillmentStores} [fulfillment_stores]
  * @property {FulfillmentProducts} [products]
  * @property {CourierPartnerSchemes} [cp_schemes]
@@ -266,13 +267,13 @@ export = ServiceabilityPlatformModel;
  * @typedef PincodeMopBulkError
  * @property {string} [batch_id] - A unique identifier for the performed batch operation.
  * @property {number} [status_code] - Status code for the error.
- * @property {Object} [error]
+ * @property {Error[]} [error] - An array containing error details.
  * @property {boolean} [success] - Whether operation was successful.
  */
 /**
  * @typedef CommonError
  * @property {number} [status_code] - Status code for the error.
- * @property {Object} [error]
+ * @property {Error[]} [error] - An array containing error details.
  * @property {boolean} [success] - Whether operation was successful.
  */
 /**
@@ -491,8 +492,8 @@ export = ServiceabilityPlatformModel;
  * @property {string} name - Name for the courier partner rule.
  * @property {string[]} manual_priority - Has the list of courier partner
  *   account Ids that are to be given priority.
- * @property {string} filters - Denotes weather specific filters are applied to
- *   courier partner accounts or all accounts are considered.
+ * @property {string} [filters] - Denotes weather specific filters are applied
+ *   to courier partner accounts or all accounts are considered.
  * @property {CourierPartnerRuleConditions} conditions
  * @property {string[]} sort - Sort Strategy for the courier partners.
  * @property {string} [type] - Denotes the type of the rule.
@@ -1189,7 +1190,7 @@ export = ServiceabilityPlatformModel;
  * @typedef PlatformLocationArticles
  * @property {PlatformLocationArticle[]} articles - List of articles for this
  *   fulfillment location.
- * @property {number} [fulfillment_location_id] - Unique identifier for the
+ * @property {number} fulfillment_location_id - Unique identifier for the
  *   fulfillment location.
  * @property {string[]} [fulfillment_tags] - Tags associated with the
  *   fulfillment location.
@@ -1243,6 +1244,9 @@ export = ServiceabilityPlatformModel;
  *   fulfillment location.
  * @property {ShipmentsCourierPartner[]} [courier_partners] - List of courier
  *   partners handling the shipment.
+ * @property {number} [count] - The number of items in the shipment.
+ * @property {boolean} [is_cod_available] - Flag indicating whether Cash on
+ *   Delivery (COD) is available for the shipment.
  */
 /**
  * @typedef Packaging
@@ -1529,7 +1533,7 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
- * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {string} type - The type of the page, can be 'cursor' or 'number'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
  */
@@ -1592,8 +1596,8 @@ export = ServiceabilityPlatformModel;
  * @property {ListViewProduct} product
  * @property {number} company_id - The unique identifier of the company.
  * @property {string} application_id - The unique identifier of the application.
- * @property {CreatedBy} created_by
- * @property {ModifiedBy} modified_by
+ * @property {CreatedBy} [created_by]
+ * @property {ModifiedBy} [modified_by]
  * @property {string} created_on - The timestamp when the record was created.
  * @property {string} modified_on - The timestamp when the record last modified.
  * @property {string} [stage] - Current stage of the zone.
@@ -1750,7 +1754,7 @@ export = ServiceabilityPlatformModel;
  * @property {StringComparisonOperations} [zone_ids]
  * @property {IntComparisonOperations} [department_ids]
  * @property {IntComparisonOperations} [brand_ids]
- * @property {ArithmeticOperations} [order_place_date]
+ * @property {DateOperations} [order_place_date]
  * @property {IntComparisonOperations} [store_ids]
  * @property {StringComparisonOperations} [store_type]
  * @property {StringComparisonOperations} [store_tags]
@@ -1787,6 +1791,11 @@ export = ServiceabilityPlatformModel;
  * @typedef IntComparisonOperations
  * @property {number[]} [includes] - Array of integer values to be included in
  *   the comparison.
+ */
+/**
+ * @typedef DateOperations
+ * @property {string} lte - Less than or equal to condition for date.
+ * @property {string} gte - Greater than or equal to condition for date.
  */
 /**
  * @typedef ArithmeticOperations
@@ -2067,13 +2076,6 @@ export = ServiceabilityPlatformModel;
  * @property {number} [gte] - The greater-than-or-equal comparison value for the radius.
  */
 /**
- * @typedef DateOperations
- * @property {string} [lt] - Less than condition for date.
- * @property {string} [gt] - Greater than condition for date.
- * @property {string} [lte] - Less than or equal to condition for date.
- * @property {string} [gte] - Greater than or equal to condition for date.
- */
-/**
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id - Unique identifier of courier partner extension.
  * @property {string} scheme_id - A string representing the unique identifier
@@ -2318,7 +2320,8 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ApplicationFields
- * @property {GetCountryFieldsAddress[]} [address]
+ * @property {GetCountryFieldsAddress[]} [address] - List of address-related
+ *   fields for the application.
  * @property {string[]} [serviceability_fields] - An array of strings
  *   representing fields related to the serviceability of the country.
  * @property {GetCountryFieldsAddressTemplateApplication} [address_template]
@@ -2484,7 +2487,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, AreaCode, TAT, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleWeight, ArticleAttributes, ArticleDimension, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, DateOperations, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, LocationDetailsServiceability, ServiceabilityLocation, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject };
+    export { PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, AreaCode, TAT, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleWeight, ArticleAttributes, ArticleDimension, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, LocationDetailsServiceability, ServiceabilityLocation, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject };
 }
 /** @returns {PlatformShipmentsRequestSchema} */
 declare function PlatformShipmentsRequestSchema(): PlatformShipmentsRequestSchema;
@@ -2570,6 +2573,10 @@ type FulfillmentOption = {
      * - Status of the fulfillment option.
      */
     status?: string;
+    /**
+     * - Name of the ordering-channel or
+     * business, e.g. storefront, storeos.
+     */
     business_unit?: BusinessUnit[];
     fulfillment_stores?: FulfillmentStores;
     products?: FulfillmentProducts;
@@ -3142,7 +3149,10 @@ type PincodeMopBulkError = {
      * - Status code for the error.
      */
     status_code?: number;
-    error?: any;
+    /**
+     * - An array containing error details.
+     */
+    error?: Error[];
     /**
      * - Whether operation was successful.
      */
@@ -3155,7 +3165,10 @@ type CommonError = {
      * - Status code for the error.
      */
     status_code?: number;
-    error?: any;
+    /**
+     * - An array containing error details.
+     */
+    error?: Error[];
     /**
      * - Whether operation was successful.
      */
@@ -3729,10 +3742,10 @@ type CourierPartnerRule = {
      */
     manual_priority: string[];
     /**
-     * - Denotes weather specific filters are applied to
-     * courier partner accounts or all accounts are considered.
+     * - Denotes weather specific filters are applied
+     * to courier partner accounts or all accounts are considered.
      */
-    filters: string;
+    filters?: string;
     conditions: CourierPartnerRuleConditions;
     /**
      * - Sort Strategy for the courier partners.
@@ -5428,7 +5441,7 @@ type PlatformLocationArticles = {
      * - Unique identifier for the
      * fulfillment location.
      */
-    fulfillment_location_id?: number;
+    fulfillment_location_id: number;
     /**
      * - Tags associated with the
      * fulfillment location.
@@ -5569,6 +5582,15 @@ type PlatformShipmentsSchema = {
      * partners handling the shipment.
      */
     courier_partners?: ShipmentsCourierPartner[];
+    /**
+     * - The number of items in the shipment.
+     */
+    count?: number;
+    /**
+     * - Flag indicating whether Cash on
+     * Delivery (COD) is available for the shipment.
+     */
+    is_cod_available?: boolean;
 };
 /** @returns {Packaging} */
 declare function Packaging(): Packaging;
@@ -6341,7 +6363,7 @@ type Page = {
      */
     current?: number;
     /**
-     * - The type of the page, such as 'PageType'.
+     * - The type of the page, can be 'cursor' or 'number'.
      */
     type: string;
     /**
@@ -6507,8 +6529,8 @@ type ListViewItems = {
      * - The unique identifier of the application.
      */
     application_id: string;
-    created_by: CreatedBy;
-    modified_by: ModifiedBy;
+    created_by?: CreatedBy;
+    modified_by?: ModifiedBy;
     /**
      * - The timestamp when the record was created.
      */
@@ -6913,7 +6935,7 @@ type CourierPartnerRuleConditions = {
     zone_ids?: StringComparisonOperations;
     department_ids?: IntComparisonOperations;
     brand_ids?: IntComparisonOperations;
-    order_place_date?: ArithmeticOperations;
+    order_place_date?: DateOperations;
     store_ids?: IntComparisonOperations;
     store_type?: StringComparisonOperations;
     store_tags?: StringComparisonOperations;
@@ -6987,6 +7009,18 @@ type IntComparisonOperations = {
      * the comparison.
      */
     includes?: number[];
+};
+/** @returns {DateOperations} */
+declare function DateOperations(): DateOperations;
+type DateOperations = {
+    /**
+     * - Less than or equal to condition for date.
+     */
+    lte: string;
+    /**
+     * - Greater than or equal to condition for date.
+     */
+    gte: string;
 };
 /** @returns {ArithmeticOperations} */
 declare function ArithmeticOperations(): ArithmeticOperations;
@@ -7633,26 +7667,6 @@ type CustomerRadiusSchema = {
      */
     gte?: number;
 };
-/** @returns {DateOperations} */
-declare function DateOperations(): DateOperations;
-type DateOperations = {
-    /**
-     * - Less than condition for date.
-     */
-    lt?: string;
-    /**
-     * - Greater than condition for date.
-     */
-    gt?: string;
-    /**
-     * - Less than or equal to condition for date.
-     */
-    lte?: string;
-    /**
-     * - Greater than or equal to condition for date.
-     */
-    gte?: string;
-};
 /** @returns {CourierPartnerSchemeModel} */
 declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
 type CourierPartnerSchemeModel = {
@@ -8286,6 +8300,10 @@ type CountryMetaFields = {
 /** @returns {ApplicationFields} */
 declare function ApplicationFields(): ApplicationFields;
 type ApplicationFields = {
+    /**
+     * - List of address-related
+     * fields for the application.
+     */
     address?: GetCountryFieldsAddress[];
     /**
      * - An array of strings

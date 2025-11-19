@@ -176,17 +176,11 @@ const Joi = require("joi");
  * @typedef PaymentFlow
  * @property {AggregatorRoute} [bqr_razorpay]
  * @property {AggregatorRoute} [fynd]
- * @property {AggregatorRoute} [epaylater]
  * @property {AggregatorRoute} [razorpay]
  * @property {AggregatorRoute} [juspay]
- * @property {AggregatorRoute} [ajiodhan]
  * @property {AggregatorRoute} [simpl]
- * @property {AggregatorRoute} [rupifi]
- * @property {AggregatorRoute} [mswipe]
- * @property {AggregatorRoute} [stripe]
  * @property {AggregatorRoute} [ccavenue]
  * @property {AggregatorRoute} [payubiz]
- * @property {AggregatorRoute} [jiopay]
  */
 
 /**
@@ -669,50 +663,6 @@ const Joi = require("joi");
  * @typedef RevokeOAuthToken
  * @property {string} message - The confirmation message of the token revoke.
  * @property {boolean} success - Response is successful or not
- */
-
-/**
- * @typedef RepaymentRequestDetails
- * @property {string} fwd_shipment_id - Purchase Shipment Id
- * @property {string} aggregator - Name of Payment Gateway
- * @property {string} current_status - Status
- * @property {string} merchant_order_id - Merchant's Order Id
- * @property {number} amount - Amount to paid back
- * @property {string} payment_mode - Payment Mode
- * @property {number} outstanding_details_id - Outstanding details ID
- * @property {string} aggregator_transaction_id - Unique Id for the transaction
- * @property {string} aggregator_order_id - Id of payment gateway
- * @property {string} payment_mode_identifier - Payment Mode Id
- */
-
-/**
- * @typedef RepaymentDetailsSerialiserPayAll
- * @property {number} total_amount - Total amount
- * @property {string} extension_order_id - Order id created in extension
- * @property {string} aggregator_transaction_id - Unique Id for the transaction
- * @property {string} aggregator_order_id - Id of payment gateway
- * @property {RepaymentRequestDetails[]} [shipment_details]
- */
-
-/**
- * @typedef RepaymentDetails
- * @property {Object} data
- * @property {boolean} success - Success/Failure of the transaction
- */
-
-/**
- * @typedef MerchantOnBoardingCreation
- * @property {string} credit_line_id - Merchant ID at Ajiodhan's end
- * @property {string} aggregator - Payment aggregator name
- * @property {string} app_id - Application id
- * @property {string} user_id - Deadlock or Grimlock user id
- * @property {string} status - Status
- */
-
-/**
- * @typedef MerchantOnBoardingDetails
- * @property {Object} data
- * @property {boolean} success - Success/Failure of the transaction
  */
 
 /**
@@ -1557,17 +1507,11 @@ class PaymentPlatformModel {
     return Joi.object({
       bqr_razorpay: PaymentPlatformModel.AggregatorRoute(),
       fynd: PaymentPlatformModel.AggregatorRoute(),
-      epaylater: PaymentPlatformModel.AggregatorRoute(),
       razorpay: PaymentPlatformModel.AggregatorRoute(),
       juspay: PaymentPlatformModel.AggregatorRoute(),
-      ajiodhan: PaymentPlatformModel.AggregatorRoute(),
       simpl: PaymentPlatformModel.AggregatorRoute(),
-      rupifi: PaymentPlatformModel.AggregatorRoute(),
-      mswipe: PaymentPlatformModel.AggregatorRoute(),
-      stripe: PaymentPlatformModel.AggregatorRoute(),
       ccavenue: PaymentPlatformModel.AggregatorRoute(),
       payubiz: PaymentPlatformModel.AggregatorRoute(),
-      jiopay: PaymentPlatformModel.AggregatorRoute(),
     });
   }
 
@@ -2168,62 +2112,6 @@ class PaymentPlatformModel {
   static RevokeOAuthToken() {
     return Joi.object({
       message: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {RepaymentRequestDetails} */
-  static RepaymentRequestDetails() {
-    return Joi.object({
-      fwd_shipment_id: Joi.string().allow("").required(),
-      aggregator: Joi.string().allow("").required(),
-      current_status: Joi.string().allow("").required(),
-      merchant_order_id: Joi.string().allow("").required(),
-      amount: Joi.number().required(),
-      payment_mode: Joi.string().allow("").required(),
-      outstanding_details_id: Joi.number().required(),
-      aggregator_transaction_id: Joi.string().allow("").required(),
-      aggregator_order_id: Joi.string().allow("").required(),
-      payment_mode_identifier: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {RepaymentDetailsSerialiserPayAll} */
-  static RepaymentDetailsSerialiserPayAll() {
-    return Joi.object({
-      total_amount: Joi.number().required(),
-      extension_order_id: Joi.string().allow("").required(),
-      aggregator_transaction_id: Joi.string().allow("").required(),
-      aggregator_order_id: Joi.string().allow("").required(),
-      shipment_details: Joi.array().items(
-        PaymentPlatformModel.RepaymentRequestDetails()
-      ),
-    });
-  }
-
-  /** @returns {RepaymentDetails} */
-  static RepaymentDetails() {
-    return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()).required(),
-      success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {MerchantOnBoardingCreation} */
-  static MerchantOnBoardingCreation() {
-    return Joi.object({
-      credit_line_id: Joi.string().allow("").required(),
-      aggregator: Joi.string().allow("").required(),
-      app_id: Joi.string().allow("").required(),
-      user_id: Joi.string().allow("").required(),
-      status: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {MerchantOnBoardingDetails} */
-  static MerchantOnBoardingDetails() {
-    return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()).required(),
       success: Joi.boolean().required(),
     });
   }

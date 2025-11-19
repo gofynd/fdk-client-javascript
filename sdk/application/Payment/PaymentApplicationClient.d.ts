@@ -26,7 +26,6 @@ declare class Payment {
         getActiveRefundTransferModes: string;
         getActiveUserCards: string;
         getAggregatorsConfig: string;
-        getEpaylaterBannerDetails: string;
         getOrderBeneficiariesDetail: string;
         getPaymentLink: string;
         getPaymentModeRoutes: string;
@@ -34,7 +33,6 @@ declare class Payment {
         getPosPaymentModeRoutes: string;
         getRefundBeneficiaries: string;
         getRefundBeneficiariesUsingOTPSession: string;
-        getRupifiBannerDetails: string;
         getUserBeneficiariesDetail: string;
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
@@ -267,15 +265,6 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<EpaylaterBannerDetails>} - Success response
-     * @name getEpaylaterBannerDetails
-     * @summary: Epaylater banner info
-     * @description: Get Epaylater payment banner details. It provides information about the banner's display status, along with relevant messages and the user's registration status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getEpaylaterBannerDetails/).
-     */
-    getEpaylaterBannerDetails({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<EpaylaterBannerDetails>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<OrderBeneficiaryFetchDetails>} - Success response
      * @name getOrderBeneficiariesDetail
      * @summary: Retrieve beneficiary details
@@ -336,15 +325,6 @@ declare class Payment {
      * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user for a given order and shipment. Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiariesUsingOTPSession/).
      */
     getRefundBeneficiariesUsingOTPSession({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundBeneficiaries>;
-    /**
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RupifiBannerDetails>} - Success response
-     * @name getRupifiBannerDetails
-     * @summary: Rupifi banner info
-     * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRupifiBannerDetails/).
-     */
-    getRupifiBannerDetails({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RupifiBannerDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

@@ -451,7 +451,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef ListCategoriesParam
- * @property {string} [level] - Get category for multiple levels
+ * @property {number[]} [level] - Get category for multiple levels
  * @property {number} [department] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -1154,7 +1154,7 @@ class CatalogPlatformValidator {
   /** @returns {ListCategoriesParam} */
   static listCategories() {
     return Joi.object({
-      level: Joi.string().allow(""),
+      level: Joi.array().items(Joi.number()),
       department: Joi.number(),
       q: Joi.string().allow(""),
       pageNo: Joi.number(),

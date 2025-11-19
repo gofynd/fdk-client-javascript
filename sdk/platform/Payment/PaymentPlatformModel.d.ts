@@ -157,17 +157,11 @@ export = PaymentPlatformModel;
  * @typedef PaymentFlow
  * @property {AggregatorRoute} [bqr_razorpay]
  * @property {AggregatorRoute} [fynd]
- * @property {AggregatorRoute} [epaylater]
  * @property {AggregatorRoute} [razorpay]
  * @property {AggregatorRoute} [juspay]
- * @property {AggregatorRoute} [ajiodhan]
  * @property {AggregatorRoute} [simpl]
- * @property {AggregatorRoute} [rupifi]
- * @property {AggregatorRoute} [mswipe]
- * @property {AggregatorRoute} [stripe]
  * @property {AggregatorRoute} [ccavenue]
  * @property {AggregatorRoute} [payubiz]
- * @property {AggregatorRoute} [jiopay]
  */
 /**
  * @typedef PaymentOptionAndFlow
@@ -597,45 +591,6 @@ export = PaymentPlatformModel;
  * @typedef RevokeOAuthToken
  * @property {string} message - The confirmation message of the token revoke.
  * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef RepaymentRequestDetails
- * @property {string} fwd_shipment_id - Purchase Shipment Id
- * @property {string} aggregator - Name of Payment Gateway
- * @property {string} current_status - Status
- * @property {string} merchant_order_id - Merchant's Order Id
- * @property {number} amount - Amount to paid back
- * @property {string} payment_mode - Payment Mode
- * @property {number} outstanding_details_id - Outstanding details ID
- * @property {string} aggregator_transaction_id - Unique Id for the transaction
- * @property {string} aggregator_order_id - Id of payment gateway
- * @property {string} payment_mode_identifier - Payment Mode Id
- */
-/**
- * @typedef RepaymentDetailsSerialiserPayAll
- * @property {number} total_amount - Total amount
- * @property {string} extension_order_id - Order id created in extension
- * @property {string} aggregator_transaction_id - Unique Id for the transaction
- * @property {string} aggregator_order_id - Id of payment gateway
- * @property {RepaymentRequestDetails[]} [shipment_details]
- */
-/**
- * @typedef RepaymentDetails
- * @property {Object} data
- * @property {boolean} success - Success/Failure of the transaction
- */
-/**
- * @typedef MerchantOnBoardingCreation
- * @property {string} credit_line_id - Merchant ID at Ajiodhan's end
- * @property {string} aggregator - Payment aggregator name
- * @property {string} app_id - Application id
- * @property {string} user_id - Deadlock or Grimlock user id
- * @property {string} status - Status
- */
-/**
- * @typedef MerchantOnBoardingDetails
- * @property {Object} data
- * @property {boolean} success - Success/Failure of the transaction
  */
 /**
  * @typedef ValidateCustomerCreation
@@ -1205,7 +1160,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema };
+    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema };
 }
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
@@ -1633,17 +1588,11 @@ declare function PaymentFlow(): PaymentFlow;
 type PaymentFlow = {
     bqr_razorpay?: AggregatorRoute;
     fynd?: AggregatorRoute;
-    epaylater?: AggregatorRoute;
     razorpay?: AggregatorRoute;
     juspay?: AggregatorRoute;
-    ajiodhan?: AggregatorRoute;
     simpl?: AggregatorRoute;
-    rupifi?: AggregatorRoute;
-    mswipe?: AggregatorRoute;
-    stripe?: AggregatorRoute;
     ccavenue?: AggregatorRoute;
     payubiz?: AggregatorRoute;
-    jiopay?: AggregatorRoute;
 };
 /** @returns {PaymentOptionAndFlow} */
 declare function PaymentOptionAndFlow(): PaymentOptionAndFlow;
@@ -2757,113 +2706,6 @@ type RevokeOAuthToken = {
     message: string;
     /**
      * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {RepaymentRequestDetails} */
-declare function RepaymentRequestDetails(): RepaymentRequestDetails;
-type RepaymentRequestDetails = {
-    /**
-     * - Purchase Shipment Id
-     */
-    fwd_shipment_id: string;
-    /**
-     * - Name of Payment Gateway
-     */
-    aggregator: string;
-    /**
-     * - Status
-     */
-    current_status: string;
-    /**
-     * - Merchant's Order Id
-     */
-    merchant_order_id: string;
-    /**
-     * - Amount to paid back
-     */
-    amount: number;
-    /**
-     * - Payment Mode
-     */
-    payment_mode: string;
-    /**
-     * - Outstanding details ID
-     */
-    outstanding_details_id: number;
-    /**
-     * - Unique Id for the transaction
-     */
-    aggregator_transaction_id: string;
-    /**
-     * - Id of payment gateway
-     */
-    aggregator_order_id: string;
-    /**
-     * - Payment Mode Id
-     */
-    payment_mode_identifier: string;
-};
-/** @returns {RepaymentDetailsSerialiserPayAll} */
-declare function RepaymentDetailsSerialiserPayAll(): RepaymentDetailsSerialiserPayAll;
-type RepaymentDetailsSerialiserPayAll = {
-    /**
-     * - Total amount
-     */
-    total_amount: number;
-    /**
-     * - Order id created in extension
-     */
-    extension_order_id: string;
-    /**
-     * - Unique Id for the transaction
-     */
-    aggregator_transaction_id: string;
-    /**
-     * - Id of payment gateway
-     */
-    aggregator_order_id: string;
-    shipment_details?: RepaymentRequestDetails[];
-};
-/** @returns {RepaymentDetails} */
-declare function RepaymentDetails(): RepaymentDetails;
-type RepaymentDetails = {
-    data: any;
-    /**
-     * - Success/Failure of the transaction
-     */
-    success: boolean;
-};
-/** @returns {MerchantOnBoardingCreation} */
-declare function MerchantOnBoardingCreation(): MerchantOnBoardingCreation;
-type MerchantOnBoardingCreation = {
-    /**
-     * - Merchant ID at Ajiodhan's end
-     */
-    credit_line_id: string;
-    /**
-     * - Payment aggregator name
-     */
-    aggregator: string;
-    /**
-     * - Application id
-     */
-    app_id: string;
-    /**
-     * - Deadlock or Grimlock user id
-     */
-    user_id: string;
-    /**
-     * - Status
-     */
-    status: string;
-};
-/** @returns {MerchantOnBoardingDetails} */
-declare function MerchantOnBoardingDetails(): MerchantOnBoardingDetails;
-type MerchantOnBoardingDetails = {
-    data: any;
-    /**
-     * - Success/Failure of the transaction
      */
     success: boolean;
 };

@@ -35,7 +35,8 @@ const Joi = require("joi");
  * @property {boolean} [is_default] - Whether this is the default fulfillment option.
  * @property {string} [type] - Type of fulfillment option.
  * @property {string} [status] - Status of the fulfillment option.
- * @property {BusinessUnit[]} [business_unit]
+ * @property {BusinessUnit[]} [business_unit] - Name of the ordering-channel or
+ *   business, e.g. storefront, storeos.
  * @property {FulfillmentStores} [fulfillment_stores]
  * @property {FulfillmentProducts} [products]
  * @property {CourierPartnerSchemes} [cp_schemes]
@@ -298,14 +299,14 @@ const Joi = require("joi");
  * @typedef PincodeMopBulkError
  * @property {string} [batch_id] - A unique identifier for the performed batch operation.
  * @property {number} [status_code] - Status code for the error.
- * @property {Object} [error]
+ * @property {Error[]} [error] - An array containing error details.
  * @property {boolean} [success] - Whether operation was successful.
  */
 
 /**
  * @typedef CommonError
  * @property {number} [status_code] - Status code for the error.
- * @property {Object} [error]
+ * @property {Error[]} [error] - An array containing error details.
  * @property {boolean} [success] - Whether operation was successful.
  */
 
@@ -545,8 +546,8 @@ const Joi = require("joi");
  * @property {string} name - Name for the courier partner rule.
  * @property {string[]} manual_priority - Has the list of courier partner
  *   account Ids that are to be given priority.
- * @property {string} filters - Denotes weather specific filters are applied to
- *   courier partner accounts or all accounts are considered.
+ * @property {string} [filters] - Denotes weather specific filters are applied
+ *   to courier partner accounts or all accounts are considered.
  * @property {CourierPartnerRuleConditions} conditions
  * @property {string[]} sort - Sort Strategy for the courier partners.
  * @property {string} [type] - Denotes the type of the rule.
@@ -1302,7 +1303,7 @@ const Joi = require("joi");
  * @typedef PlatformLocationArticles
  * @property {PlatformLocationArticle[]} articles - List of articles for this
  *   fulfillment location.
- * @property {number} [fulfillment_location_id] - Unique identifier for the
+ * @property {number} fulfillment_location_id - Unique identifier for the
  *   fulfillment location.
  * @property {string[]} [fulfillment_tags] - Tags associated with the
  *   fulfillment location.
@@ -1360,6 +1361,9 @@ const Joi = require("joi");
  *   fulfillment location.
  * @property {ShipmentsCourierPartner[]} [courier_partners] - List of courier
  *   partners handling the shipment.
+ * @property {number} [count] - The number of items in the shipment.
+ * @property {boolean} [is_cod_available] - Flag indicating whether Cash on
+ *   Delivery (COD) is available for the shipment.
  */
 
 /**
@@ -1678,7 +1682,7 @@ const Joi = require("joi");
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
- * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {string} type - The type of the page, can be 'cursor' or 'number'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
  */
@@ -1749,8 +1753,8 @@ const Joi = require("joi");
  * @property {ListViewProduct} product
  * @property {number} company_id - The unique identifier of the company.
  * @property {string} application_id - The unique identifier of the application.
- * @property {CreatedBy} created_by
- * @property {ModifiedBy} modified_by
+ * @property {CreatedBy} [created_by]
+ * @property {ModifiedBy} [modified_by]
  * @property {string} created_on - The timestamp when the record was created.
  * @property {string} modified_on - The timestamp when the record last modified.
  * @property {string} [stage] - Current stage of the zone.
@@ -1927,7 +1931,7 @@ const Joi = require("joi");
  * @property {StringComparisonOperations} [zone_ids]
  * @property {IntComparisonOperations} [department_ids]
  * @property {IntComparisonOperations} [brand_ids]
- * @property {ArithmeticOperations} [order_place_date]
+ * @property {DateOperations} [order_place_date]
  * @property {IntComparisonOperations} [store_ids]
  * @property {StringComparisonOperations} [store_type]
  * @property {StringComparisonOperations} [store_tags]
@@ -1968,6 +1972,12 @@ const Joi = require("joi");
  * @typedef IntComparisonOperations
  * @property {number[]} [includes] - Array of integer values to be included in
  *   the comparison.
+ */
+
+/**
+ * @typedef DateOperations
+ * @property {string} lte - Less than or equal to condition for date.
+ * @property {string} gte - Greater than or equal to condition for date.
  */
 
 /**
@@ -2277,14 +2287,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DateOperations
- * @property {string} [lt] - Less than condition for date.
- * @property {string} [gt] - Greater than condition for date.
- * @property {string} [lte] - Less than or equal to condition for date.
- * @property {string} [gte] - Greater than or equal to condition for date.
- */
-
-/**
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id - Unique identifier of courier partner extension.
  * @property {string} scheme_id - A string representing the unique identifier
@@ -2556,7 +2558,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationFields
- * @property {GetCountryFieldsAddress[]} [address]
+ * @property {GetCountryFieldsAddress[]} [address] - List of address-related
+ *   fields for the application.
  * @property {string[]} [serviceability_fields] - An array of strings
  *   representing fields related to the serviceability of the country.
  * @property {GetCountryFieldsAddressTemplateApplication} [address_template]
@@ -3088,7 +3091,7 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       batch_id: Joi.string().allow(""),
       status_code: Joi.number(),
-      error: Joi.any(),
+      error: Joi.array().items(ServiceabilityPlatformModel.Error()),
       success: Joi.boolean(),
     });
   }
@@ -3097,7 +3100,7 @@ class ServiceabilityPlatformModel {
   static CommonError() {
     return Joi.object({
       status_code: Joi.number(),
-      error: Joi.any(),
+      error: Joi.array().items(ServiceabilityPlatformModel.Error()),
       success: Joi.boolean(),
     });
   }
@@ -3336,7 +3339,7 @@ class ServiceabilityPlatformModel {
       application_id: Joi.string().allow(""),
       company_id: Joi.number(),
       manual_priority: Joi.array().items(Joi.string().allow("")),
-      filters: Joi.string().allow(""),
+      filters: Joi.string().allow("").allow(null),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions(),
       sort: Joi.array().items(Joi.string().allow("")),
       created_by: ServiceabilityPlatformModel.CreatedBy(),
@@ -3360,7 +3363,7 @@ class ServiceabilityPlatformModel {
       ),
       name: Joi.string().allow("").required(),
       manual_priority: Joi.array().items(Joi.string().allow("")).required(),
-      filters: Joi.string().allow("").required(),
+      filters: Joi.string().allow("").allow(null),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
       sort: Joi.array().items(Joi.string().allow("")).required(),
       type: Joi.string().allow(""),
@@ -3504,7 +3507,7 @@ class ServiceabilityPlatformModel {
       manual_priority: Joi.array().items(Joi.number()),
       meta_sort_priority: Joi.object().pattern(/\S/, Joi.any()),
       meta_conditions: Joi.object().pattern(/\S/, Joi.any()),
-      filters: Joi.string().allow(""),
+      filters: Joi.string().allow("").allow(null),
       company_id: Joi.number(),
       application_id: Joi.string().allow(""),
       type_based_priority: Joi.array().items(Joi.string().allow("")),
@@ -3535,7 +3538,7 @@ class ServiceabilityPlatformModel {
       manual_priority: Joi.array().items(Joi.number()),
       meta_sort_priority: Joi.object().pattern(/\S/, Joi.any()),
       meta_conditions: Joi.object().pattern(/\S/, Joi.any()),
-      filters: Joi.string().allow(""),
+      filters: Joi.string().allow("").allow(null),
       is_active: Joi.boolean(),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       type_based_priority: Joi.array().items(Joi.string().allow("")),
@@ -3555,7 +3558,7 @@ class ServiceabilityPlatformModel {
       manual_priority: Joi.array().items(Joi.number()),
       meta_sort_priority: Joi.object().pattern(/\S/, Joi.any()),
       meta_conditions: Joi.object().pattern(/\S/, Joi.any()),
-      filters: Joi.string().allow(""),
+      filters: Joi.string().allow("").allow(null),
       type: Joi.string().allow(""),
       type_based_priority: Joi.array().items(Joi.string().allow("")),
       tag_based_priority: Joi.array().items(Joi.string().allow("")),
@@ -3576,7 +3579,7 @@ class ServiceabilityPlatformModel {
       manual_priority: Joi.array().items(Joi.number()),
       meta_sort_priority: Joi.object().pattern(/\S/, Joi.any()),
       meta_conditions: Joi.object().pattern(/\S/, Joi.any()),
-      filters: Joi.string().allow(""),
+      filters: Joi.string().allow("").allow(null),
       type: Joi.string().allow(""),
       type_based_priority: Joi.array().items(Joi.string().allow("")),
       tag_based_priority: Joi.array().items(Joi.string().allow("")),
@@ -4137,7 +4140,7 @@ class ServiceabilityPlatformModel {
       articles: Joi.array()
         .items(ServiceabilityPlatformModel.PlatformLocationArticle())
         .required(),
-      fulfillment_location_id: Joi.number(),
+      fulfillment_location_id: Joi.number().required(),
       fulfillment_tags: Joi.array().items(Joi.string().allow("")),
       fulfillment_type: Joi.string().allow("").required(),
     });
@@ -4198,6 +4201,8 @@ class ServiceabilityPlatformModel {
       courier_partners: Joi.array().items(
         ServiceabilityPlatformModel.ShipmentsCourierPartner()
       ),
+      count: Joi.number(),
+      is_cod_available: Joi.boolean(),
     });
   }
 
@@ -4540,7 +4545,7 @@ class ServiceabilityPlatformModel {
       is_set: Joi.boolean(),
       track_inventory: Joi.boolean(),
       identifiers: Joi.array().items(ServiceabilityPlatformModel.Identifier()),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -4646,8 +4651,8 @@ class ServiceabilityPlatformModel {
       product: ServiceabilityPlatformModel.ListViewProduct().required(),
       company_id: Joi.number().required(),
       application_id: Joi.string().allow("").required(),
-      created_by: ServiceabilityPlatformModel.CreatedBy().required(),
-      modified_by: ServiceabilityPlatformModel.ModifiedBy().required(),
+      created_by: ServiceabilityPlatformModel.CreatedBy(),
+      modified_by: ServiceabilityPlatformModel.ModifiedBy(),
       created_on: Joi.string().allow("").required(),
       modified_on: Joi.string().allow("").required(),
       stage: Joi.string().allow(""),
@@ -4859,7 +4864,7 @@ class ServiceabilityPlatformModel {
       zone_ids: ServiceabilityPlatformModel.StringComparisonOperations(),
       department_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
       brand_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
-      order_place_date: ServiceabilityPlatformModel.ArithmeticOperations(),
+      order_place_date: ServiceabilityPlatformModel.DateOperations(),
       store_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
       store_type: ServiceabilityPlatformModel.StringComparisonOperations(),
       store_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
@@ -4904,6 +4909,14 @@ class ServiceabilityPlatformModel {
   static IntComparisonOperations() {
     return Joi.object({
       includes: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {DateOperations} */
+  static DateOperations() {
+    return Joi.object({
+      lte: Joi.string().allow("").required(),
+      gte: Joi.string().allow("").required(),
     });
   }
 
@@ -5217,16 +5230,6 @@ class ServiceabilityPlatformModel {
       lte: Joi.number(),
       gt: Joi.number(),
       gte: Joi.number(),
-    });
-  }
-
-  /** @returns {DateOperations} */
-  static DateOperations() {
-    return Joi.object({
-      lt: Joi.string().allow("").allow(null),
-      gt: Joi.string().allow("").allow(null),
-      lte: Joi.string().allow("").allow(null),
-      gte: Joi.string().allow("").allow(null),
     });
   }
 

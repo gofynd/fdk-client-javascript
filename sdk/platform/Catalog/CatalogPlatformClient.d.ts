@@ -896,7 +896,7 @@ declare class Catalog {
     listCategories({ level, department, q, pageNo, pageSize, uids, slug, requestHeaders }?: CatalogPlatformValidator.ListCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.level] - Get category for multiple levels
+     * @param {number[]} [arg.level] - Get category for multiple levels
      * @param {number} [arg.department] - Get category for multiple departments filtered
      * @param {string} [arg.q] - Get multiple categories filtered by search string
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -908,7 +908,7 @@ declare class Catalog {
      * @description: Retrieve a list of categories data associated to a specific company and queries passed in the request.
      */
     listCategoriesPaginator({ level, department, q, pageSize, uids, slug }?: {
-        level?: string;
+        level?: number[];
         department?: number;
         q?: string;
         pageSize?: number;

@@ -218,7 +218,7 @@ const Joi = require("joi");
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
- * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {string} type - The type of the page, can be 'cursor' or 'number'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
  */
@@ -2071,6 +2071,12 @@ const Joi = require("joi");
  *   cart or it needs to be updated
  * @property {string} [free_gift_items_operation] - Field to determine if free
  *   gift item to be removed from cart or it needs to be added.
+ */
+
+/**
+ * @typedef UpdateCartBreakup
+ * @property {boolean} [store_credit] - Select `true` to include store credit in
+ *   cart breakup
  */
 
 /**
@@ -4856,6 +4862,13 @@ class CartPlatformModel {
       ),
       operation: Joi.string().allow("").required(),
       free_gift_items_operation: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateCartBreakup} */
+  static UpdateCartBreakup() {
+    return Joi.object({
+      store_credit: Joi.boolean(),
     });
   }
 

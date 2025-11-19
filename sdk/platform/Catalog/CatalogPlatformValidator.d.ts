@@ -384,7 +384,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef ListCategoriesParam
- * @property {string} [level] - Get category for multiple levels
+ * @property {number[]} [level] - Get category for multiple levels
  * @property {number} [department] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -1438,7 +1438,7 @@ type ListCategoriesParam = {
     /**
      * - Get category for multiple levels
      */
-    level?: string;
+    level?: number[];
     /**
      * - Get category for multiple departments filtered
      */

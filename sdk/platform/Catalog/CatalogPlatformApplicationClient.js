@@ -4000,15 +4000,15 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponseSchema>}
+   * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponseSchemaV2>}
    *   - Success response
    *
    * @name getCollectionItems
    * @summary: List items of collection
-   * @description: Get items from a collection specified by its id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getCollectionItems/).
+   * @description: Get items from a collection specified by its collection_id with enhanced search capabilities. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getCollectionItems/).
    */
   async getCollectionItems(
-    { id, sortOn, pageId, pageSize, pageNo, requestHeaders } = {
+    { collectionId, pageNo, pageSize, q, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -4017,11 +4017,10 @@ class Catalog {
       error,
     } = CatalogPlatformApplicationValidator.getCollectionItems().validate(
       {
-        id,
-        sortOn,
-        pageId,
-        pageSize,
+        collectionId,
         pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4034,11 +4033,10 @@ class Catalog {
       error: warrning,
     } = CatalogPlatformApplicationValidator.getCollectionItems().validate(
       {
-        id,
-        sortOn,
-        pageId,
-        pageSize,
+        collectionId,
         pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4050,15 +4048,14 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["sort_on"] = sortOn;
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${collectionId}/items/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4072,7 +4069,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetCollectionItemsResponseSchema().validate(
+    } = CatalogPlatformModel.GetCollectionItemsResponseSchemaV2().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

@@ -28,6 +28,8 @@ class Order {
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
       sendOtpToShipmentCustomer:
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
+      submitDeliveryReattemptRequest:
+        "/service/application/order/v1.0/shipments/{shipment_id}/delivery-reattempt",
       trackShipment:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
       updateShipmentStatus:
@@ -447,7 +449,7 @@ class Order {
    * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/sendOtpToShipmentCustomer/).
    */
   async sendOtpToShipmentCustomer(
-    { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
+    { orderId, shipmentId, eventType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], [
@@ -463,6 +465,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["event_type"] = eventType;
 
     const xHeaders = {};
 
@@ -475,6 +478,52 @@ class Order {
       }),
       query_params,
       undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeliveryReattemptSuccessResponseSchema>} - Success response
+   * @name submitDeliveryReattemptRequest
+   * @summary: Initiates a delivery reattempt request for a given shipment
+   * @description: This operation allows customers to submit a request for reattempting the delivery of a specific shipment  with optional address updates and a new delivery date. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/submitDeliveryReattemptRequest/).
+   */
+  async submitDeliveryReattemptRequest(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["submitDeliveryReattemptRequest"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

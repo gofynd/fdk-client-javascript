@@ -5945,7 +5945,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.level] - Get category for multiple levels
+   * @param {number[]} [arg.level] - Get category for multiple levels
    * @param {number} [arg.department] - Get category for multiple departments filtered
    * @param {string} [arg.q] - Get multiple categories filtered by search string
    * @param {number} [arg.pageSize] - Number of items to retrieve in each

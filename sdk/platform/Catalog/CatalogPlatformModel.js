@@ -1697,17 +1697,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetCollectionItemsResponseSchema
- * @property {ProductFilters[]} [filters] - An array of filters applicable to
- *   the products in the collection.
- * @property {ApplicationProductsSchema[]} [items] - An array of products that
- *   belong to the collection.
- * @property {Page} [page]
- * @property {ProductSortOn[]} [sort_on] - Sorting options available for the
- *   products in the collection.
- */
-
-/**
  * @typedef GetCollectionListingResponseSchema
  * @property {CollectionListingFilter} [filters]
  * @property {GetCollectionDetailNest[]} [items] - Array of nested collection details.
@@ -1991,6 +1980,9 @@ const Joi = require("joi");
  * @property {string} [_id] - A unique identifier for the collection, matching `uid`.
  * @property {string[]} [visible_facets_keys] - Keys representing visible facets
  *   for filtering.
+ * @property {string[]} [handpicked_collection_item_ids] - Array of item `uid`
+ *   that have been manually handpicked for this collection. Will be an empty
+ *   array if the collection type is not handpicked.
  */
 
 /**
@@ -2020,8 +2012,19 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCollectionItemsResponseSchemaV2
- * @property {ProductDetailV2[]} [items]
- * @property {Page1} [page]
+ * @property {CollectionItemV2[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CollectionItemV2
+ * @property {string} name - The name of the product
+ * @property {string} [short_description] - A brief description of the product
+ * @property {Media[]} [medias] - Media items (images, videos) associated with the product
+ * @property {string} slug - URL-friendly identifier for the product
+ * @property {number} uid - Unique identifier for the product
+ * @property {string} item_code - Item code or SKU of the product
+ * @property {string} item_type - Type of the product
  */
 
 /**
@@ -3018,7 +3021,7 @@ const Joi = require("joi");
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
- * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {string} type - The type of the page, can be 'cursor' or 'number'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
  */
@@ -6868,18 +6871,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {GetCollectionItemsResponseSchema} */
-  static GetCollectionItemsResponseSchema() {
-    return Joi.object({
-      filters: Joi.array().items(CatalogPlatformModel.ProductFilters()),
-      items: Joi.array().items(
-        CatalogPlatformModel.ApplicationProductsSchema()
-      ),
-      page: CatalogPlatformModel.Page(),
-      sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
-    });
-  }
-
   /** @returns {GetCollectionListingResponseSchema} */
   static GetCollectionListingResponseSchema() {
     return Joi.object({
@@ -7167,6 +7158,7 @@ class CatalogPlatformModel {
       uid: Joi.string().allow(""),
       _id: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      handpicked_collection_item_ids: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -7202,8 +7194,21 @@ class CatalogPlatformModel {
   /** @returns {GetCollectionItemsResponseSchemaV2} */
   static GetCollectionItemsResponseSchemaV2() {
     return Joi.object({
-      items: Joi.array().items(CatalogPlatformModel.ProductDetailV2()),
-      page: CatalogPlatformModel.Page1(),
+      items: Joi.array().items(CatalogPlatformModel.CollectionItemV2()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CollectionItemV2} */
+  static CollectionItemV2() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      short_description: Joi.string().allow(""),
+      medias: Joi.array().items(CatalogPlatformModel.Media()),
+      slug: Joi.string().allow("").required(),
+      uid: Joi.number().required(),
+      item_code: Joi.string().allow("").required(),
+      item_type: Joi.string().allow("").required(),
     });
   }
 

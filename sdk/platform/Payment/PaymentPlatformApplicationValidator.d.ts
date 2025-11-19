@@ -133,10 +133,6 @@ export = PaymentPlatformApplicationValidator;
  * @property {PaymentPlatformModel.PaymentInitializationCreation} body
  */
 /**
- * @typedef MerchantOnBoardingParam
- * @property {PaymentPlatformModel.MerchantOnBoardingCreation} body
- */
-/**
  * @typedef OauthGetUrlParam
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
@@ -163,10 +159,6 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef PollingPaymentLinkParam
  * @property {string} paymentLinkId
- */
-/**
- * @typedef RepaymentDetailsParam
- * @property {PaymentPlatformModel.RepaymentDetailsSerialiserPayAll} body
  */
 /**
  * @typedef ResendOrCancelPaymentParam
@@ -278,8 +270,6 @@ declare class PaymentPlatformApplicationValidator {
     static getUserOrderBeneficiaries(): GetUserOrderBeneficiariesParam;
     /** @returns {InitialisePaymentParam} */
     static initialisePayment(): InitialisePaymentParam;
-    /** @returns {MerchantOnBoardingParam} */
-    static merchantOnBoarding(): MerchantOnBoardingParam;
     /** @returns {OauthGetUrlParam} */
     static oauthGetUrl(): OauthGetUrlParam;
     /** @returns {PatchMerchantAggregatorPaymentModeDetailsParam} */
@@ -292,8 +282,6 @@ declare class PaymentPlatformApplicationValidator {
     static paymentStatusBulk(): PaymentStatusBulkParam;
     /** @returns {PollingPaymentLinkParam} */
     static pollingPaymentLink(): PollingPaymentLinkParam;
-    /** @returns {RepaymentDetailsParam} */
-    static repaymentDetails(): RepaymentDetailsParam;
     /** @returns {ResendOrCancelPaymentParam} */
     static resendOrCancelPayment(): ResendOrCancelPaymentParam;
     /** @returns {ResendPaymentLinkParam} */
@@ -320,7 +308,7 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
+    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
 }
 type AddRefundBankAccountUsingOTPParam = {
     body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
@@ -505,9 +493,6 @@ type GetUserOrderBeneficiariesParam = {
 type InitialisePaymentParam = {
     body: PaymentPlatformModel.PaymentInitializationCreation;
 };
-type MerchantOnBoardingParam = {
-    body: PaymentPlatformModel.MerchantOnBoardingCreation;
-};
 type OauthGetUrlParam = {
     /**
      * - Aggregator
@@ -538,9 +523,6 @@ type PaymentStatusBulkParam = {
 };
 type PollingPaymentLinkParam = {
     paymentLinkId: string;
-};
-type RepaymentDetailsParam = {
-    body: PaymentPlatformModel.RepaymentDetailsSerialiserPayAll;
 };
 type ResendOrCancelPaymentParam = {
     body: PaymentPlatformModel.ResendOrCancelPaymentCreation;

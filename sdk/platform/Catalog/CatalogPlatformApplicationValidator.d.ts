@@ -296,14 +296,14 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef GetCollectionItemsParam
- * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {string} [sortOn] - Each response will contain sort_on param, which
- *   should be sent back to make pagination work.
- * @property {string} [pageId] - Each response will contain next_id param, which
- *   should be sent back to make pagination work.
+ * @property {string} collectionId - A `collection_id` is a unique identifier of
+ *   a collection.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - Identifies the specific page of results being requested.
+ *   Default is 10.
+ * @property {string} [q] - Query string to search collection items by substring
+ *   match on item's name (case-insensitive) or exact item_code.
  */
 /**
  * @typedef GetConfigurationByTypeParam
@@ -1152,28 +1152,25 @@ type GetCollectionDetailParam = {
 };
 type GetCollectionItemsParam = {
     /**
-     * - A `id` is a unique identifier of a collection.
+     * - A `collection_id` is a unique identifier of
+     * a collection.
      */
-    id: string;
+    collectionId: string;
     /**
-     * - Each response will contain sort_on param, which
-     * should be sent back to make pagination work.
+     * - The page number to navigate through the given
+     * set of results
      */
-    sortOn?: string;
-    /**
-     * - Each response will contain next_id param, which
-     * should be sent back to make pagination work.
-     */
-    pageId?: string;
+    pageNo?: number;
     /**
      * - Number of items to retrieve in each page.
-     * Default is 12.
+     * Default is 10.
      */
     pageSize?: number;
     /**
-     * - Identifies the specific page of results being requested.
+     * - Query string to search collection items by substring
+     * match on item's name (case-insensitive) or exact item_code.
      */
-    pageNo?: number;
+    q?: string;
 };
 type GetConfigurationByTypeParam = {
     /**

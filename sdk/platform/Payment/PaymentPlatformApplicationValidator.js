@@ -161,11 +161,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
- * @typedef MerchantOnBoardingParam
- * @property {PaymentPlatformModel.MerchantOnBoardingCreation} body
- */
-
-/**
  * @typedef OauthGetUrlParam
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
@@ -197,11 +192,6 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef PollingPaymentLinkParam
  * @property {string} paymentLinkId
- */
-
-/**
- * @typedef RepaymentDetailsParam
- * @property {PaymentPlatformModel.RepaymentDetailsSerialiserPayAll} body
  */
 
 /**
@@ -474,13 +464,6 @@ class PaymentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {MerchantOnBoardingParam} */
-  static merchantOnBoarding() {
-    return Joi.object({
-      body: PaymentPlatformModel.MerchantOnBoardingCreation().required(),
-    }).required();
-  }
-
   /** @returns {OauthGetUrlParam} */
   static oauthGetUrl() {
     return Joi.object({
@@ -524,13 +507,6 @@ class PaymentPlatformApplicationValidator {
   static pollingPaymentLink() {
     return Joi.object({
       paymentLinkId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {RepaymentDetailsParam} */
-  static repaymentDetails() {
-    return Joi.object({
-      body: PaymentPlatformModel.RepaymentDetailsSerialiserPayAll().required(),
     }).required();
   }
 

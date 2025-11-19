@@ -372,6 +372,21 @@ export = CartPlatformApplicationValidator;
  * @property {CartPlatformModel.UpdateCartCreation} body
  */
 /**
+ * @typedef UpdateCartBreakupParam
+ * @property {string} [xOrderingSource] - Identifier for the ordering source
+ *   (e.g., web, mobile app, POS). Used to determine the origin of the order
+ *   request and apply source-specific rules.
+ * @property {string} [id] - Unique identifier of the cart for which the breakup
+ *   needs to be updated.
+ * @property {boolean} [i] - Set to `true` to include all items currently added
+ *   to the cart in the response.
+ * @property {boolean} [b] - Set to `true` to include the detailed price breakup
+ *   of each cart item in the response.
+ * @property {boolean} [buyNow] - Set to `true` to initialize a "Buy Now" cart
+ *   flow, enabling direct checkout for a single item.
+ * @property {CartPlatformModel.UpdateCartBreakup} body
+ */
+/**
  * @typedef UpdateCartMetaParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
@@ -550,6 +565,8 @@ declare class CartPlatformApplicationValidator {
     static updateAddress(): UpdateAddressParam;
     /** @returns {UpdateCartParam} */
     static updateCart(): UpdateCartParam;
+    /** @returns {UpdateCartBreakupParam} */
+    static updateCartBreakup(): UpdateCartBreakupParam;
     /** @returns {UpdateCartMetaParam} */
     static updateCartMeta(): UpdateCartMetaParam;
     /** @returns {UpdateCartMetaConfigParam} */
@@ -574,7 +591,7 @@ declare class CartPlatformApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartPlatformApplicationValidator {
-    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, ApplyLoyaltyPointsParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, DeleteCouponParam, DeletePromotionParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, ApplyLoyaltyPointsParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, DeleteCouponParam, DeletePromotionParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartBreakupParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartPlatformModel.PlatformAddress;
@@ -1093,6 +1110,35 @@ type UpdateCartParam = {
     cartId: string;
     b?: boolean;
     body: CartPlatformModel.UpdateCartCreation;
+};
+type UpdateCartBreakupParam = {
+    /**
+     * - Identifier for the ordering source
+     * (e.g., web, mobile app, POS). Used to determine the origin of the order
+     * request and apply source-specific rules.
+     */
+    xOrderingSource?: string;
+    /**
+     * - Unique identifier of the cart for which the breakup
+     * needs to be updated.
+     */
+    id?: string;
+    /**
+     * - Set to `true` to include all items currently added
+     * to the cart in the response.
+     */
+    i?: boolean;
+    /**
+     * - Set to `true` to include the detailed price breakup
+     * of each cart item in the response.
+     */
+    b?: boolean;
+    /**
+     * - Set to `true` to initialize a "Buy Now" cart
+     * flow, enabling direct checkout for a single item.
+     */
+    buyNow?: boolean;
+    body: CartPlatformModel.UpdateCartBreakup;
 };
 type UpdateCartMetaParam = {
     id?: string;

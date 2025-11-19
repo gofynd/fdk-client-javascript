@@ -339,14 +339,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCollectionItemsParam
- * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {string} [sortOn] - Each response will contain sort_on param, which
- *   should be sent back to make pagination work.
- * @property {string} [pageId] - Each response will contain next_id param, which
- *   should be sent back to make pagination work.
+ * @property {string} collectionId - A `collection_id` is a unique identifier of
+ *   a collection.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - Identifies the specific page of results being requested.
+ *   Default is 10.
+ * @property {string} [q] - Query string to search collection items by substring
+ *   match on item's name (case-insensitive) or exact item_code.
  */
 
 /**
@@ -883,11 +883,10 @@ class CatalogPlatformApplicationValidator {
   /** @returns {GetCollectionItemsParam} */
   static getCollectionItems() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      sortOn: Joi.string().allow(""),
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
+      collectionId: Joi.string().allow("").required(),
       pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
     }).required();
   }
 

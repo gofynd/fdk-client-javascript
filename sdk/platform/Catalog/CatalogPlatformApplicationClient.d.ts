@@ -750,14 +750,14 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponseSchema>}
+     * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponseSchemaV2>}
      *   - Success response
      *
      * @name getCollectionItems
      * @summary: List items of collection
-     * @description: Get items from a collection specified by its id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getCollectionItems/).
+     * @description: Get items from a collection specified by its collection_id with enhanced search capabilities. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getCollectionItems/).
      */
-    getCollectionItems({ id, sortOn, pageId, pageSize, pageNo, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionItemsResponseSchema>;
+    getCollectionItems({ collectionId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionItemsResponseSchemaV2>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetConfigurationByTypeParam} arg
      *   - Arg object

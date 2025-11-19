@@ -316,19 +316,6 @@ declare class Payment {
      */
     initialisePayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.InitialisePaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentInitializationDetails>;
     /**
-     * @param {PaymentPlatformApplicationValidator.MerchantOnBoardingParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingDetails>} -
-     *   Success response
-     * @name merchantOnBoarding
-     * @summary: Merchant onboarding for BNPL
-     * @description: Initiate the merchant onboarding process for Buy Now Pay Later (BNPL). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/merchantOnBoarding/).
-     */
-    merchantOnBoarding({ body, requestHeaders }?: PaymentPlatformApplicationValidator.MerchantOnBoardingParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchantOnBoardingDetails>;
-    /**
      * @param {PaymentPlatformApplicationValidator.OauthGetUrlParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -404,16 +391,6 @@ declare class Payment {
      * @description: Periodically checks the status of a payment link to monitor for any updates or changes.retrieve real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired.  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/pollingPaymentLink/).
      */
     pollingPaymentLink({ paymentLinkId, requestHeaders }?: PaymentPlatformApplicationValidator.PollingPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PollingPaymentLinkDetails>;
-    /**
-     * @param {PaymentPlatformApplicationValidator.RepaymentDetailsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.RepaymentDetails>} - Success response
-     * @name repaymentDetails
-     * @summary: Repayment details for BNPL
-     * @description: Retrieve repayment details for Buy Now Pay Later (BNPL) payment - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/repaymentDetails/).
-     */
-    repaymentDetails({ body, requestHeaders }?: PaymentPlatformApplicationValidator.RepaymentDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RepaymentDetails>;
     /**
      * @param {PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam} arg
      *   - Arg object

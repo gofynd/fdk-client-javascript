@@ -50,8 +50,6 @@ class Payment {
       getActiveUserCards: "/service/application/payment/v1.0/cards",
       getAggregatorsConfig:
         "/service/application/payment/v1.0/config/aggregators/key",
-      getEpaylaterBannerDetails:
-        "/service/application/payment/v1.0/epaylater/banner",
       getOrderBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/order/beneficiaries",
       getPaymentLink: "/service/application/payment/v1.0/create-payment-link/",
@@ -64,7 +62,6 @@ class Payment {
         "/service/application/payment/v2.0/refund/user/beneficiary",
       getRefundBeneficiariesUsingOTPSession:
         "/service/application/payment/v2.0/refund/user/beneficiary-otp",
-      getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
       getUserBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/user/beneficiary",
       initialisePayment: "/service/application/payment/v1.0/payment/request",
@@ -994,43 +991,6 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<EpaylaterBannerDetails>} - Success response
-   * @name getEpaylaterBannerDetails
-   * @summary: Epaylater banner info
-   * @description: Get Epaylater payment banner details. It provides information about the banner's display status, along with relevant messages and the user's registration status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getEpaylaterBannerDetails/).
-   */
-  async getEpaylaterBannerDetails(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getEpaylaterBannerDetails"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderBeneficiaryFetchDetails>} - Success response
    * @name getOrderBeneficiariesDetail
    * @summary: Retrieve beneficiary details
@@ -1320,43 +1280,6 @@ class Payment {
       "get",
       constructUrl({
         url: this._urls["getRefundBeneficiariesUsingOTPSession"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RupifiBannerDetails>} - Success response
-   * @name getRupifiBannerDetails
-   * @summary: Rupifi banner info
-   * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRupifiBannerDetails/).
-   */
-  async getRupifiBannerDetails(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getRupifiBannerDetails"],
         params: {},
       }),
       query_params,

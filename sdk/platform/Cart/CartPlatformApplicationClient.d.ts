@@ -554,6 +554,16 @@ declare class Cart {
      */
     updateCart({ cartId, body, b, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
     /**
+     * @param {CartPlatformApplicationValidator.UpdateCartBreakupParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.UpdateCartDetailResult>} - Success response
+     * @name updateCartBreakup
+     * @summary: Update cart breakup values
+     * @description: Updates the cart breakup based on the enabled features and user preferences.   This endpoint allows customers to modify how their cart totals are calculated —  including options such as applying store credits, loyalty points, discounts,  and other promotional benefits.   The API recalculates and returns the updated breakup reflecting the selected  configurations in real-time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCartBreakup/).
+     */
+    updateCartBreakup({ body, xOrderingSource, id, i, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartBreakupParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
+    /**
      * @param {CartPlatformApplicationValidator.UpdateCartMetaParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

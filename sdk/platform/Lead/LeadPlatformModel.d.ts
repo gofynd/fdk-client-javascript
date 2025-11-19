@@ -45,7 +45,7 @@ export = LeadPlatformModel;
  * @property {boolean} [has_previous] - Indicates whether there is a previous page.
  * @property {boolean} [has_next] - Indicates whether there is a next page.
  * @property {number} [current] - The current page number.
- * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {string} type - The type of the page, can be 'cursor' or 'number'.
  * @property {number} [size] - The number of items per page.
  * @property {number} [page_size] - The number of items per page.
  */
@@ -362,7 +362,7 @@ type Page = {
      */
     current?: number;
     /**
-     * - The type of the page, such as 'PageType'.
+     * - The type of the page, can be 'cursor' or 'number'.
      */
     type: string;
     /**

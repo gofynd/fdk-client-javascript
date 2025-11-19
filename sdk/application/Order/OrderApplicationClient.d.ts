@@ -12,6 +12,7 @@ declare class Order {
         getShipmentById: string;
         getShipmentReasons: string;
         sendOtpToShipmentCustomer: string;
+        submitDeliveryReattemptRequest: string;
         trackShipment: string;
         updateShipmentStatus: string;
         verifyOtpShipmentCustomer: string;
@@ -98,7 +99,16 @@ declare class Order {
      * @summary: Send OTP to customer
      * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/sendOtpToShipmentCustomer/).
      */
-    sendOtpToShipmentCustomer({ orderId, shipmentId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SendOtpToCustomerResponseSchema>;
+    sendOtpToShipmentCustomer({ orderId, shipmentId, eventType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<SendOtpToCustomerResponseSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<DeliveryReattemptSuccessResponseSchema>} - Success response
+     * @name submitDeliveryReattemptRequest
+     * @summary: Initiates a delivery reattempt request for a given shipment
+     * @description: This operation allows customers to submit a request for reattempting the delivery of a specific shipment  with optional address updates and a new delivery date. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/submitDeliveryReattemptRequest/).
+     */
+    submitDeliveryReattemptRequest({ shipmentId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<DeliveryReattemptSuccessResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
