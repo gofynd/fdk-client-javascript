@@ -757,7 +757,7 @@ declare class Content {
      * @summary: Get all HTML tags
      * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getInjectableTags/).
      */
-    getInjectableTags({ all, requestHeaders }?: ContentPlatformApplicationValidator.GetInjectableTagsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
+    getInjectableTags({ all, pageNo, pageSize, search, requestHeaders }?: ContentPlatformApplicationValidator.GetInjectableTagsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -914,6 +914,16 @@ declare class Content {
      * @description: Retrieve information related to customer support. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getSupportInformation/).
      */
     getSupportInformation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetTagsTemplateParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.TagsTemplateSchema>} - Success response
+     * @name getTagsTemplate
+     * @summary: Get Script Tags Templates
+     * @description: Retrieve the available script tag templates - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getTagsTemplate/).
+     */
+    getTagsTemplate({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsTemplateSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetTranslateUILabelsParam} arg
      *   - Arg object

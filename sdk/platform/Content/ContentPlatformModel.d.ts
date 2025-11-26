@@ -353,6 +353,7 @@ export = ContentPlatformModel;
  *   the HTML (inline) or linked externally (external).
  * @property {string} [content] - The actual content of the inline tag, such as
  *   JavaScript or CSS code if the tag is inline.
+ * @property {TemplateSchema} [template]
  */
 /**
  * @typedef RemoveHandpickedSchema
@@ -386,6 +387,21 @@ export = ContentPlatformModel;
  *   injected or active.
  * @property {string} [content] - The inline content for tags of type 'inline'
  *   (e.g., JavaScript or CSS code).
+ * @property {TemplateSchema} [template]
+ */
+/**
+ * @typedef TemplateSchema
+ * @property {string} [template_id] - Unique identifier for the template linked
+ *   to the tag.
+ * @property {string} [template_version] - Version number of the template used
+ *   for configuration.
+ * @property {TemplateField[]} [template_fields] - List of dynamic key-value
+ *   pairs defining configuration fields for third-party integrations or custom settings.
+ */
+/**
+ * @typedef TemplateField
+ * @property {string} [key] - Field name representing the configuration key.
+ * @property {string} [value] - Value assigned to the configuration field.
  */
 /**
  * @typedef CreateTagRequestSchema
@@ -402,6 +418,57 @@ export = ContentPlatformModel;
  * @property {string} [content]
  * @property {DataLoaderSourceSchema} [__source]
  * @property {string} [_id]
+ */
+/**
+ * @typedef TagsTemplateSchema
+ * @property {TagTemplateItem[]} [items] - Array of tag template objects.
+ */
+/**
+ * @typedef TagTemplateItem
+ * @property {string} [template_name] - Static name of the tag template (e.g.,
+ *   gtm, ga4, metaPixel, sentry).
+ * @property {string} [type] - Script type.
+ * @property {string} [sub_type] - Script loading subtype.
+ * @property {string} [position] - Where the script should be injected.
+ * @property {string[]} [pages] - List of page types where the tag should be active.
+ * @property {Object} [attributes] - HTML attributes to apply on the script tag.
+ * @property {string[]} [compatible_engines] - List of compatible UI frameworks.
+ * @property {Object} [field_mappings] - Maps UI field names to backend keys.
+ * @property {TemplateLayout} [layout]
+ * @property {string} [name] - Human-readable name of the template.
+ * @property {string} [path] - URL-safe path or slug for the template.
+ * @property {string} [description] - Explains the purpose or behavior of the template.
+ * @property {string} [image] - URL to an icon or image for the template.
+ * @property {string} [note] - Helpful guidance for configuring the template.
+ * @property {string} [template_id] - Unique template identifier.
+ * @property {string} [template_version] - Version of this template.
+ * @property {string} [category] - Functional category of the template.
+ * @property {FieldDefinition[]} [fields] - Array of field definitions for
+ *   template configuration.
+ * @property {string} [script] - JavaScript snippet or template script code.
+ */
+/**
+ * @typedef TemplateLayout
+ * @property {number} [columns]
+ * @property {string} [gap]
+ * @property {boolean} [responsive]
+ */
+/**
+ * @typedef FieldDefinition
+ * @property {string} [name] - Field key used in templates and mappings.
+ * @property {string} [type] - Input type (e.g., text, boolean, array, note).
+ * @property {string} [label]
+ * @property {string} [placeholder]
+ * @property {boolean} [required]
+ * @property {string} [size] - Visual width in the form layout.
+ * @property {string} [description]
+ * @property {FieldValidation} [validation]
+ * @property {Object} [events] - Optional client-side events configuration.
+ */
+/**
+ * @typedef FieldValidation
+ * @property {string} [pattern] - Regex pattern used for validation.
+ * @property {string} [message] - Error message shown when validation fails.
  */
 /**
  * @typedef DataLoaderSourceSchema
@@ -704,8 +771,10 @@ export = ContentPlatformModel;
  * @typedef TagsSchema
  * @property {string} [application] - The ID of the application that owns the tags.
  * @property {string} [_id] - The unique identifier for the tag set.
+ * @property {string} [company] - The ID of the company associated with this tags.
  * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
  *   or stylesheets) that are configured for the application.
+ * @property {Page} [page]
  */
 /**
  * @typedef TagSchema
@@ -734,6 +803,7 @@ export = ContentPlatformModel;
  *   third-party tag can be injected or supported.
  * @property {Object[]} [pages] - Pages or environments where the tag should be active.
  * @property {TagSourceSchema} [__source]
+ * @property {TemplateSchema} [template]
  */
 /**
  * @typedef TagSourceSchema
@@ -1559,7 +1629,7 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, Seo, MetaTag, MetaTagItem, ResourceTranslation, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
+    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, TemplateSchema, TemplateField, CreateTagRequestSchema, DataLoaderSchema, TagsTemplateSchema, TagTemplateItem, TemplateLayout, FieldDefinition, FieldValidation, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, Seo, MetaTag, MetaTagItem, ResourceTranslation, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
 }
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
@@ -1997,6 +2067,7 @@ type HandpickedTagSchema = {
      * JavaScript or CSS code if the tag is inline.
      */
     content?: string;
+    template?: TemplateSchema;
 };
 /** @returns {RemoveHandpickedSchema} */
 declare function RemoveHandpickedSchema(): RemoveHandpickedSchema;
@@ -2064,6 +2135,38 @@ type CreateTagSchema = {
      * (e.g., JavaScript or CSS code).
      */
     content?: string;
+    template?: TemplateSchema;
+};
+/** @returns {TemplateSchema} */
+declare function TemplateSchema(): TemplateSchema;
+type TemplateSchema = {
+    /**
+     * - Unique identifier for the template linked
+     * to the tag.
+     */
+    template_id?: string;
+    /**
+     * - Version number of the template used
+     * for configuration.
+     */
+    template_version?: string;
+    /**
+     * - List of dynamic key-value
+     * pairs defining configuration fields for third-party integrations or custom settings.
+     */
+    template_fields?: TemplateField[];
+};
+/** @returns {TemplateField} */
+declare function TemplateField(): TemplateField;
+type TemplateField = {
+    /**
+     * - Field name representing the configuration key.
+     */
+    key?: string;
+    /**
+     * - Value assigned to the configuration field.
+     */
+    value?: string;
 };
 /** @returns {CreateTagRequestSchema} */
 declare function CreateTagRequestSchema(): CreateTagRequestSchema;
@@ -2085,6 +2188,137 @@ type DataLoaderSchema = {
     content?: string;
     __source?: DataLoaderSourceSchema;
     _id?: string;
+};
+/** @returns {TagsTemplateSchema} */
+declare function TagsTemplateSchema(): TagsTemplateSchema;
+type TagsTemplateSchema = {
+    /**
+     * - Array of tag template objects.
+     */
+    items?: TagTemplateItem[];
+};
+/** @returns {TagTemplateItem} */
+declare function TagTemplateItem(): TagTemplateItem;
+type TagTemplateItem = {
+    /**
+     * - Static name of the tag template (e.g.,
+     * gtm, ga4, metaPixel, sentry).
+     */
+    template_name?: string;
+    /**
+     * - Script type.
+     */
+    type?: string;
+    /**
+     * - Script loading subtype.
+     */
+    sub_type?: string;
+    /**
+     * - Where the script should be injected.
+     */
+    position?: string;
+    /**
+     * - List of page types where the tag should be active.
+     */
+    pages?: string[];
+    /**
+     * - HTML attributes to apply on the script tag.
+     */
+    attributes?: any;
+    /**
+     * - List of compatible UI frameworks.
+     */
+    compatible_engines?: string[];
+    /**
+     * - Maps UI field names to backend keys.
+     */
+    field_mappings?: any;
+    layout?: TemplateLayout;
+    /**
+     * - Human-readable name of the template.
+     */
+    name?: string;
+    /**
+     * - URL-safe path or slug for the template.
+     */
+    path?: string;
+    /**
+     * - Explains the purpose or behavior of the template.
+     */
+    description?: string;
+    /**
+     * - URL to an icon or image for the template.
+     */
+    image?: string;
+    /**
+     * - Helpful guidance for configuring the template.
+     */
+    note?: string;
+    /**
+     * - Unique template identifier.
+     */
+    template_id?: string;
+    /**
+     * - Version of this template.
+     */
+    template_version?: string;
+    /**
+     * - Functional category of the template.
+     */
+    category?: string;
+    /**
+     * - Array of field definitions for
+     * template configuration.
+     */
+    fields?: FieldDefinition[];
+    /**
+     * - JavaScript snippet or template script code.
+     */
+    script?: string;
+};
+/** @returns {TemplateLayout} */
+declare function TemplateLayout(): TemplateLayout;
+type TemplateLayout = {
+    columns?: number;
+    gap?: string;
+    responsive?: boolean;
+};
+/** @returns {FieldDefinition} */
+declare function FieldDefinition(): FieldDefinition;
+type FieldDefinition = {
+    /**
+     * - Field key used in templates and mappings.
+     */
+    name?: string;
+    /**
+     * - Input type (e.g., text, boolean, array, note).
+     */
+    type?: string;
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
+    /**
+     * - Visual width in the form layout.
+     */
+    size?: string;
+    description?: string;
+    validation?: FieldValidation;
+    /**
+     * - Optional client-side events configuration.
+     */
+    events?: any;
+};
+/** @returns {FieldValidation} */
+declare function FieldValidation(): FieldValidation;
+type FieldValidation = {
+    /**
+     * - Regex pattern used for validation.
+     */
+    pattern?: string;
+    /**
+     * - Error message shown when validation fails.
+     */
+    message?: string;
 };
 /** @returns {DataLoaderSourceSchema} */
 declare function DataLoaderSourceSchema(): DataLoaderSourceSchema;
@@ -2468,10 +2702,15 @@ type TagsSchema = {
      */
     _id?: string;
     /**
+     * - The ID of the company associated with this tags.
+     */
+    company?: string;
+    /**
      * - A list of tags (HTML resources like scripts
      * or stylesheets) that are configured for the application.
      */
     tags?: TagSchema[];
+    page?: Page;
 };
 /** @returns {TagSchema} */
 declare function TagSchema(): TagSchema;
@@ -2530,6 +2769,7 @@ type TagSchema = {
      */
     pages?: any[];
     __source?: TagSourceSchema;
+    template?: TemplateSchema;
 };
 /** @returns {TagSourceSchema} */
 declare function TagSourceSchema(): TagSourceSchema;

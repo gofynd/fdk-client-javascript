@@ -1315,14 +1315,20 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductPrice
- * @property {number} [marked] - Maximum price of the product
+ * @property {number} [marked] - Original MRP of product.
  * @property {number} [add_on] - Price before promotion and coupon amount
  *   applied for calculation
  * @property {string} [currency_code] - Currency code of the price defined for the product
  * @property {string} [currency_symbol] - Currency symbol of the price defined
  *   for the product
- * @property {number} [effective] - Selling price of the product
+ * @property {number} [effective] - Price of the product after applying
+ *   inventory discount and before applying promotion, coupon and engage discount.
  * @property {number} [selling] - Selling price of the product
+ * @property {number} [final_price] - Final price of the product in cart after
+ *   applying all discounts such as promotion, coupon and engage discount."
+ * @property {number} [discount] - Net discount applied on product, contains
+ *   total discount amount including promotions, coupons and engage discount
+ *   [excluding inventory discount].
  */
 
 /**
@@ -4113,6 +4119,8 @@ class CartPlatformModel {
       currency_symbol: Joi.string().allow(""),
       effective: Joi.number(),
       selling: Joi.number(),
+      final_price: Joi.number(),
+      discount: Joi.number(),
     });
   }
 

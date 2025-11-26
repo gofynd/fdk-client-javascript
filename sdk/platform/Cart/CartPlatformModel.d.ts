@@ -1206,14 +1206,20 @@ export = CartPlatformModel;
  */
 /**
  * @typedef ProductPrice
- * @property {number} [marked] - Maximum price of the product
+ * @property {number} [marked] - Original MRP of product.
  * @property {number} [add_on] - Price before promotion and coupon amount
  *   applied for calculation
  * @property {string} [currency_code] - Currency code of the price defined for the product
  * @property {string} [currency_symbol] - Currency symbol of the price defined
  *   for the product
- * @property {number} [effective] - Selling price of the product
+ * @property {number} [effective] - Price of the product after applying
+ *   inventory discount and before applying promotion, coupon and engage discount.
  * @property {number} [selling] - Selling price of the product
+ * @property {number} [final_price] - Final price of the product in cart after
+ *   applying all discounts such as promotion, coupon and engage discount."
+ * @property {number} [discount] - Net discount applied on product, contains
+ *   total discount amount including promotions, coupons and engage discount
+ *   [excluding inventory discount].
  */
 /**
  * @typedef ProductPriceInfo
@@ -5507,7 +5513,7 @@ type CouponDetails = {
 declare function ProductPrice(): ProductPrice;
 type ProductPrice = {
     /**
-     * - Maximum price of the product
+     * - Original MRP of product.
      */
     marked?: number;
     /**
@@ -5525,13 +5531,25 @@ type ProductPrice = {
      */
     currency_symbol?: string;
     /**
-     * - Selling price of the product
+     * - Price of the product after applying
+     * inventory discount and before applying promotion, coupon and engage discount.
      */
     effective?: number;
     /**
      * - Selling price of the product
      */
     selling?: number;
+    /**
+     * - Final price of the product in cart after
+     * applying all discounts such as promotion, coupon and engage discount."
+     */
+    final_price?: number;
+    /**
+     * - Net discount applied on product, contains
+     * total discount amount including promotions, coupons and engage discount
+     * [excluding inventory discount].
+     */
+    discount?: number;
 };
 /** @returns {ProductPriceInfo} */
 declare function ProductPriceInfo(): ProductPriceInfo;

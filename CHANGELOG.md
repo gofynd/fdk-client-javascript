@@ -1,3 +1,515 @@
+# CHANGE LOG (3.16.1) - 2.10.1
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>shipments[].items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### overrideCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 404
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 201
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>cart.items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>cart.items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+#### applyLoyaltyPoints
+
+- ##### What's New
+	- [Added] property <code>items[].price.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.converted.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.final_price</code> of schema <code>ProductPrice</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit.base.discount</code> of schema <code>ProductPrice</code> in response with status code 200
+
+
+### Content
+
+
+
+#### updateInjectableTag
+
+- ##### What's New
+	- [Added] property <code>tags[].template</code> of schema <code>CreateTagSchema</code> in request body
+	- [Added] property <code>tags[].template</code> of schema <code>TagSchema</code> in response with status code 200
+	- [Added] property <code>company</code> of schema <code>TagsSchema</code> in response with status code 200
+	- [Added] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### getInjectableTags
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>pageNo</code> (type: <code>integer</code>)
+
+	- [Added] <code>query</code> parameter <code>pageSize</code> (type: <code>integer</code>)
+
+	- [Added] <code>query</code> parameter <code>search</code> (type: <code>string</code>)
+
+	- [Added] property <code>tags[].template</code> of schema <code>TagSchema</code> in response with status code 200
+	- [Added] property <code>company</code> of schema <code>TagsSchema</code> in response with status code 200
+	- [Added] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### addInjectableTag
+
+- ##### What's New
+	- [Added] property <code>tags[].template</code> of schema <code>CreateTagSchema</code> in request body
+	- [Added] property <code>tags[].template</code> of schema <code>TagSchema</code> in response with status code 200
+	- [Added] property <code>company</code> of schema <code>TagsSchema</code> in response with status code 200
+	- [Added] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### editInjectableTag
+
+- ##### What's New
+	- [Added] property <code>tag.template</code> of schema <code>HandpickedTagSchema</code> in request body
+	- [Added] property <code>tags[].template</code> of schema <code>TagSchema</code> in response with status code 200
+	- [Added] property <code>company</code> of schema <code>TagsSchema</code> in response with status code 200
+	- [Added] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### getTagsTemplate
+
+- ##### What's New
+	- [Added] method <code>getTagsTemplate</code>
+
+
+
+### User
+
+
+
+#### filterUsersByAttributes
+
+- ##### What's New
+	- [Added] property <code>query.has_email</code> of schema <code>UserAttributeFilterQuery</code> in request body
+	- [Added] property <code>query.has_phone</code> of schema <code>UserAttributeFilterQuery</code> in request body
+
+
 # CHANGE LOG (3.16.0) - 2.10.0
 
 ## Application Client

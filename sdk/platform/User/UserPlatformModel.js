@@ -384,6 +384,10 @@ const Joi = require("joi");
  * @property {number} limit - Number of results to return per page.
  * @property {number} page - Page number to fetch.
  * @property {string} [email] - Filter users by their exact email address.
+ * @property {boolean} [has_email] - Apply a filter to retrieve users who have a
+ *   valid email address specified in their profile.
+ * @property {boolean} [has_phone] - Apply a filter to retrieve users who have a
+ *   valid phone number specified in their profile.
  * @property {string} [phone] - Filter users by their exact phone number.
  * @property {string[]} [definition_ids] - List of user attribute definition IDs
  *   to fetch attributes values available for each user.
@@ -1217,6 +1221,8 @@ class UserPlatformModel {
       limit: Joi.number().required(),
       page: Joi.number().required(),
       email: Joi.string().allow(""),
+      has_email: Joi.boolean(),
+      has_phone: Joi.boolean(),
       phone: Joi.string().allow(""),
       definition_ids: Joi.array().items(Joi.string().allow("")),
       conditions: Joi.array()

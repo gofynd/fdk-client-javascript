@@ -5207,7 +5207,7 @@ class Content {
    * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
-    { all, requestHeaders } = { requestHeaders: {} },
+    { all, pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5215,6 +5215,9 @@ class Content {
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
       {
         all,
+        pageNo,
+        pageSize,
+        search,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5228,6 +5231,9 @@ class Content {
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
       {
         all,
+        pageNo,
+        pageSize,
+        search,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5240,6 +5246,9 @@ class Content {
 
     const query_params = {};
     query_params["all"] = all;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search"] = search;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -6406,6 +6415,81 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getSupportInformation \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetTagsTemplateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.TagsTemplateSchema>} - Success response
+   * @name getTagsTemplate
+   * @summary: Get Script Tags Templates
+   * @description: Retrieve the available script tag templates - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getTagsTemplate/).
+   */
+  async getTagsTemplate(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getTagsTemplate().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getTagsTemplate().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getTagsTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/templates`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.TagsTemplateSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getTagsTemplate \n ${res_error}`,
         });
       }
     }

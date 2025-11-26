@@ -400,6 +400,7 @@ const Joi = require("joi");
  *   the HTML (inline) or linked externally (external).
  * @property {string} [content] - The actual content of the inline tag, such as
  *   JavaScript or CSS code if the tag is inline.
+ * @property {TemplateSchema} [template]
  */
 
 /**
@@ -435,6 +436,23 @@ const Joi = require("joi");
  *   injected or active.
  * @property {string} [content] - The inline content for tags of type 'inline'
  *   (e.g., JavaScript or CSS code).
+ * @property {TemplateSchema} [template]
+ */
+
+/**
+ * @typedef TemplateSchema
+ * @property {string} [template_id] - Unique identifier for the template linked
+ *   to the tag.
+ * @property {string} [template_version] - Version number of the template used
+ *   for configuration.
+ * @property {TemplateField[]} [template_fields] - List of dynamic key-value
+ *   pairs defining configuration fields for third-party integrations or custom settings.
+ */
+
+/**
+ * @typedef TemplateField
+ * @property {string} [key] - Field name representing the configuration key.
+ * @property {string} [value] - Value assigned to the configuration field.
  */
 
 /**
@@ -453,6 +471,62 @@ const Joi = require("joi");
  * @property {string} [content]
  * @property {DataLoaderSourceSchema} [__source]
  * @property {string} [_id]
+ */
+
+/**
+ * @typedef TagsTemplateSchema
+ * @property {TagTemplateItem[]} [items] - Array of tag template objects.
+ */
+
+/**
+ * @typedef TagTemplateItem
+ * @property {string} [template_name] - Static name of the tag template (e.g.,
+ *   gtm, ga4, metaPixel, sentry).
+ * @property {string} [type] - Script type.
+ * @property {string} [sub_type] - Script loading subtype.
+ * @property {string} [position] - Where the script should be injected.
+ * @property {string[]} [pages] - List of page types where the tag should be active.
+ * @property {Object} [attributes] - HTML attributes to apply on the script tag.
+ * @property {string[]} [compatible_engines] - List of compatible UI frameworks.
+ * @property {Object} [field_mappings] - Maps UI field names to backend keys.
+ * @property {TemplateLayout} [layout]
+ * @property {string} [name] - Human-readable name of the template.
+ * @property {string} [path] - URL-safe path or slug for the template.
+ * @property {string} [description] - Explains the purpose or behavior of the template.
+ * @property {string} [image] - URL to an icon or image for the template.
+ * @property {string} [note] - Helpful guidance for configuring the template.
+ * @property {string} [template_id] - Unique template identifier.
+ * @property {string} [template_version] - Version of this template.
+ * @property {string} [category] - Functional category of the template.
+ * @property {FieldDefinition[]} [fields] - Array of field definitions for
+ *   template configuration.
+ * @property {string} [script] - JavaScript snippet or template script code.
+ */
+
+/**
+ * @typedef TemplateLayout
+ * @property {number} [columns]
+ * @property {string} [gap]
+ * @property {boolean} [responsive]
+ */
+
+/**
+ * @typedef FieldDefinition
+ * @property {string} [name] - Field key used in templates and mappings.
+ * @property {string} [type] - Input type (e.g., text, boolean, array, note).
+ * @property {string} [label]
+ * @property {string} [placeholder]
+ * @property {boolean} [required]
+ * @property {string} [size] - Visual width in the form layout.
+ * @property {string} [description]
+ * @property {FieldValidation} [validation]
+ * @property {Object} [events] - Optional client-side events configuration.
+ */
+
+/**
+ * @typedef FieldValidation
+ * @property {string} [pattern] - Regex pattern used for validation.
+ * @property {string} [message] - Error message shown when validation fails.
  */
 
 /**
@@ -799,8 +873,10 @@ const Joi = require("joi");
  * @typedef TagsSchema
  * @property {string} [application] - The ID of the application that owns the tags.
  * @property {string} [_id] - The unique identifier for the tag set.
+ * @property {string} [company] - The ID of the company associated with this tags.
  * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
  *   or stylesheets) that are configured for the application.
+ * @property {Page} [page]
  */
 
 /**
@@ -830,6 +906,7 @@ const Joi = require("joi");
  *   third-party tag can be injected or supported.
  * @property {Object[]} [pages] - Pages or environments where the tag should be active.
  * @property {TagSourceSchema} [__source]
+ * @property {TemplateSchema} [template]
  */
 
 /**
@@ -2233,6 +2310,7 @@ class ContentPlatformModel {
       type: Joi.string().allow(""),
       sub_type: Joi.string().allow(""),
       content: Joi.string().allow(""),
+      template: ContentPlatformModel.TemplateSchema(),
     });
   }
 
@@ -2256,6 +2334,24 @@ class ContentPlatformModel {
       compatible_engines: Joi.array().items(Joi.string().allow("")),
       pages: Joi.array().items(Joi.any()),
       content: Joi.string().allow(""),
+      template: ContentPlatformModel.TemplateSchema(),
+    });
+  }
+
+  /** @returns {TemplateSchema} */
+  static TemplateSchema() {
+    return Joi.object({
+      template_id: Joi.string().allow(""),
+      template_version: Joi.string().allow(""),
+      template_fields: Joi.array().items(ContentPlatformModel.TemplateField()),
+    });
+  }
+
+  /** @returns {TemplateField} */
+  static TemplateField() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -2277,6 +2373,70 @@ class ContentPlatformModel {
       content: Joi.string().allow(""),
       __source: ContentPlatformModel.DataLoaderSourceSchema(),
       _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TagsTemplateSchema} */
+  static TagsTemplateSchema() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.TagTemplateItem()),
+    });
+  }
+
+  /** @returns {TagTemplateItem} */
+  static TagTemplateItem() {
+    return Joi.object({
+      template_name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      position: Joi.string().allow(""),
+      pages: Joi.array().items(Joi.string().allow("")),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
+      compatible_engines: Joi.array().items(Joi.string().allow("")),
+      field_mappings: Joi.object().pattern(/\S/, Joi.any()),
+      layout: ContentPlatformModel.TemplateLayout(),
+      name: Joi.string().allow(""),
+      path: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      image: Joi.string().allow(""),
+      note: Joi.string().allow(""),
+      template_id: Joi.string().allow(""),
+      template_version: Joi.string().allow(""),
+      category: Joi.string().allow(""),
+      fields: Joi.array().items(ContentPlatformModel.FieldDefinition()),
+      script: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TemplateLayout} */
+  static TemplateLayout() {
+    return Joi.object({
+      columns: Joi.number(),
+      gap: Joi.string().allow(""),
+      responsive: Joi.boolean(),
+    });
+  }
+
+  /** @returns {FieldDefinition} */
+  static FieldDefinition() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+      placeholder: Joi.string().allow(""),
+      required: Joi.boolean(),
+      size: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      validation: ContentPlatformModel.FieldValidation(),
+      events: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {FieldValidation} */
+  static FieldValidation() {
+    return Joi.object({
+      pattern: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -2709,7 +2869,9 @@ class ContentPlatformModel {
     return Joi.object({
       application: Joi.string().allow(""),
       _id: Joi.string().allow(""),
+      company: Joi.string().allow(""),
       tags: Joi.array().items(ContentPlatformModel.TagSchema()),
+      page: ContentPlatformModel.Page(),
     });
   }
 
@@ -2727,6 +2889,7 @@ class ContentPlatformModel {
       compatible_engines: Joi.array().items(Joi.string().allow("")),
       pages: Joi.array().items(Joi.any()),
       __source: ContentPlatformModel.TagSourceSchema(),
+      template: ContentPlatformModel.TemplateSchema(),
     });
   }
 
