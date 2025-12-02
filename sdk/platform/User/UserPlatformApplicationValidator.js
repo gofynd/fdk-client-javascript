@@ -24,6 +24,9 @@ const UserPlatformModel = require("./UserPlatformModel");
 
 /**
  * @typedef CreateUserParam
+ * @property {boolean} [verified] - Controls whether newly created emails and
+ *   phone numbers are marked as verified. Pass verified=false to keep them
+ *   unverified. When omitted, they are auto-marked verified.
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
 
@@ -274,6 +277,7 @@ class UserPlatformApplicationValidator {
   /** @returns {CreateUserParam} */
   static createUser() {
     return Joi.object({
+      verified: Joi.boolean(),
       body: UserPlatformModel.CreateUserRequestSchema().required(),
     }).required();
   }

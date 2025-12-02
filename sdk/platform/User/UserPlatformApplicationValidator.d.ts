@@ -17,6 +17,9 @@ export = UserPlatformApplicationValidator;
  */
 /**
  * @typedef CreateUserParam
+ * @property {boolean} [verified] - Controls whether newly created emails and
+ *   phone numbers are marked as verified. Pass verified=false to keep them
+ *   unverified. When omitted, they are auto-marked verified.
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
 /**
@@ -294,6 +297,12 @@ type CreateBulkExportUsersParam = {
     body: UserPlatformModel.BulkUserExportSchema;
 };
 type CreateUserParam = {
+    /**
+     * - Controls whether newly created emails and
+     * phone numbers are marked as verified. Pass verified=false to keep them
+     * unverified. When omitted, they are auto-marked verified.
+     */
+    verified?: boolean;
     body: UserPlatformModel.CreateUserRequestSchema;
 };
 type CreateUserAttributeDefinitionParam = {

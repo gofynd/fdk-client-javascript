@@ -772,6 +772,7 @@ export = CartPlatformModel;
  *   article. If the article's price after all discounts and adjustments falls
  *   below this threshold, the price adjustment will be automatically removed.
  *   (Applicable only for price adjustment discount type)
+ * @property {number} [article_index] - Index of the line item in the cart
  */
 /**
  * @typedef PriceAdjustmentRestrictions
@@ -4439,6 +4440,10 @@ type Article = {
      * (Applicable only for price adjustment discount type)
      */
     min_price_threshold?: number;
+    /**
+     * - Index of the line item in the cart
+     */
+    article_index?: number;
 };
 /** @returns {PriceAdjustmentRestrictions} */
 declare function PriceAdjustmentRestrictions(): PriceAdjustmentRestrictions;

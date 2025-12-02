@@ -343,12 +343,13 @@ class User {
    * @description: Register and add a new user to the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/user/createUser/).
    */
   async createUser(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, verified, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserPlatformApplicationValidator.createUser().validate(
       {
         body,
+        verified,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -362,6 +363,7 @@ class User {
     } = UserPlatformApplicationValidator.createUser().validate(
       {
         body,
+        verified,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -373,6 +375,7 @@ class User {
     }
 
     const query_params = {};
+    query_params["verified"] = verified;
 
     const response = await PlatformAPIClient.execute(
       this.config,

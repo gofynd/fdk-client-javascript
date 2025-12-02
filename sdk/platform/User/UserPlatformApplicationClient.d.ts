@@ -56,7 +56,7 @@ declare class User {
      * @summary: Create User
      * @description: Register and add a new user to the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/user/createUser/).
      */
-    createUser({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.CreateUserResponseSchema>;
+    createUser({ body, verified, requestHeaders }?: UserPlatformApplicationValidator.CreateUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.CreateUserResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam} arg
      *   - Arg object

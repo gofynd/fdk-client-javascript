@@ -836,6 +836,7 @@ const Joi = require("joi");
  *   article. If the article's price after all discounts and adjustments falls
  *   below this threshold, the price adjustment will be automatically removed.
  *   (Applicable only for price adjustment discount type)
+ * @property {number} [article_index] - Index of the line item in the cart
  */
 
 /**
@@ -3611,6 +3612,7 @@ class CartPlatformModel {
       meta: Joi.object().pattern(/\S/, Joi.any()),
       allowed_refund: Joi.boolean(),
       min_price_threshold: Joi.number(),
+      article_index: Joi.number(),
     });
   }
 

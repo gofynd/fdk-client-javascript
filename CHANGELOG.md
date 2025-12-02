@@ -1,3 +1,54 @@
+# CHANGE LOG (3.16.2) - 2.10.2
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### updatePriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>article_ids[].article_index</code> of schema <code>Article</code> in request body
+	- [Added] property <code>data[].article_ids[].article_index</code> of schema <code>Article</code> in response with status code 200
+
+
+#### addPriceAdjustment
+
+- ##### What's New
+	- [Added] property <code>article_ids[].article_index</code> of schema <code>Article</code> in request body
+	- [Added] property <code>data[].article_ids[].article_index</code> of schema <code>Article</code> in response with status code 201
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[].article_ids[].article_index</code> of schema <code>Article</code> in response with status code 200
+
+
+### Catalog
+
+
+
+#### addInventory
+
+- ##### What's New
+	- [Added] Possible values <code>vendor_sku</code> to property <code>sizes[].identifiers[].gtin_type</code> of schema <code>GTIN</code> in request body
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>verified</code> (type: <code>boolean</code>)
+
+
+
 # CHANGE LOG (3.16.1) - 2.10.1
 
 ## Application Client
