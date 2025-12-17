@@ -1,3 +1,81 @@
+# CHANGE LOG (3.16.3) - 2.10.3
+
+## Application Client
+
+
+
+### User
+
+
+
+#### getAttributesDefinition
+
+- ##### What's New
+	- [Added] method <code>getAttributesDefinition</code>
+
+
+
+## Platform Client
+
+
+
+### Content
+
+
+
+#### updateInjectableTag
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### getInjectableTags
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>pageNo</code> (type: <code>integer</code>)
+
+	- [Breaking] [Deleted] <code>query</code> parameter <code>pageSize</code> (type: <code>integer</code>)
+
+	- [Breaking] [Deleted] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### addInjectableTag
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+#### editInjectableTag
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>page</code> of schema <code>TagsSchema</code> in response with status code 200
+
+
+### User
+
+
+
+#### createUserGroup
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>ne,eq,gt,lt,gte,lte,cnt,nct,is,nis,sw,ew,btw,today,tomorrow,week,month,xdays,days_after_value,days_before_value,in,nin</code> to property <code>conditions[].type</code> of schema <code>ConditionsSchema</code> in request body
+	- [Added] property <code>conditions[].ignore_year</code> of schema <code>ConditionsSchema</code> in request body
+
+
+#### updateUserGroup
+
+- ##### What's New
+	- [Breaking] [Added] Possible values <code>ne,eq,gt,lt,gte,lte,cnt,nct,is,nis,sw,ew,btw,today,tomorrow,week,month,xdays,days_after_value,days_before_value,in,nin</code> to property <code>conditions[].type</code> of schema <code>ConditionsSchema</code> in request body
+	- [Added] property <code>conditions[].ignore_year</code> of schema <code>ConditionsSchema</code> in request body
+
+
+#### deleteUserGroup
+
+- ##### What's New
+	- [Added] method <code>deleteUserGroup</code>
+
+
+
 # CHANGE LOG (3.16.2) - 2.10.2
 
 ## Platform Client

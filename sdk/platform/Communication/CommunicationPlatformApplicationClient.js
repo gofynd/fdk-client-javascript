@@ -2800,7 +2800,15 @@ class Communication {
    * @description: Retrieves a list of all event subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEventSubscriptions/).
    */
   async getEventSubscriptions(
-    { pageNo, pageSize, populate, requestHeaders } = { requestHeaders: {} },
+    {
+      pageNo,
+      pageSize,
+      populate,
+      group,
+      subGroup,
+      fulfillmentOptionTypes,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -2810,6 +2818,9 @@ class Communication {
         pageNo,
         pageSize,
         populate,
+        group,
+        subGroup,
+        fulfillmentOptionTypes,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2825,6 +2836,9 @@ class Communication {
         pageNo,
         pageSize,
         populate,
+        group,
+        subGroup,
+        fulfillmentOptionTypes,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2839,6 +2853,9 @@ class Communication {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["populate"] = populate;
+    query_params["group"] = group;
+    query_params["sub_group"] = subGroup;
+    query_params["fulfillment_option_types"] = fulfillmentOptionTypes;
 
     const response = await PlatformAPIClient.execute(
       this.config,

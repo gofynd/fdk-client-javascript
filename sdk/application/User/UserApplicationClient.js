@@ -19,6 +19,8 @@ class User {
       deleteUser: "/service/application/user/authentication/v1.0/delete",
       forgotPassword:
         "/service/application/user/authentication/v1.0/login/password/reset/forgot",
+      getAttributesDefinition:
+        "/service/application/user/profile/v1.0/attributes/definition",
       getListOfActiveSessions:
         "/service/application/user/authentication/v1.0/sessions",
       getLoggedInUser: "/service/application/user/authentication/v1.0/session",
@@ -341,6 +343,71 @@ class User {
       }),
       query_params,
       body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getAttributesDefinition
+   * @summary: Get User Attribute Definitions
+   * @description: Retrieve user attribute definitions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/user/getAttributesDefinition/).
+   */
+  async getAttributesDefinition(
+    {
+      excludingIds,
+      slug,
+      type,
+      customerEditable,
+      encrypted,
+      pinned,
+      pinOrder,
+      isLocked,
+      name,
+      registrationEnabled,
+      registrationType,
+      pageSize,
+      pageNo,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["excluding_ids"] = excludingIds;
+    query_params["slug"] = slug;
+    query_params["type"] = type;
+    query_params["customer_editable"] = customerEditable;
+    query_params["encrypted"] = encrypted;
+    query_params["pinned"] = pinned;
+    query_params["pin_order"] = pinOrder;
+    query_params["is_locked"] = isLocked;
+    query_params["name"] = name;
+    query_params["registration_enabled"] = registrationEnabled;
+    query_params["registration_type"] = registrationType;
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAttributesDefinition"],
+        params: {},
+      }),
+      query_params,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

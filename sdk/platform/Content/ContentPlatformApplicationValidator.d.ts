@@ -294,10 +294,6 @@ export = ContentPlatformApplicationValidator;
 /**
  * @typedef GetInjectableTagsParam
  * @property {boolean} [all] - Get all tags irrespective of the creator of tags
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
  * @property {string} [search] - Keyword to filter and find tags by name.
  */
 /**
@@ -1061,16 +1057,6 @@ type GetInjectableTagsParam = {
      * - Get all tags irrespective of the creator of tags
      */
     all?: boolean;
-    /**
-     * - The page number to navigate through the given
-     * set of results. Default value is 1.
-     */
-    pageNo?: number;
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    pageSize?: number;
     /**
      * - Keyword to filter and find tags by name.
      */

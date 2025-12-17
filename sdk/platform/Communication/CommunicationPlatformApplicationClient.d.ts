@@ -432,7 +432,7 @@ declare class Communication {
      * @summary: Get all event subscriptions
      * @description: Retrieves a list of all event subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEventSubscriptions/).
      */
-    getEventSubscriptions({ pageNo, pageSize, populate, requestHeaders }?: CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptions>;
+    getEventSubscriptions({ pageNo, pageSize, populate, group, subGroup, fulfillmentOptionTypes, requestHeaders, }?: CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptions>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsByIdParam} arg
      *   - Arg object

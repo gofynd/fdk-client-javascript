@@ -5207,7 +5207,7 @@ class Content {
    * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
-    { all, pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
+    { all, search, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5215,8 +5215,6 @@ class Content {
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
       {
         all,
-        pageNo,
-        pageSize,
         search,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5231,8 +5229,6 @@ class Content {
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
       {
         all,
-        pageNo,
-        pageSize,
         search,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5246,8 +5242,6 @@ class Content {
 
     const query_params = {};
     query_params["all"] = all;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
     query_params["search"] = search;
 
     const response = await PlatformAPIClient.execute(

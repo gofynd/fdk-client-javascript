@@ -150,6 +150,16 @@ declare class User {
      */
     deleteUserAttributesInBulk({ userId, body, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributesInBulkParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessage>;
     /**
+     * @param {UserPlatformApplicationValidator.DeleteUserGroupParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.DeleteUserGroupSuccess>} - Success response
+     * @name deleteUserGroup
+     * @summary: Delete User Group
+     * @description: Permanently delete a user group by its unique identifier. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/user/deleteUserGroup/).
+     */
+    deleteUserGroup({ groupId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserGroupParam, { responseHeaders }?: object): Promise<UserPlatformModel.DeleteUserGroupSuccess>;
+    /**
      * @param {UserPlatformApplicationValidator.FilterUsersByAttributesParam} arg
      *   - Arg object
      *

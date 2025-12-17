@@ -61,6 +61,10 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.DeleteBulkUserAttribute} body
  */
 /**
+ * @typedef DeleteUserGroupParam
+ * @property {string} groupId - Unique ID allotted to a User Group
+ */
+/**
  * @typedef FilterUsersByAttributesParam
  * @property {UserPlatformModel.UserAttributeFilter} body
  */
@@ -232,6 +236,8 @@ declare class UserPlatformApplicationValidator {
     static deleteUserAttributeDefinitionById(): DeleteUserAttributeDefinitionByIdParam;
     /** @returns {DeleteUserAttributesInBulkParam} */
     static deleteUserAttributesInBulk(): DeleteUserAttributesInBulkParam;
+    /** @returns {DeleteUserGroupParam} */
+    static deleteUserGroup(): DeleteUserGroupParam;
     /** @returns {FilterUsersByAttributesParam} */
     static filterUsersByAttributes(): FilterUsersByAttributesParam;
     /** @returns {GetActiveSessionsParam} */
@@ -282,7 +288,7 @@ declare class UserPlatformApplicationValidator {
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkImportStoreFrontUsersParam, CreateBulkExportUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, DeleteUserAttributesInBulkParam, FilterUsersByAttributesParam, GetActiveSessionsParam, GetBulkExportUsersListParam, GetBulkImportUsersListParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUserTimelineParam, GetUsersJobByJobIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserAttributesParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, BulkImportStoreFrontUsersParam, CreateBulkExportUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, DeleteUserAttributesInBulkParam, DeleteUserGroupParam, FilterUsersByAttributesParam, GetActiveSessionsParam, GetBulkExportUsersListParam, GetBulkImportUsersListParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUserTimelineParam, GetUsersJobByJobIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserAttributesParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
@@ -361,6 +367,12 @@ type DeleteUserAttributesInBulkParam = {
      */
     userId: string;
     body: UserPlatformModel.DeleteBulkUserAttribute;
+};
+type DeleteUserGroupParam = {
+    /**
+     * - Unique ID allotted to a User Group
+     */
+    groupId: string;
 };
 type FilterUsersByAttributesParam = {
     body: UserPlatformModel.UserAttributeFilter;

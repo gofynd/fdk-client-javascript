@@ -1,5 +1,20 @@
 export = CommunicationPlatformModel;
 /**
+ * @typedef GroupMapping
+ * @property {EventGroup[]} items
+ */
+/**
+ * @typedef EventGroup
+ * @property {string} name - Event group identifier
+ * @property {string} display - Human-readable group name
+ * @property {EventSubgroup[]} subgroups
+ */
+/**
+ * @typedef EventSubgroup
+ * @property {string} name - Sub-group identifier
+ * @property {string} display - Human-readable sub-group name
+ */
+/**
  * @typedef EventSubscriptionsBulkUpdatePayload
  * @property {SubscriptionsObject[]} [subscriptions]
  */
@@ -884,8 +899,38 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { EventSubscriptionsBulkUpdatePayload, EventSubscriptionsBulkUpdateResult, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EnginePayload, EngineResult, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptionEvents, EventTemplate, EventProviderTemplates, EventSubscriptions, TriggerJobResult, TriggerJobPayload, GetGlobalVariablesResult, CreateGlobalVariablesResult, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, SystemSmsTemplate, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfiguration };
+    export { GroupMapping, EventGroup, EventSubgroup, EventSubscriptionsBulkUpdatePayload, EventSubscriptionsBulkUpdateResult, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EnginePayload, EngineResult, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptionEvents, EventTemplate, EventProviderTemplates, EventSubscriptions, TriggerJobResult, TriggerJobPayload, GetGlobalVariablesResult, CreateGlobalVariablesResult, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, SystemSmsTemplate, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfiguration };
 }
+/** @returns {GroupMapping} */
+declare function GroupMapping(): GroupMapping;
+type GroupMapping = {
+    items: EventGroup[];
+};
+/** @returns {EventGroup} */
+declare function EventGroup(): EventGroup;
+type EventGroup = {
+    /**
+     * - Event group identifier
+     */
+    name: string;
+    /**
+     * - Human-readable group name
+     */
+    display: string;
+    subgroups: EventSubgroup[];
+};
+/** @returns {EventSubgroup} */
+declare function EventSubgroup(): EventSubgroup;
+type EventSubgroup = {
+    /**
+     * - Sub-group identifier
+     */
+    name: string;
+    /**
+     * - Human-readable sub-group name
+     */
+    display: string;
+};
 /** @returns {EventSubscriptionsBulkUpdatePayload} */
 declare function EventSubscriptionsBulkUpdatePayload(): EventSubscriptionsBulkUpdatePayload;
 type EventSubscriptionsBulkUpdatePayload = {

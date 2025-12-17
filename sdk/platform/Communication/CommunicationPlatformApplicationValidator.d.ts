@@ -139,6 +139,14 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {string} [populate] - Populate Fields
+ * @property {string} [group] - An event group is a collection of email and SMS
+ *   templates. Filtering by event group lets you view or manage all related
+ *   communication templates together.
+ * @property {string} [subGroup] - Filter by event subgroup. Here, a subgroup is
+ *   a subset within a group, containing specific email and SMS templates for
+ *   more detailed organization.
+ * @property {string} [fulfillmentOptionTypes] - Filter by fulfillment option
+ *   type. Indicates the delivery choice selected, e.g., standard or express.
  */
 /**
  * @typedef GetEventSubscriptionsByIdParam
@@ -619,6 +627,23 @@ type GetEventSubscriptionsParam = {
      * - Populate Fields
      */
     populate?: string;
+    /**
+     * - An event group is a collection of email and SMS
+     * templates. Filtering by event group lets you view or manage all related
+     * communication templates together.
+     */
+    group?: string;
+    /**
+     * - Filter by event subgroup. Here, a subgroup is
+     * a subset within a group, containing specific email and SMS templates for
+     * more detailed organization.
+     */
+    subGroup?: string;
+    /**
+     * - Filter by fulfillment option
+     * type. Indicates the delivery choice selected, e.g., standard or express.
+     */
+    fulfillmentOptionTypes?: string;
 };
 type GetEventSubscriptionsByIdParam = {
     /**

@@ -321,9 +321,12 @@ export = UserPlatformModel;
  */
 /**
  * @typedef ConditionsSchema
- * @property {string} [user_attribute_definition_id]
- * @property {string} [type]
- * @property {string} [value]
+ * @property {string} [user_attribute_definition_id] - ID of the user attribute
+ *   definition used in the condition
+ * @property {string} [type] - Type of condition to apply on the attribute value.
+ * @property {string} [value] - Value of the condition
+ * @property {boolean} [ignore_year] - Indicates if the year should be ignored
+ *   for the condition
  */
 /**
  * @typedef DeleteBulkUserAttribute
@@ -694,6 +697,12 @@ export = UserPlatformModel;
  * @property {PrivacyPolicyConsentSchema} [privacy_policy]
  */
 /**
+ * @typedef DeleteUserGroupSuccess
+ * @property {string} id - ID of the user group that was deleted
+ * @property {boolean} success - Success indicating the user group was deleted
+ *   successfully.
+ */
+/**
  * @typedef PrivacyPolicyConsentSchema
  * @property {boolean} [value] - Whether the user has consented to the privacy policy
  * @property {string} [updated_at] - When the consent was last updated
@@ -701,7 +710,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinitionList, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, PrivacyPolicyConsentSchema };
+    export { SuccessMessage, UserAttributeDefinitionList, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, DeleteUserGroupSuccess, PrivacyPolicyConsentSchema };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -1326,9 +1335,24 @@ type UserGroupListResponseSchema = {
 /** @returns {ConditionsSchema} */
 declare function ConditionsSchema(): ConditionsSchema;
 type ConditionsSchema = {
+    /**
+     * - ID of the user attribute
+     * definition used in the condition
+     */
     user_attribute_definition_id?: string;
+    /**
+     * - Type of condition to apply on the attribute value.
+     */
     type?: string;
+    /**
+     * - Value of the condition
+     */
     value?: string;
+    /**
+     * - Indicates if the year should be ignored
+     * for the condition
+     */
+    ignore_year?: boolean;
 };
 /** @returns {DeleteBulkUserAttribute} */
 declare function DeleteBulkUserAttribute(): DeleteBulkUserAttribute;
@@ -1901,6 +1925,19 @@ type Email = {
 declare function UserConsent(): UserConsent;
 type UserConsent = {
     privacy_policy?: PrivacyPolicyConsentSchema;
+};
+/** @returns {DeleteUserGroupSuccess} */
+declare function DeleteUserGroupSuccess(): DeleteUserGroupSuccess;
+type DeleteUserGroupSuccess = {
+    /**
+     * - ID of the user group that was deleted
+     */
+    id: string;
+    /**
+     * - Success indicating the user group was deleted
+     * successfully.
+     */
+    success: boolean;
 };
 /** @returns {PrivacyPolicyConsentSchema} */
 declare function PrivacyPolicyConsentSchema(): PrivacyPolicyConsentSchema;

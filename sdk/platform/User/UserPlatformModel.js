@@ -361,9 +361,12 @@ const Joi = require("joi");
 
 /**
  * @typedef ConditionsSchema
- * @property {string} [user_attribute_definition_id]
- * @property {string} [type]
- * @property {string} [value]
+ * @property {string} [user_attribute_definition_id] - ID of the user attribute
+ *   definition used in the condition
+ * @property {string} [type] - Type of condition to apply on the attribute value.
+ * @property {string} [value] - Value of the condition
+ * @property {boolean} [ignore_year] - Indicates if the year should be ignored
+ *   for the condition
  */
 
 /**
@@ -775,6 +778,13 @@ const Joi = require("joi");
 /**
  * @typedef UserConsent
  * @property {PrivacyPolicyConsentSchema} [privacy_policy]
+ */
+
+/**
+ * @typedef DeleteUserGroupSuccess
+ * @property {string} id - ID of the user group that was deleted
+ * @property {boolean} success - Success indicating the user group was deleted
+ *   successfully.
  */
 
 /**
@@ -1197,6 +1207,7 @@ class UserPlatformModel {
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       value: Joi.string().allow(""),
+      ignore_year: Joi.boolean(),
     });
   }
 
@@ -1671,6 +1682,14 @@ class UserPlatformModel {
   static UserConsent() {
     return Joi.object({
       privacy_policy: UserPlatformModel.PrivacyPolicyConsentSchema(),
+    });
+  }
+
+  /** @returns {DeleteUserGroupSuccess} */
+  static DeleteUserGroupSuccess() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
     });
   }
 

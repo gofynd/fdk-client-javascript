@@ -77,6 +77,11 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
+ * @typedef DeleteUserGroupParam
+ * @property {string} groupId - Unique ID allotted to a User Group
+ */
+
+/**
  * @typedef FilterUsersByAttributesParam
  * @property {UserPlatformModel.UserAttributeFilter} body
  */
@@ -341,6 +346,13 @@ class UserPlatformApplicationValidator {
       userId: Joi.string().allow("").required(),
 
       body: UserPlatformModel.DeleteBulkUserAttribute().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteUserGroupParam} */
+  static deleteUserGroup() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
     }).required();
   }
 

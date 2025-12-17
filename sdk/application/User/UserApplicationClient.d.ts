@@ -9,6 +9,7 @@ declare class User {
         deleteMobileNumber: string;
         deleteUser: string;
         forgotPassword: string;
+        getAttributesDefinition: string;
         getListOfActiveSessions: string;
         getLoggedInUser: string;
         getPlatformConfig: string;
@@ -107,6 +108,15 @@ declare class User {
      * @description: Reset a password using the code sent on email or sms the login. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/user/forgotPassword/).
      */
     forgotPassword({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<LoginSuccess>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getAttributesDefinition
+     * @summary: Get User Attribute Definitions
+     * @description: Retrieve user attribute definitions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/user/getAttributesDefinition/).
+     */
+    getAttributesDefinition({ excludingIds, slug, type, customerEditable, encrypted, pinned, pinOrder, isLocked, name, registrationEnabled, registrationType, pageSize, pageNo, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<any>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

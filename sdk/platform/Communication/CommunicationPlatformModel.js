@@ -1,6 +1,24 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GroupMapping
+ * @property {EventGroup[]} items
+ */
+
+/**
+ * @typedef EventGroup
+ * @property {string} name - Event group identifier
+ * @property {string} display - Human-readable group name
+ * @property {EventSubgroup[]} subgroups
+ */
+
+/**
+ * @typedef EventSubgroup
+ * @property {string} name - Sub-group identifier
+ * @property {string} display - Human-readable sub-group name
+ */
+
+/**
  * @typedef EventSubscriptionsBulkUpdatePayload
  * @property {SubscriptionsObject[]} [subscriptions]
  */
@@ -1002,6 +1020,34 @@ const Joi = require("joi");
  */
 
 class CommunicationPlatformModel {
+  /** @returns {GroupMapping} */
+  static GroupMapping() {
+    return Joi.object({
+      items: Joi.array()
+        .items(CommunicationPlatformModel.EventGroup())
+        .required(),
+    });
+  }
+
+  /** @returns {EventGroup} */
+  static EventGroup() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      display: Joi.string().allow("").required(),
+      subgroups: Joi.array()
+        .items(CommunicationPlatformModel.EventSubgroup())
+        .required(),
+    });
+  }
+
+  /** @returns {EventSubgroup} */
+  static EventSubgroup() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      display: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {EventSubscriptionsBulkUpdatePayload} */
   static EventSubscriptionsBulkUpdatePayload() {
     return Joi.object({

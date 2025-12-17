@@ -774,7 +774,6 @@ export = ContentPlatformModel;
  * @property {string} [company] - The ID of the company associated with this tags.
  * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
  *   or stylesheets) that are configured for the application.
- * @property {Page} [page]
  */
 /**
  * @typedef TagSchema
@@ -2710,7 +2709,6 @@ type TagsSchema = {
      * or stylesheets) that are configured for the application.
      */
     tags?: TagSchema[];
-    page?: Page;
 };
 /** @returns {TagSchema} */
 declare function TagSchema(): TagSchema;

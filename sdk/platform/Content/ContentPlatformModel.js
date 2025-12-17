@@ -876,7 +876,6 @@ const Joi = require("joi");
  * @property {string} [company] - The ID of the company associated with this tags.
  * @property {TagSchema[]} [tags] - A list of tags (HTML resources like scripts
  *   or stylesheets) that are configured for the application.
- * @property {Page} [page]
  */
 
 /**
@@ -2871,7 +2870,6 @@ class ContentPlatformModel {
       _id: Joi.string().allow(""),
       company: Joi.string().allow(""),
       tags: Joi.array().items(ContentPlatformModel.TagSchema()),
-      page: ContentPlatformModel.Page(),
     });
   }
 
