@@ -19,6 +19,8 @@ class Content {
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
       getBlogs: "/service/application/content/v1.0/blogs",
+      getBulkCustomFieldsByResource:
+        "/service/application/content/v2.0/customfields/resource/{resource}",
       getCustomFieldsByResourceId:
         "/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}",
       getCustomObjectBySlug:
@@ -265,6 +267,57 @@ class Content {
       constructUrl({
         url: this._urls["getBlogs"],
         params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<BulkCustomFieldsResponseByResourceSchema>} - Success response
+   * @name getBulkCustomFieldsByResource
+   * @summary: Get bulk list of custom fields of given resource
+   * @description: Retrieves a bulk list of custom fields attached to a particular resource by using the resource and resource IDs. The resource_ids query parameter is required and can accept multiple comma-separated values. Optional filters for keys and namespaces can also be applied. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getBulkCustomFieldsByResource/).
+   */
+  async getBulkCustomFieldsByResource(
+    { resource, resourceIds, keys, namespaces, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["resource"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["resource_ids"] = resourceIds;
+    query_params["keys"] = keys;
+    query_params["namespaces"] = namespaces;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getBulkCustomFieldsByResource"],
+        params: { resource },
       }),
       query_params,
       undefined,

@@ -1,3 +1,625 @@
+# CHANGE LOG (3.17.0) - 2.11.0
+
+## Application Client
+
+- [Breaking] [Removed] Rewards class from application client
+
+
+### Cart
+
+
+
+#### getCoupons
+
+- ##### What's New
+	- [Added] property <code>available_coupon_list[].coupon_id</code> of schema <code>Coupon</code> in response with status code 200
+
+
+### Content
+
+
+
+#### getBulkCustomFieldsByResource
+
+- ##### What's New
+	- [Added] method <code>getBulkCustomFieldsByResource</code>
+
+
+
+### Logistic
+
+
+
+#### getPincodeCity
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getPincodeCity</code>
+
+
+
+#### getCourierPartners
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getCourierPartners</code>
+
+
+
+#### getDeliveryPromise
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Required <code>header</code> parameter <code>xApplicationData</code> (type: <code>string</code>)
+
+
+
+#### getFulfillmentOptionStores
+
+- ##### What's New
+	- [Added] method <code>getFulfillmentOptionStores</code>
+
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>order.shipments[].breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>order.shipments[].refund_modes</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.shipments[].refund_breakup_values</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.shipments[].is_refund_config_enabled</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>order.shipments[].breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>order.shipments[].refund_modes</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.shipments[].refund_breakup_values</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>order.shipments[].is_refund_config_enabled</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.breakup_values[].sub_values</code> of schema <code>BreakupValues</code> in response with status code 200
+	- [Added] property <code>shipment.refund_modes</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>shipment.refund_breakup_values</code> of schema <code>Shipments</code> in response with status code 200
+	- [Added] property <code>shipment.is_refund_config_enabled</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### updateShipmentStatus
+
+- ##### What's New
+	- [Added] property <code>statuses[].shipments[].refund_modes</code> of schema <code>ShipmentsRequestSchema</code> in request body
+
+
+#### getRefundModes
+
+- ##### What's New
+	- [Added] method <code>getRefundModes</code>
+
+
+
+### Payment
+
+
+
+#### addBeneficiaryDetails
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>is_verified_flag</code> of schema <code>RefundAccountDetails</code> in response with status code 200
+
+
+#### addRefundBankAccountUsingOTP
+
+- ##### What's New
+	- [Added] property <code>details.upi</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] property <code>shipment_id</code> of schema <code>AddBeneficiaryDetailsOTP</code> in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>is_verified_flag</code> of schema <code>RefundAccountDetails</code> in response with status code 200
+
+- ##### What's Changed
+	- [Changed] <code>details.account_holder</code>, <code>details.account_no</code>, <code>details.bank_name</code>, <code>details.branch_name</code>, <code>details.ifsc_code</code> made optional in request body
+
+
+#### getRefundBeneficiaries
+
+- ##### What's New
+	- [Breaking] [Added] Required status to query parameter <code>orderId</code>
+	- [Breaking] [Added] Required status to query parameter <code>shipmentId</code>
+	- [Added] property <code>data</code> of schema <code>GetRefundBeneficiary</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>GetRefundBeneficiary</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] <code>query</code> parameter <code>filterBy</code> (type: <code>string</code>)
+
+	- [Breaking] [Deleted] property <code>upi</code> of schema <code>RefundBeneficiaries</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>bank</code> of schema <code>RefundBeneficiaries</code> in response with status code 200
+
+
+#### getRefundBeneficiariesUsingOTPSession
+
+- ##### What's New
+	- [Added] property <code>data</code> of schema <code>GetRefundBeneficiary</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>GetRefundBeneficiary</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>upi</code> of schema <code>RefundBeneficiaries</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>bank</code> of schema <code>RefundBeneficiaries</code> in response with status code 200
+
+
+## Partner Client
+
+
+
+### Logistics
+
+
+
+#### getCourierPartnerAccounts
+
+- ##### What's New
+	- [Added] property <code>items[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerAccount
+
+- ##### What's New
+	- [Added] property <code>scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### createCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in request body
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerSchemes
+
+- ##### What's New
+	- [Added] property <code>items[].feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in request body
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getSampleFileRateCard
+
+- ##### What's New
+	- [Added] method <code>getSampleFileRateCard</code>
+
+
+
+#### bulkRateCard
+
+- ##### What's New
+	- [Added] method <code>bulkRateCard</code>
+
+
+
+#### getBulkRateCard
+
+- ##### What's New
+	- [Added] method <code>getBulkRateCard</code>
+
+
+
+#### getSampleFileRateZone
+
+- ##### What's New
+	- [Added] method <code>getSampleFileRateZone</code>
+
+
+
+#### createRateZoneBulkJob
+
+- ##### What's New
+	- [Added] method <code>createRateZoneBulkJob</code>
+
+
+
+#### getBulkRateZoneJobHistory
+
+- ##### What's New
+	- [Added] method <code>getBulkRateZoneJobHistory</code>
+
+
+
+#### getRateZoneConfig
+
+- ##### What's New
+	- [Added] method <code>getRateZoneConfig</code>
+
+
+
+#### updateRateZoneConfiguration
+
+- ##### What's New
+	- [Added] method <code>updateRateZoneConfiguration</code>
+
+
+
+## Platform Client
+
+- [Breaking] [Removed] Rewards class from platform client
+
+
+### Cart
+
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] property <code>items[].quantity</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].product</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].product_ean_id</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].parent_item_identifiers</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].article</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].promotions_applied</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].delivery_promise</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].key</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].coupon</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].bulk_offer</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].price</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].coupon_message</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].identifiers</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].discount</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].availability</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].moq</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].max_quantity</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].price_per_unit</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].promo_meta</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].custom_order</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] property <code>items[].item_type</code> of schema <code>CartProductInfo</code> in response with status code 200
+	- [Added] <code>items[].identifiers</code> made required in response with status code 200
+	- [Added] property <code>cart_id</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>uid</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>coupon_text</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>id</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>pan_config</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>delivery_promise</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>comment</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>payment_selection_lock</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>delivery_charge_info</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>common_config</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>coupon</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>restrict_checkout</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>notification</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>staff_user_id</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>breakup_values</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>is_valid</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>currency</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>checkout_mode</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>last_modified</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>buy_now</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>gstin</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>applied_promo_details</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>pan_no</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>custom_cart_meta</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>alternate_pickup_person</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] property <code>free_gift_selection_available</code> of schema <code>CartDetailResult</code> in response with status code 200
+	- [Added] Response with status 400
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>cart</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].item_id</code> of schema <code>CartItemInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].size</code> of schema <code>CartItemInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].store_id</code> of schema <code>CartItemInfo</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[].success</code> of schema <code>CartItemInfo</code> in response with status code 200
+
+
+### CompanyProfile
+
+
+
+#### createLocation
+
+- ##### What's New
+	- [Added] property <code>multi_piece_shipment</code> of schema <code>LocationSchema</code> in request body
+
+
+#### getLocationDetail
+
+- ##### What's New
+	- [Added] property <code>multi_piece_shipment</code> of schema <code>GetLocationSchema</code> in response with status code 200
+
+
+#### updateLocation
+
+- ##### What's New
+	- [Added] property <code>multi_piece_shipment</code> of schema <code>LocationSchema</code> in request body
+
+
+#### createLocationBulk
+
+- ##### What's New
+	- [Added] property <code>data[].multi_piece_shipment</code> of schema <code>LocationSchema</code> in request body
+
+
+### Serviceability
+
+
+
+#### getCourierPartnerAccounts
+
+- ##### What's New
+	- [Added] property <code>items[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerAccount
+
+- ##### What's New
+	- [Added] property <code>scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCourierRule
+
+- ##### What's New
+	- [Added] property <code>cp_list[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerRule
+
+- ##### What's New
+	- [Added] property <code>cp_list[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### createCourierPartnerRule
+
+- ##### What's New
+	- [Added] property <code>cp_list[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerRules
+
+- ##### What's New
+	- [Added] property <code>items[].cp_list[].scheme_rules.feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCompanyConfiguration
+
+- ##### What's New
+	- [Added] property <code>is_rate_card_enabled</code> of schema <code>CompanyConfigurationSchema</code> in request body
+	- [Added] property <code>is_rate_card_enabled</code> of schema <code>CompanyConfig</code> in response with status code 200
+
+
+#### getCompanyConfiguration
+
+- ##### What's New
+	- [Added] property <code>is_rate_card_enabled</code> of schema <code>CompanyConfig</code> in response with status code 200
+
+
+#### updateApplicationConfiguration
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateApplicationConfiguration</code>
+
+
+
+#### createCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in request body
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerSchemes
+
+- ##### What's New
+	- [Added] property <code>items[].feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in request body
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerScheme
+
+- ##### What's New
+	- [Added] property <code>feature.b2b</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getFulfillmentOptionStores
+
+- ##### What's New
+	- [Added] property <code>items[].address.address2</code> of schema <code>Address</code> in response with status code 200
+	- [Added] property <code>items[].address.postal_code</code> of schema <code>Address</code> in response with status code 200
+	- [Added] property <code>items[].address.lat_long</code> of schema <code>Address</code> in response with status code 200
+	- [Added] property <code>items[].store_code</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].avg_order_processing_time</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].timezone</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].holiday_list</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].customfields</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].is_open</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].promise_customfields</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].distance</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+	- [Added] property <code>items[].timing</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].display_name</code> of schema <code>FulfillmentOptionStore</code> in response with status code 200
+
+
+### Order
+
+
+
+#### updateShipmentStatus
+
+- ##### What's New
+	- [Added] property <code>statuses[].shipments[].refund_modes</code> of schema <code>ShipmentsRequestSchema</code> in request body
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].bags[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_source_details</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].order_status.order_details.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].seller_qc_details</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Added] property <code>shipments[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].packages</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>order.ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>order.ordering_source_details</code> of schema <code>OrderData</code> in response with status code 200
+	- [Added] property <code>shipments[].order_status.order_details.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].bags[].seller_qc_details</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Added] property <code>shipments[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>shipments[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>shipments[].packages</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].order_status.order_details.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].bags[].seller_qc_details</code> of schema <code>OrderBags</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].shipments[].packages</code> of schema <code>PlatformShipment</code> in response with status code 200
+	- [Added] property <code>items[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_source</code> of schema <code>PlatformOrderItems</code> in response with status code 200
+	- [Added] property <code>items[].ordering_source_details</code> of schema <code>PlatformOrderItems</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property <code>items[].bags[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].bags[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_currency_prices.cost_price</code> of schema <code>OrderingCurrencyPrices</code> in response with status code 200
+	- [Added] property <code>items[].ordering_source_details</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property <code>data.order.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.shipment.price.cost_price</code> of schema <code>Prices</code> in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property <code>data.items[].order.prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.items[].prices.cost_price</code> of schema <code>Prices</code> in response with status code 200
+	- [Added] property <code>data.items[].shipment.price.cost_price</code> of schema <code>Prices</code> in response with status code 200
+
+
+#### getShipmentPackages
+
+- ##### What's New
+	- [Added] method <code>getShipmentPackages</code>
+
+
+
+#### createShipmentPackages
+
+- ##### What's New
+	- [Added] method <code>createShipmentPackages</code>
+
+
+
+#### updateShipmentPackages
+
+- ##### What's New
+	- [Added] method <code>updateShipmentPackages</code>
+
+
+
+### Payment
+
+
+
+#### addRefundBankAccountUsingOTP
+
+- ##### What's New
+	- [Added] property <code>details.upi</code> of schema <code>BankDetailsForOTP</code> in request body
+	- [Added] property <code>shipment_id</code> of schema <code>AddBeneficiaryDetailsOTPCreation</code> in request body
+
+- ##### What's Changed
+	- [Changed] <code>details.account_holder</code>, <code>details.account_no</code>, <code>details.bank_name</code>, <code>details.branch_name</code>, <code>details.ifsc_code</code> made optional in request body
+
+
+### User
+
+
+
+#### createUserGroup
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>conditions[].value</code> of schema <code>ConditionsSchema</code> in request body
+
+
+#### updateUserGroup
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>conditions[].value</code> of schema <code>ConditionsSchema</code> in request body
+
+
+#### updateUserAttributes
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>attributes[].value</code> of schema <code>BulkUserAttributeRequestBody</code> in request body
+
+
+#### filterUsersByAttributes
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>query.conditions[].value</code> of schema <code>UserAttributeFilterRequestConditions</code> in request body
+
+
 # CHANGE LOG (3.16.3) - 2.10.3
 
 ## Application Client

@@ -89,15 +89,15 @@ declare class Order {
      */
     createOrder({ xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<any>;
     /**
-     * @param {OrderPlatformValidator.CreateOrderDeprecatedParam} arg - Arg object
+     * @param {OrderPlatformValidator.CreateShipmentPackagesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
-     * @name createOrderDeprecated
-     * @summary: Create order
-     * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrderDeprecated/).
+     * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+     * @name createShipmentPackages
+     * @summary: Create shipment packages
+     * @description: Create new packages for a shipment, enabling Multi-Piece Shipment (MPS) functionality. This operation validates courier partner availability and performs bag breaking  as per number of packages. The system automatically validates MPS eligibility and store  configuration before creating packages. If the store is not eligible for MPS, it will not let the user create packages. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createShipmentPackages/).
      */
-    createOrderDeprecated({ xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders }?: OrderPlatformValidator.CreateOrderDeprecatedParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponseSchema>;
+    createShipmentPackages({ shipmentId, body, requestHeaders }?: OrderPlatformValidator.CreateShipmentPackagesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BaseResponseSchema>;
     /**
      * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -505,6 +505,16 @@ declare class Order {
      */
     getShipmentHistory({ shipmentId, bagId, requestHeaders }?: OrderPlatformValidator.GetShipmentHistoryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentHistoryResponseSchema>;
     /**
+     * @param {OrderPlatformValidator.GetShipmentPackagesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.PackagesResponseSchema>} - Success response
+     * @name getShipmentPackages
+     * @summary: Get shipment packages
+     * @description: Retrieve all packages associated with a specific shipment. This endpoint supports  both single-piece and multi-piece shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipmentPackages/).
+     */
+    getShipmentPackages({ shipmentId, requestHeaders }?: OrderPlatformValidator.GetShipmentPackagesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PackagesResponseSchema>;
+    /**
      * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -699,18 +709,6 @@ declare class Order {
      */
     getfilters({ view, groupEntity, requestHeaders }?: OrderPlatformValidator.GetfiltersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FiltersResponseSchema>;
     /**
-     * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponseSchema>}
-     *   - Success response
-     *
-     * @name invalidateShipmentCache
-     * @summary: Invalidate shipment cache
-     * @description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/invalidateShipmentCache/).
-     */
-    invalidateShipmentCache({ body, requestHeaders }?: OrderPlatformValidator.InvalidateShipmentCacheParam, { responseHeaders }?: object): Promise<OrderPlatformModel.InvalidateShipmentCacheResponseSchema>;
-    /**
      * @param {OrderPlatformValidator.JobDetailsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -849,6 +847,16 @@ declare class Order {
      * @description: Modify shipment/bag lock status and update lock/unlock messages. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateShipmentLock/).
      */
     updateShipmentLock({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentLockParam, { responseHeaders }?: object): Promise<OrderPlatformModel.UpdateShipmentLockResponseSchema>;
+    /**
+     * @param {OrderPlatformValidator.UpdateShipmentPackagesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+     * @name updateShipmentPackages
+     * @summary: Update shipment packages
+     * @description: Update existing packages for a shipment. This operation replaces all existing  packages with the provided package list. The system validates courier partner  availability and performs bag breaking as per number of packages. Any packages  without IDs will have new unique IDs generated. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateShipmentPackages/).
+     */
+    updateShipmentPackages({ shipmentId, body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentPackagesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BaseResponseSchema>;
     /**
      * @param {OrderPlatformValidator.UpdateShipmentStatusParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

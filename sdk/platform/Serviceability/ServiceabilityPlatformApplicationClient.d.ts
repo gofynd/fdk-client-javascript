@@ -451,19 +451,6 @@ declare class Serviceability {
      */
     putFulfillmentOption({ slug, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PutFulfillmentOptionParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.FulfillmentOption>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPut>} -
-     *   Success response
-     * @name updateApplicationConfiguration
-     * @summary: Apply configuration to an application
-     * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/updateApplicationConfiguration/).
-     */
-    updateApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPut>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateBulkGeoAreaParam} arg
      *   - Arg object
      *

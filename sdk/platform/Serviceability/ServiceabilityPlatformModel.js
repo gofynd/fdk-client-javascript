@@ -278,8 +278,7 @@ const Joi = require("joi");
 /**
  * @typedef PincodeMOPResult
  * @property {boolean} success - Whether operation was successful.
- * @property {number} status_code - Status code for the response.\
- *   _Deprecated_*
+ * @property {number} status_code - Status code for the response.
  * @property {string} batch_id - A unique identifier for the performed batch operation.
  * @property {string} country - Name of the country.
  * @property {string} action - Denotes wether to activate or deavtivate pincodes
@@ -592,6 +591,9 @@ const Joi = require("joi");
 /**
  * @typedef CompanyConfig
  * @property {number} [company_id] - The unique identifier of the company.
+ * @property {boolean} [is_rate_card_enabled] - Enables rate card feature at
+ *   company level. Rate card rule engine runs only if rate card is configured
+ *   at delivery partner scheme level.
  * @property {string[]} [sort] - Array defining the sorting order.
  * @property {string} [logistics_as_actual] - Defines the logistics control type.
  */
@@ -1191,8 +1193,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GetLocality
- * @property {Object} [meta] - Additional metadata for the locality.\
- *   _Deprecated_*
+ * @property {Object} [meta] - Additional metadata for the locality.
  * @property {string} [parent_uid] - Unique identifier for the parent locality,
  *   if applicable.
  * @property {string} [id] - A string serving as the unique identifier.
@@ -1296,6 +1297,9 @@ const Joi = require("joi");
 
 /**
  * @typedef CompanyConfigurationSchema
+ * @property {boolean} [is_rate_card_enabled] - Enables rate card feature at
+ *   company level. Rate card rule engine runs only if rate card is configured
+ *   at delivery partner scheme level.
  * @property {string[]} [sort] - An array of strings specifying sorting preferences.
  */
 
@@ -1690,24 +1694,78 @@ const Joi = require("joi");
 /**
  * @typedef FulfillmentOptionStore
  * @property {number} [uid] - Unique identifier for the store.
+ * @property {string} [store_code] - Store code identifier.
  * @property {Address} [address]
  * @property {number} [company_id] - The unique identifier of the company.
- * @property {string} [display_name] - Store name displayed in the UI.
  * @property {string} [name] - Name of the store.
- * @property {string} [store_type] - Type of store (e.g., high_street, mall).
+ * @property {string} [store_type] - Type of store (e.g., high_street, mall, warehouse).
  * @property {string[]} [tags] - Tags associated with the store.
+ * @property {number} [avg_order_processing_time] - Average order processing
+ *   time in seconds.
+ * @property {string} [timezone] - Timezone of the store location.
+ * @property {string[][]} [holiday_list] - List of holidays as date range tuples
+ *   [start_date, end_date].
+ * @property {Object} [customfields] - Custom fields associated with the store.
+ * @property {boolean} [is_open] - This field is marked as true when the store
+ *   is configured to be closed for every day of the week..
+ * @property {Object} [promise_customfields] - Custom fields related to delivery
+ *   promises used when stores have different delivery promises for different days.
+ * @property {StoreDistance} [distance]
+ * @property {StoreTimingDetails} [timing]
  */
 
 /**
  * @typedef Address
- * @property {string} [address1] - Primary address line.
+ * @property {string} [address1] - Primary address line, typically containing
+ *   street or building information.
+ * @property {string} [address2] - Secondary address line, typically containing
+ *   landmark or area information.
  * @property {string} [country] - Country where the store is located.
  * @property {string} [pincode] - Postal code of the store location.
+ * @property {string} [postal_code] - Postal code or ZIP code of the store location.
  * @property {string} [city] - City where the store is located.
  * @property {string} [state] - State where the store is located.
  * @property {number} [latitude] - Latitude coordinate of the store.
  * @property {number} [longitude] - Longitude coordinate of the store.
- * @property {string} [country_code] - ISO country code of the store location.
+ * @property {string} [country_code] - Two digit ISO country code of the store location.
+ * @property {LatLong} [lat_long] - Geographic coordinates in GeoJSON Point format.
+ */
+
+/**
+ * @typedef LatLong
+ * @property {string} [type] - The type of geographical coordinates.
+ * @property {number[]} [coordinates] - The list of coordinates (latitude and longitude).
+ */
+
+/**
+ * @typedef StoreDistance
+ * @property {number} [value] - Distance value from the user's location.
+ * @property {string} [unit] - Unit of measurement for the distance (e.g., 'm'
+ *   for meters, 'km' for kilometers).
+ * @property {string} [reason] - Reason if distance cannot be calculated (e.g.,
+ *   'invalid_customer_location').
+ */
+
+/**
+ * @typedef StoreTimingDetails
+ * @property {StoreTiming[]} [operational_timing] - Operational hours for each
+ *   weekday, this is the time when the store is physically open for customers.
+ * @property {StoreTiming[]} [order_acceptance_timing] - Order acceptance hours
+ *   for each weekday, this is the time when the store is open for accepting orders.
+ */
+
+/**
+ * @typedef StoreTiming
+ * @property {string} [weekday] - Day of the week.
+ * @property {boolean} [open] - Indicates whether the store is open on this weekday.
+ * @property {Time} [opening] - Opening time for this weekday.
+ * @property {Time} [closing] - Closing time for this weekday.
+ */
+
+/**
+ * @typedef Time
+ * @property {number} [hour] - Hour of the day in 24-hour format (0-23).
+ * @property {number} [minute] - Minute of the hour (0-59).
  */
 
 /**
@@ -2025,6 +2083,7 @@ const Joi = require("joi");
  *   code-based operations.
  * @property {boolean} [mps] - Denotes if the courier partner supports
  *   multi-part shipment services.
+ * @property {boolean} [b2b] - Denotes if courier partner is business-to-business or not.
  * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
  *   feature is supported by the courier partner.
  * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
@@ -2501,8 +2560,7 @@ const Joi = require("joi");
  * @property {string} [name] - The name of the locality.
  * @property {string} [display_name] - The display name of the locality.
  * @property {string[]} [parent_ids] - List of parent locality Ids.
- * @property {Object} [meta] - Additional metadata for the locality.\
- *   _Deprecated_*
+ * @property {Object} [meta] - Additional metadata for the locality.
  * @property {string} [type] - The type of the locality.
  * @property {PincodeLatLongData} [lat_long]
  * @property {string} [parent_uid] - Unique identifier of the parent locality,
@@ -2532,8 +2590,7 @@ const Joi = require("joi");
  * @property {string} [display_name] - A string providing the display name of
  *   the locality.
  * @property {Object} [meta] - An object with additional properties for
- *   metadata, defaulting to an empty object.\
- *   _Deprecated_*
+ *   metadata, defaulting to an empty object.
  * @property {string[]} [parent_ids] - A nullable array of strings listing the
  *   identifiers of parent localities, defaulting to an empty array.
  * @property {string} [type] - A string indicating the type of locality.
@@ -3424,6 +3481,7 @@ class ServiceabilityPlatformModel {
   static CompanyConfig() {
     return Joi.object({
       company_id: Joi.number(),
+      is_rate_card_enabled: Joi.boolean(),
       sort: Joi.array().items(Joi.string().allow("")),
       logistics_as_actual: Joi.string().allow(""),
     });
@@ -4130,6 +4188,7 @@ class ServiceabilityPlatformModel {
   /** @returns {CompanyConfigurationSchema} */
   static CompanyConfigurationSchema() {
     return Joi.object({
+      is_rate_card_enabled: Joi.boolean(),
       sort: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -4576,12 +4635,22 @@ class ServiceabilityPlatformModel {
   static FulfillmentOptionStore() {
     return Joi.object({
       uid: Joi.number(),
+      store_code: Joi.string().allow(""),
       address: ServiceabilityPlatformModel.Address(),
       company_id: Joi.number(),
-      display_name: Joi.string().allow(""),
       name: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      avg_order_processing_time: Joi.number(),
+      timezone: Joi.string().allow(""),
+      holiday_list: Joi.array().items(
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      customfields: Joi.object().pattern(/\S/, Joi.any()),
+      is_open: Joi.boolean(),
+      promise_customfields: Joi.object().pattern(/\S/, Joi.any()),
+      distance: ServiceabilityPlatformModel.StoreDistance(),
+      timing: ServiceabilityPlatformModel.StoreTimingDetails(),
     });
   }
 
@@ -4589,13 +4658,63 @@ class ServiceabilityPlatformModel {
   static Address() {
     return Joi.object({
       address1: Joi.string().allow(""),
+      address2: Joi.string().allow(""),
       country: Joi.string().allow(""),
       pincode: Joi.string().allow(""),
+      postal_code: Joi.string().allow(""),
       city: Joi.string().allow(""),
       state: Joi.string().allow(""),
       latitude: Joi.number(),
       longitude: Joi.number(),
       country_code: Joi.string().allow(""),
+      lat_long: ServiceabilityPlatformModel.LatLong(),
+    });
+  }
+
+  /** @returns {LatLong} */
+  static LatLong() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      coordinates: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {StoreDistance} */
+  static StoreDistance() {
+    return Joi.object({
+      value: Joi.number().allow(null),
+      unit: Joi.string().allow(""),
+      reason: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {StoreTimingDetails} */
+  static StoreTimingDetails() {
+    return Joi.object({
+      operational_timing: Joi.array().items(
+        ServiceabilityPlatformModel.StoreTiming()
+      ),
+      order_acceptance_timing: Joi.array().items(
+        ServiceabilityPlatformModel.StoreTiming()
+      ),
+    });
+  }
+
+  /** @returns {StoreTiming} */
+  static StoreTiming() {
+    return Joi.object({
+      weekday: Joi.string().allow(""),
+      open: Joi.boolean(),
+      opening: ServiceabilityPlatformModel.Time(),
+      closing: ServiceabilityPlatformModel.Time(),
+    });
+  }
+
+  /** @returns {Time} */
+  static Time() {
+    return Joi.object({
+      hour: Joi.number(),
+      minute: Joi.number(),
     });
   }
 
@@ -4964,6 +5083,7 @@ class ServiceabilityPlatformModel {
       doorstep_qc: Joi.boolean(),
       qr: Joi.boolean(),
       mps: Joi.boolean(),
+      b2b: Joi.boolean(),
       ndr: Joi.boolean(),
       ndr_attempts: Joi.number(),
       dangerous_goods: Joi.boolean(),

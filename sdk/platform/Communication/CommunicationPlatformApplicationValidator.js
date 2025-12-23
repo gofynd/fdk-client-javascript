@@ -7,12 +7,6 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
-/** @typedef CreateBigQueryHeadersParam */
-
-/** @typedef CreateBigQueryNCountParam */
-
-/** @typedef CreateBigQueryRowCountParam */
-
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
@@ -106,16 +100,6 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
- * @typedef GetBigQueryHeadersByIdParam
- * @property {string} id - Audience id
- */
-
-/**
- * @typedef GetBigQueryRowCountByIdParam
- * @property {string} id - Audience id
- */
-
-/**
  * @typedef GetCampaignByIdParam
  * @property {string} id - Campaign id
  */
@@ -182,8 +166,9 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {string} [subGroup] - Filter by event subgroup. Here, a subgroup is
  *   a subset within a group, containing specific email and SMS templates for
  *   more detailed organization.
- * @property {string} [fulfillmentOptionTypes] - Filter by fulfillment option
- *   type. Indicates the delivery choice selected, e.g., standard or express.
+ * @property {string} [fulfillmentOptionSlug] - Filter by fulfillment option
+ *   slug. Indicates the delivery choice selected, e.g., standard-delivery or
+ *   homedelivery.
  */
 
 /**
@@ -265,8 +250,6 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [query] - To search based on plain text
  */
-
-/** @typedef GetSystemAudiencesParam */
 
 /** @typedef GetSystemEmailTemplatesParam */
 
@@ -351,21 +334,6 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       body: CommunicationPlatformModel.AudienceReq().required(),
     }).required();
-  }
-
-  /** @returns {CreateBigQueryHeadersParam} */
-  static createBigQueryHeaders() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {CreateBigQueryNCountParam} */
-  static createBigQueryNCount() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {CreateBigQueryRowCountParam} */
-  static createBigQueryRowCount() {
-    return Joi.object({}).required();
   }
 
   /** @returns {CreateCampaignParam} */
@@ -497,20 +465,6 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetBigQueryHeadersByIdParam} */
-  static getBigQueryHeadersById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBigQueryRowCountByIdParam} */
-  static getBigQueryRowCountById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetCampaignByIdParam} */
   static getCampaignById() {
     return Joi.object({
@@ -597,7 +551,7 @@ class CommunicationPlatformApplicationValidator {
       populate: Joi.string().allow(""),
       group: Joi.string().allow(""),
       subGroup: Joi.string().allow(""),
-      fulfillmentOptionTypes: Joi.string().allow(""),
+      fulfillmentOptionSlug: Joi.string().allow(""),
     }).required();
   }
 
@@ -713,11 +667,6 @@ class CommunicationPlatformApplicationValidator {
       pageSize: Joi.number(),
       query: Joi.any(),
     }).required();
-  }
-
-  /** @returns {GetSystemAudiencesParam} */
-  static getSystemAudiences() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetSystemEmailTemplatesParam} */

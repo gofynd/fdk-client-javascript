@@ -388,16 +388,18 @@ const Joi = require("joi");
 
 /**
  * @typedef BankDetailsForOTP
- * @property {string} ifsc_code - IFSC code of account
- * @property {string} account_no - Account number
- * @property {string} branch_name - Branch name of account
- * @property {string} bank_name - Bank name of account
- * @property {string} account_holder - Accountg holder name of account
+ * @property {string} [ifsc_code] - IFSC code of account
+ * @property {string} [account_no] - Account number
+ * @property {string} [branch_name] - Branch name of account
+ * @property {string} [bank_name] - Bank name of account
+ * @property {string} [account_holder] - Accountg holder name of account
+ * @property {string} [upi] - UPI ID of account holder
  */
 
 /**
  * @typedef AddBeneficiaryDetailsOTPCreation
  * @property {string} order_id - Order_id for which account will be added
+ * @property {string} [shipment_id] - Shipment_id for which account will be added
  * @property {BankDetailsForOTP} details
  */
 
@@ -1778,11 +1780,12 @@ class PaymentPlatformModel {
   /** @returns {BankDetailsForOTP} */
   static BankDetailsForOTP() {
     return Joi.object({
-      ifsc_code: Joi.string().allow("").required(),
-      account_no: Joi.string().allow("").required(),
-      branch_name: Joi.string().allow("").required(),
-      bank_name: Joi.string().allow("").required(),
-      account_holder: Joi.string().allow("").required(),
+      ifsc_code: Joi.string().allow(""),
+      account_no: Joi.string().allow(""),
+      branch_name: Joi.string().allow(""),
+      bank_name: Joi.string().allow(""),
+      account_holder: Joi.string().allow(""),
+      upi: Joi.string().allow("").allow(null),
     });
   }
 
@@ -1790,6 +1793,7 @@ class PaymentPlatformModel {
   static AddBeneficiaryDetailsOTPCreation() {
     return Joi.object({
       order_id: Joi.string().allow("").required(),
+      shipment_id: Joi.string().allow(""),
       details: PaymentPlatformModel.BankDetailsForOTP().required(),
     });
   }

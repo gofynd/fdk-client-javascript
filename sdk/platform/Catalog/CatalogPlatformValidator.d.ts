@@ -254,10 +254,6 @@ export = CatalogPlatformValidator;
 /** @typedef GetMarketplaceOptinDetailParam */
 /** @typedef GetMarketplacesParam */
 /**
- * @typedef GetOptimalLocationsParam
- * @property {CatalogPlatformModel.AssignStore} body
- */
-/**
  * @typedef GetProductParam
  * @property {number} itemId - Item Id of the product.
  * @property {number} [brandUid] - Brand Id of the product.
@@ -622,8 +618,6 @@ declare class CatalogPlatformValidator {
     static getMarketplaceOptinDetail(): any;
     /** @returns {GetMarketplacesParam} */
     static getMarketplaces(): any;
-    /** @returns {GetOptimalLocationsParam} */
-    static getOptimalLocations(): GetOptimalLocationsParam;
     /** @returns {GetProductParam} */
     static getProduct(): GetProductParam;
     /** @returns {GetProductAssetsInBulkParam} */
@@ -702,7 +696,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PartialUpdateProductParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PartialUpdateProductParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AddInventoryParam = {
     /**
@@ -1157,9 +1151,6 @@ type GetInventoryBySizeIdentifierParam = {
      * - Search by store ids.
      */
     locationIds?: number[];
-};
-type GetOptimalLocationsParam = {
-    body: CatalogPlatformModel.AssignStore;
 };
 type GetProductParam = {
     /**

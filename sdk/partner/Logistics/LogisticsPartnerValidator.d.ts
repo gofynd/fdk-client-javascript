@@ -25,4 +25,12 @@ declare class LogisticsValidator {
     static getCourierPartnerSchemes(): any;
     static updateCourierPartnerScheme(): any;
     static getCourierPartnerScheme(): any;
+    static getSampleFileRateCard(): any;
+    static bulkRateCard(): any;
+    static getBulkRateCard(): any;
+    static getSampleFileRateZone(): any;
+    static createRateZoneBulkJob(): any;
+    static getBulkRateZoneJobHistory(): any;
+    static getRateZoneConfig(): any;
+    static updateRateZoneConfiguration(): any;
 }

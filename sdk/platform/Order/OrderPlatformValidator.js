@@ -61,18 +61,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef CreateOrderDeprecatedParam
- * @property {string} xOrderingSource - To uniquely identify the source through
- *   which order has been placed.
- * @property {string} [xApplicationId] - The Application ID is a unique
- *   identifier assigned to a storefront that typically follows a 24-character
- *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
- *   mandatory. At least one of them must be provided.
- * @property {string} [xExtensionId] - The Extension ID is a unique identifier
- *   assigned to an extension that typically follows a 24-character hexadecimal
- *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
- *   At least one of them must be provided.
- * @property {OrderPlatformModel.CreateOrderAPI} body
+ * @typedef CreateShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier of the shipment.
+ * @property {OrderPlatformModel.PackagesSchema} body
  */
 
 /**
@@ -371,6 +362,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier for the shipment whose
+ *   packages are being retrieved.
+ */
+
+/**
  * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
@@ -486,11 +483,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef InvalidateShipmentCacheParam
- * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
- */
-
-/**
  * @typedef JobDetailsParam
  * @property {string} batchId - A unique identifier for the batch associated
  *   with this bulk action.
@@ -562,6 +554,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef UpdateShipmentLockParam
  * @property {OrderPlatformModel.UpdateShipmentLockPayload} body
+ */
+
+/**
+ * @typedef UpdateShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier for the shipment whose
+ *   packages will be updated.
+ * @property {OrderPlatformModel.PackagesSchema} body
  */
 
 /**
@@ -650,13 +649,11 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {CreateOrderDeprecatedParam} */
-  static createOrderDeprecated() {
+  /** @returns {CreateShipmentPackagesParam} */
+  static createShipmentPackages() {
     return Joi.object({
-      xOrderingSource: Joi.string().allow("").required(),
-      xApplicationId: Joi.string().allow(""),
-      xExtensionId: Joi.string().allow(""),
-      body: OrderPlatformModel.CreateOrderAPI().required(),
+      shipmentId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.PackagesSchema().required(),
     }).required();
   }
 
@@ -968,6 +965,13 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetShipmentPackagesParam} */
+  static getShipmentPackages() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetShipmentReasonsParam} */
   static getShipmentReasons() {
     return Joi.object({
@@ -1049,13 +1053,6 @@ class OrderPlatformValidator {
     return Joi.object({
       view: Joi.string().allow("").required(),
       groupEntity: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {InvalidateShipmentCacheParam} */
-  static invalidateShipmentCache() {
-    return Joi.object({
-      body: OrderPlatformModel.InvalidateShipmentCachePayload().required(),
     }).required();
   }
 
@@ -1153,6 +1150,14 @@ class OrderPlatformValidator {
   static updateShipmentLock() {
     return Joi.object({
       body: OrderPlatformModel.UpdateShipmentLockPayload().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateShipmentPackagesParam} */
+  static updateShipmentPackages() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.PackagesSchema().required(),
     }).required();
   }
 

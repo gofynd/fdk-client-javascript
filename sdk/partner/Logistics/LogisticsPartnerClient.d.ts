@@ -282,5 +282,89 @@ declare class Logistics {
      * @description: Update Scheme for courier partner extension by Id - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getCourierPartnerScheme/).
      */
     getCourierPartnerScheme({ schemeId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeModelSchema>;
+    /**
+     * @param {LogisticsPartnerValidator.GetSampleFileRateCardParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.RateCardSampleFile>} - Success response
+     * @name getSampleFileRateCard
+     * @summary: Retrieves a sample file that shows the required format for rate card uploads.
+     * @description: Retrieves a downloadable sample file template for bulk rate card uploads. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getSampleFileRateCard/).
+     */
+    getSampleFileRateCard({ requestHeaders }?: LogisticsPartnerValidator.GetSampleFileRateCardParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.RateCardSampleFile>;
+    /**
+     * @param {LogisticsPartnerValidator.BulkRateCardParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+     * @name bulkRateCard
+     * @summary: Rate Card Import or Export
+     * @description: Rate Card Import or Export - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/bulkRateCard/).
+     */
+    bulkRateCard({ extensionId, schemeId, body, requestHeaders }?: LogisticsPartnerValidator.BulkRateCardParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRateCardJob>;
+    /**
+     * @param {LogisticsPartnerValidator.GetBulkRateCardParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+     * @name getBulkRateCard
+     * @summary: Retrieve the history of bulk rate card uploads.
+     * @description: Returns the history of all bulk rate card upload operations, including their statuses and details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getBulkRateCard/).
+     */
+    getBulkRateCard({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkRateCardParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRateCardJob>;
+    /**
+     * @param {LogisticsPartnerValidator.GetSampleFileRateZoneParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+     * @name getSampleFileRateZone
+     * @summary: Get Rate Zone sample file
+     * @description: Retrieves a downloadable sample file template for bulk rate zone uploads. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getSampleFileRateZone/).
+     */
+    getSampleFileRateZone({ body, requestHeaders }?: LogisticsPartnerValidator.GetSampleFileRateZoneParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRateCardJob>;
+    /**
+     * @param {LogisticsPartnerValidator.CreateRateZoneBulkJobParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+     * @name createRateZoneBulkJob
+     * @summary: Rate Zone Import or Export
+     * @description: Performs bulk import or export of rate zone details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/createRateZoneBulkJob/).
+     */
+    createRateZoneBulkJob({ extensionId, schemeId, body, requestHeaders }?: LogisticsPartnerValidator.CreateRateZoneBulkJobParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.BulkRateCardJob>;
+    /**
+     * @param {LogisticsPartnerValidator.GetBulkRateZoneJobHistoryParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.RateZoneBulkJobList>} - Success response
+     * @name getBulkRateZoneJobHistory
+     * @summary: Get Rate Zone Bulk History
+     * @description: Retrieves the bulk job history for rate zone import and export operations. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getBulkRateZoneJobHistory/).
+     */
+    getBulkRateZoneJobHistory({ extensionId, schemeId, pageNo, pageSize, batchId, action, status, zoneType, startDate, endDate, requestHeaders, }?: LogisticsPartnerValidator.GetBulkRateZoneJobHistoryParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.RateZoneBulkJobList>;
+    /**
+     * @param {LogisticsPartnerValidator.GetRateZoneConfigParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>} -
+     *   Success response
+     * @name getRateZoneConfig
+     * @summary: Fetch Rate Zone Configuration
+     * @description: Fetch Rate Zone Configuration - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getRateZoneConfig/).
+     */
+    getRateZoneConfig({ extensionId, schemeId, requestHeaders }?: LogisticsPartnerValidator.GetRateZoneConfigParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>;
+    /**
+     * @param {LogisticsPartnerValidator.UpdateRateZoneConfigurationParam} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>} -
+     *   Success response
+     * @name updateRateZoneConfiguration
+     * @summary: Update Rate Zone Configuration
+     * @description: Updates the rate zone configuration for the specified courier partner scheme. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/updateRateZoneConfiguration/).
+     */
+    updateRateZoneConfiguration({ extensionId, schemeId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateRateZoneConfigurationParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>;
 }
 import LogisticsPartnerModel = require("./LogisticsPartnerModel");

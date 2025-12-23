@@ -248,8 +248,7 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef PincodeMOPResult
  * @property {boolean} success - Whether operation was successful.
- * @property {number} status_code - Status code for the response.\
- *   _Deprecated_*
+ * @property {number} status_code - Status code for the response.
  * @property {string} batch_id - A unique identifier for the performed batch operation.
  * @property {string} country - Name of the country.
  * @property {string} action - Denotes wether to activate or deavtivate pincodes
@@ -532,6 +531,9 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef CompanyConfig
  * @property {number} [company_id] - The unique identifier of the company.
+ * @property {boolean} [is_rate_card_enabled] - Enables rate card feature at
+ *   company level. Rate card rule engine runs only if rate card is configured
+ *   at delivery partner scheme level.
  * @property {string[]} [sort] - Array defining the sorting order.
  * @property {string} [logistics_as_actual] - Defines the logistics control type.
  */
@@ -1087,8 +1089,7 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef GetLocality
- * @property {Object} [meta] - Additional metadata for the locality.\
- *   _Deprecated_*
+ * @property {Object} [meta] - Additional metadata for the locality.
  * @property {string} [parent_uid] - Unique identifier for the parent locality,
  *   if applicable.
  * @property {string} [id] - A string serving as the unique identifier.
@@ -1184,6 +1185,9 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef CompanyConfigurationSchema
+ * @property {boolean} [is_rate_card_enabled] - Enables rate card feature at
+ *   company level. Rate card rule engine runs only if rate card is configured
+ *   at delivery partner scheme level.
  * @property {string[]} [sort] - An array of strings specifying sorting preferences.
  */
 /**
@@ -1540,23 +1544,72 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef FulfillmentOptionStore
  * @property {number} [uid] - Unique identifier for the store.
+ * @property {string} [store_code] - Store code identifier.
  * @property {Address} [address]
  * @property {number} [company_id] - The unique identifier of the company.
- * @property {string} [display_name] - Store name displayed in the UI.
  * @property {string} [name] - Name of the store.
- * @property {string} [store_type] - Type of store (e.g., high_street, mall).
+ * @property {string} [store_type] - Type of store (e.g., high_street, mall, warehouse).
  * @property {string[]} [tags] - Tags associated with the store.
+ * @property {number} [avg_order_processing_time] - Average order processing
+ *   time in seconds.
+ * @property {string} [timezone] - Timezone of the store location.
+ * @property {string[][]} [holiday_list] - List of holidays as date range tuples
+ *   [start_date, end_date].
+ * @property {Object} [customfields] - Custom fields associated with the store.
+ * @property {boolean} [is_open] - This field is marked as true when the store
+ *   is configured to be closed for every day of the week..
+ * @property {Object} [promise_customfields] - Custom fields related to delivery
+ *   promises used when stores have different delivery promises for different days.
+ * @property {StoreDistance} [distance]
+ * @property {StoreTimingDetails} [timing]
  */
 /**
  * @typedef Address
- * @property {string} [address1] - Primary address line.
+ * @property {string} [address1] - Primary address line, typically containing
+ *   street or building information.
+ * @property {string} [address2] - Secondary address line, typically containing
+ *   landmark or area information.
  * @property {string} [country] - Country where the store is located.
  * @property {string} [pincode] - Postal code of the store location.
+ * @property {string} [postal_code] - Postal code or ZIP code of the store location.
  * @property {string} [city] - City where the store is located.
  * @property {string} [state] - State where the store is located.
  * @property {number} [latitude] - Latitude coordinate of the store.
  * @property {number} [longitude] - Longitude coordinate of the store.
- * @property {string} [country_code] - ISO country code of the store location.
+ * @property {string} [country_code] - Two digit ISO country code of the store location.
+ * @property {LatLong} [lat_long] - Geographic coordinates in GeoJSON Point format.
+ */
+/**
+ * @typedef LatLong
+ * @property {string} [type] - The type of geographical coordinates.
+ * @property {number[]} [coordinates] - The list of coordinates (latitude and longitude).
+ */
+/**
+ * @typedef StoreDistance
+ * @property {number} [value] - Distance value from the user's location.
+ * @property {string} [unit] - Unit of measurement for the distance (e.g., 'm'
+ *   for meters, 'km' for kilometers).
+ * @property {string} [reason] - Reason if distance cannot be calculated (e.g.,
+ *   'invalid_customer_location').
+ */
+/**
+ * @typedef StoreTimingDetails
+ * @property {StoreTiming[]} [operational_timing] - Operational hours for each
+ *   weekday, this is the time when the store is physically open for customers.
+ * @property {StoreTiming[]} [order_acceptance_timing] - Order acceptance hours
+ *   for each weekday, this is the time when the store is open for accepting orders.
+ */
+/**
+ * @typedef StoreTiming
+ * @property {string} [weekday] - Day of the week.
+ * @property {boolean} [open] - Indicates whether the store is open on this weekday.
+ * @property {Time} [opening] - Opening time for this weekday.
+ * @property {Time} [closing] - Closing time for this weekday.
+ */
+/**
+ * @typedef Time
+ * @property {number} [hour] - Hour of the day in 24-hour format (0-23).
+ * @property {number} [minute] - Minute of the hour (0-59).
  */
 /**
  * @typedef FulfillmentOptionValidate
@@ -1838,6 +1891,7 @@ export = ServiceabilityPlatformModel;
  *   code-based operations.
  * @property {boolean} [mps] - Denotes if the courier partner supports
  *   multi-part shipment services.
+ * @property {boolean} [b2b] - Denotes if courier partner is business-to-business or not.
  * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
  *   feature is supported by the courier partner.
  * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
@@ -2267,8 +2321,7 @@ export = ServiceabilityPlatformModel;
  * @property {string} [name] - The name of the locality.
  * @property {string} [display_name] - The display name of the locality.
  * @property {string[]} [parent_ids] - List of parent locality Ids.
- * @property {Object} [meta] - Additional metadata for the locality.\
- *   _Deprecated_*
+ * @property {Object} [meta] - Additional metadata for the locality.
  * @property {string} [type] - The type of the locality.
  * @property {PincodeLatLongData} [lat_long]
  * @property {string} [parent_uid] - Unique identifier of the parent locality,
@@ -2296,8 +2349,7 @@ export = ServiceabilityPlatformModel;
  * @property {string} [display_name] - A string providing the display name of
  *   the locality.
  * @property {Object} [meta] - An object with additional properties for
- *   metadata, defaulting to an empty object.\
- *   _Deprecated_*
+ *   metadata, defaulting to an empty object.
  * @property {string[]} [parent_ids] - A nullable array of strings listing the
  *   identifiers of parent localities, defaulting to an empty array.
  * @property {string} [type] - A string indicating the type of locality.
@@ -2487,7 +2539,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, AreaCode, TAT, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleWeight, ArticleAttributes, ArticleDimension, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, LocationDetailsServiceability, ServiceabilityLocation, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject };
+    export { PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, AreaCode, TAT, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleWeight, ArticleAttributes, ArticleDimension, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, LocationDetailsServiceability, ServiceabilityLocation, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject };
 }
 /** @returns {PlatformShipmentsRequestSchema} */
 declare function PlatformShipmentsRequestSchema(): PlatformShipmentsRequestSchema;
@@ -3099,8 +3151,7 @@ type PincodeMOPResult = {
      */
     success: boolean;
     /**
-     * - Status code for the response.\
-     * _Deprecated_*
+     * - Status code for the response.
      */
     status_code: number;
     /**
@@ -3829,6 +3880,12 @@ type CompanyConfig = {
      * - The unique identifier of the company.
      */
     company_id?: number;
+    /**
+     * - Enables rate card feature at
+     * company level. Rate card rule engine runs only if rate card is configured
+     * at delivery partner scheme level.
+     */
+    is_rate_card_enabled?: boolean;
     /**
      * - Array defining the sorting order.
      */
@@ -5212,8 +5269,7 @@ type LocalitiesErrorResult = {
 declare function GetLocality(): GetLocality;
 type GetLocality = {
     /**
-     * - Additional metadata for the locality.\
-     * _Deprecated_*
+     * - Additional metadata for the locality.
      */
     meta?: any;
     /**
@@ -5424,6 +5480,12 @@ type GetLocalitiesBulkHistory = {
 /** @returns {CompanyConfigurationSchema} */
 declare function CompanyConfigurationSchema(): CompanyConfigurationSchema;
 type CompanyConfigurationSchema = {
+    /**
+     * - Enables rate card feature at
+     * company level. Rate card rule engine runs only if rate card is configured
+     * at delivery partner scheme level.
+     */
+    is_rate_card_enabled?: boolean;
     /**
      * - An array of strings specifying sorting preferences.
      */
@@ -6382,35 +6444,71 @@ type FulfillmentOptionStore = {
      * - Unique identifier for the store.
      */
     uid?: number;
+    /**
+     * - Store code identifier.
+     */
+    store_code?: string;
     address?: Address;
     /**
      * - The unique identifier of the company.
      */
     company_id?: number;
     /**
-     * - Store name displayed in the UI.
-     */
-    display_name?: string;
-    /**
      * - Name of the store.
      */
     name?: string;
     /**
-     * - Type of store (e.g., high_street, mall).
+     * - Type of store (e.g., high_street, mall, warehouse).
      */
     store_type?: string;
     /**
      * - Tags associated with the store.
      */
     tags?: string[];
+    /**
+     * - Average order processing
+     * time in seconds.
+     */
+    avg_order_processing_time?: number;
+    /**
+     * - Timezone of the store location.
+     */
+    timezone?: string;
+    /**
+     * - List of holidays as date range tuples
+     * [start_date, end_date].
+     */
+    holiday_list?: string[][];
+    /**
+     * - Custom fields associated with the store.
+     */
+    customfields?: any;
+    /**
+     * - This field is marked as true when the store
+     * is configured to be closed for every day of the week..
+     */
+    is_open?: boolean;
+    /**
+     * - Custom fields related to delivery
+     * promises used when stores have different delivery promises for different days.
+     */
+    promise_customfields?: any;
+    distance?: StoreDistance;
+    timing?: StoreTimingDetails;
 };
 /** @returns {Address} */
 declare function Address(): Address;
 type Address = {
     /**
-     * - Primary address line.
+     * - Primary address line, typically containing
+     * street or building information.
      */
     address1?: string;
+    /**
+     * - Secondary address line, typically containing
+     * landmark or area information.
+     */
+    address2?: string;
     /**
      * - Country where the store is located.
      */
@@ -6419,6 +6517,10 @@ type Address = {
      * - Postal code of the store location.
      */
     pincode?: string;
+    /**
+     * - Postal code or ZIP code of the store location.
+     */
+    postal_code?: string;
     /**
      * - City where the store is located.
      */
@@ -6436,9 +6538,89 @@ type Address = {
      */
     longitude?: number;
     /**
-     * - ISO country code of the store location.
+     * - Two digit ISO country code of the store location.
      */
     country_code?: string;
+    /**
+     * - Geographic coordinates in GeoJSON Point format.
+     */
+    lat_long?: LatLong;
+};
+/** @returns {LatLong} */
+declare function LatLong(): LatLong;
+type LatLong = {
+    /**
+     * - The type of geographical coordinates.
+     */
+    type?: string;
+    /**
+     * - The list of coordinates (latitude and longitude).
+     */
+    coordinates?: number[];
+};
+/** @returns {StoreDistance} */
+declare function StoreDistance(): StoreDistance;
+type StoreDistance = {
+    /**
+     * - Distance value from the user's location.
+     */
+    value?: number;
+    /**
+     * - Unit of measurement for the distance (e.g., 'm'
+     * for meters, 'km' for kilometers).
+     */
+    unit?: string;
+    /**
+     * - Reason if distance cannot be calculated (e.g.,
+     * 'invalid_customer_location').
+     */
+    reason?: string;
+};
+/** @returns {StoreTimingDetails} */
+declare function StoreTimingDetails(): StoreTimingDetails;
+type StoreTimingDetails = {
+    /**
+     * - Operational hours for each
+     * weekday, this is the time when the store is physically open for customers.
+     */
+    operational_timing?: StoreTiming[];
+    /**
+     * - Order acceptance hours
+     * for each weekday, this is the time when the store is open for accepting orders.
+     */
+    order_acceptance_timing?: StoreTiming[];
+};
+/** @returns {StoreTiming} */
+declare function StoreTiming(): StoreTiming;
+type StoreTiming = {
+    /**
+     * - Day of the week.
+     */
+    weekday?: string;
+    /**
+     * - Indicates whether the store is open on this weekday.
+     */
+    open?: boolean;
+    /**
+     * - Opening time for this weekday.
+     */
+    opening?: Time;
+    /**
+     * - Closing time for this weekday.
+     */
+    closing?: Time;
+};
+/** @returns {Time} */
+declare function Time(): Time;
+type Time = {
+    /**
+     * - Hour of the day in 24-hour format (0-23).
+     */
+    hour?: number;
+    /**
+     * - Minute of the hour (0-59).
+     */
+    minute?: number;
 };
 /** @returns {FulfillmentOptionValidate} */
 declare function FulfillmentOptionValidate(): FulfillmentOptionValidate;
@@ -7113,6 +7295,10 @@ type CourierPartnerSchemeFeatures = {
      * multi-part shipment services.
      */
     mps?: boolean;
+    /**
+     * - Denotes if courier partner is business-to-business or not.
+     */
+    b2b?: boolean;
     /**
      * - Indicates if the Non-Delivery Report (NDR)
      * feature is supported by the courier partner.
@@ -8154,8 +8340,7 @@ type Localities = {
      */
     parent_ids?: string[];
     /**
-     * - Additional metadata for the locality.\
-     * _Deprecated_*
+     * - Additional metadata for the locality.
      */
     meta?: any;
     /**
@@ -8236,8 +8421,7 @@ type LocalityParent = {
     display_name?: string;
     /**
      * - An object with additional properties for
-     * metadata, defaulting to an empty object.\
-     * _Deprecated_*
+     * metadata, defaulting to an empty object.
      */
     meta?: any;
     /**

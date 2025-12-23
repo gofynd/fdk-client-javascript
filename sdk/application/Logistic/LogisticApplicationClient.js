@@ -16,17 +16,16 @@ class Logistic {
       getCountries: "/service/application/logistics/v2.0/countries",
       getCountry:
         "/service/application/logistics/v1.0/countries/{country_iso_code}",
-      getCourierPartners:
-        "/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/shipment/courier-partners",
       getDeliveryPromise:
         "/service/application/logistics/v1.0/delivery-promise",
+      getFulfillmentOptionStores:
+        "/service/application/logistics/v1.0/fulfillment-options/{slug}/stores",
       getFulfillmentOptions:
         "/service/application/logistics/v1.0/fulfillment-options",
       getLocalities:
         "/service/application/logistics/v1.0/localities/{locality_type}",
       getLocality:
         "/service/application/logistics/v1.0/localities/{locality_type}/{locality_value}",
-      getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       validateAddress:
         "/service/application/logistics/v1.0/country/{country_iso_code}/address/templates/{template_name}/validate",
     };
@@ -183,40 +182,33 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShipmentCourierPartnerResult>} - Success response
-   * @name getCourierPartners
-   * @summary: Serviceable Courier Partners
-   * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getCourierPartners/).
+   * @returns {Promise<GetPromiseDetails>} - Success response
+   * @name getDeliveryPromise
+   * @summary: Get delivery promise
+   * @description: Delivery Promise Configurations involve estimating and communicating the anticipated delivery date or time to customers, taking into account parameters like store processing time, delivery partner time to delivery, and buffer time. This helps establish precise delivery expectations based on both the delivery partner's capabilities and the store's operations. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getDeliveryPromise/).
    */
-  async getCourierPartners(
-    { companyId, applicationId, body, requestHeaders } = { requestHeaders: {} },
+  async getDeliveryPromise(
+    { xLocationDetail, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const errors = validateRequiredParams(arguments[0], [
-      "companyId",
-      "applicationId",
-    ]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
+    xHeaders["x-location-detail"] = xLocationDetail;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
-      "post",
+      "get",
       constructUrl({
-        url: this._urls["getCourierPartners"],
-        params: { companyId, applicationId },
+        url: this._urls["getDeliveryPromise"],
+        params: {},
       }),
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -232,31 +224,36 @@ class Logistic {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<GetPromiseDetails>} - Success response
-   * @name getDeliveryPromise
-   * @summary: Get delivery promise
-   * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getDeliveryPromise/).
+   * @returns {Promise<FulfillmentOptionStores>} - Success response
+   * @name getFulfillmentOptionStores
+   * @summary: Get Fulfillment Option Stores
+   * @description: Fetches a paginated list of stores associated with a given fulfillment option slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getFulfillmentOptionStores/).
    */
-  async getDeliveryPromise(
-    { xLocationDetail, xApplicationData, pageNo, pageSize, requestHeaders } = {
-      requestHeaders: {},
-    },
+  async getFulfillmentOptionStores(
+    { slug, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
     const xHeaders = {};
-    xHeaders["x-location-detail"] = xLocationDetail;
-    xHeaders["x-application-data"] = xApplicationData;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getDeliveryPromise"],
-        params: {},
+        url: this._urls["getFulfillmentOptionStores"],
+        params: { slug },
       }),
       query_params,
       undefined,
@@ -423,52 +420,6 @@ class Logistic {
       constructUrl({
         url: this._urls["getLocality"],
         params: { localityType, localityValue },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PincodeDetailsResult>} - Success response
-   * @name getPincodeCity
-   * @summary: Get pincode details
-   * @description: Get details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/logistic/getPincodeCity/).
-   */
-  async getPincodeCity(
-    { pincode, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const errors = validateRequiredParams(arguments[0], ["pincode"]);
-    if (errors.length > 0) {
-      const error = new FDKClientValidationError({
-        message: "Missing required field",
-        details: errors,
-      });
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPincodeCity"],
-        params: { pincode },
       }),
       query_params,
       undefined,

@@ -324,7 +324,7 @@ export = UserPlatformModel;
  * @property {string} [user_attribute_definition_id] - ID of the user attribute
  *   definition used in the condition
  * @property {string} [type] - Type of condition to apply on the attribute value.
- * @property {string} [value] - Value of the condition
+ * @property {Object} [value] - Value of the condition
  * @property {boolean} [ignore_year] - Indicates if the year should be ignored
  *   for the condition
  */
@@ -1347,7 +1347,7 @@ type ConditionsSchema = {
     /**
      * - Value of the condition
      */
-    value?: string;
+    value?: any;
     /**
      * - Indicates if the year should be ignored
      * for the condition

@@ -1,6 +1,20 @@
 const Joi = require("joi");
 
 /**
+ * @typedef RateZoneConfigurationDetails
+ * @property {StandardRateZone[]} [standard_zone_mapping] - List of standard
+ *   zones with name-slug pairs.
+ * @property {string[]} [custom_zones] - List of custom zone names.
+ */
+
+/**
+ * @typedef RateCardSampleFile
+ * @property {string} [type] - Denotes the type of action performed.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [status] - Current status of the request.
+ */
+
+/**
  * @typedef CourierPartnerSchemeModelSchema
  * @property {CreatedBy} [created_by]
  * @property {string} [created_on] - The timestamp when the record was created.
@@ -81,6 +95,59 @@ const Joi = require("joi");
  * @typedef BulkRegionServiceabilityTatResult
  * @property {BulkRegionServiceabilityTatResultItemData[]} [items] - Array of
  *   bulk region serviceability or TAT result items.
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef BulkRateCardJob
+ * @property {string} type - Denotes the type of data.
+ * @property {number} total - Total number of items in the batch.
+ * @property {number} failed - Number of failed items in the batch.
+ * @property {number} success - Number of successful items in the batch.
+ * @property {string} [action] - Action type for the bulk operation, either
+ *   import or export.
+ * @property {string} batch_id - A unique identifier for the performed batch operation.
+ * @property {string} status - Current status of the request.
+ * @property {Object[]} [failed_records] - Array of objects containing
+ *   validation error details for records that failed during bulk import or
+ *   export operations. Each object includes error messages describing missing
+ *   required fields or validation failures for individual records.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [created_on] - The timestamp when the record was created.
+ * @property {string} [modified_on] - The timestamp when the record was last modified.
+ */
+
+/**
+ * @typedef BulkRateCardJobDetails
+ * @property {string} [file_path] - Path to the file used in the bulk operation.
+ * @property {string} rate_card_type - Rate card type for which bulk operation
+ *   will be performed.
+ * @property {string} action - Action type for the bulk operation, either import
+ *   or export.
+ * @property {number[]} [company_ids] - List of company IDs for which rate card
+ *   needs to be applied.
+ */
+
+/**
+ * @typedef SampleFileRateZoneRequestSchema
+ * @property {string} [zone_type] - Rate zone for which the sample file to be downloaded.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Region for which the sample file to be downloaded.
+ */
+
+/**
+ * @typedef RateZoneBulkJobDetails
+ * @property {string} [action] - Action type for the bulk operation, either
+ *   import or export.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [zone_type] - Rate zone for the bulk action.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Region for the import and export.
+ */
+
+/**
+ * @typedef RateZoneBulkJobList
+ * @property {BulkRateCardJob[]} [items] - Array of bulk rate zone result items.
  * @property {Page} [page]
  */
 
@@ -521,6 +588,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef StandardRateZone
+ * @property {string} [zone_name] - User defined name of the zone for a particular slug.
+ * @property {string} [zone_slug] - Pre-defined slug for the standard zones.
+ */
+
+/**
  * @typedef CreatedBy
  * @property {string} [id] - Identifier of the user or system that created the object.
  */
@@ -550,6 +623,7 @@ const Joi = require("joi");
  *   code-based operations.
  * @property {boolean} [mps] - Denotes if the courier partner supports
  *   multi-part shipment services.
+ * @property {boolean} [b2b] - Denotes if courier partner is business-to-business or not.
  * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
  *   feature is supported by the courier partner.
  * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
@@ -694,6 +768,25 @@ const Joi = require("joi");
  */
 
 class LogisticsPartnerModel {
+  /** @returns {RateZoneConfigurationDetails} */
+  static RateZoneConfigurationDetails() {
+    return Joi.object({
+      standard_zone_mapping: Joi.array().items(
+        LogisticsPartnerModel.StandardRateZone()
+      ),
+      custom_zones: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {RateCardSampleFile} */
+  static RateCardSampleFile() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
+      status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CourierPartnerSchemeModelSchema} */
   static CourierPartnerSchemeModelSchema() {
     return Joi.object({
@@ -775,6 +868,61 @@ class LogisticsPartnerModel {
       items: Joi.array().items(
         LogisticsPartnerModel.BulkRegionServiceabilityTatResultItemData()
       ),
+      page: LogisticsPartnerModel.Page(),
+    });
+  }
+
+  /** @returns {BulkRateCardJob} */
+  static BulkRateCardJob() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      total: Joi.number().required(),
+      failed: Joi.number().required(),
+      success: Joi.number().required(),
+      action: Joi.string().allow(""),
+      batch_id: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      file_path: Joi.string().allow("").allow(null),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkRateCardJobDetails} */
+  static BulkRateCardJobDetails() {
+    return Joi.object({
+      file_path: Joi.string().allow(""),
+      rate_card_type: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
+      company_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {SampleFileRateZoneRequestSchema} */
+  static SampleFileRateZoneRequestSchema() {
+    return Joi.object({
+      zone_type: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RateZoneBulkJobDetails} */
+  static RateZoneBulkJobDetails() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
+      zone_type: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RateZoneBulkJobList} */
+  static RateZoneBulkJobList() {
+    return Joi.object({
+      items: Joi.array().items(LogisticsPartnerModel.BulkRateCardJob()),
       page: LogisticsPartnerModel.Page(),
     });
   }
@@ -1129,6 +1277,14 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {StandardRateZone} */
+  static StandardRateZone() {
+    return Joi.object({
+      zone_name: Joi.string().allow(""),
+      zone_slug: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CreatedBy} */
   static CreatedBy() {
     return Joi.object({
@@ -1159,6 +1315,7 @@ class LogisticsPartnerModel {
       doorstep_qc: Joi.boolean(),
       qr: Joi.boolean(),
       mps: Joi.boolean(),
+      b2b: Joi.boolean(),
       ndr: Joi.boolean(),
       ndr_attempts: Joi.number(),
       dangerous_goods: Joi.boolean(),

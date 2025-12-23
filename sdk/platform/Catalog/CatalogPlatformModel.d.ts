@@ -374,45 +374,11 @@ export = CatalogPlatformModel;
  *   window category|product|no-return
  */
 /**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy]
- */
-/**
- * @typedef ArticleAssignment1
- * @property {string} [level]
- * @property {string} [strategy]
- */
-/**
- * @typedef ArticleQuery
- * @property {number[]} [ignored_stores]
- * @property {number} item_id
- * @property {string} size
- */
-/**
  * @typedef ArticleStoreResponseSchema
  * @property {string} [name]
  * @property {string} [store_code]
  * @property {string} [store_type]
  * @property {number} [uid]
- */
-/**
- * @typedef AssignStore
- * @property {string} app_id
- * @property {AssignStoreArticle[]} articles
- * @property {string} [channel_identifier]
- * @property {string} [channel_type]
- * @property {number} [company_id]
- * @property {string} pincode
- * @property {number[]} [store_ids]
- */
-/**
- * @typedef AssignStoreArticle
- * @property {ArticleAssignment} [article_assignment]
- * @property {string} [group_id]
- * @property {Object} [meta]
- * @property {number} [quantity]
- * @property {ArticleQuery} [query]
  */
 /**
  * @typedef AttributeDetailsGroup
@@ -3553,8 +3519,7 @@ export = CatalogPlatformModel;
  *   taxation purposes. This is required for indian products.
  * @property {string} [hsn_code] - **Deprecated**: Harmonized System
  *   Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
- *   field instead.\
- *   _Deprecated_*
+ *   field instead.
  * @property {string} [id] - Unique identifier of the product in the database.
  * @property {string} [image_nature] - Describes the nature of the product
  *   images (e.g., "standard").
@@ -4016,26 +3981,6 @@ export = CatalogPlatformModel;
  * @property {string} [title] - The main title of the size guide.
  */
 /**
- * @typedef StoreAssignResponseSchema
- * @property {string} [_id]
- * @property {ArticleAssignment1} article_assignment
- * @property {number} [company_id]
- * @property {string} [group_id]
- * @property {number} [index]
- * @property {number} item_id
- * @property {Object} [meta]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} quantity
- * @property {string} [s_city]
- * @property {string} size
- * @property {boolean} status
- * @property {number} [store_id]
- * @property {number} [store_pincode]
- * @property {Object[]} [strategy_wise_listing]
- * @property {string} [uid]
- */
-/**
  * @typedef StoreDetail
  * @property {Object[]} [additional_contacts]
  * @property {Object} [address]
@@ -4068,9 +4013,9 @@ export = CatalogPlatformModel;
 /**
  * @typedef TaxIdentifier
  * @property {string} [tax_rule_id] - The unique identifier of the tax rule.
- * @property {string} [hsn_code] _Deprecated_*
- * @property {string} [hsn_code_id] _Deprecated_*
- * @property {string} [reporting_hsn] _Deprecated_*
+ * @property {string} [hsn_code]
+ * @property {string} [hsn_code_id]
+ * @property {string} [reporting_hsn]
  */
 /**
  * @typedef TaxIdentifierV3
@@ -4661,7 +4606,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponseSchema, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreAssignResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
+    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -5448,25 +5393,6 @@ type AppReturnConfigResponseSchema = {
      */
     return_config_level?: string;
 };
-/** @returns {ArticleAssignment} */
-declare function ArticleAssignment(): ArticleAssignment;
-type ArticleAssignment = {
-    level?: string;
-    strategy?: string;
-};
-/** @returns {ArticleAssignment1} */
-declare function ArticleAssignment1(): ArticleAssignment1;
-type ArticleAssignment1 = {
-    level?: string;
-    strategy?: string;
-};
-/** @returns {ArticleQuery} */
-declare function ArticleQuery(): ArticleQuery;
-type ArticleQuery = {
-    ignored_stores?: number[];
-    item_id: number;
-    size: string;
-};
 /** @returns {ArticleStoreResponseSchema} */
 declare function ArticleStoreResponseSchema(): ArticleStoreResponseSchema;
 type ArticleStoreResponseSchema = {
@@ -5474,26 +5400,6 @@ type ArticleStoreResponseSchema = {
     store_code?: string;
     store_type?: string;
     uid?: number;
-};
-/** @returns {AssignStore} */
-declare function AssignStore(): AssignStore;
-type AssignStore = {
-    app_id: string;
-    articles: AssignStoreArticle[];
-    channel_identifier?: string;
-    channel_type?: string;
-    company_id?: number;
-    pincode: string;
-    store_ids?: number[];
-};
-/** @returns {AssignStoreArticle} */
-declare function AssignStoreArticle(): AssignStoreArticle;
-type AssignStoreArticle = {
-    article_assignment?: ArticleAssignment;
-    group_id?: string;
-    meta?: any;
-    quantity?: number;
-    query?: ArticleQuery;
 };
 /** @returns {AttributeDetailsGroup} */
 declare function AttributeDetailsGroup(): AttributeDetailsGroup;
@@ -12485,8 +12391,7 @@ type ProductSchemaV2 = {
     /**
      * - **Deprecated**: Harmonized System
      * Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
-     * field instead.\
-     * _Deprecated_*
+     * field instead.
      */
     hsn_code?: string;
     /**
@@ -13440,27 +13345,6 @@ type SizeGuideResponseSchema = {
      */
     title?: string;
 };
-/** @returns {StoreAssignResponseSchema} */
-declare function StoreAssignResponseSchema(): StoreAssignResponseSchema;
-type StoreAssignResponseSchema = {
-    _id?: string;
-    article_assignment: ArticleAssignment1;
-    company_id?: number;
-    group_id?: string;
-    index?: number;
-    item_id: number;
-    meta?: any;
-    price_effective?: number;
-    price_marked?: number;
-    quantity: number;
-    s_city?: string;
-    size: string;
-    status: boolean;
-    store_id?: number;
-    store_pincode?: number;
-    strategy_wise_listing?: any[];
-    uid?: string;
-};
 /** @returns {StoreDetail} */
 declare function StoreDetail(): StoreDetail;
 type StoreDetail = {
@@ -13511,17 +13395,8 @@ type TaxIdentifier = {
      * - The unique identifier of the tax rule.
      */
     tax_rule_id?: string;
-    /**
-     * _Deprecated_*
-     */
     hsn_code?: string;
-    /**
-     * _Deprecated_*
-     */
     hsn_code_id?: string;
-    /**
-     * _Deprecated_*
-     */
     reporting_hsn?: string;
 };
 /** @returns {TaxIdentifierV3} */

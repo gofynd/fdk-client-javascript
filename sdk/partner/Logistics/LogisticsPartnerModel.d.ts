@@ -1,5 +1,17 @@
 export = LogisticsPartnerModel;
 /**
+ * @typedef RateZoneConfigurationDetails
+ * @property {StandardRateZone[]} [standard_zone_mapping] - List of standard
+ *   zones with name-slug pairs.
+ * @property {string[]} [custom_zones] - List of custom zone names.
+ */
+/**
+ * @typedef RateCardSampleFile
+ * @property {string} [type] - Denotes the type of action performed.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [status] - Current status of the request.
+ */
+/**
  * @typedef CourierPartnerSchemeModelSchema
  * @property {CreatedBy} [created_by]
  * @property {string} [created_on] - The timestamp when the record was created.
@@ -74,6 +86,54 @@ export = LogisticsPartnerModel;
  * @typedef BulkRegionServiceabilityTatResult
  * @property {BulkRegionServiceabilityTatResultItemData[]} [items] - Array of
  *   bulk region serviceability or TAT result items.
+ * @property {Page} [page]
+ */
+/**
+ * @typedef BulkRateCardJob
+ * @property {string} type - Denotes the type of data.
+ * @property {number} total - Total number of items in the batch.
+ * @property {number} failed - Number of failed items in the batch.
+ * @property {number} success - Number of successful items in the batch.
+ * @property {string} [action] - Action type for the bulk operation, either
+ *   import or export.
+ * @property {string} batch_id - A unique identifier for the performed batch operation.
+ * @property {string} status - Current status of the request.
+ * @property {Object[]} [failed_records] - Array of objects containing
+ *   validation error details for records that failed during bulk import or
+ *   export operations. Each object includes error messages describing missing
+ *   required fields or validation failures for individual records.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [created_on] - The timestamp when the record was created.
+ * @property {string} [modified_on] - The timestamp when the record was last modified.
+ */
+/**
+ * @typedef BulkRateCardJobDetails
+ * @property {string} [file_path] - Path to the file used in the bulk operation.
+ * @property {string} rate_card_type - Rate card type for which bulk operation
+ *   will be performed.
+ * @property {string} action - Action type for the bulk operation, either import
+ *   or export.
+ * @property {number[]} [company_ids] - List of company IDs for which rate card
+ *   needs to be applied.
+ */
+/**
+ * @typedef SampleFileRateZoneRequestSchema
+ * @property {string} [zone_type] - Rate zone for which the sample file to be downloaded.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Region for which the sample file to be downloaded.
+ */
+/**
+ * @typedef RateZoneBulkJobDetails
+ * @property {string} [action] - Action type for the bulk operation, either
+ *   import or export.
+ * @property {string} [file_path] - CDN path of the file.
+ * @property {string} [zone_type] - Rate zone for the bulk action.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Region for the import and export.
+ */
+/**
+ * @typedef RateZoneBulkJobList
+ * @property {BulkRateCardJob[]} [items] - Array of bulk rate zone result items.
  * @property {Page} [page]
  */
 /**
@@ -491,6 +551,11 @@ export = LogisticsPartnerModel;
  * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 /**
+ * @typedef StandardRateZone
+ * @property {string} [zone_name] - User defined name of the zone for a particular slug.
+ * @property {string} [zone_slug] - Pre-defined slug for the standard zones.
+ */
+/**
  * @typedef CreatedBy
  * @property {string} [id] - Identifier of the user or system that created the object.
  */
@@ -517,6 +582,7 @@ export = LogisticsPartnerModel;
  *   code-based operations.
  * @property {boolean} [mps] - Denotes if the courier partner supports
  *   multi-part shipment services.
+ * @property {boolean} [b2b] - Denotes if courier partner is business-to-business or not.
  * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
  *   feature is supported by the courier partner.
  * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
@@ -652,8 +718,37 @@ export = LogisticsPartnerModel;
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { CourierPartnerSchemeModelSchema, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, CommonErrorResult, BulkFailureResult, FailureResult, BulkRegionServiceabilityTatResult, RegionTatItemResult, RegionServiceabilityItemResult, ServiceabilityDetailsResult, ServiceabilityDetails, RegionServiceabilityResult, RegionServiceabilityDetails, RegionTatDetails, RegionTatResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, CourierAccountDetailsBody, CompanyCourierPartnerAccountListResult, CourierAccountResult, CourierPartnerSchemeDetailsModel, CourierPartnerPutSchema, CourierPartnerSchemeList, CourierPartnerSchemeUpdateDetails, GetCountries, TATUpdateDetails, StandardError, ValidationErrors, CreatedBy, ModifiedBy, ArithmeticOperations, CourierPartnerSchemeFeatures, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, Error, Page, TATDetails, CourierPartnerSchemeModel, GetCountriesItems, HierarchyItems, CurrencyObject, ValidationError };
+    export { RateZoneConfigurationDetails, RateCardSampleFile, CourierPartnerSchemeModelSchema, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, CommonErrorResult, BulkFailureResult, FailureResult, BulkRegionServiceabilityTatResult, BulkRateCardJob, BulkRateCardJobDetails, SampleFileRateZoneRequestSchema, RateZoneBulkJobDetails, RateZoneBulkJobList, RegionTatItemResult, RegionServiceabilityItemResult, ServiceabilityDetailsResult, ServiceabilityDetails, RegionServiceabilityResult, RegionServiceabilityDetails, RegionTatDetails, RegionTatResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, CourierAccountDetailsBody, CompanyCourierPartnerAccountListResult, CourierAccountResult, CourierPartnerSchemeDetailsModel, CourierPartnerPutSchema, CourierPartnerSchemeList, CourierPartnerSchemeUpdateDetails, GetCountries, TATUpdateDetails, StandardError, ValidationErrors, StandardRateZone, CreatedBy, ModifiedBy, ArithmeticOperations, CourierPartnerSchemeFeatures, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, Error, Page, TATDetails, CourierPartnerSchemeModel, GetCountriesItems, HierarchyItems, CurrencyObject, ValidationError };
 }
+/** @returns {RateZoneConfigurationDetails} */
+declare function RateZoneConfigurationDetails(): RateZoneConfigurationDetails;
+type RateZoneConfigurationDetails = {
+    /**
+     * - List of standard
+     * zones with name-slug pairs.
+     */
+    standard_zone_mapping?: StandardRateZone[];
+    /**
+     * - List of custom zone names.
+     */
+    custom_zones?: string[];
+};
+/** @returns {RateCardSampleFile} */
+declare function RateCardSampleFile(): RateCardSampleFile;
+type RateCardSampleFile = {
+    /**
+     * - Denotes the type of action performed.
+     */
+    type?: string;
+    /**
+     * - CDN path of the file.
+     */
+    file_path?: string;
+    /**
+     * - Current status of the request.
+     */
+    status?: string;
+};
 /** @returns {CourierPartnerSchemeModelSchema} */
 declare function CourierPartnerSchemeModelSchema(): CourierPartnerSchemeModelSchema;
 type CourierPartnerSchemeModelSchema = {
@@ -838,6 +933,131 @@ type BulkRegionServiceabilityTatResult = {
      * bulk region serviceability or TAT result items.
      */
     items?: BulkRegionServiceabilityTatResultItemData[];
+    page?: Page;
+};
+/** @returns {BulkRateCardJob} */
+declare function BulkRateCardJob(): BulkRateCardJob;
+type BulkRateCardJob = {
+    /**
+     * - Denotes the type of data.
+     */
+    type: string;
+    /**
+     * - Total number of items in the batch.
+     */
+    total: number;
+    /**
+     * - Number of failed items in the batch.
+     */
+    failed: number;
+    /**
+     * - Number of successful items in the batch.
+     */
+    success: number;
+    /**
+     * - Action type for the bulk operation, either
+     * import or export.
+     */
+    action?: string;
+    /**
+     * - A unique identifier for the performed batch operation.
+     */
+    batch_id: string;
+    /**
+     * - Current status of the request.
+     */
+    status: string;
+    /**
+     * - Array of objects containing
+     * validation error details for records that failed during bulk import or
+     * export operations. Each object includes error messages describing missing
+     * required fields or validation failures for individual records.
+     */
+    failed_records?: any[];
+    /**
+     * - CDN path of the file.
+     */
+    file_path?: string;
+    /**
+     * - The timestamp when the record was created.
+     */
+    created_on?: string;
+    /**
+     * - The timestamp when the record was last modified.
+     */
+    modified_on?: string;
+};
+/** @returns {BulkRateCardJobDetails} */
+declare function BulkRateCardJobDetails(): BulkRateCardJobDetails;
+type BulkRateCardJobDetails = {
+    /**
+     * - Path to the file used in the bulk operation.
+     */
+    file_path?: string;
+    /**
+     * - Rate card type for which bulk operation
+     * will be performed.
+     */
+    rate_card_type: string;
+    /**
+     * - Action type for the bulk operation, either import
+     * or export.
+     */
+    action: string;
+    /**
+     * - List of company IDs for which rate card
+     * needs to be applied.
+     */
+    company_ids?: number[];
+};
+/** @returns {SampleFileRateZoneRequestSchema} */
+declare function SampleFileRateZoneRequestSchema(): SampleFileRateZoneRequestSchema;
+type SampleFileRateZoneRequestSchema = {
+    /**
+     * - Rate zone for which the sample file to be downloaded.
+     */
+    zone_type?: string;
+    /**
+     * - Name of the country.
+     */
+    country?: string;
+    /**
+     * - Region for which the sample file to be downloaded.
+     */
+    region?: string;
+};
+/** @returns {RateZoneBulkJobDetails} */
+declare function RateZoneBulkJobDetails(): RateZoneBulkJobDetails;
+type RateZoneBulkJobDetails = {
+    /**
+     * - Action type for the bulk operation, either
+     * import or export.
+     */
+    action?: string;
+    /**
+     * - CDN path of the file.
+     */
+    file_path?: string;
+    /**
+     * - Rate zone for the bulk action.
+     */
+    zone_type?: string;
+    /**
+     * - Name of the country.
+     */
+    country?: string;
+    /**
+     * - Region for the import and export.
+     */
+    region?: string;
+};
+/** @returns {RateZoneBulkJobList} */
+declare function RateZoneBulkJobList(): RateZoneBulkJobList;
+type RateZoneBulkJobList = {
+    /**
+     * - Array of bulk rate zone result items.
+     */
+    items?: BulkRateCardJob[];
     page?: Page;
 };
 /** @returns {RegionTatItemResult} */
@@ -1807,6 +2027,18 @@ type ValidationErrors = {
      */
     errors: ValidationError[];
 };
+/** @returns {StandardRateZone} */
+declare function StandardRateZone(): StandardRateZone;
+type StandardRateZone = {
+    /**
+     * - User defined name of the zone for a particular slug.
+     */
+    zone_name?: string;
+    /**
+     * - Pre-defined slug for the standard zones.
+     */
+    zone_slug?: string;
+};
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
@@ -1865,6 +2097,10 @@ type CourierPartnerSchemeFeatures = {
      * multi-part shipment services.
      */
     mps?: boolean;
+    /**
+     * - Denotes if courier partner is business-to-business or not.
+     */
+    b2b?: boolean;
     /**
      * - Indicates if the Non-Delivery Report (NDR)
      * feature is supported by the courier partner.

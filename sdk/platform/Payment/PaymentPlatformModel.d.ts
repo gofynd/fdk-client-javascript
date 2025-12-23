@@ -344,15 +344,17 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef BankDetailsForOTP
- * @property {string} ifsc_code - IFSC code of account
- * @property {string} account_no - Account number
- * @property {string} branch_name - Branch name of account
- * @property {string} bank_name - Bank name of account
- * @property {string} account_holder - Accountg holder name of account
+ * @property {string} [ifsc_code] - IFSC code of account
+ * @property {string} [account_no] - Account number
+ * @property {string} [branch_name] - Branch name of account
+ * @property {string} [bank_name] - Bank name of account
+ * @property {string} [account_holder] - Accountg holder name of account
+ * @property {string} [upi] - UPI ID of account holder
  */
 /**
  * @typedef AddBeneficiaryDetailsOTPCreation
  * @property {string} order_id - Order_id for which account will be added
+ * @property {string} [shipment_id] - Shipment_id for which account will be added
  * @property {BankDetailsForOTP} details
  */
 /**
@@ -2061,23 +2063,27 @@ type BankDetailsForOTP = {
     /**
      * - IFSC code of account
      */
-    ifsc_code: string;
+    ifsc_code?: string;
     /**
      * - Account number
      */
-    account_no: string;
+    account_no?: string;
     /**
      * - Branch name of account
      */
-    branch_name: string;
+    branch_name?: string;
     /**
      * - Bank name of account
      */
-    bank_name: string;
+    bank_name?: string;
     /**
      * - Accountg holder name of account
      */
-    account_holder: string;
+    account_holder?: string;
+    /**
+     * - UPI ID of account holder
+     */
+    upi?: string;
 };
 /** @returns {AddBeneficiaryDetailsOTPCreation} */
 declare function AddBeneficiaryDetailsOTPCreation(): AddBeneficiaryDetailsOTPCreation;
@@ -2086,6 +2092,10 @@ type AddBeneficiaryDetailsOTPCreation = {
      * - Order_id for which account will be added
      */
     order_id: string;
+    /**
+     * - Shipment_id for which account will be added
+     */
+    shipment_id?: string;
     details: BankDetailsForOTP;
 };
 /** @returns {IfscCodeDetails} */

@@ -16,42 +16,6 @@ declare class Communication {
      */
     createAudience({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateAudienceParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.Audience>;
     /**
-     * @param {CommunicationPlatformApplicationValidator.CreateBigQueryHeadersParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name createBigQueryHeaders
-     * @summary: Create BigQuery headers
-     * @description: Create BigQuery headers - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryHeaders/).
-     */
-    createBigQueryHeaders({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {CommunicationPlatformApplicationValidator.CreateBigQueryNCountParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name createBigQueryNCount
-     * @summary: Create BigQuery N-count
-     * @description: Creates big query n count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryNCount/).
-     */
-    createBigQueryNCount({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {CommunicationPlatformApplicationValidator.CreateBigQueryRowCountParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name createBigQueryRowCount
-     * @summary: Create a BigQuery row count
-     * @description: Creates big query row count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryRowCount/).
-     */
-    createBigQueryRowCount({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
-    /**
      * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
      *   - Arg object
      *
@@ -274,30 +238,6 @@ declare class Communication {
      */
     getAudiences({ pageNo, pageSize, sort, query, requestHeaders }?: CommunicationPlatformApplicationValidator.GetAudiencesParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.Audiences>;
     /**
-     * @param {CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getBigQueryHeadersById
-     * @summary: Get BigQuery headers
-     * @description: Retrieves header information from BigQuery. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryHeadersById/).
-     */
-    getBigQueryHeadersById({ id, requestHeaders }?: CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {CommunicationPlatformApplicationValidator.GetBigQueryRowCountByIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getBigQueryRowCountById
-     * @summary: Get BigQuery row count
-     * @description: Retrieves big query row count by id - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryRowCountById/).
-     */
-    getBigQueryRowCountById({ id, requestHeaders }?: CommunicationPlatformApplicationValidator.GetBigQueryRowCountByIdParam, { responseHeaders }?: object): Promise<any>;
-    /**
      * @param {CommunicationPlatformApplicationValidator.GetCampaignByIdParam} arg
      *   - Arg object
      *
@@ -432,7 +372,7 @@ declare class Communication {
      * @summary: Get all event subscriptions
      * @description: Retrieves a list of all event subscriptions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getEventSubscriptions/).
      */
-    getEventSubscriptions({ pageNo, pageSize, populate, group, subGroup, fulfillmentOptionTypes, requestHeaders, }?: CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptions>;
+    getEventSubscriptions({ pageNo, pageSize, populate, group, subGroup, fulfillmentOptionSlug, requestHeaders, }?: CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.EventSubscriptions>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsByIdParam} arg
      *   - Arg object
@@ -611,18 +551,6 @@ declare class Communication {
      * @description: Retrieve a list of SMS communication templates that are subscribed to an event. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSubscribedSmsTemplates/).
      */
     getSubscribedSmsTemplates({ pageNo, pageSize, query, requestHeaders }?: CommunicationPlatformApplicationValidator.GetSubscribedSmsTemplatesParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SmsTemplates>;
-    /**
-     * @param {CommunicationPlatformApplicationValidator.GetSystemAudiencesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
-     * @name getSystemAudiences
-     * @summary: Get system audiences
-     * @description: Retrieves a list of  system-defined audiences for communication. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemAudiences/).
-     */
-    getSystemAudiences({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
      *   - Arg object

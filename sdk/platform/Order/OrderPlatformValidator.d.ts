@@ -50,18 +50,9 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.CreateOrderRequestSchema} body
  */
 /**
- * @typedef CreateOrderDeprecatedParam
- * @property {string} xOrderingSource - To uniquely identify the source through
- *   which order has been placed.
- * @property {string} [xApplicationId] - The Application ID is a unique
- *   identifier assigned to a storefront that typically follows a 24-character
- *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
- *   mandatory. At least one of them must be provided.
- * @property {string} [xExtensionId] - The Extension ID is a unique identifier
- *   assigned to an extension that typically follows a 24-character hexadecimal
- *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
- *   At least one of them must be provided.
- * @property {OrderPlatformModel.CreateOrderAPI} body
+ * @typedef CreateShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier of the shipment.
+ * @property {OrderPlatformModel.PackagesSchema} body
  */
 /**
  * @typedef DispatchManifestsParam
@@ -329,6 +320,11 @@ export = OrderPlatformValidator;
  * @property {number} [bagId] - Identifier for a bag or product.
  */
 /**
+ * @typedef GetShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier for the shipment whose
+ *   packages are being retrieved.
+ */
+/**
  * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
@@ -438,10 +434,6 @@ export = OrderPlatformValidator;
  * @property {string} [groupEntity] - Name of group entity
  */
 /**
- * @typedef InvalidateShipmentCacheParam
- * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
- */
-/**
  * @typedef JobDetailsParam
  * @property {string} batchId - A unique identifier for the batch associated
  *   with this bulk action.
@@ -503,6 +495,12 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.UpdateShipmentLockPayload} body
  */
 /**
+ * @typedef UpdateShipmentPackagesParam
+ * @property {string} shipmentId - Unique identifier for the shipment whose
+ *   packages will be updated.
+ * @property {OrderPlatformModel.PackagesSchema} body
+ */
+/**
  * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequestSchema} body
  */
@@ -535,8 +533,8 @@ declare class OrderPlatformValidator {
     static createChannelConfig(): CreateChannelConfigParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
-    /** @returns {CreateOrderDeprecatedParam} */
-    static createOrderDeprecated(): CreateOrderDeprecatedParam;
+    /** @returns {CreateShipmentPackagesParam} */
+    static createShipmentPackages(): CreateShipmentPackagesParam;
     /** @returns {DispatchManifestsParam} */
     static dispatchManifests(): DispatchManifestsParam;
     /** @returns {DownloadBulkActionTemplateParam} */
@@ -597,6 +595,8 @@ declare class OrderPlatformValidator {
     static getShipmentById(): GetShipmentByIdParam;
     /** @returns {GetShipmentHistoryParam} */
     static getShipmentHistory(): GetShipmentHistoryParam;
+    /** @returns {GetShipmentPackagesParam} */
+    static getShipmentPackages(): GetShipmentPackagesParam;
     /** @returns {GetShipmentReasonsParam} */
     static getShipmentReasons(): GetShipmentReasonsParam;
     /** @returns {GetShipmentsParam} */
@@ -609,8 +609,6 @@ declare class OrderPlatformValidator {
     static getTemplate(): GetTemplateParam;
     /** @returns {GetfiltersParam} */
     static getfilters(): GetfiltersParam;
-    /** @returns {InvalidateShipmentCacheParam} */
-    static invalidateShipmentCache(): InvalidateShipmentCacheParam;
     /** @returns {JobDetailsParam} */
     static jobDetails(): JobDetailsParam;
     /** @returns {ListAccountsParam} */
@@ -637,6 +635,8 @@ declare class OrderPlatformValidator {
     static updatePaymentInfo(): UpdatePaymentInfoParam;
     /** @returns {UpdateShipmentLockParam} */
     static updateShipmentLock(): UpdateShipmentLockParam;
+    /** @returns {UpdateShipmentPackagesParam} */
+    static updateShipmentPackages(): UpdateShipmentPackagesParam;
     /** @returns {UpdateShipmentStatusParam} */
     static updateShipmentStatus(): UpdateShipmentStatusParam;
     /** @returns {UpdateShipmentTrackingParam} */
@@ -647,7 +647,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateOrderDeprecatedParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateShipmentPackagesParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentPackagesParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentPackagesParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -721,27 +721,12 @@ type CreateOrderParam = {
     xExtensionId?: string;
     body: OrderPlatformModel.CreateOrderRequestSchema;
 };
-type CreateOrderDeprecatedParam = {
+type CreateShipmentPackagesParam = {
     /**
-     * - To uniquely identify the source through
-     * which order has been placed.
+     * - Unique identifier of the shipment.
      */
-    xOrderingSource: string;
-    /**
-     * - The Application ID is a unique
-     * identifier assigned to a storefront that typically follows a 24-character
-     * hexadecimal string. Either `x-application-id` or `x-extension-id` header is
-     * mandatory. At least one of them must be provided.
-     */
-    xApplicationId?: string;
-    /**
-     * - The Extension ID is a unique identifier
-     * assigned to an extension that typically follows a 24-character hexadecimal
-     * string. Either `x-application-id` or `x-extension-id` header is mandatory.
-     * At least one of them must be provided.
-     */
-    xExtensionId?: string;
-    body: OrderPlatformModel.CreateOrderAPI;
+    shipmentId: string;
+    body: OrderPlatformModel.PackagesSchema;
 };
 type DispatchManifestsParam = {
     body: OrderPlatformModel.DispatchManifest;
@@ -1305,6 +1290,13 @@ type GetShipmentHistoryParam = {
      */
     bagId?: number;
 };
+type GetShipmentPackagesParam = {
+    /**
+     * - Unique identifier for the shipment whose
+     * packages are being retrieved.
+     */
+    shipmentId: string;
+};
 type GetShipmentReasonsParam = {
     /**
      * - ID of the shipment. An order may contain
@@ -1552,9 +1544,6 @@ type GetfiltersParam = {
      */
     groupEntity?: string;
 };
-type InvalidateShipmentCacheParam = {
-    body: OrderPlatformModel.InvalidateShipmentCachePayload;
-};
 type JobDetailsParam = {
     /**
      * - A unique identifier for the batch associated
@@ -1629,6 +1618,14 @@ type UpdatePaymentInfoParam = {
 };
 type UpdateShipmentLockParam = {
     body: OrderPlatformModel.UpdateShipmentLockPayload;
+};
+type UpdateShipmentPackagesParam = {
+    /**
+     * - Unique identifier for the shipment whose
+     * packages will be updated.
+     */
+    shipmentId: string;
+    body: OrderPlatformModel.PackagesSchema;
 };
 type UpdateShipmentStatusParam = {
     body: OrderPlatformModel.UpdateShipmentStatusRequestSchema;

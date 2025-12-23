@@ -2,14 +2,15 @@ const Joi = require("joi");
 
 /**
  * @typedef GroupMapping
- * @property {EventGroup[]} items
+ * @property {EventGroup[]} items - List of event groups configured for the application.
  */
 
 /**
  * @typedef EventGroup
  * @property {string} name - Event group identifier
  * @property {string} display - Human-readable group name
- * @property {EventSubgroup[]} subgroups
+ * @property {EventSubgroup[]} subgroups - List of sub-groups that belong to
+ *   this event group.
  */
 
 /**

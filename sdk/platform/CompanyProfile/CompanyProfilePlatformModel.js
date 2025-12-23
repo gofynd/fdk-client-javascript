@@ -413,6 +413,8 @@ const Joi = require("joi");
  * @property {LocationDayWiseSchema[]} [order_acceptance_timing]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [multi_piece_shipment] - Flag indicating if multi-piece
+ *   shipment is enabled for the location.
  * @property {boolean} [auto_assign_courier_partner]
  * @property {boolean} [qc_based_return_inventory_sync]
  */
@@ -472,6 +474,8 @@ const Joi = require("joi");
  *   acceptance timing of the store
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [multi_piece_shipment] - Flag indicating if multi-piece
+ *   shipment is enabled for the location.
  * @property {boolean} [auto_assign_courier_partner]
  */
 
@@ -1005,6 +1009,7 @@ class CompanyProfilePlatformModel {
       ),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
+      multi_piece_shipment: Joi.boolean(),
       auto_assign_courier_partner: Joi.boolean(),
       qc_based_return_inventory_sync: Joi.boolean(),
     });
@@ -1075,6 +1080,7 @@ class CompanyProfilePlatformModel {
       ),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
+      multi_piece_shipment: Joi.boolean(),
       auto_assign_courier_partner: Joi.boolean(),
     });
   }

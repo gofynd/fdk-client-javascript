@@ -310,21 +310,21 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RefundBeneficiaries>} - Success response
+     * @returns {Promise<GetRefundBeneficiary>} - Success response
      * @name getRefundBeneficiaries
      * @summary: Get Refund Beneficiaries
      * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user.   Both `order_id` and `shipment_id` are optional query parameters.   Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiaries/).
      */
-    getRefundBeneficiaries({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundBeneficiaries>;
+    getRefundBeneficiaries({ orderId, shipmentId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetRefundBeneficiary>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RefundBeneficiaries>} - Success response
+     * @returns {Promise<GetRefundBeneficiary>} - Success response
      * @name getRefundBeneficiariesUsingOTPSession
      * @summary: Get Refund Beneficiaries using OTP session
      * @description: Returns a list of UPI and Bank refund beneficiaries associated with a user for a given order and shipment. Use the optional filter_by enum parameter to refine the response. When the value of filter_by is order, the API returns only beneficiaries associated with the order. When the value of filter_by is shipment, it returns only beneficiaries associated with the shipment. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getRefundBeneficiariesUsingOTPSession/).
      */
-    getRefundBeneficiariesUsingOTPSession({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RefundBeneficiaries>;
+    getRefundBeneficiariesUsingOTPSession({ orderId, shipmentId, filterBy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetRefundBeneficiary>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

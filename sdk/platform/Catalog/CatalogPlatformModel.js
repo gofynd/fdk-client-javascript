@@ -399,50 +399,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy]
- */
-
-/**
- * @typedef ArticleAssignment1
- * @property {string} [level]
- * @property {string} [strategy]
- */
-
-/**
- * @typedef ArticleQuery
- * @property {number[]} [ignored_stores]
- * @property {number} item_id
- * @property {string} size
- */
-
-/**
  * @typedef ArticleStoreResponseSchema
  * @property {string} [name]
  * @property {string} [store_code]
  * @property {string} [store_type]
  * @property {number} [uid]
- */
-
-/**
- * @typedef AssignStore
- * @property {string} app_id
- * @property {AssignStoreArticle[]} articles
- * @property {string} [channel_identifier]
- * @property {string} [channel_type]
- * @property {number} [company_id]
- * @property {string} pincode
- * @property {number[]} [store_ids]
- */
-
-/**
- * @typedef AssignStoreArticle
- * @property {ArticleAssignment} [article_assignment]
- * @property {string} [group_id]
- * @property {Object} [meta]
- * @property {number} [quantity]
- * @property {ArticleQuery} [query]
  */
 
 /**
@@ -3875,8 +3836,7 @@ const Joi = require("joi");
  *   taxation purposes. This is required for indian products.
  * @property {string} [hsn_code] - **Deprecated**: Harmonized System
  *   Nomenclature (HSN) code for taxation purposes. Please use the `hs_code`
- *   field instead.\
- *   _Deprecated_*
+ *   field instead.
  * @property {string} [id] - Unique identifier of the product in the database.
  * @property {string} [image_nature] - Describes the nature of the product
  *   images (e.g., "standard").
@@ -4386,27 +4346,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreAssignResponseSchema
- * @property {string} [_id]
- * @property {ArticleAssignment1} article_assignment
- * @property {number} [company_id]
- * @property {string} [group_id]
- * @property {number} [index]
- * @property {number} item_id
- * @property {Object} [meta]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} quantity
- * @property {string} [s_city]
- * @property {string} size
- * @property {boolean} status
- * @property {number} [store_id]
- * @property {number} [store_pincode]
- * @property {Object[]} [strategy_wise_listing]
- * @property {string} [uid]
- */
-
-/**
  * @typedef StoreDetail
  * @property {Object[]} [additional_contacts]
  * @property {Object} [address]
@@ -4443,9 +4382,9 @@ const Joi = require("joi");
 /**
  * @typedef TaxIdentifier
  * @property {string} [tax_rule_id] - The unique identifier of the tax rule.
- * @property {string} [hsn_code] _Deprecated_*
- * @property {string} [hsn_code_id] _Deprecated_*
- * @property {string} [reporting_hsn] _Deprecated_*
+ * @property {string} [hsn_code]
+ * @property {string} [hsn_code_id]
+ * @property {string} [reporting_hsn]
  */
 
 /**
@@ -5436,31 +5375,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ArticleAssignment} */
-  static ArticleAssignment() {
-    return Joi.object({
-      level: Joi.string().allow(""),
-      strategy: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ArticleAssignment1} */
-  static ArticleAssignment1() {
-    return Joi.object({
-      level: Joi.string().allow(""),
-      strategy: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ArticleQuery} */
-  static ArticleQuery() {
-    return Joi.object({
-      ignored_stores: Joi.array().items(Joi.number()),
-      item_id: Joi.number().required(),
-      size: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ArticleStoreResponseSchema} */
   static ArticleStoreResponseSchema() {
     return Joi.object({
@@ -5468,32 +5382,6 @@ class CatalogPlatformModel {
       store_code: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       uid: Joi.number(),
-    });
-  }
-
-  /** @returns {AssignStore} */
-  static AssignStore() {
-    return Joi.object({
-      app_id: Joi.string().allow("").required(),
-      articles: Joi.array()
-        .items(CatalogPlatformModel.AssignStoreArticle())
-        .required(),
-      channel_identifier: Joi.string().allow(""),
-      channel_type: Joi.string().allow(""),
-      company_id: Joi.number(),
-      pincode: Joi.string().allow("").required(),
-      store_ids: Joi.array().items(Joi.number()),
-    });
-  }
-
-  /** @returns {AssignStoreArticle} */
-  static AssignStoreArticle() {
-    return Joi.object({
-      article_assignment: CatalogPlatformModel.ArticleAssignment(),
-      group_id: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      quantity: Joi.number(),
-      query: CatalogPlatformModel.ArticleQuery(),
     });
   }
 
@@ -9675,31 +9563,6 @@ class CatalogPlatformModel {
       subtitle: Joi.string().allow(""),
       tag: Joi.string().allow(""),
       title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {StoreAssignResponseSchema} */
-  static StoreAssignResponseSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      article_assignment: CatalogPlatformModel.ArticleAssignment1().required(),
-      company_id: Joi.number(),
-      group_id: Joi.string().allow(""),
-      index: Joi.number(),
-      item_id: Joi.number().required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
-      price_effective: Joi.number(),
-      price_marked: Joi.number(),
-      quantity: Joi.number().required(),
-      s_city: Joi.string().allow(""),
-      size: Joi.string().allow("").required(),
-      status: Joi.boolean().required(),
-      store_id: Joi.number(),
-      store_pincode: Joi.number(),
-      strategy_wise_listing: Joi.array().items(
-        Joi.object().pattern(/\S/, Joi.any())
-      ),
-      uid: Joi.string().allow(""),
     });
   }
 

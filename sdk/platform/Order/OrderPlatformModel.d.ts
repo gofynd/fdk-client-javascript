@@ -1,22 +1,40 @@
 export = OrderPlatformModel;
 /**
- * @typedef InvalidateShipmentCachePayload
- * @property {string[]} [shipment_ids] - Shipment Ids to clear cache
- * @property {string[]} [affiliate_bag_ids] - Affiliate Bag Ids to clear cache
- *   of shipment Ids mapped to it
- * @property {string[]} [bag_ids] - Bag Ids to clear cache of shipment Ids mapped to it
- */
-/**
- * @typedef InvalidateShipmentCacheNestedResponseSchema
- * @property {string} [shipment_id]
- * @property {number} [status] - The HTTP status code corresponding to the
- *   overall status of the shipment response.
- * @property {string} [message]
- * @property {string} [error]
- */
-/**
- * @typedef InvalidateShipmentCacheResponseSchema
- * @property {InvalidateShipmentCacheNestedResponseSchema[]} [response]
+ * @typedef PackageSchema
+ * @property {string} [id] - Unique identifier of the physical package. If not
+ *   provided, the system will auto-generate a unique ID with format 'PK'
+ *   followed by a 10-digit number.
+ * @property {string} [packaging_id] - Optional reference to a predefined
+ *   packaging configuration or template used for creating physical packages.
+ * @property {string} [name] - A human-readable name or label for the package,
+ *   used for identification and organizational purposes.
+ * @property {string} [size] - The size category of the package (e.g., small,
+ *   medium, large). Used for logistics and carrier selection.
+ * @property {string} [package_type] - The type or category of packaging
+ *   material used (e.g., Box, Paper Bag, Poly Mailer, Envelope).
+ * @property {number} [length] - The length dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [width] - The width dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [height] - The height dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [weight] - The actual weight of the package in kilograms,
+ *   including packaging materials and products.
+ * @property {number} [error_rate] - The acceptable error rate or tolerance for
+ *   the package weight, expressed as a decimal (e.g., 0.02 for 2% tolerance).
+ * @property {number} [package_vol_weight] - The volumetric weight of the
+ *   package calculated based on dimensions, used for shipping cost calculation
+ *   when greater than actual weight.
+ * @property {number} [max_weight] - The maximum weight capacity that this
+ *   package can handle, used for validation and logistics planning.
+ * @property {string} [awb] - Air Waybill number assigned by the courier partner
+ *   for tracking this specific package throughout the delivery process.
+ * @property {Object} [pdf_links] - Dictionary containing PDF document links
+ *   related to this package (labels, invoices, etc.). Always returns an object
+ *   - empty object {} if no links are present, populated object if links exist.
+ *   Users can update values by providing new key-value pairs.
+ * @property {PackageProduct[]} [products] - List of products contained within
+ *   this package. Each product specifies its line number, quantity, and identifier.
  */
 /**
  * @typedef UpdatePackingErrorResponseSchema
@@ -319,6 +337,13 @@ export = OrderPlatformModel;
  * @property {string} message - Message for the transition.
  */
 /**
+ * @typedef RefundModeTransitionData
+ * @property {string} [refund_mode] - Refund Mode for status transition data.
+ * @property {string} [display_name] - Refund Mode display name.
+ * @property {string[]} [payment_identifiers] - List of identifiers associated
+ *   with the refund transaction.
+ */
+/**
  * @typedef ShipmentsRequestSchema
  * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
@@ -327,6 +352,8 @@ export = OrderPlatformModel;
  * @property {DataUpdates} [data_updates]
  * @property {TransitionComments[]} [transition_comments] - Comments or notes
  *   associated with the transition of shipment status.
+ * @property {RefundModeTransitionData[]} [refund_modes] - Refund Mode for
+ *   status transition.
  */
 /**
  * @typedef UpdatedAddressSchema
@@ -2323,6 +2350,14 @@ export = OrderPlatformModel;
  *
  *   - `status_update`: Status Update
  *   - `data_update`: Data Update
+ *
+ * @property {string} [fulfillment_option_slug] - Represents the unique slug
+ *   associated with the fulfillment option attached to the shipment. This slug
+ *   helps determine the fulfillment method and operational flow used to deliver
+ *   the shipment. Examples:
+ *
+ *   - "standard-delivery"
+ *   - "hyperlocal-delivery"
  */
 /**
  * @typedef PostHook
@@ -2611,6 +2646,26 @@ export = OrderPlatformModel;
  * @property {number} [amount_paid] - Total amount paid by this payment method
  * @property {string} [payment_identifier] - Transaction id
  * @property {PaymentMethodTransactionPartySchema} [transaction_party]
+ */
+/**
+ * @typedef PackagesSchema
+ * @property {PackageSchema[]} packages - Array of packages to be created or
+ *   updated for the shipment. At least two packages are required for MPS functionality.
+ */
+/**
+ * @typedef PackagesResponseSchema
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or failed (false).
+ * @property {PackagesSchema} data
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ */
+/**
+ * @typedef PackagesErrorResponseSchema
+ * @property {boolean} success - Indicates whether the API call was successful.
+ *   Will always be false for error responses.
+ * @property {string} error - A detailed error message describing what went
+ *   wrong during the API call.
  */
 /**
  * @typedef BundleDetailsSchema
@@ -3049,6 +3104,14 @@ export = OrderPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef PackageProduct
+ * @property {number} line_number - The line number of the product within the
+ *   shipment, used for tracking and identification purposes.
+ * @property {number} quantity - The quantity of the product included in this package.
+ * @property {string} identifier - The unique identifier or SKU (Stock Keeping
+ *   Unit) of the product. This is used to match products across packages and bags.
+ */
+/**
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
@@ -3117,6 +3180,14 @@ export = OrderPlatformModel;
  *   status was updated, useful for processing and tracking.
  * @property {string} status - This key denotes the status of the shipment,
  *   providing a clear indication of its current processing stage.
+ */
+/**
+ * @typedef OrderingSourceDetails
+ * @property {string} [type] - Type of the ordering source.
+ * @property {string} [slug] - Slug identifier of the ordering source.
+ * @property {string} [display_name] - Display name of the ordering source.
+ * @property {boolean} [is_active] - Indicates whether the ordering source is active.
+ * @property {string} [logo] - Logo URL of the ordering source.
  */
 /**
  * @typedef UserDataInfo
@@ -3291,6 +3362,8 @@ export = OrderPlatformModel;
  *   used in the transaction.
  * @property {number} [amount_to_be_collected] - Total amount to be collected in
  *   scenarios involving multiple payment methods.
+ * @property {number} [cost_price] - The base cost incurred by the seller to
+ *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
  */
@@ -3375,6 +3448,8 @@ export = OrderPlatformModel;
  *   purchased by the customer, usable for future transactions.
  * @property {number} [amount_to_be_collected] - Amount to be collected from the
  *   customer when multiple payment methods are utilized for a single order.
+ * @property {number} [cost_price] - The base cost incurred by the seller to
+ *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
  */
@@ -3413,6 +3488,15 @@ export = OrderPlatformModel;
  * @property {number} [taxable_amount] - The base amount on which the tax is
  *   calculated, excluding the tax itself. This represents the value of goods or
  *   services before tax is applied.
+ */
+/**
+ * @typedef SellerQcDetails
+ * @property {number} [line_number] - Represents the line number in an order or
+ *   transaction associated with the bag.
+ * @property {number} [bad_quantity] - Represents the total number of items in a
+ *   bag that have failed quality control and are marked as bad QC.
+ * @property {number} [good_quantity] - Represents the total number of items in
+ *   a bag that have passed quality control and are marked as good QC.
  */
 /**
  * @typedef FinancialBreakup
@@ -3894,6 +3978,7 @@ export = OrderPlatformModel;
  *   placed by the customer. This timestamp is crucial for tracking the order'
  * @property {string} [order_created_ts] - The timestamp indicating when the
  *   order was created in UTC format.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {ShipmentStatus} [shipment_status]
  * @property {UserDataInfo} [user]
  * @property {string} [estimated_sla_time] - The estimated Service Level
@@ -4537,6 +4622,7 @@ export = OrderPlatformModel;
  * @property {BagStatusHistory[]} [bag_status]
  * @property {Object} [parent_promo_bags] - An object containing details of
  *   parent promotional bags.
+ * @property {SellerQcDetails} [seller_qc_details]
  * @property {FinancialBreakup} [financial_breakup]
  * @property {BagConfigs} [bag_configs]
  * @property {string} [seller_identifier]
@@ -4785,6 +4871,8 @@ export = OrderPlatformModel;
  * @property {Object} [logistics_meta] - An object storing detailed
  *   logistics-related information, including courier partner details and other
  *   relevant metadata.
+ * @property {PackageSchema[]} [packages] - Array of packages to be created or
+ *   updated for the shipment. At least two packages are required for MPS functionality.
  */
 /**
  * @typedef ShipmentInfoResponseSchema
@@ -4828,6 +4916,7 @@ export = OrderPlatformModel;
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
  * @property {string} [ordering_source] - Ordering source, to be used to
  *   identify source of order creation.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -4914,6 +5003,9 @@ export = OrderPlatformModel;
  * @property {string} [order_created_time] - The Date and time when the order was created.
  * @property {string} [order_created_ts] - The timestamp indicating when the
  *   order was created.
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {string} [payment_mode] - The payment mode used for the order.
  * @property {PlatformShipment[]} [shipments] - An array of shipment items
  *   returned as part of the order.
@@ -5500,41 +5592,90 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponseSchema, InvalidateShipmentCacheResponseSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
+    export { PackageSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, RefundModeTransitionData, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, PackagesSchema, PackagesResponseSchema, PackagesErrorResponseSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, PackageProduct, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, OrderingSourceDetails, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, SellerQcDetails, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
 }
-/** @returns {InvalidateShipmentCachePayload} */
-declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
-type InvalidateShipmentCachePayload = {
+/** @returns {PackageSchema} */
+declare function PackageSchema(): PackageSchema;
+type PackageSchema = {
     /**
-     * - Shipment Ids to clear cache
+     * - Unique identifier of the physical package. If not
+     * provided, the system will auto-generate a unique ID with format 'PK'
+     * followed by a 10-digit number.
      */
-    shipment_ids?: string[];
+    id?: string;
     /**
-     * - Affiliate Bag Ids to clear cache
-     * of shipment Ids mapped to it
+     * - Optional reference to a predefined
+     * packaging configuration or template used for creating physical packages.
      */
-    affiliate_bag_ids?: string[];
+    packaging_id?: string;
     /**
-     * - Bag Ids to clear cache of shipment Ids mapped to it
+     * - A human-readable name or label for the package,
+     * used for identification and organizational purposes.
      */
-    bag_ids?: string[];
-};
-/** @returns {InvalidateShipmentCacheNestedResponseSchema} */
-declare function InvalidateShipmentCacheNestedResponseSchema(): InvalidateShipmentCacheNestedResponseSchema;
-type InvalidateShipmentCacheNestedResponseSchema = {
-    shipment_id?: string;
+    name?: string;
     /**
-     * - The HTTP status code corresponding to the
-     * overall status of the shipment response.
+     * - The size category of the package (e.g., small,
+     * medium, large). Used for logistics and carrier selection.
      */
-    status?: number;
-    message?: string;
-    error?: string;
-};
-/** @returns {InvalidateShipmentCacheResponseSchema} */
-declare function InvalidateShipmentCacheResponseSchema(): InvalidateShipmentCacheResponseSchema;
-type InvalidateShipmentCacheResponseSchema = {
-    response?: InvalidateShipmentCacheNestedResponseSchema[];
+    size?: string;
+    /**
+     * - The type or category of packaging
+     * material used (e.g., Box, Paper Bag, Poly Mailer, Envelope).
+     */
+    package_type?: string;
+    /**
+     * - The length dimension of the package in
+     * centimeters. Used for volumetric weight calculation and carrier requirements.
+     */
+    length?: number;
+    /**
+     * - The width dimension of the package in
+     * centimeters. Used for volumetric weight calculation and carrier requirements.
+     */
+    width?: number;
+    /**
+     * - The height dimension of the package in
+     * centimeters. Used for volumetric weight calculation and carrier requirements.
+     */
+    height?: number;
+    /**
+     * - The actual weight of the package in kilograms,
+     * including packaging materials and products.
+     */
+    weight?: number;
+    /**
+     * - The acceptable error rate or tolerance for
+     * the package weight, expressed as a decimal (e.g., 0.02 for 2% tolerance).
+     */
+    error_rate?: number;
+    /**
+     * - The volumetric weight of the
+     * package calculated based on dimensions, used for shipping cost calculation
+     * when greater than actual weight.
+     */
+    package_vol_weight?: number;
+    /**
+     * - The maximum weight capacity that this
+     * package can handle, used for validation and logistics planning.
+     */
+    max_weight?: number;
+    /**
+     * - Air Waybill number assigned by the courier partner
+     * for tracking this specific package throughout the delivery process.
+     */
+    awb?: string;
+    /**
+     * - Dictionary containing PDF document links
+     * related to this package (labels, invoices, etc.). Always returns an object
+     * - empty object {} if no links are present, populated object if links exist.
+     * Users can update values by providing new key-value pairs.
+     */
+    pdf_links?: any;
+    /**
+     * - List of products contained within
+     * this package. Each product specifies its line number, quantity, and identifier.
+     */
+    products?: PackageProduct[];
 };
 /** @returns {UpdatePackingErrorResponseSchema} */
 declare function UpdatePackingErrorResponseSchema(): UpdatePackingErrorResponseSchema;
@@ -6174,6 +6315,23 @@ type TransitionComments = {
      */
     message: string;
 };
+/** @returns {RefundModeTransitionData} */
+declare function RefundModeTransitionData(): RefundModeTransitionData;
+type RefundModeTransitionData = {
+    /**
+     * - Refund Mode for status transition data.
+     */
+    refund_mode?: string;
+    /**
+     * - Refund Mode display name.
+     */
+    display_name?: string;
+    /**
+     * - List of identifiers associated
+     * with the refund transaction.
+     */
+    payment_identifiers?: string[];
+};
 /** @returns {ShipmentsRequestSchema} */
 declare function ShipmentsRequestSchema(): ShipmentsRequestSchema;
 type ShipmentsRequestSchema = {
@@ -6193,6 +6351,11 @@ type ShipmentsRequestSchema = {
      * associated with the transition of shipment status.
      */
     transition_comments?: TransitionComments[];
+    /**
+     * - Refund Mode for
+     * status transition.
+     */
+    refund_modes?: RefundModeTransitionData[];
 };
 /** @returns {UpdatedAddressSchema} */
 declare function UpdatedAddressSchema(): UpdatedAddressSchema;
@@ -10126,6 +10289,16 @@ type Filter = {
      * - `data_update`: Data Update
      */
     task_trigger_condition?: string[];
+    /**
+     * - Represents the unique slug
+     * associated with the fulfillment option attached to the shipment. This slug
+     * helps determine the fulfillment method and operational flow used to deliver
+     * the shipment. Examples:
+     *
+     * - "standard-delivery"
+     * - "hyperlocal-delivery"
+     */
+    fulfillment_option_slug?: string;
 };
 /** @returns {PostHook} */
 declare function PostHook(): PostHook;
@@ -10732,6 +10905,44 @@ type LineItemPaymentMethodSchema = {
      */
     payment_identifier?: string;
     transaction_party?: PaymentMethodTransactionPartySchema;
+};
+/** @returns {PackagesSchema} */
+declare function PackagesSchema(): PackagesSchema;
+type PackagesSchema = {
+    /**
+     * - Array of packages to be created or
+     * updated for the shipment. At least two packages are required for MPS functionality.
+     */
+    packages: PackageSchema[];
+};
+/** @returns {PackagesResponseSchema} */
+declare function PackagesResponseSchema(): PackagesResponseSchema;
+type PackagesResponseSchema = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or failed (false).
+     */
+    success: boolean;
+    data: PackagesSchema;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
+    message?: string;
+};
+/** @returns {PackagesErrorResponseSchema} */
+declare function PackagesErrorResponseSchema(): PackagesErrorResponseSchema;
+type PackagesErrorResponseSchema = {
+    /**
+     * - Indicates whether the API call was successful.
+     * Will always be false for error responses.
+     */
+    success: boolean;
+    /**
+     * - A detailed error message describing what went
+     * wrong during the API call.
+     */
+    error: string;
 };
 /** @returns {BundleDetailsSchema} */
 declare function BundleDetailsSchema(): BundleDetailsSchema;
@@ -11708,6 +11919,24 @@ type AccountsList = {
     data?: Account[];
     page?: Page;
 };
+/** @returns {PackageProduct} */
+declare function PackageProduct(): PackageProduct;
+type PackageProduct = {
+    /**
+     * - The line number of the product within the
+     * shipment, used for tracking and identification purposes.
+     */
+    line_number: number;
+    /**
+     * - The quantity of the product included in this package.
+     */
+    quantity: number;
+    /**
+     * - The unique identifier or SKU (Stock Keeping
+     * Unit) of the product. This is used to match products across packages and bags.
+     */
+    identifier: string;
+};
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
 type ValidationError = {
@@ -11858,6 +12087,30 @@ type ShipmentStatus = {
      * providing a clear indication of its current processing stage.
      */
     status: string;
+};
+/** @returns {OrderingSourceDetails} */
+declare function OrderingSourceDetails(): OrderingSourceDetails;
+type OrderingSourceDetails = {
+    /**
+     * - Type of the ordering source.
+     */
+    type?: string;
+    /**
+     * - Slug identifier of the ordering source.
+     */
+    slug?: string;
+    /**
+     * - Display name of the ordering source.
+     */
+    display_name?: string;
+    /**
+     * - Indicates whether the ordering source is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Logo URL of the ordering source.
+     */
+    logo?: string;
 };
 /** @returns {UserDataInfo} */
 declare function UserDataInfo(): UserDataInfo;
@@ -12308,6 +12561,11 @@ type Prices = {
      */
     amount_to_be_collected?: number;
     /**
+     * - The base cost incurred by the seller to
+     * acquire or produce the product before margin or discount.
+     */
+    cost_price?: number;
+    /**
      * - Amount reduced from the payable price
      * when the customer applies loyalty program points while placing the order.
      */
@@ -12491,6 +12749,11 @@ type OrderingCurrencyPrices = {
      */
     amount_to_be_collected?: number;
     /**
+     * - The base cost incurred by the seller to
+     * acquire or produce the product before margin or discount.
+     */
+    cost_price?: number;
+    /**
      * - Amount reduced from the payable price
      * when the customer applies loyalty program points while placing the order.
      */
@@ -12560,6 +12823,25 @@ type TaxComponent = {
      * services before tax is applied.
      */
     taxable_amount?: number;
+};
+/** @returns {SellerQcDetails} */
+declare function SellerQcDetails(): SellerQcDetails;
+type SellerQcDetails = {
+    /**
+     * - Represents the line number in an order or
+     * transaction associated with the bag.
+     */
+    line_number?: number;
+    /**
+     * - Represents the total number of items in a
+     * bag that have failed quality control and are marked as bad QC.
+     */
+    bad_quantity?: number;
+    /**
+     * - Represents the total number of items in
+     * a bag that have passed quality control and are marked as good QC.
+     */
+    good_quantity?: number;
 };
 /** @returns {FinancialBreakup} */
 declare function FinancialBreakup(): FinancialBreakup;
@@ -13624,6 +13906,7 @@ type ShipmentItem = {
      * order was created in UTC format.
      */
     order_created_ts?: string;
+    ordering_source_details?: OrderingSourceDetails;
     shipment_status?: ShipmentStatus;
     user?: UserDataInfo;
     /**
@@ -15007,6 +15290,7 @@ type OrderBags = {
      * parent promotional bags.
      */
     parent_promo_bags?: any;
+    seller_qc_details?: SellerQcDetails;
     financial_breakup?: FinancialBreakup;
     bag_configs?: BagConfigs;
     seller_identifier?: string;
@@ -15534,6 +15818,11 @@ type PlatformShipment = {
      * relevant metadata.
      */
     logistics_meta?: any;
+    /**
+     * - Array of packages to be created or
+     * updated for the shipment. At least two packages are required for MPS functionality.
+     */
+    packages?: PackageSchema[];
 };
 /** @returns {ShipmentInfoResponseSchema} */
 declare function ShipmentInfoResponseSchema(): ShipmentInfoResponseSchema;
@@ -15623,6 +15912,7 @@ type OrderData = {
      * identify source of order creation.
      */
     ordering_source?: string;
+    ordering_source_details?: OrderingSourceDetails;
     /**
      * - Specifies the exact date and time when the
      * order was placed by the customer, serving as a key timestamp for the
@@ -15761,6 +16051,12 @@ type PlatformOrderItems = {
      * order was created.
      */
     order_created_ts?: string;
+    /**
+     * - Ordering source, to be used to
+     * identify source of order creation.
+     */
+    ordering_source?: string;
+    ordering_source_details?: OrderingSourceDetails;
     /**
      * - The payment mode used for the order.
      */

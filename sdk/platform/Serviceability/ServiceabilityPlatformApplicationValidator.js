@@ -202,11 +202,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPutDetail} body
- */
-
-/**
  * @typedef UpdateBulkGeoAreaParam
  * @property {string} geoareaId - A unique identifier for the GeoArea.
  * @property {ServiceabilityPlatformModel.BulkGeoAreaDetails} body
@@ -550,13 +545,6 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       body: ServiceabilityPlatformModel.FulfillmentOption().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateApplicationConfigurationParam} */
-  static updateApplicationConfiguration() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPutDetail().required(),
     }).required();
   }
 

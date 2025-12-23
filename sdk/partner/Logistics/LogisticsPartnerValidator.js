@@ -252,6 +252,76 @@ class LogisticsValidator {
       schemeId: Joi.string().allow("").required(),
     }).required();
   }
+
+  static getSampleFileRateCard() {
+    return Joi.object({}).required();
+  }
+
+  static bulkRateCard() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+      body: LogisticsModel.BulkRateCardJobDetails().required(),
+    }).required();
+  }
+
+  static getBulkRateCard() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      batchId: Joi.string().allow(""),
+      action: Joi.string().allow(""),
+      status: Joi.string().allow("").allow(null),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getSampleFileRateZone() {
+    return Joi.object({
+      body: LogisticsModel.SampleFileRateZoneRequestSchema().required(),
+    }).required();
+  }
+
+  static createRateZoneBulkJob() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+      body: LogisticsModel.RateZoneBulkJobDetails().required(),
+    }).required();
+  }
+
+  static getBulkRateZoneJobHistory() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      batchId: Joi.string().allow(""),
+      action: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      zoneType: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getRateZoneConfig() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updateRateZoneConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      schemeId: Joi.string().allow("").required(),
+      body: LogisticsModel.RateZoneConfigurationDetails().required(),
+    }).required();
+  }
 }
 
 module.exports = LogisticsValidator;

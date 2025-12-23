@@ -2335,5 +2335,717 @@ class Logistics {
 
     return response;
   }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetSampleFileRateCardParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RateCardSampleFile>} - Success response
+   * @name getSampleFileRateCard
+   * @summary: Retrieves a sample file that shows the required format for rate card uploads.
+   * @description: Retrieves a downloadable sample file template for bulk rate card uploads. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getSampleFileRateCard/).
+   */
+  async getSampleFileRateCard(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.getSampleFileRateCard().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getSampleFileRateCard().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getSampleFileRateCard \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/rate-card/sample-file`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RateCardSampleFile().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getSampleFileRateCard \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.BulkRateCardParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+   * @name bulkRateCard
+   * @summary: Rate Card Import or Export
+   * @description: Rate Card Import or Export - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/bulkRateCard/).
+   */
+  async bulkRateCard(
+    { extensionId, schemeId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.bulkRateCard().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.bulkRateCard().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > bulkRateCard \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/bulk`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.BulkRateCardJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > bulkRateCard \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetBulkRateCardParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+   * @name getBulkRateCard
+   * @summary: Retrieve the history of bulk rate card uploads.
+   * @description: Returns the history of all bulk rate card upload operations, including their statuses and details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getBulkRateCard/).
+   */
+  async getBulkRateCard(
+    {
+      extensionId,
+      schemeId,
+      pageNo,
+      pageSize,
+      batchId,
+      action,
+      status,
+      startDate,
+      endDate,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getBulkRateCard().validate(
+      {
+        extensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        batchId,
+        action,
+        status,
+        startDate,
+        endDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getBulkRateCard().validate(
+      {
+        extensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        batchId,
+        action,
+        status,
+        startDate,
+        endDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getBulkRateCard \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["batch_id"] = batchId;
+    query_params["action"] = action;
+    query_params["status"] = status;
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/bulk`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.BulkRateCardJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getBulkRateCard \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetSampleFileRateZoneParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+   * @name getSampleFileRateZone
+   * @summary: Get Rate Zone sample file
+   * @description: Retrieves a downloadable sample file template for bulk rate zone uploads. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getSampleFileRateZone/).
+   */
+  async getSampleFileRateZone(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.getSampleFileRateZone().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getSampleFileRateZone().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getSampleFileRateZone \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/rate-card/zone/sample-file`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.BulkRateCardJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getSampleFileRateZone \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.CreateRateZoneBulkJobParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.BulkRateCardJob>} - Success response
+   * @name createRateZoneBulkJob
+   * @summary: Rate Zone Import or Export
+   * @description: Performs bulk import or export of rate zone details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/createRateZoneBulkJob/).
+   */
+  async createRateZoneBulkJob(
+    { extensionId, schemeId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.createRateZoneBulkJob().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.createRateZoneBulkJob().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > createRateZoneBulkJob \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/zone/bulk`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.BulkRateCardJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > createRateZoneBulkJob \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetBulkRateZoneJobHistoryParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RateZoneBulkJobList>} - Success response
+   * @name getBulkRateZoneJobHistory
+   * @summary: Get Rate Zone Bulk History
+   * @description: Retrieves the bulk job history for rate zone import and export operations. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getBulkRateZoneJobHistory/).
+   */
+  async getBulkRateZoneJobHistory(
+    {
+      extensionId,
+      schemeId,
+      pageNo,
+      pageSize,
+      batchId,
+      action,
+      status,
+      zoneType,
+      startDate,
+      endDate,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.getBulkRateZoneJobHistory().validate(
+      {
+        extensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        batchId,
+        action,
+        status,
+        zoneType,
+        startDate,
+        endDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getBulkRateZoneJobHistory().validate(
+      {
+        extensionId,
+        schemeId,
+        pageNo,
+        pageSize,
+        batchId,
+        action,
+        status,
+        zoneType,
+        startDate,
+        endDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getBulkRateZoneJobHistory \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["batch_id"] = batchId;
+    query_params["action"] = action;
+    query_params["status"] = status;
+    query_params["zone_type"] = zoneType;
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/zone/bulk`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RateZoneBulkJobList().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getBulkRateZoneJobHistory \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.GetRateZoneConfigParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>} -
+   *   Success response
+   * @name getRateZoneConfig
+   * @summary: Fetch Rate Zone Configuration
+   * @description: Fetch Rate Zone Configuration - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getRateZoneConfig/).
+   */
+  async getRateZoneConfig(
+    { extensionId, schemeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticsPartnerValidator.getRateZoneConfig().validate(
+      {
+        extensionId,
+        schemeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.getRateZoneConfig().validate(
+      {
+        extensionId,
+        schemeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > getRateZoneConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/zone/configuration`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RateZoneConfigurationDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > getRateZoneConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticsPartnerValidator.UpdateRateZoneConfigurationParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LogisticsPartnerModel.RateZoneConfigurationDetails>} -
+   *   Success response
+   * @name updateRateZoneConfiguration
+   * @summary: Update Rate Zone Configuration
+   * @description: Updates the rate zone configuration for the specified courier partner scheme. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/updateRateZoneConfiguration/).
+   */
+  async updateRateZoneConfiguration(
+    { extensionId, schemeId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = LogisticsPartnerValidator.updateRateZoneConfiguration().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticsPartnerValidator.updateRateZoneConfiguration().validate(
+      {
+        extensionId,
+        schemeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Logistics > updateRateZoneConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/${extensionId}/scheme/${schemeId}/rate-card/zone/configuration`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticsPartnerModel.RateZoneConfigurationDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Logistics > updateRateZoneConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
 }
 module.exports = Logistics;

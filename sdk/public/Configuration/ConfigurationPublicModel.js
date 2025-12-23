@@ -45,6 +45,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RegionDetails
+ * @property {string} [slug] - Region slug identifier.
+ * @property {string} [zone] - Zone identifier within the region.
+ */
+
+/**
  * @typedef ApplicationMeta
  * @property {string} [name] - Indicates the name of application meta
  * @property {string} [value] - Value related to application meta name
@@ -91,6 +97,9 @@ const Joi = require("joi");
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
+ * @property {string} [region] - Region identifier for the sales channel. When
+ *   zone is "default", this equals the slug. Otherwise, it is formatted as "slug/zone".
+ * @property {RegionDetails} [region_details]
  */
 
 /**
@@ -193,6 +202,14 @@ class ConfigurationPublicModel {
     });
   }
 
+  /** @returns {RegionDetails} */
+  static RegionDetails() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      zone: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ApplicationMeta} */
   static ApplicationMeta() {
     return Joi.object({
@@ -239,6 +256,8 @@ class ConfigurationPublicModel {
       mobile_logo: ConfigurationPublicModel.SecureUrl(),
       domain: ConfigurationPublicModel.Domain(),
       slug: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+      region_details: ConfigurationPublicModel.RegionDetails(),
     });
   }
 

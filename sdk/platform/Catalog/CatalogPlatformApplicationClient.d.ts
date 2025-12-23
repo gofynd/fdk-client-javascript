@@ -331,7 +331,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.LocationListSchema>} - Success response
      * @name getAppLocations
-     * @summary: List sales channels
+     * @summary: Retrieve stores for a sales channel
      * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAppLocations/).
      */
     getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSchema>;
@@ -353,7 +353,7 @@ declare class Catalog {
      * @param {string[]} [arg.tags] - Get locations filtered by tags.
      * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
      * @returns {Paginator<CatalogPlatformModel.LocationListSchema>}
-     * @summary: List sales channels
+     * @summary: Retrieve stores for a sales channel
      * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
      */
     getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, }?: {

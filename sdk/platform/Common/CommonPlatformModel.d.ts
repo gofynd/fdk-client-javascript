@@ -52,6 +52,11 @@ export = CommonPlatformModel;
  *   for a short time period.
  */
 /**
+ * @typedef RegionDetails
+ * @property {string} [slug] - Region slug identifier.
+ * @property {string} [zone] - Zone identifier within the region.
+ */
+/**
  * @typedef ApplicationMeta
  * @property {string} [name] - Indicates the name of application meta
  * @property {string} [value] - Value related to application meta name
@@ -142,7 +147,7 @@ export = CommonPlatformModel;
 declare class CommonPlatformModel {
 }
 declare namespace CommonPlatformModel {
-    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
+    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, RegionDetails, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
 /** @returns {ApplicationResponseSchema} */
 declare function ApplicationResponseSchema(): ApplicationResponseSchema;
@@ -258,6 +263,18 @@ type ApplicationRedirections = {
      * for a short time period.
      */
     type?: string;
+};
+/** @returns {RegionDetails} */
+declare function RegionDetails(): RegionDetails;
+type RegionDetails = {
+    /**
+     * - Region slug identifier.
+     */
+    slug?: string;
+    /**
+     * - Zone identifier within the region.
+     */
+    zone?: string;
 };
 /** @returns {ApplicationMeta} */
 declare function ApplicationMeta(): ApplicationMeta;

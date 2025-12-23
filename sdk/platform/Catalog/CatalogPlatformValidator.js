@@ -303,11 +303,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /** @typedef GetMarketplacesParam */
 
 /**
- * @typedef GetOptimalLocationsParam
- * @property {CatalogPlatformModel.AssignStore} body
- */
-
-/**
  * @typedef GetProductParam
  * @property {number} itemId - Item Id of the product.
  * @property {number} [brandUid] - Brand Id of the product.
@@ -988,13 +983,6 @@ class CatalogPlatformValidator {
   /** @returns {GetMarketplacesParam} */
   static getMarketplaces() {
     return Joi.object({}).required();
-  }
-
-  /** @returns {GetOptimalLocationsParam} */
-  static getOptimalLocations() {
-    return Joi.object({
-      body: CatalogPlatformModel.AssignStore().required(),
-    }).required();
   }
 
   /** @returns {GetProductParam} */

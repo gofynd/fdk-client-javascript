@@ -165,10 +165,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.FulfillmentOption} body
  */
 /**
- * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPutDetail} body
- */
-/**
  * @typedef UpdateBulkGeoAreaParam
  * @property {string} geoareaId - A unique identifier for the GeoArea.
  * @property {ServiceabilityPlatformModel.BulkGeoAreaDetails} body
@@ -304,8 +300,6 @@ declare class ServiceabilityPlatformApplicationValidator {
     static patchApplicationConfiguration(): PatchApplicationConfigurationParam;
     /** @returns {PutFulfillmentOptionParam} */
     static putFulfillmentOption(): PutFulfillmentOptionParam;
-    /** @returns {UpdateApplicationConfigurationParam} */
-    static updateApplicationConfiguration(): UpdateApplicationConfigurationParam;
     /** @returns {UpdateBulkGeoAreaParam} */
     static updateBulkGeoArea(): UpdateBulkGeoAreaParam;
     /** @returns {UpdateCourierPartnerRulePriorityParam} */
@@ -336,7 +330,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static validateBulkFulfillmentOptions(): ValidateBulkFulfillmentOptionsParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateApplicationConfigurationParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -621,9 +615,6 @@ type PutFulfillmentOptionParam = {
      */
     slug: string;
     body: ServiceabilityPlatformModel.FulfillmentOption;
-};
-type UpdateApplicationConfigurationParam = {
-    body: ServiceabilityPlatformModel.ApplicationConfigPutDetail;
 };
 type UpdateBulkGeoAreaParam = {
     /**

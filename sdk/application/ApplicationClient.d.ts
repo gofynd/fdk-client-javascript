@@ -20,7 +20,6 @@ declare class ApplicationClient {
     logistic: Logistic;
     order: Order;
     payment: Payment;
-    rewards: Rewards;
     share: Share;
     theme: Theme;
     user: User;
@@ -78,7 +77,6 @@ import Lead = require("./Lead/LeadApplicationClient");
 import Logistic = require("./Logistic/LogisticApplicationClient");
 import Order = require("./Order/OrderApplicationClient");
 import Payment = require("./Payment/PaymentApplicationClient");
-import Rewards = require("./Rewards/RewardsApplicationClient");
 import Share = require("./Share/ShareApplicationClient");
 import Theme = require("./Theme/ThemeApplicationClient");
 import User = require("./User/UserApplicationClient");

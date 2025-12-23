@@ -364,7 +364,7 @@ const Joi = require("joi");
  * @property {string} [user_attribute_definition_id] - ID of the user attribute
  *   definition used in the condition
  * @property {string} [type] - Type of condition to apply on the attribute value.
- * @property {string} [value] - Value of the condition
+ * @property {Object} [value] - Value of the condition
  * @property {boolean} [ignore_year] - Indicates if the year should be ignored
  *   for the condition
  */
@@ -926,7 +926,7 @@ class UserPlatformModel {
   static BulkUserAttributeRequestBody() {
     return Joi.object({
       definition_id: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
     });
   }
 
@@ -1206,7 +1206,7 @@ class UserPlatformModel {
     return Joi.object({
       user_attribute_definition_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
+      value: Joi.object().pattern(/\S/, Joi.any()),
       ignore_year: Joi.boolean(),
     });
   }
@@ -1247,7 +1247,7 @@ class UserPlatformModel {
     return Joi.object({
       definition_id: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
     });
   }
 

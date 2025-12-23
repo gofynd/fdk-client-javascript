@@ -374,6 +374,8 @@ export = CompanyProfilePlatformModel;
  * @property {LocationDayWiseSchema[]} [order_acceptance_timing]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [multi_piece_shipment] - Flag indicating if multi-piece
+ *   shipment is enabled for the location.
  * @property {boolean} [auto_assign_courier_partner]
  * @property {boolean} [qc_based_return_inventory_sync]
  */
@@ -430,6 +432,8 @@ export = CompanyProfilePlatformModel;
  *   acceptance timing of the store
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [multi_piece_shipment] - Flag indicating if multi-piece
+ *   shipment is enabled for the location.
  * @property {boolean} [auto_assign_courier_partner]
  */
 /**
@@ -895,6 +899,11 @@ type GetLocationSchema = {
     order_acceptance_timing?: LocationDayWiseSchema[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
+    /**
+     * - Flag indicating if multi-piece
+     * shipment is enabled for the location.
+     */
+    multi_piece_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
     qc_based_return_inventory_sync?: boolean;
 };
@@ -969,6 +978,11 @@ type LocationSchema = {
     order_acceptance_timing?: LocationDayWiseSchema[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
+    /**
+     * - Flag indicating if multi-piece
+     * shipment is enabled for the location.
+     */
+    multi_piece_shipment?: boolean;
     auto_assign_courier_partner?: boolean;
 };
 /** @returns {BulkLocationSchema} */

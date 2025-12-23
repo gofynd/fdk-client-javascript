@@ -8,6 +8,7 @@ declare class Content {
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
+        getBulkCustomFieldsByResource: string;
         getCustomFieldsByResourceId: string;
         getCustomObjectBySlug: string;
         getDataLoaders: string;
@@ -75,6 +76,15 @@ declare class Content {
      * @description: List all the blogs against an application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getBlogs/).
      */
     getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<BlogGetDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<BulkCustomFieldsResponseByResourceSchema>} - Success response
+     * @name getBulkCustomFieldsByResource
+     * @summary: Get bulk list of custom fields of given resource
+     * @description: Retrieves a bulk list of custom fields attached to a particular resource by using the resource and resource IDs. The resource_ids query parameter is required and can accept multiple comma-separated values. Optional filters for keys and namespaces can also be applied. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getBulkCustomFieldsByResource/).
+     */
+    getBulkCustomFieldsByResource({ resource, resourceIds, keys, namespaces, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<BulkCustomFieldsResponseByResourceSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

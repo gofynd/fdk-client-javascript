@@ -97,231 +97,6 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryHeadersParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryHeaders
-   * @summary: Create BigQuery headers
-   * @description: Create BigQuery headers - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryHeaders/).
-   */
-  async createBigQueryHeaders(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryHeaders \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryHeaders \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryNCountParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryNCount
-   * @summary: Create BigQuery N-count
-   * @description: Creates big query n count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryNCount/).
-   */
-  async createBigQueryNCount(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryNCount \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-n-records`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryNCount \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.CreateBigQueryRowCountParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name createBigQueryRowCount
-   * @summary: Create a BigQuery row count
-   * @description: Creates big query row count - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/createBigQueryRowCount/).
-   */
-  async createBigQueryRowCount(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createBigQueryRowCount \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > createBigQueryRowCount \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
    *   - Arg object
    *
@@ -1791,164 +1566,6 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getBigQueryHeadersById
-   * @summary: Get BigQuery headers
-   * @description: Retrieves header information from BigQuery. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryHeadersById/).
-   */
-  async getBigQueryHeadersById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigQueryHeadersById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getBigQueryHeadersById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigQueryRowCountByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getBigQueryRowCountById
-   * @summary: Get BigQuery row count
-   * @description: Retrieves big query row count by id - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getBigQueryRowCountById/).
-   */
-  async getBigQueryRowCountById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigQueryRowCountById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getBigQueryRowCountById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CommunicationPlatformApplicationValidator.GetCampaignByIdParam} arg
    *   - Arg object
    *
@@ -2806,7 +2423,7 @@ class Communication {
       populate,
       group,
       subGroup,
-      fulfillmentOptionTypes,
+      fulfillmentOptionSlug,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2820,7 +2437,7 @@ class Communication {
         populate,
         group,
         subGroup,
-        fulfillmentOptionTypes,
+        fulfillmentOptionSlug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2838,7 +2455,7 @@ class Communication {
         populate,
         group,
         subGroup,
-        fulfillmentOptionTypes,
+        fulfillmentOptionSlug,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2855,7 +2472,7 @@ class Communication {
     query_params["populate"] = populate;
     query_params["group"] = group;
     query_params["sub_group"] = subGroup;
-    query_params["fulfillment_option_types"] = fulfillmentOptionTypes;
+    query_params["fulfillment_option_slug"] = fulfillmentOptionSlug;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4136,81 +3753,6 @@ class Communication {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Communication > getSubscribedSmsTemplates \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemAudiencesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getSystemAudiences
-   * @summary: Get system audiences
-   * @description: Retrieves a list of  system-defined audiences for communication. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/getSystemAudiences/).
-   */
-  async getSystemAudiences(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemAudiences \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/system-datasources`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Communication > getSystemAudiences \n ${res_error}`,
         });
       }
     }

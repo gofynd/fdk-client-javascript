@@ -59,6 +59,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RegionDetails
+ * @property {string} [slug] - Region slug identifier.
+ * @property {string} [zone] - Zone identifier within the region.
+ */
+
+/**
  * @typedef ApplicationMeta
  * @property {string} [name] - Indicates the name of application meta
  * @property {string} [value] - Value related to application meta name
@@ -211,6 +217,14 @@ class CommonPlatformModel {
       redirect_from: Joi.string().allow(""),
       redirect_to: Joi.string().allow(""),
       type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RegionDetails} */
+  static RegionDetails() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      zone: Joi.string().allow(""),
     });
   }
 

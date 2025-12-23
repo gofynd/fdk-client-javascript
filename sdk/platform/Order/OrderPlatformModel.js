@@ -1,25 +1,41 @@
 const Joi = require("joi");
 
 /**
- * @typedef InvalidateShipmentCachePayload
- * @property {string[]} [shipment_ids] - Shipment Ids to clear cache
- * @property {string[]} [affiliate_bag_ids] - Affiliate Bag Ids to clear cache
- *   of shipment Ids mapped to it
- * @property {string[]} [bag_ids] - Bag Ids to clear cache of shipment Ids mapped to it
- */
-
-/**
- * @typedef InvalidateShipmentCacheNestedResponseSchema
- * @property {string} [shipment_id]
- * @property {number} [status] - The HTTP status code corresponding to the
- *   overall status of the shipment response.
- * @property {string} [message]
- * @property {string} [error]
- */
-
-/**
- * @typedef InvalidateShipmentCacheResponseSchema
- * @property {InvalidateShipmentCacheNestedResponseSchema[]} [response]
+ * @typedef PackageSchema
+ * @property {string} [id] - Unique identifier of the physical package. If not
+ *   provided, the system will auto-generate a unique ID with format 'PK'
+ *   followed by a 10-digit number.
+ * @property {string} [packaging_id] - Optional reference to a predefined
+ *   packaging configuration or template used for creating physical packages.
+ * @property {string} [name] - A human-readable name or label for the package,
+ *   used for identification and organizational purposes.
+ * @property {string} [size] - The size category of the package (e.g., small,
+ *   medium, large). Used for logistics and carrier selection.
+ * @property {string} [package_type] - The type or category of packaging
+ *   material used (e.g., Box, Paper Bag, Poly Mailer, Envelope).
+ * @property {number} [length] - The length dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [width] - The width dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [height] - The height dimension of the package in
+ *   centimeters. Used for volumetric weight calculation and carrier requirements.
+ * @property {number} [weight] - The actual weight of the package in kilograms,
+ *   including packaging materials and products.
+ * @property {number} [error_rate] - The acceptable error rate or tolerance for
+ *   the package weight, expressed as a decimal (e.g., 0.02 for 2% tolerance).
+ * @property {number} [package_vol_weight] - The volumetric weight of the
+ *   package calculated based on dimensions, used for shipping cost calculation
+ *   when greater than actual weight.
+ * @property {number} [max_weight] - The maximum weight capacity that this
+ *   package can handle, used for validation and logistics planning.
+ * @property {string} [awb] - Air Waybill number assigned by the courier partner
+ *   for tracking this specific package throughout the delivery process.
+ * @property {Object} [pdf_links] - Dictionary containing PDF document links
+ *   related to this package (labels, invoices, etc.). Always returns an object
+ *   - empty object {} if no links are present, populated object if links exist.
+ *   Users can update values by providing new key-value pairs.
+ * @property {PackageProduct[]} [products] - List of products contained within
+ *   this package. Each product specifies its line number, quantity, and identifier.
  */
 
 /**
@@ -355,6 +371,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RefundModeTransitionData
+ * @property {string} [refund_mode] - Refund Mode for status transition data.
+ * @property {string} [display_name] - Refund Mode display name.
+ * @property {string[]} [payment_identifiers] - List of identifiers associated
+ *   with the refund transaction.
+ */
+
+/**
  * @typedef ShipmentsRequestSchema
  * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
@@ -363,6 +387,8 @@ const Joi = require("joi");
  * @property {DataUpdates} [data_updates]
  * @property {TransitionComments[]} [transition_comments] - Comments or notes
  *   associated with the transition of shipment status.
+ * @property {RefundModeTransitionData[]} [refund_modes] - Refund Mode for
+ *   status transition.
  */
 
 /**
@@ -2534,6 +2560,14 @@ const Joi = require("joi");
  *
  *   - `status_update`: Status Update
  *   - `data_update`: Data Update
+ *
+ * @property {string} [fulfillment_option_slug] - Represents the unique slug
+ *   associated with the fulfillment option attached to the shipment. This slug
+ *   helps determine the fulfillment method and operational flow used to deliver
+ *   the shipment. Examples:
+ *
+ *   - "standard-delivery"
+ *   - "hyperlocal-delivery"
  */
 
 /**
@@ -2852,6 +2886,29 @@ const Joi = require("joi");
  * @property {number} [amount_paid] - Total amount paid by this payment method
  * @property {string} [payment_identifier] - Transaction id
  * @property {PaymentMethodTransactionPartySchema} [transaction_party]
+ */
+
+/**
+ * @typedef PackagesSchema
+ * @property {PackageSchema[]} packages - Array of packages to be created or
+ *   updated for the shipment. At least two packages are required for MPS functionality.
+ */
+
+/**
+ * @typedef PackagesResponseSchema
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or failed (false).
+ * @property {PackagesSchema} data
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ */
+
+/**
+ * @typedef PackagesErrorResponseSchema
+ * @property {boolean} success - Indicates whether the API call was successful.
+ *   Will always be false for error responses.
+ * @property {string} error - A detailed error message describing what went
+ *   wrong during the API call.
  */
 
 /**
@@ -3326,6 +3383,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PackageProduct
+ * @property {number} line_number - The line number of the product within the
+ *   shipment, used for tracking and identification purposes.
+ * @property {number} quantity - The quantity of the product included in this package.
+ * @property {string} identifier - The unique identifier or SKU (Stock Keeping
+ *   Unit) of the product. This is used to match products across packages and bags.
+ */
+
+/**
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
@@ -3399,6 +3465,15 @@ const Joi = require("joi");
  *   status was updated, useful for processing and tracking.
  * @property {string} status - This key denotes the status of the shipment,
  *   providing a clear indication of its current processing stage.
+ */
+
+/**
+ * @typedef OrderingSourceDetails
+ * @property {string} [type] - Type of the ordering source.
+ * @property {string} [slug] - Slug identifier of the ordering source.
+ * @property {string} [display_name] - Display name of the ordering source.
+ * @property {boolean} [is_active] - Indicates whether the ordering source is active.
+ * @property {string} [logo] - Logo URL of the ordering source.
  */
 
 /**
@@ -3579,6 +3654,8 @@ const Joi = require("joi");
  *   used in the transaction.
  * @property {number} [amount_to_be_collected] - Total amount to be collected in
  *   scenarios involving multiple payment methods.
+ * @property {number} [cost_price] - The base cost incurred by the seller to
+ *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
  */
@@ -3669,6 +3746,8 @@ const Joi = require("joi");
  *   purchased by the customer, usable for future transactions.
  * @property {number} [amount_to_be_collected] - Amount to be collected from the
  *   customer when multiple payment methods are utilized for a single order.
+ * @property {number} [cost_price] - The base cost incurred by the seller to
+ *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
  */
@@ -3709,6 +3788,16 @@ const Joi = require("joi");
  * @property {number} [taxable_amount] - The base amount on which the tax is
  *   calculated, excluding the tax itself. This represents the value of goods or
  *   services before tax is applied.
+ */
+
+/**
+ * @typedef SellerQcDetails
+ * @property {number} [line_number] - Represents the line number in an order or
+ *   transaction associated with the bag.
+ * @property {number} [bad_quantity] - Represents the total number of items in a
+ *   bag that have failed quality control and are marked as bad QC.
+ * @property {number} [good_quantity] - Represents the total number of items in
+ *   a bag that have passed quality control and are marked as good QC.
  */
 
 /**
@@ -4213,6 +4302,7 @@ const Joi = require("joi");
  *   placed by the customer. This timestamp is crucial for tracking the order'
  * @property {string} [order_created_ts] - The timestamp indicating when the
  *   order was created in UTC format.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {ShipmentStatus} [shipment_status]
  * @property {UserDataInfo} [user]
  * @property {string} [estimated_sla_time] - The estimated Service Level
@@ -4892,6 +4982,7 @@ const Joi = require("joi");
  * @property {BagStatusHistory[]} [bag_status]
  * @property {Object} [parent_promo_bags] - An object containing details of
  *   parent promotional bags.
+ * @property {SellerQcDetails} [seller_qc_details]
  * @property {FinancialBreakup} [financial_breakup]
  * @property {BagConfigs} [bag_configs]
  * @property {string} [seller_identifier]
@@ -5146,6 +5237,8 @@ const Joi = require("joi");
  * @property {Object} [logistics_meta] - An object storing detailed
  *   logistics-related information, including courier partner details and other
  *   relevant metadata.
+ * @property {PackageSchema[]} [packages] - Array of packages to be created or
+ *   updated for the shipment. At least two packages are required for MPS functionality.
  */
 
 /**
@@ -5193,6 +5286,7 @@ const Joi = require("joi");
  *   Please use ordering_source instead to ensure accurate order tracking and processing.
  * @property {string} [ordering_source] - Ordering source, to be used to
  *   identify source of order creation.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -5286,6 +5380,9 @@ const Joi = require("joi");
  * @property {string} [order_created_time] - The Date and time when the order was created.
  * @property {string} [order_created_ts] - The timestamp indicating when the
  *   order was created.
+ * @property {string} [ordering_source] - Ordering source, to be used to
+ *   identify source of order creation.
+ * @property {OrderingSourceDetails} [ordering_source_details]
  * @property {string} [payment_mode] - The payment mode used for the order.
  * @property {PlatformShipment[]} [shipments] - An array of shipment items
  *   returned as part of the order.
@@ -5912,31 +6009,24 @@ const Joi = require("joi");
  */
 
 class OrderPlatformModel {
-  /** @returns {InvalidateShipmentCachePayload} */
-  static InvalidateShipmentCachePayload() {
+  /** @returns {PackageSchema} */
+  static PackageSchema() {
     return Joi.object({
-      shipment_ids: Joi.array().items(Joi.string().allow("")),
-      affiliate_bag_ids: Joi.array().items(Joi.string().allow("")),
-      bag_ids: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {InvalidateShipmentCacheNestedResponseSchema} */
-  static InvalidateShipmentCacheNestedResponseSchema() {
-    return Joi.object({
-      shipment_id: Joi.string().allow(""),
-      status: Joi.number(),
-      message: Joi.string().allow(""),
-      error: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvalidateShipmentCacheResponseSchema} */
-  static InvalidateShipmentCacheResponseSchema() {
-    return Joi.object({
-      response: Joi.array().items(
-        OrderPlatformModel.InvalidateShipmentCacheNestedResponseSchema()
-      ),
+      id: Joi.string().allow(""),
+      packaging_id: Joi.string().allow("").allow(null),
+      name: Joi.string().allow("").allow(null),
+      size: Joi.string().allow("").allow(null),
+      package_type: Joi.string().allow("").allow(null),
+      length: Joi.number().allow(null),
+      width: Joi.number().allow(null),
+      height: Joi.number().allow(null),
+      weight: Joi.number().allow(null),
+      error_rate: Joi.number().allow(null),
+      package_vol_weight: Joi.number().allow(null),
+      max_weight: Joi.number().allow(null),
+      awb: Joi.string().allow("").allow(null),
+      pdf_links: Joi.object().pattern(/\S/, Joi.string().allow("")),
+      products: Joi.array().items(OrderPlatformModel.PackageProduct()),
     });
   }
 
@@ -6255,6 +6345,15 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {RefundModeTransitionData} */
+  static RefundModeTransitionData() {
+    return Joi.object({
+      refund_mode: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      payment_identifiers: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
   /** @returns {ShipmentsRequestSchema} */
   static ShipmentsRequestSchema() {
     return Joi.object({
@@ -6264,6 +6363,9 @@ class OrderPlatformModel {
       data_updates: OrderPlatformModel.DataUpdates(),
       transition_comments: Joi.array().items(
         OrderPlatformModel.TransitionComments()
+      ),
+      refund_modes: Joi.array().items(
+        OrderPlatformModel.RefundModeTransitionData()
       ),
     });
   }
@@ -8282,6 +8384,7 @@ class OrderPlatformModel {
       customer_country_code: Joi.string().allow(""),
       is_test_order: Joi.boolean(),
       task_trigger_condition: Joi.array().items(Joi.string().allow("")),
+      fulfillment_option_slug: Joi.string().allow(""),
     });
   }
 
@@ -8575,6 +8678,32 @@ class OrderPlatformModel {
       amount_paid: Joi.number(),
       payment_identifier: Joi.string().allow(""),
       transaction_party: OrderPlatformModel.PaymentMethodTransactionPartySchema(),
+    });
+  }
+
+  /** @returns {PackagesSchema} */
+  static PackagesSchema() {
+    return Joi.object({
+      packages: Joi.array()
+        .items(OrderPlatformModel.PackageSchema())
+        .required(),
+    });
+  }
+
+  /** @returns {PackagesResponseSchema} */
+  static PackagesResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      data: OrderPlatformModel.PackagesSchema().required(),
+      message: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {PackagesErrorResponseSchema} */
+  static PackagesErrorResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      error: Joi.string().allow("").required(),
     });
   }
 
@@ -9012,6 +9141,15 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {PackageProduct} */
+  static PackageProduct() {
+    return Joi.object({
+      line_number: Joi.number().required(),
+      quantity: Joi.number().required(),
+      identifier: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {ValidationError} */
   static ValidationError() {
     return Joi.object({
@@ -9071,6 +9209,17 @@ class OrderPlatformModel {
       status_created_at: Joi.string().allow("").allow(null),
       updated_ts: Joi.string().allow("").allow(null),
       status: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OrderingSourceDetails} */
+  static OrderingSourceDetails() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      logo: Joi.string().allow(""),
     });
   }
 
@@ -9198,6 +9347,7 @@ class OrderPlatformModel {
       fynd_credits: Joi.number().allow(null),
       gift_price: Joi.number().allow(null),
       amount_to_be_collected: Joi.number().allow(null),
+      cost_price: Joi.number().allow(null),
       loyalty_discount: Joi.number(),
     });
   }
@@ -9270,6 +9420,7 @@ class OrderPlatformModel {
       fynd_credits: Joi.number().allow(null),
       gift_price: Joi.number().allow(null),
       amount_to_be_collected: Joi.number().allow(null),
+      cost_price: Joi.number().allow(null),
       loyalty_discount: Joi.number(),
     });
   }
@@ -9293,6 +9444,15 @@ class OrderPlatformModel {
       tax_amount: Joi.number(),
       taxable_amount: Joi.number(),
     });
+  }
+
+  /** @returns {SellerQcDetails} */
+  static SellerQcDetails() {
+    return Joi.object({
+      line_number: Joi.number(),
+      bad_quantity: Joi.number(),
+      good_quantity: Joi.number(),
+    }).allow(null);
   }
 
   /** @returns {FinancialBreakup} */
@@ -9645,6 +9805,7 @@ class OrderPlatformModel {
     return Joi.object({
       order_date: Joi.string().allow("").allow(null),
       order_created_ts: Joi.string().allow("").allow(null),
+      ordering_source_details: OrderPlatformModel.OrderingSourceDetails(),
       shipment_status: OrderPlatformModel.ShipmentStatus(),
       user: OrderPlatformModel.UserDataInfo(),
       estimated_sla_time: Joi.string().allow("").allow(null),
@@ -10152,6 +10313,7 @@ class OrderPlatformModel {
       gst_details: OrderPlatformModel.GSTDetailsData(),
       bag_status: Joi.array().items(OrderPlatformModel.BagStatusHistory()),
       parent_promo_bags: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      seller_qc_details: OrderPlatformModel.SellerQcDetails(),
       financial_breakup: OrderPlatformModel.FinancialBreakup(),
       bag_configs: OrderPlatformModel.BagConfigs(),
       seller_identifier: Joi.string().allow("").allow(null),
@@ -10324,6 +10486,7 @@ class OrderPlatformModel {
       is_lapa_enabled: Joi.boolean(),
       forward_end_shipment_id: Joi.string().allow("").allow(null),
       logistics_meta: Joi.object().pattern(/\S/, Joi.any()),
+      packages: Joi.array().items(OrderPlatformModel.PackageSchema()),
     });
   }
 
@@ -10364,6 +10527,7 @@ class OrderPlatformModel {
     return Joi.object({
       ordering_channel: Joi.string().allow(""),
       ordering_source: Joi.string().allow(""),
+      ordering_source_details: OrderPlatformModel.OrderingSourceDetails(),
       order_date: Joi.string().allow("").required(),
       created_ts: Joi.string().allow(""),
       tax_details: OrderPlatformModel.TaxDetails(),
@@ -10448,6 +10612,8 @@ class OrderPlatformModel {
       meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       order_created_time: Joi.string().allow("").allow(null),
       order_created_ts: Joi.string().allow("").allow(null),
+      ordering_source: Joi.string().allow("").allow(null),
+      ordering_source_details: OrderPlatformModel.OrderingSourceDetails(),
       payment_mode: Joi.string().allow("").allow(null),
       shipments: Joi.array().items(OrderPlatformModel.PlatformShipment()),
       order_id: Joi.string().allow("").allow(null),

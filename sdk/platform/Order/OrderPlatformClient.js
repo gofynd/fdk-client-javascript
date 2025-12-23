@@ -684,27 +684,22 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.CreateOrderDeprecatedParam} arg - Arg object
+   * @param {OrderPlatformValidator.CreateShipmentPackagesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
-   * @name createOrderDeprecated
-   * @summary: Create order
-   * @description: Creates an order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrderDeprecated/).
+   * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+   * @name createShipmentPackages
+   * @summary: Create shipment packages
+   * @description: Create new packages for a shipment, enabling Multi-Piece Shipment (MPS) functionality. This operation validates courier partner availability and performs bag breaking  as per number of packages. The system automatically validates MPS eligibility and store  configuration before creating packages. If the store is not eligible for MPS, it will not let the user create packages. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createShipmentPackages/).
    */
-  async createOrderDeprecated(
-    { xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders } = {
-      requestHeaders: {},
-    },
+  async createShipmentPackages(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = OrderPlatformValidator.createOrderDeprecated().validate(
+    const { error } = OrderPlatformValidator.createShipmentPackages().validate(
       {
-        xOrderingSource,
-
+        shipmentId,
         body,
-        xApplicationId,
-        xExtensionId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -715,34 +710,28 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderPlatformValidator.createOrderDeprecated().validate(
+    } = OrderPlatformValidator.createShipmentPackages().validate(
       {
-        xOrderingSource,
-
+        shipmentId,
         body,
-        xApplicationId,
-        xExtensionId,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > createOrderDeprecated \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Order > createShipmentPackages \n ${warrning}`,
       });
     }
 
     const query_params = {};
 
     const xHeaders = {};
-    xHeaders["x-ordering-source"] = xOrderingSource;
-    xHeaders["x-application-id"] = xApplicationId;
-    xHeaders["x-extension-id"] = xExtensionId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/packages`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -756,7 +745,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.CreateOrderResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.BaseResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -767,7 +756,7 @@ class Order {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Order > createOrderDeprecated \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Order > createShipmentPackages \n ${res_error}`,
         });
       }
     }
@@ -3738,6 +3727,85 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.GetShipmentPackagesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.PackagesResponseSchema>} - Success response
+   * @name getShipmentPackages
+   * @summary: Get shipment packages
+   * @description: Retrieve all packages associated with a specific shipment. This endpoint supports  both single-piece and multi-piece shipments. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipmentPackages/).
+   */
+  async getShipmentPackages(
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.getShipmentPackages().validate(
+      {
+        shipmentId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getShipmentPackages().validate(
+      {
+        shipmentId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getShipmentPackages \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/packages`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.PackagesResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > getShipmentPackages \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -4558,87 +4626,6 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > getfilters \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponseSchema>}
-   *   - Success response
-   *
-   * @name invalidateShipmentCache
-   * @summary: Invalidate shipment cache
-   * @description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/invalidateShipmentCache/).
-   */
-  async invalidateShipmentCache(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.invalidateShipmentCache().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.invalidateShipmentCache().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > invalidateShipmentCache \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-cache`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.InvalidateShipmentCacheResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > invalidateShipmentCache \n ${res_error}`,
         });
       }
     }
@@ -5681,6 +5668,87 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > updateShipmentLock \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.UpdateShipmentPackagesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+   * @name updateShipmentPackages
+   * @summary: Update shipment packages
+   * @description: Update existing packages for a shipment. This operation replaces all existing  packages with the provided package list. The system validates courier partner  availability and performs bag breaking as per number of packages. Any packages  without IDs will have new unique IDs generated. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/updateShipmentPackages/).
+   */
+  async updateShipmentPackages(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.updateShipmentPackages().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.updateShipmentPackages().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > updateShipmentPackages \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/packages`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.BaseResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > updateShipmentPackages \n ${res_error}`,
         });
       }
     }

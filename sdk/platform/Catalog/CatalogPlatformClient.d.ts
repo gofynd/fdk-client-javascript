@@ -605,17 +605,6 @@ declare class Catalog {
      */
     getMarketplaces({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAllMarketplaces>;
     /**
-     * @param {CatalogPlatformValidator.GetOptimalLocationsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.StoreAssignResponseSchema>} -
-     *   Success response
-     * @name getOptimalLocations
-     * @summary: Get optimal locations
-     * @description: This API returns the optimal locations where inventory is available for the given articles. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getOptimalLocations/).
-     */
-    getOptimalLocations({ body, requestHeaders }?: CatalogPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.StoreAssignResponseSchema>;
-    /**
      * @param {CatalogPlatformValidator.GetProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

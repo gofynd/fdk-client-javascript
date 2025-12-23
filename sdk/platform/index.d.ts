@@ -18,7 +18,6 @@ export namespace PlatformModel {
     const OrderPlatformModel: typeof import("./Order/OrderPlatformModel");
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const PaymentPlatformModel: typeof import("./Payment/PaymentPlatformModel");
-    const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");
     const SharePlatformModel: typeof import("./Share/SharePlatformModel");
     const ThemePlatformModel: typeof import("./Theme/ThemePlatformModel");
     const UserPlatformModel: typeof import("./User/UserPlatformModel");

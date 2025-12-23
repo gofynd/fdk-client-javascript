@@ -3,9 +3,6 @@ export = CommunicationPlatformApplicationValidator;
  * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
-/** @typedef CreateBigQueryHeadersParam */
-/** @typedef CreateBigQueryNCountParam */
-/** @typedef CreateBigQueryRowCountParam */
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
@@ -81,14 +78,6 @@ export = CommunicationPlatformApplicationValidator;
  * @property {Object} [query] - To search based on plain text
  */
 /**
- * @typedef GetBigQueryHeadersByIdParam
- * @property {string} id - Audience id
- */
-/**
- * @typedef GetBigQueryRowCountByIdParam
- * @property {string} id - Audience id
- */
-/**
  * @typedef GetCampaignByIdParam
  * @property {string} id - Campaign id
  */
@@ -145,8 +134,9 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} [subGroup] - Filter by event subgroup. Here, a subgroup is
  *   a subset within a group, containing specific email and SMS templates for
  *   more detailed organization.
- * @property {string} [fulfillmentOptionTypes] - Filter by fulfillment option
- *   type. Indicates the delivery choice selected, e.g., standard or express.
+ * @property {string} [fulfillmentOptionSlug] - Filter by fulfillment option
+ *   slug. Indicates the delivery choice selected, e.g., standard-delivery or
+ *   homedelivery.
  */
 /**
  * @typedef GetEventSubscriptionsByIdParam
@@ -213,7 +203,6 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [query] - To search based on plain text
  */
-/** @typedef GetSystemAudiencesParam */
 /** @typedef GetSystemEmailTemplatesParam */
 /** @typedef GetSystemSmsTemplatesParam */
 /**
@@ -278,12 +267,6 @@ export = CommunicationPlatformApplicationValidator;
 declare class CommunicationPlatformApplicationValidator {
     /** @returns {CreateAudienceParam} */
     static createAudience(): CreateAudienceParam;
-    /** @returns {CreateBigQueryHeadersParam} */
-    static createBigQueryHeaders(): any;
-    /** @returns {CreateBigQueryNCountParam} */
-    static createBigQueryNCount(): any;
-    /** @returns {CreateBigQueryRowCountParam} */
-    static createBigQueryRowCount(): any;
     /** @returns {CreateCampaignParam} */
     static createCampaign(): CreateCampaignParam;
     /** @returns {CreateEmailProviderParam} */
@@ -320,10 +303,6 @@ declare class CommunicationPlatformApplicationValidator {
     static getAudienceById(): GetAudienceByIdParam;
     /** @returns {GetAudiencesParam} */
     static getAudiences(): GetAudiencesParam;
-    /** @returns {GetBigQueryHeadersByIdParam} */
-    static getBigQueryHeadersById(): GetBigQueryHeadersByIdParam;
-    /** @returns {GetBigQueryRowCountByIdParam} */
-    static getBigQueryRowCountById(): GetBigQueryRowCountByIdParam;
     /** @returns {GetCampaignByIdParam} */
     static getCampaignById(): GetCampaignByIdParam;
     /** @returns {GetCampaignsParam} */
@@ -376,8 +355,6 @@ declare class CommunicationPlatformApplicationValidator {
     static getSubscribedEmailTemplates(): GetSubscribedEmailTemplatesParam;
     /** @returns {GetSubscribedSmsTemplatesParam} */
     static getSubscribedSmsTemplates(): GetSubscribedSmsTemplatesParam;
-    /** @returns {GetSystemAudiencesParam} */
-    static getSystemAudiences(): any;
     /** @returns {GetSystemEmailTemplatesParam} */
     static getSystemEmailTemplates(): any;
     /** @returns {GetSystemSmsTemplatesParam} */
@@ -412,7 +389,7 @@ declare class CommunicationPlatformApplicationValidator {
     static verfiyOtp(): VerfiyOtpParam;
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { CreateAudienceParam, CreateBigQueryHeadersParam, CreateBigQueryNCountParam, CreateBigQueryRowCountParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateEventSubscriptionsParam, CreateEventSubscriptionsByBulkParam, CreateJobsParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteEventSubscriptionsByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, EditEventSubscriptionsParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigQueryHeadersByIdParam, GetBigQueryRowCountByIdParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetEventSubscriptionsByIdParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetOtpConfigurationParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemAudiencesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateOtpConfigurationParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
+    export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateEventSubscriptionsParam, CreateEventSubscriptionsByBulkParam, CreateJobsParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteEventSubscriptionsByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, EditEventSubscriptionsParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetEventSubscriptionsByIdParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetOtpConfigurationParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateOtpConfigurationParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
 }
 type CreateAudienceParam = {
     body: CommunicationPlatformModel.AudienceReq;
@@ -508,18 +485,6 @@ type GetAudiencesParam = {
      * - To search based on plain text
      */
     query?: any;
-};
-type GetBigQueryHeadersByIdParam = {
-    /**
-     * - Audience id
-     */
-    id: string;
-};
-type GetBigQueryRowCountByIdParam = {
-    /**
-     * - Audience id
-     */
-    id: string;
 };
 type GetCampaignByIdParam = {
     /**
@@ -641,9 +606,10 @@ type GetEventSubscriptionsParam = {
     subGroup?: string;
     /**
      * - Filter by fulfillment option
-     * type. Indicates the delivery choice selected, e.g., standard or express.
+     * slug. Indicates the delivery choice selected, e.g., standard-delivery or
+     * homedelivery.
      */
-    fulfillmentOptionTypes?: string;
+    fulfillmentOptionSlug?: string;
 };
 type GetEventSubscriptionsByIdParam = {
     /**
@@ -839,9 +805,6 @@ type UpdateSmsTemplateByIdParam = {
 type VerfiyOtpParam = {
     body: CommunicationPlatformModel.VerifyOtpCommsReq;
 };
-type CreateBigQueryHeadersParam = any;
-type CreateBigQueryNCountParam = any;
-type CreateBigQueryRowCountParam = any;
 type GetAppProvidersParam = any;
 type GetDefaultSmsProvidersParam = any;
 type GetDummyDatasourcesParam = any;
@@ -849,7 +812,6 @@ type GetGlobalProvidersParam = any;
 type GetGlobalVariablesParam = any;
 type GetNSampleRecordsFromCsvByGetParam = any;
 type GetOtpConfigurationParam = any;
-type GetSystemAudiencesParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
 type UpdateOtpConfigurationParam = any;

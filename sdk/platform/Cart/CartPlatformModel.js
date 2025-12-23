@@ -1848,7 +1848,7 @@ const Joi = require("joi");
  * @property {string} promo_id - Promotion id applied on product
  * @property {string} promo_amount - Promotion amount applied on product
  * @property {string} [promo_desc] - Promotion description applied on product
- * @property {string} [rwrd_tndr] _Deprecated_*
+ * @property {string} [rwrd_tndr]
  * @property {Object[]} [item_list] - List of items
  * @property {string} [parent_promo_id] - Parent promotion unique identifier
  */

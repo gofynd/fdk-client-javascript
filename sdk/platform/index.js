@@ -36,8 +36,6 @@ module.exports = {
 
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
-    RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
-
     SharePlatformModel: require("./Share/SharePlatformModel"),
 
     ThemePlatformModel: require("./Theme/ThemePlatformModel"),

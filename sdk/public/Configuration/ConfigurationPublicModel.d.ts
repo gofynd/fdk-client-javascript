@@ -38,6 +38,11 @@ export = ConfigurationPublicModel;
  *   for a short time period.
  */
 /**
+ * @typedef RegionDetails
+ * @property {string} [slug] - Region slug identifier.
+ * @property {string} [zone] - Zone identifier within the region.
+ */
+/**
  * @typedef ApplicationMeta
  * @property {string} [name] - Indicates the name of application meta
  * @property {string} [value] - Value related to application meta name
@@ -82,6 +87,9 @@ export = ConfigurationPublicModel;
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
+ * @property {string} [region] - Region identifier for the sales channel. When
+ *   zone is "default", this equals the slug. Otherwise, it is formatted as "slug/zone".
+ * @property {RegionDetails} [region_details]
  */
 /**
  * @typedef NotFound
@@ -129,7 +137,7 @@ export = ConfigurationPublicModel;
 declare class ConfigurationPublicModel {
 }
 declare namespace ConfigurationPublicModel {
-    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
+    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, RegionDetails, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
 /** @returns {ApplicationResponseSchema} */
 declare function ApplicationResponseSchema(): ApplicationResponseSchema;
@@ -207,6 +215,18 @@ type ApplicationRedirections = {
      * for a short time period.
      */
     type?: string;
+};
+/** @returns {RegionDetails} */
+declare function RegionDetails(): RegionDetails;
+type RegionDetails = {
+    /**
+     * - Region slug identifier.
+     */
+    slug?: string;
+    /**
+     * - Zone identifier within the region.
+     */
+    zone?: string;
 };
 /** @returns {ApplicationMeta} */
 declare function ApplicationMeta(): ApplicationMeta;
@@ -307,6 +327,12 @@ type Application = {
     mobile_logo?: SecureUrl;
     domain?: Domain;
     slug?: string;
+    /**
+     * - Region identifier for the sales channel. When
+     * zone is "default", this equals the slug. Otherwise, it is formatted as "slug/zone".
+     */
+    region?: string;
+    region_details?: RegionDetails;
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;

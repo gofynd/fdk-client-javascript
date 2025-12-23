@@ -8,6 +8,7 @@ declare class Order {
         getOrderById: string;
         getOrders: string;
         getPosOrderById: string;
+        getRefundModes: string;
         getShipmentBagReasons: string;
         getShipmentById: string;
         getShipmentReasons: string;
@@ -64,6 +65,16 @@ declare class Order {
      * @description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getPosOrderById/).
      */
     getPosOrderById({ orderId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<OrderById>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<RefundOptions>} - Success response
+     * @name getRefundModes
+     * @summary: Get refund modes for a shipment
+     * @description: Returns a list of available refund options for the given company and shipment.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getRefundModes/).
+     */
+    getRefundModes({ shipmentId, lineNumbers, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<RefundOptions>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

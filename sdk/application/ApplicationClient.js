@@ -10,7 +10,6 @@ const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
 const Payment = require("./Payment/PaymentApplicationClient");
-const Rewards = require("./Rewards/RewardsApplicationClient");
 const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
 const User = require("./User/UserApplicationClient");
@@ -47,7 +46,6 @@ class ApplicationClient {
     this.logistic = new Logistic(this.config);
     this.order = new Order(this.config);
     this.payment = new Payment(this.config);
-    this.rewards = new Rewards(this.config);
     this.share = new Share(this.config);
     this.theme = new Theme(this.config);
     this.user = new User(this.config);
