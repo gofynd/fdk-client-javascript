@@ -62,6 +62,8 @@ class Catalog {
       getSimilarComparisonProductBySlug:
         "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
       getStores: "/service/application/catalog/v2.0/locations/",
+      listCountryCurrencyMappings:
+        "/service/application/catalog/v1.0/available-countries/",
       unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
     };
@@ -457,8 +459,10 @@ class Catalog {
    * @param {boolean} [arg.filters] - True for fetching all filter parameters
    *   and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
-   *   should be sorted, e.g. popularity, price, latest and discount, in
-   *   either ascending or descending order. See the supported values below.
+   *   should be sorted. Supported values include latest, popular, price_asc,
+   *   price_dsc, discount_asc, discount_dsc. Custom sort keys configured via
+   *   listing configuration (e.g., best_selling) are also supported for
+   *   cohort-based sorting.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ProductListingResponseSchema>}
    * @summary: Lists items of collection
@@ -1644,8 +1648,10 @@ class Catalog {
    * @param {boolean} [arg.filters] - True for fetching all filter parameters
    *   and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
-   *   should be sorted, e.g. popularity, price, latest and discount, in
-   *   either ascending or descending order. See the supported values below.
+   *   should be sorted. Supported values include latest, popular, price_asc,
+   *   price_dsc, discount_asc, discount_dsc. Custom sort keys configured via
+   *   listing configuration (e.g., best_selling) are also supported for
+   *   cohort-based sorting.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ProductListingResponseSchema>}
    * @summary: List products
@@ -1864,6 +1870,43 @@ class Catalog {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AvailableCountrySchema>} - Success response
+   * @name listCountryCurrencyMappings
+   * @summary: List country to currency mapping
+   * @description: List all country-to-currencies mappings configured during the Price Factory setup for given application - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/listCountryCurrencyMappings/).
+   */
+  async listCountryCurrencyMappings(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["listCountryCurrencyMappings"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
   }
 
   /**

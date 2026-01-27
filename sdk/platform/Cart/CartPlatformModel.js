@@ -1382,6 +1382,28 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CurrencyValue
+ * @property {string} [currency] - Currency code.
+ * @property {number} [value] - Numeric amount value.
+ */
+
+/**
+ * @typedef ChargesAmount
+ * @property {CurrencyValue} [base_currency]
+ * @property {CurrencyValue} [ordering_currency]
+ */
+
+/**
+ * @typedef ArticleCharges
+ * @property {Object} [meta] - Meta data realted to charges price adjustment.
+ * @property {ChargesAmount} [amount]
+ * @property {string} [name] - Name of the charge applied.
+ * @property {boolean} [allow_refund] - Whether refund is allowed or not for the charge.
+ * @property {string} [code] - Code of the charge applied.
+ * @property {string} [type] - Type of the charge applied.
+ */
+
+/**
  * @typedef CartProductInfo
  * @property {number} [quantity] - Quantity of the product added in cart
  * @property {CartProduct} [product]
@@ -1413,6 +1435,8 @@ const Joi = require("joi");
  * @property {PromoMeta} [promo_meta]
  * @property {Object} [custom_order] - Whether MTO (Make to Order) is enabled or not.
  * @property {string} [item_type] - Type of the item in cart.
+ * @property {ArticleCharges[]} [charges] - Charges information which denotes
+ *   types of charges and amount of charge applied to that product in cart.
  */
 
 /**
@@ -2769,6 +2793,297 @@ const Joi = require("joi");
  * @property {string} field - The field in the request that caused the error.
  */
 
+/**
+ * @typedef OfferUser
+ * @property {number[]} [groups] - List of user group on which offer is allowed
+ * @property {string} [type] - User type of the cart user who places the order
+ * @property {boolean} [anonymous] - Set true, if offer is applicable for guest user
+ * @property {string[]} [id] - List of user id on which offer is applicable
+ * @property {UserRegistered} [registered]
+ * @property {string[]} [email_domain] - List of email domain available for offer
+ */
+
+/**
+ * @typedef OfferItemCriteria
+ * @property {number[]} [category_id] - List of category id available for offer
+ * @property {string[]} [collection_id] - List of collection id available for offer
+ * @property {boolean} [all_items] - Boolean flag determining if offer is
+ *   applicable on all offers
+ * @property {number[]} [item_brand] - List of all brand ids on which promotion
+ *   is applicable
+ * @property {string[]} [article_ids] - List of unique identifier of articles on
+ *   which offer will be applicable
+ * @property {string[]} [item_sku] - List of all item sku on which promotion is applicable
+ * @property {number[]} [item_id] - List of all item ids on which offer is applicable
+ * @property {number[]} [item_l1_category] - List of all L1 category on which
+ *   offer is applicable
+ * @property {number[]} [item_l2_category] - List of all L2 category on which
+ *   offer is applicable
+ * @property {number[]} [item_category] - List of all L3 category on which offer
+ *   is applicable
+ * @property {number[]} [item_department] - List of all departments ids on which
+ *   offer is applicable
+ * @property {number[]} [item_store] - List of all item store ids on which offer
+ *   is applicable
+ * @property {string[]} [item_size] - List of all item sizes on which offer is applicable
+ * @property {number[]} [item_company] - List of all company ids on which offer
+ *   is applicable
+ * @property {string[]} [item_tags] - List of all product tags on which offer is
+ *   applicable
+ * @property {CompareObject} [cart_quantity]
+ * @property {CompareObject} [cart_total]
+ * @property {number[]} [item_exclude_l1_category] - List of all L1 categories
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_l2_category] - List of all L2 categories
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_category] - List of all L3 categories on
+ *   which offer is not applicable
+ * @property {CompareObject} [cart_unique_item_quantity]
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {number[]} [item_exclude_department] - List of all department ids
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_store] - List of all item store ids on
+ *   which offer is not applicable
+ * @property {number[]} [item_exclude_brand] - List of all brand ids on which
+ *   offer is not applicable
+ * @property {string[]} [item_exclude_sku] - List of all item sku on which offer
+ *   is not applicable
+ * @property {number[]} [item_exclude_company] - List of all company id on which
+ *   offer is not applicable
+ * @property {string[]} [available_zones] - List of all zones on which offer is applicable
+ * @property {number[]} [item_exclude_id] - List of all item ids on which offer
+ *   is not applicable
+ * @property {string[]} [buy_rules] - List of buy rules that is applicable for this offer
+ * @property {ItemSizeMapping} [item_size_mapping]
+ */
+
+/**
+ * @typedef DiscountRuleOffer
+ * @property {number} [max_discount_amount] - Maximum discount amount in offer
+ * @property {number} [discount_price] - Discount price in offer
+ * @property {boolean} [apportion_discount] - Flag to distribute discount for each article
+ * @property {boolean} [partial_can_ret] - Flag indicated return the product partially
+ * @property {number} [max_usage_per_transaction] - Maximum usage per transaction in offer
+ * @property {number} [min_offer_quantity] - Minimum quantity of offer in offer
+ * @property {number} [discount_amount] - Discount amount in offer
+ * @property {number} [discount_percentage] - Discount percentage in offer
+ * @property {number} [max_offer_quantity] - Maximum quantity of product in offer
+ */
+
+/**
+ * @typedef OfferDiscountRule
+ * @property {string} [discount_type] - The type of discount in offer
+ * @property {string} [buy_condition] - Points to buy rule in offer. One
+ *   discount rule can only point to one buy rule.
+ * @property {OfferItemCriteria} [item_criteria]
+ * @property {DiscountRuleOffer} [offer]
+ * @property {boolean} [is_exact] - Flag is true then use coupon applicable
+ *   articles for calculation
+ */
+
+/**
+ * @typedef OfferUsesRemaining
+ * @property {number} [user] - Define total offer count per user
+ * @property {number} [total] - Define total offer count
+ * @property {number} [app] - Define offer count associated with application id
+ */
+
+/**
+ * @typedef OfferUsesRestriction
+ * @property {OfferUsesRemaining} [maximum]
+ * @property {OfferUsesRemaining} [remaining]
+ */
+
+/**
+ * @typedef OfferRestrictionFulfillmentOptions
+ * @property {string} fulfillment_slug - Fulfillment option id
+ * @property {string[]} [zones] - List of zones ids on which offer is applicable.
+ */
+
+/**
+ * @typedef OfferRestrictions
+ * @property {OfferUsesRestriction} [uses]
+ * @property {PostOrder} [post_order]
+ * @property {string[]} [platforms] - List of platform on which offer allowed
+ *   like web, android
+ * @property {PaymentModes} [payments]
+ * @property {number[]} [ordering_stores] - List of store id on which offer is allowed
+ * @property {number} [order_quantity] - Prmomotion offer max order count
+ * @property {OfferUser} [user]
+ * @property {boolean} [multi_store_allowed] - Allow offer to be applied on
+ *   multiple stores
+ * @property {OfferRestrictionFulfillmentOptions[]} [fulfillment_options] - List
+ *   of fulfillment options on which offer is applicable.
+ */
+
+/**
+ * @typedef OfferDisplayMeta
+ * @property {string} description - Detail about the offers
+ * @property {boolean} [is_display] - Coupon offer will be displayed or hidden
+ *   on UI based on this flag
+ * @property {boolean} [is_public] - Determines if coupon offer is publicaly
+ *   available or not
+ * @property {string} name - Name of offer that needs to display
+ * @property {string} [offer_text] - Promotion offer text used to display
+ * @property {string} [offer_label] - Offer label of promotion that needs to display
+ * @property {string} [reason] - Reason for offer rejection
+ */
+
+/**
+ * @typedef OfferCouponConfiguration
+ * @property {number} [coupon_count] - Total number of coupons to be generated
+ *   when coupon type is bulk
+ * @property {string} [coupon_prefix] - Bulk coupon code prefix string. All
+ *   coupons will be generated with this prefix.
+ * @property {string} coupon_type - The type of coupon like bulk or single.
+ */
+
+/**
+ * @typedef OfferOwnership
+ * @property {string} payable_category - Promotion amount payable category
+ * @property {string} [payable_by] - Promotion amount bearable party
+ */
+
+/**
+ * @typedef OfferSchema
+ * @property {string} [_id] - Unique identifier of offer. This will be auto
+ *   generated upon successful offer creation.
+ * @property {string} mode - Offer mode, like coupon or promotion
+ * @property {boolean} [auto_apply] - Indicates whether the offer is
+ *   automatically applied. This flag is false for coupons and true for
+ *   promotions. For free-gift promotions, a false value means manual gift
+ *   selection is required.
+ * @property {string} [application_id] - Application id through which offer was created.
+ * @property {string} [company_id] - Company id through which offer was created.
+ * @property {OfferDiscountRule[]} [discount_rules] - Discount rules based on
+ *   which offer will be applied
+ * @property {Object} [buy_rules] - Contains the individual buy rules associated
+ *   with the offer. The keys in this object are dynamic (e.g., 'rule#1',
+ *   'rule#2', etc.), and each key must correspond to a buy condition referenced
+ *   within `discount_rules`. For example, if a discount rule includes a
+ *   buy_condition '(rule#1)', then 'rule#1' must be defined in this object.
+ *   Each rule key value must follow the format of OfferItemCriteria schema.
+ * @property {OfferRestrictions} [restrictions]
+ * @property {OfferDisplayMeta} display_meta
+ * @property {OfferOwnership} [ownership]
+ * @property {OfferAuthor} [author]
+ * @property {OfferDateMeta} [date_meta]
+ * @property {OfferSchedule} [_schedule]
+ * @property {Object} [_custom_json] - Set extra properties in offer
+ * @property {boolean} [stackable] - Boolean value set true to apply other
+ *   promotions as well.
+ * @property {string} status - Status of the offer
+ * @property {boolean} published - Determines whether the offer is published to
+ *   customers or marked inactive
+ * @property {string} type - Different types of offers available in the system.
+ *   This is used to determine the type of offer and the calculation of the
+ *   offer. Some types are mode specific, few examples are :> -
+ *   free_item_discount_absolute is only applicable for coupon mode -
+ *   contract_price, shipping_price, free_gift_items, cashback, free_items,
+ *   free_non_sellable_items, external_price_adjustment_discount, custom is only
+ *   applicable for promotion mode
+ * @property {number} [priority] - Defines the priority of the offer. Its
+ *   behavior varies based on the offer type. For coupons, a higher priority
+ *   value means the coupon will appear higher in the listing order. For
+ *   promotions, this value determines the sequence in which promotions are
+ *   evaluated and applied. Promotions are evaluated in descending order of
+ *   their effective priority. In case of conflicting priorities, the offer will
+ *   be prioritised on the basis of creation order (desc).
+ * @property {boolean} [is_exclusive_coupon] - Flag to determine if coupon is
+ *   exclusive. Exclusive coupon removes other applied offers from the cart. If
+ *   both `is_exclusive_coupon` and `apply_exclusive` are set,
+ *   `is_exclusive_coupon` takes priority for offer evaluation logic effectively
+ *   making the offer exclusive.
+ * @property {string} [apply_exclusive] - Controls how this offer excludes other
+ *   offers when it is applied. When this offer is applied at cart level, no
+ *   other promotions are evaluated or applied for the same cart (it becomes the
+ *   only active promotion for that cart). When this offer is applied on
+ *   specific articles, those articles will not be eligible for any other
+ *   promotions, but other promotions can still apply to different articles in
+ *   the cart. If null, the offer follows the normal stacking rules and does not
+ *   enforce additional exclusivity.
+ * @property {string} [calculate_on] - Article Price on which offer is
+ *   calculated, like effective price or marked price. Only available for few
+ *   supported types lile Contract pricing and Ladder pricing.
+ * @property {string} [promo_group] - The type of promotion group
+ * @property {string} [currency] - ISO 4217 currency code in which the offer's
+ *   discount amounts and calculations are specified (e.g., "INR", "USD",
+ *   "EUR"). This currency is used as the base currency for discount
+ *   calculations and currency conversions when applying the offer. If not
+ *   provided, defaults to the seller's default currency code. All discount
+ *   values in discount_rules are interpreted in this currency.
+ * @property {string} [code] - Unique identifier code for the offer. For coupons
+ *   (i.e mode = "coupon"), this is the coupon code that users enter to apply
+ *   the offer (e.g., "SAVE20", "WELCOME50"). For promotions (mode =
+ *   "promotion"), this field is typically null or empty as promotions are
+ *   auto-applied. This code is used to fetch and identify offers when applying
+ *   them to carts. Must be unique within an application_id. For bulk coupons,
+ *   this is auto-generated based on coupon_config.coupon_prefix.
+ * @property {OfferCouponConfiguration} [coupon_config]
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {boolean} [is_bank_offer] - Flag to determine if any bank offer is applicable
+ */
+
+/**
+ * @typedef OfferPartialUpdate
+ * @property {PromotionSchedule} [schedule]
+ */
+
+/**
+ * @typedef OfferAuthor
+ * @property {string} [created_by] - The user id of user, who has created the offer
+ * @property {string} [modified_by] - The user id of user, who has modified the offer
+ * @property {string} [approved_by] - The user id of user, who has approved the offer
+ * @property {string} [rejected_by] - The user id of user, who has rejected the offer
+ */
+
+/**
+ * @typedef OfferDateMeta
+ * @property {string} [modified_on] - Date time format when the offer last modified
+ * @property {string} [created_on] - Date time format when the offer created
+ * @property {string} [approved_on] - Date time format when the offer approved
+ * @property {string} [rejected_on] - Date time format when the offer rejected
+ */
+
+/**
+ * @typedef NextScheduleItems
+ * @property {string} [start] - Start date of schedule
+ * @property {string} [end] - End date of schedule
+ */
+
+/**
+ * @typedef OfferSchedule
+ * @property {string} end - The end date and time until which the offer remains valid.
+ * @property {string} start - The start date and time from which the offer becomes valid.
+ * @property {NextScheduleItems[]} [next_schedule] - A auto generated list of
+ *   date-time entries based on start, end, cron and duration data on which the
+ *   offer is scheduled to activate in the future.
+ * @property {string} [cron] - A cron expression used to schedule the offer to
+ *   activate periodically. When cron is null or not provided, duration is optional.
+ * @property {number} [duration] - Duration of the offer activation in seconds.
+ *   Mandatory when cron is provided.
+ */
+
+/**
+ * @typedef OfferListItem
+ * @property {string} [mode] - Offer mode, like coupon or promotion
+ * @property {string} [type] - Type of the offer
+ * @property {string} [status] - Status of the offer
+ * @property {boolean} [published] - Determines whether the offer is published
+ *   to customers or marked inactive
+ * @property {OfferDisplayMeta} [display_meta]
+ * @property {OfferAuthor} [author]
+ * @property {OfferDateMeta} [date_meta]
+ * @property {OfferSchedule} [schedule]
+ */
+
+/**
+ * @typedef OfferListResult
+ * @property {OfferListItem[]} [items] - List of offers
+ * @property {Page} [page]
+ */
+
 class CartPlatformModel {
   /** @returns {RedeemLoyaltyPoints} */
   static RedeemLoyaltyPoints() {
@@ -3109,7 +3424,7 @@ class CartPlatformModel {
   static Ownership1() {
     return Joi.object({
       payable_category: Joi.string().allow(""),
-      payable_by: Joi.string().allow(""),
+      payable_by: Joi.string().allow("").allow(null),
     });
   }
 
@@ -4180,6 +4495,34 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {CurrencyValue} */
+  static CurrencyValue() {
+    return Joi.object({
+      currency: Joi.string().allow(""),
+      value: Joi.number(),
+    });
+  }
+
+  /** @returns {ChargesAmount} */
+  static ChargesAmount() {
+    return Joi.object({
+      base_currency: CartPlatformModel.CurrencyValue(),
+      ordering_currency: CartPlatformModel.CurrencyValue(),
+    });
+  }
+
+  /** @returns {ArticleCharges} */
+  static ArticleCharges() {
+    return Joi.object({
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      amount: CartPlatformModel.ChargesAmount(),
+      name: Joi.string().allow(""),
+      allow_refund: Joi.boolean(),
+      code: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CartProductInfo} */
   static CartProductInfo() {
     return Joi.object({
@@ -4208,6 +4551,7 @@ class CartPlatformModel {
       promo_meta: CartPlatformModel.PromoMeta(),
       custom_order: Joi.object().pattern(/\S/, Joi.any()),
       item_type: Joi.string().allow(""),
+      charges: Joi.array().items(CartPlatformModel.ArticleCharges()),
     });
   }
 
@@ -5573,6 +5917,258 @@ class CartPlatformModel {
     return Joi.object({
       message: Joi.string().allow("").required(),
       field: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OfferUser} */
+  static OfferUser() {
+    return Joi.object({
+      groups: Joi.array().items(Joi.number()),
+      type: Joi.string().allow(""),
+      anonymous: Joi.boolean(),
+      id: Joi.array().items(Joi.string().allow("")),
+      registered: CartPlatformModel.UserRegistered(),
+      email_domain: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {OfferItemCriteria} */
+  static OfferItemCriteria() {
+    return Joi.object({
+      category_id: Joi.array().items(Joi.number()),
+      collection_id: Joi.array().items(Joi.string().allow("")),
+      all_items: Joi.boolean(),
+      item_brand: Joi.array().items(Joi.number()),
+      article_ids: Joi.array().items(Joi.string().allow("")),
+      item_sku: Joi.array().items(Joi.string().allow("")),
+      item_id: Joi.array().items(Joi.number()),
+      item_l1_category: Joi.array().items(Joi.number()),
+      item_l2_category: Joi.array().items(Joi.number()),
+      item_category: Joi.array().items(Joi.number()),
+      item_department: Joi.array().items(Joi.number()),
+      item_store: Joi.array().items(Joi.number()),
+      item_size: Joi.array().items(Joi.string().allow("")),
+      item_company: Joi.array().items(Joi.number()),
+      item_tags: Joi.array().items(Joi.string().allow("")),
+      cart_quantity: CartPlatformModel.CompareObject(),
+      cart_total: CartPlatformModel.CompareObject(),
+      item_exclude_l1_category: Joi.array().items(Joi.number()),
+      item_exclude_l2_category: Joi.array().items(Joi.number()),
+      item_exclude_category: Joi.array().items(Joi.number()),
+      cart_unique_item_quantity: CartPlatformModel.CompareObject(),
+      cart_unique_item_amount: CartPlatformModel.CompareObject(),
+      item_exclude_department: Joi.array().items(Joi.number()),
+      item_exclude_store: Joi.array().items(Joi.number()),
+      item_exclude_brand: Joi.array().items(Joi.number()),
+      item_exclude_sku: Joi.array().items(Joi.string().allow("")),
+      item_exclude_company: Joi.array().items(Joi.number()),
+      available_zones: Joi.array().items(Joi.string().allow("")),
+      item_exclude_id: Joi.array().items(Joi.number()),
+      buy_rules: Joi.array().items(Joi.string().allow("")),
+      item_size_mapping: CartPlatformModel.ItemSizeMapping(),
+    });
+  }
+
+  /** @returns {DiscountRuleOffer} */
+  static DiscountRuleOffer() {
+    return Joi.object({
+      max_discount_amount: Joi.number(),
+      discount_price: Joi.number(),
+      apportion_discount: Joi.boolean(),
+      partial_can_ret: Joi.boolean(),
+      max_usage_per_transaction: Joi.number().allow(null),
+      min_offer_quantity: Joi.number(),
+      discount_amount: Joi.number(),
+      discount_percentage: Joi.number().allow(null),
+      max_offer_quantity: Joi.number(),
+    });
+  }
+
+  /** @returns {OfferDiscountRule} */
+  static OfferDiscountRule() {
+    return Joi.object({
+      discount_type: Joi.string().allow(""),
+      buy_condition: Joi.string().allow(""),
+      item_criteria: CartPlatformModel.OfferItemCriteria(),
+      offer: CartPlatformModel.DiscountRuleOffer(),
+      is_exact: Joi.boolean(),
+    });
+  }
+
+  /** @returns {OfferUsesRemaining} */
+  static OfferUsesRemaining() {
+    return Joi.object({
+      user: Joi.number(),
+      total: Joi.number(),
+      app: Joi.number(),
+    });
+  }
+
+  /** @returns {OfferUsesRestriction} */
+  static OfferUsesRestriction() {
+    return Joi.object({
+      maximum: CartPlatformModel.OfferUsesRemaining(),
+      remaining: CartPlatformModel.OfferUsesRemaining(),
+    });
+  }
+
+  /** @returns {OfferRestrictionFulfillmentOptions} */
+  static OfferRestrictionFulfillmentOptions() {
+    return Joi.object({
+      fulfillment_slug: Joi.string().allow("").required(),
+      zones: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {OfferRestrictions} */
+  static OfferRestrictions() {
+    return Joi.object({
+      uses: CartPlatformModel.OfferUsesRestriction(),
+      post_order: CartPlatformModel.PostOrder(),
+      platforms: Joi.array().items(Joi.string().allow("")),
+      payments: CartPlatformModel.PaymentModes(),
+      ordering_stores: Joi.array().items(Joi.number()),
+      order_quantity: Joi.number(),
+      user: CartPlatformModel.OfferUser(),
+      multi_store_allowed: Joi.boolean(),
+      fulfillment_options: Joi.array().items(
+        CartPlatformModel.OfferRestrictionFulfillmentOptions()
+      ),
+    });
+  }
+
+  /** @returns {OfferDisplayMeta} */
+  static OfferDisplayMeta() {
+    return Joi.object({
+      description: Joi.string().allow("").required(),
+      is_display: Joi.boolean(),
+      is_public: Joi.boolean(),
+      name: Joi.string().allow("").required(),
+      offer_text: Joi.string().allow("").allow(null),
+      offer_label: Joi.string().allow("").allow(null),
+      reason: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {OfferCouponConfiguration} */
+  static OfferCouponConfiguration() {
+    return Joi.object({
+      coupon_count: Joi.number(),
+      coupon_prefix: Joi.string().allow(""),
+      coupon_type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OfferOwnership} */
+  static OfferOwnership() {
+    return Joi.object({
+      payable_category: Joi.string().allow("").required(),
+      payable_by: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {OfferSchema} */
+  static OfferSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      mode: Joi.string().allow("").required(),
+      auto_apply: Joi.boolean(),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      discount_rules: Joi.array().items(CartPlatformModel.OfferDiscountRule()),
+      buy_rules: Joi.object().pattern(
+        /\S/,
+        CartPlatformModel.OfferItemCriteria()
+      ),
+      restrictions: CartPlatformModel.OfferRestrictions(),
+      display_meta: CartPlatformModel.OfferDisplayMeta().required(),
+      ownership: CartPlatformModel.OfferOwnership(),
+      author: CartPlatformModel.OfferAuthor(),
+      date_meta: CartPlatformModel.OfferDateMeta(),
+      _schedule: CartPlatformModel.OfferSchedule(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      stackable: Joi.boolean(),
+      status: Joi.string().allow("").required(),
+      published: Joi.boolean().required(),
+      type: Joi.string().allow("").required(),
+      priority: Joi.number(),
+      is_exclusive_coupon: Joi.boolean(),
+      apply_exclusive: Joi.string().allow("").allow(null),
+      calculate_on: Joi.string().allow(""),
+      promo_group: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      coupon_config: CartPlatformModel.OfferCouponConfiguration(),
+      is_processed: Joi.boolean(),
+      is_bank_offer: Joi.boolean(),
+    });
+  }
+
+  /** @returns {OfferPartialUpdate} */
+  static OfferPartialUpdate() {
+    return Joi.object({
+      schedule: CartPlatformModel.PromotionSchedule(),
+    });
+  }
+
+  /** @returns {OfferAuthor} */
+  static OfferAuthor() {
+    return Joi.object({
+      created_by: Joi.string().allow("").allow(null),
+      modified_by: Joi.string().allow("").allow(null),
+      approved_by: Joi.string().allow("").allow(null),
+      rejected_by: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {OfferDateMeta} */
+  static OfferDateMeta() {
+    return Joi.object({
+      modified_on: Joi.string().allow("").allow(null),
+      created_on: Joi.string().allow("").allow(null),
+      approved_on: Joi.string().allow("").allow(null),
+      rejected_on: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {NextScheduleItems} */
+  static NextScheduleItems() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OfferSchedule} */
+  static OfferSchedule() {
+    return Joi.object({
+      end: Joi.string().allow("").required(),
+      start: Joi.string().allow("").required(),
+      next_schedule: Joi.array().items(CartPlatformModel.NextScheduleItems()),
+      cron: Joi.string().allow("").allow(null),
+      duration: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {OfferListItem} */
+  static OfferListItem() {
+    return Joi.object({
+      mode: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      published: Joi.boolean(),
+      display_meta: CartPlatformModel.OfferDisplayMeta(),
+      author: CartPlatformModel.OfferAuthor(),
+      date_meta: CartPlatformModel.OfferDateMeta(),
+      schedule: CartPlatformModel.OfferSchedule(),
+    });
+  }
+
+  /** @returns {OfferListResult} */
+  static OfferListResult() {
+    return Joi.object({
+      items: Joi.array().items(CartPlatformModel.OfferListItem()),
+      page: CartPlatformModel.Page(),
     });
   }
 }

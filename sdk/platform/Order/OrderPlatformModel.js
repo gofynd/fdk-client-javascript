@@ -420,7 +420,9 @@ const Joi = require("joi");
 
 /**
  * @typedef StatuesRequestSchema
- * @property {string} [status] - The new status to be assigned to the shipment(s).
+ * @property {string} [status] - The new status to be assigned to a shipment.
+ *   Also, refer to the <a href='/commerce/getting-started/oms-states/'>OMS
+ *   States</a> for the complete status list.
  * @property {ShipmentsRequestSchema[]} [shipments] - A list of shipments to
  *   which the new status will be applied.
  * @property {string} [exclude_bags_next_state] - Specifies the state to which
@@ -3111,6 +3113,8 @@ const Joi = require("joi");
  * @property {string} [external_shipment_id] - Unique identifier for the
  *   shipment as assigned by an external system. Use this to map the external ID
  *   to Fynd's generated ID.
+ * @property {string} [invoice_id] - Indicates whether the order was created in
+ *   offline mode. Used to enable offline-specific processing and sync behavior.
  * @property {LineItemSchema[]} [line_items] - A list of items included in the shipment.
  * @property {OrderFulfillmentTimelineSchema} [order_fulfillment_timeline]
  * @property {number} [location_id] - The location ID from which this shipment
@@ -3311,6 +3315,8 @@ const Joi = require("joi");
  *   placed. Required when the order is placed from one company but fulfilled by another.
  * @property {boolean} [is_draft] - Indicates whether the order is a draft.
  *   Draft orders will be moved to upcoming state instead of placed status.
+ * @property {boolean} [is_offline_order] - Indicates whether the order is an
+ *   offline order placed through a physical store or offline channel.
  * @property {Object} [meta] - Metadata related to the order may include
  *   additional, dynamic information that provides further context about the
  *   order. This information can also be viewed on the Order or Shipment Details page.
@@ -8889,6 +8895,7 @@ class OrderPlatformModel {
       type: Joi.string().allow(""),
       fulfillment_option: OrderPlatformModel.FulfillmentOptionSchema(),
       external_shipment_id: Joi.string().allow(""),
+      invoice_id: Joi.string().allow(""),
       line_items: Joi.array().items(OrderPlatformModel.LineItemSchema()),
       order_fulfillment_timeline: OrderPlatformModel.OrderFulfillmentTimelineSchema(),
       location_id: Joi.number(),
@@ -9064,6 +9071,7 @@ class OrderPlatformModel {
       b2b_gstin_number: Joi.string().allow(""),
       channel_company_id: Joi.string().allow(""),
       is_draft: Joi.boolean(),
+      is_offline_order: Joi.boolean(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }

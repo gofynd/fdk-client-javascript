@@ -10,6 +10,10 @@ export = CatalogPlatformModel;
  * @property {ValidationError[]} errors - A list of validation errors in the request.
  */
 /**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
+ */
+/**
  * @typedef AllSizes
  * @property {ValidateIdentifier[]} [identifiers] - A collection of identifiers
  *   (e.g., GTIN, UPC) associated with the size. Each identifier follows the
@@ -106,6 +110,125 @@ export = CatalogPlatformModel;
  * @property {string} [name] - Name of the application.
  * @property {number} priority - Defines the priority level for this
  *   configuration, with 1 being the highest.
+ * @property {SortWeights} [weights]
+ * @property {CohortSortingConfiguration} [cohorts]
+ */
+/**
+ * @typedef SortWeights
+ * @property {number} [popularity] - Controls how strongly overall product
+ *   popularity influences ranking. Products with higher engagement and demand
+ *   are ranked higher.
+ * @property {number} [availability] - Controls the importance of product
+ *   availability and fulfilment readiness in ranking. Products that are more
+ *   consistently available are prioritized over low-stock or unreliable items.
+ * @property {number} [conversion] - Controls the effectiveness of product
+ *   conversion rates in ranking. Products that convert views into purchases
+ *   more efficiently are ranked higher.
+ * @property {number} [sold_quantity] - Reflects historical sales volume of a
+ *   product. Products with higher sales volumes are ranked higher.
+ * @property {number} [depth] - Measures size or variant depth of a product.
+ *   Products with more size options and inventory depth are ranked higher.
+ * @property {number} [listing] - Represents recency or freshness of the product
+ *   listing. Products that are recently listed or have fresh inventory are
+ *   ranked higher.
+ * @property {number} [discount] - Indicates the promotional value of a product.
+ *   Products with higher discounts or promotions are ranked higher.
+ * @property {number} [cancelled] - Reflects historical cancellation reliability
+ *   of a product or seller. Products with lower cancellation rates are ranked higher.
+ * @property {number} [returns] - Measures post-purchase return behavior.
+ *   Products with lower return rates are ranked higher.
+ * @property {number} [catalogue] - Represents quality and completeness of
+ *   catalog content. Products with more complete and high-quality content are
+ *   ranked higher.
+ * @property {number} [revenue] - Represents revenue contribution potential of a
+ *   product. Products that generate higher revenue are ranked higher.
+ */
+/**
+ * @typedef CohortWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HighSpenderRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HyperactiveRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HighSpenderOccasionalCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef StandardOccasionalCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef DormantPremiumCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef BudgetRegularCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HighSpenderRegularCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef StandardCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef PremiumCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HighSpenderCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef StandardDormantCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef HighSpenderDormantCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef PotentialCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef NewCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef BudgetRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef AverageSpenderRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+/**
+ * @typedef CohortSortingConfiguration
+ * @property {HighSpenderRepeatCustomerWeights} [high_spender_repeat_customer]
+ * @property {HyperactiveRepeatCustomerWeights} [hyperactive_premium_repeat_customer]
+ * @property {HighSpenderOccasionalCustomerWeights} [high_spender_occasional_customer]
+ * @property {StandardOccasionalCustomerWeights} [standard_occasional_customer]
+ * @property {DormantPremiumCustomerWeights} [dormant_premium_customer]
+ * @property {BudgetRegularCustomerWeights} [budget_regular_customer]
+ * @property {HighSpenderRegularCustomerWeights} [high_spender_regular_customer]
+ * @property {StandardCustomerAboutToChurnWeights} [standard_customer_about_to_churn]
+ * @property {PremiumCustomerAboutToChurnWeights} [premium_customer_about_to_churn]
+ * @property {HighSpenderCustomerAboutToChurnWeights} [high_spender_customer_about_to_churn]
+ * @property {StandardDormantCustomerWeights} [standard_dormant_customer]
+ * @property {HighSpenderDormantCustomerWeights} [high_spender_dormant_customer]
+ * @property {PotentialCustomerWeights} [potential_customer]
+ * @property {NewCustomerWeights} [new_customer]
+ * @property {BudgetRepeatCustomerWeights} [budget_repeat_customer]
+ * @property {AverageSpenderRepeatCustomerWeights} [average_spender_repeat_customer]
  */
 /**
  * @typedef ApplicationBrandJson
@@ -2778,6 +2901,24 @@ export = CatalogPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef PriceStrategySchema
+ * @property {string} currency - Currency for the pricing strategy
+ * @property {number} adjustment_value - Adjustment value for the pricing strategy
+ * @property {string} adjustment_type - Type of adjustment for the pricing strategy
+ */
+/**
+ * @typedef PriceFactoryResponseSchema
+ * @property {string} [price_zone_id] - Unique identifier of the price zone
+ * @property {string} [price_factory_id] - Unique identifier of the price factory
+ * @property {string} [modified_by] - User who last modified the price factory
+ * @property {string[]} [currencies] - List of currencies supported by the price factory
+ * @property {string} [name] - Name of the price factory
+ * @property {PriceStrategySchema[]} [price_strategy] - Pricing strategy for the
+ *   price factory
+ * @property {boolean} [active] - Whether the price factory is active
+ * @property {string} [created_by] - User who created the price factory
+ */
+/**
  * @typedef Product
  * @property {Object} [_custom_json] - A custom JSON object that can hold any
  *   additional key-value pairs specific to the product.
@@ -4391,6 +4532,41 @@ export = CatalogPlatformModel;
  * @typedef TaxReqBodyVersion
  * @property {TaxComponent[]} components - List of tax components with their
  *   respective slabs and rates.
+ * @property {string} [applicable_date] - Optional future effective date for the
+ *   version. Must be at least one minute ahead of the current time when supplied.
+ * @property {string} [region_type] - Required whenever areas are supplied to
+ *   indicate the granularity of the provided regions.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ */
+/**
+ * @typedef TaxGeoArea
+ * @property {string[]} regions - List of region identifiers based on the
+ *   selected region_type.
+ * @property {string} country - Country identifier that groups the regions.
+ */
+/**
+ * @typedef AreaDetails
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ * @property {string} [sub_type]
+ * @property {string[]} [parent_id]
+ */
+/**
+ * @typedef Country
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ */
+/**
+ * @typedef Area
+ * @property {AreaDetails[]} regions
+ * @property {Country} country
+ */
+/**
+ * @typedef RegionReference
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {Area[]} [areas]
  */
 /**
  * @typedef CreateTaxRequestBody
@@ -4401,26 +4577,40 @@ export = CatalogPlatformModel;
  * @typedef TaxVersion
  * @property {string} [_id]
  * @property {string} [rule_id] - Tax Rule ID.
- * @property {string} [applicable_date] - It is the date from when this rule
- *   will come in effect.
+ * @property {string} [applicable_date] - Scheduled effective date for the
+ *   version. Must be at least one minute ahead of current time when provided.
  * @property {string} [created_on]
  * @property {string} [modified_on]
  * @property {number} [company_id] - Company ID.
  * @property {TaxStatusEnum} [status]
+ * @property {string} [region_type] - Present when the version targets a
+ *   specific set of regions rather than the default country-level rule.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {TaxVersionScopeEnum} [scope]
  * @property {TaxComponentResponseSchema[]} [components] - List of tax components.
  */
 /**
  * @typedef UpdateTaxVersionRequestBody
  * @property {TaxComponentResponseSchema[]} components - List of tax components.
  * @property {string} applicable_date - It is the date from when this rule will
- *   come in effect. It should be atleast one minute in the future from the current time.
+ *   come in effect. It should be at least one minute in the future from the
+ *   current time.
+ * @property {string} [region_type] - Required when areas are present to denote
+ *   the level (city/state/pincode) at which the version applies.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 /**
  * @typedef CreateTaxVersionRequestBody
  * @property {TaxComponent[]} components - List of tax components.
- * @property {string} applicable_date - It is the date from when this rule will
- *   come in effect. It should be atleast one minute in the future from the
- *   current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ * @property {string} [applicable_date] - Optional scheduled date from when this
+ *   rule will come in effect. It should be at least one minute in the future
+ *   from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ * @property {string} [region_type] - Required when areas are present to denote
+ *   the level (city/state/pincode) at which the version applies.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 /**
  * @typedef TaxRule
@@ -4438,23 +4628,25 @@ export = CatalogPlatformModel;
  * @typedef TaxVersionDetail
  * @property {string} _id
  * @property {string} rule_id
- * @property {string} applicable_date
+ * @property {string} applicable_date - It is the date from when this rule comes
+ *   in effect. Always present and should be at least one minute in the future
+ *   when scheduled.
  * @property {string} created_on
  * @property {string} modified_on
  * @property {number} company_id
  * @property {TaxStatusEnum} [status]
+ * @property {string} [region_code] - Region code for areas sent when adding a
+ *   region override.
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {RegionReference} [region]
  * @property {TaxComponent[]} components - List of components.
+ * @property {TaxVersionScopeEnum} [scope]
  * @property {string} version_status - Specifies the type of tax version.
  */
 /**
  * @typedef CreateTax
  * @property {TaxRule} [rule]
  * @property {TaxVersion} [versions]
- */
-/**
- * @typedef UpdateTaxVersion
- * @property {TaxComponent[]} components - List of components.
- * @property {string} applicable_date
  */
 /**
  * @typedef UpdateTaxRequestBody
@@ -4508,6 +4700,142 @@ export = CatalogPlatformModel;
  * @property {Page} page
  */
 /**
+ * @typedef PriceFactoryListItemsSchema
+ * @property {string} [price_factory_id] - Unique identifier for the price factory.
+ * @property {string} [name] - Name of the price factory configuration.
+ * @property {string} [type] - Type of price factory.
+ * @property {string[]} [currencies] - List of currency codes (e.g., INR, USD).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - ID of the price zone.
+ * @property {boolean} [active] - Status of the price factory (active/inactive).
+ * @property {CreatedBy} [modified_by]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [modified_on] - Timestamp of the last modification.
+ */
+/**
+ * @typedef PriceFactoryListResponseSchema
+ * @property {Page} [page]
+ * @property {PriceFactoryListItemsSchema[]} [data] - List of price factory
+ *   configurations.
+ */
+/**
+ * @typedef CreatePriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string} [type] - Defines the type of price factory, either
+ *   regional or international.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ */
+/**
+ * @typedef UpdatePriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ */
+/**
+ * @typedef PriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string} [type] - Defines the type of price factory, either
+ *   regional or international.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ * @property {CreatedBy} [created_by]
+ * @property {CreatedBy} [modified_by]
+ */
+/**
+ * @typedef CurrencyPriceSchema
+ * @property {number} marked_price - Original price before any discounts.
+ * @property {number} selling_price - Final price after applying discounts or adjustments.
+ * @property {string} currency - Currency code (e.g., USD, EUR).
+ */
+/**
+ * @typedef UpsertPriceFactorySizesSchema
+ * @property {string} [size] - The identifier for the product size (e.g., S, M, L, OS).
+ * @property {CurrencyPriceSchema[]} [currency_prices] - The list of currency prices
+ */
+/**
+ * @typedef UpsertPriceFactoryProductSchema
+ * @property {UpsertPriceFactorySizesSchema[]} [sizes] - List of size-level
+ *   pricing configurations.
+ * @property {boolean} [active] - Indicates whether the product configuration is active.
+ */
+/**
+ * @typedef PriceFactoryCurrencyPriceSchema
+ * @property {boolean} [base_price] - Indicates if this price is the base price.
+ * @property {string} [currency] - Currency code (e.g., INR).
+ * @property {number} [selling_price] - The price at which the item is sold.
+ * @property {number} [marked_price] - The original marked price of the item.
+ */
+/**
+ * @typedef PriceFactorySizesSchema
+ * @property {string} [price_factory_id] - ID of the price factory entry.
+ * @property {string} [seller_identifier] - Identifier of the seller for the item.
+ * @property {string} [size] - Size of the product (e.g., OS).
+ * @property {string} [price_zone_id] - Price zone identifier for
+ *   regional/international pricing.
+ * @property {PriceFactoryCurrencyPriceSchema[]} [currency_prices] - Pricing
+ *   information across different currencies.
+ */
+/**
+ * @typedef PriceFactoryProductResponseSchema
+ * @property {number} [item_id] - Unique identifier for the item in the price
+ *   factory response.
+ * @property {string} [item_code] - Code identifying the item.
+ * @property {string} [name] - Name of the item.
+ * @property {boolean} [active] - Indicates if the item is currently active.
+ * @property {string[]} [media] - List of media associated with the item.
+ * @property {PriceFactorySizesSchema[]} [sizes] - List of size and pricing details.
+ */
+/**
+ * @typedef PriceFactoryProductListResponseSchema
+ * @property {PriceFactoryProductResponseSchema[]} [items] - List of products
+ *   details with sizes and prices details.
+ * @property {Page} [page]
+ */
+/**
+ * @typedef PriceRange
+ * @property {number} [min] - Minimum price.
+ * @property {number} [max] - Maximum price.
+ */
+/**
+ * @typedef CurrencyPrice
+ * @property {number} [discount] - Discount value applied in percentage.
+ * @property {string} [currency_code] - Currency code (e.g., 'INR', 'EUR').
+ * @property {string} [currency_symbol] - Symbol of the currency.
+ * @property {PriceRange} [marked]
+ * @property {PriceRange} [effective]
+ * @property {PriceRange} [selling]
+ */
+/**
+ * @typedef ProductPrice
+ * @property {string} [zone_type] - Type of the pricing zone, e.g., 'price' or 'delivery'.
+ * @property {string} [zone_identifier] - Unique identifier for the zone.
+ * @property {CurrencyPrice[]} [currency_prices] - List of prices for different
+ *   currencies in this zone.
+ */
+/**
+ * @typedef AppProductPricesSchema
+ * @property {string} [item_code] - Unique code identifying the item.
+ * @property {number} [brand_uid] - Unique identifier for the brand.
+ * @property {number} [item_id] - Unique identifier for the item.
+ * @property {Object} [discount_meta] - Additional discount metadata.
+ * @property {ProductPrice[]} [product_price] - Pricing information for various
+ *   zones and currencies.
+ */
+/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -4550,6 +4878,7 @@ export = CatalogPlatformModel;
  *   string and length should not exceed 100 characters.
  */
 /** @typedef {"ACTIVE" | "INACTIVE" | "DELETED"} TaxStatusEnum */
+/** @typedef {"COUNTRY" | "REGION" | "STORE"} TaxVersionScopeEnum */
 /** @typedef {"HS" | "SAC"} HsTypeEnum */
 /**
  * @typedef {| "about-us"
@@ -4606,7 +4935,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxVersion, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, HsTypeEnum, PageType };
+    export { Action, ValidationErrors, StandardError, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, SortWeights, CohortWeights, HighSpenderRepeatCustomerWeights, HyperactiveRepeatCustomerWeights, HighSpenderOccasionalCustomerWeights, StandardOccasionalCustomerWeights, DormantPremiumCustomerWeights, BudgetRegularCustomerWeights, HighSpenderRegularCustomerWeights, StandardCustomerAboutToChurnWeights, PremiumCustomerAboutToChurnWeights, HighSpenderCustomerAboutToChurnWeights, StandardDormantCustomerWeights, HighSpenderDormantCustomerWeights, PotentialCustomerWeights, NewCustomerWeights, BudgetRepeatCustomerWeights, AverageSpenderRepeatCustomerWeights, CohortSortingConfiguration, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, PriceStrategySchema, PriceFactoryResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, TaxGeoArea, AreaDetails, Country, Area, RegionReference, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, PriceFactoryListItemsSchema, PriceFactoryListResponseSchema, CreatePriceFactoryConfigSchema, UpdatePriceFactoryConfigSchema, PriceFactoryConfigSchema, CurrencyPriceSchema, UpsertPriceFactorySizesSchema, UpsertPriceFactoryProductSchema, PriceFactoryCurrencyPriceSchema, PriceFactorySizesSchema, PriceFactoryProductResponseSchema, PriceFactoryProductListResponseSchema, PriceRange, CurrencyPrice, ProductPrice, AppProductPricesSchema, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, TaxVersionScopeEnum, HsTypeEnum, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -4625,6 +4954,14 @@ type ValidationErrors = {
      * - A list of validation errors in the request.
      */
     errors: ValidationError[];
+};
+/** @returns {StandardError} */
+declare function StandardError(): StandardError;
+type StandardError = {
+    /**
+     * - A brief description of the error.
+     */
+    message: string;
 };
 /** @returns {AllSizes} */
 declare function AllSizes(): AllSizes;
@@ -4818,6 +5155,177 @@ type AppConfigurationsSort = {
      * configuration, with 1 being the highest.
      */
     priority: number;
+    weights?: SortWeights;
+    cohorts?: CohortSortingConfiguration;
+};
+/** @returns {SortWeights} */
+declare function SortWeights(): SortWeights;
+type SortWeights = {
+    /**
+     * - Controls how strongly overall product
+     * popularity influences ranking. Products with higher engagement and demand
+     * are ranked higher.
+     */
+    popularity?: number;
+    /**
+     * - Controls the importance of product
+     * availability and fulfilment readiness in ranking. Products that are more
+     * consistently available are prioritized over low-stock or unreliable items.
+     */
+    availability?: number;
+    /**
+     * - Controls the effectiveness of product
+     * conversion rates in ranking. Products that convert views into purchases
+     * more efficiently are ranked higher.
+     */
+    conversion?: number;
+    /**
+     * - Reflects historical sales volume of a
+     * product. Products with higher sales volumes are ranked higher.
+     */
+    sold_quantity?: number;
+    /**
+     * - Measures size or variant depth of a product.
+     * Products with more size options and inventory depth are ranked higher.
+     */
+    depth?: number;
+    /**
+     * - Represents recency or freshness of the product
+     * listing. Products that are recently listed or have fresh inventory are
+     * ranked higher.
+     */
+    listing?: number;
+    /**
+     * - Indicates the promotional value of a product.
+     * Products with higher discounts or promotions are ranked higher.
+     */
+    discount?: number;
+    /**
+     * - Reflects historical cancellation reliability
+     * of a product or seller. Products with lower cancellation rates are ranked higher.
+     */
+    cancelled?: number;
+    /**
+     * - Measures post-purchase return behavior.
+     * Products with lower return rates are ranked higher.
+     */
+    returns?: number;
+    /**
+     * - Represents quality and completeness of
+     * catalog content. Products with more complete and high-quality content are
+     * ranked higher.
+     */
+    catalogue?: number;
+    /**
+     * - Represents revenue contribution potential of a
+     * product. Products that generate higher revenue are ranked higher.
+     */
+    revenue?: number;
+};
+/** @returns {CohortWeights} */
+declare function CohortWeights(): CohortWeights;
+type CohortWeights = {
+    weights: SortWeights;
+};
+/** @returns {HighSpenderRepeatCustomerWeights} */
+declare function HighSpenderRepeatCustomerWeights(): HighSpenderRepeatCustomerWeights;
+type HighSpenderRepeatCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {HyperactiveRepeatCustomerWeights} */
+declare function HyperactiveRepeatCustomerWeights(): HyperactiveRepeatCustomerWeights;
+type HyperactiveRepeatCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {HighSpenderOccasionalCustomerWeights} */
+declare function HighSpenderOccasionalCustomerWeights(): HighSpenderOccasionalCustomerWeights;
+type HighSpenderOccasionalCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {StandardOccasionalCustomerWeights} */
+declare function StandardOccasionalCustomerWeights(): StandardOccasionalCustomerWeights;
+type StandardOccasionalCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {DormantPremiumCustomerWeights} */
+declare function DormantPremiumCustomerWeights(): DormantPremiumCustomerWeights;
+type DormantPremiumCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {BudgetRegularCustomerWeights} */
+declare function BudgetRegularCustomerWeights(): BudgetRegularCustomerWeights;
+type BudgetRegularCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {HighSpenderRegularCustomerWeights} */
+declare function HighSpenderRegularCustomerWeights(): HighSpenderRegularCustomerWeights;
+type HighSpenderRegularCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {StandardCustomerAboutToChurnWeights} */
+declare function StandardCustomerAboutToChurnWeights(): StandardCustomerAboutToChurnWeights;
+type StandardCustomerAboutToChurnWeights = {
+    weights: SortWeights;
+};
+/** @returns {PremiumCustomerAboutToChurnWeights} */
+declare function PremiumCustomerAboutToChurnWeights(): PremiumCustomerAboutToChurnWeights;
+type PremiumCustomerAboutToChurnWeights = {
+    weights: SortWeights;
+};
+/** @returns {HighSpenderCustomerAboutToChurnWeights} */
+declare function HighSpenderCustomerAboutToChurnWeights(): HighSpenderCustomerAboutToChurnWeights;
+type HighSpenderCustomerAboutToChurnWeights = {
+    weights: SortWeights;
+};
+/** @returns {StandardDormantCustomerWeights} */
+declare function StandardDormantCustomerWeights(): StandardDormantCustomerWeights;
+type StandardDormantCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {HighSpenderDormantCustomerWeights} */
+declare function HighSpenderDormantCustomerWeights(): HighSpenderDormantCustomerWeights;
+type HighSpenderDormantCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {PotentialCustomerWeights} */
+declare function PotentialCustomerWeights(): PotentialCustomerWeights;
+type PotentialCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {NewCustomerWeights} */
+declare function NewCustomerWeights(): NewCustomerWeights;
+type NewCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {BudgetRepeatCustomerWeights} */
+declare function BudgetRepeatCustomerWeights(): BudgetRepeatCustomerWeights;
+type BudgetRepeatCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {AverageSpenderRepeatCustomerWeights} */
+declare function AverageSpenderRepeatCustomerWeights(): AverageSpenderRepeatCustomerWeights;
+type AverageSpenderRepeatCustomerWeights = {
+    weights: SortWeights;
+};
+/** @returns {CohortSortingConfiguration} */
+declare function CohortSortingConfiguration(): CohortSortingConfiguration;
+type CohortSortingConfiguration = {
+    high_spender_repeat_customer?: HighSpenderRepeatCustomerWeights;
+    hyperactive_premium_repeat_customer?: HyperactiveRepeatCustomerWeights;
+    high_spender_occasional_customer?: HighSpenderOccasionalCustomerWeights;
+    standard_occasional_customer?: StandardOccasionalCustomerWeights;
+    dormant_premium_customer?: DormantPremiumCustomerWeights;
+    budget_regular_customer?: BudgetRegularCustomerWeights;
+    high_spender_regular_customer?: HighSpenderRegularCustomerWeights;
+    standard_customer_about_to_churn?: StandardCustomerAboutToChurnWeights;
+    premium_customer_about_to_churn?: PremiumCustomerAboutToChurnWeights;
+    high_spender_customer_about_to_churn?: HighSpenderCustomerAboutToChurnWeights;
+    standard_dormant_customer?: StandardDormantCustomerWeights;
+    high_spender_dormant_customer?: HighSpenderDormantCustomerWeights;
+    potential_customer?: PotentialCustomerWeights;
+    new_customer?: NewCustomerWeights;
+    budget_repeat_customer?: BudgetRepeatCustomerWeights;
+    average_spender_repeat_customer?: AverageSpenderRepeatCustomerWeights;
 };
 /** @returns {ApplicationBrandJson} */
 declare function ApplicationBrandJson(): ApplicationBrandJson;
@@ -10490,6 +10998,59 @@ type ProdcutTemplateCategoriesResponseSchema = {
     items?: CategoriesResponseSchema[];
     page?: Page;
 };
+/** @returns {PriceStrategySchema} */
+declare function PriceStrategySchema(): PriceStrategySchema;
+type PriceStrategySchema = {
+    /**
+     * - Currency for the pricing strategy
+     */
+    currency: string;
+    /**
+     * - Adjustment value for the pricing strategy
+     */
+    adjustment_value: number;
+    /**
+     * - Type of adjustment for the pricing strategy
+     */
+    adjustment_type: string;
+};
+/** @returns {PriceFactoryResponseSchema} */
+declare function PriceFactoryResponseSchema(): PriceFactoryResponseSchema;
+type PriceFactoryResponseSchema = {
+    /**
+     * - Unique identifier of the price zone
+     */
+    price_zone_id?: string;
+    /**
+     * - Unique identifier of the price factory
+     */
+    price_factory_id?: string;
+    /**
+     * - User who last modified the price factory
+     */
+    modified_by?: string;
+    /**
+     * - List of currencies supported by the price factory
+     */
+    currencies?: string[];
+    /**
+     * - Name of the price factory
+     */
+    name?: string;
+    /**
+     * - Pricing strategy for the
+     * price factory
+     */
+    price_strategy?: PriceStrategySchema[];
+    /**
+     * - Whether the price factory is active
+     */
+    active?: boolean;
+    /**
+     * - User who created the price factory
+     */
+    created_by?: string;
+};
 /** @returns {Product} */
 declare function Product(): Product;
 type Product = {
@@ -14123,6 +14684,61 @@ type TaxReqBodyVersion = {
      * respective slabs and rates.
      */
     components: TaxComponent[];
+    /**
+     * - Optional future effective date for the
+     * version. Must be at least one minute ahead of the current time when supplied.
+     */
+    applicable_date?: string;
+    /**
+     * - Required whenever areas are supplied to
+     * indicate the granularity of the provided regions.
+     */
+    region_type?: string;
+    areas?: TaxGeoArea;
+    /**
+     * - Store identifiers for store-level taxation.
+     */
+    store_ids?: number[];
+};
+/** @returns {TaxGeoArea} */
+declare function TaxGeoArea(): TaxGeoArea;
+type TaxGeoArea = {
+    /**
+     * - List of region identifiers based on the
+     * selected region_type.
+     */
+    regions: string[];
+    /**
+     * - Country identifier that groups the regions.
+     */
+    country: string;
+};
+/** @returns {AreaDetails} */
+declare function AreaDetails(): AreaDetails;
+type AreaDetails = {
+    uid?: string;
+    display_name?: string;
+    sub_type?: string;
+    parent_id?: string[];
+};
+/** @returns {Country} */
+declare function Country(): Country;
+type Country = {
+    uid?: string;
+    display_name?: string;
+};
+/** @returns {Area} */
+declare function Area(): Area;
+type Area = {
+    regions: AreaDetails[];
+    country: Country;
+};
+/** @returns {RegionReference} */
+declare function RegionReference(): RegionReference;
+type RegionReference = {
+    name?: string;
+    slug?: string;
+    areas?: Area[];
 };
 /** @returns {CreateTaxRequestBody} */
 declare function CreateTaxRequestBody(): CreateTaxRequestBody;
@@ -14142,8 +14758,8 @@ type TaxVersion = {
      */
     rule_id?: string;
     /**
-     * - It is the date from when this rule
-     * will come in effect.
+     * - Scheduled effective date for the
+     * version. Must be at least one minute ahead of current time when provided.
      */
     applicable_date?: string;
     created_on?: string;
@@ -14153,6 +14769,17 @@ type TaxVersion = {
      */
     company_id?: number;
     status?: TaxStatusEnum;
+    /**
+     * - Present when the version targets a
+     * specific set of regions rather than the default country-level rule.
+     */
+    region_type?: string;
+    areas?: TaxGeoArea;
+    /**
+     * - Store identifiers for store-level taxation.
+     */
+    store_ids?: number[];
+    scope?: TaxVersionScopeEnum;
     /**
      * - List of tax components.
      */
@@ -14167,9 +14794,20 @@ type UpdateTaxVersionRequestBody = {
     components: TaxComponentResponseSchema[];
     /**
      * - It is the date from when this rule will
-     * come in effect. It should be atleast one minute in the future from the current time.
+     * come in effect. It should be at least one minute in the future from the
+     * current time.
      */
     applicable_date: string;
+    /**
+     * - Required when areas are present to denote
+     * the level (city/state/pincode) at which the version applies.
+     */
+    region_type?: string;
+    areas?: TaxGeoArea;
+    /**
+     * - Store identifiers for store-level taxation.
+     */
+    store_ids?: number[];
 };
 /** @returns {CreateTaxVersionRequestBody} */
 declare function CreateTaxVersionRequestBody(): CreateTaxVersionRequestBody;
@@ -14179,11 +14817,21 @@ type CreateTaxVersionRequestBody = {
      */
     components: TaxComponent[];
     /**
-     * - It is the date from when this rule will
-     * come in effect. It should be atleast one minute in the future from the
-     * current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+     * - Optional scheduled date from when this
+     * rule will come in effect. It should be at least one minute in the future
+     * from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
      */
-    applicable_date: string;
+    applicable_date?: string;
+    /**
+     * - Required when areas are present to denote
+     * the level (city/state/pincode) at which the version applies.
+     */
+    region_type?: string;
+    areas?: TaxGeoArea;
+    /**
+     * - Store identifiers for store-level taxation.
+     */
+    store_ids?: number[];
 };
 /** @returns {TaxRule} */
 declare function TaxRule(): TaxRule;
@@ -14209,15 +14857,31 @@ declare function TaxVersionDetail(): TaxVersionDetail;
 type TaxVersionDetail = {
     _id: string;
     rule_id: string;
+    /**
+     * - It is the date from when this rule comes
+     * in effect. Always present and should be at least one minute in the future
+     * when scheduled.
+     */
     applicable_date: string;
     created_on: string;
     modified_on: string;
     company_id: number;
     status?: TaxStatusEnum;
     /**
+     * - Region code for areas sent when adding a
+     * region override.
+     */
+    region_code?: string;
+    /**
+     * - Store identifiers for store-level taxation.
+     */
+    store_ids?: number[];
+    region?: RegionReference;
+    /**
      * - List of components.
      */
     components: TaxComponent[];
+    scope?: TaxVersionScopeEnum;
     /**
      * - Specifies the type of tax version.
      */
@@ -14228,15 +14892,6 @@ declare function CreateTax(): CreateTax;
 type CreateTax = {
     rule?: TaxRule;
     versions?: TaxVersion;
-};
-/** @returns {UpdateTaxVersion} */
-declare function UpdateTaxVersion(): UpdateTaxVersion;
-type UpdateTaxVersion = {
-    /**
-     * - List of components.
-     */
-    components: TaxComponent[];
-    applicable_date: string;
 };
 /** @returns {UpdateTaxRequestBody} */
 declare function UpdateTaxRequestBody(): UpdateTaxRequestBody;
@@ -14332,6 +14987,335 @@ declare function GetTaxComponents(): GetTaxComponents;
 type GetTaxComponents = {
     items: TaxComponentResponseSchema[];
     page: Page;
+};
+/** @returns {PriceFactoryListItemsSchema} */
+declare function PriceFactoryListItemsSchema(): PriceFactoryListItemsSchema;
+type PriceFactoryListItemsSchema = {
+    /**
+     * - Unique identifier for the price factory.
+     */
+    price_factory_id?: string;
+    /**
+     * - Name of the price factory configuration.
+     */
+    name?: string;
+    /**
+     * - Type of price factory.
+     */
+    type?: string;
+    /**
+     * - List of currency codes (e.g., INR, USD).
+     */
+    currencies?: string[];
+    /**
+     * - List of pricing
+     * strategies to apply for each currency.
+     */
+    price_strategy?: PriceStrategySchema[];
+    /**
+     * - ID of the price zone.
+     */
+    price_zone_id?: string;
+    /**
+     * - Status of the price factory (active/inactive).
+     */
+    active?: boolean;
+    modified_by?: CreatedBy;
+    created_by?: CreatedBy;
+    /**
+     * - Timestamp of the last modification.
+     */
+    modified_on?: string;
+};
+/** @returns {PriceFactoryListResponseSchema} */
+declare function PriceFactoryListResponseSchema(): PriceFactoryListResponseSchema;
+type PriceFactoryListResponseSchema = {
+    page?: Page;
+    /**
+     * - List of price factory
+     * configurations.
+     */
+    data?: PriceFactoryListItemsSchema[];
+};
+/** @returns {CreatePriceFactoryConfigSchema} */
+declare function CreatePriceFactoryConfigSchema(): CreatePriceFactoryConfigSchema;
+type CreatePriceFactoryConfigSchema = {
+    /**
+     * - The name of the price factory configuration.
+     */
+    name?: string;
+    /**
+     * - Defines the type of price factory, either
+     * regional or international.
+     */
+    type?: string;
+    /**
+     * - List of currency codes applicable for
+     * pricing (e.g., USD, EUR).
+     */
+    currencies?: string[];
+    /**
+     * - List of pricing
+     * strategies to apply for each currency.
+     */
+    price_strategy?: PriceStrategySchema[];
+    /**
+     * - Identifier for the price zone associated
+     * with the price factory.
+     */
+    price_zone_id?: string;
+};
+/** @returns {UpdatePriceFactoryConfigSchema} */
+declare function UpdatePriceFactoryConfigSchema(): UpdatePriceFactoryConfigSchema;
+type UpdatePriceFactoryConfigSchema = {
+    /**
+     * - The name of the price factory configuration.
+     */
+    name?: string;
+    /**
+     * - List of currency codes applicable for
+     * pricing (e.g., USD, EUR).
+     */
+    currencies?: string[];
+    /**
+     * - List of pricing
+     * strategies to apply for each currency.
+     */
+    price_strategy?: PriceStrategySchema[];
+    /**
+     * - Identifier for the price zone associated
+     * with the price factory.
+     */
+    price_zone_id?: string;
+};
+/** @returns {PriceFactoryConfigSchema} */
+declare function PriceFactoryConfigSchema(): PriceFactoryConfigSchema;
+type PriceFactoryConfigSchema = {
+    /**
+     * - The name of the price factory configuration.
+     */
+    name?: string;
+    /**
+     * - Defines the type of price factory, either
+     * regional or international.
+     */
+    type?: string;
+    /**
+     * - List of currency codes applicable for
+     * pricing (e.g., USD, EUR).
+     */
+    currencies?: string[];
+    /**
+     * - List of pricing
+     * strategies to apply for each currency.
+     */
+    price_strategy?: PriceStrategySchema[];
+    /**
+     * - Identifier for the price zone associated
+     * with the price factory.
+     */
+    price_zone_id?: string;
+    created_by?: CreatedBy;
+    modified_by?: CreatedBy;
+};
+/** @returns {CurrencyPriceSchema} */
+declare function CurrencyPriceSchema(): CurrencyPriceSchema;
+type CurrencyPriceSchema = {
+    /**
+     * - Original price before any discounts.
+     */
+    marked_price: number;
+    /**
+     * - Final price after applying discounts or adjustments.
+     */
+    selling_price: number;
+    /**
+     * - Currency code (e.g., USD, EUR).
+     */
+    currency: string;
+};
+/** @returns {UpsertPriceFactorySizesSchema} */
+declare function UpsertPriceFactorySizesSchema(): UpsertPriceFactorySizesSchema;
+type UpsertPriceFactorySizesSchema = {
+    /**
+     * - The identifier for the product size (e.g., S, M, L, OS).
+     */
+    size?: string;
+    /**
+     * - The list of currency prices
+     */
+    currency_prices?: CurrencyPriceSchema[];
+};
+/** @returns {UpsertPriceFactoryProductSchema} */
+declare function UpsertPriceFactoryProductSchema(): UpsertPriceFactoryProductSchema;
+type UpsertPriceFactoryProductSchema = {
+    /**
+     * - List of size-level
+     * pricing configurations.
+     */
+    sizes?: UpsertPriceFactorySizesSchema[];
+    /**
+     * - Indicates whether the product configuration is active.
+     */
+    active?: boolean;
+};
+/** @returns {PriceFactoryCurrencyPriceSchema} */
+declare function PriceFactoryCurrencyPriceSchema(): PriceFactoryCurrencyPriceSchema;
+type PriceFactoryCurrencyPriceSchema = {
+    /**
+     * - Indicates if this price is the base price.
+     */
+    base_price?: boolean;
+    /**
+     * - Currency code (e.g., INR).
+     */
+    currency?: string;
+    /**
+     * - The price at which the item is sold.
+     */
+    selling_price?: number;
+    /**
+     * - The original marked price of the item.
+     */
+    marked_price?: number;
+};
+/** @returns {PriceFactorySizesSchema} */
+declare function PriceFactorySizesSchema(): PriceFactorySizesSchema;
+type PriceFactorySizesSchema = {
+    /**
+     * - ID of the price factory entry.
+     */
+    price_factory_id?: string;
+    /**
+     * - Identifier of the seller for the item.
+     */
+    seller_identifier?: string;
+    /**
+     * - Size of the product (e.g., OS).
+     */
+    size?: string;
+    /**
+     * - Price zone identifier for
+     * regional/international pricing.
+     */
+    price_zone_id?: string;
+    /**
+     * - Pricing
+     * information across different currencies.
+     */
+    currency_prices?: PriceFactoryCurrencyPriceSchema[];
+};
+/** @returns {PriceFactoryProductResponseSchema} */
+declare function PriceFactoryProductResponseSchema(): PriceFactoryProductResponseSchema;
+type PriceFactoryProductResponseSchema = {
+    /**
+     * - Unique identifier for the item in the price
+     * factory response.
+     */
+    item_id?: number;
+    /**
+     * - Code identifying the item.
+     */
+    item_code?: string;
+    /**
+     * - Name of the item.
+     */
+    name?: string;
+    /**
+     * - Indicates if the item is currently active.
+     */
+    active?: boolean;
+    /**
+     * - List of media associated with the item.
+     */
+    media?: string[];
+    /**
+     * - List of size and pricing details.
+     */
+    sizes?: PriceFactorySizesSchema[];
+};
+/** @returns {PriceFactoryProductListResponseSchema} */
+declare function PriceFactoryProductListResponseSchema(): PriceFactoryProductListResponseSchema;
+type PriceFactoryProductListResponseSchema = {
+    /**
+     * - List of products
+     * details with sizes and prices details.
+     */
+    items?: PriceFactoryProductResponseSchema[];
+    page?: Page;
+};
+/** @returns {PriceRange} */
+declare function PriceRange(): PriceRange;
+type PriceRange = {
+    /**
+     * - Minimum price.
+     */
+    min?: number;
+    /**
+     * - Maximum price.
+     */
+    max?: number;
+};
+/** @returns {CurrencyPrice} */
+declare function CurrencyPrice(): CurrencyPrice;
+type CurrencyPrice = {
+    /**
+     * - Discount value applied in percentage.
+     */
+    discount?: number;
+    /**
+     * - Currency code (e.g., 'INR', 'EUR').
+     */
+    currency_code?: string;
+    /**
+     * - Symbol of the currency.
+     */
+    currency_symbol?: string;
+    marked?: PriceRange;
+    effective?: PriceRange;
+    selling?: PriceRange;
+};
+/** @returns {ProductPrice} */
+declare function ProductPrice(): ProductPrice;
+type ProductPrice = {
+    /**
+     * - Type of the pricing zone, e.g., 'price' or 'delivery'.
+     */
+    zone_type?: string;
+    /**
+     * - Unique identifier for the zone.
+     */
+    zone_identifier?: string;
+    /**
+     * - List of prices for different
+     * currencies in this zone.
+     */
+    currency_prices?: CurrencyPrice[];
+};
+/** @returns {AppProductPricesSchema} */
+declare function AppProductPricesSchema(): AppProductPricesSchema;
+type AppProductPricesSchema = {
+    /**
+     * - Unique code identifying the item.
+     */
+    item_code?: string;
+    /**
+     * - Unique identifier for the brand.
+     */
+    brand_uid?: number;
+    /**
+     * - Unique identifier for the item.
+     */
+    item_id?: number;
+    /**
+     * - Additional discount metadata.
+     */
+    discount_meta?: any;
+    /**
+     * - Pricing information for various
+     * zones and currencies.
+     */
+    product_price?: ProductPrice[];
 };
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;
@@ -14433,6 +15417,13 @@ type CustomMeta = {
  */
 declare function TaxStatusEnum(): TaxStatusEnum;
 type TaxStatusEnum = "ACTIVE" | "INACTIVE" | "DELETED";
+/**
+ * Enum: TaxVersionScopeEnum Used By: Catalog
+ *
+ * @returns {TaxVersionScopeEnum}
+ */
+declare function TaxVersionScopeEnum(): TaxVersionScopeEnum;
+type TaxVersionScopeEnum = "COUNTRY" | "REGION" | "STORE";
 /**
  * Enum: HsTypeEnum Used By: Catalog
  *

@@ -141,7 +141,7 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef PatchMerchantAggregatorPaymentModeDetailsParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.PlatformPaymentModeDetails} body
+ * @property {PaymentPlatformModel.PlatformConfigPaymentModeDetails} body
  */
 /**
  * @typedef PatchMerchantPaymentOptionParam
@@ -175,6 +175,17 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef SaveBrandPaymentGatewayConfigParam
  * @property {PaymentPlatformModel.PaymentGatewayConfigCreation} body
+ */
+/**
+ * @typedef SaveTokenForAggregatorParam
+ * @property {string} aggregatorId - Payment aggregator identifier. Supported values are:
+ *
+ *   - **1**: Razorpay
+ *   - **2**: Juspay
+ *   - **3**: Checkout Extension
+ *   - **4**: PayU India Extension
+ *
+ * @property {PaymentPlatformModel.AggregatorToken} body
  */
 /**
  * @typedef SetMerchantModeControlRoutesParam
@@ -290,6 +301,8 @@ declare class PaymentPlatformApplicationValidator {
     static revokeOauthToken(): RevokeOauthTokenParam;
     /** @returns {SaveBrandPaymentGatewayConfigParam} */
     static saveBrandPaymentGatewayConfig(): SaveBrandPaymentGatewayConfigParam;
+    /** @returns {SaveTokenForAggregatorParam} */
+    static saveTokenForAggregator(): SaveTokenForAggregatorParam;
     /** @returns {SetMerchantModeControlRoutesParam} */
     static setMerchantModeControlRoutes(): SetMerchantModeControlRoutesParam;
     /** @returns {SetPaymentModeCustomConfigParam} */
@@ -308,7 +321,7 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
+    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SaveTokenForAggregatorParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
 }
 type AddRefundBankAccountUsingOTPParam = {
     body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
@@ -506,7 +519,7 @@ type PatchMerchantAggregatorPaymentModeDetailsParam = {
      * - Aggregators Id
      */
     aggregatorId: number;
-    body: PaymentPlatformModel.PlatformPaymentModeDetails;
+    body: PaymentPlatformModel.PlatformConfigPaymentModeDetails;
 };
 type PatchMerchantPaymentOptionParam = {
     body: PaymentPlatformModel.MerchnatPaymentModeCreation;
@@ -538,6 +551,18 @@ type RevokeOauthTokenParam = {
 };
 type SaveBrandPaymentGatewayConfigParam = {
     body: PaymentPlatformModel.PaymentGatewayConfigCreation;
+};
+type SaveTokenForAggregatorParam = {
+    /**
+     * - Payment aggregator identifier. Supported values are:
+     *
+     * - **1**: Razorpay
+     * - **2**: Juspay
+     * - **3**: Checkout Extension
+     * - **4**: PayU India Extension
+     */
+    aggregatorId: string;
+    body: PaymentPlatformModel.AggregatorToken;
 };
 type SetMerchantModeControlRoutesParam = {
     /**

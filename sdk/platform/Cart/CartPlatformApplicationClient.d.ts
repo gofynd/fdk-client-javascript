@@ -42,7 +42,7 @@ declare class Cart {
      * @summary: Apply coupon
      * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/applyCoupon/).
      */
-    applyCoupon({ body, xOrderingSource, i, b, p, id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    applyCoupon({ body, xOrderingSource, xAnonymousCart, i, b, p, id, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.ApplyLoyaltyPointsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -75,7 +75,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkoutCart/).
      */
-    checkoutCart({ body, xOrderingSource, requestHeaders }?: CartPlatformApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCheckoutResult>;
+    checkoutCart({ body, xOrderingSource, xAnonymousCart, requestHeaders }?: CartPlatformApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCheckoutResult>;
     /**
      * @param {CartPlatformApplicationValidator.CreateCartMetaConfigParam} arg
      *   - Arg object
@@ -98,6 +98,16 @@ declare class Cart {
      * @description: Creates a new coupon based on the selected coupon type. Sellers can choose from multiple supported coupon types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable coupon criteria to meet specific business requirements. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/createCoupon/).
      */
     createCoupon({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CouponCreateResult>;
+    /**
+     * @param {CartPlatformApplicationValidator.CreateOfferParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+     * @name createOffer
+     * @summary: Create an offer
+     * @description: Creates a new offer based on the selected offer type. Sellers can choose from multiple supported offer types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable offer criteria to meet specific business requirements. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/createOffer/).
+     */
+    createOffer({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateOfferParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferSchema>;
     /**
      * @param {CartPlatformApplicationValidator.CreatePromotionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -128,6 +138,16 @@ declare class Cart {
      * @description: Delete details of a draft coupon by providing its unique identifier to delete information such as coupon type, rules, validity period and other related information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/deleteCoupon/).
      */
     deleteCoupon({ id, requestHeaders }?: CartPlatformApplicationValidator.DeleteCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
+    /**
+     * @param {CartPlatformApplicationValidator.DeleteOfferParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
+     * @name deleteOffer
+     * @summary: Delete draft offer
+     * @description: Delete details of a draft offer by providing its unique identifier to delete information such as offer type, rules, validity period and other related information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/deleteOffer/).
+     */
+    deleteOffer({ id, requestHeaders }?: CartPlatformApplicationValidator.DeleteOfferParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
      * @param {CartPlatformApplicationValidator.DeletePromotionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -234,7 +254,7 @@ declare class Cart {
      * @summary: Get a cart
      * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getCart/).
      */
-    getCart({ xOrderingSource, id, userId, orderType, i, b, assignCardId, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    getCart({ xOrderingSource, xAnonymousCart, id, userId, orderType, i, b, assignCardId, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.GetCartListParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -317,6 +337,26 @@ declare class Cart {
      * @description: Retrieve the total count of items currently present in the customer's cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getItemCount/).
      */
     getItemCount({ id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetItemCountParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartItemCountResult>;
+    /**
+     * @param {CartPlatformApplicationValidator.GetOfferByIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+     * @name getOfferById
+     * @summary: Get a specific offer
+     * @description: Retrieve details of a specific offer by providing its unique identifier to obtain information such as offer type, rules, validity period and other related information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getOfferById/).
+     */
+    getOfferById({ id, requestHeaders }?: CartPlatformApplicationValidator.GetOfferByIdParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferSchema>;
+    /**
+     * @param {CartPlatformApplicationValidator.GetOffersParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.OfferListResult>} - Success response
+     * @name getOffers
+     * @summary: List of offers
+     * @description: Retrieve a list of all created offers for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized offers listing for streamlined navigation and management. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getOffers/).
+     */
+    getOffers({ pageNo, pageSize, search, mode, type, promoGroup, excludeContractOffers, offerId, createdBy, reviewedBy, approvedStartTime, approvedEndTime, status, code, isPublic, requestHeaders, }?: CartPlatformApplicationValidator.GetOffersParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferListResult>;
     /**
      * @param {CartPlatformApplicationValidator.GetPriceAdjustmentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -436,7 +476,7 @@ declare class Cart {
      * @summary: Add items to cart
      * @description: Adds product items to a customer's shopping cart. If the customer does not have an existing cart, a new one is created automatically. - The `new_cart` flag forces creation of a new cart even if one already exists. - The `default_cart` flag determines whether the item is added to the user's default storefront-visible cart. If `true`, the item is added to the user's default cart that is accessible via the storefront. If `false`, an existing active cart is fetched if available; otherwise, a new hidden cart is created. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformAddItems/).
      */
-    platformAddItems({ body, xOrderingSource, i, b, buyNow, orderType, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResult>;
+    platformAddItems({ body, xOrderingSource, xAnonymousCart, i, b, buyNow, orderType, id, requestHeaders, }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartParam} arg
      *   - Arg object
@@ -448,7 +488,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCart/).
      */
-    platformCheckoutCart({ body, xOrderingSource, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResult>;
+    platformCheckoutCart({ body, xOrderingSource, xAnonymousCart, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResult>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartV2Param} arg
      *   - Arg object
@@ -470,7 +510,7 @@ declare class Cart {
      * @summary: Update cart items
      * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformUpdateCart/).
      */
-    platformUpdateCart({ body, xOrderingSource, id, i, orderType, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
+    platformUpdateCart({ body, xOrderingSource, xAnonymousCart, id, i, orderType, b, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.RemoveAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -490,7 +530,7 @@ declare class Cart {
      * @summary: Remove coupon
      * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/removeCoupon/).
      */
-    removeCoupon({ xOrderingSource, uid, buyNow, requestHeaders }?: CartPlatformApplicationValidator.RemoveCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    removeCoupon({ xOrderingSource, xAnonymousCart, uid, buyNow, requestHeaders }?: CartPlatformApplicationValidator.RemoveCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.RemovePriceAdjustmentParam} arg
      *   - Arg object
@@ -512,7 +552,7 @@ declare class Cart {
      * @summary: Select customer address for order processing
      * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/selectAddress/).
      */
-    selectAddress({ body, xOrderingSource, cartId, buyNow, i, b, requestHeaders }?: CartPlatformApplicationValidator.SelectAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    selectAddress({ body, xOrderingSource, xAnonymousCart, cartId, buyNow, i, b, requestHeaders, }?: CartPlatformApplicationValidator.SelectAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.SelectPaymentModeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -522,7 +562,7 @@ declare class Cart {
      * @summary: Select payment mode
      * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/selectPaymentMode/).
      */
-    selectPaymentMode({ body, xOrderingSource, id, buyNow, orderType, requestHeaders }?: CartPlatformApplicationValidator.SelectPaymentModeParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    selectPaymentMode({ body, xOrderingSource, xAnonymousCart, id, buyNow, orderType, requestHeaders, }?: CartPlatformApplicationValidator.SelectPaymentModeParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.SelectPaymentModeV2Param} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -562,7 +602,7 @@ declare class Cart {
      * @summary: Update cart breakup values
      * @description: Updates the cart breakup based on the enabled features and user preferences. This endpoint allows customers to modify how their cart totals are calculated — including options such as applying store credits, loyalty points, discounts, and other promotional benefits. The API recalculates and returns the updated breakup reflecting the selected configurations in real-time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCartBreakup/).
      */
-    updateCartBreakup({ body, xOrderingSource, id, i, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartBreakupParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    updateCartBreakup({ body, xOrderingSource, xAnonymousCart, id, i, b, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.UpdateCartBreakupParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.UpdateCartMetaParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -629,6 +669,28 @@ declare class Cart {
      * @description: Seller can make partial adjustments of an existing coupon by specifying its unique identifier. It enables businesses to modify specific attributes of the coupon while preserving other details intact. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCouponPartially/).
      */
     updateCouponPartially({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCouponPartiallyParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
+    /**
+     * @param {CartPlatformApplicationValidator.UpdateOfferParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+     * @name updateOffer
+     * @summary: Update existing offer
+     * @description: Update the details of an existing offer by specifying its unique identifier. This includes modifying offer attributes such as discount percentage, validity period, and associated conditions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateOffer/).
+     */
+    updateOffer({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateOfferParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferSchema>;
+    /**
+     * @param {CartPlatformApplicationValidator.UpdateOfferPartiallyParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
+     * @name updateOfferPartially
+     * @summary: Partially update offer
+     * @description: Seller can make partial adjustments of an existing offer by specifying its unique identifier. It enables businesses to modify specific attributes of the offer while preserving other details intact. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateOfferPartially/).
+     */
+    updateOfferPartially({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateOfferPartiallyParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
      * @param {CartPlatformApplicationValidator.UpdatePriceAdjustmentParam} arg
      *   - Arg object

@@ -1,5 +1,20 @@
 export = PaymentPlatformModel;
 /**
+ * @typedef AggregatorToken
+ * @property {number} payment_mode_id - Payment mode identifier Supported values are:
+ *
+ *   - **4**: Wallet
+ *   - **3**: Net Banking
+ *   - **2**: Card
+ *   - **1**: Pay Later
+ *
+ * @property {string} sub_payment_mode_code - Sub-payment method code
+ * @property {string} token - Token value to be saved for the aggregator
+ * @property {string} status - Status of the token verification
+ * @property {boolean} is_active - Enable or Disable Flag
+ * @property {string} domain - Name of domain
+ */
+/**
  * @typedef PaymentGatewayConfigDetails
  * @property {Object[]} [aggregators] - List of all config specific to the
  *   aggregator with their Details.
@@ -735,6 +750,92 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Response is successful or not.
  */
 /**
+ * @typedef PaymentModeConfig
+ * @property {string} [business_unit] - Business unit for which the configuration applies.
+ * @property {string} [device] - Device type for which the configuration applies.
+ * @property {boolean} [is_active] - Indicates if the payment configuration is
+ *   currently active.
+ * @property {PaymentModeItems[]} [items] - List of payment modes available for
+ *   the given business unit and device. This list is dynamic and can contain
+ *   one or more payment modes.
+ */
+/**
+ * @typedef PaymentModeItems
+ * @property {number} [id] - Unique identifier for the payment mode.
+ * @property {string} [name] - Display name of the payment mode.
+ * @property {string} [short_code] - Short code for the payment mode.
+ * @property {LogoSet} [logos]
+ * @property {boolean} [is_active] - Indicates if this payment mode is active in
+ *   the system.
+ * @property {SubPaymentMode[]} [sub_payment_mode] - Dynamic list of sub-payment
+ *   modes under this payment mode.
+ * @property {boolean} [is_active_at_pg] - Indicates if this payment mode is
+ *   active at the payment gateway (PG) side.
+ * @property {Object} [fulfillment_options] - Fulfillment options applicable for
+ *   these payment modes. Keys are option slugs and values indicate whether the
+ *   option is enabled.
+ */
+/**
+ * @typedef SubPaymentMode
+ * @property {string} [code] - Unique code of the sub-payment mode.
+ * @property {boolean} [is_active] - Indicates if this sub-payment mode is
+ *   active in the system.
+ * @property {number} [priority] - Priority used for ordering in UI. Lower
+ *   numbers can represent higher priority, depending on implementation.
+ * @property {LogoSet} [logos]
+ * @property {string} [name] - Human-readable name of the sub-payment mode.
+ * @property {boolean} [is_active_at_pg] - Indicates if this sub-payment mode is
+ *   active at the payment gateway (PG) side.
+ */
+/**
+ * @typedef LogoSet
+ * @property {string} [large] - URL of the large-sized logo.
+ * @property {string} [small] - URL of the small-sized logo.
+ */
+/**
+ * @typedef PlatformLogoSet
+ * @property {string} [large] - URL of the large-sized logo.
+ * @property {string} [small] - URL of the small-sized logo.
+ */
+/**
+ * @typedef PlatformConfigPaymentModeDetails
+ * @property {string} [business_unit] - Business unit for which the
+ *   configuration applies (e.g. "storefront", "pos").
+ * @property {string} [device] - Device or channel for which the configuration
+ *   applies (e.g. "desktop", "android", "ios").
+ * @property {Object} [fulfillment_options] - Fulfillment options applicable for
+ *   these payment modes. Keys are option slugs (e.g. "self-pickup", "delivery")
+ *   and values indicate whether the option is enabled.
+ * @property {boolean} [is_active] - Overall active status for this aggregator
+ *   payment configuration for the given application and device.
+ * @property {PlatformPaymentModeItem[]} [items] - List of payment modes and
+ *   their configuration.
+ */
+/**
+ * @typedef PlatformPaymentModeItem
+ * @property {number} [id] - Unique identifier of the payment mode.
+ * @property {string} [name] - Human readable name of the payment mode.
+ * @property {string} [short_code] - Short code representing the payment mode.
+ * @property {PlatformLogoSet} [logos]
+ * @property {boolean} [is_active] - Indicates if the payment mode is enabled on
+ *   the platform.
+ * @property {boolean} [is_active_at_pg] - Indicates if the payment mode is
+ *   active at the payment gateway.
+ * @property {PlatformSubPaymentMode[]} [sub_payment_mode] - List of sub payment
+ *   modes (e.g. card networks like VISA, MASTERCARD).
+ */
+/**
+ * @typedef PlatformSubPaymentMode
+ * @property {string} [code] - Code of the sub payment mode (e.g. "VISA", "AMEX").
+ * @property {string} [name] - Human readable name of the sub payment mode.
+ * @property {boolean} [is_active] - Indicates if the sub payment mode is enabled.
+ * @property {boolean} [is_active_at_pg] - Indicates if the sub payment mode is
+ *   active at payment gateway.
+ * @property {number} [priority] - Display priority for the sub payment mode.
+ *   Lower numbers indicate higher priority.
+ * @property {PlatformLogoSet} [logos]
+ */
+/**
  * @typedef MerchnatPaymentModeCreation
  * @property {Object} [offline] - Details to be updated for online payment configuration.
  * @property {Object} [online] - Details to be updated for offline payment configuration.
@@ -1159,11 +1260,50 @@ export = PaymentPlatformModel;
  * @property {string} [cart_id] - Unique identifier for the shopping cart.
  * @property {CreditAccountSummary} [account]
  */
+/**
+ * @typedef OperationResponseSchema
+ * @property {boolean} success - Indicates if the operation was successful
+ * @property {string} [message] - Optional message providing additional
+ *   information about the operation
+ */
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema };
+    export { AggregatorToken, PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, PaymentModeConfig, PaymentModeItems, SubPaymentMode, LogoSet, PlatformLogoSet, PlatformConfigPaymentModeDetails, PlatformPaymentModeItem, PlatformSubPaymentMode, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OperationResponseSchema };
 }
+/** @returns {AggregatorToken} */
+declare function AggregatorToken(): AggregatorToken;
+type AggregatorToken = {
+    /**
+     * - Payment mode identifier Supported values are:
+     *
+     * - **4**: Wallet
+     * - **3**: Net Banking
+     * - **2**: Card
+     * - **1**: Pay Later
+     */
+    payment_mode_id: number;
+    /**
+     * - Sub-payment method code
+     */
+    sub_payment_mode_code: string;
+    /**
+     * - Token value to be saved for the aggregator
+     */
+    token: string;
+    /**
+     * - Status of the token verification
+     */
+    status: string;
+    /**
+     * - Enable or Disable Flag
+     */
+    is_active: boolean;
+    /**
+     * - Name of domain
+     */
+    domain: string;
+};
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
 type PaymentGatewayConfigDetails = {
@@ -3110,6 +3250,208 @@ type PlatformPaymentModeDetails = {
      */
     success: boolean;
 };
+/** @returns {PaymentModeConfig} */
+declare function PaymentModeConfig(): PaymentModeConfig;
+type PaymentModeConfig = {
+    /**
+     * - Business unit for which the configuration applies.
+     */
+    business_unit?: string;
+    /**
+     * - Device type for which the configuration applies.
+     */
+    device?: string;
+    /**
+     * - Indicates if the payment configuration is
+     * currently active.
+     */
+    is_active?: boolean;
+    /**
+     * - List of payment modes available for
+     * the given business unit and device. This list is dynamic and can contain
+     * one or more payment modes.
+     */
+    items?: PaymentModeItems[];
+};
+/** @returns {PaymentModeItems} */
+declare function PaymentModeItems(): PaymentModeItems;
+type PaymentModeItems = {
+    /**
+     * - Unique identifier for the payment mode.
+     */
+    id?: number;
+    /**
+     * - Display name of the payment mode.
+     */
+    name?: string;
+    /**
+     * - Short code for the payment mode.
+     */
+    short_code?: string;
+    logos?: LogoSet;
+    /**
+     * - Indicates if this payment mode is active in
+     * the system.
+     */
+    is_active?: boolean;
+    /**
+     * - Dynamic list of sub-payment
+     * modes under this payment mode.
+     */
+    sub_payment_mode?: SubPaymentMode[];
+    /**
+     * - Indicates if this payment mode is
+     * active at the payment gateway (PG) side.
+     */
+    is_active_at_pg?: boolean;
+    /**
+     * - Fulfillment options applicable for
+     * these payment modes. Keys are option slugs and values indicate whether the
+     * option is enabled.
+     */
+    fulfillment_options?: any;
+};
+/** @returns {SubPaymentMode} */
+declare function SubPaymentMode(): SubPaymentMode;
+type SubPaymentMode = {
+    /**
+     * - Unique code of the sub-payment mode.
+     */
+    code?: string;
+    /**
+     * - Indicates if this sub-payment mode is
+     * active in the system.
+     */
+    is_active?: boolean;
+    /**
+     * - Priority used for ordering in UI. Lower
+     * numbers can represent higher priority, depending on implementation.
+     */
+    priority?: number;
+    logos?: LogoSet;
+    /**
+     * - Human-readable name of the sub-payment mode.
+     */
+    name?: string;
+    /**
+     * - Indicates if this sub-payment mode is
+     * active at the payment gateway (PG) side.
+     */
+    is_active_at_pg?: boolean;
+};
+/** @returns {LogoSet} */
+declare function LogoSet(): LogoSet;
+type LogoSet = {
+    /**
+     * - URL of the large-sized logo.
+     */
+    large?: string;
+    /**
+     * - URL of the small-sized logo.
+     */
+    small?: string;
+};
+/** @returns {PlatformLogoSet} */
+declare function PlatformLogoSet(): PlatformLogoSet;
+type PlatformLogoSet = {
+    /**
+     * - URL of the large-sized logo.
+     */
+    large?: string;
+    /**
+     * - URL of the small-sized logo.
+     */
+    small?: string;
+};
+/** @returns {PlatformConfigPaymentModeDetails} */
+declare function PlatformConfigPaymentModeDetails(): PlatformConfigPaymentModeDetails;
+type PlatformConfigPaymentModeDetails = {
+    /**
+     * - Business unit for which the
+     * configuration applies (e.g. "storefront", "pos").
+     */
+    business_unit?: string;
+    /**
+     * - Device or channel for which the configuration
+     * applies (e.g. "desktop", "android", "ios").
+     */
+    device?: string;
+    /**
+     * - Fulfillment options applicable for
+     * these payment modes. Keys are option slugs (e.g. "self-pickup", "delivery")
+     * and values indicate whether the option is enabled.
+     */
+    fulfillment_options?: any;
+    /**
+     * - Overall active status for this aggregator
+     * payment configuration for the given application and device.
+     */
+    is_active?: boolean;
+    /**
+     * - List of payment modes and
+     * their configuration.
+     */
+    items?: PlatformPaymentModeItem[];
+};
+/** @returns {PlatformPaymentModeItem} */
+declare function PlatformPaymentModeItem(): PlatformPaymentModeItem;
+type PlatformPaymentModeItem = {
+    /**
+     * - Unique identifier of the payment mode.
+     */
+    id?: number;
+    /**
+     * - Human readable name of the payment mode.
+     */
+    name?: string;
+    /**
+     * - Short code representing the payment mode.
+     */
+    short_code?: string;
+    logos?: PlatformLogoSet;
+    /**
+     * - Indicates if the payment mode is enabled on
+     * the platform.
+     */
+    is_active?: boolean;
+    /**
+     * - Indicates if the payment mode is
+     * active at the payment gateway.
+     */
+    is_active_at_pg?: boolean;
+    /**
+     * - List of sub payment
+     * modes (e.g. card networks like VISA, MASTERCARD).
+     */
+    sub_payment_mode?: PlatformSubPaymentMode[];
+};
+/** @returns {PlatformSubPaymentMode} */
+declare function PlatformSubPaymentMode(): PlatformSubPaymentMode;
+type PlatformSubPaymentMode = {
+    /**
+     * - Code of the sub payment mode (e.g. "VISA", "AMEX").
+     */
+    code?: string;
+    /**
+     * - Human readable name of the sub payment mode.
+     */
+    name?: string;
+    /**
+     * - Indicates if the sub payment mode is enabled.
+     */
+    is_active?: boolean;
+    /**
+     * - Indicates if the sub payment mode is
+     * active at payment gateway.
+     */
+    is_active_at_pg?: boolean;
+    /**
+     * - Display priority for the sub payment mode.
+     * Lower numbers indicate higher priority.
+     */
+    priority?: number;
+    logos?: PlatformLogoSet;
+};
 /** @returns {MerchnatPaymentModeCreation} */
 declare function MerchnatPaymentModeCreation(): MerchnatPaymentModeCreation;
 type MerchnatPaymentModeCreation = {
@@ -4220,4 +4562,17 @@ type ValidateCustomerCreditSchema = {
      */
     cart_id?: string;
     account?: CreditAccountSummary;
+};
+/** @returns {OperationResponseSchema} */
+declare function OperationResponseSchema(): OperationResponseSchema;
+type OperationResponseSchema = {
+    /**
+     * - Indicates if the operation was successful
+     */
+    success: boolean;
+    /**
+     * - Optional message providing additional
+     * information about the operation
+     */
+    message?: string;
 };

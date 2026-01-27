@@ -95,6 +95,14 @@ const Joi = require("joi");
  * @property {InventoryCategory} [category]
  * @property {InventoryPrice} [price]
  * @property {InventoryDiscount} [discount]
+ * @property {string} [price_strategy] - Indicates whether price strategy
+ *   enabled or not in an application.
+ * @property {boolean} [international] - Indicates whether internation price
+ *   factory enabled or not in an application.
+ * @property {boolean} [strategy_change_pending] - Indicates whether price
+ *   strategy change is pending or not in an application.
+ * @property {string} [strategy_modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the sales channel feature configuration
  * @property {boolean} [out_of_stock] - Indicates whether out of stock products
  *   are allowed to show up on the website
  * @property {boolean} [only_verified_products] - Show only verified products
@@ -1040,8 +1048,17 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {SecurityFeature} [security]
  * @property {BuyboxFeature} [buybox]
  * @property {DeliveryStrategy} [delivery_strategy]
+ * @property {string} [price_strategy] - Indicates whether price strategy
+ *   enabled or not in an application.
+ * @property {boolean} [international] - Indicates whether internation price
+ *   factory enabled or not in an application.
+ * @property {boolean} [strategy_change_pending] - Indicates whether price
+ *   strategy change is pending or not in an application.
+ * @property {string} [strategy_modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the sales channel feature configuration
  * @property {FulfillmentOption} [fulfillment_option]
  * @property {string} [_id] - The unique identifier for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -1158,6 +1175,19 @@ const Joi = require("joi");
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+
+/**
+ * @typedef SecurityFeature
+ * @property {AllowedDomain[]} [domains] - List of allowed domains for security
+ *   restrictions.
+ */
+
+/**
+ * @typedef AllowedDomain
+ * @property {string} host - The host URL for the allowed domain.
+ * @property {string} [url_scheme] - The protocol/scheme to use for the domain.
+ *   Default is https.
  */
 
 /**
@@ -1697,6 +1727,10 @@ class ConfigurationPlatformModel {
       category: ConfigurationPlatformModel.InventoryCategory(),
       price: ConfigurationPlatformModel.InventoryPrice(),
       discount: ConfigurationPlatformModel.InventoryDiscount(),
+      price_strategy: Joi.string().allow(""),
+      international: Joi.boolean(),
+      strategy_change_pending: Joi.boolean(),
+      strategy_modified_at: Joi.string().allow(""),
       out_of_stock: Joi.boolean(),
       only_verified_products: Joi.boolean(),
       franchise_enabled: Joi.boolean(),
@@ -2755,8 +2789,13 @@ class ConfigurationPlatformModel {
       qr: ConfigurationPlatformModel.QrFeature(),
       pcr: ConfigurationPlatformModel.PcrFeature(),
       order: ConfigurationPlatformModel.OrderFeature(),
+      security: ConfigurationPlatformModel.SecurityFeature(),
       buybox: ConfigurationPlatformModel.BuyboxFeature(),
       delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
+      price_strategy: Joi.string().allow(""),
+      international: Joi.boolean(),
+      strategy_change_pending: Joi.boolean(),
+      strategy_modified_at: Joi.string().allow(""),
       fulfillment_option: ConfigurationPlatformModel.FulfillmentOption(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
@@ -2880,6 +2919,21 @@ class ConfigurationPlatformModel {
   static OrderFeature() {
     return Joi.object({
       buy_again: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SecurityFeature} */
+  static SecurityFeature() {
+    return Joi.object({
+      domains: Joi.array().items(ConfigurationPlatformModel.AllowedDomain()),
+    });
+  }
+
+  /** @returns {AllowedDomain} */
+  static AllowedDomain() {
+    return Joi.object({
+      host: Joi.string().allow("").required(),
+      url_scheme: Joi.string().allow(""),
     });
   }
 

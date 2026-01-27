@@ -1230,7 +1230,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.CreateTax>} - Success response
    * @name createTax
    * @summary: Create Tax Rule
-   * @description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
+   * @description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule. The API now supports region-specific versions using optional region_type and areas along with the default country-level rule definition. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
    */
   async createTax(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1392,7 +1392,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
    * @name createTaxVersion
    * @summary: Create a tax version
-   * @description: Creates a tax rule using the provided rule_id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxVersion/).
+   * @description: Creates a tax version using the provided rule_id with support for scheduled applicability and optional region-level overrides. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTaxVersion/).
    */
   async createTaxVersion(
     { ruleId, body, requestHeaders } = { requestHeaders: {} },
@@ -5558,10 +5558,10 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxRuleVersion>} - Success response
    * @name getTaxVersionDetails
    * @summary: Get tax versions for a tax rule
-   * @description: Retrieve versions of a tax rule with support for filtering by query parameters (e.g., live, past, all). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
+   * @description: Retrieve versions of a tax rule with support for filtering by status and text search on region names via the `q` parameter. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
    */
   async getTaxVersionDetails(
-    { ruleId, versionStatus, limit, page, requestHeaders } = {
+    { ruleId, versionStatus, q, limit, page, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -5570,6 +5570,7 @@ class Catalog {
       {
         ruleId,
         versionStatus,
+        q,
         limit,
         page,
       },
@@ -5586,6 +5587,7 @@ class Catalog {
       {
         ruleId,
         versionStatus,
+        q,
         limit,
         page,
       },
@@ -5600,6 +5602,7 @@ class Catalog {
 
     const query_params = {};
     query_params["version_status"] = versionStatus;
+    query_params["q"] = q;
     query_params["limit"] = limit;
     query_params["page"] = page;
 
@@ -7338,7 +7341,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
    * @name updateTaxVersion
    * @summary: Update a tax version
-   * @description: Updates a tax rule using the provided rule_id. You can update any part of a scheduled version but only tax name of live version can be updated. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
+   * @description: Updates a tax version using the provided rule_id. Scheduled versions support editing of components, applicable dates, and regional overrides while live versions allow limited updates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
    */
   async updateTaxVersion(
     { ruleId, versionId, body, requestHeaders } = { requestHeaders: {} },

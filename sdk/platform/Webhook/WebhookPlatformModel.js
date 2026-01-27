@@ -69,6 +69,16 @@ const Joi = require("joi");
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  * @property {Object} [event_schema] - The schema for the event, allowing for
  *   additional properties and may be null.
+ * @property {string} [sunset_date] - The date and time after which the event is
+ *   considered sunset. After this timestamp, the entity should no longer be
+ *   actively used, referenced, or offered for new operations, even if it still exists.
+ * @property {string} [announcement_date] - The date and time when the
+ *   deprecation of the event is officially announced. This marks the start of
+ *   the deprecation notice period and indicates that the entity is planned to
+ *   be retired in the future, but may still remain available until the sunset date.
+ * @property {string} [support_end_date] - The date and time after which
+ *   official support for the event ends. Beyond this point, no guarantees are
+ *   made for maintenance, updates, fixes, or issue resolution.
  * @property {string} [group] - The group associated with the event
  *   configuration, which may be null.
  * @property {string} [version] - The version of the event configuration.
@@ -409,6 +419,9 @@ class WebhookPlatformModel {
       modified_by: Joi.string().allow(""),
       subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
       event_schema: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      sunset_date: Joi.string().allow("").allow(null),
+      announcement_date: Joi.string().allow("").allow(null),
+      support_end_date: Joi.string().allow("").allow(null),
       group: Joi.string().allow("").allow(null),
       version: Joi.string().allow(""),
       display_name: Joi.string().allow(""),

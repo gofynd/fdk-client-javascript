@@ -69,6 +69,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef CreatePriceFactoryParam
+ * @property {CatalogPlatformModel.CreatePriceFactoryConfigSchema} body
+ */
+
+/**
  * @typedef CreateSearchConfigurationParam
  * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
  */
@@ -103,6 +108,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
+ */
+
+/**
+ * @typedef DeletePriceFactoryParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular price factory configuration.
  */
 
 /** @typedef DeleteSearchConfigurationParam */
@@ -186,6 +197,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef GetAppProductParam
  * @property {string} itemId - Product id for a particular product.
+ */
+
+/**
+ * @typedef GetAppProductPricesParam
+ * @property {number[]} itemIds - List of item IDs for which to retrieve pricing.
  */
 
 /**
@@ -293,9 +309,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   details. This flag is used to fetch all filters
  * @property {boolean} [isDependent] - This query parameter is used to get the
  *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
+ * @property {string} [sortOn] - The order to sort the list of products on.
+ *   Supported values include latest, popular, price_asc, price_dsc,
+ *   discount_asc, discount_dsc. Custom sort keys configured via listing
+ *   configuration (e.g., best_selling) are also supported for cohort-based sorting.
  * @property {string} [pageId] - Each response will contain **page_id** param,
  *   which should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -418,6 +435,48 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef GetPriceFactoriesParam
+ * @property {string} [q] - Optional q to filter price factories by name.
+ */
+
+/**
+ * @typedef GetPriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be retrieved.
+ */
+
+/**
+ * @typedef GetPriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular sale channel.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
+ */
+
+/**
+ * @typedef GetPriceFactoryProductsParam
+ * @property {string} priceFactoryId - A `price_factory_id` uniquely identifies
+ *   a price factory configuration for a specific application.
+ * @property {number[]} [brandIds] - Optional list of brand IDs to filter price
+ *   factories associated with specific brands.
+ * @property {number[]} [categoryIds] - Optional list of category IDs to filter
+ *   price factories related to specific product categories.
+ * @property {string} [sellerIdentifier] - Optional seller identifier to filter
+ *   price factories associated with a particular seller.
+ * @property {string} [itemCode] - Optional item code to filter price factories
+ *   configured for a specific product code.
+ * @property {string} [slug] - Optional slug to filter price factories by product slug.
+ * @property {string} [name] - Optional name to filter price factories by
+ *   product or configuration name.
+ * @property {boolean} [active] - Optional name to filter price factories by
+ *   product status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ */
+
+/**
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
@@ -525,6 +584,22 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef UpdatePriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be updated.
+ * @property {CatalogPlatformModel.UpdatePriceFactoryConfigSchema} body
+ */
+
+/**
+ * @typedef UpdatePriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a specific price factory configuration.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
+ * @property {CatalogPlatformModel.UpsertPriceFactoryProductSchema} body
+ */
+
+/**
  * @typedef UpdateSearchConfigurationParam
  * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
  */
@@ -618,6 +693,13 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreatePriceFactoryParam} */
+  static createPriceFactory() {
+    return Joi.object({
+      body: CatalogPlatformModel.CreatePriceFactoryConfigSchema().required(),
+    }).required();
+  }
+
   /** @returns {CreateSearchConfigurationParam} */
   static createSearchConfiguration() {
     return Joi.object({
@@ -659,6 +741,13 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeletePriceFactoryParam} */
+  static deletePriceFactory() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -745,6 +834,13 @@ class CatalogPlatformApplicationValidator {
   static getAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetAppProductPricesParam} */
+  static getAppProductPrices() {
+    return Joi.object({
+      itemIds: Joi.array().items(Joi.number()).required(),
     }).required();
   }
 
@@ -960,6 +1056,44 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetPriceFactoriesParam} */
+  static getPriceFactories() {
+    return Joi.object({
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetPriceFactoryParam} */
+  static getPriceFactory() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetPriceFactoryProductParam} */
+  static getPriceFactoryProduct() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {GetPriceFactoryProductsParam} */
+  static getPriceFactoryProducts() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
+      brandIds: Joi.array().items(Joi.number()),
+      categoryIds: Joi.array().items(Joi.number()),
+      sellerIdentifier: Joi.string().allow(""),
+      itemCode: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      active: Joi.boolean(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetProductDetailBySlugParam} */
   static getProductDetailBySlug() {
     return Joi.object({
@@ -1091,6 +1225,23 @@ class CatalogPlatformApplicationValidator {
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
       body: CatalogPlatformModel.AppConfigurationsSort().required(),
+    }).required();
+  }
+
+  /** @returns {UpdatePriceFactoryParam} */
+  static updatePriceFactory() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
+      body: CatalogPlatformModel.UpdatePriceFactoryConfigSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdatePriceFactoryProductParam} */
+  static updatePriceFactoryProduct() {
+    return Joi.object({
+      priceFactoryId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
+      body: CatalogPlatformModel.UpsertPriceFactoryProductSchema().required(),
     }).required();
   }
 

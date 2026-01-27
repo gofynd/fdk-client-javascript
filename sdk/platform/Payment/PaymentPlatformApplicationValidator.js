@@ -170,7 +170,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef PatchMerchantAggregatorPaymentModeDetailsParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.PlatformPaymentModeDetails} body
+ * @property {PaymentPlatformModel.PlatformConfigPaymentModeDetails} body
  */
 
 /**
@@ -212,6 +212,18 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef SaveBrandPaymentGatewayConfigParam
  * @property {PaymentPlatformModel.PaymentGatewayConfigCreation} body
+ */
+
+/**
+ * @typedef SaveTokenForAggregatorParam
+ * @property {string} aggregatorId - Payment aggregator identifier. Supported values are:
+ *
+ *   - **1**: Razorpay
+ *   - **2**: Juspay
+ *   - **3**: Checkout Extension
+ *   - **4**: PayU India Extension
+ *
+ * @property {PaymentPlatformModel.AggregatorToken} body
  */
 
 /**
@@ -477,7 +489,7 @@ class PaymentPlatformApplicationValidator {
   static patchMerchantAggregatorPaymentModeDetails() {
     return Joi.object({
       aggregatorId: Joi.number().required(),
-      body: PaymentPlatformModel.PlatformPaymentModeDetails().required(),
+      body: PaymentPlatformModel.PlatformConfigPaymentModeDetails().required(),
     }).required();
   }
 
@@ -535,6 +547,14 @@ class PaymentPlatformApplicationValidator {
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
       body: PaymentPlatformModel.PaymentGatewayConfigCreation().required(),
+    }).required();
+  }
+
+  /** @returns {SaveTokenForAggregatorParam} */
+  static saveTokenForAggregator() {
+    return Joi.object({
+      aggregatorId: Joi.string().allow("").required(),
+      body: PaymentPlatformModel.AggregatorToken().required(),
     }).required();
   }
 

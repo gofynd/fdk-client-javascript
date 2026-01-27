@@ -1084,6 +1084,7 @@ class Payment {
       displaySplit,
       advancePayment,
       shipmentId,
+      fulfillmentOption,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1099,6 +1100,7 @@ class Payment {
     query_params["display_split"] = displaySplit;
     query_params["advance_payment"] = advancePayment;
     query_params["shipment_id"] = shipmentId;
+    query_params["fulfillment_option"] = fulfillmentOption;
 
     const xHeaders = {};
 

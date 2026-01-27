@@ -17,6 +17,9 @@ export = CartPlatformApplicationValidator;
  * @typedef ApplyCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -44,6 +47,9 @@ export = CartPlatformApplicationValidator;
  * @typedef CheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {CartPlatformModel.OpenApiPlatformCheckoutReq} body
  */
 /**
@@ -53,6 +59,10 @@ export = CartPlatformApplicationValidator;
 /**
  * @typedef CreateCouponParam
  * @property {CartPlatformModel.CouponAdd} body
+ */
+/**
+ * @typedef CreateOfferParam
+ * @property {CartPlatformModel.OfferSchema} body
  */
 /**
  * @typedef CreatePromotionParam
@@ -65,6 +75,10 @@ export = CartPlatformApplicationValidator;
  */
 /**
  * @typedef DeleteCouponParam
+ * @property {string} id
+ */
+/**
+ * @typedef DeleteOfferParam
  * @property {string} id
  */
 /**
@@ -132,6 +146,9 @@ export = CartPlatformApplicationValidator;
  * @typedef GetCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {string} [userId] - Option to fetch cart for the provided user_id.
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -190,6 +207,31 @@ export = CartPlatformApplicationValidator;
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
+ */
+/**
+ * @typedef GetOfferByIdParam
+ * @property {string} id
+ */
+/**
+ * @typedef GetOffersParam
+ * @property {number} [pageNo] - Current page no as per pagination
+ * @property {number} [pageSize] - Offers max records fetched in single request
+ * @property {string} [search] - Filter by offer name
+ * @property {string} [mode] - Filter by offer mode
+ * @property {string} [type] - Filter by offer type
+ * @property {string} [promoGroup]
+ * @property {boolean} [excludeContractOffers] - Filter non contract offers
+ * @property {string} [offerId] - Filter by offer id
+ * @property {string} [createdBy] - Filter by offer created by user id
+ * @property {string} [reviewedBy] - Filter by offer reviewer user id
+ * @property {string} [approvedStartTime] - Filter offer by start time date
+ *   range when status is in approved state
+ * @property {string} [approvedEndTime] - Filter offer by end time date range
+ *   when status is in approved state
+ * @property {string} [status] - Filter your offers effortlessly by status, such
+ *   as draft, review and more
+ * @property {string} [code] - Filter by offer code in case of coupons
+ * @property {boolean} [isPublic] - Filter offers which are public
  */
 /**
  * @typedef GetPriceAdjustmentsParam
@@ -274,6 +316,9 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformAddItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -290,6 +335,9 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformCheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailCreation} body
  */
@@ -304,6 +352,9 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformUpdateCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -325,6 +376,9 @@ export = CartPlatformApplicationValidator;
  * @typedef RemoveCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [uid]
  * @property {boolean} [buyNow]
  */
@@ -336,6 +390,9 @@ export = CartPlatformApplicationValidator;
  * @typedef SelectAddressParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -346,6 +403,9 @@ export = CartPlatformApplicationValidator;
  * @typedef SelectPaymentModeParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -376,6 +436,9 @@ export = CartPlatformApplicationValidator;
  * @property {string} [xOrderingSource] - Identifier for the ordering source
  *   (e.g., web, mobile app, POS). Used to determine the origin of the order
  *   request and apply source-specific rules.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - Unique identifier of the cart for which the breakup
  *   needs to be updated.
  * @property {boolean} [i] - Set to `true` to include all items currently added
@@ -418,6 +481,16 @@ export = CartPlatformApplicationValidator;
  * @typedef UpdateCouponPartiallyParam
  * @property {string} id
  * @property {CartPlatformModel.CouponPartialUpdate} body
+ */
+/**
+ * @typedef UpdateOfferParam
+ * @property {string} id
+ * @property {CartPlatformModel.OfferSchema} body
+ */
+/**
+ * @typedef UpdateOfferPartiallyParam
+ * @property {string} id
+ * @property {CartPlatformModel.OfferPartialUpdate} body
  */
 /**
  * @typedef UpdatePriceAdjustmentParam
@@ -479,12 +552,16 @@ declare class CartPlatformApplicationValidator {
     static createCartMetaConfig(): CreateCartMetaConfigParam;
     /** @returns {CreateCouponParam} */
     static createCoupon(): CreateCouponParam;
+    /** @returns {CreateOfferParam} */
+    static createOffer(): CreateOfferParam;
     /** @returns {CreatePromotionParam} */
     static createPromotion(): CreatePromotionParam;
     /** @returns {DeleteCartParam} */
     static deleteCart(): DeleteCartParam;
     /** @returns {DeleteCouponParam} */
     static deleteCoupon(): DeleteCouponParam;
+    /** @returns {DeleteOfferParam} */
+    static deleteOffer(): DeleteOfferParam;
     /** @returns {DeletePromotionParam} */
     static deletePromotion(): DeletePromotionParam;
     /** @returns {FetchAndvalidateCartItemsParam} */
@@ -521,6 +598,10 @@ declare class CartPlatformApplicationValidator {
     static getCoupons(): GetCouponsParam;
     /** @returns {GetItemCountParam} */
     static getItemCount(): GetItemCountParam;
+    /** @returns {GetOfferByIdParam} */
+    static getOfferById(): GetOfferByIdParam;
+    /** @returns {GetOffersParam} */
+    static getOffers(): GetOffersParam;
     /** @returns {GetPriceAdjustmentsParam} */
     static getPriceAdjustments(): GetPriceAdjustmentsParam;
     /** @returns {GetPromosCouponConfigParam} */
@@ -579,6 +660,10 @@ declare class CartPlatformApplicationValidator {
     static updateCoupon(): UpdateCouponParam;
     /** @returns {UpdateCouponPartiallyParam} */
     static updateCouponPartially(): UpdateCouponPartiallyParam;
+    /** @returns {UpdateOfferParam} */
+    static updateOffer(): UpdateOfferParam;
+    /** @returns {UpdateOfferPartiallyParam} */
+    static updateOfferPartially(): UpdateOfferPartiallyParam;
     /** @returns {UpdatePriceAdjustmentParam} */
     static updatePriceAdjustment(): UpdatePriceAdjustmentParam;
     /** @returns {UpdatePromotionParam} */
@@ -591,7 +676,7 @@ declare class CartPlatformApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartPlatformApplicationValidator {
-    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, ApplyLoyaltyPointsParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, DeleteCouponParam, DeletePromotionParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartBreakupParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, AddPriceAdjustmentParam, ApplyCouponParam, ApplyLoyaltyPointsParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartMetaConfigParam, CreateCouponParam, CreateOfferParam, CreatePromotionParam, DeleteCartParam, DeleteCouponParam, DeleteOfferParam, DeletePromotionParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetOfferByIdParam, GetOffersParam, GetPriceAdjustmentsParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCouponParam, RemovePriceAdjustmentParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartBreakupParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdateOfferParam, UpdateOfferPartiallyParam, UpdatePriceAdjustmentParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartPlatformModel.PlatformAddress;
@@ -613,6 +698,12 @@ type ApplyCouponParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     i?: boolean;
     b?: boolean;
     p?: boolean;
@@ -658,6 +749,12 @@ type CheckoutCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     body: CartPlatformModel.OpenApiPlatformCheckoutReq;
 };
 type CreateCartMetaConfigParam = {
@@ -665,6 +762,9 @@ type CreateCartMetaConfigParam = {
 };
 type CreateCouponParam = {
     body: CartPlatformModel.CouponAdd;
+};
+type CreateOfferParam = {
+    body: CartPlatformModel.OfferSchema;
 };
 type CreatePromotionParam = {
     body: CartPlatformModel.PromotionAdd;
@@ -677,6 +777,9 @@ type DeleteCartParam = {
     body: CartPlatformModel.DeleteCartDetails;
 };
 type DeleteCouponParam = {
+    id: string;
+};
+type DeleteOfferParam = {
     id: string;
 };
 type DeletePromotionParam = {
@@ -740,6 +843,12 @@ type GetCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     /**
      * - The unique identifier of the cart
      */
@@ -820,6 +929,71 @@ type GetItemCountParam = {
      * - Boolean value to get buy_now cart.
      */
     buyNow?: boolean;
+};
+type GetOfferByIdParam = {
+    id: string;
+};
+type GetOffersParam = {
+    /**
+     * - Current page no as per pagination
+     */
+    pageNo?: number;
+    /**
+     * - Offers max records fetched in single request
+     */
+    pageSize?: number;
+    /**
+     * - Filter by offer name
+     */
+    search?: string;
+    /**
+     * - Filter by offer mode
+     */
+    mode?: string;
+    /**
+     * - Filter by offer type
+     */
+    type?: string;
+    promoGroup?: string;
+    /**
+     * - Filter non contract offers
+     */
+    excludeContractOffers?: boolean;
+    /**
+     * - Filter by offer id
+     */
+    offerId?: string;
+    /**
+     * - Filter by offer created by user id
+     */
+    createdBy?: string;
+    /**
+     * - Filter by offer reviewer user id
+     */
+    reviewedBy?: string;
+    /**
+     * - Filter offer by start time date
+     * range when status is in approved state
+     */
+    approvedStartTime?: string;
+    /**
+     * - Filter offer by end time date range
+     * when status is in approved state
+     */
+    approvedEndTime?: string;
+    /**
+     * - Filter your offers effortlessly by status, such
+     * as draft, review and more
+     */
+    status?: string;
+    /**
+     * - Filter by offer code in case of coupons
+     */
+    code?: string;
+    /**
+     * - Filter offers which are public
+     */
+    isPublic?: boolean;
 };
 type GetPriceAdjustmentsParam = {
     /**
@@ -957,6 +1131,12 @@ type PlatformAddItemsParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
+    /**
      * - This is a boolean value. Select `true` to retrieve
      * all the items added in the cart.
      */
@@ -990,6 +1170,12 @@ type PlatformCheckoutCartParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
+    /**
      * - The unique identifier of the cart
      */
     id?: string;
@@ -1013,6 +1199,12 @@ type PlatformUpdateCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     /**
      * - The unique identifier of the cart
      */
@@ -1056,6 +1248,12 @@ type RemoveCouponParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     uid?: string;
     buyNow?: boolean;
 };
@@ -1068,6 +1266,12 @@ type SelectAddressParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     cartId?: string;
     buyNow?: boolean;
     i?: boolean;
@@ -1080,6 +1284,12 @@ type SelectPaymentModeParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     id?: string;
     buyNow?: boolean;
     orderType?: string;
@@ -1118,6 +1328,12 @@ type UpdateCartBreakupParam = {
      * request and apply source-specific rules.
      */
     xOrderingSource?: string;
+    /**
+     * - Anonymous cart header used to perform
+     * operations on cross-platform anonymous cart. When enabled, the system
+     * fetches the cart only based on cart_id instead of user_id.
+     */
+    xAnonymousCart?: string;
     /**
      * - Unique identifier of the cart for which the breakup
      * needs to be updated.
@@ -1175,6 +1391,14 @@ type UpdateCouponParam = {
 type UpdateCouponPartiallyParam = {
     id: string;
     body: CartPlatformModel.CouponPartialUpdate;
+};
+type UpdateOfferParam = {
+    id: string;
+    body: CartPlatformModel.OfferSchema;
+};
+type UpdateOfferPartiallyParam = {
+    id: string;
+    body: CartPlatformModel.OfferPartialUpdate;
 };
 type UpdatePriceAdjustmentParam = {
     id: string;

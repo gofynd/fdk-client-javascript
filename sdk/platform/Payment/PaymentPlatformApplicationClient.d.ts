@@ -133,13 +133,12 @@ declare class Payment {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeDetails>} -
-     *   Success response
+     * @returns {Promise<PaymentPlatformModel.PaymentModeConfig>} - Success response
      * @name getMerchantAggregatorPaymentModeDetails
      * @summary: Get merchant aggregator and their payment mode
      * @description: Get available payment gateways and payment mode and it's sub payment mode details like for razorpay their active/inactive payment modes netbanking , wallet, upi are shown.  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getMerchantAggregatorPaymentModeDetails/).
      */
-    getMerchantAggregatorPaymentModeDetails({ aggregatorId, businessUnit, device, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PlatformPaymentModeDetails>;
+    getMerchantAggregatorPaymentModeDetails({ aggregatorId, businessUnit, device, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentModeConfig>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetMerchantPaymentOptionParam} arg
      *   - Arg object
@@ -440,6 +439,18 @@ declare class Payment {
      * @description: Store and update configuration settings for brand payment gateways i.e required for payment for a payment gateway like key, secret, merchant salt. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/saveBrandPaymentGatewayConfig/).
      */
     saveBrandPaymentGatewayConfig({ body, requestHeaders }?: PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.SaveTokenForAggregatorParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.OperationResponseSchema>} - Success response
+     * @name saveTokenForAggregator
+     * @summary: Save token details for a payment aggregator
+     * @description: Save token and verification status for a specific payment aggregator, such as Apple Pay or others. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/saveTokenForAggregator/).
+     */
+    saveTokenForAggregator({ aggregatorId, body, requestHeaders }?: PaymentPlatformApplicationValidator.SaveTokenForAggregatorParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.OperationResponseSchema>;
     /**
      * @param {PaymentPlatformApplicationValidator.SetMerchantModeControlRoutesParam} arg
      *   - Arg object

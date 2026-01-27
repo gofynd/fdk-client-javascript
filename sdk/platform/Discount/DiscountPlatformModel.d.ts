@@ -20,6 +20,8 @@ export = DiscountPlatformModel;
  * @property {number[]} [brand_ids] - List of brand IDs associated with the discount.
  * @property {number[]} [store_ids] - List of store IDs associated with the discount.
  * @property {string[]} [zone_ids] - List of zone IDs associated with the discount.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -48,6 +50,8 @@ export = DiscountPlatformModel;
  * @property {number[]} [brand_ids] - List of brand IDs associated with the discount job.
  * @property {number[]} [store_ids] - List of store IDs associated with the discount job.
  * @property {string[]} [zone_ids] - List of zone IDs associated with the discount job.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
  * @property {string} created_on - The date and time when the discount job was created.
@@ -129,6 +133,8 @@ export = DiscountPlatformModel;
  * @property {string} [file_path] - Path to the disocunt file.
  * @property {number[]} [brand_ids] - List of brand identifiers.
  * @property {number[]} [store_ids] - List of store identifiers.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {ValidityObject} validity
  * @property {Object} [meta] - Additional metadata for the disocunt.
  */
@@ -244,6 +250,11 @@ type CreateUpdateDiscount = {
      * - List of zone IDs associated with the discount.
      */
     zone_ids?: string[];
+    /**
+     * - List of price_factory IDs
+     * associated with the discount.
+     */
+    price_factory_ids?: string[];
     validity: ValidityObject;
     discount_meta?: DiscountMeta;
 };
@@ -322,6 +333,11 @@ type DiscountJob = {
      * - List of zone IDs associated with the discount job.
      */
     zone_ids?: string[];
+    /**
+     * - List of price_factory IDs
+     * associated with the discount.
+     */
+    price_factory_ids?: string[];
     discount_meta?: DiscountMeta;
     validity: ValidityObject;
     /**
@@ -559,6 +575,11 @@ type FileJobRequestSchema = {
      * - List of store identifiers.
      */
     store_ids?: number[];
+    /**
+     * - List of price_factory IDs
+     * associated with the discount.
+     */
+    price_factory_ids?: string[];
     validity: ValidityObject;
     /**
      * - Additional metadata for the disocunt.

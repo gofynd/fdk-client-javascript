@@ -365,6 +365,8 @@ export = CatalogPlatformValidator;
  * @typedef GetTaxVersionDetailsParam
  * @property {string} ruleId - The ID of the tax rule.
  * @property {string} [versionStatus] - Filter by tax version status.
+ * @property {string} [q] - Case-insensitive search by region name (e.g., "raj",
+ *   "New York") to find matching tax versions.
  * @property {string} [limit] - The number of items to return per page for
  *   paginated past versions.
  * @property {string} [page] - The page number for paginated past versions.
@@ -1395,6 +1397,11 @@ type GetTaxVersionDetailsParam = {
      * - Filter by tax version status.
      */
     versionStatus?: string;
+    /**
+     * - Case-insensitive search by region name (e.g., "raj",
+     * "New York") to find matching tax versions.
+     */
+    q?: string;
     /**
      * - The number of items to return per page for
      * paginated past versions.

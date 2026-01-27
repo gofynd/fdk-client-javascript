@@ -7,6 +7,7 @@ declare class Cart {
         addItems: string;
         applyCoupon: string;
         applyLoyaltyPoints: string;
+        applyOffer: string;
         checkoutCart: string;
         checkoutCartV2: string;
         deleteCart: string;
@@ -20,11 +21,14 @@ declare class Cart {
         getCoupons: string;
         getItemCount: string;
         getLadderOffers: string;
+        getOffers: string;
+        getProductsByOfferId: string;
         getPromotionOffers: string;
         getPromotionPaymentOffers: string;
         getShipments: string;
         removeAddress: string;
         removeCoupon: string;
+        removeOffer: string;
         selectAddress: string;
         selectPaymentMode: string;
         updateAddress: string;
@@ -72,6 +76,15 @@ declare class Cart {
      * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyLoyaltyPoints/).
      */
     applyLoyaltyPoints({ body, xOrderingSource, id, i, b, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OfferListItem>} - Success response
+     * @name applyOffer
+     * @summary: Apply offer to cart
+     * @description: Apply offer to the cart to trigger discounts on eligible items. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyOffer/).
+     */
+    applyOffer({ id, body, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OfferListItem>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -192,6 +205,24 @@ declare class Cart {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetOfferResult>} - Success response
+     * @name getOffers
+     * @summary: List available offers
+     * @description: List all offers available for the items in the cart, including details such as offer text, unique offer ID, validity period, etc. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getOffers/).
+     */
+    getOffers({ mode, id, buyNow, productSlug, storeId, type, productSize, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetOfferResult>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<EligibleProductsResult>} - Success response
+     * @name getProductsByOfferId
+     * @summary: List eligible offer products
+     * @description: List all products eligible for the given offer id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getProductsByOfferId/).
+     */
+    getProductsByOfferId({ offerId, page, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<EligibleProductsResult>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PromotionOffersResult>} - Success response
      * @name getPromotionOffers
      * @summary: List available promotion offers
@@ -234,6 +265,15 @@ declare class Cart {
      * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/removeCoupon/).
      */
     removeCoupon({ xOrderingSource, id, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OfferListItem>} - Success response
+     * @name removeOffer
+     * @summary: Remove offer from cart
+     * @description: Remove an applied offer from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/removeOffer/).
+     */
+    removeOffer({ id, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OfferListItem>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

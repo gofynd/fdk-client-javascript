@@ -130,6 +130,19 @@ declare class Catalog {
      */
     createListingConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
+     * @param {CatalogPlatformApplicationValidator.CreatePriceFactoryParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+     * @name createPriceFactory
+     * @summary: Create a Price Factory for an Application
+     * @description: Creates a new price factory configuration for the specified application under a given company. A price factory allows defining region-based or international pricing strategies using fixed or percentage-based adjustments per currency.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createPriceFactory/).
+     */
+    createPriceFactory({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreatePriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    /**
      * @param {CatalogPlatformApplicationValidator.CreateSearchConfigurationParam} arg
      *   - Arg object
      *
@@ -205,6 +218,19 @@ declare class Catalog {
      * @description: Remove a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteListingConfiguration/).
      */
     deleteListingConfiguration({ configType, configId, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.DeletePriceFactoryParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+     * @name deletePriceFactory
+     * @summary: Delete a Price Factory Configuration
+     * @description: Deletes a specific price factory configuration associated with a given company and application.  This action is typically irreversible and will remove the pricing logic tied to the specified price factory ID.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deletePriceFactory/).
+     */
+    deletePriceFactory({ priceFactoryId, requestHeaders }?: CatalogPlatformApplicationValidator.DeletePriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.DeleteSearchConfigurationParam} arg
      *   - Arg object
@@ -378,6 +404,18 @@ declare class Catalog {
      * @description: Retrieve sales channel product details by its item_id and depending upon filters sent in request. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAppProduct/).
      */
     getAppProduct({ itemId, requestHeaders }?: CatalogPlatformApplicationValidator.GetAppProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.OwnerAppItemResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetAppProductPricesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.AppProductPricesSchema>} - Success response
+     * @name getAppProductPrices
+     * @summary: Get prices for specific raw product items
+     * @description: Fetch pricing details for multiple raw products by their item IDs, scoped to a particular company and sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAppProductPrices/).
+     */
+    getAppProductPrices({ itemIds, requestHeaders }?: CatalogPlatformApplicationValidator.GetAppProductPricesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppProductPricesSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAppProductsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -642,9 +680,9 @@ declare class Catalog {
      * @param {boolean} [arg.isDependent] - This query parameter is used to get
      *   the dependent products in the listing.
      * @param {string} [arg.sortOn] - The order to sort the list of products on.
-     *   The supported sort parameters are popularity, price, redemption and
-     *   discount in either ascending or descending order. See the supported
-     *   values below.
+     *   Supported values include latest, popular, price_asc, price_dsc,
+     *   discount_asc, discount_dsc. Custom sort keys configured via listing
+     *   configuration (e.g., best_selling) are also supported for cohort-based sorting.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @param {string[]} [arg.itemIds] - Item Ids of product
@@ -887,6 +925,62 @@ declare class Catalog {
      */
     getListingConfigurations({ configType, pageNo, pageSize, search, requestHeaders }?: CatalogPlatformApplicationValidator.GetListingConfigurationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigResponseSchema>;
     /**
+     * @param {CatalogPlatformApplicationValidator.GetPriceFactoriesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.PriceFactoryListResponseSchema>}
+     *   - Success response
+     *
+     * @name getPriceFactories
+     * @summary: Retrieve Price Factories for an Application
+     * @description: Fetches a paginated list of price factories configured for the specified application within a company. Supports optional filters such as brand IDs, category IDs, seller identifier, item code, slug, and name to narrow down the results.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactories/).
+     */
+    getPriceFactories({ q, requestHeaders }?: CatalogPlatformApplicationValidator.GetPriceFactoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PriceFactoryListResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetPriceFactoryParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.PriceFactoryConfigSchema>} -
+     *   Success response
+     * @name getPriceFactory
+     * @summary: Retrieve a Specific Price Factory Configuration
+     * @description: Retrieves detailed information about a specific price factory configuration  for the given application and company, using the unique price factory ID.  This includes currency strategies, adjustment values, zone mapping, and audit metadata.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactory/).
+     */
+    getPriceFactory({ priceFactoryId, requestHeaders }?: CatalogPlatformApplicationValidator.GetPriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PriceFactoryConfigSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetPriceFactoryProductParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.PriceFactoryProductResponseSchema>}
+     *   - Success response
+     *
+     * @name getPriceFactoryProduct
+     * @summary: Update marketplace optin
+     * @description: get price related information of item for given price factory - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactoryProduct/).
+     */
+    getPriceFactoryProduct({ priceFactoryId, itemId, requestHeaders }?: CatalogPlatformApplicationValidator.GetPriceFactoryProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PriceFactoryProductResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetPriceFactoryProductsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.PriceFactoryProductListResponseSchema>}
+     *   - Success response
+     *
+     * @name getPriceFactoryProducts
+     * @summary: Get Products associated with a Price Factory
+     * @description: Retrieves a paginated list of products linked to a specific price factory configuration for the given application and company. This endpoint returns item-level details such as pricing by currency, delivery zones, seller identifiers, media, and size-level configurations. Useful for viewing how pricing strategies are applied across different items.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactoryProducts/).
+     */
+    getPriceFactoryProducts({ priceFactoryId, brandIds, categoryIds, sellerIdentifier, itemCode, slug, name, active, pageNo, pageSize, requestHeaders, }?: CatalogPlatformApplicationValidator.GetPriceFactoryProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PriceFactoryProductListResponseSchema>;
+    /**
      * @param {CatalogPlatformApplicationValidator.GetProductDetailBySlugParam} arg
      *   - Arg object
      *
@@ -1104,6 +1198,32 @@ declare class Catalog {
      * @description: Modify a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateListingConfiguration/).
      */
     updateListingConfiguration({ configType, configId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.UpdatePriceFactoryParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+     * @name updatePriceFactory
+     * @summary: Update an Existing Price Factory Configuration
+     * @description: Allows partial update of an existing price factory configuration  for a specific application and company using the provided price factory ID.  Fields such as name, currencies, pricing strategies, or zone mapping can be modified.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updatePriceFactory/).
+     */
+    updatePriceFactory({ priceFactoryId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdatePriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.UpdatePriceFactoryProductParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+     * @name updatePriceFactoryProduct
+     * @summary: Partially update price factory product configuration
+     * @description: Updates specific fields in the price factory product configuration. Use this to partially update pricing or status for a given product and size without overwriting the entire configuration.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updatePriceFactoryProduct/).
+     */
+    updatePriceFactoryProduct({ priceFactoryId, itemId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdatePriceFactoryProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam} arg
      *   - Arg object

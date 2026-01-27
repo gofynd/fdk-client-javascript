@@ -13,6 +13,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
+ */
+
+/**
  * @typedef AllSizes
  * @property {ValidateIdentifier[]} [identifiers] - A collection of identifiers
  *   (e.g., GTIN, UPC) associated with the size. Each identifier follows the
@@ -116,6 +121,144 @@ const Joi = require("joi");
  * @property {string} [name] - Name of the application.
  * @property {number} priority - Defines the priority level for this
  *   configuration, with 1 being the highest.
+ * @property {SortWeights} [weights]
+ * @property {CohortSortingConfiguration} [cohorts]
+ */
+
+/**
+ * @typedef SortWeights
+ * @property {number} [popularity] - Controls how strongly overall product
+ *   popularity influences ranking. Products with higher engagement and demand
+ *   are ranked higher.
+ * @property {number} [availability] - Controls the importance of product
+ *   availability and fulfilment readiness in ranking. Products that are more
+ *   consistently available are prioritized over low-stock or unreliable items.
+ * @property {number} [conversion] - Controls the effectiveness of product
+ *   conversion rates in ranking. Products that convert views into purchases
+ *   more efficiently are ranked higher.
+ * @property {number} [sold_quantity] - Reflects historical sales volume of a
+ *   product. Products with higher sales volumes are ranked higher.
+ * @property {number} [depth] - Measures size or variant depth of a product.
+ *   Products with more size options and inventory depth are ranked higher.
+ * @property {number} [listing] - Represents recency or freshness of the product
+ *   listing. Products that are recently listed or have fresh inventory are
+ *   ranked higher.
+ * @property {number} [discount] - Indicates the promotional value of a product.
+ *   Products with higher discounts or promotions are ranked higher.
+ * @property {number} [cancelled] - Reflects historical cancellation reliability
+ *   of a product or seller. Products with lower cancellation rates are ranked higher.
+ * @property {number} [returns] - Measures post-purchase return behavior.
+ *   Products with lower return rates are ranked higher.
+ * @property {number} [catalogue] - Represents quality and completeness of
+ *   catalog content. Products with more complete and high-quality content are
+ *   ranked higher.
+ * @property {number} [revenue] - Represents revenue contribution potential of a
+ *   product. Products that generate higher revenue are ranked higher.
+ */
+
+/**
+ * @typedef CohortWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HighSpenderRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HyperactiveRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HighSpenderOccasionalCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef StandardOccasionalCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef DormantPremiumCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef BudgetRegularCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HighSpenderRegularCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef StandardCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef PremiumCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HighSpenderCustomerAboutToChurnWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef StandardDormantCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef HighSpenderDormantCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef PotentialCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef NewCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef BudgetRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef AverageSpenderRepeatCustomerWeights
+ * @property {SortWeights} weights
+ */
+
+/**
+ * @typedef CohortSortingConfiguration
+ * @property {HighSpenderRepeatCustomerWeights} [high_spender_repeat_customer]
+ * @property {HyperactiveRepeatCustomerWeights} [hyperactive_premium_repeat_customer]
+ * @property {HighSpenderOccasionalCustomerWeights} [high_spender_occasional_customer]
+ * @property {StandardOccasionalCustomerWeights} [standard_occasional_customer]
+ * @property {DormantPremiumCustomerWeights} [dormant_premium_customer]
+ * @property {BudgetRegularCustomerWeights} [budget_regular_customer]
+ * @property {HighSpenderRegularCustomerWeights} [high_spender_regular_customer]
+ * @property {StandardCustomerAboutToChurnWeights} [standard_customer_about_to_churn]
+ * @property {PremiumCustomerAboutToChurnWeights} [premium_customer_about_to_churn]
+ * @property {HighSpenderCustomerAboutToChurnWeights} [high_spender_customer_about_to_churn]
+ * @property {StandardDormantCustomerWeights} [standard_dormant_customer]
+ * @property {HighSpenderDormantCustomerWeights} [high_spender_dormant_customer]
+ * @property {PotentialCustomerWeights} [potential_customer]
+ * @property {NewCustomerWeights} [new_customer]
+ * @property {BudgetRepeatCustomerWeights} [budget_repeat_customer]
+ * @property {AverageSpenderRepeatCustomerWeights} [average_spender_repeat_customer]
  */
 
 /**
@@ -3051,6 +3194,26 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PriceStrategySchema
+ * @property {string} currency - Currency for the pricing strategy
+ * @property {number} adjustment_value - Adjustment value for the pricing strategy
+ * @property {string} adjustment_type - Type of adjustment for the pricing strategy
+ */
+
+/**
+ * @typedef PriceFactoryResponseSchema
+ * @property {string} [price_zone_id] - Unique identifier of the price zone
+ * @property {string} [price_factory_id] - Unique identifier of the price factory
+ * @property {string} [modified_by] - User who last modified the price factory
+ * @property {string[]} [currencies] - List of currencies supported by the price factory
+ * @property {string} [name] - Name of the price factory
+ * @property {PriceStrategySchema[]} [price_strategy] - Pricing strategy for the
+ *   price factory
+ * @property {boolean} [active] - Whether the price factory is active
+ * @property {string} [created_by] - User who created the price factory
+ */
+
+/**
  * @typedef Product
  * @property {Object} [_custom_json] - A custom JSON object that can hold any
  *   additional key-value pairs specific to the product.
@@ -4804,6 +4967,46 @@ const Joi = require("joi");
  * @typedef TaxReqBodyVersion
  * @property {TaxComponent[]} components - List of tax components with their
  *   respective slabs and rates.
+ * @property {string} [applicable_date] - Optional future effective date for the
+ *   version. Must be at least one minute ahead of the current time when supplied.
+ * @property {string} [region_type] - Required whenever areas are supplied to
+ *   indicate the granularity of the provided regions.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ */
+
+/**
+ * @typedef TaxGeoArea
+ * @property {string[]} regions - List of region identifiers based on the
+ *   selected region_type.
+ * @property {string} country - Country identifier that groups the regions.
+ */
+
+/**
+ * @typedef AreaDetails
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ * @property {string} [sub_type]
+ * @property {string[]} [parent_id]
+ */
+
+/**
+ * @typedef Country
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ */
+
+/**
+ * @typedef Area
+ * @property {AreaDetails[]} regions
+ * @property {Country} country
+ */
+
+/**
+ * @typedef RegionReference
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {Area[]} [areas]
  */
 
 /**
@@ -4816,12 +5019,17 @@ const Joi = require("joi");
  * @typedef TaxVersion
  * @property {string} [_id]
  * @property {string} [rule_id] - Tax Rule ID.
- * @property {string} [applicable_date] - It is the date from when this rule
- *   will come in effect.
+ * @property {string} [applicable_date] - Scheduled effective date for the
+ *   version. Must be at least one minute ahead of current time when provided.
  * @property {string} [created_on]
  * @property {string} [modified_on]
  * @property {number} [company_id] - Company ID.
  * @property {TaxStatusEnum} [status]
+ * @property {string} [region_type] - Present when the version targets a
+ *   specific set of regions rather than the default country-level rule.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {TaxVersionScopeEnum} [scope]
  * @property {TaxComponentResponseSchema[]} [components] - List of tax components.
  */
 
@@ -4829,15 +5037,24 @@ const Joi = require("joi");
  * @typedef UpdateTaxVersionRequestBody
  * @property {TaxComponentResponseSchema[]} components - List of tax components.
  * @property {string} applicable_date - It is the date from when this rule will
- *   come in effect. It should be atleast one minute in the future from the current time.
+ *   come in effect. It should be at least one minute in the future from the
+ *   current time.
+ * @property {string} [region_type] - Required when areas are present to denote
+ *   the level (city/state/pincode) at which the version applies.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 
 /**
  * @typedef CreateTaxVersionRequestBody
  * @property {TaxComponent[]} components - List of tax components.
- * @property {string} applicable_date - It is the date from when this rule will
- *   come in effect. It should be atleast one minute in the future from the
- *   current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ * @property {string} [applicable_date] - Optional scheduled date from when this
+ *   rule will come in effect. It should be at least one minute in the future
+ *   from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ * @property {string} [region_type] - Required when areas are present to denote
+ *   the level (city/state/pincode) at which the version applies.
+ * @property {TaxGeoArea} [areas]
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 
 /**
@@ -4857,12 +5074,19 @@ const Joi = require("joi");
  * @typedef TaxVersionDetail
  * @property {string} _id
  * @property {string} rule_id
- * @property {string} applicable_date
+ * @property {string} applicable_date - It is the date from when this rule comes
+ *   in effect. Always present and should be at least one minute in the future
+ *   when scheduled.
  * @property {string} created_on
  * @property {string} modified_on
  * @property {number} company_id
  * @property {TaxStatusEnum} [status]
+ * @property {string} [region_code] - Region code for areas sent when adding a
+ *   region override.
+ * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {RegionReference} [region]
  * @property {TaxComponent[]} components - List of components.
+ * @property {TaxVersionScopeEnum} [scope]
  * @property {string} version_status - Specifies the type of tax version.
  */
 
@@ -4870,12 +5094,6 @@ const Joi = require("joi");
  * @typedef CreateTax
  * @property {TaxRule} [rule]
  * @property {TaxVersion} [versions]
- */
-
-/**
- * @typedef UpdateTaxVersion
- * @property {TaxComponent[]} components - List of components.
- * @property {string} applicable_date
  */
 
 /**
@@ -4938,6 +5156,158 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PriceFactoryListItemsSchema
+ * @property {string} [price_factory_id] - Unique identifier for the price factory.
+ * @property {string} [name] - Name of the price factory configuration.
+ * @property {string} [type] - Type of price factory.
+ * @property {string[]} [currencies] - List of currency codes (e.g., INR, USD).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - ID of the price zone.
+ * @property {boolean} [active] - Status of the price factory (active/inactive).
+ * @property {CreatedBy} [modified_by]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [modified_on] - Timestamp of the last modification.
+ */
+
+/**
+ * @typedef PriceFactoryListResponseSchema
+ * @property {Page} [page]
+ * @property {PriceFactoryListItemsSchema[]} [data] - List of price factory
+ *   configurations.
+ */
+
+/**
+ * @typedef CreatePriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string} [type] - Defines the type of price factory, either
+ *   regional or international.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ */
+
+/**
+ * @typedef UpdatePriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ */
+
+/**
+ * @typedef PriceFactoryConfigSchema
+ * @property {string} [name] - The name of the price factory configuration.
+ * @property {string} [type] - Defines the type of price factory, either
+ *   regional or international.
+ * @property {string[]} [currencies] - List of currency codes applicable for
+ *   pricing (e.g., USD, EUR).
+ * @property {PriceStrategySchema[]} [price_strategy] - List of pricing
+ *   strategies to apply for each currency.
+ * @property {string} [price_zone_id] - Identifier for the price zone associated
+ *   with the price factory.
+ * @property {CreatedBy} [created_by]
+ * @property {CreatedBy} [modified_by]
+ */
+
+/**
+ * @typedef CurrencyPriceSchema
+ * @property {number} marked_price - Original price before any discounts.
+ * @property {number} selling_price - Final price after applying discounts or adjustments.
+ * @property {string} currency - Currency code (e.g., USD, EUR).
+ */
+
+/**
+ * @typedef UpsertPriceFactorySizesSchema
+ * @property {string} [size] - The identifier for the product size (e.g., S, M, L, OS).
+ * @property {CurrencyPriceSchema[]} [currency_prices] - The list of currency prices
+ */
+
+/**
+ * @typedef UpsertPriceFactoryProductSchema
+ * @property {UpsertPriceFactorySizesSchema[]} [sizes] - List of size-level
+ *   pricing configurations.
+ * @property {boolean} [active] - Indicates whether the product configuration is active.
+ */
+
+/**
+ * @typedef PriceFactoryCurrencyPriceSchema
+ * @property {boolean} [base_price] - Indicates if this price is the base price.
+ * @property {string} [currency] - Currency code (e.g., INR).
+ * @property {number} [selling_price] - The price at which the item is sold.
+ * @property {number} [marked_price] - The original marked price of the item.
+ */
+
+/**
+ * @typedef PriceFactorySizesSchema
+ * @property {string} [price_factory_id] - ID of the price factory entry.
+ * @property {string} [seller_identifier] - Identifier of the seller for the item.
+ * @property {string} [size] - Size of the product (e.g., OS).
+ * @property {string} [price_zone_id] - Price zone identifier for
+ *   regional/international pricing.
+ * @property {PriceFactoryCurrencyPriceSchema[]} [currency_prices] - Pricing
+ *   information across different currencies.
+ */
+
+/**
+ * @typedef PriceFactoryProductResponseSchema
+ * @property {number} [item_id] - Unique identifier for the item in the price
+ *   factory response.
+ * @property {string} [item_code] - Code identifying the item.
+ * @property {string} [name] - Name of the item.
+ * @property {boolean} [active] - Indicates if the item is currently active.
+ * @property {string[]} [media] - List of media associated with the item.
+ * @property {PriceFactorySizesSchema[]} [sizes] - List of size and pricing details.
+ */
+
+/**
+ * @typedef PriceFactoryProductListResponseSchema
+ * @property {PriceFactoryProductResponseSchema[]} [items] - List of products
+ *   details with sizes and prices details.
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef PriceRange
+ * @property {number} [min] - Minimum price.
+ * @property {number} [max] - Maximum price.
+ */
+
+/**
+ * @typedef CurrencyPrice
+ * @property {number} [discount] - Discount value applied in percentage.
+ * @property {string} [currency_code] - Currency code (e.g., 'INR', 'EUR').
+ * @property {string} [currency_symbol] - Symbol of the currency.
+ * @property {PriceRange} [marked]
+ * @property {PriceRange} [effective]
+ * @property {PriceRange} [selling]
+ */
+
+/**
+ * @typedef ProductPrice
+ * @property {string} [zone_type] - Type of the pricing zone, e.g., 'price' or 'delivery'.
+ * @property {string} [zone_identifier] - Unique identifier for the zone.
+ * @property {CurrencyPrice[]} [currency_prices] - List of prices for different
+ *   currencies in this zone.
+ */
+
+/**
+ * @typedef AppProductPricesSchema
+ * @property {string} [item_code] - Unique code identifying the item.
+ * @property {number} [brand_uid] - Unique identifier for the brand.
+ * @property {number} [item_id] - Unique identifier for the item.
+ * @property {Object} [discount_meta] - Additional discount metadata.
+ * @property {ProductPrice[]} [product_price] - Pricing information for various
+ *   zones and currencies.
+ */
+
+/**
  * @typedef ActionPage
  * @property {Object} [params] - Parameters that should be considered in path.
  * @property {Object} [query] - Query parameter if any to be added to the action.
@@ -4986,6 +5356,8 @@ const Joi = require("joi");
  */
 
 /** @typedef {"ACTIVE" | "INACTIVE" | "DELETED"} TaxStatusEnum */
+
+/** @typedef {"COUNTRY" | "REGION" | "STORE"} TaxVersionScopeEnum */
 
 /** @typedef {"HS" | "SAC"} HsTypeEnum */
 
@@ -5058,6 +5430,13 @@ class CatalogPlatformModel {
       errors: Joi.array()
         .items(CatalogPlatformModel.ValidationError())
         .required(),
+    });
+  }
+
+  /** @returns {StandardError} */
+  static StandardError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
     });
   }
 
@@ -5162,6 +5541,166 @@ class CatalogPlatformModel {
       logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       priority: Joi.number().required(),
+      weights: CatalogPlatformModel.SortWeights(),
+      cohorts: CatalogPlatformModel.CohortSortingConfiguration(),
+    });
+  }
+
+  /** @returns {SortWeights} */
+  static SortWeights() {
+    return Joi.object({
+      popularity: Joi.number(),
+      availability: Joi.number(),
+      conversion: Joi.number(),
+      sold_quantity: Joi.number(),
+      depth: Joi.number(),
+      listing: Joi.number(),
+      discount: Joi.number(),
+      cancelled: Joi.number(),
+      returns: Joi.number(),
+      catalogue: Joi.number(),
+      revenue: Joi.number(),
+    });
+  }
+
+  /** @returns {CohortWeights} */
+  static CohortWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HighSpenderRepeatCustomerWeights} */
+  static HighSpenderRepeatCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HyperactiveRepeatCustomerWeights} */
+  static HyperactiveRepeatCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HighSpenderOccasionalCustomerWeights} */
+  static HighSpenderOccasionalCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {StandardOccasionalCustomerWeights} */
+  static StandardOccasionalCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {DormantPremiumCustomerWeights} */
+  static DormantPremiumCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {BudgetRegularCustomerWeights} */
+  static BudgetRegularCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HighSpenderRegularCustomerWeights} */
+  static HighSpenderRegularCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {StandardCustomerAboutToChurnWeights} */
+  static StandardCustomerAboutToChurnWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {PremiumCustomerAboutToChurnWeights} */
+  static PremiumCustomerAboutToChurnWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HighSpenderCustomerAboutToChurnWeights} */
+  static HighSpenderCustomerAboutToChurnWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {StandardDormantCustomerWeights} */
+  static StandardDormantCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {HighSpenderDormantCustomerWeights} */
+  static HighSpenderDormantCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {PotentialCustomerWeights} */
+  static PotentialCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {NewCustomerWeights} */
+  static NewCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {BudgetRepeatCustomerWeights} */
+  static BudgetRepeatCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {AverageSpenderRepeatCustomerWeights} */
+  static AverageSpenderRepeatCustomerWeights() {
+    return Joi.object({
+      weights: CatalogPlatformModel.SortWeights().required(),
+    });
+  }
+
+  /** @returns {CohortSortingConfiguration} */
+  static CohortSortingConfiguration() {
+    return Joi.object({
+      high_spender_repeat_customer: CatalogPlatformModel.HighSpenderRepeatCustomerWeights(),
+      hyperactive_premium_repeat_customer: CatalogPlatformModel.HyperactiveRepeatCustomerWeights(),
+      high_spender_occasional_customer: CatalogPlatformModel.HighSpenderOccasionalCustomerWeights(),
+      standard_occasional_customer: CatalogPlatformModel.StandardOccasionalCustomerWeights(),
+      dormant_premium_customer: CatalogPlatformModel.DormantPremiumCustomerWeights(),
+      budget_regular_customer: CatalogPlatformModel.BudgetRegularCustomerWeights(),
+      high_spender_regular_customer: CatalogPlatformModel.HighSpenderRegularCustomerWeights(),
+      standard_customer_about_to_churn: CatalogPlatformModel.StandardCustomerAboutToChurnWeights(),
+      premium_customer_about_to_churn: CatalogPlatformModel.PremiumCustomerAboutToChurnWeights(),
+      high_spender_customer_about_to_churn: CatalogPlatformModel.HighSpenderCustomerAboutToChurnWeights(),
+      standard_dormant_customer: CatalogPlatformModel.StandardDormantCustomerWeights(),
+      high_spender_dormant_customer: CatalogPlatformModel.HighSpenderDormantCustomerWeights(),
+      potential_customer: CatalogPlatformModel.PotentialCustomerWeights(),
+      new_customer: CatalogPlatformModel.NewCustomerWeights(),
+      budget_repeat_customer: CatalogPlatformModel.BudgetRepeatCustomerWeights(),
+      average_spender_repeat_customer: CatalogPlatformModel.AverageSpenderRepeatCustomerWeights(),
     });
   }
 
@@ -8273,6 +8812,31 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {PriceStrategySchema} */
+  static PriceStrategySchema() {
+    return Joi.object({
+      currency: Joi.string().allow("").required(),
+      adjustment_value: Joi.number().required(),
+      adjustment_type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PriceFactoryResponseSchema} */
+  static PriceFactoryResponseSchema() {
+    return Joi.object({
+      price_zone_id: Joi.string().allow(""),
+      price_factory_id: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+      currencies: Joi.array().items(Joi.string().allow("")),
+      name: Joi.string().allow(""),
+      price_strategy: Joi.array().items(
+        CatalogPlatformModel.PriceStrategySchema()
+      ),
+      active: Joi.boolean(),
+      created_by: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Product} */
   static Product() {
     return Joi.object({
@@ -10079,6 +10643,53 @@ class CatalogPlatformModel {
       components: Joi.array()
         .items(CatalogPlatformModel.TaxComponent())
         .required(),
+      applicable_date: Joi.string().allow(""),
+      region_type: Joi.string().allow(""),
+      areas: CatalogPlatformModel.TaxGeoArea(),
+      store_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {TaxGeoArea} */
+  static TaxGeoArea() {
+    return Joi.object({
+      regions: Joi.array().items(Joi.string().allow("")).required(),
+      country: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {AreaDetails} */
+  static AreaDetails() {
+    return Joi.object({
+      uid: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {Country} */
+  static Country() {
+    return Joi.object({
+      uid: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Area} */
+  static Area() {
+    return Joi.object({
+      regions: Joi.array().items(CatalogPlatformModel.AreaDetails()).required(),
+      country: CatalogPlatformModel.Country().required(),
+    });
+  }
+
+  /** @returns {RegionReference} */
+  static RegionReference() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      areas: Joi.array().items(CatalogPlatformModel.Area()),
     });
   }
 
@@ -10102,6 +10713,10 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow(""),
       company_id: Joi.number(),
       status: CatalogPlatformModel.TaxStatusEnum(),
+      region_type: Joi.string().allow(""),
+      areas: CatalogPlatformModel.TaxGeoArea(),
+      store_ids: Joi.array().items(Joi.number()),
+      scope: CatalogPlatformModel.TaxVersionScopeEnum(),
       components: Joi.array().items(
         CatalogPlatformModel.TaxComponentResponseSchema()
       ),
@@ -10115,6 +10730,9 @@ class CatalogPlatformModel {
         .items(CatalogPlatformModel.TaxComponentResponseSchema())
         .required(),
       applicable_date: Joi.string().allow("").required(),
+      region_type: Joi.string().allow(""),
+      areas: CatalogPlatformModel.TaxGeoArea(),
+      store_ids: Joi.array().items(Joi.number()),
     });
   }
 
@@ -10124,7 +10742,10 @@ class CatalogPlatformModel {
       components: Joi.array()
         .items(CatalogPlatformModel.TaxComponent())
         .required(),
-      applicable_date: Joi.string().allow("").required(),
+      applicable_date: Joi.string().allow(""),
+      region_type: Joi.string().allow(""),
+      areas: CatalogPlatformModel.TaxGeoArea(),
+      store_ids: Joi.array().items(Joi.number()),
     });
   }
 
@@ -10152,9 +10773,13 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
       status: CatalogPlatformModel.TaxStatusEnum(),
+      region_code: Joi.string().allow(""),
+      store_ids: Joi.array().items(Joi.number()),
+      region: CatalogPlatformModel.RegionReference(),
       components: Joi.array()
         .items(CatalogPlatformModel.TaxComponent())
         .required(),
+      scope: CatalogPlatformModel.TaxVersionScopeEnum(),
       version_status: Joi.string().allow("").required(),
     });
   }
@@ -10164,16 +10789,6 @@ class CatalogPlatformModel {
     return Joi.object({
       rule: CatalogPlatformModel.TaxRule(),
       versions: CatalogPlatformModel.TaxVersion(),
-    });
-  }
-
-  /** @returns {UpdateTaxVersion} */
-  static UpdateTaxVersion() {
-    return Joi.object({
-      components: Joi.array()
-        .items(CatalogPlatformModel.TaxComponent())
-        .required(),
-      applicable_date: Joi.string().allow("").required(),
     });
   }
 
@@ -10255,6 +10870,188 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {PriceFactoryListItemsSchema} */
+  static PriceFactoryListItemsSchema() {
+    return Joi.object({
+      price_factory_id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      currencies: Joi.array().items(Joi.string().allow("")),
+      price_strategy: Joi.array().items(
+        CatalogPlatformModel.PriceStrategySchema()
+      ),
+      price_zone_id: Joi.string().allow(""),
+      active: Joi.boolean(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PriceFactoryListResponseSchema} */
+  static PriceFactoryListResponseSchema() {
+    return Joi.object({
+      page: CatalogPlatformModel.Page(),
+      data: Joi.array().items(
+        CatalogPlatformModel.PriceFactoryListItemsSchema()
+      ),
+    });
+  }
+
+  /** @returns {CreatePriceFactoryConfigSchema} */
+  static CreatePriceFactoryConfigSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      currencies: Joi.array().items(Joi.string().allow("")),
+      price_strategy: Joi.array().items(
+        CatalogPlatformModel.PriceStrategySchema()
+      ),
+      price_zone_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdatePriceFactoryConfigSchema} */
+  static UpdatePriceFactoryConfigSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      currencies: Joi.array().items(Joi.string().allow("")),
+      price_strategy: Joi.array().items(
+        CatalogPlatformModel.PriceStrategySchema()
+      ),
+      price_zone_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PriceFactoryConfigSchema} */
+  static PriceFactoryConfigSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      currencies: Joi.array().items(Joi.string().allow("")),
+      price_strategy: Joi.array().items(
+        CatalogPlatformModel.PriceStrategySchema()
+      ),
+      price_zone_id: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+    });
+  }
+
+  /** @returns {CurrencyPriceSchema} */
+  static CurrencyPriceSchema() {
+    return Joi.object({
+      marked_price: Joi.number().required(),
+      selling_price: Joi.number().required(),
+      currency: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {UpsertPriceFactorySizesSchema} */
+  static UpsertPriceFactorySizesSchema() {
+    return Joi.object({
+      size: Joi.string().allow(""),
+      currency_prices: Joi.array().items(
+        CatalogPlatformModel.CurrencyPriceSchema()
+      ),
+    });
+  }
+
+  /** @returns {UpsertPriceFactoryProductSchema} */
+  static UpsertPriceFactoryProductSchema() {
+    return Joi.object({
+      sizes: Joi.array().items(
+        CatalogPlatformModel.UpsertPriceFactorySizesSchema()
+      ),
+      active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PriceFactoryCurrencyPriceSchema} */
+  static PriceFactoryCurrencyPriceSchema() {
+    return Joi.object({
+      base_price: Joi.boolean(),
+      currency: Joi.string().allow(""),
+      selling_price: Joi.number(),
+      marked_price: Joi.number(),
+    });
+  }
+
+  /** @returns {PriceFactorySizesSchema} */
+  static PriceFactorySizesSchema() {
+    return Joi.object({
+      price_factory_id: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+      size: Joi.string().allow(""),
+      price_zone_id: Joi.string().allow(""),
+      currency_prices: Joi.array().items(
+        CatalogPlatformModel.PriceFactoryCurrencyPriceSchema()
+      ),
+    });
+  }
+
+  /** @returns {PriceFactoryProductResponseSchema} */
+  static PriceFactoryProductResponseSchema() {
+    return Joi.object({
+      item_id: Joi.number(),
+      item_code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      active: Joi.boolean(),
+      media: Joi.array().items(Joi.string().allow("")),
+      sizes: Joi.array().items(CatalogPlatformModel.PriceFactorySizesSchema()),
+    });
+  }
+
+  /** @returns {PriceFactoryProductListResponseSchema} */
+  static PriceFactoryProductListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.PriceFactoryProductResponseSchema()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {PriceRange} */
+  static PriceRange() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {CurrencyPrice} */
+  static CurrencyPrice() {
+    return Joi.object({
+      discount: Joi.number(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
+      marked: CatalogPlatformModel.PriceRange(),
+      effective: CatalogPlatformModel.PriceRange(),
+      selling: CatalogPlatformModel.PriceRange(),
+    });
+  }
+
+  /** @returns {ProductPrice} */
+  static ProductPrice() {
+    return Joi.object({
+      zone_type: Joi.string().allow(""),
+      zone_identifier: Joi.string().allow(""),
+      currency_prices: Joi.array().items(CatalogPlatformModel.CurrencyPrice()),
+    });
+  }
+
+  /** @returns {AppProductPricesSchema} */
+  static AppProductPricesSchema() {
+    return Joi.object({
+      item_code: Joi.string().allow(""),
+      brand_uid: Joi.number(),
+      item_id: Joi.number(),
+      discount_meta: Joi.object().pattern(/\S/, Joi.any()),
+      product_price: Joi.array().items(CatalogPlatformModel.ProductPrice()),
+    });
+  }
+
   /** @returns {ActionPage} */
   static ActionPage() {
     return Joi.object({
@@ -10328,6 +11125,21 @@ class CatalogPlatformModel {
       "INACTIVE",
 
       "DELETED"
+    );
+  }
+
+  /**
+   * Enum: TaxVersionScopeEnum Used By: Catalog
+   *
+   * @returns {TaxVersionScopeEnum}
+   */
+  static TaxVersionScopeEnum() {
+    return Joi.string().valid(
+      "COUNTRY",
+
+      "REGION",
+
+      "STORE"
     );
   }
 

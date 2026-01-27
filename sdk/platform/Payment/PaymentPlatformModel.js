@@ -1,6 +1,22 @@
 const Joi = require("joi");
 
 /**
+ * @typedef AggregatorToken
+ * @property {number} payment_mode_id - Payment mode identifier Supported values are:
+ *
+ *   - **4**: Wallet
+ *   - **3**: Net Banking
+ *   - **2**: Card
+ *   - **1**: Pay Later
+ *
+ * @property {string} sub_payment_mode_code - Sub-payment method code
+ * @property {string} token - Token value to be saved for the aggregator
+ * @property {string} status - Status of the token verification
+ * @property {boolean} is_active - Enable or Disable Flag
+ * @property {string} domain - Name of domain
+ */
+
+/**
  * @typedef PaymentGatewayConfigDetails
  * @property {Object[]} [aggregators] - List of all config specific to the
  *   aggregator with their Details.
@@ -825,6 +841,100 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PaymentModeConfig
+ * @property {string} [business_unit] - Business unit for which the configuration applies.
+ * @property {string} [device] - Device type for which the configuration applies.
+ * @property {boolean} [is_active] - Indicates if the payment configuration is
+ *   currently active.
+ * @property {PaymentModeItems[]} [items] - List of payment modes available for
+ *   the given business unit and device. This list is dynamic and can contain
+ *   one or more payment modes.
+ */
+
+/**
+ * @typedef PaymentModeItems
+ * @property {number} [id] - Unique identifier for the payment mode.
+ * @property {string} [name] - Display name of the payment mode.
+ * @property {string} [short_code] - Short code for the payment mode.
+ * @property {LogoSet} [logos]
+ * @property {boolean} [is_active] - Indicates if this payment mode is active in
+ *   the system.
+ * @property {SubPaymentMode[]} [sub_payment_mode] - Dynamic list of sub-payment
+ *   modes under this payment mode.
+ * @property {boolean} [is_active_at_pg] - Indicates if this payment mode is
+ *   active at the payment gateway (PG) side.
+ * @property {Object} [fulfillment_options] - Fulfillment options applicable for
+ *   these payment modes. Keys are option slugs and values indicate whether the
+ *   option is enabled.
+ */
+
+/**
+ * @typedef SubPaymentMode
+ * @property {string} [code] - Unique code of the sub-payment mode.
+ * @property {boolean} [is_active] - Indicates if this sub-payment mode is
+ *   active in the system.
+ * @property {number} [priority] - Priority used for ordering in UI. Lower
+ *   numbers can represent higher priority, depending on implementation.
+ * @property {LogoSet} [logos]
+ * @property {string} [name] - Human-readable name of the sub-payment mode.
+ * @property {boolean} [is_active_at_pg] - Indicates if this sub-payment mode is
+ *   active at the payment gateway (PG) side.
+ */
+
+/**
+ * @typedef LogoSet
+ * @property {string} [large] - URL of the large-sized logo.
+ * @property {string} [small] - URL of the small-sized logo.
+ */
+
+/**
+ * @typedef PlatformLogoSet
+ * @property {string} [large] - URL of the large-sized logo.
+ * @property {string} [small] - URL of the small-sized logo.
+ */
+
+/**
+ * @typedef PlatformConfigPaymentModeDetails
+ * @property {string} [business_unit] - Business unit for which the
+ *   configuration applies (e.g. "storefront", "pos").
+ * @property {string} [device] - Device or channel for which the configuration
+ *   applies (e.g. "desktop", "android", "ios").
+ * @property {Object} [fulfillment_options] - Fulfillment options applicable for
+ *   these payment modes. Keys are option slugs (e.g. "self-pickup", "delivery")
+ *   and values indicate whether the option is enabled.
+ * @property {boolean} [is_active] - Overall active status for this aggregator
+ *   payment configuration for the given application and device.
+ * @property {PlatformPaymentModeItem[]} [items] - List of payment modes and
+ *   their configuration.
+ */
+
+/**
+ * @typedef PlatformPaymentModeItem
+ * @property {number} [id] - Unique identifier of the payment mode.
+ * @property {string} [name] - Human readable name of the payment mode.
+ * @property {string} [short_code] - Short code representing the payment mode.
+ * @property {PlatformLogoSet} [logos]
+ * @property {boolean} [is_active] - Indicates if the payment mode is enabled on
+ *   the platform.
+ * @property {boolean} [is_active_at_pg] - Indicates if the payment mode is
+ *   active at the payment gateway.
+ * @property {PlatformSubPaymentMode[]} [sub_payment_mode] - List of sub payment
+ *   modes (e.g. card networks like VISA, MASTERCARD).
+ */
+
+/**
+ * @typedef PlatformSubPaymentMode
+ * @property {string} [code] - Code of the sub payment mode (e.g. "VISA", "AMEX").
+ * @property {string} [name] - Human readable name of the sub payment mode.
+ * @property {boolean} [is_active] - Indicates if the sub payment mode is enabled.
+ * @property {boolean} [is_active_at_pg] - Indicates if the sub payment mode is
+ *   active at payment gateway.
+ * @property {number} [priority] - Display priority for the sub payment mode.
+ *   Lower numbers indicate higher priority.
+ * @property {PlatformLogoSet} [logos]
+ */
+
+/**
  * @typedef MerchnatPaymentModeCreation
  * @property {Object} [offline] - Details to be updated for online payment configuration.
  * @property {Object} [online] - Details to be updated for offline payment configuration.
@@ -1293,7 +1403,26 @@ const Joi = require("joi");
  * @property {CreditAccountSummary} [account]
  */
 
+/**
+ * @typedef OperationResponseSchema
+ * @property {boolean} success - Indicates if the operation was successful
+ * @property {string} [message] - Optional message providing additional
+ *   information about the operation
+ */
+
 class PaymentPlatformModel {
+  /** @returns {AggregatorToken} */
+  static AggregatorToken() {
+    return Joi.object({
+      payment_mode_id: Joi.number().required(),
+      sub_payment_mode_code: Joi.string().allow("").required(),
+      token: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      domain: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {PaymentGatewayConfigDetails} */
   static PaymentGatewayConfigDetails() {
     return Joi.object({
@@ -2305,6 +2434,98 @@ class PaymentPlatformModel {
     });
   }
 
+  /** @returns {PaymentModeConfig} */
+  static PaymentModeConfig() {
+    return Joi.object({
+      business_unit: Joi.string().allow(""),
+      device: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      items: Joi.array().items(PaymentPlatformModel.PaymentModeItems()),
+    });
+  }
+
+  /** @returns {PaymentModeItems} */
+  static PaymentModeItems() {
+    return Joi.object({
+      id: Joi.number(),
+      name: Joi.string().allow(""),
+      short_code: Joi.string().allow(""),
+      logos: PaymentPlatformModel.LogoSet(),
+      is_active: Joi.boolean(),
+      sub_payment_mode: Joi.array().items(
+        PaymentPlatformModel.SubPaymentMode()
+      ),
+      is_active_at_pg: Joi.boolean(),
+      fulfillment_options: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {SubPaymentMode} */
+  static SubPaymentMode() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      priority: Joi.number(),
+      logos: PaymentPlatformModel.LogoSet(),
+      name: Joi.string().allow(""),
+      is_active_at_pg: Joi.boolean(),
+    });
+  }
+
+  /** @returns {LogoSet} */
+  static LogoSet() {
+    return Joi.object({
+      large: Joi.string().allow(""),
+      small: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PlatformLogoSet} */
+  static PlatformLogoSet() {
+    return Joi.object({
+      large: Joi.string().allow(""),
+      small: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PlatformConfigPaymentModeDetails} */
+  static PlatformConfigPaymentModeDetails() {
+    return Joi.object({
+      business_unit: Joi.string().allow(""),
+      device: Joi.string().allow(""),
+      fulfillment_options: Joi.object().pattern(/\S/, Joi.any()),
+      is_active: Joi.boolean(),
+      items: Joi.array().items(PaymentPlatformModel.PlatformPaymentModeItem()),
+    });
+  }
+
+  /** @returns {PlatformPaymentModeItem} */
+  static PlatformPaymentModeItem() {
+    return Joi.object({
+      id: Joi.number(),
+      name: Joi.string().allow(""),
+      short_code: Joi.string().allow(""),
+      logos: PaymentPlatformModel.PlatformLogoSet(),
+      is_active: Joi.boolean(),
+      is_active_at_pg: Joi.boolean(),
+      sub_payment_mode: Joi.array().items(
+        PaymentPlatformModel.PlatformSubPaymentMode()
+      ),
+    });
+  }
+
+  /** @returns {PlatformSubPaymentMode} */
+  static PlatformSubPaymentMode() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_active_at_pg: Joi.boolean(),
+      priority: Joi.number(),
+      logos: PaymentPlatformModel.PlatformLogoSet(),
+    });
+  }
+
   /** @returns {MerchnatPaymentModeCreation} */
   static MerchnatPaymentModeCreation() {
     return Joi.object({
@@ -2829,6 +3050,14 @@ class PaymentPlatformModel {
       message: Joi.string().allow("").required(),
       cart_id: Joi.string().allow(""),
       account: PaymentPlatformModel.CreditAccountSummary(),
+    });
+  }
+
+  /** @returns {OperationResponseSchema} */
+  static OperationResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
     });
   }
 }

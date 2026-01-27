@@ -22,6 +22,8 @@ const Joi = require("joi");
  * @property {number[]} [brand_ids] - List of brand IDs associated with the discount.
  * @property {number[]} [store_ids] - List of store IDs associated with the discount.
  * @property {string[]} [zone_ids] - List of zone IDs associated with the discount.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -52,6 +54,8 @@ const Joi = require("joi");
  * @property {number[]} [brand_ids] - List of brand IDs associated with the discount job.
  * @property {number[]} [store_ids] - List of store IDs associated with the discount job.
  * @property {string[]} [zone_ids] - List of zone IDs associated with the discount job.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
  * @property {string} created_on - The date and time when the discount job was created.
@@ -139,6 +143,8 @@ const Joi = require("joi");
  * @property {string} [file_path] - Path to the disocunt file.
  * @property {number[]} [brand_ids] - List of brand identifiers.
  * @property {number[]} [store_ids] - List of store identifiers.
+ * @property {string[]} [price_factory_ids] - List of price_factory IDs
+ *   associated with the discount.
  * @property {ValidityObject} validity
  * @property {Object} [meta] - Additional metadata for the disocunt.
  */
@@ -214,6 +220,7 @@ class DiscountPlatformModel {
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
       zone_ids: Joi.array().items(Joi.string().allow("")),
+      price_factory_ids: Joi.array().items(Joi.string().allow("")),
       validity: DiscountPlatformModel.ValidityObject().required(),
       discount_meta: DiscountPlatformModel.DiscountMeta(),
     });
@@ -244,6 +251,7 @@ class DiscountPlatformModel {
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
       zone_ids: Joi.array().items(Joi.string().allow("")),
+      price_factory_ids: Joi.array().items(Joi.string().allow("")),
       discount_meta: DiscountPlatformModel.DiscountMeta(),
       validity: DiscountPlatformModel.ValidityObject().required(),
       created_on: Joi.string().allow("").required(),
@@ -344,6 +352,7 @@ class DiscountPlatformModel {
       file_path: Joi.string().allow(""),
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
+      price_factory_ids: Joi.array().items(Joi.string().allow("")),
       validity: DiscountPlatformModel.ValidityObject().required(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });

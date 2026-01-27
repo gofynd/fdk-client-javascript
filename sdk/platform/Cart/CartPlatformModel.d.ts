@@ -1266,6 +1266,25 @@ export = CartPlatformModel;
  *   loyalty points and applied and how much left with the user
  */
 /**
+ * @typedef CurrencyValue
+ * @property {string} [currency] - Currency code.
+ * @property {number} [value] - Numeric amount value.
+ */
+/**
+ * @typedef ChargesAmount
+ * @property {CurrencyValue} [base_currency]
+ * @property {CurrencyValue} [ordering_currency]
+ */
+/**
+ * @typedef ArticleCharges
+ * @property {Object} [meta] - Meta data realted to charges price adjustment.
+ * @property {ChargesAmount} [amount]
+ * @property {string} [name] - Name of the charge applied.
+ * @property {boolean} [allow_refund] - Whether refund is allowed or not for the charge.
+ * @property {string} [code] - Code of the charge applied.
+ * @property {string} [type] - Type of the charge applied.
+ */
+/**
  * @typedef CartProductInfo
  * @property {number} [quantity] - Quantity of the product added in cart
  * @property {CartProduct} [product]
@@ -1297,6 +1316,8 @@ export = CartPlatformModel;
  * @property {PromoMeta} [promo_meta]
  * @property {Object} [custom_order] - Whether MTO (Make to Order) is enabled or not.
  * @property {string} [item_type] - Type of the item in cart.
+ * @property {ArticleCharges[]} [charges] - Charges information which denotes
+ *   types of charges and amount of charge applied to that product in cart.
  */
 /**
  * @typedef OpenapiCartDetailsResult
@@ -2551,10 +2572,282 @@ export = CartPlatformModel;
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
  */
+/**
+ * @typedef OfferUser
+ * @property {number[]} [groups] - List of user group on which offer is allowed
+ * @property {string} [type] - User type of the cart user who places the order
+ * @property {boolean} [anonymous] - Set true, if offer is applicable for guest user
+ * @property {string[]} [id] - List of user id on which offer is applicable
+ * @property {UserRegistered} [registered]
+ * @property {string[]} [email_domain] - List of email domain available for offer
+ */
+/**
+ * @typedef OfferItemCriteria
+ * @property {number[]} [category_id] - List of category id available for offer
+ * @property {string[]} [collection_id] - List of collection id available for offer
+ * @property {boolean} [all_items] - Boolean flag determining if offer is
+ *   applicable on all offers
+ * @property {number[]} [item_brand] - List of all brand ids on which promotion
+ *   is applicable
+ * @property {string[]} [article_ids] - List of unique identifier of articles on
+ *   which offer will be applicable
+ * @property {string[]} [item_sku] - List of all item sku on which promotion is applicable
+ * @property {number[]} [item_id] - List of all item ids on which offer is applicable
+ * @property {number[]} [item_l1_category] - List of all L1 category on which
+ *   offer is applicable
+ * @property {number[]} [item_l2_category] - List of all L2 category on which
+ *   offer is applicable
+ * @property {number[]} [item_category] - List of all L3 category on which offer
+ *   is applicable
+ * @property {number[]} [item_department] - List of all departments ids on which
+ *   offer is applicable
+ * @property {number[]} [item_store] - List of all item store ids on which offer
+ *   is applicable
+ * @property {string[]} [item_size] - List of all item sizes on which offer is applicable
+ * @property {number[]} [item_company] - List of all company ids on which offer
+ *   is applicable
+ * @property {string[]} [item_tags] - List of all product tags on which offer is
+ *   applicable
+ * @property {CompareObject} [cart_quantity]
+ * @property {CompareObject} [cart_total]
+ * @property {number[]} [item_exclude_l1_category] - List of all L1 categories
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_l2_category] - List of all L2 categories
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_category] - List of all L3 categories on
+ *   which offer is not applicable
+ * @property {CompareObject} [cart_unique_item_quantity]
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {number[]} [item_exclude_department] - List of all department ids
+ *   on which offer is not applicable
+ * @property {number[]} [item_exclude_store] - List of all item store ids on
+ *   which offer is not applicable
+ * @property {number[]} [item_exclude_brand] - List of all brand ids on which
+ *   offer is not applicable
+ * @property {string[]} [item_exclude_sku] - List of all item sku on which offer
+ *   is not applicable
+ * @property {number[]} [item_exclude_company] - List of all company id on which
+ *   offer is not applicable
+ * @property {string[]} [available_zones] - List of all zones on which offer is applicable
+ * @property {number[]} [item_exclude_id] - List of all item ids on which offer
+ *   is not applicable
+ * @property {string[]} [buy_rules] - List of buy rules that is applicable for this offer
+ * @property {ItemSizeMapping} [item_size_mapping]
+ */
+/**
+ * @typedef DiscountRuleOffer
+ * @property {number} [max_discount_amount] - Maximum discount amount in offer
+ * @property {number} [discount_price] - Discount price in offer
+ * @property {boolean} [apportion_discount] - Flag to distribute discount for each article
+ * @property {boolean} [partial_can_ret] - Flag indicated return the product partially
+ * @property {number} [max_usage_per_transaction] - Maximum usage per transaction in offer
+ * @property {number} [min_offer_quantity] - Minimum quantity of offer in offer
+ * @property {number} [discount_amount] - Discount amount in offer
+ * @property {number} [discount_percentage] - Discount percentage in offer
+ * @property {number} [max_offer_quantity] - Maximum quantity of product in offer
+ */
+/**
+ * @typedef OfferDiscountRule
+ * @property {string} [discount_type] - The type of discount in offer
+ * @property {string} [buy_condition] - Points to buy rule in offer. One
+ *   discount rule can only point to one buy rule.
+ * @property {OfferItemCriteria} [item_criteria]
+ * @property {DiscountRuleOffer} [offer]
+ * @property {boolean} [is_exact] - Flag is true then use coupon applicable
+ *   articles for calculation
+ */
+/**
+ * @typedef OfferUsesRemaining
+ * @property {number} [user] - Define total offer count per user
+ * @property {number} [total] - Define total offer count
+ * @property {number} [app] - Define offer count associated with application id
+ */
+/**
+ * @typedef OfferUsesRestriction
+ * @property {OfferUsesRemaining} [maximum]
+ * @property {OfferUsesRemaining} [remaining]
+ */
+/**
+ * @typedef OfferRestrictionFulfillmentOptions
+ * @property {string} fulfillment_slug - Fulfillment option id
+ * @property {string[]} [zones] - List of zones ids on which offer is applicable.
+ */
+/**
+ * @typedef OfferRestrictions
+ * @property {OfferUsesRestriction} [uses]
+ * @property {PostOrder} [post_order]
+ * @property {string[]} [platforms] - List of platform on which offer allowed
+ *   like web, android
+ * @property {PaymentModes} [payments]
+ * @property {number[]} [ordering_stores] - List of store id on which offer is allowed
+ * @property {number} [order_quantity] - Prmomotion offer max order count
+ * @property {OfferUser} [user]
+ * @property {boolean} [multi_store_allowed] - Allow offer to be applied on
+ *   multiple stores
+ * @property {OfferRestrictionFulfillmentOptions[]} [fulfillment_options] - List
+ *   of fulfillment options on which offer is applicable.
+ */
+/**
+ * @typedef OfferDisplayMeta
+ * @property {string} description - Detail about the offers
+ * @property {boolean} [is_display] - Coupon offer will be displayed or hidden
+ *   on UI based on this flag
+ * @property {boolean} [is_public] - Determines if coupon offer is publicaly
+ *   available or not
+ * @property {string} name - Name of offer that needs to display
+ * @property {string} [offer_text] - Promotion offer text used to display
+ * @property {string} [offer_label] - Offer label of promotion that needs to display
+ * @property {string} [reason] - Reason for offer rejection
+ */
+/**
+ * @typedef OfferCouponConfiguration
+ * @property {number} [coupon_count] - Total number of coupons to be generated
+ *   when coupon type is bulk
+ * @property {string} [coupon_prefix] - Bulk coupon code prefix string. All
+ *   coupons will be generated with this prefix.
+ * @property {string} coupon_type - The type of coupon like bulk or single.
+ */
+/**
+ * @typedef OfferOwnership
+ * @property {string} payable_category - Promotion amount payable category
+ * @property {string} [payable_by] - Promotion amount bearable party
+ */
+/**
+ * @typedef OfferSchema
+ * @property {string} [_id] - Unique identifier of offer. This will be auto
+ *   generated upon successful offer creation.
+ * @property {string} mode - Offer mode, like coupon or promotion
+ * @property {boolean} [auto_apply] - Indicates whether the offer is
+ *   automatically applied. This flag is false for coupons and true for
+ *   promotions. For free-gift promotions, a false value means manual gift
+ *   selection is required.
+ * @property {string} [application_id] - Application id through which offer was created.
+ * @property {string} [company_id] - Company id through which offer was created.
+ * @property {OfferDiscountRule[]} [discount_rules] - Discount rules based on
+ *   which offer will be applied
+ * @property {Object} [buy_rules] - Contains the individual buy rules associated
+ *   with the offer. The keys in this object are dynamic (e.g., 'rule#1',
+ *   'rule#2', etc.), and each key must correspond to a buy condition referenced
+ *   within `discount_rules`. For example, if a discount rule includes a
+ *   buy_condition '(rule#1)', then 'rule#1' must be defined in this object.
+ *   Each rule key value must follow the format of OfferItemCriteria schema.
+ * @property {OfferRestrictions} [restrictions]
+ * @property {OfferDisplayMeta} display_meta
+ * @property {OfferOwnership} [ownership]
+ * @property {OfferAuthor} [author]
+ * @property {OfferDateMeta} [date_meta]
+ * @property {OfferSchedule} [_schedule]
+ * @property {Object} [_custom_json] - Set extra properties in offer
+ * @property {boolean} [stackable] - Boolean value set true to apply other
+ *   promotions as well.
+ * @property {string} status - Status of the offer
+ * @property {boolean} published - Determines whether the offer is published to
+ *   customers or marked inactive
+ * @property {string} type - Different types of offers available in the system.
+ *   This is used to determine the type of offer and the calculation of the
+ *   offer. Some types are mode specific, few examples are :> -
+ *   free_item_discount_absolute is only applicable for coupon mode -
+ *   contract_price, shipping_price, free_gift_items, cashback, free_items,
+ *   free_non_sellable_items, external_price_adjustment_discount, custom is only
+ *   applicable for promotion mode
+ * @property {number} [priority] - Defines the priority of the offer. Its
+ *   behavior varies based on the offer type. For coupons, a higher priority
+ *   value means the coupon will appear higher in the listing order. For
+ *   promotions, this value determines the sequence in which promotions are
+ *   evaluated and applied. Promotions are evaluated in descending order of
+ *   their effective priority. In case of conflicting priorities, the offer will
+ *   be prioritised on the basis of creation order (desc).
+ * @property {boolean} [is_exclusive_coupon] - Flag to determine if coupon is
+ *   exclusive. Exclusive coupon removes other applied offers from the cart. If
+ *   both `is_exclusive_coupon` and `apply_exclusive` are set,
+ *   `is_exclusive_coupon` takes priority for offer evaluation logic effectively
+ *   making the offer exclusive.
+ * @property {string} [apply_exclusive] - Controls how this offer excludes other
+ *   offers when it is applied. When this offer is applied at cart level, no
+ *   other promotions are evaluated or applied for the same cart (it becomes the
+ *   only active promotion for that cart). When this offer is applied on
+ *   specific articles, those articles will not be eligible for any other
+ *   promotions, but other promotions can still apply to different articles in
+ *   the cart. If null, the offer follows the normal stacking rules and does not
+ *   enforce additional exclusivity.
+ * @property {string} [calculate_on] - Article Price on which offer is
+ *   calculated, like effective price or marked price. Only available for few
+ *   supported types lile Contract pricing and Ladder pricing.
+ * @property {string} [promo_group] - The type of promotion group
+ * @property {string} [currency] - ISO 4217 currency code in which the offer's
+ *   discount amounts and calculations are specified (e.g., "INR", "USD",
+ *   "EUR"). This currency is used as the base currency for discount
+ *   calculations and currency conversions when applying the offer. If not
+ *   provided, defaults to the seller's default currency code. All discount
+ *   values in discount_rules are interpreted in this currency.
+ * @property {string} [code] - Unique identifier code for the offer. For coupons
+ *   (i.e mode = "coupon"), this is the coupon code that users enter to apply
+ *   the offer (e.g., "SAVE20", "WELCOME50"). For promotions (mode =
+ *   "promotion"), this field is typically null or empty as promotions are
+ *   auto-applied. This code is used to fetch and identify offers when applying
+ *   them to carts. Must be unique within an application_id. For bulk coupons,
+ *   this is auto-generated based on coupon_config.coupon_prefix.
+ * @property {OfferCouponConfiguration} [coupon_config]
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {boolean} [is_bank_offer] - Flag to determine if any bank offer is applicable
+ */
+/**
+ * @typedef OfferPartialUpdate
+ * @property {PromotionSchedule} [schedule]
+ */
+/**
+ * @typedef OfferAuthor
+ * @property {string} [created_by] - The user id of user, who has created the offer
+ * @property {string} [modified_by] - The user id of user, who has modified the offer
+ * @property {string} [approved_by] - The user id of user, who has approved the offer
+ * @property {string} [rejected_by] - The user id of user, who has rejected the offer
+ */
+/**
+ * @typedef OfferDateMeta
+ * @property {string} [modified_on] - Date time format when the offer last modified
+ * @property {string} [created_on] - Date time format when the offer created
+ * @property {string} [approved_on] - Date time format when the offer approved
+ * @property {string} [rejected_on] - Date time format when the offer rejected
+ */
+/**
+ * @typedef NextScheduleItems
+ * @property {string} [start] - Start date of schedule
+ * @property {string} [end] - End date of schedule
+ */
+/**
+ * @typedef OfferSchedule
+ * @property {string} end - The end date and time until which the offer remains valid.
+ * @property {string} start - The start date and time from which the offer becomes valid.
+ * @property {NextScheduleItems[]} [next_schedule] - A auto generated list of
+ *   date-time entries based on start, end, cron and duration data on which the
+ *   offer is scheduled to activate in the future.
+ * @property {string} [cron] - A cron expression used to schedule the offer to
+ *   activate periodically. When cron is null or not provided, duration is optional.
+ * @property {number} [duration] - Duration of the offer activation in seconds.
+ *   Mandatory when cron is provided.
+ */
+/**
+ * @typedef OfferListItem
+ * @property {string} [mode] - Offer mode, like coupon or promotion
+ * @property {string} [type] - Type of the offer
+ * @property {string} [status] - Status of the offer
+ * @property {boolean} [published] - Determines whether the offer is published
+ *   to customers or marked inactive
+ * @property {OfferDisplayMeta} [display_meta]
+ * @property {OfferAuthor} [author]
+ * @property {OfferDateMeta} [date_meta]
+ * @property {OfferSchedule} [schedule]
+ */
+/**
+ * @typedef OfferListResult
+ * @property {OfferListItem[]} [items] - List of offers
+ * @property {Page} [page]
+ */
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, NextScheduleItems, OfferSchedule, OfferListItem, OfferListResult };
 }
 /** @returns {RedeemLoyaltyPoints} */
 declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
@@ -5647,6 +5940,49 @@ type PromoMeta = {
      */
     message?: string;
 };
+/** @returns {CurrencyValue} */
+declare function CurrencyValue(): CurrencyValue;
+type CurrencyValue = {
+    /**
+     * - Currency code.
+     */
+    currency?: string;
+    /**
+     * - Numeric amount value.
+     */
+    value?: number;
+};
+/** @returns {ChargesAmount} */
+declare function ChargesAmount(): ChargesAmount;
+type ChargesAmount = {
+    base_currency?: CurrencyValue;
+    ordering_currency?: CurrencyValue;
+};
+/** @returns {ArticleCharges} */
+declare function ArticleCharges(): ArticleCharges;
+type ArticleCharges = {
+    /**
+     * - Meta data realted to charges price adjustment.
+     */
+    meta?: any;
+    amount?: ChargesAmount;
+    /**
+     * - Name of the charge applied.
+     */
+    name?: string;
+    /**
+     * - Whether refund is allowed or not for the charge.
+     */
+    allow_refund?: boolean;
+    /**
+     * - Code of the charge applied.
+     */
+    code?: string;
+    /**
+     * - Type of the charge applied.
+     */
+    type?: string;
+};
 /** @returns {CartProductInfo} */
 declare function CartProductInfo(): CartProductInfo;
 type CartProductInfo = {
@@ -5719,6 +6055,11 @@ type CartProductInfo = {
      * - Type of the item in cart.
      */
     item_type?: string;
+    /**
+     * - Charges information which denotes
+     * types of charges and amount of charge applied to that product in cart.
+     */
+    charges?: ArticleCharges[];
 };
 /** @returns {OpenapiCartDetailsResult} */
 declare function OpenapiCartDetailsResult(): OpenapiCartDetailsResult;
@@ -8945,4 +9286,613 @@ type ValidationError = {
      * - The field in the request that caused the error.
      */
     field: string;
+};
+/** @returns {OfferUser} */
+declare function OfferUser(): OfferUser;
+type OfferUser = {
+    /**
+     * - List of user group on which offer is allowed
+     */
+    groups?: number[];
+    /**
+     * - User type of the cart user who places the order
+     */
+    type?: string;
+    /**
+     * - Set true, if offer is applicable for guest user
+     */
+    anonymous?: boolean;
+    /**
+     * - List of user id on which offer is applicable
+     */
+    id?: string[];
+    registered?: UserRegistered;
+    /**
+     * - List of email domain available for offer
+     */
+    email_domain?: string[];
+};
+/** @returns {OfferItemCriteria} */
+declare function OfferItemCriteria(): OfferItemCriteria;
+type OfferItemCriteria = {
+    /**
+     * - List of category id available for offer
+     */
+    category_id?: number[];
+    /**
+     * - List of collection id available for offer
+     */
+    collection_id?: string[];
+    /**
+     * - Boolean flag determining if offer is
+     * applicable on all offers
+     */
+    all_items?: boolean;
+    /**
+     * - List of all brand ids on which promotion
+     * is applicable
+     */
+    item_brand?: number[];
+    /**
+     * - List of unique identifier of articles on
+     * which offer will be applicable
+     */
+    article_ids?: string[];
+    /**
+     * - List of all item sku on which promotion is applicable
+     */
+    item_sku?: string[];
+    /**
+     * - List of all item ids on which offer is applicable
+     */
+    item_id?: number[];
+    /**
+     * - List of all L1 category on which
+     * offer is applicable
+     */
+    item_l1_category?: number[];
+    /**
+     * - List of all L2 category on which
+     * offer is applicable
+     */
+    item_l2_category?: number[];
+    /**
+     * - List of all L3 category on which offer
+     * is applicable
+     */
+    item_category?: number[];
+    /**
+     * - List of all departments ids on which
+     * offer is applicable
+     */
+    item_department?: number[];
+    /**
+     * - List of all item store ids on which offer
+     * is applicable
+     */
+    item_store?: number[];
+    /**
+     * - List of all item sizes on which offer is applicable
+     */
+    item_size?: string[];
+    /**
+     * - List of all company ids on which offer
+     * is applicable
+     */
+    item_company?: number[];
+    /**
+     * - List of all product tags on which offer is
+     * applicable
+     */
+    item_tags?: string[];
+    cart_quantity?: CompareObject;
+    cart_total?: CompareObject;
+    /**
+     * - List of all L1 categories
+     * on which offer is not applicable
+     */
+    item_exclude_l1_category?: number[];
+    /**
+     * - List of all L2 categories
+     * on which offer is not applicable
+     */
+    item_exclude_l2_category?: number[];
+    /**
+     * - List of all L3 categories on
+     * which offer is not applicable
+     */
+    item_exclude_category?: number[];
+    cart_unique_item_quantity?: CompareObject;
+    cart_unique_item_amount?: CompareObject;
+    /**
+     * - List of all department ids
+     * on which offer is not applicable
+     */
+    item_exclude_department?: number[];
+    /**
+     * - List of all item store ids on
+     * which offer is not applicable
+     */
+    item_exclude_store?: number[];
+    /**
+     * - List of all brand ids on which
+     * offer is not applicable
+     */
+    item_exclude_brand?: number[];
+    /**
+     * - List of all item sku on which offer
+     * is not applicable
+     */
+    item_exclude_sku?: string[];
+    /**
+     * - List of all company id on which
+     * offer is not applicable
+     */
+    item_exclude_company?: number[];
+    /**
+     * - List of all zones on which offer is applicable
+     */
+    available_zones?: string[];
+    /**
+     * - List of all item ids on which offer
+     * is not applicable
+     */
+    item_exclude_id?: number[];
+    /**
+     * - List of buy rules that is applicable for this offer
+     */
+    buy_rules?: string[];
+    item_size_mapping?: ItemSizeMapping;
+};
+/** @returns {DiscountRuleOffer} */
+declare function DiscountRuleOffer(): DiscountRuleOffer;
+type DiscountRuleOffer = {
+    /**
+     * - Maximum discount amount in offer
+     */
+    max_discount_amount?: number;
+    /**
+     * - Discount price in offer
+     */
+    discount_price?: number;
+    /**
+     * - Flag to distribute discount for each article
+     */
+    apportion_discount?: boolean;
+    /**
+     * - Flag indicated return the product partially
+     */
+    partial_can_ret?: boolean;
+    /**
+     * - Maximum usage per transaction in offer
+     */
+    max_usage_per_transaction?: number;
+    /**
+     * - Minimum quantity of offer in offer
+     */
+    min_offer_quantity?: number;
+    /**
+     * - Discount amount in offer
+     */
+    discount_amount?: number;
+    /**
+     * - Discount percentage in offer
+     */
+    discount_percentage?: number;
+    /**
+     * - Maximum quantity of product in offer
+     */
+    max_offer_quantity?: number;
+};
+/** @returns {OfferDiscountRule} */
+declare function OfferDiscountRule(): OfferDiscountRule;
+type OfferDiscountRule = {
+    /**
+     * - The type of discount in offer
+     */
+    discount_type?: string;
+    /**
+     * - Points to buy rule in offer. One
+     * discount rule can only point to one buy rule.
+     */
+    buy_condition?: string;
+    item_criteria?: OfferItemCriteria;
+    offer?: DiscountRuleOffer;
+    /**
+     * - Flag is true then use coupon applicable
+     * articles for calculation
+     */
+    is_exact?: boolean;
+};
+/** @returns {OfferUsesRemaining} */
+declare function OfferUsesRemaining(): OfferUsesRemaining;
+type OfferUsesRemaining = {
+    /**
+     * - Define total offer count per user
+     */
+    user?: number;
+    /**
+     * - Define total offer count
+     */
+    total?: number;
+    /**
+     * - Define offer count associated with application id
+     */
+    app?: number;
+};
+/** @returns {OfferUsesRestriction} */
+declare function OfferUsesRestriction(): OfferUsesRestriction;
+type OfferUsesRestriction = {
+    maximum?: OfferUsesRemaining;
+    remaining?: OfferUsesRemaining;
+};
+/** @returns {OfferRestrictionFulfillmentOptions} */
+declare function OfferRestrictionFulfillmentOptions(): OfferRestrictionFulfillmentOptions;
+type OfferRestrictionFulfillmentOptions = {
+    /**
+     * - Fulfillment option id
+     */
+    fulfillment_slug: string;
+    /**
+     * - List of zones ids on which offer is applicable.
+     */
+    zones?: string[];
+};
+/** @returns {OfferRestrictions} */
+declare function OfferRestrictions(): OfferRestrictions;
+type OfferRestrictions = {
+    uses?: OfferUsesRestriction;
+    post_order?: PostOrder;
+    /**
+     * - List of platform on which offer allowed
+     * like web, android
+     */
+    platforms?: string[];
+    payments?: PaymentModes;
+    /**
+     * - List of store id on which offer is allowed
+     */
+    ordering_stores?: number[];
+    /**
+     * - Prmomotion offer max order count
+     */
+    order_quantity?: number;
+    user?: OfferUser;
+    /**
+     * - Allow offer to be applied on
+     * multiple stores
+     */
+    multi_store_allowed?: boolean;
+    /**
+     * - List
+     * of fulfillment options on which offer is applicable.
+     */
+    fulfillment_options?: OfferRestrictionFulfillmentOptions[];
+};
+/** @returns {OfferDisplayMeta} */
+declare function OfferDisplayMeta(): OfferDisplayMeta;
+type OfferDisplayMeta = {
+    /**
+     * - Detail about the offers
+     */
+    description: string;
+    /**
+     * - Coupon offer will be displayed or hidden
+     * on UI based on this flag
+     */
+    is_display?: boolean;
+    /**
+     * - Determines if coupon offer is publicaly
+     * available or not
+     */
+    is_public?: boolean;
+    /**
+     * - Name of offer that needs to display
+     */
+    name: string;
+    /**
+     * - Promotion offer text used to display
+     */
+    offer_text?: string;
+    /**
+     * - Offer label of promotion that needs to display
+     */
+    offer_label?: string;
+    /**
+     * - Reason for offer rejection
+     */
+    reason?: string;
+};
+/** @returns {OfferCouponConfiguration} */
+declare function OfferCouponConfiguration(): OfferCouponConfiguration;
+type OfferCouponConfiguration = {
+    /**
+     * - Total number of coupons to be generated
+     * when coupon type is bulk
+     */
+    coupon_count?: number;
+    /**
+     * - Bulk coupon code prefix string. All
+     * coupons will be generated with this prefix.
+     */
+    coupon_prefix?: string;
+    /**
+     * - The type of coupon like bulk or single.
+     */
+    coupon_type: string;
+};
+/** @returns {OfferOwnership} */
+declare function OfferOwnership(): OfferOwnership;
+type OfferOwnership = {
+    /**
+     * - Promotion amount payable category
+     */
+    payable_category: string;
+    /**
+     * - Promotion amount bearable party
+     */
+    payable_by?: string;
+};
+/** @returns {OfferSchema} */
+declare function OfferSchema(): OfferSchema;
+type OfferSchema = {
+    /**
+     * - Unique identifier of offer. This will be auto
+     * generated upon successful offer creation.
+     */
+    _id?: string;
+    /**
+     * - Offer mode, like coupon or promotion
+     */
+    mode: string;
+    /**
+     * - Indicates whether the offer is
+     * automatically applied. This flag is false for coupons and true for
+     * promotions. For free-gift promotions, a false value means manual gift
+     * selection is required.
+     */
+    auto_apply?: boolean;
+    /**
+     * - Application id through which offer was created.
+     */
+    application_id?: string;
+    /**
+     * - Company id through which offer was created.
+     */
+    company_id?: string;
+    /**
+     * - Discount rules based on
+     * which offer will be applied
+     */
+    discount_rules?: OfferDiscountRule[];
+    /**
+     * - Contains the individual buy rules associated
+     * with the offer. The keys in this object are dynamic (e.g., 'rule#1',
+     * 'rule#2', etc.), and each key must correspond to a buy condition referenced
+     * within `discount_rules`. For example, if a discount rule includes a
+     * buy_condition '(rule#1)', then 'rule#1' must be defined in this object.
+     * Each rule key value must follow the format of OfferItemCriteria schema.
+     */
+    buy_rules?: any;
+    restrictions?: OfferRestrictions;
+    display_meta: OfferDisplayMeta;
+    ownership?: OfferOwnership;
+    author?: OfferAuthor;
+    date_meta?: OfferDateMeta;
+    _schedule?: OfferSchedule;
+    /**
+     * - Set extra properties in offer
+     */
+    _custom_json?: any;
+    /**
+     * - Boolean value set true to apply other
+     * promotions as well.
+     */
+    stackable?: boolean;
+    /**
+     * - Status of the offer
+     */
+    status: string;
+    /**
+     * - Determines whether the offer is published to
+     * customers or marked inactive
+     */
+    published: boolean;
+    /**
+     * - Different types of offers available in the system.
+     * This is used to determine the type of offer and the calculation of the
+     * offer. Some types are mode specific, few examples are :> -
+     * free_item_discount_absolute is only applicable for coupon mode -
+     * contract_price, shipping_price, free_gift_items, cashback, free_items,
+     * free_non_sellable_items, external_price_adjustment_discount, custom is only
+     * applicable for promotion mode
+     */
+    type: string;
+    /**
+     * - Defines the priority of the offer. Its
+     * behavior varies based on the offer type. For coupons, a higher priority
+     * value means the coupon will appear higher in the listing order. For
+     * promotions, this value determines the sequence in which promotions are
+     * evaluated and applied. Promotions are evaluated in descending order of
+     * their effective priority. In case of conflicting priorities, the offer will
+     * be prioritised on the basis of creation order (desc).
+     */
+    priority?: number;
+    /**
+     * - Flag to determine if coupon is
+     * exclusive. Exclusive coupon removes other applied offers from the cart. If
+     * both `is_exclusive_coupon` and `apply_exclusive` are set,
+     * `is_exclusive_coupon` takes priority for offer evaluation logic effectively
+     * making the offer exclusive.
+     */
+    is_exclusive_coupon?: boolean;
+    /**
+     * - Controls how this offer excludes other
+     * offers when it is applied. When this offer is applied at cart level, no
+     * other promotions are evaluated or applied for the same cart (it becomes the
+     * only active promotion for that cart). When this offer is applied on
+     * specific articles, those articles will not be eligible for any other
+     * promotions, but other promotions can still apply to different articles in
+     * the cart. If null, the offer follows the normal stacking rules and does not
+     * enforce additional exclusivity.
+     */
+    apply_exclusive?: string;
+    /**
+     * - Article Price on which offer is
+     * calculated, like effective price or marked price. Only available for few
+     * supported types lile Contract pricing and Ladder pricing.
+     */
+    calculate_on?: string;
+    /**
+     * - The type of promotion group
+     */
+    promo_group?: string;
+    /**
+     * - ISO 4217 currency code in which the offer's
+     * discount amounts and calculations are specified (e.g., "INR", "USD",
+     * "EUR"). This currency is used as the base currency for discount
+     * calculations and currency conversions when applying the offer. If not
+     * provided, defaults to the seller's default currency code. All discount
+     * values in discount_rules are interpreted in this currency.
+     */
+    currency?: string;
+    /**
+     * - Unique identifier code for the offer. For coupons
+     * (i.e mode = "coupon"), this is the coupon code that users enter to apply
+     * the offer (e.g., "SAVE20", "WELCOME50"). For promotions (mode =
+     * "promotion"), this field is typically null or empty as promotions are
+     * auto-applied. This code is used to fetch and identify offers when applying
+     * them to carts. Must be unique within an application_id. For bulk coupons,
+     * this is auto-generated based on coupon_config.coupon_prefix.
+     */
+    code?: string;
+    coupon_config?: OfferCouponConfiguration;
+    /**
+     * - Flag to verify if promotion is ready to
+     * be applied on cart and ready to update promotion
+     */
+    is_processed?: boolean;
+    /**
+     * - Flag to determine if any bank offer is applicable
+     */
+    is_bank_offer?: boolean;
+};
+/** @returns {OfferPartialUpdate} */
+declare function OfferPartialUpdate(): OfferPartialUpdate;
+type OfferPartialUpdate = {
+    schedule?: PromotionSchedule;
+};
+/** @returns {OfferAuthor} */
+declare function OfferAuthor(): OfferAuthor;
+type OfferAuthor = {
+    /**
+     * - The user id of user, who has created the offer
+     */
+    created_by?: string;
+    /**
+     * - The user id of user, who has modified the offer
+     */
+    modified_by?: string;
+    /**
+     * - The user id of user, who has approved the offer
+     */
+    approved_by?: string;
+    /**
+     * - The user id of user, who has rejected the offer
+     */
+    rejected_by?: string;
+};
+/** @returns {OfferDateMeta} */
+declare function OfferDateMeta(): OfferDateMeta;
+type OfferDateMeta = {
+    /**
+     * - Date time format when the offer last modified
+     */
+    modified_on?: string;
+    /**
+     * - Date time format when the offer created
+     */
+    created_on?: string;
+    /**
+     * - Date time format when the offer approved
+     */
+    approved_on?: string;
+    /**
+     * - Date time format when the offer rejected
+     */
+    rejected_on?: string;
+};
+/** @returns {NextScheduleItems} */
+declare function NextScheduleItems(): NextScheduleItems;
+type NextScheduleItems = {
+    /**
+     * - Start date of schedule
+     */
+    start?: string;
+    /**
+     * - End date of schedule
+     */
+    end?: string;
+};
+/** @returns {OfferSchedule} */
+declare function OfferSchedule(): OfferSchedule;
+type OfferSchedule = {
+    /**
+     * - The end date and time until which the offer remains valid.
+     */
+    end: string;
+    /**
+     * - The start date and time from which the offer becomes valid.
+     */
+    start: string;
+    /**
+     * - A auto generated list of
+     * date-time entries based on start, end, cron and duration data on which the
+     * offer is scheduled to activate in the future.
+     */
+    next_schedule?: NextScheduleItems[];
+    /**
+     * - A cron expression used to schedule the offer to
+     * activate periodically. When cron is null or not provided, duration is optional.
+     */
+    cron?: string;
+    /**
+     * - Duration of the offer activation in seconds.
+     * Mandatory when cron is provided.
+     */
+    duration?: number;
+};
+/** @returns {OfferListItem} */
+declare function OfferListItem(): OfferListItem;
+type OfferListItem = {
+    /**
+     * - Offer mode, like coupon or promotion
+     */
+    mode?: string;
+    /**
+     * - Type of the offer
+     */
+    type?: string;
+    /**
+     * - Status of the offer
+     */
+    status?: string;
+    /**
+     * - Determines whether the offer is published
+     * to customers or marked inactive
+     */
+    published?: boolean;
+    display_meta?: OfferDisplayMeta;
+    author?: OfferAuthor;
+    date_meta?: OfferDateMeta;
+    schedule?: OfferSchedule;
+};
+/** @returns {OfferListResult} */
+declare function OfferListResult(): OfferListResult;
+type OfferListResult = {
+    /**
+     * - List of offers
+     */
+    items?: OfferListItem[];
+    page?: Page;
 };

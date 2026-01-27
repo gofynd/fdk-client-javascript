@@ -866,8 +866,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeDetails>} -
-   *   Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentModeConfig>} - Success response
    * @name getMerchantAggregatorPaymentModeDetails
    * @summary: Get merchant aggregator and their payment mode
    * @description: Get available payment gateways and payment mode and it's sub payment mode details like for razorpay their active/inactive payment modes netbanking , wallet, upi are shown.  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getMerchantAggregatorPaymentModeDetails/).
@@ -931,10 +930,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PlatformPaymentModeDetails().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentPlatformModel.PaymentModeConfig().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2972,6 +2971,89 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > saveBrandPaymentGatewayConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.SaveTokenForAggregatorParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.OperationResponseSchema>} - Success response
+   * @name saveTokenForAggregator
+   * @summary: Save token details for a payment aggregator
+   * @description: Save token and verification status for a specific payment aggregator, such as Apple Pay or others. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/saveTokenForAggregator/).
+   */
+  async saveTokenForAggregator(
+    { aggregatorId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.saveTokenForAggregator().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.saveTokenForAggregator().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > saveTokenForAggregator \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregators/${aggregatorId}/token`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.OperationResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > saveTokenForAggregator \n ${res_error}`,
         });
       }
     }

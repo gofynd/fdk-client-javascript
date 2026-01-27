@@ -20,6 +20,7 @@ declare class Content {
         getLandingPage: string;
         getLegalInformation: string;
         getNavigations: string;
+        getOrderTranslation: string;
         getPage: string;
         getPages: string;
         getSEOConfiguration: string;
@@ -48,7 +49,7 @@ declare class Content {
      * @summary: Post Resource Translations
      * @description: Submit and retrieve translations for resources using payload data and locale settings. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/fetchResourceTranslationsWithPayload/).
      */
-    fetchResourceTranslationsWithPayload({ type, locale, resourceId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ResourceTranslations>;
+    fetchResourceTranslationsWithPayload({ type, locale, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ResourceTranslations>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -184,6 +185,15 @@ declare class Content {
      * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getNavigations/).
      */
     getNavigations({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<NavigationGetDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<TranslationResult>} - Success response
+     * @name getOrderTranslation
+     * @summary: Get Order Translations
+     * @description: Retrieves translated  information for orders or shipments. This endpoint processes the order/shipment payload and returns the same structure with translated  details including names, brands, categories, and other localized content. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getOrderTranslation/).
+     */
+    getOrderTranslation({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TranslationResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

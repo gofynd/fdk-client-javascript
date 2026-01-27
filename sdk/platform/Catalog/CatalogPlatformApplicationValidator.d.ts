@@ -56,6 +56,10 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
+ * @typedef CreatePriceFactoryParam
+ * @property {CatalogPlatformModel.CreatePriceFactoryConfigSchema} body
+ */
+/**
  * @typedef CreateSearchConfigurationParam
  * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
  */
@@ -85,6 +89,11 @@ export = CatalogPlatformApplicationValidator;
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
+ */
+/**
+ * @typedef DeletePriceFactoryParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular price factory configuration.
  */
 /** @typedef DeleteSearchConfigurationParam */
 /**
@@ -159,6 +168,10 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef GetAppProductParam
  * @property {string} itemId - Product id for a particular product.
+ */
+/**
+ * @typedef GetAppProductPricesParam
+ * @property {number[]} itemIds - List of item IDs for which to retrieve pricing.
  */
 /**
  * @typedef GetAppProductsParam
@@ -257,9 +270,10 @@ export = CatalogPlatformApplicationValidator;
  *   details. This flag is used to fetch all filters
  * @property {boolean} [isDependent] - This query parameter is used to get the
  *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
+ * @property {string} [sortOn] - The order to sort the list of products on.
+ *   Supported values include latest, popular, price_asc, price_dsc,
+ *   discount_asc, discount_dsc. Custom sort keys configured via listing
+ *   configuration (e.g., best_selling) are also supported for cohort-based sorting.
  * @property {string} [pageId] - Each response will contain **page_id** param,
  *   which should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -366,6 +380,44 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [search] - Get configuration list filtered by `search` string.
  */
 /**
+ * @typedef GetPriceFactoriesParam
+ * @property {string} [q] - Optional q to filter price factories by name.
+ */
+/**
+ * @typedef GetPriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be retrieved.
+ */
+/**
+ * @typedef GetPriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular sale channel.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
+ */
+/**
+ * @typedef GetPriceFactoryProductsParam
+ * @property {string} priceFactoryId - A `price_factory_id` uniquely identifies
+ *   a price factory configuration for a specific application.
+ * @property {number[]} [brandIds] - Optional list of brand IDs to filter price
+ *   factories associated with specific brands.
+ * @property {number[]} [categoryIds] - Optional list of category IDs to filter
+ *   price factories related to specific product categories.
+ * @property {string} [sellerIdentifier] - Optional seller identifier to filter
+ *   price factories associated with a particular seller.
+ * @property {string} [itemCode] - Optional item code to filter price factories
+ *   configured for a specific product code.
+ * @property {string} [slug] - Optional slug to filter price factories by product slug.
+ * @property {string} [name] - Optional name to filter price factories by
+ *   product or configuration name.
+ * @property {boolean} [active] - Optional name to filter price factories by
+ *   product status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ */
+/**
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
@@ -455,6 +507,20 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
+ * @typedef UpdatePriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be updated.
+ * @property {CatalogPlatformModel.UpdatePriceFactoryConfigSchema} body
+ */
+/**
+ * @typedef UpdatePriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a specific price factory configuration.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
+ * @property {CatalogPlatformModel.UpsertPriceFactoryProductSchema} body
+ */
+/**
  * @typedef UpdateSearchConfigurationParam
  * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
  */
@@ -485,6 +551,8 @@ declare class CatalogPlatformApplicationValidator {
     static createGroupConfiguration(): CreateGroupConfigurationParam;
     /** @returns {CreateListingConfigurationParam} */
     static createListingConfiguration(): CreateListingConfigurationParam;
+    /** @returns {CreatePriceFactoryParam} */
+    static createPriceFactory(): CreatePriceFactoryParam;
     /** @returns {CreateSearchConfigurationParam} */
     static createSearchConfiguration(): CreateSearchConfigurationParam;
     /** @returns {DeleteAppCategoryReturnConfigurationParam} */
@@ -497,6 +565,8 @@ declare class CatalogPlatformApplicationValidator {
     static deleteGroupConfiguration(): DeleteGroupConfigurationParam;
     /** @returns {DeleteListingConfigurationParam} */
     static deleteListingConfiguration(): DeleteListingConfigurationParam;
+    /** @returns {DeletePriceFactoryParam} */
+    static deletePriceFactory(): DeletePriceFactoryParam;
     /** @returns {DeleteSearchConfigurationParam} */
     static deleteSearchConfiguration(): any;
     /** @returns {DeleteSearchKeywordsParam} */
@@ -515,6 +585,8 @@ declare class CatalogPlatformApplicationValidator {
     static getAppLocations(): GetAppLocationsParam;
     /** @returns {GetAppProductParam} */
     static getAppProduct(): GetAppProductParam;
+    /** @returns {GetAppProductPricesParam} */
+    static getAppProductPrices(): GetAppProductPricesParam;
     /** @returns {GetAppProductsParam} */
     static getAppProducts(): GetAppProductsParam;
     /** @returns {GetAppReturnConfigurationParam} */
@@ -563,6 +635,14 @@ declare class CatalogPlatformApplicationValidator {
     static getGroupConfigurations(): GetGroupConfigurationsParam;
     /** @returns {GetListingConfigurationsParam} */
     static getListingConfigurations(): GetListingConfigurationsParam;
+    /** @returns {GetPriceFactoriesParam} */
+    static getPriceFactories(): GetPriceFactoriesParam;
+    /** @returns {GetPriceFactoryParam} */
+    static getPriceFactory(): GetPriceFactoryParam;
+    /** @returns {GetPriceFactoryProductParam} */
+    static getPriceFactoryProduct(): GetPriceFactoryProductParam;
+    /** @returns {GetPriceFactoryProductsParam} */
+    static getPriceFactoryProducts(): GetPriceFactoryProductsParam;
     /** @returns {GetProductDetailBySlugParam} */
     static getProductDetailBySlug(): GetProductDetailBySlugParam;
     /** @returns {GetQueryFiltersParam} */
@@ -599,13 +679,17 @@ declare class CatalogPlatformApplicationValidator {
     static updateGroupConfiguration(): UpdateGroupConfigurationParam;
     /** @returns {UpdateListingConfigurationParam} */
     static updateListingConfiguration(): UpdateListingConfigurationParam;
+    /** @returns {UpdatePriceFactoryParam} */
+    static updatePriceFactory(): UpdatePriceFactoryParam;
+    /** @returns {UpdatePriceFactoryProductParam} */
+    static updatePriceFactoryProduct(): UpdatePriceFactoryProductParam;
     /** @returns {UpdateSearchConfigurationParam} */
     static updateSearchConfiguration(): UpdateSearchConfigurationParam;
     /** @returns {UpdateSearchKeywordsParam} */
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, FollowProductByIdParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetFollowedProductsParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UnfollowProductByIdParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreatePriceFactoryParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeletePriceFactoryParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, FollowProductByIdParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductPricesParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetFollowedProductsParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetPriceFactoriesParam, GetPriceFactoryParam, GetPriceFactoryProductParam, GetPriceFactoryProductsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UnfollowProductByIdParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdatePriceFactoryParam, UpdatePriceFactoryProductParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -686,6 +770,9 @@ type CreateListingConfigurationParam = {
     configType: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
+type CreatePriceFactoryParam = {
+    body: CatalogPlatformModel.CreatePriceFactoryConfigSchema;
+};
 type CreateSearchConfigurationParam = {
     body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema;
 };
@@ -728,6 +815,13 @@ type DeleteListingConfigurationParam = {
      * particular configuration.
      */
     configId: string;
+};
+type DeletePriceFactoryParam = {
+    /**
+     * - A `price_factory_id` is a unique
+     * identifier for a particular price factory configuration.
+     */
+    priceFactoryId: string;
 };
 type DeleteSearchKeywordsParam = {
     /**
@@ -895,6 +989,12 @@ type GetAppProductParam = {
      * - Product id for a particular product.
      */
     itemId: string;
+};
+type GetAppProductPricesParam = {
+    /**
+     * - List of item IDs for which to retrieve pricing.
+     */
+    itemIds: number[];
 };
 type GetAppProductsParam = {
     /**
@@ -1090,9 +1190,10 @@ type GetApplicationProductsParam = {
      */
     isDependent?: boolean;
     /**
-     * - The order to sort the list of products on. The
-     * supported sort parameters are popularity, price, redemption and discount in
-     * either ascending or descending order. See the supported values below.
+     * - The order to sort the list of products on.
+     * Supported values include latest, popular, price_asc, price_dsc,
+     * discount_asc, discount_dsc. Custom sort keys configured via listing
+     * configuration (e.g., best_selling) are also supported for cohort-based sorting.
      */
     sortOn?: string;
     /**
@@ -1296,6 +1397,82 @@ type GetListingConfigurationsParam = {
      */
     search?: string;
 };
+type GetPriceFactoriesParam = {
+    /**
+     * - Optional q to filter price factories by name.
+     */
+    q?: string;
+};
+type GetPriceFactoryParam = {
+    /**
+     * - Unique identifier of the specific price
+     * factory to be retrieved.
+     */
+    priceFactoryId: string;
+};
+type GetPriceFactoryProductParam = {
+    /**
+     * - A `price_factory_id` is a unique
+     * identifier for a particular sale channel.
+     */
+    priceFactoryId: string;
+    /**
+     * - A `item_id` is a unique identifier for a
+     * particular product.
+     */
+    itemId: number;
+};
+type GetPriceFactoryProductsParam = {
+    /**
+     * - A `price_factory_id` uniquely identifies
+     * a price factory configuration for a specific application.
+     */
+    priceFactoryId: string;
+    /**
+     * - Optional list of brand IDs to filter price
+     * factories associated with specific brands.
+     */
+    brandIds?: number[];
+    /**
+     * - Optional list of category IDs to filter
+     * price factories related to specific product categories.
+     */
+    categoryIds?: number[];
+    /**
+     * - Optional seller identifier to filter
+     * price factories associated with a particular seller.
+     */
+    sellerIdentifier?: string;
+    /**
+     * - Optional item code to filter price factories
+     * configured for a specific product code.
+     */
+    itemCode?: string;
+    /**
+     * - Optional slug to filter price factories by product slug.
+     */
+    slug?: string;
+    /**
+     * - Optional name to filter price factories by
+     * product or configuration name.
+     */
+    name?: string;
+    /**
+     * - Optional name to filter price factories by
+     * product status.
+     */
+    active?: boolean;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+};
 type GetProductDetailBySlugParam = {
     /**
      * - The unique identifier of a product. i.e; `slug` of
@@ -1411,6 +1588,27 @@ type UpdateListingConfigurationParam = {
      */
     configId: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
+};
+type UpdatePriceFactoryParam = {
+    /**
+     * - Unique identifier of the specific price
+     * factory to be updated.
+     */
+    priceFactoryId: string;
+    body: CatalogPlatformModel.UpdatePriceFactoryConfigSchema;
+};
+type UpdatePriceFactoryProductParam = {
+    /**
+     * - A `price_factory_id` is a unique
+     * identifier for a specific price factory configuration.
+     */
+    priceFactoryId: string;
+    /**
+     * - A `item_id` is a unique identifier for a
+     * particular product.
+     */
+    itemId: number;
+    body: CatalogPlatformModel.UpsertPriceFactoryProductSchema;
 };
 type UpdateSearchConfigurationParam = {
     body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema;

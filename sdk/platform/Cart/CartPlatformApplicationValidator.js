@@ -23,6 +23,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef ApplyCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -53,6 +56,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef CheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {CartPlatformModel.OpenApiPlatformCheckoutReq} body
  */
 
@@ -64,6 +70,11 @@ const CartPlatformModel = require("./CartPlatformModel");
 /**
  * @typedef CreateCouponParam
  * @property {CartPlatformModel.CouponAdd} body
+ */
+
+/**
+ * @typedef CreateOfferParam
+ * @property {CartPlatformModel.OfferSchema} body
  */
 
 /**
@@ -79,6 +90,11 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef DeleteCouponParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef DeleteOfferParam
  * @property {string} id
  */
 
@@ -156,6 +172,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {string} [userId] - Option to fetch cart for the provided user_id.
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -222,6 +241,33 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
+ */
+
+/**
+ * @typedef GetOfferByIdParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef GetOffersParam
+ * @property {number} [pageNo] - Current page no as per pagination
+ * @property {number} [pageSize] - Offers max records fetched in single request
+ * @property {string} [search] - Filter by offer name
+ * @property {string} [mode] - Filter by offer mode
+ * @property {string} [type] - Filter by offer type
+ * @property {string} [promoGroup]
+ * @property {boolean} [excludeContractOffers] - Filter non contract offers
+ * @property {string} [offerId] - Filter by offer id
+ * @property {string} [createdBy] - Filter by offer created by user id
+ * @property {string} [reviewedBy] - Filter by offer reviewer user id
+ * @property {string} [approvedStartTime] - Filter offer by start time date
+ *   range when status is in approved state
+ * @property {string} [approvedEndTime] - Filter offer by end time date range
+ *   when status is in approved state
+ * @property {string} [status] - Filter your offers effortlessly by status, such
+ *   as draft, review and more
+ * @property {string} [code] - Filter by offer code in case of coupons
+ * @property {boolean} [isPublic] - Filter offers which are public
  */
 
 /**
@@ -317,6 +363,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformAddItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -334,6 +383,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformCheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailCreation} body
  */
@@ -350,6 +402,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformUpdateCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -373,6 +428,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef RemoveCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [uid]
  * @property {boolean} [buyNow]
  */
@@ -386,6 +444,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef SelectAddressParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -397,6 +458,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef SelectPaymentModeParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -431,6 +495,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [xOrderingSource] - Identifier for the ordering source
  *   (e.g., web, mobile app, POS). Used to determine the origin of the order
  *   request and apply source-specific rules.
+ * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
+ *   operations on cross-platform anonymous cart. When enabled, the system
+ *   fetches the cart only based on cart_id instead of user_id.
  * @property {string} [id] - Unique identifier of the cart for which the breakup
  *   needs to be updated.
  * @property {boolean} [i] - Set to `true` to include all items currently added
@@ -479,6 +546,18 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef UpdateCouponPartiallyParam
  * @property {string} id
  * @property {CartPlatformModel.CouponPartialUpdate} body
+ */
+
+/**
+ * @typedef UpdateOfferParam
+ * @property {string} id
+ * @property {CartPlatformModel.OfferSchema} body
+ */
+
+/**
+ * @typedef UpdateOfferPartiallyParam
+ * @property {string} id
+ * @property {CartPlatformModel.OfferPartialUpdate} body
  */
 
 /**
@@ -555,6 +634,7 @@ class CartPlatformApplicationValidator {
   static applyCoupon() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       i: Joi.boolean(),
       b: Joi.boolean(),
@@ -591,6 +671,7 @@ class CartPlatformApplicationValidator {
   static checkoutCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       body: CartPlatformModel.OpenApiPlatformCheckoutReq().required(),
     }).required();
@@ -607,6 +688,13 @@ class CartPlatformApplicationValidator {
   static createCoupon() {
     return Joi.object({
       body: CartPlatformModel.CouponAdd().required(),
+    }).required();
+  }
+
+  /** @returns {CreateOfferParam} */
+  static createOffer() {
+    return Joi.object({
+      body: CartPlatformModel.OfferSchema().required(),
     }).required();
   }
 
@@ -627,6 +715,13 @@ class CartPlatformApplicationValidator {
 
   /** @returns {DeleteCouponParam} */
   static deleteCoupon() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteOfferParam} */
+  static deleteOffer() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -725,6 +820,7 @@ class CartPlatformApplicationValidator {
   static getCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       userId: Joi.string().allow(""),
@@ -804,6 +900,34 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetOfferByIdParam} */
+  static getOfferById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetOffersParam} */
+  static getOffers() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      search: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      promoGroup: Joi.string().allow(""),
+      excludeContractOffers: Joi.boolean(),
+      offerId: Joi.string().allow(""),
+      createdBy: Joi.string().allow(""),
+      reviewedBy: Joi.string().allow(""),
+      approvedStartTime: Joi.string().allow(""),
+      approvedEndTime: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      isPublic: Joi.boolean(),
     }).required();
   }
 
@@ -913,6 +1037,7 @@ class CartPlatformApplicationValidator {
   static platformAddItems() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       i: Joi.boolean(),
       b: Joi.boolean(),
@@ -927,6 +1052,7 @@ class CartPlatformApplicationValidator {
   static platformCheckoutCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       body: CartPlatformModel.PlatformCartCheckoutDetailCreation().required(),
@@ -947,6 +1073,7 @@ class CartPlatformApplicationValidator {
   static platformUpdateCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       i: Joi.boolean(),
@@ -969,6 +1096,7 @@ class CartPlatformApplicationValidator {
   static removeCoupon() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       uid: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -986,6 +1114,7 @@ class CartPlatformApplicationValidator {
   static selectAddress() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       cartId: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -999,6 +1128,7 @@ class CartPlatformApplicationValidator {
   static selectPaymentMode() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -1040,6 +1170,7 @@ class CartPlatformApplicationValidator {
   static updateCartBreakup() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       i: Joi.boolean(),
@@ -1096,6 +1227,22 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CartPlatformModel.CouponPartialUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateOfferParam} */
+  static updateOffer() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartPlatformModel.OfferSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateOfferPartiallyParam} */
+  static updateOfferPartially() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartPlatformModel.OfferPartialUpdate().required(),
     }).required();
   }
 

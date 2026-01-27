@@ -263,15 +263,24 @@ class Cart {
    * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/applyCoupon/).
    */
   async applyCoupon(
-    { body, xOrderingSource, i, b, p, id, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      i,
+      b,
+      p,
+      id,
+      buyNow,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.applyCoupon().validate(
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         i,
         b,
         p,
@@ -291,6 +300,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         i,
         b,
         p,
@@ -538,13 +548,16 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkoutCart/).
    */
   async checkoutCart(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, xAnonymousCart, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.checkoutCart().validate(
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -559,6 +572,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -758,6 +772,83 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > createCoupon \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.CreateOfferParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+   * @name createOffer
+   * @summary: Create an offer
+   * @description: Creates a new offer based on the selected offer type. Sellers can choose from multiple supported offer types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable offer criteria to meet specific business requirements. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/createOffer/).
+   */
+  async createOffer(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartPlatformApplicationValidator.createOffer().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.createOffer().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > createOffer \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.OfferSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > createOffer \n ${res_error}`,
         });
       }
     }
@@ -994,6 +1085,83 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > deleteCoupon \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.DeleteOfferParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
+   * @name deleteOffer
+   * @summary: Delete draft offer
+   * @description: Delete details of a draft offer by providing its unique identifier to delete information such as offer type, rules, validity period and other related information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/deleteOffer/).
+   */
+  async deleteOffer(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartPlatformApplicationValidator.deleteOffer().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.deleteOffer().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > deleteOffer \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.SuccessMessage().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > deleteOffer \n ${res_error}`,
         });
       }
     }
@@ -1836,6 +2004,7 @@ class Cart {
   async getCart(
     {
       xOrderingSource,
+      xAnonymousCart,
       id,
       userId,
       orderType,
@@ -1850,6 +2019,7 @@ class Cart {
     const { error } = CartPlatformApplicationValidator.getCart().validate(
       {
         xOrderingSource,
+        xAnonymousCart,
         id,
         userId,
         orderType,
@@ -1870,6 +2040,7 @@ class Cart {
     } = CartPlatformApplicationValidator.getCart().validate(
       {
         xOrderingSource,
+        xAnonymousCart,
         id,
         userId,
         orderType,
@@ -2615,6 +2786,220 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > getItemCount \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.GetOfferByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+   * @name getOfferById
+   * @summary: Get a specific offer
+   * @description: Retrieve details of a specific offer by providing its unique identifier to obtain information such as offer type, rules, validity period and other related information. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getOfferById/).
+   */
+  async getOfferById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartPlatformApplicationValidator.getOfferById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.getOfferById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > getOfferById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.OfferSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getOfferById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.GetOffersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.OfferListResult>} - Success response
+   * @name getOffers
+   * @summary: List of offers
+   * @description: Retrieve a list of all created offers for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized offers listing for streamlined navigation and management. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getOffers/).
+   */
+  async getOffers(
+    {
+      pageNo,
+      pageSize,
+      search,
+      mode,
+      type,
+      promoGroup,
+      excludeContractOffers,
+      offerId,
+      createdBy,
+      reviewedBy,
+      approvedStartTime,
+      approvedEndTime,
+      status,
+      code,
+      isPublic,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartPlatformApplicationValidator.getOffers().validate(
+      {
+        pageNo,
+        pageSize,
+        search,
+        mode,
+        type,
+        promoGroup,
+        excludeContractOffers,
+        offerId,
+        createdBy,
+        reviewedBy,
+        approvedStartTime,
+        approvedEndTime,
+        status,
+        code,
+        isPublic,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.getOffers().validate(
+      {
+        pageNo,
+        pageSize,
+        search,
+        mode,
+        type,
+        promoGroup,
+        excludeContractOffers,
+        offerId,
+        createdBy,
+        reviewedBy,
+        approvedStartTime,
+        approvedEndTime,
+        status,
+        code,
+        isPublic,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > getOffers \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search"] = search;
+    query_params["mode"] = mode;
+    query_params["type"] = type;
+    query_params["promo_group"] = promoGroup;
+    query_params["exclude_contract_offers"] = excludeContractOffers;
+    query_params["offer_id"] = offerId;
+    query_params["created_by"] = createdBy;
+    query_params["reviewed_by"] = reviewedBy;
+    query_params["approved_start_time"] = approvedStartTime;
+    query_params["approved_end_time"] = approvedEndTime;
+    query_params["status"] = status;
+    query_params["code"] = code;
+    query_params["is_public"] = isPublic;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.OfferListResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getOffers \n ${res_error}`,
         });
       }
     }
@@ -3561,9 +3946,17 @@ class Cart {
    * @description: Adds product items to a customer's shopping cart. If the customer does not have an existing cart, a new one is created automatically. - The `new_cart` flag forces creation of a new cart even if one already exists. - The `default_cart` flag determines whether the item is added to the user's default storefront-visible cart. If `true`, the item is added to the user's default cart that is accessible via the storefront. If `false`, an existing active cart is fetched if available; otherwise, a new hidden cart is created. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformAddItems/).
    */
   async platformAddItems(
-    { body, xOrderingSource, i, b, buyNow, orderType, id, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      i,
+      b,
+      buyNow,
+      orderType,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3572,6 +3965,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         i,
         b,
         buyNow,
@@ -3591,6 +3985,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         i,
         b,
         buyNow,
@@ -3661,7 +4056,9 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCart/).
    */
   async platformCheckoutCart(
-    { body, xOrderingSource, id, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, xAnonymousCart, id, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3670,6 +4067,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3685,6 +4083,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3831,9 +4230,17 @@ class Cart {
    * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformUpdateCart/).
    */
   async platformUpdateCart(
-    { body, xOrderingSource, id, i, orderType, b, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      id,
+      i,
+      orderType,
+      b,
+      buyNow,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3842,6 +4249,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         i,
         orderType,
@@ -3861,6 +4269,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         i,
         orderType,
@@ -4009,12 +4418,15 @@ class Cart {
    * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/removeCoupon/).
    */
   async removeCoupon(
-    { xOrderingSource, uid, buyNow, requestHeaders } = { requestHeaders: {} },
+    { xOrderingSource, xAnonymousCart, uid, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         xOrderingSource,
+        xAnonymousCart,
         uid,
         buyNow,
       },
@@ -4030,6 +4442,7 @@ class Cart {
     } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         xOrderingSource,
+        xAnonymousCart,
         uid,
         buyNow,
       },
@@ -4173,15 +4586,23 @@ class Cart {
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/selectAddress/).
    */
   async selectAddress(
-    { body, xOrderingSource, cartId, buyNow, i, b, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      cartId,
+      buyNow,
+      i,
+      b,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.selectAddress().validate(
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         cartId,
         buyNow,
         i,
@@ -4200,6 +4621,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         cartId,
         buyNow,
         i,
@@ -4266,9 +4688,15 @@ class Cart {
    * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, xOrderingSource, id, buyNow, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      id,
+      buyNow,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4277,6 +4705,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         buyNow,
         orderType,
@@ -4294,6 +4723,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         buyNow,
         orderType,
@@ -4611,9 +5041,16 @@ class Cart {
    * @description: Updates the cart breakup based on the enabled features and user preferences. This endpoint allows customers to modify how their cart totals are calculated — including options such as applying store credits, loyalty points, discounts, and other promotional benefits. The API recalculates and returns the updated breakup reflecting the selected configurations in real-time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCartBreakup/).
    */
   async updateCartBreakup(
-    { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      id,
+      i,
+      b,
+      buyNow,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4622,6 +5059,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         i,
         b,
@@ -4640,6 +5078,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
         id,
         i,
         b,
@@ -5187,6 +5626,168 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > updateCouponPartially \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.UpdateOfferParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.OfferSchema>} - Success response
+   * @name updateOffer
+   * @summary: Update existing offer
+   * @description: Update the details of an existing offer by specifying its unique identifier. This includes modifying offer attributes such as discount percentage, validity period, and associated conditions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateOffer/).
+   */
+  async updateOffer(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartPlatformApplicationValidator.updateOffer().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.updateOffer().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > updateOffer \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.OfferSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateOffer \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.UpdateOfferPartiallyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
+   * @name updateOfferPartially
+   * @summary: Partially update offer
+   * @description: Seller can make partial adjustments of an existing offer by specifying its unique identifier. It enables businesses to modify specific attributes of the offer while preserving other details intact. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateOfferPartially/).
+   */
+  async updateOfferPartially(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.updateOfferPartially().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.updateOfferPartially().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > updateOfferPartially \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${id}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.SuccessMessage().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateOfferPartially \n ${res_error}`,
         });
       }
     }

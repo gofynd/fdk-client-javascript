@@ -382,7 +382,9 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef StatuesRequestSchema
- * @property {string} [status] - The new status to be assigned to the shipment(s).
+ * @property {string} [status] - The new status to be assigned to a shipment.
+ *   Also, refer to the <a href='/commerce/getting-started/oms-states/'>OMS
+ *   States</a> for the complete status list.
  * @property {ShipmentsRequestSchema[]} [shipments] - A list of shipments to
  *   which the new status will be applied.
  * @property {string} [exclude_bags_next_state] - Specifies the state to which
@@ -2852,6 +2854,8 @@ export = OrderPlatformModel;
  * @property {string} [external_shipment_id] - Unique identifier for the
  *   shipment as assigned by an external system. Use this to map the external ID
  *   to Fynd's generated ID.
+ * @property {string} [invoice_id] - Indicates whether the order was created in
+ *   offline mode. Used to enable offline-specific processing and sync behavior.
  * @property {LineItemSchema[]} [line_items] - A list of items included in the shipment.
  * @property {OrderFulfillmentTimelineSchema} [order_fulfillment_timeline]
  * @property {number} [location_id] - The location ID from which this shipment
@@ -3041,6 +3045,8 @@ export = OrderPlatformModel;
  *   placed. Required when the order is placed from one company but fulfilled by another.
  * @property {boolean} [is_draft] - Indicates whether the order is a draft.
  *   Draft orders will be moved to upcoming state instead of placed status.
+ * @property {boolean} [is_offline_order] - Indicates whether the order is an
+ *   offline order placed through a physical store or offline channel.
  * @property {Object} [meta] - Metadata related to the order may include
  *   additional, dynamic information that provides further context about the
  *   order. This information can also be viewed on the Order or Shipment Details page.
@@ -6433,7 +6439,9 @@ type UpdateAddressRequestBody = {
 declare function StatuesRequestSchema(): StatuesRequestSchema;
 type StatuesRequestSchema = {
     /**
-     * - The new status to be assigned to the shipment(s).
+     * - The new status to be assigned to a shipment.
+     * Also, refer to the <a href='/commerce/getting-started/oms-states/'>OMS
+     * States</a> for the complete status list.
      */
     status?: string;
     /**
@@ -11326,6 +11334,11 @@ type CreateOrderShipmentSchema = {
      */
     external_shipment_id?: string;
     /**
+     * - Indicates whether the order was created in
+     * offline mode. Used to enable offline-specific processing and sync behavior.
+     */
+    invoice_id?: string;
+    /**
      * - A list of items included in the shipment.
      */
     line_items?: LineItemSchema[];
@@ -11783,6 +11796,11 @@ type CreateOrderRequestSchema = {
      * Draft orders will be moved to upcoming state instead of placed status.
      */
     is_draft?: boolean;
+    /**
+     * - Indicates whether the order is an
+     * offline order placed through a physical store or offline channel.
+     */
+    is_offline_order?: boolean;
     /**
      * - Metadata related to the order may include
      * additional, dynamic information that provides further context about the

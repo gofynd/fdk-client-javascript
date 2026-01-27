@@ -36,6 +36,8 @@ class Content {
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
       getNavigations: "/service/application/content/v1.0/navigations",
+      getOrderTranslation:
+        "/service/application/content/v1.0/resource/translations/orders",
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
@@ -118,7 +120,7 @@ class Content {
    * @description: Submit and retrieve translations for resources using payload data and locale settings. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/fetchResourceTranslationsWithPayload/).
    */
   async fetchResourceTranslationsWithPayload(
-    { type, locale, resourceId, body, requestHeaders } = { requestHeaders: {} },
+    { type, locale, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const errors = validateRequiredParams(arguments[0], ["type", "locale"]);
@@ -131,7 +133,6 @@ class Content {
     }
 
     const query_params = {};
-    query_params["resource_id"] = resourceId;
 
     const xHeaders = {};
 
@@ -781,6 +782,43 @@ class Content {
       }),
       query_params,
       undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<TranslationResult>} - Success response
+   * @name getOrderTranslation
+   * @summary: Get Order Translations
+   * @description: Retrieves translated  information for orders or shipments. This endpoint processes the order/shipment payload and returns the same structure with translated  details including names, brands, categories, and other localized content. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/content/getOrderTranslation/).
+   */
+  async getOrderTranslation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getOrderTranslation"],
+        params: {},
+      }),
+      query_params,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

@@ -429,6 +429,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetTaxVersionDetailsParam
  * @property {string} ruleId - The ID of the tax rule.
  * @property {string} [versionStatus] - Filter by tax version status.
+ * @property {string} [q] - Case-insensitive search by region name (e.g., "raj",
+ *   "New York") to find matching tax versions.
  * @property {string} [limit] - The number of items to return per page for
  *   paginated past versions.
  * @property {string} [page] - The page number for paginated past versions.
@@ -1124,6 +1126,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       ruleId: Joi.string().allow("").required(),
       versionStatus: Joi.string().allow(""),
+      q: Joi.string().allow(""),
       limit: Joi.string().allow(""),
       page: Joi.string().allow(""),
     }).required();

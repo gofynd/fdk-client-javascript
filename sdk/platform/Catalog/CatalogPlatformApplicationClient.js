@@ -871,6 +871,88 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.CreatePriceFactoryParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @name createPriceFactory
+   * @summary: Create a Price Factory for an Application
+   * @description: Creates a new price factory configuration for the specified application under a given company. A price factory allows defining region-based or international pricing strategies using fixed or percentage-based adjustments per currency.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createPriceFactory/).
+   */
+  async createPriceFactory(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.createPriceFactory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.createPriceFactory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createPriceFactory \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createPriceFactory \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.CreateSearchConfigurationParam} arg
    *   - Arg object
    *
@@ -1357,6 +1439,88 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > deleteListingConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.DeletePriceFactoryParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @name deletePriceFactory
+   * @summary: Delete a Price Factory Configuration
+   * @description: Deletes a specific price factory configuration associated with a given company and application.  This action is typically irreversible and will remove the pricing logic tied to the specified price factory ID.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deletePriceFactory/).
+   */
+  async deletePriceFactory(
+    { priceFactoryId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.deletePriceFactory().validate(
+      {
+        priceFactoryId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.deletePriceFactory().validate(
+      {
+        priceFactoryId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > deletePriceFactory \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deletePriceFactory \n ${res_error}`,
         });
       }
     }
@@ -2313,6 +2477,88 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getAppProduct \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetAppProductPricesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.AppProductPricesSchema>} - Success response
+   * @name getAppProductPrices
+   * @summary: Get prices for specific raw product items
+   * @description: Fetch pricing details for multiple raw products by their item IDs, scoped to a particular company and sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAppProductPrices/).
+   */
+  async getAppProductPrices(
+    { itemIds, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getAppProductPrices().validate(
+      {
+        itemIds,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getAppProductPrices().validate(
+      {
+        itemIds,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getAppProductPrices \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["item_ids"] = itemIds;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/raw-products/price`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.AppProductPricesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppProductPrices \n ${res_error}`,
         });
       }
     }
@@ -3454,9 +3700,9 @@ class Catalog {
    * @param {boolean} [arg.isDependent] - This query parameter is used to get
    *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
-   *   The supported sort parameters are popularity, price, redemption and
-   *   discount in either ascending or descending order. See the supported
-   *   values below.
+   *   Supported values include latest, popular, price_asc, price_dsc,
+   *   discount_asc, discount_dsc. Custom sort keys configured via listing
+   *   configuration (e.g., best_selling) are also supported for cohort-based sorting.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
    * @param {string[]} [arg.itemIds] - Item Ids of product
@@ -4843,6 +5089,380 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getListingConfigurations \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetPriceFactoriesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.PriceFactoryListResponseSchema>}
+   *   - Success response
+   *
+   * @name getPriceFactories
+   * @summary: Retrieve Price Factories for an Application
+   * @description: Fetches a paginated list of price factories configured for the specified application within a company. Supports optional filters such as brand IDs, category IDs, seller identifier, item code, slug, and name to narrow down the results.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactories/).
+   */
+  async getPriceFactories(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getPriceFactories().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getPriceFactories().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getPriceFactories \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/list`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.PriceFactoryListResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getPriceFactories \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetPriceFactoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.PriceFactoryConfigSchema>} -
+   *   Success response
+   * @name getPriceFactory
+   * @summary: Retrieve a Specific Price Factory Configuration
+   * @description: Retrieves detailed information about a specific price factory configuration  for the given application and company, using the unique price factory ID.  This includes currency strategies, adjustment values, zone mapping, and audit metadata.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactory/).
+   */
+  async getPriceFactory(
+    { priceFactoryId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getPriceFactory().validate(
+      {
+        priceFactoryId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getPriceFactory().validate(
+      {
+        priceFactoryId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getPriceFactory \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.PriceFactoryConfigSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getPriceFactory \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetPriceFactoryProductParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.PriceFactoryProductResponseSchema>}
+   *   - Success response
+   *
+   * @name getPriceFactoryProduct
+   * @summary: Update marketplace optin
+   * @description: get price related information of item for given price factory - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactoryProduct/).
+   */
+  async getPriceFactoryProduct(
+    { priceFactoryId, itemId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getPriceFactoryProduct().validate(
+      {
+        priceFactoryId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getPriceFactoryProduct().validate(
+      {
+        priceFactoryId,
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getPriceFactoryProduct \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}/products/${itemId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.PriceFactoryProductResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getPriceFactoryProduct \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetPriceFactoryProductsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.PriceFactoryProductListResponseSchema>}
+   *   - Success response
+   *
+   * @name getPriceFactoryProducts
+   * @summary: Get Products associated with a Price Factory
+   * @description: Retrieves a paginated list of products linked to a specific price factory configuration for the given application and company. This endpoint returns item-level details such as pricing by currency, delivery zones, seller identifiers, media, and size-level configurations. Useful for viewing how pricing strategies are applied across different items.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getPriceFactoryProducts/).
+   */
+  async getPriceFactoryProducts(
+    {
+      priceFactoryId,
+      brandIds,
+      categoryIds,
+      sellerIdentifier,
+      itemCode,
+      slug,
+      name,
+      active,
+      pageNo,
+      pageSize,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getPriceFactoryProducts().validate(
+      {
+        priceFactoryId,
+        brandIds,
+        categoryIds,
+        sellerIdentifier,
+        itemCode,
+        slug,
+        name,
+        active,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getPriceFactoryProducts().validate(
+      {
+        priceFactoryId,
+        brandIds,
+        categoryIds,
+        sellerIdentifier,
+        itemCode,
+        slug,
+        name,
+        active,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getPriceFactoryProducts \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["brand_ids"] = brandIds;
+    query_params["category_ids"] = categoryIds;
+    query_params["seller_identifier"] = sellerIdentifier;
+    query_params["item_code"] = itemCode;
+    query_params["slug"] = slug;
+    query_params["name"] = name;
+    query_params["active"] = active;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}/products`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.PriceFactoryProductListResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getPriceFactoryProducts \n ${res_error}`,
         });
       }
     }
@@ -6319,6 +6939,176 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > updateListingConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.UpdatePriceFactoryParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @name updatePriceFactory
+   * @summary: Update an Existing Price Factory Configuration
+   * @description: Allows partial update of an existing price factory configuration  for a specific application and company using the provided price factory ID.  Fields such as name, currencies, pricing strategies, or zone mapping can be modified.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updatePriceFactory/).
+   */
+  async updatePriceFactory(
+    { priceFactoryId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.updatePriceFactory().validate(
+      {
+        priceFactoryId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.updatePriceFactory().validate(
+      {
+        priceFactoryId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updatePriceFactory \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updatePriceFactory \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.UpdatePriceFactoryProductParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
+   * @name updatePriceFactoryProduct
+   * @summary: Partially update price factory product configuration
+   * @description: Updates specific fields in the price factory product configuration. Use this to partially update pricing or status for a given product and size without overwriting the entire configuration.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updatePriceFactoryProduct/).
+   */
+  async updatePriceFactoryProduct(
+    { priceFactoryId, itemId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.updatePriceFactoryProduct().validate(
+      {
+        priceFactoryId,
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.updatePriceFactoryProduct().validate(
+      {
+        priceFactoryId,
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updatePriceFactoryProduct \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price/${priceFactoryId}/products/${itemId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.SuccessResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updatePriceFactoryProduct \n ${res_error}`,
         });
       }
     }
