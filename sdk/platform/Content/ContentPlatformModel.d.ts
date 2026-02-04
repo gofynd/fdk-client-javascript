@@ -86,7 +86,7 @@ export = ContentPlatformModel;
  * @typedef SEOSchemaMarkupTemplate
  * @property {string} [id]
  * @property {string} [title]
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {string} [description]
  * @property {boolean} [active]
@@ -98,7 +98,7 @@ export = ContentPlatformModel;
 /**
  * @typedef SEOSchemaMarkupTemplateRequestBody
  * @property {string} [title]
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {string} [description]
  * @property {Object} [target_json]
@@ -143,7 +143,7 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef DefaultSEOSchemaMarkupTemplate
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {Object} [target_json]
  */
@@ -1623,7 +1623,8 @@ export = ContentPlatformModel;
  *   | "order-status"
  *   | "locate-us"
  *   | "single-page-checkout"
- *   | "request-reattempt"} PageType
+ *   | "request-reattempt"
+ *   | "files"} PageType
  */
 declare class ContentPlatformModel {
 }
@@ -1736,7 +1737,7 @@ declare function SEOSchemaMarkupTemplate(): SEOSchemaMarkupTemplate;
 type SEOSchemaMarkupTemplate = {
     id?: string;
     title?: string;
-    page_type?: string;
+    page_type?: PageType;
     schema?: string;
     description?: string;
     active?: boolean;
@@ -1749,7 +1750,7 @@ type SEOSchemaMarkupTemplate = {
 declare function SEOSchemaMarkupTemplateRequestBody(): SEOSchemaMarkupTemplateRequestBody;
 type SEOSchemaMarkupTemplateRequestBody = {
     title?: string;
-    page_type?: string;
+    page_type?: PageType;
     schema?: string;
     description?: string;
     target_json?: any;
@@ -1800,7 +1801,7 @@ type DefaultSchemaComponent = {
 /** @returns {DefaultSEOSchemaMarkupTemplate} */
 declare function DefaultSEOSchemaMarkupTemplate(): DefaultSEOSchemaMarkupTemplate;
 type DefaultSEOSchemaMarkupTemplate = {
-    page_type?: string;
+    page_type?: PageType;
     schema?: string;
     target_json?: any;
 };
@@ -4649,4 +4650,4 @@ type GenerationEntityType = "title" | "description";
  * @returns {PageType}
  */
 declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-email" | "profile-phone" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status" | "locate-us" | "single-page-checkout" | "request-reattempt";
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-email" | "profile-phone" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status" | "locate-us" | "single-page-checkout" | "request-reattempt" | "files";

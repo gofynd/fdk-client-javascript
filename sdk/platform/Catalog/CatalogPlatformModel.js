@@ -5411,7 +5411,8 @@ const Joi = require("joi");
  *   | "order-status"
  *   | "locate-us"
  *   | "single-page-checkout"
- *   | "request-reattempt"} PageType
+ *   | "request-reattempt"
+ *   | "files"} PageType
  */
 
 class CatalogPlatformModel {
@@ -11261,7 +11262,9 @@ class CatalogPlatformModel {
 
       "single-page-checkout",
 
-      "request-reattempt"
+      "request-reattempt",
+
+      "files"
     );
   }
 }

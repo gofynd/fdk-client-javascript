@@ -49,6 +49,7 @@ const AVAILABLE_PAGE_TYPE = {
   LOCATE_US: "locate-us",
   SINGLE_PAGE_CHECKOUT: "single-page-checkout",
   REQUEST_REATTEMPT: "request-reattempt",
+  FILES: "files",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -346,6 +347,16 @@ const NAVIGATORS = {
     params: [
       {
         key: "shipmentId",
+        required: true,
+      },
+    ],
+  },
+  files: {
+    name: "Files",
+    link: "/files/:file_name",
+    params: [
+      {
+        key: "file_name",
         required: true,
       },
     ],

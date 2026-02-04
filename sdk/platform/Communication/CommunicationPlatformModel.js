@@ -757,6 +757,8 @@ const Joi = require("joi");
  * @property {SendOtpCommsReqData} [data]
  * @property {SendOtpCommsReqSms} [sms]
  * @property {SendOtpCommsReqEmail} [email]
+ * @property {Object} [additional_variables] - Additional data in key-value
+ *   format where values can be of any type
  */
 
 /**
@@ -1992,6 +1994,7 @@ class CommunicationPlatformModel {
       data: CommunicationPlatformModel.SendOtpCommsReqData(),
       sms: CommunicationPlatformModel.SendOtpCommsReqSms(),
       email: CommunicationPlatformModel.SendOtpCommsReqEmail(),
+      additional_variables: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

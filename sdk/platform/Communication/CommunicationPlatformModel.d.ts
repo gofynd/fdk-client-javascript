@@ -662,6 +662,8 @@ export = CommunicationPlatformModel;
  * @property {SendOtpCommsReqData} [data]
  * @property {SendOtpCommsReqSms} [sms]
  * @property {SendOtpCommsReqEmail} [email]
+ * @property {Object} [additional_variables] - Additional data in key-value
+ *   format where values can be of any type
  */
 /**
  * @typedef SendOtpCommsRes
@@ -1708,6 +1710,11 @@ type SendOtpCommsReq = {
     data?: SendOtpCommsReqData;
     sms?: SendOtpCommsReqSms;
     email?: SendOtpCommsReqEmail;
+    /**
+     * - Additional data in key-value
+     * format where values can be of any type
+     */
+    additional_variables?: any;
 };
 /** @returns {SendOtpCommsRes} */
 declare function SendOtpCommsRes(): SendOtpCommsRes;

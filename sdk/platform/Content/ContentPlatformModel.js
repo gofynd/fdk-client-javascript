@@ -99,7 +99,7 @@ const Joi = require("joi");
  * @typedef SEOSchemaMarkupTemplate
  * @property {string} [id]
  * @property {string} [title]
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {string} [description]
  * @property {boolean} [active]
@@ -112,7 +112,7 @@ const Joi = require("joi");
 /**
  * @typedef SEOSchemaMarkupTemplateRequestBody
  * @property {string} [title]
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {string} [description]
  * @property {Object} [target_json]
@@ -163,7 +163,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DefaultSEOSchemaMarkupTemplate
- * @property {string} [page_type]
+ * @property {PageType} [page_type]
  * @property {string} [schema]
  * @property {Object} [target_json]
  */
@@ -1825,7 +1825,8 @@ const Joi = require("joi");
  *   | "order-status"
  *   | "locate-us"
  *   | "single-page-checkout"
- *   | "request-reattempt"} PageType
+ *   | "request-reattempt"
+ *   | "files"} PageType
  */
 
 class ContentPlatformModel {
@@ -1953,7 +1954,7 @@ class ContentPlatformModel {
     return Joi.object({
       id: Joi.string().allow(""),
       title: Joi.string().allow(""),
-      page_type: Joi.string().allow(""),
+      page_type: ContentPlatformModel.PageType(),
       schema: Joi.string().allow(""),
       description: Joi.string().allow(""),
       active: Joi.boolean(),
@@ -1968,7 +1969,7 @@ class ContentPlatformModel {
   static SEOSchemaMarkupTemplateRequestBody() {
     return Joi.object({
       title: Joi.string().allow(""),
-      page_type: Joi.string().allow(""),
+      page_type: ContentPlatformModel.PageType(),
       schema: Joi.string().allow(""),
       description: Joi.string().allow(""),
       target_json: Joi.object().pattern(/\S/, Joi.any()),
@@ -2033,7 +2034,7 @@ class ContentPlatformModel {
   /** @returns {DefaultSEOSchemaMarkupTemplate} */
   static DefaultSEOSchemaMarkupTemplate() {
     return Joi.object({
-      page_type: Joi.string().allow(""),
+      page_type: ContentPlatformModel.PageType(),
       schema: Joi.string().allow(""),
       target_json: Joi.object().pattern(/\S/, Joi.any()),
     });
@@ -4064,7 +4065,9 @@ class ContentPlatformModel {
 
       "single-page-checkout",
 
-      "request-reattempt"
+      "request-reattempt",
+
+      "files"
     );
   }
 }

@@ -330,8 +330,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
  * @typedef GetDefaultSEOMarkupSchemaParam
- * @property {string} [pageType] - The type of page against which schema
- *   template was created
+ * @property {ContentPlatformModel.PageType} [pageType] - The type of page
+ *   against which schema template was created
  */
 
 /**
@@ -1059,7 +1059,7 @@ class ContentPlatformApplicationValidator {
   /** @returns {GetDefaultSEOMarkupSchemaParam} */
   static getDefaultSEOMarkupSchema() {
     return Joi.object({
-      pageType: Joi.string().allow(""),
+      pageType: ContentPlatformModel.PageType(),
     }).required();
   }
 

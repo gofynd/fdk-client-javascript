@@ -269,8 +269,8 @@ export = ContentPlatformApplicationValidator;
 /** @typedef GetDefaultNavigationsParam */
 /**
  * @typedef GetDefaultSEOMarkupSchemaParam
- * @property {string} [pageType] - The type of page against which schema
- *   template was created
+ * @property {ContentPlatformModel.PageType} [pageType] - The type of page
+ *   against which schema template was created
  */
 /**
  * @typedef GetFaqByIdOrSlugParam
@@ -1023,10 +1023,10 @@ type GetDataLoadersByServiceParam = {
 };
 type GetDefaultSEOMarkupSchemaParam = {
     /**
-     * - The type of page against which schema
-     * template was created
+     * - The type of page
+     * against which schema template was created
      */
-    pageType?: string;
+    pageType?: ContentPlatformModel.PageType;
 };
 type GetFaqByIdOrSlugParam = {
     /**

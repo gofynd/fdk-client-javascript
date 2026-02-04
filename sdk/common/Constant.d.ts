@@ -49,6 +49,7 @@ export namespace AVAILABLE_PAGE_TYPE {
     const LOCATE_US: string;
     const SINGLE_PAGE_CHECKOUT: string;
     const REQUEST_REATTEMPT: string;
+    const FILES: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -308,6 +309,14 @@ export const NAVIGATORS: {
         link: string;
     };
     "request-reattempt": {
+        name: string;
+        link: string;
+        params: {
+            key: string;
+            required: boolean;
+        }[];
+    };
+    files: {
         name: string;
         link: string;
         params: {
