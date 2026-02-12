@@ -3117,8 +3117,8 @@ const Joi = require("joi");
  *   offline mode. Used to enable offline-specific processing and sync behavior.
  * @property {LineItemSchema[]} [line_items] - A list of items included in the shipment.
  * @property {OrderFulfillmentTimelineSchema} [order_fulfillment_timeline]
- * @property {number} [location_id] - The location ID from which this shipment
- *   is being fulfilled.
+ * @property {number} location_id - The location ID from which this shipment is
+ *   being fulfilled.
  * @property {string} [external_location_id] - The external location ID from
  *   which this shipment is being fulfilled.
  * @property {number} [return_location_id] - Overrides the article's default
@@ -8898,7 +8898,7 @@ class OrderPlatformModel {
       invoice_id: Joi.string().allow(""),
       line_items: Joi.array().items(OrderPlatformModel.LineItemSchema()),
       order_fulfillment_timeline: OrderPlatformModel.OrderFulfillmentTimelineSchema(),
-      location_id: Joi.number(),
+      location_id: Joi.number().required(),
       external_location_id: Joi.string().allow(""),
       return_location_id: Joi.number(),
       courier_partner_details: OrderPlatformModel.CourierPartnerDetailsSchema(),

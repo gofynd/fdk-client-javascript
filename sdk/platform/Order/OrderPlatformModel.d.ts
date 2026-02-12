@@ -2858,8 +2858,8 @@ export = OrderPlatformModel;
  *   offline mode. Used to enable offline-specific processing and sync behavior.
  * @property {LineItemSchema[]} [line_items] - A list of items included in the shipment.
  * @property {OrderFulfillmentTimelineSchema} [order_fulfillment_timeline]
- * @property {number} [location_id] - The location ID from which this shipment
- *   is being fulfilled.
+ * @property {number} location_id - The location ID from which this shipment is
+ *   being fulfilled.
  * @property {string} [external_location_id] - The external location ID from
  *   which this shipment is being fulfilled.
  * @property {number} [return_location_id] - Overrides the article's default
@@ -11344,10 +11344,10 @@ type CreateOrderShipmentSchema = {
     line_items?: LineItemSchema[];
     order_fulfillment_timeline?: OrderFulfillmentTimelineSchema;
     /**
-     * - The location ID from which this shipment
-     * is being fulfilled.
+     * - The location ID from which this shipment is
+     * being fulfilled.
      */
-    location_id?: number;
+    location_id: number;
     /**
      * - The external location ID from
      * which this shipment is being fulfilled.

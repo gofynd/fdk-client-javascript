@@ -1,4 +1,4 @@
-const { isAbsoluteURL, combineURLs } = require("./utils");
+const { isAbsoluteURL, combineURLs, isWebWorker } = require("./utils");
 const axios = require("axios").default;
 const querystring = require("query-string");
 const { sign } = require("@gofynd/fp-signature");
@@ -79,12 +79,19 @@ function requestInterceptorFn() {
     return config;
   };
 }
-const fdkAxios = axios.create({
+
+const axiosConfig = {
   withCredentials: true,
   paramsSerializer: (params) => {
     return querystring.stringify(params);
   },
-});
+};
+
+if (isWebWorker()) {
+  axiosConfig.adapter = "fetch";
+}
+
+const fdkAxios = axios.create(axiosConfig);
 
 // Generate Curl in debug mode
 fdkAxios.interceptors.request.use(

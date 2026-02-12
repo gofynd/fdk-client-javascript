@@ -7,7 +7,7 @@ export function findBestMatchingLink(allLinks?: any[], pathname?: string): {
     value: string;
     params: {};
 };
-export function convertStringToBase64(string: any): string;
+export function convertStringToBase64(string: any): any;
 export function isBrowser(): boolean;
 export function isNode(): boolean;
 export namespace NAV_TYPE {
@@ -29,3 +29,13 @@ export function combineURLs(baseURL: string, relativeURL: string): string;
  * @returns {boolean} True if the specified URL is absolute, otherwise false
  */
 export function isAbsoluteURL(url: string): boolean;
+/**
+ * Checks if the current execution context is a Web Worker (DedicatedWorker).
+ *
+ * This function determines whether the code is running inside a Dedicated Web
+ * Worker by verifying that the global `self` object exists, has a constructor,
+ * and that the constructor's name is "DedicatedWorkerGlobalScope".
+ *
+ * @returns {boolean} True if running in a Dedicated Web Worker, otherwise false.
+ */
+export function isWebWorker(): boolean;

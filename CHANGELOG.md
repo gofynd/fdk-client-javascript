@@ -1,3 +1,51 @@
+# CHANGE LOG (3.18.0) - 2.11.3
+
+## Application Client
+
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].meta</code> of schema <code>OrderInfo</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].meta</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].meta</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.meta</code> of schema <code>Shipments</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] <code>shipments[].location_id</code> made required in request body
+
+
 # CHANGE LOG (3.17.2) - 2.11.1
 
 ## Application Client
