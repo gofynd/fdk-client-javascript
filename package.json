@@ -12,6 +12,10 @@
   },
   "author": "Jigar Dafda",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gofynd/fdk-client-javascript.git"
+  },
   "dependencies": {
     "axios": "^1.6.4",
     "camelcase": "^6.3.0",
