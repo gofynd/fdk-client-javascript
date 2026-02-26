@@ -2576,7 +2576,7 @@ const Joi = require("joi");
  * @typedef PostHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ * @property {Filter} [filter] - Criteria to filter which hooks are applied
  *   based on certain conditions.
  */
 
@@ -2584,7 +2584,7 @@ const Joi = require("joi");
  * @typedef PreHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ * @property {Filter} [filter] - Criteria to filter which hooks are applied
  *   based on certain conditions.
  */
 
@@ -8399,7 +8399,7 @@ class OrderPlatformModel {
     return Joi.object({
       task: Joi.string().allow("").required(),
       kwargs: Joi.object().pattern(/\S/, Joi.any()),
-      filters: OrderPlatformModel.Filter(),
+      filter: OrderPlatformModel.Filter(),
     });
   }
 
@@ -8408,7 +8408,7 @@ class OrderPlatformModel {
     return Joi.object({
       task: Joi.string().allow("").required(),
       kwargs: Joi.object().pattern(/\S/, Joi.any()),
-      filters: OrderPlatformModel.Filter(),
+      filter: OrderPlatformModel.Filter(),
     });
   }
 

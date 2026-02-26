@@ -22,6 +22,8 @@ class Order {
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getRefundModes:
         "/service/application/order-manage/v1.0/shipment/{shipment_id}/refund/modes",
+      getRefundModesWithPriceBreakup:
+        "/service/application/order-manage/v1.0/shipment/{shipment_id}/refund/modes",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -336,6 +338,53 @@ class Order {
       }),
       query_params,
       undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RefundOptions>} - Success response
+   * @name getRefundModesWithPriceBreakup
+   * @summary: Get refund modes and Refund Price Break for a shipment
+   * @description: Returns a list of available refund options for the given company and shipment.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getRefundModesWithPriceBreakup/).
+   */
+  async getRefundModesWithPriceBreakup(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getRefundModesWithPriceBreakup"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );

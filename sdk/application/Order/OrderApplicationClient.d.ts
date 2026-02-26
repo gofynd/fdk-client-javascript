@@ -9,6 +9,7 @@ declare class Order {
         getOrders: string;
         getPosOrderById: string;
         getRefundModes: string;
+        getRefundModesWithPriceBreakup: string;
         getShipmentBagReasons: string;
         getShipmentById: string;
         getShipmentReasons: string;
@@ -75,6 +76,16 @@ declare class Order {
      *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getRefundModes/).
      */
     getRefundModes({ shipmentId, lineNumbers, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<RefundOptions>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<RefundOptions>} - Success response
+     * @name getRefundModesWithPriceBreakup
+     * @summary: Get refund modes and Refund Price Break for a shipment
+     * @description: Returns a list of available refund options for the given company and shipment.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getRefundModesWithPriceBreakup/).
+     */
+    getRefundModesWithPriceBreakup({ shipmentId, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<RefundOptions>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

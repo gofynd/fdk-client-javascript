@@ -1180,6 +1180,7 @@ class Payment {
       checkoutMode,
       refresh,
       cardReference,
+      fulfillmentOption,
       userDetails,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -1193,6 +1194,7 @@ class Payment {
     query_params["refresh"] = refresh;
     query_params["card_reference"] = cardReference;
     query_params["order_type"] = orderType;
+    query_params["fulfillment_option"] = fulfillmentOption;
     query_params["user_details"] = userDetails;
 
     const xHeaders = {};

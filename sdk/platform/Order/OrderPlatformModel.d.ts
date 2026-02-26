@@ -2365,14 +2365,14 @@ export = OrderPlatformModel;
  * @typedef PostHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ * @property {Filter} [filter] - Criteria to filter which hooks are applied
  *   based on certain conditions.
  */
 /**
  * @typedef PreHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ * @property {Filter} [filter] - Criteria to filter which hooks are applied
  *   based on certain conditions.
  */
 /**
@@ -10323,7 +10323,7 @@ type PostHook = {
      * - Criteria to filter which hooks are applied
      * based on certain conditions.
      */
-    filters?: Filter;
+    filter?: Filter;
 };
 /** @returns {PreHook} */
 declare function PreHook(): PreHook;
@@ -10340,7 +10340,7 @@ type PreHook = {
      * - Criteria to filter which hooks are applied
      * based on certain conditions.
      */
-    filters?: Filter;
+    filter?: Filter;
 };
 /** @returns {Config} */
 declare function Config(): Config;

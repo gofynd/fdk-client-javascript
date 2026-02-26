@@ -1,5 +1,73 @@
 export = WebhookPartnerModel;
 /**
+ * @typedef ReportDownloadPayload
+ * @property {string} end_date - The end date and time for the report, in ISO 8601 format.
+ * @property {string} start_date - The start date and time for the report, in
+ *   ISO 8601 format.
+ */
+/**
+ * @typedef DownloadReportResult
+ * @property {string} [file_name] - The generated report file name.
+ */
+/**
+ * @typedef FilterValidationPayload
+ * @property {Object} sample_data - Sample payload used to validate the filter logic.
+ * @property {FilterValidationSchema} filters
+ */
+/**
+ * @typedef ReducerValidationPayload
+ * @property {Object} sample_data - Sample payload used to validate the reducer mapping.
+ * @property {Object} reducer - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries.
+ */
+/**
+ * @typedef FilterReducerSave
+ * @property {FilterSaveSchema} [filter_configuration]
+ * @property {Object} [reducer_configuration] - The reducer property allows
+ *   users to customize the JSON structure of the webhook payload using JSONPath queries.
+ * @property {string} event_slug - Event slug for which filter/reducer is being
+ *   configured.
+ */
+/**
+ * @typedef FilterValidationSchema
+ * @property {string} [query] - JSONPath expression to extract a value from
+ *   sample payload.
+ * @property {string} [condition] - JavaScript condition function evaluated for
+ *   the extracted value.
+ * @property {string} [logic] - Logical operator for combining nested filter conditions.
+ * @property {Object[]} [conditions] - Nested filter conditions evaluated with
+ *   the selected logical operator.
+ */
+/**
+ * @typedef FilterSaveSchema
+ * @property {string} [query] - JSONPath expression to extract a value from event payload.
+ * @property {string} [condition] - JavaScript condition function evaluated for
+ *   the extracted value.
+ * @property {string} [logic] - Logical operator for combining nested filter conditions.
+ * @property {Object[]} [conditions] - Nested filter conditions evaluated with
+ *   the selected logical operator.
+ */
+/**
+ * @typedef FilterValidationResult
+ * @property {boolean} [success] - Indicates if the filter validation succeeded.
+ * @property {string} [message] - Additional details about filter validation result.
+ * @property {boolean} [filter_result] - Evaluated result of the filter condition.
+ */
+/**
+ * @typedef ReducerValidationResult
+ * @property {boolean} [success] - Indicates if the reducer validation succeeded.
+ * @property {string} [message] - Additional details about reducer validation result.
+ * @property {Object} [reducer_result] - Result produced by applying reducer
+ *   mapping on sample data.
+ */
+/**
+ * @typedef FilterReducerSaveResult
+ * @property {boolean} [success] - Indicates if filter/reducer configuration was
+ *   saved successfully.
+ * @property {string} [message] - Additional details about save operation result.
+ * @property {Object} [data] - Additional response payload returned by the save operation.
+ */
+/**
  * @typedef SubscriberUpdate
  * @property {string} [status] - Represents the status of the subscriber update operation.
  */
@@ -323,8 +391,161 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { SubscriberUpdate, SubscriberUpdateResult, Association, AuthMeta, BroadcasterConfig, SubscriberEventMapping, FilterSchema, EventConfigDetails, SubscriberConfigDetails, InvalidEventsPayload, InvalidEventsResult, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResult, HistoryPayload, CancelDownloadResult, FilterReportResult, DeliveryTsResult, DeliveryTsSchema, DeliveryDetailsPayload, EventDeliveryDetailSchema, DeliveryDetailsResult, EventProcessReportObject, Page, DeliveryEventLevelSchema, ResponseTimeTs, AvgResponseTime, DeliverySummaryResult, DeliverySummarySchema, ItemSchema };
+    export { ReportDownloadPayload, DownloadReportResult, FilterValidationPayload, ReducerValidationPayload, FilterReducerSave, FilterValidationSchema, FilterSaveSchema, FilterValidationResult, ReducerValidationResult, FilterReducerSaveResult, SubscriberUpdate, SubscriberUpdateResult, Association, AuthMeta, BroadcasterConfig, SubscriberEventMapping, FilterSchema, EventConfigDetails, SubscriberConfigDetails, InvalidEventsPayload, InvalidEventsResult, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResult, HistoryPayload, CancelDownloadResult, FilterReportResult, DeliveryTsResult, DeliveryTsSchema, DeliveryDetailsPayload, EventDeliveryDetailSchema, DeliveryDetailsResult, EventProcessReportObject, Page, DeliveryEventLevelSchema, ResponseTimeTs, AvgResponseTime, DeliverySummaryResult, DeliverySummarySchema, ItemSchema };
 }
+/** @returns {ReportDownloadPayload} */
+declare function ReportDownloadPayload(): ReportDownloadPayload;
+type ReportDownloadPayload = {
+    /**
+     * - The end date and time for the report, in ISO 8601 format.
+     */
+    end_date: string;
+    /**
+     * - The start date and time for the report, in
+     * ISO 8601 format.
+     */
+    start_date: string;
+};
+/** @returns {DownloadReportResult} */
+declare function DownloadReportResult(): DownloadReportResult;
+type DownloadReportResult = {
+    /**
+     * - The generated report file name.
+     */
+    file_name?: string;
+};
+/** @returns {FilterValidationPayload} */
+declare function FilterValidationPayload(): FilterValidationPayload;
+type FilterValidationPayload = {
+    /**
+     * - Sample payload used to validate the filter logic.
+     */
+    sample_data: any;
+    filters: FilterValidationSchema;
+};
+/** @returns {ReducerValidationPayload} */
+declare function ReducerValidationPayload(): ReducerValidationPayload;
+type ReducerValidationPayload = {
+    /**
+     * - Sample payload used to validate the reducer mapping.
+     */
+    sample_data: any;
+    /**
+     * - The reducer property allows users to customize
+     * the JSON structure of the webhook payload using JSONPath queries.
+     */
+    reducer: any;
+};
+/** @returns {FilterReducerSave} */
+declare function FilterReducerSave(): FilterReducerSave;
+type FilterReducerSave = {
+    filter_configuration?: FilterSaveSchema;
+    /**
+     * - The reducer property allows
+     * users to customize the JSON structure of the webhook payload using JSONPath queries.
+     */
+    reducer_configuration?: any;
+    /**
+     * - Event slug for which filter/reducer is being
+     * configured.
+     */
+    event_slug: string;
+};
+/** @returns {FilterValidationSchema} */
+declare function FilterValidationSchema(): FilterValidationSchema;
+type FilterValidationSchema = {
+    /**
+     * - JSONPath expression to extract a value from
+     * sample payload.
+     */
+    query?: string;
+    /**
+     * - JavaScript condition function evaluated for
+     * the extracted value.
+     */
+    condition?: string;
+    /**
+     * - Logical operator for combining nested filter conditions.
+     */
+    logic?: string;
+    /**
+     * - Nested filter conditions evaluated with
+     * the selected logical operator.
+     */
+    conditions?: any[];
+};
+/** @returns {FilterSaveSchema} */
+declare function FilterSaveSchema(): FilterSaveSchema;
+type FilterSaveSchema = {
+    /**
+     * - JSONPath expression to extract a value from event payload.
+     */
+    query?: string;
+    /**
+     * - JavaScript condition function evaluated for
+     * the extracted value.
+     */
+    condition?: string;
+    /**
+     * - Logical operator for combining nested filter conditions.
+     */
+    logic?: string;
+    /**
+     * - Nested filter conditions evaluated with
+     * the selected logical operator.
+     */
+    conditions?: any[];
+};
+/** @returns {FilterValidationResult} */
+declare function FilterValidationResult(): FilterValidationResult;
+type FilterValidationResult = {
+    /**
+     * - Indicates if the filter validation succeeded.
+     */
+    success?: boolean;
+    /**
+     * - Additional details about filter validation result.
+     */
+    message?: string;
+    /**
+     * - Evaluated result of the filter condition.
+     */
+    filter_result?: boolean;
+};
+/** @returns {ReducerValidationResult} */
+declare function ReducerValidationResult(): ReducerValidationResult;
+type ReducerValidationResult = {
+    /**
+     * - Indicates if the reducer validation succeeded.
+     */
+    success?: boolean;
+    /**
+     * - Additional details about reducer validation result.
+     */
+    message?: string;
+    /**
+     * - Result produced by applying reducer
+     * mapping on sample data.
+     */
+    reducer_result?: any;
+};
+/** @returns {FilterReducerSaveResult} */
+declare function FilterReducerSaveResult(): FilterReducerSaveResult;
+type FilterReducerSaveResult = {
+    /**
+     * - Indicates if filter/reducer configuration was
+     * saved successfully.
+     */
+    success?: boolean;
+    /**
+     * - Additional details about save operation result.
+     */
+    message?: string;
+    /**
+     * - Additional response payload returned by the save operation.
+     */
+    data?: any;
+};
 /** @returns {SubscriberUpdate} */
 declare function SubscriberUpdate(): SubscriberUpdate;
 type SubscriberUpdate = {

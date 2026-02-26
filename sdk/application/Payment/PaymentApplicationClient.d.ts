@@ -306,7 +306,7 @@ declare class Payment {
      * @summary: POS payment modes
      * @description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getPosPaymentModeRoutes/).
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, orderType, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteDetails>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, orderType, checkoutMode, refresh, cardReference, fulfillmentOption, userDetails, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

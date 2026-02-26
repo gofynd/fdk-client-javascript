@@ -1,4 +1,5 @@
 const { FDKException } = require("./FDKError");
+const { Buffer: BufferPolyFill } = require("buffer");
 
 const SLUG_DELIMETER = ":::";
 const transformRequestOptions = (params) => {

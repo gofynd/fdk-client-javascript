@@ -469,6 +469,8 @@ const Joi = require("joi");
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  */
 
 /**
@@ -684,6 +686,8 @@ const Joi = require("joi");
  * @typedef UpdateUserRequestSchema
  * @property {string} [first_name]
  * @property {string} [last_name]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {string} [gender]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -719,7 +723,8 @@ const Joi = require("joi");
  * @property {PhoneNumber[]} [phone_numbers]
  * @property {Email[]} [emails]
  * @property {string} [gender]
- * @property {string} [dob]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {boolean} [active]
  * @property {string} [profile_pic_url]
  * @property {string} [username]
@@ -742,7 +747,8 @@ const Joi = require("joi");
  * @property {PhoneNumber[]} [phone_numbers]
  * @property {Email[]} [emails]
  * @property {string} [gender]
- * @property {string} [dob]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {boolean} [active]
  * @property {string} [profile_pic_url]
  * @property {string} [username]
@@ -1307,6 +1313,7 @@ class UserPlatformModel {
       meta: Joi.object().pattern(/\S/, Joi.any()),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
+      dob: Joi.string().allow(""),
     });
   }
 
@@ -1574,6 +1581,7 @@ class UserPlatformModel {
     return Joi.object({
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
+      dob: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),

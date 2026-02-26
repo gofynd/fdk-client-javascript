@@ -43,6 +43,13 @@ class WebhookValidator {
     }).required();
   }
 
+  static downloadDeliveryReport() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.ReportDownloadPayload().required(),
+    }).required();
+  }
+
   static cancelReportDownload() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -75,6 +82,29 @@ class WebhookValidator {
       extensionId: Joi.string().allow("").required(),
       subscriberId: Joi.number().required(),
       body: WebhookModel.SubscriberUpdate().required(),
+    }).required();
+  }
+
+  static validateFilterConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.FilterValidationPayload().required(),
+    }).required();
+  }
+
+  static validateReducerConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.ReducerValidationPayload().required(),
+    }).required();
+  }
+
+  static saveFilterReducerConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      companyId: Joi.number().required(),
+      subscriberId: Joi.number().required(),
+      body: WebhookModel.FilterReducerSave().required(),
     }).required();
   }
 }

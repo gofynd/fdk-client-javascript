@@ -439,6 +439,85 @@ class Webhook {
   }
 
   /**
+   * @param {WebhookPartnerValidator.DownloadDeliveryReportParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.DownloadReportResult>} - Success response
+   * @name downloadDeliveryReport
+   * @summary: Download webhook delivery report
+   * @description: Download webhook delivery report - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/downloadDeliveryReport/).
+   */
+  async downloadDeliveryReport(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = WebhookPartnerValidator.downloadDeliveryReport().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.downloadDeliveryReport().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > downloadDeliveryReport \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/report/download`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.DownloadReportResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > downloadDeliveryReport \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {WebhookPartnerValidator.CancelReportDownloadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
@@ -828,6 +907,261 @@ class Webhook {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Webhook > updateSubscriber \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.ValidateFilterConfigurationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.FilterValidationResult>} - Success response
+   * @name validateFilterConfiguration
+   * @summary: Validate filter configuration.
+   * @description: Validate a filter configuration against sample payload data.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateFilterConfiguration/).
+   */
+  async validateFilterConfiguration(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.validateFilterConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.validateFilterConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > validateFilterConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/validate/filter`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.FilterValidationResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > validateFilterConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.ValidateReducerConfigurationParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.ReducerValidationResult>} - Success response
+   * @name validateReducerConfiguration
+   * @summary: Validate reducer configuration.
+   * @description: Validate a reducer configuration against sample payload data.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateReducerConfiguration/).
+   */
+  async validateReducerConfiguration(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.validateReducerConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.validateReducerConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > validateReducerConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/validate/reducer`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.ReducerValidationResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > validateReducerConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.SaveFilterReducerConfigurationParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.FilterReducerSaveResult>} - Success response
+   * @name saveFilterReducerConfiguration
+   * @summary: Save filter or reducer configuration.
+   * @description: Save filter and/or reducer configuration for a subscriber event mapping.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/saveFilterReducerConfiguration/).
+   */
+  async saveFilterReducerConfiguration(
+    { extensionId, companyId, subscriberId, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.saveFilterReducerConfiguration().validate(
+      {
+        extensionId,
+        companyId,
+        subscriberId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.saveFilterReducerConfiguration().validate(
+      {
+        extensionId,
+        companyId,
+        subscriberId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > saveFilterReducerConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/company/${companyId}/subscriber/${subscriberId}/filter_reducer`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.FilterReducerSaveResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > saveFilterReducerConfiguration \n ${res_error}`,
         });
       }
     }

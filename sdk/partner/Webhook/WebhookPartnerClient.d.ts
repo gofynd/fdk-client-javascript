@@ -53,6 +53,16 @@ declare class Webhook {
      */
     fetchReportFilters({ extensionId, startDate, endDate, pageNo, pageSize, requestHeaders }?: WebhookPartnerValidator.FetchReportFiltersParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.FilterReportResult[]>;
     /**
+     * @param {WebhookPartnerValidator.DownloadDeliveryReportParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.DownloadReportResult>} - Success response
+     * @name downloadDeliveryReport
+     * @summary: Download webhook delivery report
+     * @description: Download webhook delivery report - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/downloadDeliveryReport/).
+     */
+    downloadDeliveryReport({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.DownloadDeliveryReportParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.DownloadReportResult>;
+    /**
      * @param {WebhookPartnerValidator.CancelReportDownloadParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
@@ -105,5 +115,41 @@ declare class Webhook {
      *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/updateSubscriber/).
      */
     updateSubscriber({ extensionId, subscriberId, body, requestHeaders }?: WebhookPartnerValidator.UpdateSubscriberParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.SubscriberUpdateResult>;
+    /**
+     * @param {WebhookPartnerValidator.ValidateFilterConfigurationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.FilterValidationResult>} - Success response
+     * @name validateFilterConfiguration
+     * @summary: Validate filter configuration.
+     * @description: Validate a filter configuration against sample payload data.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateFilterConfiguration/).
+     */
+    validateFilterConfiguration({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.ValidateFilterConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.FilterValidationResult>;
+    /**
+     * @param {WebhookPartnerValidator.ValidateReducerConfigurationParam} arg -
+     *   Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.ReducerValidationResult>} - Success response
+     * @name validateReducerConfiguration
+     * @summary: Validate reducer configuration.
+     * @description: Validate a reducer configuration against sample payload data.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateReducerConfiguration/).
+     */
+    validateReducerConfiguration({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.ValidateReducerConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.ReducerValidationResult>;
+    /**
+     * @param {WebhookPartnerValidator.SaveFilterReducerConfigurationParam} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.FilterReducerSaveResult>} - Success response
+     * @name saveFilterReducerConfiguration
+     * @summary: Save filter or reducer configuration.
+     * @description: Save filter and/or reducer configuration for a subscriber event mapping.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/saveFilterReducerConfiguration/).
+     */
+    saveFilterReducerConfiguration({ extensionId, companyId, subscriberId, body, requestHeaders }?: WebhookPartnerValidator.SaveFilterReducerConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.FilterReducerSaveResult>;
 }
 import WebhookPartnerModel = require("./WebhookPartnerModel");

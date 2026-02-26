@@ -1,3 +1,106 @@
+# CHANGE LOG (3.19.0) - 2.11.5
+
+## Application Client
+
+
+
+### Order
+
+
+
+#### getRefundModesWithPriceBreakup
+
+- ##### What's New
+	- [Added] method <code>getRefundModesWithPriceBreakup</code>
+
+
+
+### Payment
+
+
+
+#### getPosPaymentModeRoutes
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>fulfillmentOption</code> (type: <code>array</code>)
+
+
+
+## Partner Client
+
+
+
+### Webhook
+
+
+
+#### validateFilterConfiguration
+
+- ##### What's New
+	- [Added] method <code>validateFilterConfiguration</code>
+
+
+
+#### validateReducerConfiguration
+
+- ##### What's New
+	- [Added] method <code>validateReducerConfiguration</code>
+
+
+
+#### saveFilterReducerConfiguration
+
+- ##### What's New
+	- [Added] method <code>saveFilterReducerConfiguration</code>
+
+
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### addStateManagerConfig
+
+- ##### What's New
+	- [Added] property <code>data.configs[].pre_hooks[].filter</code> of schema <code>PreHook</code> in request body
+	- [Added] property <code>data.configs[].post_hooks[].filter</code> of schema <code>PostHook</code> in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.configs[].pre_hooks[].filters</code> of schema <code>PreHook</code> in request body
+	- [Breaking] [Deleted] property <code>data.configs[].post_hooks[].filters</code> of schema <code>PostHook</code> in request body
+
+
+#### getStateManagerConfig
+
+- ##### What's New
+	- [Added] property <code>data[].configs[].pre_hooks[].filter</code> of schema <code>PreHook</code> in response with status code 200
+	- [Added] property <code>data[].configs[].post_hooks[].filter</code> of schema <code>PostHook</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data[].configs[].pre_hooks[].filters</code> of schema <code>PreHook</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>data[].configs[].post_hooks[].filters</code> of schema <code>PostHook</code> in response with status code 200
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's New
+	- [Added] property <code>dob</code> of schema <code>CreateUserRequestSchema</code> in request body
+
+
+#### updateUser
+
+- ##### What's New
+	- [Added] property <code>dob</code> of schema <code>UpdateUserRequestSchema</code> in request body
+
+
 # CHANGE LOG (3.18.0) - 2.11.3
 
 ## Application Client

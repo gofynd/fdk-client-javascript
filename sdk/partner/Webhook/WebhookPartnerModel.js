@@ -1,6 +1,84 @@
 const Joi = require("joi");
 
 /**
+ * @typedef ReportDownloadPayload
+ * @property {string} end_date - The end date and time for the report, in ISO 8601 format.
+ * @property {string} start_date - The start date and time for the report, in
+ *   ISO 8601 format.
+ */
+
+/**
+ * @typedef DownloadReportResult
+ * @property {string} [file_name] - The generated report file name.
+ */
+
+/**
+ * @typedef FilterValidationPayload
+ * @property {Object} sample_data - Sample payload used to validate the filter logic.
+ * @property {FilterValidationSchema} filters
+ */
+
+/**
+ * @typedef ReducerValidationPayload
+ * @property {Object} sample_data - Sample payload used to validate the reducer mapping.
+ * @property {Object} reducer - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries.
+ */
+
+/**
+ * @typedef FilterReducerSave
+ * @property {FilterSaveSchema} [filter_configuration]
+ * @property {Object} [reducer_configuration] - The reducer property allows
+ *   users to customize the JSON structure of the webhook payload using JSONPath queries.
+ * @property {string} event_slug - Event slug for which filter/reducer is being
+ *   configured.
+ */
+
+/**
+ * @typedef FilterValidationSchema
+ * @property {string} [query] - JSONPath expression to extract a value from
+ *   sample payload.
+ * @property {string} [condition] - JavaScript condition function evaluated for
+ *   the extracted value.
+ * @property {string} [logic] - Logical operator for combining nested filter conditions.
+ * @property {Object[]} [conditions] - Nested filter conditions evaluated with
+ *   the selected logical operator.
+ */
+
+/**
+ * @typedef FilterSaveSchema
+ * @property {string} [query] - JSONPath expression to extract a value from event payload.
+ * @property {string} [condition] - JavaScript condition function evaluated for
+ *   the extracted value.
+ * @property {string} [logic] - Logical operator for combining nested filter conditions.
+ * @property {Object[]} [conditions] - Nested filter conditions evaluated with
+ *   the selected logical operator.
+ */
+
+/**
+ * @typedef FilterValidationResult
+ * @property {boolean} [success] - Indicates if the filter validation succeeded.
+ * @property {string} [message] - Additional details about filter validation result.
+ * @property {boolean} [filter_result] - Evaluated result of the filter condition.
+ */
+
+/**
+ * @typedef ReducerValidationResult
+ * @property {boolean} [success] - Indicates if the reducer validation succeeded.
+ * @property {string} [message] - Additional details about reducer validation result.
+ * @property {Object} [reducer_result] - Result produced by applying reducer
+ *   mapping on sample data.
+ */
+
+/**
+ * @typedef FilterReducerSaveResult
+ * @property {boolean} [success] - Indicates if filter/reducer configuration was
+ *   saved successfully.
+ * @property {string} [message] - Additional details about save operation result.
+ * @property {Object} [data] - Additional response payload returned by the save operation.
+ */
+
+/**
  * @typedef SubscriberUpdate
  * @property {string} [status] - Represents the status of the subscriber update operation.
  */
@@ -356,6 +434,93 @@ const Joi = require("joi");
  */
 
 class WebhookPartnerModel {
+  /** @returns {ReportDownloadPayload} */
+  static ReportDownloadPayload() {
+    return Joi.object({
+      end_date: Joi.string().allow("").required(),
+      start_date: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {DownloadReportResult} */
+  static DownloadReportResult() {
+    return Joi.object({
+      file_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FilterValidationPayload} */
+  static FilterValidationPayload() {
+    return Joi.object({
+      sample_data: Joi.object().pattern(/\S/, Joi.any()).required(),
+      filters: WebhookPartnerModel.FilterValidationSchema().required(),
+    });
+  }
+
+  /** @returns {ReducerValidationPayload} */
+  static ReducerValidationPayload() {
+    return Joi.object({
+      sample_data: Joi.object().pattern(/\S/, Joi.any()).required(),
+      reducer: Joi.object().pattern(/\S/, Joi.any()).required(),
+    });
+  }
+
+  /** @returns {FilterReducerSave} */
+  static FilterReducerSave() {
+    return Joi.object({
+      filter_configuration: WebhookPartnerModel.FilterSaveSchema(),
+      reducer_configuration: Joi.object().pattern(/\S/, Joi.any()),
+      event_slug: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {FilterValidationSchema} */
+  static FilterValidationSchema() {
+    return Joi.object({
+      query: Joi.string().allow(""),
+      condition: Joi.string().allow(""),
+      logic: Joi.string().allow(""),
+      conditions: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+    });
+  }
+
+  /** @returns {FilterSaveSchema} */
+  static FilterSaveSchema() {
+    return Joi.object({
+      query: Joi.string().allow(""),
+      condition: Joi.string().allow(""),
+      logic: Joi.string().allow(""),
+      conditions: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+    });
+  }
+
+  /** @returns {FilterValidationResult} */
+  static FilterValidationResult() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+      filter_result: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ReducerValidationResult} */
+  static ReducerValidationResult() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+      reducer_result: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {FilterReducerSaveResult} */
+  static FilterReducerSaveResult() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+      data: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
   /** @returns {SubscriberUpdate} */
   static SubscriberUpdate() {
     return Joi.object({

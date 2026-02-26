@@ -421,6 +421,8 @@ export = UserPlatformModel;
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  */
 /**
  * @typedef CreateUserResponseSchema
@@ -608,6 +610,8 @@ export = UserPlatformModel;
  * @typedef UpdateUserRequestSchema
  * @property {string} [first_name]
  * @property {string} [last_name]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {string} [gender]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -640,7 +644,8 @@ export = UserPlatformModel;
  * @property {PhoneNumber[]} [phone_numbers]
  * @property {Email[]} [emails]
  * @property {string} [gender]
- * @property {string} [dob]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {boolean} [active]
  * @property {string} [profile_pic_url]
  * @property {string} [username]
@@ -662,7 +667,8 @@ export = UserPlatformModel;
  * @property {PhoneNumber[]} [phone_numbers]
  * @property {Email[]} [emails]
  * @property {string} [gender]
- * @property {string} [dob]
+ * @property {string} [dob] - User's date of birth in ISO date
+ *   format("1990-01-01T00:00:00.000Z").
  * @property {boolean} [active]
  * @property {string} [profile_pic_url]
  * @property {string} [username]
@@ -1550,6 +1556,11 @@ type CreateUserRequestSchema = {
     meta?: any;
     external_id?: string;
     rr_id?: string;
+    /**
+     * - User's date of birth in ISO date
+     * format("1990-01-01T00:00:00.000Z").
+     */
+    dob?: string;
 };
 /** @returns {CreateUserResponseSchema} */
 declare function CreateUserResponseSchema(): CreateUserResponseSchema;
@@ -1804,6 +1815,11 @@ declare function UpdateUserRequestSchema(): UpdateUserRequestSchema;
 type UpdateUserRequestSchema = {
     first_name?: string;
     last_name?: string;
+    /**
+     * - User's date of birth in ISO date
+     * format("1990-01-01T00:00:00.000Z").
+     */
+    dob?: string;
     gender?: string;
     external_id?: string;
     rr_id?: string;
@@ -1839,6 +1855,10 @@ type UserSchema = {
     phone_numbers?: PhoneNumber[];
     emails?: Email[];
     gender?: string;
+    /**
+     * - User's date of birth in ISO date
+     * format("1990-01-01T00:00:00.000Z").
+     */
     dob?: string;
     active?: boolean;
     profile_pic_url?: string;
@@ -1862,6 +1882,10 @@ type UserSearchSchema = {
     phone_numbers?: PhoneNumber[];
     emails?: Email[];
     gender?: string;
+    /**
+     * - User's date of birth in ISO date
+     * format("1990-01-01T00:00:00.000Z").
+     */
     dob?: string;
     active?: boolean;
     profile_pic_url?: string;
