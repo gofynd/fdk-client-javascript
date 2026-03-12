@@ -102,7 +102,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCartV2/).
      */
-    checkoutCartV2({ body, xOrderingSource, buyNow, cartType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
+    checkoutCartV2({ body, xOrderingSource, xLocationDetail, xCurrencyCode, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -298,7 +298,7 @@ declare class Cart {
      * @returns {Promise<UpdateAddressResult>} - Success response
      * @name updateAddress
      * @summary: Updates an existing customer address
-     * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateAddress/).
+     * @description: Customer can modify the details of a previously saved address. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateAddress/).
      */
     updateAddress({ id, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<UpdateAddressResult>;
     /**

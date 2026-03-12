@@ -179,7 +179,7 @@ declare class Serviceability {
      * @summary: Get created Schemes for courier partner
      * @description: Get created Schemes for courier partner - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getCourierPartnerSchemes/).
      */
-    getCourierPartnerSchemes({ schemeType, paymentMode, capabilities, schemeIds, q, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerSchemeList>;
+    getCourierPartnerSchemes({ extensionId, schemeType, paymentMode, capabilities, schemeIds, q, requestHeaders, }?: ServiceabilityPlatformValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerSchemeList>;
     /**
      * @param {ServiceabilityPlatformValidator.GetInstalledCourierPartnerExtensionsParam} arg
      *   - Arg object

@@ -1020,6 +1020,8 @@ const Joi = require("joi");
  * @property {string} [earn_title] - Title to show how many earn points are
  *   gained for this order.
  * @property {string} [title] - Unique title for loyalty program applicable.
+ * @property {number} [discount_amount] - Engage discount amount applied on the
+ *   cart as payment mode
  */
 
 /**
@@ -1036,12 +1038,13 @@ const Joi = require("joi");
  * @property {number} [cod_charge] - Cod charge value applied to cart. This is
  *   applied when user select payment mode as COD
  * @property {number} [total] - Total payable amount by the customer
- * @property {number} [discount] - Discount amount recieved on cart
+ * @property {number} [discount] - Discount amount received on cart
  * @property {number} [delivery_charge] - Delivery charge applied to cart
  * @property {number} [you_saved] - Total amount will be saved if customer
  *   places the order
  * @property {number} [subtotal] - Selling price amount of all products in cart
  * @property {number} [convenience_fee] - Convenience fee amount applied to cart
+ * @property {number} [store_credit] - Store credit redeemed on the cart
  */
 
 /**
@@ -1207,7 +1210,7 @@ const Joi = require("joi");
  * @property {string[]} [product_group_tags] - List fot the unique identifier
  *   for the product grouping.
  * @property {boolean} [force_new_line_item] - Flag to indicate the item as a
- *   seperate article in cart
+ *   separate article in cart
  * @property {Object} [identifier] - Unique identifier of the article
  * @property {number} [mto_quantity] - Quantity of the product which will
  *   specially manufactured as not available in stock
@@ -1777,7 +1780,7 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Field to add custom json at article level
  *   while add items to cart
  * @property {boolean} [force_new_line_item] - Field used to decide the product
- *   add as a seperate product in cart
+ *   add as a separate product in cart
  * @property {Object} [meta] - Field to add meta data at article level
  * @property {boolean} [pos] - Filed to determine whether user is making request
  *   from pos or not
@@ -1830,7 +1833,7 @@ const Joi = require("joi");
  * @property {Object} [extra_meta] - Field to update extra meta of the product in cart
  * @property {Object} [_custom_json] - Field to update custom json of the product in cart
  * @property {boolean} [force_new_line_item] - Field used to decide the product
- *   add as a seperate product in cart
+ *   add as a separate product in cart
  * @property {number} [item_id] - Item id of the product that needs to be updated
  * @property {number} [item_index] - Item index determines on which index the
  *   product falls to be updated
@@ -2504,11 +2507,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CartCheckoutDetailsData
+ * @property {string} [order_id] - Order id generated after placing order
+ */
+
+/**
  * @typedef CartCheckoutDetails
- * @property {string} [app_intercept_url] - App intercept url which is used to
+ * @property {string} [app_intercept_url] - App intercept URL which is used to
  *   redirect on app after payment in confirmed/failed
- * @property {Object} [data] - Data of the user cart checkout includes cart
- *   data, address, user id, order type etc
+ * @property {CartCheckoutDetailsData} [data]
  * @property {CheckCart} [cart]
  * @property {boolean} [success] - Success flag of cart checkout API response
  * @property {string} [callback_url] - Callback url to be redirected after
@@ -2612,7 +2619,7 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentMethod
- * @property {string} mode - Payment mode of payment method used to make payment
+ * @property {string} mode - Payment mode used for this payment method
  * @property {string} [payment] - Payment name of payment method used to make payment
  * @property {PaymentMeta} payment_meta
  * @property {number} [amount] - Amount of the payment mode to be paid
@@ -2623,8 +2630,8 @@ const Joi = require("joi");
 
 /**
  * @typedef PlatformCartCheckoutDetailV2Creation
- * @property {string} [address_id] - Address id of the user on which the order
- *   to be delivered
+ * @property {string} [address_id] - Identifier for the address where the order
+ *   will be delivered
  * @property {string} [payment_identifier] - Payment identifier of the payment
  *   mode selected to do the payment
  * @property {Object} [payment_params] - Payment params which includes payment
@@ -2633,22 +2640,23 @@ const Joi = require("joi");
  *   added in order
  * @property {boolean} [payment_auto_confirm] - Payment auto confirm flag if
  *   payment need not to be collected from user
- * @property {string} id - Cart id of the user cart
- * @property {boolean} [pos] - Filed to determine whether user is making request
- *   from pos or not
- * @property {string} [billing_address_id] - Billing address id of the customer
- *   on which the invoice to be generated after the order is placed
+ * @property {string} id - Cart identifier of the user cart
+ * @property {boolean} [pos] - Field indicating whether the user is making the
+ *   request from a POS
+ * @property {string} [billing_address_id] - Identifier for the customer's
+ *   billing address where the invoice will be generated after order placement
  * @property {string} [merchant_code] - Merchant code of the payment mode
  *   selected to do the payment
  * @property {string} [aggregator] - Aggregator name of the payment gateway
  * @property {number} [pick_at_store_uid] - Store id where we have to pick product
- * @property {string} [device_id] - Device id
- * @property {Object} [delivery_address] - Delivery address data which includes
- *   customer address, customer phone, customer email, customer pincode,
- *   customer landmark and customer name
+ * @property {string} [device_id] - Unique identifier for the device used during checkout
+ * @property {Object} [delivery_address] - Complete delivery address object
+ *   containing customer address details, phone number, email address, pincode,
+ *   landmark, and full name.
  * @property {string} [payment_mode] - Payment mode from which the payment to be
  *   done for the order
- * @property {string} [checkout_mode] - Mode of checkout used in cart
+ * @property {string} [checkout_mode] - Checkout mode for the cart, such as
+ *   guest and logged-in checkout
  * @property {CustomerDetails} [customer_details]
  * @property {Object} [meta] - Meta data to be added in order
  * @property {PaymentMethod[]} payment_methods - Payment methods list used to
@@ -2659,24 +2667,26 @@ const Joi = require("joi");
  * @property {Object} [billing_address] - Billing address json which includes
  *   customer address, customer phone, customer email, customer pincode,
  *   customer landmark and customer name
- * @property {string} [callback_url] - Callback url after payment received/failed
- * @property {string} [user_id] - The user id of user cart
+ * @property {string} [callback_url] - Callback URL to redirect the user after
+ *   payment is received or has failed
+ * @property {string} [user_id] - Unique identifier of the user associated with the cart
  * @property {Object} [extra_meta] - Extra meta to be added while checkout in order
- * @property {string} order_type - Order type of the order being placed like
- *   pickAtStore or HomeDelivery
+ * @property {string} order_type - Order type of the order being placed
  * @property {Files[]} [files] - List of file url
  * @property {number} [ordering_store] - Ordering store id of the store from
  *   which the order is getting placed
- * @property {string} [iin] - Issuer Identification Number number of card if
- *   payment mode is card to do the payment
- * @property {string} [network] - Network of card if payment mode is card to do
- *   the payment
- * @property {string} [type] - Type of cart if payment mode is card to do the payment
- * @property {string} [card_id] - Saved card id if payment mode is card to do the payment
- * @property {string} [success_callback_url] - Success callback url to be
- *   redirected after payment received
- * @property {string} [failure_callback_url] - Failure callback url to be
- *   redirected after payment failed
+ * @property {string} [iin] - Issuer Identification Number (IIN) of the card to
+ *   be used for payment. This field is applicable when the payment mode is set to card.
+ * @property {string} [network] - Card network to use for payment, relevant when
+ *   the selected payment mode is a card
+ * @property {string} [type] - Specifies the cart type, particularly when the
+ *   payment mode is a card
+ * @property {string} [card_id] - Identifier for the saved card to be used for
+ *   payment. This field is applicable when card payment mode has been selected.
+ * @property {string} [success_callback_url] - URL to which the user will be
+ *   redirected after successful payment completion
+ * @property {string} [failure_callback_url] - URL to which the user will be
+ *   redirected if the payment fails
  * @property {OrderTag[]} [order_tags] - Order tags used to identify specific
  *   type of order which is tagged using order tags
  */
@@ -4109,6 +4119,7 @@ class CartPlatformModel {
       earn_points_amount: Joi.number(),
       earn_title: Joi.string().allow(""),
       title: Joi.string().allow(""),
+      discount_amount: Joi.number(),
     });
   }
 
@@ -4130,6 +4141,7 @@ class CartPlatformModel {
       you_saved: Joi.number(),
       subtotal: Joi.number(),
       convenience_fee: Joi.number(),
+      store_credit: Joi.number(),
     });
   }
 
@@ -5630,11 +5642,18 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {CartCheckoutDetailsData} */
+  static CartCheckoutDetailsData() {
+    return Joi.object({
+      order_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CartCheckoutDetails} */
   static CartCheckoutDetails() {
     return Joi.object({
       app_intercept_url: Joi.string().allow(""),
-      data: Joi.object().pattern(/\S/, Joi.any()),
+      data: CartPlatformModel.CartCheckoutDetailsData(),
       cart: CartPlatformModel.CheckCart(),
       success: Joi.boolean(),
       callback_url: Joi.string().allow(""),

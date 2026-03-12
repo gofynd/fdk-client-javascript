@@ -809,9 +809,24 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef InventoryRecord
+ * @property {string} [command] - The command associated with the data entry.
+ * @property {string} [currency] - The currency code, e.g., INR, USD.
+ * @property {string} [inventory_bucket] - Inventory bucket identifier.
+ * @property {number} [price_effective] - The effective price of the item.
+ * @property {number} [price_marked] - The marked price of the item.
+ * @property {string} [seller_identifier] - Identifier for the seller.
+ * @property {string} [store_code] - Code identifying the store.
+ * @property {number} [total_quantity] - The total quantity for the item.
+ * @property {string} [trace_id] - Trace identifier for tracking.
+ */
+
+/**
  * @typedef FailedRecord
  * @property {string} [identifiers]
  * @property {string} [message]
+ * @property {InventoryRecord[]} [data] - List of data items representing the
+ *   bulk inventory get response.
  */
 
 /**
@@ -832,6 +847,7 @@ const Joi = require("joi");
  * @property {number} [succeed]
  * @property {number} [total]
  * @property {string[]} [tags]
+ * @property {string} [error_file_url]
  * @property {BulkMeta} [meta]
  */
 
@@ -841,6 +857,8 @@ const Joi = require("joi");
  *   context or reason for the bulk inventory action.
  * @property {string[]} [image_urls] - A list of image URLs providing visual
  *   evidence or supporting context for the comment.
+ * @property {number} [total] - The total count, if provided.
+ * @property {Object} [meta] - Metadata as a key-value map.
  */
 
 /**
@@ -877,6 +895,8 @@ const Joi = require("joi");
  * @property {string} [template_tag]
  * @property {number} [total]
  * @property {string} [tracking_url]
+ * @property {string[]} [tags]
+ * @property {Object} [meta]
  */
 
 /**
@@ -1996,7 +2016,7 @@ const Joi = require("joi");
  * @property {string} name - Name of the store location.
  * @property {string[]} [notification_emails] - Email addresses for sending
  *   notifications related to this store.
- * @property {string} phone_number - Primary phone number for contacting the store.
+ * @property {string} [phone_number] - Primary phone number for contacting the store.
  * @property {ProductReturnConfigSchema} [product_return_config]
  * @property {string} [stage] - Current operational stage of the store.
  * @property {string} [store_type] - Type of store.
@@ -2438,8 +2458,8 @@ const Joi = require("joi");
 
 /**
  * @typedef InventoryExportJobListResponseSchema
- * @property {InventoryJobDetailResponseSchema} items - This is the list/history
- *   of all the jobs.
+ * @property {InventoryJobDetailResponseSchema[]} [items] - This is the
+ *   list/history of all the jobs.
  * @property {Page} [page]
  */
 
@@ -2487,9 +2507,9 @@ const Joi = require("joi");
  * @property {UserDetail} [created_by] - This is the user detail of the user who
  *   cancelled the job.
  * @property {string} [created_on] - This is the timestamp of the creation for this job.
- * @property {InventoryJobFilters} filters - This is the filter criteria applied
- *   for the export job.
- * @property {string} id - This is the ID of the job.
+ * @property {InventoryJobFilters} [filters] - This is the filter criteria
+ *   applied for the export job.
+ * @property {string} [id] - This is the ID of the job.
  * @property {string} [modified_on] - This is the timestamp of the modification
  *   for this job.
  * @property {string[]} [notification_emails] - User email to get notification
@@ -2497,9 +2517,9 @@ const Joi = require("joi");
  * @property {number} seller_id - This ID of the company.
  * @property {string} [status] - This tells you the current status of the export job.
  * @property {Object} [stats] - Provides count of total/success/failed
- * @property {string} task_id - This is the task id of the jobs that is used for search.
+ * @property {string} [task_id] - This is the task id of the jobs that is used for search.
  * @property {string} [type] - This is the file type of the export.
- * @property {string} url - This is the url to download the export.
+ * @property {string} [url] - This is the url to download the export.
  */
 
 /**
@@ -2564,6 +2584,7 @@ const Joi = require("joi");
  * @property {number} [not_available_quantity] - The not available quantity of
  *   the inventory item.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
+ * @property {Object} [meta]
  */
 
 /**
@@ -3945,6 +3966,11 @@ const Joi = require("joi");
 /**
  * @typedef SizeDetails
  * @property {string} [size] - Size identifier for the product (e.g., "S", "M", "L").
+ * @property {number} [item_width] - Item width for the size.
+ * @property {number} [item_length] - Item length for the size.
+ * @property {number} [item_height] - Item height for the size.
+ * @property {number} [price_effective] - Effective price for the size.
+ * @property {number} [item_weight] - Item weight for the size.
  * @property {number} [store_count] - The number of stores that have this size available.
  * @property {number} [sellable_quantity] - Quantity of the product that is
  *   sellable in this size.
@@ -4840,6 +4866,8 @@ const Joi = require("joi");
  * @property {string} file_path - URL of the uploaded file containing inventory
  *   update data.
  * @property {string[]} [tags] - Tags associated with the inventory update job.
+ * @property {string} [created_on] - The date and time when the bulk inventory
+ *   job was created.
  * @property {BulkMeta} [meta]
  */
 
@@ -4914,43 +4942,49 @@ const Joi = require("joi");
 
 /**
  * @typedef TaxReqBodyRule
- * @property {string} name - Tax rule name
- * @property {string} [description] - Tax rule description
+ * @property {string} name - Unique name of the tax rule
+ * @property {string} [description] - A detailed description of the tax rule.
+ *   Helps provide context about its purpose and scope.
  */
 
 /**
  * @typedef TaxThreshold
  * @property {number} value - Tax rate is applied to products above or equal to
  *   this price.
- * @property {number} rate - Tax rate ranging from 0 to 1.
+ * @property {number} rate - Tax rate ranging from 0 to 1
  */
 
 /**
  * @typedef TaxComponent
- * @property {string} name - Name represent different types of taxes that may be
- *   applied to products or transactions, such as sales tax, value-added tax
- *   (VAT), goods and services tax, consumption tax, or other region-specific
- *   taxation systems.
- * @property {TaxThreshold[]} slabs - List of slabs which comprises of tax rate
- *   and their respective threshold value
+ * @property {string} name - The name of the tax component. This field
+ *   identifies the specific type of tax that the component represents, such as
+ *   sales tax, value-added tax (VAT), goods and services tax (GST), consumption
+ *   tax, or any other tax applicable at a regional or national level. This
+ *   enables classification and clear distinction between multiple tax types
+ *   applied to products or transactions.
+ * @property {TaxThreshold[]} slabs - An array of tax rate slabs that define the
+ *   thresholds and corresponding rates for this component. Each slab specifies
+ *   a minimum value at which the tax rate applies and the rate itself, allowing
+ *   for tiered tax calculations based on price ranges or thresholds.
  */
 
 /**
  * @typedef TaxComponentResponseSchema
- * @property {string} name - Name of the component.
- * @property {string} [description] - Description of the tax component.
- * @property {TaxThreshold[]} slabs - List of slabs that comprises of tax rate
- *   and their respective threshold.
- * @property {string} _id - Unique identifier of the tax component. This _id is
- *   required for updating any tax component; If _id field is not in "update tax
- *   version" request then that component will be created.
+ * @property {string} name - Name of the component
+ * @property {string} [description] - Description of the tax component
+ * @property {TaxThreshold[]} slabs - An array of tax rate slabs, each
+ *   specifying the applicable tax rate and its corresponding threshold for this
+ *   component.
+ * @property {string} _id - Unique identifier of the tax component. It is
+ *   required for updating any tax component; If _id field is not in
+ *   "updateTaxVersion" request then that component will be created.
  */
 
 /**
  * @typedef TaxComponentName
  * @property {string} _id - Unique identifier for the tax component name
- * @property {number} company_id - Identifier of the company this component name
- *   belongs to
+ * @property {number} company_id - Unique identifier of the company to which
+ *   this tax component name is associated.
  * @property {string} name - Name of the tax component
  * @property {string} [description] - Description of the tax component name
  * @property {string} [created_on] - Timestamp when the component name was created
@@ -4960,19 +4994,23 @@ const Joi = require("joi");
 /**
  * @typedef CreateTaxComponentNameRequestSchema
  * @property {string} name - Name of the tax component
- * @property {string} [description] - Description of the tax component name
  */
 
 /**
  * @typedef TaxReqBodyVersion
- * @property {TaxComponent[]} components - List of tax components with their
- *   respective slabs and rates.
- * @property {string} [applicable_date] - Optional future effective date for the
- *   version. Must be at least one minute ahead of the current time when supplied.
- * @property {string} [region_type] - Required whenever areas are supplied to
- *   indicate the granularity of the provided regions.
+ * @property {string} [scope] - Scope of the tax version
+ * @property {TaxComponent[]} components - Array of tax components included in
+ *   this version that will apply within the scope of this tax version.
+ * @property {string} [applicable_date] - The date and time (in ISO 8601 format)
+ *   when this tax version becomes effective. If provided, it must be at least
+ *   one minute later than the current time, allowing scheduling of future tax
+ *   rule activation.
+ * @property {string} [region_type] - Specifies the level (like state, city, or
+ *   pincode) for this tax version when the 'areas' field is used. Use values
+ *   allowed for the country, which you can get from the Servicability
+ *   country-hierarchy API. This field is needed if 'areas' are provided.
  * @property {TaxGeoArea} [areas]
- * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {number[]} [store_ids] - List of store identifiers for store-level taxation.
  */
 
 /**
@@ -5012,59 +5050,77 @@ const Joi = require("joi");
 /**
  * @typedef CreateTaxRequestBody
  * @property {TaxReqBodyRule} rule
- * @property {TaxReqBodyVersion[]} versions - List of tax versions for the tax rule.
+ * @property {TaxReqBodyVersion} versions
  */
 
 /**
  * @typedef TaxVersion
- * @property {string} [_id]
- * @property {string} [rule_id] - Tax Rule ID.
- * @property {string} [applicable_date] - Scheduled effective date for the
- *   version. Must be at least one minute ahead of current time when provided.
- * @property {string} [created_on]
- * @property {string} [modified_on]
- * @property {number} [company_id] - Company ID.
+ * @property {string} [_id] - Unique identifier of the tax version
+ * @property {string} [rule_id] - Unique identifier of the tax rule to which
+ *   this version belongs. This identifier links the tax version to its parent rule.
+ * @property {string} [applicable_date] - The date and time when this version
+ *   becomes effective and is used for taxation purposes. This field must be at
+ *   least one minute in the future relative to the current system time to
+ *   ensure future scheduling of tax versions.
+ * @property {string} [created_on] - ISO 8601 timestamp indicating when this tax
+ *   version was created in the system. Used for audit trails and version history.
+ * @property {string} [modified_on] - ISO 8601 timestamp of the latest update to
+ *   this tax version. Every modification or update to the version record
+ *   updates this field, ensuring accurate audit and traceability.
+ * @property {number} [company_id] - Unique identifier of the company for which
+ *   this tax version is defined.
  * @property {TaxStatusEnum} [status]
- * @property {string} [region_type] - Present when the version targets a
- *   specific set of regions rather than the default country-level rule.
+ * @property {string} [region_type] - Specifies the geographical region at which
+ *   the tax rule version applies. Required and present when the version targets
+ *   a specific region rather than the default country-level rule.
  * @property {TaxGeoArea} [areas]
- * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {number[]} [store_ids] - Array of store identifiers to which this
+ *   tax version is scoped. Enables store-level tax configuration, allowing
+ *   companies to specify tax applicability at individual store granularity.
  * @property {TaxVersionScopeEnum} [scope]
- * @property {TaxComponentResponseSchema[]} [components] - List of tax components.
+ * @property {TaxComponentResponseSchema[]} [components]
  */
 
 /**
  * @typedef UpdateTaxVersionRequestBody
- * @property {TaxComponentResponseSchema[]} components - List of tax components.
+ * @property {TaxComponentResponseSchema[]} components
  * @property {string} applicable_date - It is the date from when this rule will
  *   come in effect. It should be at least one minute in the future from the
  *   current time.
  * @property {string} [region_type] - Required when areas are present to denote
- *   the level (city/state/pincode) at which the version applies.
+ *   the level (city/state/pincode) at which the version applies. Supported
+ *   region types are derived from Servicability's country hierarchy (e.g.,
+ *   India: state, city; UAE: sector, city). Use the Servicability
+ *   country-hierarchy API to read the allowed levels.
  * @property {TaxGeoArea} [areas]
  * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 
 /**
  * @typedef CreateTaxVersionRequestBody
- * @property {TaxComponent[]} components - List of tax components.
+ * @property {string} [scope] - Scope of the tax version
+ * @property {TaxComponent[]} components - List of tax components
  * @property {string} [applicable_date] - Optional scheduled date from when this
  *   rule will come in effect. It should be at least one minute in the future
- *   from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ *   from the current time.
  * @property {string} [region_type] - Required when areas are present to denote
- *   the level (city/state/pincode) at which the version applies.
+ *   the level (city/state/pincode) at which the version applies. Supported
+ *   values follow Servicability's country hierarchy (e.g., India: state, city;
+ *   UAE: sector, city); consult Servicability country-hierarchy APIs to
+ *   retrieve valid levels.
  * @property {TaxGeoArea} [areas]
  * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 
 /**
  * @typedef TaxRule
- * @property {string} [_id]
- * @property {string} [name]
- * @property {string} [description] - Description of the tax rule.
- * @property {boolean} [is_default] - Flag to set any tax rule as default, in
- *   case any tax rule is inactive on a product then default tax rule gets applied
- * @property {number} [company_id]
+ * @property {string} [_id] - Unique identifier of the tax rule
+ * @property {string} [name] - Name of the tax rule
+ * @property {string} [description] - Description of the tax rule
+ * @property {boolean} [is_default] - Flag to set any tax rule as default. If
+ *   any tax rule is inactive on a product then default tax rule gets applied.
+ * @property {number} [company_id] - Unique identifier of the company which the
+ *   tax rule created
  * @property {TaxStatusEnum} [status]
  * @property {string} [created_on]
  * @property {string} [modified_on]
@@ -5072,14 +5128,15 @@ const Joi = require("joi");
 
 /**
  * @typedef TaxVersionDetail
- * @property {string} _id
- * @property {string} rule_id
+ * @property {string} _id - Unique identifier for the tax version
+ * @property {string} rule_id - Unique identifier for the rule ID
  * @property {string} applicable_date - It is the date from when this rule comes
  *   in effect. Always present and should be at least one minute in the future
  *   when scheduled.
  * @property {string} created_on
  * @property {string} modified_on
- * @property {number} company_id
+ * @property {number} company_id - Unique identifier of the company which the
+ *   tax rule created
  * @property {TaxStatusEnum} [status]
  * @property {string} [region_code] - Region code for areas sent when adding a
  *   region override.
@@ -5099,10 +5156,10 @@ const Joi = require("joi");
 /**
  * @typedef UpdateTaxRequestBody
  * @property {TaxStatusEnum} status
- * @property {boolean} is_default - Flag to set any tax rule as default, in case
- *   any tax rule is inactive or not available on a product then default tax
- *   rule gets applied.
- * @property {string} name - New name of the tax rule.
+ * @property {boolean} is_default - Flag to set tax rule as the default. If a
+ *   tax rule is inactive or not available for a product, the default tax rule
+ *   will be applied.
+ * @property {string} name - New name of the tax rule
  */
 
 /**
@@ -5113,7 +5170,7 @@ const Joi = require("joi");
 
 /**
  * @typedef TaxRules
- * @property {TaxRuleItem[]} items - List of tax rules with their versions.
+ * @property {TaxRuleItem[]} items - List of tax rules with their versions
  * @property {Page} page
  */
 
@@ -5125,27 +5182,30 @@ const Joi = require("joi");
 
 /**
  * @typedef TaxRuleVersion
- * @property {TaxVersionDetail[]} items - List of tax versions.
+ * @property {TaxVersionDetail[]} items - List of tax versions
  * @property {TaxRule} rule
  * @property {Page} page
  */
 
 /**
  * @typedef HSCodeItem
- * @property {string} [created_on] - Timestamp of when the HS code was created.
- * @property {string} [modified_on] - Timestamp of when the HS code was last modified.
- * @property {HsTypeEnum} type
- * @property {number} [company_id] - Company ID associated with this HS code.
- * @property {string} [description] - Description of the HS code.
- * @property {string} hs_code - The HS code of the product.
- * @property {string} [_id] - Unique identifier for the HS code entry.
- * @property {string} [country_iso] - ISO 2-digit country code. Will be set by
- *   default according to company's country.
+ * @property {string} [created_on] - Timestamp when the HS/SAC code entry was created.
+ * @property {string} [modified_on] - Timestamp of the most recent modification
+ *   to this HS/SAC code entry.
+ * @property {string} type - Type of the code for services
+ * @property {number} [company_id] - Unique identifier of the company to which
+ *   this HS/SAC code is associated.
+ * @property {string} [description] - Description providing details about the HS
+ *   or SAC code
+ * @property {string} hs_code - The HS or SAC value being registered for the company.
+ * @property {string} [_id] - Unique identifier for the HS/SAC code entry
+ * @property {string} [country_iso] - ISO 3166-1 alpha-2 country code
+ *   representing the country for which this code is registered.
  */
 
 /**
  * @typedef HSCodes
- * @property {HSCodeItem[]} items - Array of HS code responses.
+ * @property {HSCodeItem[]} items - Array of HS code responses
  * @property {Page} page
  */
 
@@ -6220,11 +6280,27 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {InventoryRecord} */
+  static InventoryRecord() {
+    return Joi.object({
+      command: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      inventory_bucket: Joi.string().allow(""),
+      price_effective: Joi.number(),
+      price_marked: Joi.number(),
+      seller_identifier: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
+      total_quantity: Joi.number(),
+      trace_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {FailedRecord} */
   static FailedRecord() {
     return Joi.object({
       identifiers: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      data: Joi.array().items(CatalogPlatformModel.InventoryRecord()),
     });
   }
 
@@ -6247,6 +6323,7 @@ class CatalogPlatformModel {
       succeed: Joi.number(),
       total: Joi.number(),
       tags: Joi.array().items(Joi.string().allow("")),
+      error_file_url: Joi.string().allow(""),
       meta: CatalogPlatformModel.BulkMeta(),
     });
   }
@@ -6256,6 +6333,8 @@ class CatalogPlatformModel {
     return Joi.object({
       comment: Joi.string().allow(""),
       image_urls: Joi.array().items(Joi.string().allow("")),
+      total: Joi.number().allow(null),
+      meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -6293,6 +6372,8 @@ class CatalogPlatformModel {
       template_tag: Joi.string().allow(""),
       total: Joi.number(),
       tracking_url: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -7507,7 +7588,7 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
-      phone_number: Joi.string().allow("").required(),
+      phone_number: Joi.string().allow(""),
       product_return_config: CatalogPlatformModel.ProductReturnConfigSchema(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
@@ -7985,7 +8066,9 @@ class CatalogPlatformModel {
   /** @returns {InventoryExportJobListResponseSchema} */
   static InventoryExportJobListResponseSchema() {
     return Joi.object({
-      items: CatalogPlatformModel.InventoryJobDetailResponseSchema().required(),
+      items: Joi.array()
+        .items(CatalogPlatformModel.InventoryJobDetailResponseSchema())
+        .allow(null, ""),
       page: CatalogPlatformModel.Page(),
     });
   }
@@ -8039,16 +8122,16 @@ class CatalogPlatformModel {
       completed_on: Joi.string().allow(""),
       created_by: CatalogPlatformModel.UserDetail(),
       created_on: Joi.string().allow(""),
-      filters: CatalogPlatformModel.InventoryJobFilters().required(),
-      id: Joi.string().allow("").required(),
+      filters: CatalogPlatformModel.InventoryJobFilters(),
+      id: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
       status: Joi.string().allow(""),
       stats: Joi.object().pattern(/\S/, Joi.any()),
-      task_id: Joi.string().allow("").required(),
+      task_id: Joi.string().allow(""),
       type: Joi.string().allow("").allow(null),
-      url: Joi.string().allow("").required(),
+      url: Joi.string().allow(""),
     });
   }
 
@@ -8114,6 +8197,7 @@ class CatalogPlatformModel {
       damaged_quantity: Joi.number().allow(null),
       not_available_quantity: Joi.number().allow(null),
       trace_id: Joi.string().allow(""),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -9564,6 +9648,11 @@ class CatalogPlatformModel {
   static SizeDetails() {
     return Joi.object({
       size: Joi.string().allow(""),
+      item_width: Joi.number().allow(null),
+      item_length: Joi.number().allow(null),
+      item_height: Joi.number().allow(null),
+      price_effective: Joi.number().allow(null),
+      item_weight: Joi.number().allow(null),
       store_count: Joi.number(),
       sellable_quantity: Joi.number(),
       sellable: Joi.boolean(),
@@ -10501,6 +10590,7 @@ class CatalogPlatformModel {
       file_type: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
       tags: Joi.array().items(Joi.string().allow("")),
+      created_on: Joi.string().allow(""),
       meta: CatalogPlatformModel.BulkMeta(),
     });
   }
@@ -10634,13 +10724,13 @@ class CatalogPlatformModel {
   static CreateTaxComponentNameRequestSchema() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      description: Joi.string().allow(""),
     });
   }
 
   /** @returns {TaxReqBodyVersion} */
   static TaxReqBodyVersion() {
     return Joi.object({
+      scope: Joi.string().allow(""),
       components: Joi.array()
         .items(CatalogPlatformModel.TaxComponent())
         .required(),
@@ -10698,9 +10788,7 @@ class CatalogPlatformModel {
   static CreateTaxRequestBody() {
     return Joi.object({
       rule: CatalogPlatformModel.TaxReqBodyRule().required(),
-      versions: Joi.array()
-        .items(CatalogPlatformModel.TaxReqBodyVersion())
-        .required(),
+      versions: CatalogPlatformModel.TaxReqBodyVersion().required(),
     });
   }
 
@@ -10740,6 +10828,7 @@ class CatalogPlatformModel {
   /** @returns {CreateTaxVersionRequestBody} */
   static CreateTaxVersionRequestBody() {
     return Joi.object({
+      scope: Joi.string().allow(""),
       components: Joi.array()
         .items(CatalogPlatformModel.TaxComponent())
         .required(),
@@ -10844,7 +10933,7 @@ class CatalogPlatformModel {
     return Joi.object({
       created_on: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
-      type: CatalogPlatformModel.HsTypeEnum().required(),
+      type: Joi.string().allow("").required(),
       company_id: Joi.number(),
       description: Joi.string().allow(""),
       hs_code: Joi.string().allow("").required(),

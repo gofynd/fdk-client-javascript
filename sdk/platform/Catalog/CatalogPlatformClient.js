@@ -64,7 +64,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -501,7 +501,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.HSCodeItem>} - Success response
    * @name createHsCode
    * @summary: Create HS/SAC code
-   * @description: Create HS/SAC code. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createHsCode/).
+   * @description: Create a new Harmonized System (HS) or Service Accounting Code (SAC). These codes are used for product and service identification in taxation and compliance processes. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createHsCode/).
    */
   async createHsCode(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1230,7 +1230,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.CreateTax>} - Success response
    * @name createTax
    * @summary: Create Tax Rule
-   * @description: Create a tax rule and its version for under a specific company. This also creates a live version of the rule. The API now supports region-specific versions using optional region_type and areas along with the default country-level rule definition. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
+   * @description: Create a tax rule in a company, including its initial (live) version.  The API supports both default (country-level) and region-specific versions by using optional  parameters such as 'region_type' and 'areas'. This enables granular taxation rules scoped to  different geographic regions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/createTax/).
    */
   async createTax(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1879,7 +1879,8 @@ class Catalog {
    * @returns {Promise<Object>} - Success response
    * @name deleteTaxRule
    * @summary: Delete a tax rule
-   * @description: Deletes a tax rule along with all its versions using the provided rule_id. You can not delete a rule if 1. it is the default tax rule 2. it is applied to any product. You will need to set any other tax rule as default or will need to attach a different tax rule to the products, then only you can delete the rule.
+   * @description: Deletes a tax rule and all its associated versions. Note: A rule cannot be deleted if it is set as the default or is currently assigned to any product.
+   * To proceed with deletion, ensure you first assign another rule as the default and unlink this rule from all products.
    *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxRule/).
    */
   async deleteTaxRule(
@@ -1953,7 +1954,7 @@ class Catalog {
    * @returns {Promise<Object>} - Success response
    * @name deleteTaxVersion
    * @summary: Delete a tax version
-   * @description: Deletes a tax rule using the provided rule_id. On future/scheduled version can be deleted. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxVersion/).
+   * @description: Deletes a tax rule using the provided rule_id. Only future/scheduled version can be deleted. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/deleteTaxVersion/).
    */
   async deleteTaxVersion(
     { ruleId, versionId, requestHeaders } = { requestHeaders: {} },
@@ -2446,7 +2447,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxRules>} - Success response
    * @name getAllTaxRules
    * @summary: Get all tax rules of a company
-   * @description: Returns array of all tax rules of a company - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAllTaxRules/).
+   * @description: Retrieves a list of all tax rules defined for a company, along with their details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAllTaxRules/).
    */
   async getAllTaxRules(
     { q, statuses, page, limit, versionStatus, requestHeaders } = {
@@ -3024,8 +3025,8 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.HSCodes>} - Success response
    * @name getHsCodes
    * @summary: Get HS/SAC codes
-   * @description: Retrieve a list of HS (Harmonized System) or SAC (Service Accounting Code) codes for a company.
-   * HS codes are used for classifying goods in international trade, while SAC codes are used for classifying services for taxation purposes.
+   * @description: Retrieve a list of Harmonized System (HS)) or Service Accounting Code (SAC)) codes for a company.
+   * HS codes are used to classify goods in international trade, while SAC codes classify services for taxation purposes.
    * Supports optional filtering and pagination.
    *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getHsCodes/).
    */
@@ -5483,7 +5484,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetTaxComponents>} - Success response
    * @name getTaxComponentNames
    * @summary: Get component names
-   * @description: Get component names for a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxComponentNames/).
+   * @description: Retrieve the list of all tax component names for a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxComponentNames/).
    */
   async getTaxComponentNames(
     { requestHeaders } = { requestHeaders: {} },
@@ -5558,7 +5559,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxRuleVersion>} - Success response
    * @name getTaxVersionDetails
    * @summary: Get tax versions for a tax rule
-   * @description: Retrieve versions of a tax rule with support for filtering by status and text search on region names via the `q` parameter. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
+   * @description: Retrieve the versions of a tax rule. You can filter results by version status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getTaxVersionDetails/).
    */
   async getTaxVersionDetails(
     { ruleId, versionStatus, q, limit, page, requestHeaders } = {
@@ -7260,7 +7261,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxRule>} - Success response
    * @name updateTaxRule
    * @summary: Update Tax Rule
-   * @description: Update an existing tax rule under a specific company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxRule/).
+   * @description: Update the details of an existing tax rule for a company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxRule/).
    */
   async updateTaxRule(
     { ruleId, body, requestHeaders } = { requestHeaders: {} },
@@ -7341,7 +7342,12 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.TaxVersion>} - Success response
    * @name updateTaxVersion
    * @summary: Update a tax version
-   * @description: Updates a tax version using the provided rule_id. Scheduled versions support editing of components, applicable dates, and regional overrides while live versions allow limited updates. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
+   * @description: When updating a tax version, the rules differ depending on whether it is a live version (that is, its applicable_date is now or in the past) or a scheduled version (with an applicable_date in the future).
+   * For live versions, only the component names may be modified and only when the corresponding _id also matches, while changes to fields such as applicable_date, scope, store_ids, areas, region_type, and any other properties are not allowed.
+   * In contrast, for scheduled (future) versions, you may change the applicable_date using an ISO datetime representing the date and time the version takes effect (at the start of the local day); to avoid changing it, simply pass the current applicable_date value.
+   * Components can be added, updated, or removed: new components may omit _id, and omitting a known _id from the request will remove that component. The scope (COUNTRY by default, or STORE or REGION) can be set; for STORE scope, store_ids are required—if not specified, the existing store_ids are used.
+   * For REGION scope, areas are required and region_type can be provided or will default to the current setting. In all cases, component names are validated, and only one version per rule may exist for each local day.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateTaxVersion/).
    */
   async updateTaxVersion(
     { ruleId, versionId, body, requestHeaders } = { requestHeaders: {} },

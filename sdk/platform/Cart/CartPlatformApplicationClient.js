@@ -544,13 +544,18 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenApiCheckoutResult>} - Success response
    * @name checkoutCart
-   * @summary: Checkout cart
+   * @summary: Headless Checkout
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkoutCart/).
    */
   async checkoutCart(
-    { body, xOrderingSource, xAnonymousCart, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      xLocationDetail,
+      xCurrencyCode,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.checkoutCart().validate(
@@ -558,6 +563,8 @@ class Cart {
         body,
         xOrderingSource,
         xAnonymousCart,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -573,6 +580,8 @@ class Cart {
         body,
         xOrderingSource,
         xAnonymousCart,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1260,7 +1269,13 @@ class Cart {
    * @description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/fetchAndvalidateCartItems/).
    */
   async fetchAndvalidateCartItems(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    {
+      body,
+      xOrderingSource,
+      xLocationDetail,
+      xCurrencyCode,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1269,6 +1284,8 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1283,6 +1300,8 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3867,13 +3886,21 @@ class Cart {
    * @description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/overrideCart/).
    */
   async overrideCart(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    {
+      body,
+      xOrderingSource,
+      xLocationDetail,
+      xCurrencyCode,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.overrideCart().validate(
       {
         body,
         xOrderingSource,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3888,6 +3915,8 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xLocationDetail,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4146,7 +4175,15 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
    */
   async platformCheckoutCartV2(
-    { body, xOrderingSource, id, requestHeaders } = { requestHeaders: {} },
+    {
+      body,
+      xOrderingSource,
+      xAnonymousCart,
+      xLocationDetail,
+      xCurrencyCode,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4155,6 +4192,9 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
+        xLocationDetail,
+        xCurrencyCode,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -4170,6 +4210,9 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xAnonymousCart,
+        xLocationDetail,
+        xCurrencyCode,
         id,
       },
       { abortEarly: false, allowUnknown: false }

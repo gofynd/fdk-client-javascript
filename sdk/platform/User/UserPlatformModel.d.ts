@@ -10,6 +10,11 @@ export = UserPlatformModel;
  * @property {PaginationSchema} [page]
  */
 /**
+ * @typedef UserAttributeDefinitionsResponseSchema
+ * @property {UserAttribute[]} [items]
+ * @property {PaginationSchema} [page]
+ */
+/**
  * @typedef UserAttributeDefinition
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
@@ -34,6 +39,7 @@ export = UserPlatformModel;
  * @property {string} [created_at] - The creation date of the attribute.
  * @property {string} [modified_at] - The modification date of the attribute.
  * @property {number} [__v] - The version number of the attribute.
+ * @property {string[]} [options] - List of possible values for the attribute
  */
 /**
  * @typedef UserAttributeDefinitionDetails
@@ -716,7 +722,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessage, UserAttributeDefinitionList, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, DeleteUserGroupSuccess, PrivacyPolicyConsentSchema };
+    export { SuccessMessage, UserAttributeDefinitionList, UserAttributeDefinitionsResponseSchema, UserAttributeDefinition, UserAttributeDefinitionDetails, AttributeMaskingProperties, AttributeRegistrationProperties, UserAttributeDefinitionValidation, BulkUserAttribute, UserAttribute, CreateBulkUserAttribute, BulkUserAttributeRequestBody, CreateUserAttribute, CreateUserAttributeDefinition, CreateStoreFrontUsersPayload, BulkUserExportSchema, BulkActionModel, CreatedBySchema, BulkActionLinkSchema, FileLinks, BulkActionCountSchema, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, BulkActionPaginationSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, DeleteBulkUserAttribute, UserAttributeFilter, UserAttributeFilterQuery, UserAttributeFilterRequestConditions, UserAttributeFiltered, UserAttributeFilteredList, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, GetUserTimeline, UserTimeline, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email, UserConsent, DeleteUserGroupSuccess, PrivacyPolicyConsentSchema };
 }
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
@@ -731,6 +737,12 @@ type UserAttributeDefinitionList = {
      * definition objects.
      */
     items?: UserAttributeDefinition[];
+    page?: PaginationSchema;
+};
+/** @returns {UserAttributeDefinitionsResponseSchema} */
+declare function UserAttributeDefinitionsResponseSchema(): UserAttributeDefinitionsResponseSchema;
+type UserAttributeDefinitionsResponseSchema = {
+    items?: UserAttribute[];
     page?: PaginationSchema;
 };
 /** @returns {UserAttributeDefinition} */
@@ -810,6 +822,10 @@ type UserAttributeDefinition = {
      * - The version number of the attribute.
      */
     __v?: number;
+    /**
+     * - List of possible values for the attribute
+     */
+    options?: string[];
 };
 /** @returns {UserAttributeDefinitionDetails} */
 declare function UserAttributeDefinitionDetails(): UserAttributeDefinitionDetails;

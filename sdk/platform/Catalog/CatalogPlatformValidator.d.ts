@@ -75,7 +75,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule.
+ * @property {string} ruleId - Unique identifier of the tax rule
  * @property {CatalogPlatformModel.CreateTaxVersionRequestBody} body
  */
 /**
@@ -104,12 +104,12 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef DeleteTaxRuleParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
+ * @property {string} ruleId - Unique identifier of the tax rule to be deleted
  */
 /**
  * @typedef DeleteTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
- * @property {string} versionId - The ID of the tax version to be deleted.
+ * @property {string} ruleId - Unique identifier of the tax rule to be deleted
+ * @property {string} versionId - Unique identifier of the tax version to be deleted
  */
 /**
  * @typedef DownloadInventoryTemplateViewParam
@@ -143,11 +143,12 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef GetAllTaxRulesParam
- * @property {string} [q] - The search query to filter tax rules.
- * @property {string} [statuses] - The status of the tax rules to filter.
- * @property {number} [page] - The page number to retrieve.
- * @property {number} [limit] - The number of items per page.
- * @property {string} [versionStatus] - The status of the tax rule versions to filter.
+ * @property {string} [q] - Search query to filter tax rules
+ * @property {string} [statuses] - Filter tax rules based on their lifecycle status.
+ * @property {number} [page] - The page number to retrieve
+ * @property {number} [limit] - Maximum number of tax rule items per page
+ * @property {string} [versionStatus] - Filter tax rules to include only those
+ *   with versions in the specified status.
  */
 /**
  * @typedef GetAttributeParam
@@ -178,7 +179,7 @@ export = CatalogPlatformValidator;
  * @typedef GetHsCodesParam
  * @property {number} [page] - The page number for pagination.
  * @property {number} [limit] - The number of items to return per page.
- * @property {CatalogPlatformModel.HsTypeEnum} [type] - Filter by HS/SAC code type.
+ * @property {string} [type] - Filter by HS/SAC code type.
  * @property {string} [q] - Search query to filter HS/SAC codes by code or description.
  */
 /**
@@ -363,12 +364,12 @@ export = CatalogPlatformValidator;
 /** @typedef GetTaxComponentNamesParam */
 /**
  * @typedef GetTaxVersionDetailsParam
- * @property {string} ruleId - The ID of the tax rule.
- * @property {string} [versionStatus] - Filter by tax version status.
- * @property {string} [q] - Case-insensitive search by region name (e.g., "raj",
- *   "New York") to find matching tax versions.
+ * @property {string} ruleId - Unique identifier of the tax rule
+ * @property {string} [versionStatus] - Filter by tax version status
+ * @property {string} [q] - Case-insensitive search by region name (e.g.,
+ *   "john", "New York") to find matching tax versions
  * @property {string} [limit] - The number of items to return per page for
- *   paginated past versions.
+ *   paginated past versions
  * @property {string} [page] - The page number for paginated past versions.
  */
 /**
@@ -476,7 +477,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef UpdateMarketplaceOptinParam
- * @property {string} marketplaceSlug - Slug of the marketplace .
+ * @property {string} marketplaceSlug - Slug of the marketplace.
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
  */
 /**
@@ -493,13 +494,13 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef UpdateTaxRuleParam
- * @property {string} ruleId - Tax rule id that you want to update.
+ * @property {string} ruleId - Unique identifier of the tax rule to update
  * @property {CatalogPlatformModel.UpdateTaxRequestBody} body
  */
 /**
  * @typedef UpdateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be updated.
- * @property {string} versionId - The ID of the tax version to be updated.
+ * @property {string} ruleId - Unique identifier of the tax rule to be updated
+ * @property {string} versionId - Unique identifier of the tax version to be updated
  * @property {CatalogPlatformModel.UpdateTaxVersionRequestBody} body
  */
 /**
@@ -777,7 +778,7 @@ type CreateTaxComponentNameParam = {
 };
 type CreateTaxVersionParam = {
     /**
-     * - The ID of the tax rule.
+     * - Unique identifier of the tax rule
      */
     ruleId: string;
     body: CatalogPlatformModel.CreateTaxVersionRequestBody;
@@ -824,17 +825,17 @@ type DeleteSizeParam = {
 };
 type DeleteTaxRuleParam = {
     /**
-     * - The ID of the tax rule to be deleted.
+     * - Unique identifier of the tax rule to be deleted
      */
     ruleId: string;
 };
 type DeleteTaxVersionParam = {
     /**
-     * - The ID of the tax rule to be deleted.
+     * - Unique identifier of the tax rule to be deleted
      */
     ruleId: string;
     /**
-     * - The ID of the tax version to be deleted.
+     * - Unique identifier of the tax version to be deleted
      */
     versionId: string;
 };
@@ -898,23 +899,24 @@ type GetAllProductHsnCodesParam = {
 };
 type GetAllTaxRulesParam = {
     /**
-     * - The search query to filter tax rules.
+     * - Search query to filter tax rules
      */
     q?: string;
     /**
-     * - The status of the tax rules to filter.
+     * - Filter tax rules based on their lifecycle status.
      */
     statuses?: string;
     /**
-     * - The page number to retrieve.
+     * - The page number to retrieve
      */
     page?: number;
     /**
-     * - The number of items per page.
+     * - Maximum number of tax rule items per page
      */
     limit?: number;
     /**
-     * - The status of the tax rule versions to filter.
+     * - Filter tax rules to include only those
+     * with versions in the specified status.
      */
     versionStatus?: string;
 };
@@ -973,7 +975,7 @@ type GetHsCodesParam = {
     /**
      * - Filter by HS/SAC code type.
      */
-    type?: CatalogPlatformModel.HsTypeEnum;
+    type?: string;
     /**
      * - Search query to filter HS/SAC codes by code or description.
      */
@@ -1390,21 +1392,21 @@ type GetStoreDetailParam = {
 };
 type GetTaxVersionDetailsParam = {
     /**
-     * - The ID of the tax rule.
+     * - Unique identifier of the tax rule
      */
     ruleId: string;
     /**
-     * - Filter by tax version status.
+     * - Filter by tax version status
      */
     versionStatus?: string;
     /**
-     * - Case-insensitive search by region name (e.g., "raj",
-     * "New York") to find matching tax versions.
+     * - Case-insensitive search by region name (e.g.,
+     * "john", "New York") to find matching tax versions
      */
     q?: string;
     /**
      * - The number of items to return per page for
-     * paginated past versions.
+     * paginated past versions
      */
     limit?: string;
     /**
@@ -1617,7 +1619,7 @@ type UpdateLocationQuantityParam = {
 };
 type UpdateMarketplaceOptinParam = {
     /**
-     * - Slug of the marketplace .
+     * - Slug of the marketplace.
      */
     marketplaceSlug: string;
     body: CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema;
@@ -1643,18 +1645,18 @@ type UpdateSizeGuideParam = {
 };
 type UpdateTaxRuleParam = {
     /**
-     * - Tax rule id that you want to update.
+     * - Unique identifier of the tax rule to update
      */
     ruleId: string;
     body: CatalogPlatformModel.UpdateTaxRequestBody;
 };
 type UpdateTaxVersionParam = {
     /**
-     * - The ID of the tax rule to be updated.
+     * - Unique identifier of the tax rule to be updated
      */
     ruleId: string;
     /**
-     * - The ID of the tax version to be updated.
+     * - Unique identifier of the tax version to be updated
      */
     versionId: string;
     body: CatalogPlatformModel.UpdateTaxVersionRequestBody;

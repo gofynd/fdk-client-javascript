@@ -5428,7 +5428,7 @@ export = OrderPlatformModel;
  * @property {string} [entity_type] - Type of entity that the tag is associated
  *   to (bag, shipments).
  * @property {Object} [fallback_user] - Details of the fallback user associated
- *   with the bag .
+ *   with the bag.
  * @property {FinancialBreakup[]} [financial_breakup] - A breakdown of the
  *   financial aspects associated with the bag, such as product prices, taxes,
  *   discounts, and total cost.
@@ -16732,7 +16732,7 @@ type BagDetails = {
     entity_type?: string;
     /**
      * - Details of the fallback user associated
-     * with the bag .
+     * with the bag.
      */
     fallback_user?: any;
     /**

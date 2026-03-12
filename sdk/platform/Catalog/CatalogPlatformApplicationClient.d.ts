@@ -1076,7 +1076,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppCategory
      * @summary: Update sales channel category
-     * @description: Modify category data related to the sales channel . - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateAppCategory/).
+     * @description: Modify category data related to the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/updateAppCategory/).
      */
     updateAppCategory({ categoryUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**

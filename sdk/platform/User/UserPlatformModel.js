@@ -13,6 +13,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef UserAttributeDefinitionsResponseSchema
+ * @property {UserAttribute[]} [items]
+ * @property {PaginationSchema} [page]
+ */
+
+/**
  * @typedef UserAttributeDefinition
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
@@ -37,6 +43,7 @@ const Joi = require("joi");
  * @property {string} [created_at] - The creation date of the attribute.
  * @property {string} [modified_at] - The modification date of the attribute.
  * @property {number} [__v] - The version number of the attribute.
+ * @property {string[]} [options] - List of possible values for the attribute
  */
 
 /**
@@ -815,6 +822,14 @@ class UserPlatformModel {
     });
   }
 
+  /** @returns {UserAttributeDefinitionsResponseSchema} */
+  static UserAttributeDefinitionsResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(UserPlatformModel.UserAttribute()),
+      page: UserPlatformModel.PaginationSchema(),
+    });
+  }
+
   /** @returns {UserAttributeDefinition} */
   static UserAttributeDefinition() {
     return Joi.object({
@@ -838,6 +853,7 @@ class UserPlatformModel {
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
       __v: Joi.number(),
+      options: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -932,7 +948,7 @@ class UserPlatformModel {
   static BulkUserAttributeRequestBody() {
     return Joi.object({
       definition_id: Joi.string().allow("").required(),
-      value: Joi.object().pattern(/\S/, Joi.any()).required(),
+      value: Joi.any().required(),
     });
   }
 

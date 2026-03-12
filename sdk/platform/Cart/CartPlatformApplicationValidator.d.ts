@@ -47,9 +47,13 @@ export = CartPlatformApplicationValidator;
  * @typedef CheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
- * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
- *   operations on cross-platform anonymous cart. When enabled, the system
- *   fetches the cart only based on cart_id instead of user_id.
+ * @property {string} [xAnonymousCart] - It allows operations on cross-platform
+ *   anonymous carts. When provided, the system retrieves the cart using only
+ *   the cart_id, ignoring the user_id. Use this when interacting with an
+ *   anonymous or guest cart across platforms.
+ * @property {string} [xLocationDetail] - Location details for the cart checkout
+ * @property {string} [xCurrencyCode] - Currency code for transactions. Defaults
+ *   to INR if the location is India.
  * @property {CartPlatformModel.OpenApiPlatformCheckoutReq} body
  */
 /**
@@ -89,6 +93,8 @@ export = CartPlatformApplicationValidator;
  * @typedef FetchAndvalidateCartItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xLocationDetail] - Location details for the cart checkout
+ * @property {string} [xCurrencyCode] - Currency code for transactions.
  * @property {CartPlatformModel.OpenapiCartDetailsCreation} body
  */
 /** @typedef FetchCartMetaConfigParam */
@@ -310,6 +316,9 @@ export = CartPlatformApplicationValidator;
  * @typedef OverrideCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xLocationDetail] - Location details for the cart checkout
+ * @property {string} [xCurrencyCode] - Currency code for transactions. Defaults
+ *   to INR if the location is India.
  * @property {CartPlatformModel.OverrideCheckoutReq} body
  */
 /**
@@ -344,8 +353,15 @@ export = CartPlatformApplicationValidator;
 /**
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
- *   identify source of order creation.
- * @property {string} [id] - The unique identifier of the cart
+ *   identify source of order creation
+ * @property {string} [xAnonymousCart] - It allows operations on cross-platform
+ *   anonymous carts. When provided, the system retrieves the cart using only
+ *   the cart_id, ignoring the user_id. Use this when interacting with an
+ *   anonymous or guest cart across platforms.
+ * @property {string} [xLocationDetail] - Location information for the cart
+ * @property {string} [xCurrencyCode] - Currency code for the transaction.
+ *   Defaults to INR if the order location is India.
+ * @property {string} [id] - Unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Creation} body
  */
 /**
@@ -750,11 +766,21 @@ type CheckoutCartParam = {
      */
     xOrderingSource?: string;
     /**
-     * - Anonymous cart header used to perform
-     * operations on cross-platform anonymous cart. When enabled, the system
-     * fetches the cart only based on cart_id instead of user_id.
+     * - It allows operations on cross-platform
+     * anonymous carts. When provided, the system retrieves the cart using only
+     * the cart_id, ignoring the user_id. Use this when interacting with an
+     * anonymous or guest cart across platforms.
      */
     xAnonymousCart?: string;
+    /**
+     * - Location details for the cart checkout
+     */
+    xLocationDetail?: string;
+    /**
+     * - Currency code for transactions. Defaults
+     * to INR if the location is India.
+     */
+    xCurrencyCode?: string;
     body: CartPlatformModel.OpenApiPlatformCheckoutReq;
 };
 type CreateCartMetaConfigParam = {
@@ -791,6 +817,14 @@ type FetchAndvalidateCartItemsParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Location details for the cart checkout
+     */
+    xLocationDetail?: string;
+    /**
+     * - Currency code for transactions.
+     */
+    xCurrencyCode?: string;
     body: CartPlatformModel.OpenapiCartDetailsCreation;
 };
 type GetAbandonedCartParam = {
@@ -1122,6 +1156,15 @@ type OverrideCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Location details for the cart checkout
+     */
+    xLocationDetail?: string;
+    /**
+     * - Currency code for transactions. Defaults
+     * to INR if the location is India.
+     */
+    xCurrencyCode?: string;
     body: CartPlatformModel.OverrideCheckoutReq;
 };
 type PlatformAddItemsParam = {
@@ -1184,11 +1227,27 @@ type PlatformCheckoutCartParam = {
 type PlatformCheckoutCartV2Param = {
     /**
      * - Ordering source header, to be used to
-     * identify source of order creation.
+     * identify source of order creation
      */
     xOrderingSource?: string;
     /**
-     * - The unique identifier of the cart
+     * - It allows operations on cross-platform
+     * anonymous carts. When provided, the system retrieves the cart using only
+     * the cart_id, ignoring the user_id. Use this when interacting with an
+     * anonymous or guest cart across platforms.
+     */
+    xAnonymousCart?: string;
+    /**
+     * - Location information for the cart
+     */
+    xLocationDetail?: string;
+    /**
+     * - Currency code for the transaction.
+     * Defaults to INR if the order location is India.
+     */
+    xCurrencyCode?: string;
+    /**
+     * - Unique identifier of the cart
      */
     id?: string;
     body: CartPlatformModel.PlatformCartCheckoutDetailV2Creation;

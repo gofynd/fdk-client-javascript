@@ -1654,7 +1654,7 @@ const Joi = require("joi");
  * @property {Author} [author]
  * @property {Title} [title]
  * @property {FeatureImage} [feature_image]
- * @property {Seo} [seo]
+ * @property {SeoTranslate} [seo]
  */
 
 /**
@@ -1674,7 +1674,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Seo
+ * @typedef SeoTranslate
  * @property {Title} [title]
  * @property {string} [description]
  * @property {string} [canonical_url]
@@ -3791,7 +3791,7 @@ class ContentPlatformModel {
       author: ContentPlatformModel.Author(),
       title: ContentPlatformModel.Title(),
       feature_image: ContentPlatformModel.FeatureImage(),
-      seo: ContentPlatformModel.Seo(),
+      seo: ContentPlatformModel.SeoTranslate(),
     }).allow(null);
   }
 
@@ -3817,8 +3817,8 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {Seo} */
-  static Seo() {
+  /** @returns {SeoTranslate} */
+  static SeoTranslate() {
     return Joi.object({
       title: ContentPlatformModel.Title(),
       description: Joi.string().allow(""),

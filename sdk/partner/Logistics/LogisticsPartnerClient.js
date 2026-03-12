@@ -2091,15 +2091,21 @@ class Logistics {
    * @description: Get created Schemes for courier partner - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getCourierPartnerSchemes/).
    */
   async getCourierPartnerSchemes(
-    { schemeType, paymentMode, capabilities, schemeIds, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      extensionId,
+      schemeType,
+      paymentMode,
+      capabilities,
+      schemeIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
       {
+        extensionId,
         schemeType,
         paymentMode,
         capabilities,
@@ -2116,6 +2122,7 @@ class Logistics {
       error: warrning,
     } = LogisticsPartnerValidator.getCourierPartnerSchemes().validate(
       {
+        extensionId,
         schemeType,
         paymentMode,
         capabilities,
@@ -2131,6 +2138,7 @@ class Logistics {
     }
 
     const query_params = {};
+    query_params["extension_id"] = extensionId;
     query_params["scheme_type"] = schemeType;
     query_params["payment_mode"] = paymentMode;
     query_params["capabilities"] = capabilities;

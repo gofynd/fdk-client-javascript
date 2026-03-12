@@ -95,7 +95,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule.
+ * @property {string} ruleId - Unique identifier of the tax rule
  * @property {CatalogPlatformModel.CreateTaxVersionRequestBody} body
  */
 
@@ -130,13 +130,13 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef DeleteTaxRuleParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
+ * @property {string} ruleId - Unique identifier of the tax rule to be deleted
  */
 
 /**
  * @typedef DeleteTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be deleted.
- * @property {string} versionId - The ID of the tax version to be deleted.
+ * @property {string} ruleId - Unique identifier of the tax rule to be deleted
+ * @property {string} versionId - Unique identifier of the tax version to be deleted
  */
 
 /**
@@ -176,11 +176,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetAllTaxRulesParam
- * @property {string} [q] - The search query to filter tax rules.
- * @property {string} [statuses] - The status of the tax rules to filter.
- * @property {number} [page] - The page number to retrieve.
- * @property {number} [limit] - The number of items per page.
- * @property {string} [versionStatus] - The status of the tax rule versions to filter.
+ * @property {string} [q] - Search query to filter tax rules
+ * @property {string} [statuses] - Filter tax rules based on their lifecycle status.
+ * @property {number} [page] - The page number to retrieve
+ * @property {number} [limit] - Maximum number of tax rule items per page
+ * @property {string} [versionStatus] - Filter tax rules to include only those
+ *   with versions in the specified status.
  */
 
 /**
@@ -218,7 +219,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetHsCodesParam
  * @property {number} [page] - The page number for pagination.
  * @property {number} [limit] - The number of items to return per page.
- * @property {CatalogPlatformModel.HsTypeEnum} [type] - Filter by HS/SAC code type.
+ * @property {string} [type] - Filter by HS/SAC code type.
  * @property {string} [q] - Search query to filter HS/SAC codes by code or description.
  */
 
@@ -427,12 +428,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetTaxVersionDetailsParam
- * @property {string} ruleId - The ID of the tax rule.
- * @property {string} [versionStatus] - Filter by tax version status.
- * @property {string} [q] - Case-insensitive search by region name (e.g., "raj",
- *   "New York") to find matching tax versions.
+ * @property {string} ruleId - Unique identifier of the tax rule
+ * @property {string} [versionStatus] - Filter by tax version status
+ * @property {string} [q] - Case-insensitive search by region name (e.g.,
+ *   "john", "New York") to find matching tax versions
  * @property {string} [limit] - The number of items to return per page for
- *   paginated past versions.
+ *   paginated past versions
  * @property {string} [page] - The page number for paginated past versions.
  */
 
@@ -555,7 +556,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateMarketplaceOptinParam
- * @property {string} marketplaceSlug - Slug of the marketplace .
+ * @property {string} marketplaceSlug - Slug of the marketplace.
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
  */
 
@@ -575,14 +576,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateTaxRuleParam
- * @property {string} ruleId - Tax rule id that you want to update.
+ * @property {string} ruleId - Unique identifier of the tax rule to update
  * @property {CatalogPlatformModel.UpdateTaxRequestBody} body
  */
 
 /**
  * @typedef UpdateTaxVersionParam
- * @property {string} ruleId - The ID of the tax rule to be updated.
- * @property {string} versionId - The ID of the tax version to be updated.
+ * @property {string} ruleId - Unique identifier of the tax rule to be updated
+ * @property {string} versionId - Unique identifier of the tax version to be updated
  * @property {CatalogPlatformModel.UpdateTaxVersionRequestBody} body
  */
 
@@ -900,7 +901,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       page: Joi.number(),
       limit: Joi.number(),
-      type: CatalogPlatformModel.HsTypeEnum(),
+      type: Joi.string().allow(""),
       q: Joi.string().allow(""),
     }).required();
   }
@@ -944,7 +945,7 @@ class CatalogPlatformValidator {
       startDate: Joi.string().allow(""),
       endDate: Joi.string().allow(""),
       stage: Joi.string().allow(""),
-      tags: Joi.string().allow(""),
+      tags: Joi.string().allow("").allow(null),
     }).required();
   }
 

@@ -2044,7 +2044,9 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionsResponseSchema>}
+   *   - Success response
+   *
    * @name getUserAttributesForUser
    * @summary: Get All Customer Attributes
    * @description: Retrieve all user attributes for a specific user - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/user/getUserAttributesForUser/).
@@ -2106,10 +2108,12 @@ class User {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeDefinitionsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

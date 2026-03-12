@@ -282,12 +282,14 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Object>} - Success response
+     * @returns {Promise<UserPlatformModel.UserAttributeDefinitionsResponseSchema>}
+     *   - Success response
+     *
      * @name getUserAttributesForUser
      * @summary: Get All Customer Attributes
      * @description: Retrieve all user attributes for a specific user - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/user/getUserAttributesForUser/).
      */
-    getUserAttributesForUser({ userId, pageSize, pageNo, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributesForUserParam, { responseHeaders }?: object): Promise<any>;
+    getUserAttributesForUser({ userId, pageSize, pageNo, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributesForUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionsResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.GetUserGroupByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -233,6 +233,7 @@ class LogisticsValidator {
 
   static getCourierPartnerSchemes() {
     return Joi.object({
+      extensionId: Joi.string().allow(""),
       schemeType: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       capabilities: Joi.array().items(Joi.string().allow("")),

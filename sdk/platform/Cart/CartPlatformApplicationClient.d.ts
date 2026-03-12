@@ -72,10 +72,10 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.OpenApiCheckoutResult>} - Success response
      * @name checkoutCart
-     * @summary: Checkout cart
+     * @summary: Headless Checkout
      * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkoutCart/).
      */
-    checkoutCart({ body, xOrderingSource, xAnonymousCart, requestHeaders }?: CartPlatformApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCheckoutResult>;
+    checkoutCart({ body, xOrderingSource, xAnonymousCart, xLocationDetail, xCurrencyCode, requestHeaders, }?: CartPlatformApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCheckoutResult>;
     /**
      * @param {CartPlatformApplicationValidator.CreateCartMetaConfigParam} arg
      *   - Arg object
@@ -169,7 +169,7 @@ declare class Cart {
      * @summary: Get and validate cart items
      * @description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/fetchAndvalidateCartItems/).
      */
-    fetchAndvalidateCartItems({ body, xOrderingSource, requestHeaders }?: CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenapiCartDetailsResult>;
+    fetchAndvalidateCartItems({ body, xOrderingSource, xLocationDetail, xCurrencyCode, requestHeaders, }?: CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenapiCartDetailsResult>;
     /**
      * @param {CartPlatformApplicationValidator.FetchCartMetaConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -466,7 +466,7 @@ declare class Cart {
      * @summary: Update cart checkout
      * @description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/overrideCart/).
      */
-    overrideCart({ body, xOrderingSource, requestHeaders }?: CartPlatformApplicationValidator.OverrideCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OverrideCheckoutResult>;
+    overrideCart({ body, xOrderingSource, xLocationDetail, xCurrencyCode, requestHeaders, }?: CartPlatformApplicationValidator.OverrideCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OverrideCheckoutResult>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformAddItemsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -500,7 +500,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the items in the user’s cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCartV2/).
      */
-    platformCheckoutCartV2({ body, xOrderingSource, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutDetails>;
+    platformCheckoutCartV2({ body, xOrderingSource, xAnonymousCart, xLocationDetail, xCurrencyCode, id, requestHeaders, }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutDetails>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformUpdateCartParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

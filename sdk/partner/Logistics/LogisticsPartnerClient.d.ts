@@ -257,7 +257,7 @@ declare class Logistics {
      * @summary: Get created Schemes for courier partner
      * @description: Get created Schemes for courier partner - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/logistics/getCourierPartnerSchemes/).
      */
-    getCourierPartnerSchemes({ schemeType, paymentMode, capabilities, schemeIds, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeList>;
+    getCourierPartnerSchemes({ extensionId, schemeType, paymentMode, capabilities, schemeIds, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierPartnerSchemeList>;
     /**
      * @param {LogisticsPartnerValidator.UpdateCourierPartnerSchemeParam} arg -
      *   Arg object.

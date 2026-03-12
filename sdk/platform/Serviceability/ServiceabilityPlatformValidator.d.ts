@@ -97,6 +97,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetCourierPartnerSchemesParam
+ * @property {string} [extensionId] - Unique Identifier of courier partner extension.
  * @property {string} [schemeType] - Indicates whether a scheme is created by an
  *   admin for global purposes or customized for a specific company.
  * @property {string} [paymentMode] - Indicates payment mode for a scheme.
@@ -453,6 +454,10 @@ type GetCourierPartnerSchemeParam = {
     schemeId: string;
 };
 type GetCourierPartnerSchemesParam = {
+    /**
+     * - Unique Identifier of courier partner extension.
+     */
+    extensionId?: string;
     /**
      * - Indicates whether a scheme is created by an
      * admin for global purposes or customized for a specific company.

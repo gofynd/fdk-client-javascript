@@ -735,9 +735,23 @@ export = CatalogPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef InventoryRecord
+ * @property {string} [command] - The command associated with the data entry.
+ * @property {string} [currency] - The currency code, e.g., INR, USD.
+ * @property {string} [inventory_bucket] - Inventory bucket identifier.
+ * @property {number} [price_effective] - The effective price of the item.
+ * @property {number} [price_marked] - The marked price of the item.
+ * @property {string} [seller_identifier] - Identifier for the seller.
+ * @property {string} [store_code] - Code identifying the store.
+ * @property {number} [total_quantity] - The total quantity for the item.
+ * @property {string} [trace_id] - Trace identifier for tracking.
+ */
+/**
  * @typedef FailedRecord
  * @property {string} [identifiers]
  * @property {string} [message]
+ * @property {InventoryRecord[]} [data] - List of data items representing the
+ *   bulk inventory get response.
  */
 /**
  * @typedef BulkInventoryGetItems
@@ -757,6 +771,7 @@ export = CatalogPlatformModel;
  * @property {number} [succeed]
  * @property {number} [total]
  * @property {string[]} [tags]
+ * @property {string} [error_file_url]
  * @property {BulkMeta} [meta]
  */
 /**
@@ -765,6 +780,8 @@ export = CatalogPlatformModel;
  *   context or reason for the bulk inventory action.
  * @property {string[]} [image_urls] - A list of image URLs providing visual
  *   evidence or supporting context for the comment.
+ * @property {number} [total] - The total count, if provided.
+ * @property {Object} [meta] - Metadata as a key-value map.
  */
 /**
  * @typedef BulkProductJob
@@ -799,6 +816,8 @@ export = CatalogPlatformModel;
  * @property {string} [template_tag]
  * @property {number} [total]
  * @property {string} [tracking_url]
+ * @property {string[]} [tags]
+ * @property {Object} [meta]
  */
 /**
  * @typedef BulkProductRequestSchema
@@ -1816,7 +1835,7 @@ export = CatalogPlatformModel;
  * @property {string} name - Name of the store location.
  * @property {string[]} [notification_emails] - Email addresses for sending
  *   notifications related to this store.
- * @property {string} phone_number - Primary phone number for contacting the store.
+ * @property {string} [phone_number] - Primary phone number for contacting the store.
  * @property {ProductReturnConfigSchema} [product_return_config]
  * @property {string} [stage] - Current operational stage of the store.
  * @property {string} [store_type] - Type of store.
@@ -2218,8 +2237,8 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef InventoryExportJobListResponseSchema
- * @property {InventoryJobDetailResponseSchema} items - This is the list/history
- *   of all the jobs.
+ * @property {InventoryJobDetailResponseSchema[]} [items] - This is the
+ *   list/history of all the jobs.
  * @property {Page} [page]
  */
 /**
@@ -2262,9 +2281,9 @@ export = CatalogPlatformModel;
  * @property {UserDetail} [created_by] - This is the user detail of the user who
  *   cancelled the job.
  * @property {string} [created_on] - This is the timestamp of the creation for this job.
- * @property {InventoryJobFilters} filters - This is the filter criteria applied
- *   for the export job.
- * @property {string} id - This is the ID of the job.
+ * @property {InventoryJobFilters} [filters] - This is the filter criteria
+ *   applied for the export job.
+ * @property {string} [id] - This is the ID of the job.
  * @property {string} [modified_on] - This is the timestamp of the modification
  *   for this job.
  * @property {string[]} [notification_emails] - User email to get notification
@@ -2272,9 +2291,9 @@ export = CatalogPlatformModel;
  * @property {number} seller_id - This ID of the company.
  * @property {string} [status] - This tells you the current status of the export job.
  * @property {Object} [stats] - Provides count of total/success/failed
- * @property {string} task_id - This is the task id of the jobs that is used for search.
+ * @property {string} [task_id] - This is the task id of the jobs that is used for search.
  * @property {string} [type] - This is the file type of the export.
- * @property {string} url - This is the url to download the export.
+ * @property {string} [url] - This is the url to download the export.
  */
 /**
  * @typedef InventoryJobFilters
@@ -2334,6 +2353,7 @@ export = CatalogPlatformModel;
  * @property {number} [not_available_quantity] - The not available quantity of
  *   the inventory item.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
+ * @property {Object} [meta]
  */
 /**
  * @typedef InventoryRequestSchema
@@ -3607,6 +3627,11 @@ export = CatalogPlatformModel;
 /**
  * @typedef SizeDetails
  * @property {string} [size] - Size identifier for the product (e.g., "S", "M", "L").
+ * @property {number} [item_width] - Item width for the size.
+ * @property {number} [item_length] - Item length for the size.
+ * @property {number} [item_height] - Item height for the size.
+ * @property {number} [price_effective] - Effective price for the size.
+ * @property {number} [item_weight] - Item weight for the size.
  * @property {number} [store_count] - The number of stores that have this size available.
  * @property {number} [sellable_quantity] - Quantity of the product that is
  *   sellable in this size.
@@ -4419,6 +4444,8 @@ export = CatalogPlatformModel;
  * @property {string} file_path - URL of the uploaded file containing inventory
  *   update data.
  * @property {string[]} [tags] - Tags associated with the inventory update job.
+ * @property {string} [created_on] - The date and time when the bulk inventory
+ *   job was created.
  * @property {BulkMeta} [meta]
  */
 /**
@@ -4485,39 +4512,45 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef TaxReqBodyRule
- * @property {string} name - Tax rule name
- * @property {string} [description] - Tax rule description
+ * @property {string} name - Unique name of the tax rule
+ * @property {string} [description] - A detailed description of the tax rule.
+ *   Helps provide context about its purpose and scope.
  */
 /**
  * @typedef TaxThreshold
  * @property {number} value - Tax rate is applied to products above or equal to
  *   this price.
- * @property {number} rate - Tax rate ranging from 0 to 1.
+ * @property {number} rate - Tax rate ranging from 0 to 1
  */
 /**
  * @typedef TaxComponent
- * @property {string} name - Name represent different types of taxes that may be
- *   applied to products or transactions, such as sales tax, value-added tax
- *   (VAT), goods and services tax, consumption tax, or other region-specific
- *   taxation systems.
- * @property {TaxThreshold[]} slabs - List of slabs which comprises of tax rate
- *   and their respective threshold value
+ * @property {string} name - The name of the tax component. This field
+ *   identifies the specific type of tax that the component represents, such as
+ *   sales tax, value-added tax (VAT), goods and services tax (GST), consumption
+ *   tax, or any other tax applicable at a regional or national level. This
+ *   enables classification and clear distinction between multiple tax types
+ *   applied to products or transactions.
+ * @property {TaxThreshold[]} slabs - An array of tax rate slabs that define the
+ *   thresholds and corresponding rates for this component. Each slab specifies
+ *   a minimum value at which the tax rate applies and the rate itself, allowing
+ *   for tiered tax calculations based on price ranges or thresholds.
  */
 /**
  * @typedef TaxComponentResponseSchema
- * @property {string} name - Name of the component.
- * @property {string} [description] - Description of the tax component.
- * @property {TaxThreshold[]} slabs - List of slabs that comprises of tax rate
- *   and their respective threshold.
- * @property {string} _id - Unique identifier of the tax component. This _id is
- *   required for updating any tax component; If _id field is not in "update tax
- *   version" request then that component will be created.
+ * @property {string} name - Name of the component
+ * @property {string} [description] - Description of the tax component
+ * @property {TaxThreshold[]} slabs - An array of tax rate slabs, each
+ *   specifying the applicable tax rate and its corresponding threshold for this
+ *   component.
+ * @property {string} _id - Unique identifier of the tax component. It is
+ *   required for updating any tax component; If _id field is not in
+ *   "updateTaxVersion" request then that component will be created.
  */
 /**
  * @typedef TaxComponentName
  * @property {string} _id - Unique identifier for the tax component name
- * @property {number} company_id - Identifier of the company this component name
- *   belongs to
+ * @property {number} company_id - Unique identifier of the company to which
+ *   this tax component name is associated.
  * @property {string} name - Name of the tax component
  * @property {string} [description] - Description of the tax component name
  * @property {string} [created_on] - Timestamp when the component name was created
@@ -4526,18 +4559,22 @@ export = CatalogPlatformModel;
 /**
  * @typedef CreateTaxComponentNameRequestSchema
  * @property {string} name - Name of the tax component
- * @property {string} [description] - Description of the tax component name
  */
 /**
  * @typedef TaxReqBodyVersion
- * @property {TaxComponent[]} components - List of tax components with their
- *   respective slabs and rates.
- * @property {string} [applicable_date] - Optional future effective date for the
- *   version. Must be at least one minute ahead of the current time when supplied.
- * @property {string} [region_type] - Required whenever areas are supplied to
- *   indicate the granularity of the provided regions.
+ * @property {string} [scope] - Scope of the tax version
+ * @property {TaxComponent[]} components - Array of tax components included in
+ *   this version that will apply within the scope of this tax version.
+ * @property {string} [applicable_date] - The date and time (in ISO 8601 format)
+ *   when this tax version becomes effective. If provided, it must be at least
+ *   one minute later than the current time, allowing scheduling of future tax
+ *   rule activation.
+ * @property {string} [region_type] - Specifies the level (like state, city, or
+ *   pincode) for this tax version when the 'areas' field is used. Use values
+ *   allowed for the country, which you can get from the Servicability
+ *   country-hierarchy API. This field is needed if 'areas' are provided.
  * @property {TaxGeoArea} [areas]
- * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {number[]} [store_ids] - List of store identifiers for store-level taxation.
  */
 /**
  * @typedef TaxGeoArea
@@ -4571,69 +4608,88 @@ export = CatalogPlatformModel;
 /**
  * @typedef CreateTaxRequestBody
  * @property {TaxReqBodyRule} rule
- * @property {TaxReqBodyVersion[]} versions - List of tax versions for the tax rule.
+ * @property {TaxReqBodyVersion} versions
  */
 /**
  * @typedef TaxVersion
- * @property {string} [_id]
- * @property {string} [rule_id] - Tax Rule ID.
- * @property {string} [applicable_date] - Scheduled effective date for the
- *   version. Must be at least one minute ahead of current time when provided.
- * @property {string} [created_on]
- * @property {string} [modified_on]
- * @property {number} [company_id] - Company ID.
+ * @property {string} [_id] - Unique identifier of the tax version
+ * @property {string} [rule_id] - Unique identifier of the tax rule to which
+ *   this version belongs. This identifier links the tax version to its parent rule.
+ * @property {string} [applicable_date] - The date and time when this version
+ *   becomes effective and is used for taxation purposes. This field must be at
+ *   least one minute in the future relative to the current system time to
+ *   ensure future scheduling of tax versions.
+ * @property {string} [created_on] - ISO 8601 timestamp indicating when this tax
+ *   version was created in the system. Used for audit trails and version history.
+ * @property {string} [modified_on] - ISO 8601 timestamp of the latest update to
+ *   this tax version. Every modification or update to the version record
+ *   updates this field, ensuring accurate audit and traceability.
+ * @property {number} [company_id] - Unique identifier of the company for which
+ *   this tax version is defined.
  * @property {TaxStatusEnum} [status]
- * @property {string} [region_type] - Present when the version targets a
- *   specific set of regions rather than the default country-level rule.
+ * @property {string} [region_type] - Specifies the geographical region at which
+ *   the tax rule version applies. Required and present when the version targets
+ *   a specific region rather than the default country-level rule.
  * @property {TaxGeoArea} [areas]
- * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
+ * @property {number[]} [store_ids] - Array of store identifiers to which this
+ *   tax version is scoped. Enables store-level tax configuration, allowing
+ *   companies to specify tax applicability at individual store granularity.
  * @property {TaxVersionScopeEnum} [scope]
- * @property {TaxComponentResponseSchema[]} [components] - List of tax components.
+ * @property {TaxComponentResponseSchema[]} [components]
  */
 /**
  * @typedef UpdateTaxVersionRequestBody
- * @property {TaxComponentResponseSchema[]} components - List of tax components.
+ * @property {TaxComponentResponseSchema[]} components
  * @property {string} applicable_date - It is the date from when this rule will
  *   come in effect. It should be at least one minute in the future from the
  *   current time.
  * @property {string} [region_type] - Required when areas are present to denote
- *   the level (city/state/pincode) at which the version applies.
+ *   the level (city/state/pincode) at which the version applies. Supported
+ *   region types are derived from Servicability's country hierarchy (e.g.,
+ *   India: state, city; UAE: sector, city). Use the Servicability
+ *   country-hierarchy API to read the allowed levels.
  * @property {TaxGeoArea} [areas]
  * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 /**
  * @typedef CreateTaxVersionRequestBody
- * @property {TaxComponent[]} components - List of tax components.
+ * @property {string} [scope] - Scope of the tax version
+ * @property {TaxComponent[]} components - List of tax components
  * @property {string} [applicable_date] - Optional scheduled date from when this
  *   rule will come in effect. It should be at least one minute in the future
- *   from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+ *   from the current time.
  * @property {string} [region_type] - Required when areas are present to denote
- *   the level (city/state/pincode) at which the version applies.
+ *   the level (city/state/pincode) at which the version applies. Supported
+ *   values follow Servicability's country hierarchy (e.g., India: state, city;
+ *   UAE: sector, city); consult Servicability country-hierarchy APIs to
+ *   retrieve valid levels.
  * @property {TaxGeoArea} [areas]
  * @property {number[]} [store_ids] - Store identifiers for store-level taxation.
  */
 /**
  * @typedef TaxRule
- * @property {string} [_id]
- * @property {string} [name]
- * @property {string} [description] - Description of the tax rule.
- * @property {boolean} [is_default] - Flag to set any tax rule as default, in
- *   case any tax rule is inactive on a product then default tax rule gets applied
- * @property {number} [company_id]
+ * @property {string} [_id] - Unique identifier of the tax rule
+ * @property {string} [name] - Name of the tax rule
+ * @property {string} [description] - Description of the tax rule
+ * @property {boolean} [is_default] - Flag to set any tax rule as default. If
+ *   any tax rule is inactive on a product then default tax rule gets applied.
+ * @property {number} [company_id] - Unique identifier of the company which the
+ *   tax rule created
  * @property {TaxStatusEnum} [status]
  * @property {string} [created_on]
  * @property {string} [modified_on]
  */
 /**
  * @typedef TaxVersionDetail
- * @property {string} _id
- * @property {string} rule_id
+ * @property {string} _id - Unique identifier for the tax version
+ * @property {string} rule_id - Unique identifier for the rule ID
  * @property {string} applicable_date - It is the date from when this rule comes
  *   in effect. Always present and should be at least one minute in the future
  *   when scheduled.
  * @property {string} created_on
  * @property {string} modified_on
- * @property {number} company_id
+ * @property {number} company_id - Unique identifier of the company which the
+ *   tax rule created
  * @property {TaxStatusEnum} [status]
  * @property {string} [region_code] - Region code for areas sent when adding a
  *   region override.
@@ -4651,10 +4707,10 @@ export = CatalogPlatformModel;
 /**
  * @typedef UpdateTaxRequestBody
  * @property {TaxStatusEnum} status
- * @property {boolean} is_default - Flag to set any tax rule as default, in case
- *   any tax rule is inactive or not available on a product then default tax
- *   rule gets applied.
- * @property {string} name - New name of the tax rule.
+ * @property {boolean} is_default - Flag to set tax rule as the default. If a
+ *   tax rule is inactive or not available for a product, the default tax rule
+ *   will be applied.
+ * @property {string} name - New name of the tax rule
  */
 /**
  * @typedef TaxRuleItem
@@ -4663,7 +4719,7 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef TaxRules
- * @property {TaxRuleItem[]} items - List of tax rules with their versions.
+ * @property {TaxRuleItem[]} items - List of tax rules with their versions
  * @property {Page} page
  */
 /**
@@ -4673,25 +4729,28 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef TaxRuleVersion
- * @property {TaxVersionDetail[]} items - List of tax versions.
+ * @property {TaxVersionDetail[]} items - List of tax versions
  * @property {TaxRule} rule
  * @property {Page} page
  */
 /**
  * @typedef HSCodeItem
- * @property {string} [created_on] - Timestamp of when the HS code was created.
- * @property {string} [modified_on] - Timestamp of when the HS code was last modified.
- * @property {HsTypeEnum} type
- * @property {number} [company_id] - Company ID associated with this HS code.
- * @property {string} [description] - Description of the HS code.
- * @property {string} hs_code - The HS code of the product.
- * @property {string} [_id] - Unique identifier for the HS code entry.
- * @property {string} [country_iso] - ISO 2-digit country code. Will be set by
- *   default according to company's country.
+ * @property {string} [created_on] - Timestamp when the HS/SAC code entry was created.
+ * @property {string} [modified_on] - Timestamp of the most recent modification
+ *   to this HS/SAC code entry.
+ * @property {string} type - Type of the code for services
+ * @property {number} [company_id] - Unique identifier of the company to which
+ *   this HS/SAC code is associated.
+ * @property {string} [description] - Description providing details about the HS
+ *   or SAC code
+ * @property {string} hs_code - The HS or SAC value being registered for the company.
+ * @property {string} [_id] - Unique identifier for the HS/SAC code entry
+ * @property {string} [country_iso] - ISO 3166-1 alpha-2 country code
+ *   representing the country for which this code is registered.
  */
 /**
  * @typedef HSCodes
- * @property {HSCodeItem[]} items - Array of HS code responses.
+ * @property {HSCodeItem[]} items - Array of HS code responses
  * @property {Page} page
  */
 /**
@@ -4936,7 +4995,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, StandardError, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, SortWeights, CohortWeights, HighSpenderRepeatCustomerWeights, HyperactiveRepeatCustomerWeights, HighSpenderOccasionalCustomerWeights, StandardOccasionalCustomerWeights, DormantPremiumCustomerWeights, BudgetRegularCustomerWeights, HighSpenderRegularCustomerWeights, StandardCustomerAboutToChurnWeights, PremiumCustomerAboutToChurnWeights, HighSpenderCustomerAboutToChurnWeights, StandardDormantCustomerWeights, HighSpenderDormantCustomerWeights, PotentialCustomerWeights, NewCustomerWeights, BudgetRepeatCustomerWeights, AverageSpenderRepeatCustomerWeights, CohortSortingConfiguration, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, PriceStrategySchema, PriceFactoryResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, TaxGeoArea, AreaDetails, Country, Area, RegionReference, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, PriceFactoryListItemsSchema, PriceFactoryListResponseSchema, CreatePriceFactoryConfigSchema, UpdatePriceFactoryConfigSchema, PriceFactoryConfigSchema, CurrencyPriceSchema, UpsertPriceFactorySizesSchema, UpsertPriceFactoryProductSchema, PriceFactoryCurrencyPriceSchema, PriceFactorySizesSchema, PriceFactoryProductResponseSchema, PriceFactoryProductListResponseSchema, PriceRange, CurrencyPrice, ProductPrice, AppProductPricesSchema, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, TaxVersionScopeEnum, HsTypeEnum, PageType };
+    export { Action, ValidationErrors, StandardError, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, SortWeights, CohortWeights, HighSpenderRepeatCustomerWeights, HyperactiveRepeatCustomerWeights, HighSpenderOccasionalCustomerWeights, StandardOccasionalCustomerWeights, DormantPremiumCustomerWeights, BudgetRegularCustomerWeights, HighSpenderRegularCustomerWeights, StandardCustomerAboutToChurnWeights, PremiumCustomerAboutToChurnWeights, HighSpenderCustomerAboutToChurnWeights, StandardDormantCustomerWeights, HighSpenderDormantCustomerWeights, PotentialCustomerWeights, NewCustomerWeights, BudgetRepeatCustomerWeights, AverageSpenderRepeatCustomerWeights, CohortSortingConfiguration, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, InventoryRecord, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, PriceStrategySchema, PriceFactoryResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, TaxGeoArea, AreaDetails, Country, Area, RegionReference, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, PriceFactoryListItemsSchema, PriceFactoryListResponseSchema, CreatePriceFactoryConfigSchema, UpdatePriceFactoryConfigSchema, PriceFactoryConfigSchema, CurrencyPriceSchema, UpsertPriceFactorySizesSchema, UpsertPriceFactoryProductSchema, PriceFactoryCurrencyPriceSchema, PriceFactorySizesSchema, PriceFactoryProductResponseSchema, PriceFactoryProductListResponseSchema, PriceRange, CurrencyPrice, ProductPrice, AppProductPricesSchema, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, TaxVersionScopeEnum, HsTypeEnum, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -6415,11 +6474,56 @@ type BulkInventoryGet = {
     items?: BulkInventoryGetItems[];
     page?: Page;
 };
+/** @returns {InventoryRecord} */
+declare function InventoryRecord(): InventoryRecord;
+type InventoryRecord = {
+    /**
+     * - The command associated with the data entry.
+     */
+    command?: string;
+    /**
+     * - The currency code, e.g., INR, USD.
+     */
+    currency?: string;
+    /**
+     * - Inventory bucket identifier.
+     */
+    inventory_bucket?: string;
+    /**
+     * - The effective price of the item.
+     */
+    price_effective?: number;
+    /**
+     * - The marked price of the item.
+     */
+    price_marked?: number;
+    /**
+     * - Identifier for the seller.
+     */
+    seller_identifier?: string;
+    /**
+     * - Code identifying the store.
+     */
+    store_code?: string;
+    /**
+     * - The total quantity for the item.
+     */
+    total_quantity?: number;
+    /**
+     * - Trace identifier for tracking.
+     */
+    trace_id?: string;
+};
 /** @returns {FailedRecord} */
 declare function FailedRecord(): FailedRecord;
 type FailedRecord = {
     identifiers?: string;
     message?: string;
+    /**
+     * - List of data items representing the
+     * bulk inventory get response.
+     */
+    data?: InventoryRecord[];
 };
 /** @returns {BulkInventoryGetItems} */
 declare function BulkInventoryGetItems(): BulkInventoryGetItems;
@@ -6440,6 +6544,7 @@ type BulkInventoryGetItems = {
     succeed?: number;
     total?: number;
     tags?: string[];
+    error_file_url?: string;
     meta?: BulkMeta;
 };
 /** @returns {BulkMeta} */
@@ -6455,6 +6560,14 @@ type BulkMeta = {
      * evidence or supporting context for the comment.
      */
     image_urls?: string[];
+    /**
+     * - The total count, if provided.
+     */
+    total?: number;
+    /**
+     * - Metadata as a key-value map.
+     */
+    meta?: any;
 };
 /** @returns {BulkProductJob} */
 declare function BulkProductJob(): BulkProductJob;
@@ -6524,6 +6637,8 @@ type BulkJob = {
     template_tag?: string;
     total?: number;
     tracking_url?: string;
+    tags?: string[];
+    meta?: any;
 };
 /** @returns {BulkProductRequestSchema} */
 declare function BulkProductRequestSchema(): BulkProductRequestSchema;
@@ -8609,7 +8724,7 @@ type GetLocationSchema = {
     /**
      * - Primary phone number for contacting the store.
      */
-    phone_number: string;
+    phone_number?: string;
     product_return_config?: ProductReturnConfigSchema;
     /**
      * - Current operational stage of the store.
@@ -9481,10 +9596,10 @@ type InventoryExportJob = {
 declare function InventoryExportJobListResponseSchema(): InventoryExportJobListResponseSchema;
 type InventoryExportJobListResponseSchema = {
     /**
-     * - This is the list/history
-     * of all the jobs.
+     * - This is the
+     * list/history of all the jobs.
      */
-    items: InventoryJobDetailResponseSchema;
+    items?: InventoryJobDetailResponseSchema[];
     page?: Page;
 };
 /** @returns {InventoryExportQuantityFilter} */
@@ -9587,14 +9702,14 @@ type InventoryJobDetailResponseSchema = {
      */
     created_on?: string;
     /**
-     * - This is the filter criteria applied
-     * for the export job.
+     * - This is the filter criteria
+     * applied for the export job.
      */
-    filters: InventoryJobFilters;
+    filters?: InventoryJobFilters;
     /**
      * - This is the ID of the job.
      */
-    id: string;
+    id?: string;
     /**
      * - This is the timestamp of the modification
      * for this job.
@@ -9620,7 +9735,7 @@ type InventoryJobDetailResponseSchema = {
     /**
      * - This is the task id of the jobs that is used for search.
      */
-    task_id: string;
+    task_id?: string;
     /**
      * - This is the file type of the export.
      */
@@ -9628,7 +9743,7 @@ type InventoryJobDetailResponseSchema = {
     /**
      * - This is the url to download the export.
      */
-    url: string;
+    url?: string;
 };
 /** @returns {InventoryJobFilters} */
 declare function InventoryJobFilters(): InventoryJobFilters;
@@ -9795,6 +9910,7 @@ type InventoryPayload = {
      * - The trace ID of the inventory payload.
      */
     trace_id?: string;
+    meta?: any;
 };
 /** @returns {InventoryRequestSchema} */
 declare function InventoryRequestSchema(): InventoryRequestSchema;
@@ -12815,6 +12931,26 @@ type SizeDetails = {
      */
     size?: string;
     /**
+     * - Item width for the size.
+     */
+    item_width?: number;
+    /**
+     * - Item length for the size.
+     */
+    item_length?: number;
+    /**
+     * - Item height for the size.
+     */
+    item_height?: number;
+    /**
+     * - Effective price for the size.
+     */
+    price_effective?: number;
+    /**
+     * - Item weight for the size.
+     */
+    item_weight?: number;
+    /**
      * - The number of stores that have this size available.
      */
     store_count?: number;
@@ -14483,6 +14619,11 @@ type BulkInventoryJob = {
      * - Tags associated with the inventory update job.
      */
     tags?: string[];
+    /**
+     * - The date and time when the bulk inventory
+     * job was created.
+     */
+    created_on?: string;
     meta?: BulkMeta;
 };
 /** @returns {Marketplaces} */
@@ -14576,11 +14717,12 @@ type FollowProduct = {
 declare function TaxReqBodyRule(): TaxReqBodyRule;
 type TaxReqBodyRule = {
     /**
-     * - Tax rule name
+     * - Unique name of the tax rule
      */
     name: string;
     /**
-     * - Tax rule description
+     * - A detailed description of the tax rule.
+     * Helps provide context about its purpose and scope.
      */
     description?: string;
 };
@@ -14593,7 +14735,7 @@ type TaxThreshold = {
      */
     value: number;
     /**
-     * - Tax rate ranging from 0 to 1.
+     * - Tax rate ranging from 0 to 1
      */
     rate: number;
 };
@@ -14601,15 +14743,19 @@ type TaxThreshold = {
 declare function TaxComponent(): TaxComponent;
 type TaxComponent = {
     /**
-     * - Name represent different types of taxes that may be
-     * applied to products or transactions, such as sales tax, value-added tax
-     * (VAT), goods and services tax, consumption tax, or other region-specific
-     * taxation systems.
+     * - The name of the tax component. This field
+     * identifies the specific type of tax that the component represents, such as
+     * sales tax, value-added tax (VAT), goods and services tax (GST), consumption
+     * tax, or any other tax applicable at a regional or national level. This
+     * enables classification and clear distinction between multiple tax types
+     * applied to products or transactions.
      */
     name: string;
     /**
-     * - List of slabs which comprises of tax rate
-     * and their respective threshold value
+     * - An array of tax rate slabs that define the
+     * thresholds and corresponding rates for this component. Each slab specifies
+     * a minimum value at which the tax rate applies and the rate itself, allowing
+     * for tiered tax calculations based on price ranges or thresholds.
      */
     slabs: TaxThreshold[];
 };
@@ -14617,22 +14763,23 @@ type TaxComponent = {
 declare function TaxComponentResponseSchema(): TaxComponentResponseSchema;
 type TaxComponentResponseSchema = {
     /**
-     * - Name of the component.
+     * - Name of the component
      */
     name: string;
     /**
-     * - Description of the tax component.
+     * - Description of the tax component
      */
     description?: string;
     /**
-     * - List of slabs that comprises of tax rate
-     * and their respective threshold.
+     * - An array of tax rate slabs, each
+     * specifying the applicable tax rate and its corresponding threshold for this
+     * component.
      */
     slabs: TaxThreshold[];
     /**
-     * - Unique identifier of the tax component. This _id is
-     * required for updating any tax component; If _id field is not in "update tax
-     * version" request then that component will be created.
+     * - Unique identifier of the tax component. It is
+     * required for updating any tax component; If _id field is not in
+     * "updateTaxVersion" request then that component will be created.
      */
     _id: string;
 };
@@ -14644,8 +14791,8 @@ type TaxComponentName = {
      */
     _id: string;
     /**
-     * - Identifier of the company this component name
-     * belongs to
+     * - Unique identifier of the company to which
+     * this tax component name is associated.
      */
     company_id: number;
     /**
@@ -14672,32 +14819,36 @@ type CreateTaxComponentNameRequestSchema = {
      * - Name of the tax component
      */
     name: string;
-    /**
-     * - Description of the tax component name
-     */
-    description?: string;
 };
 /** @returns {TaxReqBodyVersion} */
 declare function TaxReqBodyVersion(): TaxReqBodyVersion;
 type TaxReqBodyVersion = {
     /**
-     * - List of tax components with their
-     * respective slabs and rates.
+     * - Scope of the tax version
+     */
+    scope?: string;
+    /**
+     * - Array of tax components included in
+     * this version that will apply within the scope of this tax version.
      */
     components: TaxComponent[];
     /**
-     * - Optional future effective date for the
-     * version. Must be at least one minute ahead of the current time when supplied.
+     * - The date and time (in ISO 8601 format)
+     * when this tax version becomes effective. If provided, it must be at least
+     * one minute later than the current time, allowing scheduling of future tax
+     * rule activation.
      */
     applicable_date?: string;
     /**
-     * - Required whenever areas are supplied to
-     * indicate the granularity of the provided regions.
+     * - Specifies the level (like state, city, or
+     * pincode) for this tax version when the 'areas' field is used. Use values
+     * allowed for the country, which you can get from the Servicability
+     * country-hierarchy API. This field is needed if 'areas' are provided.
      */
     region_type?: string;
     areas?: TaxGeoArea;
     /**
-     * - Store identifiers for store-level taxation.
+     * - List of store identifiers for store-level taxation.
      */
     store_ids?: number[];
 };
@@ -14745,53 +14896,63 @@ type RegionReference = {
 declare function CreateTaxRequestBody(): CreateTaxRequestBody;
 type CreateTaxRequestBody = {
     rule: TaxReqBodyRule;
-    /**
-     * - List of tax versions for the tax rule.
-     */
-    versions: TaxReqBodyVersion[];
+    versions: TaxReqBodyVersion;
 };
 /** @returns {TaxVersion} */
 declare function TaxVersion(): TaxVersion;
 type TaxVersion = {
+    /**
+     * - Unique identifier of the tax version
+     */
     _id?: string;
     /**
-     * - Tax Rule ID.
+     * - Unique identifier of the tax rule to which
+     * this version belongs. This identifier links the tax version to its parent rule.
      */
     rule_id?: string;
     /**
-     * - Scheduled effective date for the
-     * version. Must be at least one minute ahead of current time when provided.
+     * - The date and time when this version
+     * becomes effective and is used for taxation purposes. This field must be at
+     * least one minute in the future relative to the current system time to
+     * ensure future scheduling of tax versions.
      */
     applicable_date?: string;
+    /**
+     * - ISO 8601 timestamp indicating when this tax
+     * version was created in the system. Used for audit trails and version history.
+     */
     created_on?: string;
+    /**
+     * - ISO 8601 timestamp of the latest update to
+     * this tax version. Every modification or update to the version record
+     * updates this field, ensuring accurate audit and traceability.
+     */
     modified_on?: string;
     /**
-     * - Company ID.
+     * - Unique identifier of the company for which
+     * this tax version is defined.
      */
     company_id?: number;
     status?: TaxStatusEnum;
     /**
-     * - Present when the version targets a
-     * specific set of regions rather than the default country-level rule.
+     * - Specifies the geographical region at which
+     * the tax rule version applies. Required and present when the version targets
+     * a specific region rather than the default country-level rule.
      */
     region_type?: string;
     areas?: TaxGeoArea;
     /**
-     * - Store identifiers for store-level taxation.
+     * - Array of store identifiers to which this
+     * tax version is scoped. Enables store-level tax configuration, allowing
+     * companies to specify tax applicability at individual store granularity.
      */
     store_ids?: number[];
     scope?: TaxVersionScopeEnum;
-    /**
-     * - List of tax components.
-     */
     components?: TaxComponentResponseSchema[];
 };
 /** @returns {UpdateTaxVersionRequestBody} */
 declare function UpdateTaxVersionRequestBody(): UpdateTaxVersionRequestBody;
 type UpdateTaxVersionRequestBody = {
-    /**
-     * - List of tax components.
-     */
     components: TaxComponentResponseSchema[];
     /**
      * - It is the date from when this rule will
@@ -14801,7 +14962,10 @@ type UpdateTaxVersionRequestBody = {
     applicable_date: string;
     /**
      * - Required when areas are present to denote
-     * the level (city/state/pincode) at which the version applies.
+     * the level (city/state/pincode) at which the version applies. Supported
+     * region types are derived from Servicability's country hierarchy (e.g.,
+     * India: state, city; UAE: sector, city). Use the Servicability
+     * country-hierarchy API to read the allowed levels.
      */
     region_type?: string;
     areas?: TaxGeoArea;
@@ -14814,18 +14978,25 @@ type UpdateTaxVersionRequestBody = {
 declare function CreateTaxVersionRequestBody(): CreateTaxVersionRequestBody;
 type CreateTaxVersionRequestBody = {
     /**
-     * - List of tax components.
+     * - Scope of the tax version
+     */
+    scope?: string;
+    /**
+     * - List of tax components
      */
     components: TaxComponent[];
     /**
      * - Optional scheduled date from when this
      * rule will come in effect. It should be at least one minute in the future
-     * from the current time. Date time format YYYY-MM-DDThh:mm:ss±hh:mm.
+     * from the current time.
      */
     applicable_date?: string;
     /**
      * - Required when areas are present to denote
-     * the level (city/state/pincode) at which the version applies.
+     * the level (city/state/pincode) at which the version applies. Supported
+     * values follow Servicability's country hierarchy (e.g., India: state, city;
+     * UAE: sector, city); consult Servicability country-hierarchy APIs to
+     * retrieve valid levels.
      */
     region_type?: string;
     areas?: TaxGeoArea;
@@ -14837,17 +15008,27 @@ type CreateTaxVersionRequestBody = {
 /** @returns {TaxRule} */
 declare function TaxRule(): TaxRule;
 type TaxRule = {
+    /**
+     * - Unique identifier of the tax rule
+     */
     _id?: string;
+    /**
+     * - Name of the tax rule
+     */
     name?: string;
     /**
-     * - Description of the tax rule.
+     * - Description of the tax rule
      */
     description?: string;
     /**
-     * - Flag to set any tax rule as default, in
-     * case any tax rule is inactive on a product then default tax rule gets applied
+     * - Flag to set any tax rule as default. If
+     * any tax rule is inactive on a product then default tax rule gets applied.
      */
     is_default?: boolean;
+    /**
+     * - Unique identifier of the company which the
+     * tax rule created
+     */
     company_id?: number;
     status?: TaxStatusEnum;
     created_on?: string;
@@ -14856,7 +15037,13 @@ type TaxRule = {
 /** @returns {TaxVersionDetail} */
 declare function TaxVersionDetail(): TaxVersionDetail;
 type TaxVersionDetail = {
+    /**
+     * - Unique identifier for the tax version
+     */
     _id: string;
+    /**
+     * - Unique identifier for the rule ID
+     */
     rule_id: string;
     /**
      * - It is the date from when this rule comes
@@ -14866,6 +15053,10 @@ type TaxVersionDetail = {
     applicable_date: string;
     created_on: string;
     modified_on: string;
+    /**
+     * - Unique identifier of the company which the
+     * tax rule created
+     */
     company_id: number;
     status?: TaxStatusEnum;
     /**
@@ -14899,13 +15090,13 @@ declare function UpdateTaxRequestBody(): UpdateTaxRequestBody;
 type UpdateTaxRequestBody = {
     status: TaxStatusEnum;
     /**
-     * - Flag to set any tax rule as default, in case
-     * any tax rule is inactive or not available on a product then default tax
-     * rule gets applied.
+     * - Flag to set tax rule as the default. If a
+     * tax rule is inactive or not available for a product, the default tax rule
+     * will be applied.
      */
     is_default: boolean;
     /**
-     * - New name of the tax rule.
+     * - New name of the tax rule
      */
     name: string;
 };
@@ -14919,7 +15110,7 @@ type TaxRuleItem = {
 declare function TaxRules(): TaxRules;
 type TaxRules = {
     /**
-     * - List of tax rules with their versions.
+     * - List of tax rules with their versions
      */
     items: TaxRuleItem[];
     page: Page;
@@ -14934,7 +15125,7 @@ type TaxVersionPastData = {
 declare function TaxRuleVersion(): TaxRuleVersion;
 type TaxRuleVersion = {
     /**
-     * - List of tax versions.
+     * - List of tax versions
      */
     items: TaxVersionDetail[];
     rule: TaxRule;
@@ -14944,33 +15135,39 @@ type TaxRuleVersion = {
 declare function HSCodeItem(): HSCodeItem;
 type HSCodeItem = {
     /**
-     * - Timestamp of when the HS code was created.
+     * - Timestamp when the HS/SAC code entry was created.
      */
     created_on?: string;
     /**
-     * - Timestamp of when the HS code was last modified.
+     * - Timestamp of the most recent modification
+     * to this HS/SAC code entry.
      */
     modified_on?: string;
-    type: HsTypeEnum;
     /**
-     * - Company ID associated with this HS code.
+     * - Type of the code for services
+     */
+    type: string;
+    /**
+     * - Unique identifier of the company to which
+     * this HS/SAC code is associated.
      */
     company_id?: number;
     /**
-     * - Description of the HS code.
+     * - Description providing details about the HS
+     * or SAC code
      */
     description?: string;
     /**
-     * - The HS code of the product.
+     * - The HS or SAC value being registered for the company.
      */
     hs_code: string;
     /**
-     * - Unique identifier for the HS code entry.
+     * - Unique identifier for the HS/SAC code entry
      */
     _id?: string;
     /**
-     * - ISO 2-digit country code. Will be set by
-     * default according to company's country.
+     * - ISO 3166-1 alpha-2 country code
+     * representing the country for which this code is registered.
      */
     country_iso?: string;
 };
@@ -14978,7 +15175,7 @@ type HSCodeItem = {
 declare function HSCodes(): HSCodes;
 type HSCodes = {
     /**
-     * - Array of HS code responses.
+     * - Array of HS code responses
      */
     items: HSCodeItem[];
     page: Page;

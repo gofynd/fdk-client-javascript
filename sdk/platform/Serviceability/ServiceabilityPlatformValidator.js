@@ -113,6 +113,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetCourierPartnerSchemesParam
+ * @property {string} [extensionId] - Unique Identifier of courier partner extension.
  * @property {string} [schemeType] - Indicates whether a scheme is created by an
  *   admin for global purposes or customized for a specific company.
  * @property {string} [paymentMode] - Indicates payment mode for a scheme.
@@ -340,6 +341,7 @@ class ServiceabilityPlatformValidator {
   /** @returns {GetCourierPartnerSchemesParam} */
   static getCourierPartnerSchemes() {
     return Joi.object({
+      extensionId: Joi.string().allow(""),
       schemeType: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       capabilities: Joi.array().items(Joi.string().allow("")),

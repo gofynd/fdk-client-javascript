@@ -4330,7 +4330,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name updateAppProviders
    * @summary: Update application providers
-   * @description: Modify provider configuration using provider object id . - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateAppProviders/).
+   * @description: Modify provider configuration using provider object id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/communication/updateAppProviders/).
    */
   async updateAppProviders(
     { body, requestHeaders } = { requestHeaders: {} },

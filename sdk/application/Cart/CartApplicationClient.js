@@ -338,9 +338,15 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
-    { body, xOrderingSource, buyNow, cartType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xLocationDetail,
+      xCurrencyCode,
+      buyNow,
+      cartType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
@@ -349,6 +355,8 @@ class Cart {
 
     const xHeaders = {};
     xHeaders["x-ordering-source"] = xOrderingSource;
+    xHeaders["x-location-detail"] = xLocationDetail;
+    xHeaders["x-currency-code"] = xCurrencyCode;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -1314,7 +1322,7 @@ class Cart {
    * @returns {Promise<UpdateAddressResult>} - Success response
    * @name updateAddress
    * @summary: Updates an existing customer address
-   * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateAddress/).
+   * @description: Customer can modify the details of a previously saved address. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateAddress/).
    */
   async updateAddress(
     { id, body, requestHeaders } = { requestHeaders: {} },
