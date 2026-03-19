@@ -1,3 +1,38 @@
+# CHANGE LOG (3.21.0) - 2.11.7
+
+## Application Client
+
+- [Breaking] [Removed] Webhook class from application client
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].affiliate_shipment_id</code> of schema <code>ShipmentInfo</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].affiliate_shipment_id</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property <code>order.shipments[].affiliate_shipment_id</code> of schema <code>Shipments</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.affiliate_shipment_id</code> of schema <code>Shipments</code> in response with status code 200
+
+
 # CHANGE LOG (3.20.0) - 2.11.6
 
 ## Application Client

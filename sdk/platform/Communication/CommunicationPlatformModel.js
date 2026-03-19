@@ -715,6 +715,9 @@ const Joi = require("joi");
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [to]
+ * @property {Object} [additional_template_variables] - Additional key-value
+ *   pairs for personalizing message content. Values can be of any type and will
+ *   be substituted into the communication templates when rendering the message.
  */
 
 /**
@@ -1940,6 +1943,7 @@ class CommunicationPlatformModel {
       mobile: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       to: Joi.string().allow(""),
+      additional_template_variables: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

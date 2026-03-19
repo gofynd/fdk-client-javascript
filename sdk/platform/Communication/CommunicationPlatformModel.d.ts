@@ -625,6 +625,9 @@ export = CommunicationPlatformModel;
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [to]
+ * @property {Object} [additional_template_variables] - Additional key-value
+ *   pairs for personalizing message content. Values can be of any type and will
+ *   be substituted into the communication templates when rendering the message.
  */
 /**
  * @typedef SendOtpCommsReqSms
@@ -1666,6 +1669,12 @@ type SendOtpCommsReqData = {
     mobile?: string;
     country_code?: string;
     to?: string;
+    /**
+     * - Additional key-value
+     * pairs for personalizing message content. Values can be of any type and will
+     * be substituted into the communication templates when rendering the message.
+     */
+    additional_template_variables?: any;
 };
 /** @returns {SendOtpCommsReqSms} */
 declare function SendOtpCommsReqSms(): SendOtpCommsReqSms;
