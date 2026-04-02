@@ -773,6 +773,8 @@ export = CartPlatformModel;
  *   below this threshold, the price adjustment will be automatically removed.
  *   (Applicable only for price adjustment discount type)
  * @property {number} [article_index] - Index of the line item in the cart
+ * @property {string} [identifier] - Cart line item identifier (prefixed with
+ *   'cart:') used to uniquely target a specific line item.
  */
 /**
  * @typedef PriceAdjustmentRestrictions
@@ -4746,6 +4748,11 @@ type Article = {
      * - Index of the line item in the cart
      */
     article_index?: number;
+    /**
+     * - Cart line item identifier (prefixed with
+     * 'cart:') used to uniquely target a specific line item.
+     */
+    identifier?: string;
 };
 /** @returns {PriceAdjustmentRestrictions} */
 declare function PriceAdjustmentRestrictions(): PriceAdjustmentRestrictions;

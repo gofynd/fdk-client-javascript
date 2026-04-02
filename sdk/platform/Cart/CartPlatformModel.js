@@ -837,6 +837,8 @@ const Joi = require("joi");
  *   below this threshold, the price adjustment will be automatically removed.
  *   (Applicable only for price adjustment discount type)
  * @property {number} [article_index] - Index of the line item in the cart
+ * @property {string} [identifier] - Cart line item identifier (prefixed with
+ *   'cart:') used to uniquely target a specific line item.
  */
 
 /**
@@ -3938,6 +3940,7 @@ class CartPlatformModel {
       allowed_refund: Joi.boolean(),
       min_price_threshold: Joi.number(),
       article_index: Joi.number(),
+      identifier: Joi.string().allow(""),
     });
   }
 

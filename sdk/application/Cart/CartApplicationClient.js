@@ -118,6 +118,7 @@ class Cart {
       xOrderingSource,
       i,
       b,
+      includeCartCalculation,
       areaCode,
       buyNow,
       id,
@@ -129,6 +130,7 @@ class Cart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["include_cart_calculation"] = includeCartCalculation;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
@@ -1377,6 +1379,7 @@ class Cart {
       id,
       i,
       b,
+      includeCartCalculation,
       areaCode,
       buyNow,
       cartType,
@@ -1389,6 +1392,7 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["include_cart_calculation"] = includeCartCalculation;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
     query_params["cart_type"] = cartType;

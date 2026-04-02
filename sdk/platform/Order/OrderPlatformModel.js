@@ -3664,6 +3664,15 @@ const Joi = require("joi");
  *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
+ * @property {number} [marketplace_promotion_effective_discount] - The share of
+ *   the promotion discount funded by the marketplace or platform (e.g., Fynd).
+ *   Marketplace promotions are created and funded by the platform itself to
+ *   drive sales, attract customers, or run platform-wide campaigns. The cost of
+ *   these promotions is borne by the marketplace, not the seller.
+ * @property {number} [seller_promotion_effective_discount] - The share of the
+ *   promotion discount funded by the seller. Seller promotions are created and
+ *   funded by the individual seller or brand to boost their own product sales.
+ *   The cost of these promotions is borne entirely by the seller.
  */
 
 /**
@@ -9357,6 +9366,8 @@ class OrderPlatformModel {
       amount_to_be_collected: Joi.number().allow(null),
       cost_price: Joi.number().allow(null),
       loyalty_discount: Joi.number(),
+      marketplace_promotion_effective_discount: Joi.number().allow(null),
+      seller_promotion_effective_discount: Joi.number().allow(null),
     });
   }
 

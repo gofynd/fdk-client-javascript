@@ -3981,6 +3981,7 @@ class Cart {
       xAnonymousCart,
       i,
       b,
+      includeCartCalculation,
       buyNow,
       orderType,
       id,
@@ -3997,6 +3998,7 @@ class Cart {
         xAnonymousCart,
         i,
         b,
+        includeCartCalculation,
         buyNow,
         orderType,
         id,
@@ -4017,6 +4019,7 @@ class Cart {
         xAnonymousCart,
         i,
         b,
+        includeCartCalculation,
         buyNow,
         orderType,
         id,
@@ -4033,6 +4036,7 @@ class Cart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["include_cart_calculation"] = includeCartCalculation;
     query_params["buy_now"] = buyNow;
     query_params["order_type"] = orderType;
     query_params["id"] = id;
@@ -4281,6 +4285,7 @@ class Cart {
       i,
       orderType,
       b,
+      includeCartCalculation,
       buyNow,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -4297,6 +4302,7 @@ class Cart {
         i,
         orderType,
         b,
+        includeCartCalculation,
         buyNow,
       },
       { abortEarly: false, allowUnknown: true }
@@ -4317,6 +4323,7 @@ class Cart {
         i,
         orderType,
         b,
+        includeCartCalculation,
         buyNow,
       },
       { abortEarly: false, allowUnknown: false }
@@ -4333,6 +4340,7 @@ class Cart {
     query_params["i"] = i;
     query_params["order_type"] = orderType;
     query_params["b"] = b;
+    query_params["include_cart_calculation"] = includeCartCalculation;
     query_params["buy_now"] = buyNow;
 
     const response = await PlatformAPIClient.execute(
@@ -5091,6 +5099,7 @@ class Cart {
       id,
       i,
       b,
+      includeCartCalculation,
       buyNow,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -5106,6 +5115,7 @@ class Cart {
         id,
         i,
         b,
+        includeCartCalculation,
         buyNow,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5125,6 +5135,7 @@ class Cart {
         id,
         i,
         b,
+        includeCartCalculation,
         buyNow,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5140,6 +5151,7 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["include_cart_calculation"] = includeCartCalculation;
     query_params["buy_now"] = buyNow;
 
     const response = await PlatformAPIClient.execute(

@@ -61,7 +61,7 @@ declare class ApplicationClient {
         body: any;
         headers: any;
         responseHeaders?: boolean;
-    }): Promise<import("axios").AxiosResponse<any, any, {}>>;
+    }): Promise<import("axios").AxiosResponse<any, any>>;
 }
 import ApplicationConfig = require("./ApplicationConfig");
 import Cart = require("./Cart/CartApplicationClient");

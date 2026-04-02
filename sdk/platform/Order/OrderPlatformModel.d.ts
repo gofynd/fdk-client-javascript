@@ -3372,6 +3372,15 @@ export = OrderPlatformModel;
  *   acquire or produce the product before margin or discount.
  * @property {number} [loyalty_discount] - Amount reduced from the payable price
  *   when the customer applies loyalty program points while placing the order.
+ * @property {number} [marketplace_promotion_effective_discount] - The share of
+ *   the promotion discount funded by the marketplace or platform (e.g., Fynd).
+ *   Marketplace promotions are created and funded by the platform itself to
+ *   drive sales, attract customers, or run platform-wide campaigns. The cost of
+ *   these promotions is borne by the marketplace, not the seller.
+ * @property {number} [seller_promotion_effective_discount] - The share of the
+ *   promotion discount funded by the seller. Seller promotions are created and
+ *   funded by the individual seller or brand to boost their own product sales.
+ *   The cost of these promotions is borne entirely by the seller.
  */
 /**
  * @typedef ChargeDistributionSchema
@@ -12588,6 +12597,21 @@ type Prices = {
      * when the customer applies loyalty program points while placing the order.
      */
     loyalty_discount?: number;
+    /**
+     * - The share of
+     * the promotion discount funded by the marketplace or platform (e.g., Fynd).
+     * Marketplace promotions are created and funded by the platform itself to
+     * drive sales, attract customers, or run platform-wide campaigns. The cost of
+     * these promotions is borne by the marketplace, not the seller.
+     */
+    marketplace_promotion_effective_discount?: number;
+    /**
+     * - The share of the
+     * promotion discount funded by the seller. Seller promotions are created and
+     * funded by the individual seller or brand to boost their own product sales.
+     * The cost of these promotions is borne entirely by the seller.
+     */
+    seller_promotion_effective_discount?: number;
 };
 /** @returns {ChargeDistributionSchema} */
 declare function ChargeDistributionSchema(): ChargeDistributionSchema;

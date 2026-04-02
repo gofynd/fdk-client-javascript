@@ -476,7 +476,7 @@ declare class Cart {
      * @summary: Add items to cart
      * @description: Adds product items to a customer's shopping cart. If the customer does not have an existing cart, a new one is created automatically. - The `new_cart` flag forces creation of a new cart even if one already exists. - The `default_cart` flag determines whether the item is added to the user's default storefront-visible cart. If `true`, the item is added to the user's default cart that is accessible via the storefront. If `false`, an existing active cart is fetched if available; otherwise, a new hidden cart is created. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformAddItems/).
      */
-    platformAddItems({ body, xOrderingSource, xAnonymousCart, i, b, buyNow, orderType, id, requestHeaders, }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResult>;
+    platformAddItems({ body, xOrderingSource, xAnonymousCart, i, b, includeCartCalculation, buyNow, orderType, id, requestHeaders, }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartParam} arg
      *   - Arg object
@@ -510,7 +510,7 @@ declare class Cart {
      * @summary: Update cart items
      * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformUpdateCart/).
      */
-    platformUpdateCart({ body, xOrderingSource, xAnonymousCart, id, i, orderType, b, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
+    platformUpdateCart({ body, xOrderingSource, xAnonymousCart, id, i, orderType, b, includeCartCalculation, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.RemoveAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -602,7 +602,7 @@ declare class Cart {
      * @summary: Update cart breakup values
      * @description: Updates the cart breakup based on the enabled features and user preferences. This endpoint allows customers to modify how their cart totals are calculated — including options such as applying store credits, loyalty points, discounts, and other promotional benefits. The API recalculates and returns the updated breakup reflecting the selected configurations in real-time. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/updateCartBreakup/).
      */
-    updateCartBreakup({ body, xOrderingSource, xAnonymousCart, id, i, b, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.UpdateCartBreakupParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
+    updateCartBreakup({ body, xOrderingSource, xAnonymousCart, id, i, b, includeCartCalculation, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.UpdateCartBreakupParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
      * @param {CartPlatformApplicationValidator.UpdateCartMetaParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

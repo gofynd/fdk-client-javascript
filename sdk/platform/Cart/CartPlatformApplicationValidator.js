@@ -379,6 +379,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
  *   the price breakup of cart items.
+ * @property {boolean} [includeCartCalculation] - Set to `false` to skip
+ *   recalculating and fetching the updated cart after the edit. Defaults to `true`.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -429,6 +431,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  *   wants the handover of an order at the store itself.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
  *   the price breakup of cart items.
+ * @property {boolean} [includeCartCalculation] - Set to `false` to skip
+ *   recalculating and fetching the updated cart after the edit. Defaults to `true`.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
  * @property {CartPlatformModel.PlatformUpdateCartDetails} body
@@ -520,6 +524,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  *   to the cart in the response.
  * @property {boolean} [b] - Set to `true` to include the detailed price breakup
  *   of each cart item in the response.
+ * @property {boolean} [includeCartCalculation] - Set to `false` to skip
+ *   recalculating and fetching the updated cart after the edit. Defaults to `true`.
  * @property {boolean} [buyNow] - Set to `true` to initialize a "Buy Now" cart
  *   flow, enabling direct checkout for a single item.
  * @property {CartPlatformModel.UpdateCartBreakup} body
@@ -1063,6 +1069,7 @@ class CartPlatformApplicationValidator {
 
       i: Joi.boolean(),
       b: Joi.boolean(),
+      includeCartCalculation: Joi.boolean(),
       buyNow: Joi.boolean(),
       orderType: Joi.string().allow(""),
       id: Joi.string().allow(""),
@@ -1104,6 +1111,7 @@ class CartPlatformApplicationValidator {
       i: Joi.boolean(),
       orderType: Joi.string().allow(""),
       b: Joi.boolean(),
+      includeCartCalculation: Joi.boolean(),
       buyNow: Joi.boolean(),
       body: CartPlatformModel.PlatformUpdateCartDetails().required(),
     }).required();
@@ -1200,6 +1208,7 @@ class CartPlatformApplicationValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
+      includeCartCalculation: Joi.boolean(),
       buyNow: Joi.boolean(),
       body: CartPlatformModel.UpdateCartBreakup().required(),
     }).required();

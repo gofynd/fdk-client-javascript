@@ -57,7 +57,7 @@ declare class Cart {
      * @summary: Add items to a cart
      * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/addItems/).
      */
-    addItems({ body, xOrderingSource, i, b, areaCode, buyNow, id, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddCartDetailResult>;
+    addItems({ body, xOrderingSource, i, b, includeCartCalculation, areaCode, buyNow, id, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddCartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -309,7 +309,7 @@ declare class Cart {
      * @summary: Update cart items
      * @description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateCart/).
      */
-    updateCart({ body, xOrderingSource, id, i, b, areaCode, buyNow, cartType, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
+    updateCart({ body, xOrderingSource, id, i, b, includeCartCalculation, areaCode, buyNow, cartType, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
