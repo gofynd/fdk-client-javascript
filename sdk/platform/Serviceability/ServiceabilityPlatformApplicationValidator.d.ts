@@ -24,6 +24,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} geoareaId - The unique identifier of the Geoarea.
  */
 /**
+ * @typedef CreatePolygonParam
+ * @property {ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody} body
+ */
+/**
  * @typedef CreateShipmentsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
@@ -38,6 +42,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.CreateZoneDataSchema} body
  */
 /**
+ * @typedef CreateZoneProductsBulkPatchJobParam
+ * @property {ServiceabilityPlatformModel.ZoneProductsBulkPatchDetails} body
+ */
+/**
  * @typedef DeleteFulfillmentOptionsParam
  * @property {string} slug - Slug of the fulfillment option for retrieving details.
  */
@@ -46,8 +54,13 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} zoneId - Unique identifier for a particular zone
  */
 /** @typedef DownloadGeoareaSampleFileParam */
+/** @typedef DownloadZoneProductsBulkSampleFileParam */
 /** @typedef GetApplicationConfigParam */
 /** @typedef GetApplicationConfigurationParam */
+/**
+ * @typedef GetApplicationCourierPartnersListParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerDetails} body
+ */
 /**
  * @typedef GetBulkExportParam
  * @property {string} batchId - A `batch_id` is a unique identifier for a particular zone.
@@ -121,6 +134,11 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} [sector] - Sector value to search geoareas
  */
 /**
+ * @typedef GetPolygonParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ */
+/**
  * @typedef GetStoreRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
@@ -134,6 +152,10 @@ export = ServiceabilityPlatformApplicationValidator;
 /**
  * @typedef GetZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
+ */
+/**
+ * @typedef GetZoneProductsBulkPatchJobStatusParam
+ * @property {string} batchId - A unique identifier for the bulk zone products patch job.
  */
 /**
  * @typedef GetZonesParam
@@ -204,6 +226,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
+ * @typedef UpdatePolygonParam
+ * @property {ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody} body
+ */
+/**
  * @typedef UpdateStoreRulePriorityParam
  * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
  */
@@ -244,22 +270,30 @@ declare class ServiceabilityPlatformApplicationValidator {
     static createGeoArea(): CreateGeoAreaParam;
     /** @returns {CreateGeoAreaExportJobParam} */
     static createGeoAreaExportJob(): CreateGeoAreaExportJobParam;
+    /** @returns {CreatePolygonParam} */
+    static createPolygon(): CreatePolygonParam;
     /** @returns {CreateShipmentsParam} */
     static createShipments(): CreateShipmentsParam;
     /** @returns {CreateStoreRulesParam} */
     static createStoreRules(): CreateStoreRulesParam;
     /** @returns {CreateZoneParam} */
     static createZone(): CreateZoneParam;
+    /** @returns {CreateZoneProductsBulkPatchJobParam} */
+    static createZoneProductsBulkPatchJob(): CreateZoneProductsBulkPatchJobParam;
     /** @returns {DeleteFulfillmentOptionsParam} */
     static deleteFulfillmentOptions(): DeleteFulfillmentOptionsParam;
     /** @returns {DeleteZoneParam} */
     static deleteZone(): DeleteZoneParam;
     /** @returns {DownloadGeoareaSampleFileParam} */
     static downloadGeoareaSampleFile(): any;
+    /** @returns {DownloadZoneProductsBulkSampleFileParam} */
+    static downloadZoneProductsBulkSampleFile(): any;
     /** @returns {GetApplicationConfigParam} */
     static getApplicationConfig(): any;
     /** @returns {GetApplicationConfigurationParam} */
     static getApplicationConfiguration(): any;
+    /** @returns {GetApplicationCourierPartnersListParam} */
+    static getApplicationCourierPartnersList(): GetApplicationCourierPartnersListParam;
     /** @returns {GetBulkExportParam} */
     static getBulkExport(): GetBulkExportParam;
     /** @returns {GetBulkFulfillmentValidationStatusParam} */
@@ -286,12 +320,16 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getGeoAreaExportJobStatus(): GetGeoAreaExportJobStatusParam;
     /** @returns {GetGeoAreasParam} */
     static getGeoAreas(): GetGeoAreasParam;
+    /** @returns {GetPolygonParam} */
+    static getPolygon(): GetPolygonParam;
     /** @returns {GetStoreRuleParam} */
     static getStoreRule(): GetStoreRuleParam;
     /** @returns {GetStoreRulesParam} */
     static getStoreRules(): GetStoreRulesParam;
     /** @returns {GetZoneParam} */
     static getZone(): GetZoneParam;
+    /** @returns {GetZoneProductsBulkPatchJobStatusParam} */
+    static getZoneProductsBulkPatchJobStatus(): GetZoneProductsBulkPatchJobStatusParam;
     /** @returns {GetZonesParam} */
     static getZones(): GetZonesParam;
     /** @returns {InsertApplicationConfigParam} */
@@ -316,6 +354,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updatePincodeCoDListing(): UpdatePincodeCoDListingParam;
     /** @returns {UpdatePincodeMopViewParam} */
     static updatePincodeMopView(): UpdatePincodeMopViewParam;
+    /** @returns {UpdatePolygonParam} */
+    static updatePolygon(): UpdatePolygonParam;
     /** @returns {UpdateStoreRulePriorityParam} */
     static updateStoreRulePriority(): UpdateStoreRulePriorityParam;
     /** @returns {UpdateStoreRulesParam} */
@@ -330,7 +370,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static validateBulkFulfillmentOptions(): ValidateBulkFulfillmentOptionsParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreatePolygonParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, CreateZoneProductsBulkPatchJobParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, DownloadZoneProductsBulkSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationCourierPartnersListParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetPolygonParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZoneProductsBulkPatchJobStatusParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdatePolygonParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -353,6 +393,9 @@ type CreateGeoAreaExportJobParam = {
      */
     geoareaId: string;
 };
+type CreatePolygonParam = {
+    body: ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody;
+};
 type CreateShipmentsParam = {
     /**
      * - Ordering source header, to be used to
@@ -367,6 +410,9 @@ type CreateStoreRulesParam = {
 type CreateZoneParam = {
     body: ServiceabilityPlatformModel.CreateZoneDataSchema;
 };
+type CreateZoneProductsBulkPatchJobParam = {
+    body: ServiceabilityPlatformModel.ZoneProductsBulkPatchDetails;
+};
 type DeleteFulfillmentOptionsParam = {
     /**
      * - Slug of the fulfillment option for retrieving details.
@@ -378,6 +424,9 @@ type DeleteZoneParam = {
      * - Unique identifier for a particular zone
      */
     zoneId: string;
+};
+type GetApplicationCourierPartnersListParam = {
+    body: ServiceabilityPlatformModel.CourierPartnerDetails;
 };
 type GetBulkExportParam = {
     /**
@@ -528,6 +577,16 @@ type GetGeoAreasParam = {
      */
     sector?: string;
 };
+type GetPolygonParam = {
+    /**
+     * - Page number to be fetched.
+     */
+    pageNumber?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+};
 type GetStoreRuleParam = {
     /**
      * - A `rule_uid` is a unique identifier for a
@@ -554,6 +613,12 @@ type GetZoneParam = {
      * - Unique identifier for a particular zone
      */
     zoneId: string;
+};
+type GetZoneProductsBulkPatchJobStatusParam = {
+    /**
+     * - A unique identifier for the bulk zone products patch job.
+     */
+    batchId: string;
 };
 type GetZonesParam = {
     /**
@@ -668,6 +733,9 @@ type UpdatePincodeCoDListingParam = {
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
+type UpdatePolygonParam = {
+    body: ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody;
+};
 type UpdateStoreRulePriorityParam = {
     body: ServiceabilityPlatformModel.RulePriorityDetails;
 };
@@ -700,6 +768,7 @@ type ValidateBulkFulfillmentOptionsParam = {
     body: ServiceabilityPlatformModel.FulfillmentOptionBulkValidate;
 };
 type DownloadGeoareaSampleFileParam = any;
+type DownloadZoneProductsBulkSampleFileParam = any;
 type GetApplicationConfigParam = any;
 type GetApplicationConfigurationParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

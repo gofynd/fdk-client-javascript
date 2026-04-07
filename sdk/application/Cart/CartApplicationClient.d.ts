@@ -217,9 +217,9 @@ declare class Cart {
      * @returns {Promise<EligibleProductsResult>} - Success response
      * @name getProductsByOfferId
      * @summary: List eligible offer products
-     * @description: List all products eligible for the given offer id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getProductsByOfferId/).
+     * @description: List all products eligible for the given offer. Lookup can be done by offer_code (takes priority) or offer_id. At least one must be provided. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getProductsByOfferId/).
      */
-    getProductsByOfferId({ offerId, page, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<EligibleProductsResult>;
+    getProductsByOfferId({ offerCode, offerId, page, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<EligibleProductsResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

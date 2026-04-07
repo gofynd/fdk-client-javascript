@@ -83,6 +83,20 @@ declare class Serviceability {
      */
     createGeoAreaExportJob({ geoareaId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateGeoAreaExportJobParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaBulkCreationResult>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.CreatePolygonParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>}
+     *   - Success response
+     *
+     * @name createPolygon
+     * @summary: Create polygon-based serviceability for stores
+     * @description: Creates polygon-based serviceability regions for one or more stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createPolygon/).
+     */
+    createPolygon({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreatePolygonParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.CreateShipmentsParam} arg
      *   - Arg object
      *
@@ -121,6 +135,18 @@ declare class Serviceability {
      * @description: Creates a delivery zone. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createZone/).
      */
     createZone({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneSchema>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.CreateZoneProductsBulkPatchJobParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneBulkExport>} - Success response
+     * @name createZoneProductsBulkPatchJob
+     * @summary: Create bulk zone products patch job
+     * @description: Initiates a bulk zone products patch operation by accepting a CSV file URL. The file is validated and a background job is created for processing zone product additions or removals. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createZoneProductsBulkPatchJob/).
+     */
+    createZoneProductsBulkPatchJob({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateZoneProductsBulkPatchJobParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneBulkExport>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.DeleteFulfillmentOptionsParam} arg
      *   - Arg object
@@ -162,6 +188,18 @@ declare class Serviceability {
      */
     downloadGeoareaSampleFile({ requestHeaders }?: any, { responseHeaders }?: object): Promise<string>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.DownloadZoneProductsBulkSampleFileParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<string>} - Success response
+     * @name downloadZoneProductsBulkSampleFile
+     * @summary: Download zone products bulk patch sample file
+     * @description: Downloads a CSV sample template file for bulk patching zone products. The template includes headers for zone_id, product_type, products, and action. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/downloadZoneProductsBulkSampleFile/).
+     */
+    downloadZoneProductsBulkSampleFile({ requestHeaders }?: any, { responseHeaders }?: object): Promise<string>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigParam} arg
      *   - Arg object
      *
@@ -188,6 +226,20 @@ declare class Serviceability {
      * @description: This API returns all the Application config that has been applied to the given company and application. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getApplicationConfiguration/).
      */
     getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigGetResult>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationCourierPartnersListParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult>}
+     *   - Success response
+     *
+     * @name getApplicationCourierPartnersList
+     * @summary: Get available application courier partners
+     * @description: Retrieves a list of courier partners available for shipping based on serviceability criteria, shipment details, and delivery rules. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getApplicationCourierPartnersList/).
+     */
+    getApplicationCourierPartnersList({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetApplicationCourierPartnersListParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetBulkExportParam} arg
      *   - Arg object
@@ -364,6 +416,20 @@ declare class Serviceability {
      */
     getGeoAreas({ pageSize, isActive, pageNo, type, q, countryIsoCode, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetGeoAreasParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GeoAreaGetResponseBody>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetPolygonParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityGetResult>}
+     *   - Success response
+     *
+     * @name getPolygon
+     * @summary: Get polygon-based serviceability for stores
+     * @description: Retrieves polygon-based serviceability configurations for stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getPolygon/).
+     */
+    getPolygon({ pageNumber, pageSize, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetPolygonParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityGetResult>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
      *   - Arg object
      *
@@ -400,6 +466,20 @@ declare class Serviceability {
      * @description: Retrieves a single delivery zone - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getZone/).
      */
     getZone({ zoneId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetZoneProductsBulkPatchJobStatusParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetZoneProductsBulkPatchResult>}
+     *   - Success response
+     *
+     * @name getZoneProductsBulkPatchJobStatus
+     * @summary: Get bulk zone products patch job status
+     * @description: Retrieves the status and details of a specific bulk zone products patch job by its batch identifier. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getZoneProductsBulkPatchJobStatus/).
+     */
+    getZoneProductsBulkPatchJobStatus({ batchId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneProductsBulkPatchJobStatusParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneProductsBulkPatchResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -556,6 +636,20 @@ declare class Serviceability {
      * @description: Modify and update views related to pincode MOP (Mode of Payment). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/updatePincodeMopView/).
      */
     updatePincodeMopView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMOPResult>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePolygonParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>}
+     *   - Success response
+     *
+     * @name updatePolygon
+     * @summary: Update polygon-based serviceability for stores
+     * @description: Updates polygon-based serviceability regions for one or more stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/updatePolygon/).
+     */
+    updatePolygon({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePolygonParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulePriorityParam} arg
      *   - Arg object

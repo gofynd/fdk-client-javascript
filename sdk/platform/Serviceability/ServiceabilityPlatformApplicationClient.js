@@ -509,6 +509,89 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.CreatePolygonParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>}
+   *   - Success response
+   *
+   * @name createPolygon
+   * @summary: Create polygon-based serviceability for stores
+   * @description: Creates polygon-based serviceability regions for one or more stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createPolygon/).
+   */
+  async createPolygon(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.createPolygon().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.createPolygon().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > createPolygon \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/polygon`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.StorePolygonServiceabilityResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > createPolygon \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.CreateShipmentsParam} arg
    *   - Arg object
    *
@@ -757,6 +840,87 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.CreateZoneProductsBulkPatchJobParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneBulkExport>} - Success response
+   * @name createZoneProductsBulkPatchJob
+   * @summary: Create bulk zone products patch job
+   * @description: Initiates a bulk zone products patch operation by accepting a CSV file URL. The file is validated and a background job is created for processing zone product additions or removals. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/createZoneProductsBulkPatchJob/).
+   */
+  async createZoneProductsBulkPatchJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.createZoneProductsBulkPatchJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.createZoneProductsBulkPatchJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > createZoneProductsBulkPatchJob \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/products`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.ZoneBulkExport().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > createZoneProductsBulkPatchJob \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.DeleteFulfillmentOptionsParam} arg
    *   - Arg object
    *
@@ -997,6 +1161,80 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.DownloadZoneProductsBulkSampleFileParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<string>} - Success response
+   * @name downloadZoneProductsBulkSampleFile
+   * @summary: Download zone products bulk patch sample file
+   * @description: Downloads a CSV sample template file for bulk patching zone products. The template includes headers for zone_id, product_type, products, and action. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/downloadZoneProductsBulkSampleFile/).
+   */
+  async downloadZoneProductsBulkSampleFile(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.downloadZoneProductsBulkSampleFile().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.downloadZoneProductsBulkSampleFile().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > downloadZoneProductsBulkSampleFile \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/products/sample`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > downloadZoneProductsBulkSampleFile \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigParam} arg
    *   - Arg object
    *
@@ -1146,6 +1384,89 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > getApplicationConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationCourierPartnersListParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult>}
+   *   - Success response
+   *
+   * @name getApplicationCourierPartnersList
+   * @summary: Get available application courier partners
+   * @description: Retrieves a list of courier partners available for shipping based on serviceability criteria, shipment details, and delivery rules. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getApplicationCourierPartnersList/).
+   */
+  async getApplicationCourierPartnersList(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getApplicationCourierPartnersList().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getApplicationCourierPartnersList().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationCourierPartnersList \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partners`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getApplicationCourierPartnersList \n ${res_error}`,
         });
       }
     }
@@ -2295,6 +2616,93 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetPolygonParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityGetResult>}
+   *   - Success response
+   *
+   * @name getPolygon
+   * @summary: Get polygon-based serviceability for stores
+   * @description: Retrieves polygon-based serviceability configurations for stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getPolygon/).
+   */
+  async getPolygon(
+    { pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getPolygon().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getPolygon().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getPolygon \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/polygon`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.StorePolygonServiceabilityGetResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getPolygon \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
    *   - Arg object
    *
@@ -2538,6 +2946,89 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > getZone \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetZoneProductsBulkPatchJobStatusParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GetZoneProductsBulkPatchResult>}
+   *   - Success response
+   *
+   * @name getZoneProductsBulkPatchJobStatus
+   * @summary: Get bulk zone products patch job status
+   * @description: Retrieves the status and details of a specific bulk zone products patch job by its batch identifier. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getZoneProductsBulkPatchJobStatus/).
+   */
+  async getZoneProductsBulkPatchJobStatus(
+    { batchId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getZoneProductsBulkPatchJobStatus().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getZoneProductsBulkPatchJobStatus().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneProductsBulkPatchJobStatus \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/products/${batchId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.GetZoneProductsBulkPatchResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getZoneProductsBulkPatchJobStatus \n ${res_error}`,
         });
       }
     }
@@ -3588,6 +4079,89 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > updatePincodeMopView \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ServiceabilityPlatformApplicationValidator.UpdatePolygonParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.StorePolygonServiceabilityResult>}
+   *   - Success response
+   *
+   * @name updatePolygon
+   * @summary: Update polygon-based serviceability for stores
+   * @description: Updates polygon-based serviceability regions for one or more stores for quick commerce. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/updatePolygon/).
+   */
+  async updatePolygon(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.updatePolygon().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.updatePolygon().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > updatePolygon \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/polygon`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.StorePolygonServiceabilityResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updatePolygon \n ${res_error}`,
         });
       }
     }

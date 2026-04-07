@@ -33,6 +33,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef CreatePolygonParam
+ * @property {ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody} body
+ */
+
+/**
  * @typedef CreateShipmentsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
@@ -50,6 +55,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef CreateZoneProductsBulkPatchJobParam
+ * @property {ServiceabilityPlatformModel.ZoneProductsBulkPatchDetails} body
+ */
+
+/**
  * @typedef DeleteFulfillmentOptionsParam
  * @property {string} slug - Slug of the fulfillment option for retrieving details.
  */
@@ -61,9 +71,16 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /** @typedef DownloadGeoareaSampleFileParam */
 
+/** @typedef DownloadZoneProductsBulkSampleFileParam */
+
 /** @typedef GetApplicationConfigParam */
 
 /** @typedef GetApplicationConfigurationParam */
+
+/**
+ * @typedef GetApplicationCourierPartnersListParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerDetails} body
+ */
 
 /**
  * @typedef GetBulkExportParam
@@ -151,6 +168,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetPolygonParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ */
+
+/**
  * @typedef GetStoreRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
@@ -166,6 +189,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /**
  * @typedef GetZoneParam
  * @property {string} zoneId - Unique identifier for a particular zone
+ */
+
+/**
+ * @typedef GetZoneProductsBulkPatchJobStatusParam
+ * @property {string} batchId - A unique identifier for the bulk zone products patch job.
  */
 
 /**
@@ -249,6 +277,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef UpdatePolygonParam
+ * @property {ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody} body
+ */
+
+/**
  * @typedef UpdateStoreRulePriorityParam
  * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
  */
@@ -325,6 +358,13 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreatePolygonParam} */
+  static createPolygon() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody().required(),
+    }).required();
+  }
+
   /** @returns {CreateShipmentsParam} */
   static createShipments() {
     return Joi.object({
@@ -348,6 +388,13 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateZoneProductsBulkPatchJobParam} */
+  static createZoneProductsBulkPatchJob() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ZoneProductsBulkPatchDetails().required(),
+    }).required();
+  }
+
   /** @returns {DeleteFulfillmentOptionsParam} */
   static deleteFulfillmentOptions() {
     return Joi.object({
@@ -367,6 +414,11 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {DownloadZoneProductsBulkSampleFileParam} */
+  static downloadZoneProductsBulkSampleFile() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetApplicationConfigParam} */
   static getApplicationConfig() {
     return Joi.object({}).required();
@@ -375,6 +427,13 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {GetApplicationConfigurationParam} */
   static getApplicationConfiguration() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetApplicationCourierPartnersListParam} */
+  static getApplicationCourierPartnersList() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.CourierPartnerDetails().required(),
+    }).required();
   }
 
   /** @returns {GetBulkExportParam} */
@@ -486,6 +545,14 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetPolygonParam} */
+  static getPolygon() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetStoreRuleParam} */
   static getStoreRule() {
     return Joi.object({
@@ -506,6 +573,13 @@ class ServiceabilityPlatformApplicationValidator {
   static getZone() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetZoneProductsBulkPatchJobStatusParam} */
+  static getZoneProductsBulkPatchJobStatus() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -609,6 +683,13 @@ class ServiceabilityPlatformApplicationValidator {
   static updatePincodeMopView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopData().required(),
+    }).required();
+  }
+
+  /** @returns {UpdatePolygonParam} */
+  static updatePolygon() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.StorePolygonServiceabilityRequestBody().required(),
     }).required();
   }
 

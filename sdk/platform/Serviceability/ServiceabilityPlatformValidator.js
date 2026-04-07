@@ -74,6 +74,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /** @typedef GetCompanyConfigurationParam */
 
 /**
+ * @typedef GetCompanyCourierPartnersListParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerDetails} body
+ */
+
+/**
  * @typedef GetCountriesParam
  * @property {boolean} [onboard] - Only fetch countries which allowed for
  *   onboard on Platform.
@@ -296,6 +301,13 @@ class ServiceabilityPlatformValidator {
   /** @returns {GetCompanyConfigurationParam} */
   static getCompanyConfiguration() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetCompanyCourierPartnersListParam} */
+  static getCompanyCourierPartnersList() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.CourierPartnerDetails().required(),
+    }).required();
   }
 
   /** @returns {GetCountriesParam} */

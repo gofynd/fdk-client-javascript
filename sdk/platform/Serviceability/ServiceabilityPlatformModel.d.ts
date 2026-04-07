@@ -1,5 +1,26 @@
 export = ServiceabilityPlatformModel;
 /**
+ * @typedef GenerateShipmentsAndCourierPartnerResult
+ * @property {string} [journey] - Describes the shipment's journey or route.
+ * @property {CourierPartnerToServiceability} [to_serviceability]
+ * @property {CourierPartnerShipments[]} [shipments] - List of shipments
+ *   generated for the courier partner.
+ * @property {string} [payment_mode] - Specifies the mode of payment for the shipment.
+ * @property {string} [to_city] - The destination city for the shipment.
+ * @property {boolean} [is_cod_available] - Indicates if cash on delivery (COD)
+ *   is available.
+ */
+/**
+ * @typedef CourierPartnerDetails
+ * @property {LocationDetailsServiceability} to_serviceability
+ * @property {CourierPartnerShipments[]} shipments - A list of shipments for the
+ *   courier partner request.
+ * @property {string} journey - The journey details for the courier partner request.
+ * @property {string} [payment_mode] - The payment mode for the courier partner request.
+ * @property {boolean} [skip_delivery_rules] - This flag decided whether to run
+ *   delivery rules configuration for delivery rule fetch or not.
+ */
+/**
  * @typedef PlatformShipmentsRequestSchema
  * @property {string} journey - The journey or route for the shipment.
  * @property {PlatformLocationArticles[]} location_articles - A list of articles
@@ -1191,6 +1212,280 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [sort] - An array of strings specifying sorting preferences.
  */
 /**
+ * @typedef StorePolygonServiceabilityRequestBody
+ * @property {StorePolygonServiceabilityRequestData} data
+ */
+/**
+ * @typedef StorePolygonServiceabilityResult
+ * @property {boolean} success - Indicates whether the polygon serviceability
+ *   operation was successful.
+ * @property {StorePolygonServiceabilityStoreSummary[]} data - List of stores
+ *   for which polygon serviceability was successfully processed.
+ * @property {StorePolygonServiceabilityError[]} errors - List of errors
+ *   encountered while processing individual entries, if any.
+ * @property {string} identifier - Unique identifier for the polygon
+ *   serviceability request.
+ * @property {StorePolygonServiceabilityError[]} failed_entries - List of
+ *   entries that failed during polygon serviceability processing.
+ */
+/**
+ * @typedef StorePolygonServiceabilityGetResult
+ * @property {boolean} success - Indicates whether the polygon serviceability
+ *   fetch operation was successful.
+ * @property {StorePolygonServiceabilityStore[]} data - List of stores with
+ *   their polygon-based serviceability details.
+ * @property {StorePolygonServiceabilityError[]} errors - List of errors
+ *   encountered while processing individual entries, if any.
+ * @property {string} identifier - Unique identifier for the polygon
+ *   serviceability request.
+ * @property {StorePolygonServiceabilityError[]} failed_entries - List of
+ *   entries that failed during polygon serviceability processing.
+ * @property {StorePolygonServiceabilityPagination} pagination - Pagination
+ *   details for the polygon serviceability result set.
+ */
+/**
+ * @typedef ZoneProductsBulkPatchDetails
+ * @property {string} file_url - URL of the CSV file containing the zone
+ *   products bulk patch data.
+ */
+/**
+ * @typedef GetZoneProductsBulkPatchResult
+ * @property {string} batch_id - A unique identifier for the performed batch operation.
+ * @property {string} [file_path] - CDN path of the uploaded file.
+ * @property {number} total - Total number of records in the batch.
+ * @property {number} failed - Number of failed records in the batch.
+ * @property {string} [error_file_url] - URL to the error file containing
+ *   details of failed records.
+ * @property {string} action - The action performed during the bulk operation.
+ * @property {string} updated_at - Timestamp when the batch was last updated.
+ * @property {string} updated_by - User who last updated the batch.
+ * @property {string} type - Type of the bulk operation.
+ * @property {number} company_id - The unique identifier for the company.
+ * @property {string} application_id - A unique identifier for the sales channel.
+ * @property {string} stage - Current stage of the bulk operation.
+ * @property {number} [partial] - Number of partially processed records.
+ * @property {string} [result_file_url] - URL to the result file after
+ *   processing is complete.
+ */
+/**
+ * @typedef CourierPartnerToServiceability
+ * @property {ServiceabilityLocation} [location]
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [country] - The country where the serviceability location
+ *   is situated.
+ * @property {string} [country_iso_code] - The ISO code for the country.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ */
+/**
+ * @typedef ServiceabilityLocation
+ * @property {string} longitude - The longitude of the serviceability location.
+ * @property {string} latitude - The latitude of the serviceability location.
+ */
+/**
+ * @typedef CourierPartnerShipments
+ * @property {PromiseObject} [promise]
+ * @property {boolean} [is_cod_available] - Indicates if cash on delivery (COD)
+ *   is available.
+ * @property {boolean} [is_auto_assign] - Specifies if the shipment should be
+ *   automatically assigned.
+ * @property {CourierPartnerShipmentsMeta} [meta]
+ * @property {number} [volumetric_weight] - The volumetric weight of the shipment.
+ * @property {number} [weight] - The actual weight of the shipment.
+ * @property {ShipmentCourierPartnersResult[]} [courier_partners] - List of
+ *   courier partners associated with the shipment.
+ * @property {number} fulfillment_id - The fulfillment Id.
+ * @property {string} fulfillment_type - Fulfillment Type
+ * @property {string[]} fulfillment_tags - Fulfillment level tags
+ * @property {LocationDetailsServiceability} from_serviceability
+ * @property {CourierPartnerShipmentsArticles[]} articles - A list of articles
+ *   in the courier partner shipment.
+ * @property {boolean} is_mto - A boolean indicating if the courier partner
+ *   supports Made to Order service.
+ * @property {string[]} ignore_scheme_ids - A list of scheme_id which we want to
+ *   ignore in courier_partner assignment.
+ * @property {Object} [error] - Error Details
+ */
+/**
+ * @typedef PromiseObject
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ * @property {PromiseData} customer_promise
+ * @property {PromiseMeta} meta
+ */
+/**
+ * @typedef PromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ */
+/**
+ * @typedef PromiseMeta
+ * @property {PromiseData} [seller_promise]
+ * @property {CourierPartnerPromiseData} [courier_partner_promise]
+ * @property {PromiseData} [customer_initial_promise]
+ */
+/**
+ * @typedef CourierPartnerPromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ * @property {DeliveryTat} [attributes]
+ */
+/**
+ * @typedef DeliveryTat
+ * @property {DeliveryTatSchema} [tat]
+ */
+/**
+ * @typedef DeliveryTatSchema
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+/**
+ * @typedef CourierPartnerShipmentsMeta
+ * @property {number} [shipment_cost] - The total cost associated with the
+ *   shipment, expressed as a floating-point number. This value includes all
+ *   applicable charges, such as transportation, handling, and any additional fees.
+ */
+/**
+ * @typedef ShipmentCourierPartnersResult
+ * @property {string} extension_id - The Id of the courier partner.
+ * @property {string} scheme_id - The scheme Id of the courier partner.
+ * @property {AreaCode} area_code
+ * @property {TAT} tat
+ * @property {string} display_name - The display name of the courier partner.
+ * @property {boolean} is_qc_enabled - A boolean indicating quality control by
+ *   the courier partner.
+ * @property {boolean} is_self_ship - A boolean indicating it is self delivery DP support.
+ * @property {boolean} [is_own_account] - Specifies if the courier partner
+ *   operates on its own account.
+ * @property {number} [ndr_attempts] - The number of non-delivery report (NDR) attempts.
+ * @property {string} [forward_pickup_cutoff] - Cutoff time for forward pickup (nullable).
+ * @property {string} [reverse_pickup_cutoff] - Cutoff time for reverse pickup (nullable).
+ * @property {number} [qc_shipment_item_quantity] - Quantity of items under
+ *   quality control (nullable).
+ * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
+ *   under quality control (nullable).
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   operates on dangerous goods.
+ * @property {boolean} [restricted_goods] - Specifies if the courier partner
+ *   operates on restricted goods.
+ * @property {boolean} [fragile_goods] - Specifies if the courier partner
+ *   operates on fragile goods.
+ * @property {boolean} [cold_storage_goods] - Specifies if the courier partner
+ *   operates on cold storage goods.
+ * @property {string} [delivery_type] - Specifies type of courier partner.
+ * @property {boolean} [is_cod] - Specifies if the courier partner operates on
+ *   cash on delivery orders.
+ * @property {string} [transport_type] - Mode of transport associated with the
+ *   courier partner scheme.
+ */
+/**
+ * @typedef AreaCode
+ * @property {string} [source] - The starting area code.
+ * @property {string} [destination] - The ending area code.
+ */
+/**
+ * @typedef TAT
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+/**
+ * @typedef LocationDetailsServiceability
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} country - The country of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ * @property {string} country_iso_code - The ISO code of the country.
+ * @property {ServiceabilityLocation} [location]
+ */
+/**
+ * @typedef CourierPartnerShipmentsArticles
+ * @property {string} [id] - A string serving as the unique identifier.
+ * @property {Object} [delivery_slots] - Represents the delivery date and time
+ *   slots available for an article.
+ * @property {Error} [error]
+ * @property {number} [fulfillment_id] - The fulfillment Id.
+ * @property {string[]} [fulfillment_tags] - Fulfillment level tags
+ * @property {string} [fulfillment_type] - Fulfillment Type
+ * @property {string} [group_id] - The group Id of the article.
+ * @property {boolean} [is_gift] - A boolean indicating if the courier partner
+ *   supports gift shipments.
+ * @property {boolean} [is_mto] - Flag indicating whether the shipment is MTO
+ *   (Make to Order).
+ * @property {boolean} [is_set] - A boolean indicating whether the article is a set.
+ * @property {number} [manufacturing_time] - The manufacturing time of the article.
+ * @property {string} [manufacturing_time_unit] - The unit of measurement for
+ *   manufacturing time.
+ * @property {number} [mto_quantity] - The Made to Order quantity of the article.
+ * @property {string} [sla] - Service level agreement (SLA) for the article,
+ *   represented as a date-time
+ * @property {number} [price_marked] - Marked price before discounts.
+ * @property {CourierPartnerArticlesPromise} [promise]
+ * @property {Object} [set] - Additional properties related to sets.
+ * @property {CourierPartnerArticlesReturnReasons} [return_reason]
+ * @property {number} [set_quantity] - It represents the number of set of this article
+ * @property {number} quantity - The quantity of the shipment article.
+ * @property {ArticleWeight} weight
+ * @property {ArticleAttributes} [attributes]
+ * @property {number} category_id - The category Id of the article.
+ * @property {ArticleDimension} dimension
+ * @property {number} brand_id - The brand Id of the article.
+ * @property {number} item_id - The Item Id of the article.
+ * @property {string} size - The size of the article.
+ * @property {string[]} tags - Tags assigned to Item
+ * @property {number} department_id - Department of the item
+ * @property {number} price - Final Price of the article after discounts
+ */
+/**
+ * @typedef CourierPartnerArticlesPromise
+ * @property {string} [min] - The minimum delivery promise date.
+ * @property {string} [max] - The maximum delivery promise date.
+ */
+/**
+ * @typedef CourierPartnerArticlesReturnReasons
+ * @property {number} [id] - The unique identifier for the return reason entry.
+ * @property {CourierPartnerArticlesReturnReasonsMeta} [meta]
+ * @property {string[]} [qc_type] - A list of quality check types that apply to
+ *   the return reasons.
+ * @property {string[]} [reasons] - A list of return reasons for the article.
+ * @property {boolean} [is_active] - A boolean indicating whether the return
+ *   reason is currently active.
+ * @property {string} [display_name] - The display name for the return reason.
+ * @property {string[]} [question_set] - A list of questions associated with the
+ *   return reason.
+ * @property {string} [reason_other_text] - Any additional text for other return reasons.
+ */
+/**
+ * @typedef CourierPartnerArticlesReturnReasonsMeta
+ * @property {boolean} [show_text_area] - A boolean indicating whether a text
+ *   area should be displayed for additional input regarding the return reason.
+ */
+/**
+ * @typedef ArticleWeight
+ * @property {number} shipping - The weight(grams) of the article for shipping
+ *   purposes, typically measured in a specified unit.
+ * @property {string} unit - The unit of measurement used for the weight value.
+ * @property {boolean} is_default - A boolean indicating whether this weight is
+ *   the default weight for the article.
+ */
+/**
+ * @typedef ArticleAttributes
+ * @property {string} battery_operated - Yes/no indicating whether the article
+ *   is powered by batteries.
+ * @property {string} is_flammable - Yes/no indicating whether the article is
+ *   considered flammable or poses a fire hazard.
+ */
+/**
+ * @typedef ArticleDimension
+ * @property {number} height - The height of the article.
+ * @property {boolean} is_default - A boolean indicating whether this dimension
+ *   is the default dimension.
+ * @property {number} length - The length of the article.
+ * @property {string} unit - The unit of measurement used for the dimensions.
+ * @property {number} width - The width of the article.
+ */
+/**
  * @typedef PlatformLocationArticles
  * @property {PlatformLocationArticle[]} articles - List of articles for this
  *   fulfillment location.
@@ -1384,16 +1679,6 @@ export = ServiceabilityPlatformModel;
  *   quality control (nullable).
  * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
  *   under quality control (nullable).
- */
-/**
- * @typedef AreaCode
- * @property {string} [source] - The starting area code.
- * @property {string} [destination] - The ending area code.
- */
-/**
- * @typedef TAT
- * @property {number} [min] - The minimum tat in integer.
- * @property {number} [max] - The maximum tat in integer.
  */
 /**
  * @typedef BusinessUnit
@@ -1622,6 +1907,9 @@ export = ServiceabilityPlatformModel;
  *   zone, whether it's a list of categories, departments, tags, or item_ids.
  * @property {Object[]} values - List of values representing the products or the
  *   type of products selected for the delivery zone.
+ * @property {string} [action] - The action to perform on the product values -
+ *   'add' to add values to the existing list, 'remove' to remove values from
+ *   the existing list.
  */
 /**
  * @typedef StoresSchema
@@ -1986,30 +2274,6 @@ export = ServiceabilityPlatformModel;
  * @property {ArticleReturnReason} [return_reason]
  */
 /**
- * @typedef ArticleWeight
- * @property {number} shipping - The weight(grams) of the article for shipping
- *   purposes, typically measured in a specified unit.
- * @property {string} unit - The unit of measurement used for the weight value.
- * @property {boolean} is_default - A boolean indicating whether this weight is
- *   the default weight for the article.
- */
-/**
- * @typedef ArticleAttributes
- * @property {string} battery_operated - Yes/no indicating whether the article
- *   is powered by batteries.
- * @property {string} is_flammable - Yes/no indicating whether the article is
- *   considered flammable or poses a fire hazard.
- */
-/**
- * @typedef ArticleDimension
- * @property {number} height - The height of the article.
- * @property {boolean} is_default - A boolean indicating whether this dimension
- *   is the default dimension.
- * @property {number} length - The length of the article.
- * @property {string} unit - The unit of measurement used for the dimensions.
- * @property {number} width - The width of the article.
- */
-/**
  * @typedef ArticleSet
  * @property {string} [name] - The name of the article set.
  * @property {number} [quantity] - The quantity of the article set.
@@ -2247,21 +2511,6 @@ export = ServiceabilityPlatformModel;
  *   single-company, or single-store).
  * @property {string} [strategy] - The strategy parameter allows users to
  *   specify the desired approach or criteria for selecting optimal locations.
- */
-/**
- * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
- * @property {ServiceabilityLocation} [location]
- */
-/**
- * @typedef ServiceabilityLocation
- * @property {string} longitude - The longitude of the serviceability location.
- * @property {string} latitude - The latitude of the serviceability location.
  */
 /**
  * @typedef OptimalLocationsArticles
@@ -2536,11 +2785,152 @@ export = ServiceabilityPlatformModel;
  * @property {number} [total_error_count] - The number of items or entities that
  *   encountered errors during the batch processing.
  */
+/**
+ * @typedef StorePolygonServiceabilityRequestData
+ * @property {StorePolygonServiceabilityStore[]} stores - List of stores for
+ *   which polygon-based serviceability is being configured.
+ */
+/**
+ * @typedef StorePolygonServiceabilityStore
+ * @property {string} store_code - Unique identifier of the store.
+ * @property {string} name - Name of the store.
+ * @property {string} address - Address of the store.
+ * @property {string} area_code - Area code associated with the store.
+ * @property {boolean} is_active - Indicates whether the store is active.
+ * @property {Object} [meta] - Additional metadata associated with the store.
+ * @property {StorePolygonServiceabilityStoreCoordinates} coordinates
+ * @property {StorePolygonServiceabilityConfig[]} serviceabilities - List of
+ *   polygon-based serviceability configurations for the store.
+ * @property {string} [created_at] - Timestamp when the store entry was created.
+ * @property {string} [updated_at] - Timestamp when the store entry was last updated.
+ */
+/**
+ * @typedef StorePolygonServiceabilityStoreCoordinates
+ * @property {number} lng - Longitude of the store.
+ * @property {number} lat - Latitude of the store.
+ */
+/**
+ * @typedef StorePolygonServiceabilityConfig
+ * @property {string} name - Name of the polygon-based serviceability configuration.
+ * @property {string} serviceability_type - Type of serviceability
+ *   configuration. Currently supports quick_commerce.
+ * @property {StorePolygonServiceabilityPolygon} polygon
+ * @property {Object} [meta] - Additional metadata associated with the
+ *   serviceability configuration.
+ * @property {boolean} is_active - Indicates whether the serviceability
+ *   configuration is active.
+ * @property {string} [uid] - Unique identifier of the serviceability configuration.
+ * @property {string} [created_at] - Timestamp when the serviceability
+ *   configuration was created.
+ * @property {string} [updated_at] - Timestamp when the serviceability
+ *   configuration was last updated.
+ */
+/**
+ * @typedef StorePolygonServiceabilityPolygon
+ * @property {string} type - Type of the GeoJSON collection, typically FeatureCollection.
+ * @property {StorePolygonServiceabilityFeature[]} features - List of GeoJSON
+ *   features defining the polygon.
+ * @property {StorePolygonServiceabilityAttributes} [attributes]
+ */
+/**
+ * @typedef StorePolygonServiceabilityFeature
+ * @property {string} type - Type of the feature, typically Feature.
+ * @property {Object} [properties] - Additional properties for the feature.
+ * @property {StorePolygonServiceabilityGeometry} geometry
+ */
+/**
+ * @typedef StorePolygonServiceabilityGeometry
+ * @property {string} [type] - Type of geometry, typically Polygon.
+ * @property {number[][][]} [coordinates] - List of polygon coordinates as
+ *   longitude and latitude pairs.
+ */
+/**
+ * @typedef StorePolygonServiceabilityAttributes
+ * @property {string} [contour_type] - Type of contour used for the polygon,
+ *   either distance-based or manually defined.
+ * @property {number} [travel_distance] - Travel distance used to derive the
+ *   polygon contour, typically in meters.
+ * @property {StorePolygonServiceabilityReferenceCoordinates} [reference_coordinates]
+ */
+/**
+ * @typedef StorePolygonServiceabilityReferenceCoordinates
+ * @property {number} lng - Longitude of the reference point.
+ * @property {number} lat - Latitude of the reference point.
+ */
+/**
+ * @typedef StorePolygonServiceabilityStoreSummary
+ * @property {string} store_code - Unique identifier of the store.
+ * @property {string} [name] - Name of the store.
+ */
+/**
+ * @typedef StorePolygonServiceabilityError
+ * @property {string} store_code - Store code identifier.
+ * @property {string} message - Detailed error message describing the validation
+ *   failure for a specific record.
+ * @property {string} [error_code] - Error code for the failure.
+ */
+/**
+ * @typedef StorePolygonServiceabilityPagination
+ * @property {number} page_size - Number of records per page.
+ * @property {number} page_number - The current page number.
+ * @property {boolean} has_next - Indicates whether more pages are available.
+ * @property {number} total_records - Total number of records matching the criteria.
+ */
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, AreaCode, TAT, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleWeight, ArticleAttributes, ArticleDimension, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, LocationDetailsServiceability, ServiceabilityLocation, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject };
+    export { GenerateShipmentsAndCourierPartnerResult, CourierPartnerDetails, PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, StorePolygonServiceabilityRequestBody, StorePolygonServiceabilityResult, StorePolygonServiceabilityGetResult, ZoneProductsBulkPatchDetails, GetZoneProductsBulkPatchResult, CourierPartnerToServiceability, ServiceabilityLocation, CourierPartnerShipments, PromiseObject, PromiseData, PromiseMeta, CourierPartnerPromiseData, DeliveryTat, DeliveryTatSchema, CourierPartnerShipmentsMeta, ShipmentCourierPartnersResult, AreaCode, TAT, LocationDetailsServiceability, CourierPartnerShipmentsArticles, CourierPartnerArticlesPromise, CourierPartnerArticlesReturnReasons, CourierPartnerArticlesReturnReasonsMeta, ArticleWeight, ArticleAttributes, ArticleDimension, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject, StorePolygonServiceabilityRequestData, StorePolygonServiceabilityStore, StorePolygonServiceabilityStoreCoordinates, StorePolygonServiceabilityConfig, StorePolygonServiceabilityPolygon, StorePolygonServiceabilityFeature, StorePolygonServiceabilityGeometry, StorePolygonServiceabilityAttributes, StorePolygonServiceabilityReferenceCoordinates, StorePolygonServiceabilityStoreSummary, StorePolygonServiceabilityError, StorePolygonServiceabilityPagination };
 }
+/** @returns {GenerateShipmentsAndCourierPartnerResult} */
+declare function GenerateShipmentsAndCourierPartnerResult(): GenerateShipmentsAndCourierPartnerResult;
+type GenerateShipmentsAndCourierPartnerResult = {
+    /**
+     * - Describes the shipment's journey or route.
+     */
+    journey?: string;
+    to_serviceability?: CourierPartnerToServiceability;
+    /**
+     * - List of shipments
+     * generated for the courier partner.
+     */
+    shipments?: CourierPartnerShipments[];
+    /**
+     * - Specifies the mode of payment for the shipment.
+     */
+    payment_mode?: string;
+    /**
+     * - The destination city for the shipment.
+     */
+    to_city?: string;
+    /**
+     * - Indicates if cash on delivery (COD)
+     * is available.
+     */
+    is_cod_available?: boolean;
+};
+/** @returns {CourierPartnerDetails} */
+declare function CourierPartnerDetails(): CourierPartnerDetails;
+type CourierPartnerDetails = {
+    to_serviceability: LocationDetailsServiceability;
+    /**
+     * - A list of shipments for the
+     * courier partner request.
+     */
+    shipments: CourierPartnerShipments[];
+    /**
+     * - The journey details for the courier partner request.
+     */
+    journey: string;
+    /**
+     * - The payment mode for the courier partner request.
+     */
+    payment_mode?: string;
+    /**
+     * - This flag decided whether to run
+     * delivery rules configuration for delivery rule fetch or not.
+     */
+    skip_delivery_rules?: boolean;
+};
 /** @returns {PlatformShipmentsRequestSchema} */
 declare function PlatformShipmentsRequestSchema(): PlatformShipmentsRequestSchema;
 type PlatformShipmentsRequestSchema = {
@@ -5491,6 +5881,687 @@ type CompanyConfigurationSchema = {
      */
     sort?: string[];
 };
+/** @returns {StorePolygonServiceabilityRequestBody} */
+declare function StorePolygonServiceabilityRequestBody(): StorePolygonServiceabilityRequestBody;
+type StorePolygonServiceabilityRequestBody = {
+    data: StorePolygonServiceabilityRequestData;
+};
+/** @returns {StorePolygonServiceabilityResult} */
+declare function StorePolygonServiceabilityResult(): StorePolygonServiceabilityResult;
+type StorePolygonServiceabilityResult = {
+    /**
+     * - Indicates whether the polygon serviceability
+     * operation was successful.
+     */
+    success: boolean;
+    /**
+     * - List of stores
+     * for which polygon serviceability was successfully processed.
+     */
+    data: StorePolygonServiceabilityStoreSummary[];
+    /**
+     * - List of errors
+     * encountered while processing individual entries, if any.
+     */
+    errors: StorePolygonServiceabilityError[];
+    /**
+     * - Unique identifier for the polygon
+     * serviceability request.
+     */
+    identifier: string;
+    /**
+     * - List of
+     * entries that failed during polygon serviceability processing.
+     */
+    failed_entries: StorePolygonServiceabilityError[];
+};
+/** @returns {StorePolygonServiceabilityGetResult} */
+declare function StorePolygonServiceabilityGetResult(): StorePolygonServiceabilityGetResult;
+type StorePolygonServiceabilityGetResult = {
+    /**
+     * - Indicates whether the polygon serviceability
+     * fetch operation was successful.
+     */
+    success: boolean;
+    /**
+     * - List of stores with
+     * their polygon-based serviceability details.
+     */
+    data: StorePolygonServiceabilityStore[];
+    /**
+     * - List of errors
+     * encountered while processing individual entries, if any.
+     */
+    errors: StorePolygonServiceabilityError[];
+    /**
+     * - Unique identifier for the polygon
+     * serviceability request.
+     */
+    identifier: string;
+    /**
+     * - List of
+     * entries that failed during polygon serviceability processing.
+     */
+    failed_entries: StorePolygonServiceabilityError[];
+    /**
+     * - Pagination
+     * details for the polygon serviceability result set.
+     */
+    pagination: StorePolygonServiceabilityPagination;
+};
+/** @returns {ZoneProductsBulkPatchDetails} */
+declare function ZoneProductsBulkPatchDetails(): ZoneProductsBulkPatchDetails;
+type ZoneProductsBulkPatchDetails = {
+    /**
+     * - URL of the CSV file containing the zone
+     * products bulk patch data.
+     */
+    file_url: string;
+};
+/** @returns {GetZoneProductsBulkPatchResult} */
+declare function GetZoneProductsBulkPatchResult(): GetZoneProductsBulkPatchResult;
+type GetZoneProductsBulkPatchResult = {
+    /**
+     * - A unique identifier for the performed batch operation.
+     */
+    batch_id: string;
+    /**
+     * - CDN path of the uploaded file.
+     */
+    file_path?: string;
+    /**
+     * - Total number of records in the batch.
+     */
+    total: number;
+    /**
+     * - Number of failed records in the batch.
+     */
+    failed: number;
+    /**
+     * - URL to the error file containing
+     * details of failed records.
+     */
+    error_file_url?: string;
+    /**
+     * - The action performed during the bulk operation.
+     */
+    action: string;
+    /**
+     * - Timestamp when the batch was last updated.
+     */
+    updated_at: string;
+    /**
+     * - User who last updated the batch.
+     */
+    updated_by: string;
+    /**
+     * - Type of the bulk operation.
+     */
+    type: string;
+    /**
+     * - The unique identifier for the company.
+     */
+    company_id: number;
+    /**
+     * - A unique identifier for the sales channel.
+     */
+    application_id: string;
+    /**
+     * - Current stage of the bulk operation.
+     */
+    stage: string;
+    /**
+     * - Number of partially processed records.
+     */
+    partial?: number;
+    /**
+     * - URL to the result file after
+     * processing is complete.
+     */
+    result_file_url?: string;
+};
+/** @returns {CourierPartnerToServiceability} */
+declare function CourierPartnerToServiceability(): CourierPartnerToServiceability;
+type CourierPartnerToServiceability = {
+    location?: ServiceabilityLocation;
+    /**
+     * - The pincode of the serviceability location.
+     */
+    pincode?: string;
+    /**
+     * - The sector of the serviceability location.
+     */
+    sector?: string;
+    /**
+     * - The country where the serviceability location
+     * is situated.
+     */
+    country?: string;
+    /**
+     * - The ISO code for the country.
+     */
+    country_iso_code?: string;
+    /**
+     * - The state of the serviceability location.
+     */
+    state?: string;
+    /**
+     * - The city of the serviceability location.
+     */
+    city?: string;
+};
+/** @returns {ServiceabilityLocation} */
+declare function ServiceabilityLocation(): ServiceabilityLocation;
+type ServiceabilityLocation = {
+    /**
+     * - The longitude of the serviceability location.
+     */
+    longitude: string;
+    /**
+     * - The latitude of the serviceability location.
+     */
+    latitude: string;
+};
+/** @returns {CourierPartnerShipments} */
+declare function CourierPartnerShipments(): CourierPartnerShipments;
+type CourierPartnerShipments = {
+    promise?: PromiseObject;
+    /**
+     * - Indicates if cash on delivery (COD)
+     * is available.
+     */
+    is_cod_available?: boolean;
+    /**
+     * - Specifies if the shipment should be
+     * automatically assigned.
+     */
+    is_auto_assign?: boolean;
+    meta?: CourierPartnerShipmentsMeta;
+    /**
+     * - The volumetric weight of the shipment.
+     */
+    volumetric_weight?: number;
+    /**
+     * - The actual weight of the shipment.
+     */
+    weight?: number;
+    /**
+     * - List of
+     * courier partners associated with the shipment.
+     */
+    courier_partners?: ShipmentCourierPartnersResult[];
+    /**
+     * - The fulfillment Id.
+     */
+    fulfillment_id: number;
+    /**
+     * - Fulfillment Type
+     */
+    fulfillment_type: string;
+    /**
+     * - Fulfillment level tags
+     */
+    fulfillment_tags: string[];
+    from_serviceability: LocationDetailsServiceability;
+    /**
+     * - A list of articles
+     * in the courier partner shipment.
+     */
+    articles: CourierPartnerShipmentsArticles[];
+    /**
+     * - A boolean indicating if the courier partner
+     * supports Made to Order service.
+     */
+    is_mto: boolean;
+    /**
+     * - A list of scheme_id which we want to
+     * ignore in courier_partner assignment.
+     */
+    ignore_scheme_ids: string[];
+    /**
+     * - Error Details
+     */
+    error?: any;
+};
+/** @returns {PromiseObject} */
+declare function PromiseObject(): PromiseObject;
+type PromiseObject = {
+    /**
+     * - The minimum promised delivery time in ISO 8601 format.
+     */
+    min?: string;
+    /**
+     * - The maximum promised delivery time in ISO 8601 format.
+     */
+    max?: string;
+    customer_promise: PromiseData;
+    meta: PromiseMeta;
+};
+/** @returns {PromiseData} */
+declare function PromiseData(): PromiseData;
+type PromiseData = {
+    /**
+     * - The minimum promised delivery time in ISO 8601 format.
+     */
+    min?: string;
+    /**
+     * - The maximum promised delivery time in ISO 8601 format.
+     */
+    max?: string;
+};
+/** @returns {PromiseMeta} */
+declare function PromiseMeta(): PromiseMeta;
+type PromiseMeta = {
+    seller_promise?: PromiseData;
+    courier_partner_promise?: CourierPartnerPromiseData;
+    customer_initial_promise?: PromiseData;
+};
+/** @returns {CourierPartnerPromiseData} */
+declare function CourierPartnerPromiseData(): CourierPartnerPromiseData;
+type CourierPartnerPromiseData = {
+    /**
+     * - The minimum promised delivery time in ISO 8601 format.
+     */
+    min?: string;
+    /**
+     * - The maximum promised delivery time in ISO 8601 format.
+     */
+    max?: string;
+    attributes?: DeliveryTat;
+};
+/** @returns {DeliveryTat} */
+declare function DeliveryTat(): DeliveryTat;
+type DeliveryTat = {
+    tat?: DeliveryTatSchema;
+};
+/** @returns {DeliveryTatSchema} */
+declare function DeliveryTatSchema(): DeliveryTatSchema;
+type DeliveryTatSchema = {
+    /**
+     * - The minimum tat in integer.
+     */
+    min?: number;
+    /**
+     * - The maximum tat in integer.
+     */
+    max?: number;
+};
+/** @returns {CourierPartnerShipmentsMeta} */
+declare function CourierPartnerShipmentsMeta(): CourierPartnerShipmentsMeta;
+type CourierPartnerShipmentsMeta = {
+    /**
+     * - The total cost associated with the
+     * shipment, expressed as a floating-point number. This value includes all
+     * applicable charges, such as transportation, handling, and any additional fees.
+     */
+    shipment_cost?: number;
+};
+/** @returns {ShipmentCourierPartnersResult} */
+declare function ShipmentCourierPartnersResult(): ShipmentCourierPartnersResult;
+type ShipmentCourierPartnersResult = {
+    /**
+     * - The Id of the courier partner.
+     */
+    extension_id: string;
+    /**
+     * - The scheme Id of the courier partner.
+     */
+    scheme_id: string;
+    area_code: AreaCode;
+    tat: TAT;
+    /**
+     * - The display name of the courier partner.
+     */
+    display_name: string;
+    /**
+     * - A boolean indicating quality control by
+     * the courier partner.
+     */
+    is_qc_enabled: boolean;
+    /**
+     * - A boolean indicating it is self delivery DP support.
+     */
+    is_self_ship: boolean;
+    /**
+     * - Specifies if the courier partner
+     * operates on its own account.
+     */
+    is_own_account?: boolean;
+    /**
+     * - The number of non-delivery report (NDR) attempts.
+     */
+    ndr_attempts?: number;
+    /**
+     * - Cutoff time for forward pickup (nullable).
+     */
+    forward_pickup_cutoff?: string;
+    /**
+     * - Cutoff time for reverse pickup (nullable).
+     */
+    reverse_pickup_cutoff?: string;
+    /**
+     * - Quantity of items under
+     * quality control (nullable).
+     */
+    qc_shipment_item_quantity?: number;
+    /**
+     * - Quantity of items not
+     * under quality control (nullable).
+     */
+    non_qc_shipment_item_quantity?: number;
+    /**
+     * - Specifies if the courier partner
+     * operates on dangerous goods.
+     */
+    dangerous_goods?: boolean;
+    /**
+     * - Specifies if the courier partner
+     * operates on restricted goods.
+     */
+    restricted_goods?: boolean;
+    /**
+     * - Specifies if the courier partner
+     * operates on fragile goods.
+     */
+    fragile_goods?: boolean;
+    /**
+     * - Specifies if the courier partner
+     * operates on cold storage goods.
+     */
+    cold_storage_goods?: boolean;
+    /**
+     * - Specifies type of courier partner.
+     */
+    delivery_type?: string;
+    /**
+     * - Specifies if the courier partner operates on
+     * cash on delivery orders.
+     */
+    is_cod?: boolean;
+    /**
+     * - Mode of transport associated with the
+     * courier partner scheme.
+     */
+    transport_type?: string;
+};
+/** @returns {AreaCode} */
+declare function AreaCode(): AreaCode;
+type AreaCode = {
+    /**
+     * - The starting area code.
+     */
+    source?: string;
+    /**
+     * - The ending area code.
+     */
+    destination?: string;
+};
+/** @returns {TAT} */
+declare function TAT(): TAT;
+type TAT = {
+    /**
+     * - The minimum tat in integer.
+     */
+    min?: number;
+    /**
+     * - The maximum tat in integer.
+     */
+    max?: number;
+};
+/** @returns {LocationDetailsServiceability} */
+declare function LocationDetailsServiceability(): LocationDetailsServiceability;
+type LocationDetailsServiceability = {
+    /**
+     * - The pincode of the serviceability location.
+     */
+    pincode?: string;
+    /**
+     * - The sector of the serviceability location.
+     */
+    sector?: string;
+    /**
+     * - The state of the serviceability location.
+     */
+    state?: string;
+    /**
+     * - The country of the serviceability location.
+     */
+    country: string;
+    /**
+     * - The city of the serviceability location.
+     */
+    city?: string;
+    /**
+     * - The ISO code of the country.
+     */
+    country_iso_code: string;
+    location?: ServiceabilityLocation;
+};
+/** @returns {CourierPartnerShipmentsArticles} */
+declare function CourierPartnerShipmentsArticles(): CourierPartnerShipmentsArticles;
+type CourierPartnerShipmentsArticles = {
+    /**
+     * - A string serving as the unique identifier.
+     */
+    id?: string;
+    /**
+     * - Represents the delivery date and time
+     * slots available for an article.
+     */
+    delivery_slots?: any;
+    error?: Error;
+    /**
+     * - The fulfillment Id.
+     */
+    fulfillment_id?: number;
+    /**
+     * - Fulfillment level tags
+     */
+    fulfillment_tags?: string[];
+    /**
+     * - Fulfillment Type
+     */
+    fulfillment_type?: string;
+    /**
+     * - The group Id of the article.
+     */
+    group_id?: string;
+    /**
+     * - A boolean indicating if the courier partner
+     * supports gift shipments.
+     */
+    is_gift?: boolean;
+    /**
+     * - Flag indicating whether the shipment is MTO
+     * (Make to Order).
+     */
+    is_mto?: boolean;
+    /**
+     * - A boolean indicating whether the article is a set.
+     */
+    is_set?: boolean;
+    /**
+     * - The manufacturing time of the article.
+     */
+    manufacturing_time?: number;
+    /**
+     * - The unit of measurement for
+     * manufacturing time.
+     */
+    manufacturing_time_unit?: string;
+    /**
+     * - The Made to Order quantity of the article.
+     */
+    mto_quantity?: number;
+    /**
+     * - Service level agreement (SLA) for the article,
+     * represented as a date-time
+     */
+    sla?: string;
+    /**
+     * - Marked price before discounts.
+     */
+    price_marked?: number;
+    promise?: CourierPartnerArticlesPromise;
+    /**
+     * - Additional properties related to sets.
+     */
+    set?: any;
+    return_reason?: CourierPartnerArticlesReturnReasons;
+    /**
+     * - It represents the number of set of this article
+     */
+    set_quantity?: number;
+    /**
+     * - The quantity of the shipment article.
+     */
+    quantity: number;
+    weight: ArticleWeight;
+    attributes?: ArticleAttributes;
+    /**
+     * - The category Id of the article.
+     */
+    category_id: number;
+    dimension: ArticleDimension;
+    /**
+     * - The brand Id of the article.
+     */
+    brand_id: number;
+    /**
+     * - The Item Id of the article.
+     */
+    item_id: number;
+    /**
+     * - The size of the article.
+     */
+    size: string;
+    /**
+     * - Tags assigned to Item
+     */
+    tags: string[];
+    /**
+     * - Department of the item
+     */
+    department_id: number;
+    /**
+     * - Final Price of the article after discounts
+     */
+    price: number;
+};
+/** @returns {CourierPartnerArticlesPromise} */
+declare function CourierPartnerArticlesPromise(): CourierPartnerArticlesPromise;
+type CourierPartnerArticlesPromise = {
+    /**
+     * - The minimum delivery promise date.
+     */
+    min?: string;
+    /**
+     * - The maximum delivery promise date.
+     */
+    max?: string;
+};
+/** @returns {CourierPartnerArticlesReturnReasons} */
+declare function CourierPartnerArticlesReturnReasons(): CourierPartnerArticlesReturnReasons;
+type CourierPartnerArticlesReturnReasons = {
+    /**
+     * - The unique identifier for the return reason entry.
+     */
+    id?: number;
+    meta?: CourierPartnerArticlesReturnReasonsMeta;
+    /**
+     * - A list of quality check types that apply to
+     * the return reasons.
+     */
+    qc_type?: string[];
+    /**
+     * - A list of return reasons for the article.
+     */
+    reasons?: string[];
+    /**
+     * - A boolean indicating whether the return
+     * reason is currently active.
+     */
+    is_active?: boolean;
+    /**
+     * - The display name for the return reason.
+     */
+    display_name?: string;
+    /**
+     * - A list of questions associated with the
+     * return reason.
+     */
+    question_set?: string[];
+    /**
+     * - Any additional text for other return reasons.
+     */
+    reason_other_text?: string;
+};
+/** @returns {CourierPartnerArticlesReturnReasonsMeta} */
+declare function CourierPartnerArticlesReturnReasonsMeta(): CourierPartnerArticlesReturnReasonsMeta;
+type CourierPartnerArticlesReturnReasonsMeta = {
+    /**
+     * - A boolean indicating whether a text
+     * area should be displayed for additional input regarding the return reason.
+     */
+    show_text_area?: boolean;
+};
+/** @returns {ArticleWeight} */
+declare function ArticleWeight(): ArticleWeight;
+type ArticleWeight = {
+    /**
+     * - The weight(grams) of the article for shipping
+     * purposes, typically measured in a specified unit.
+     */
+    shipping: number;
+    /**
+     * - The unit of measurement used for the weight value.
+     */
+    unit: string;
+    /**
+     * - A boolean indicating whether this weight is
+     * the default weight for the article.
+     */
+    is_default: boolean;
+};
+/** @returns {ArticleAttributes} */
+declare function ArticleAttributes(): ArticleAttributes;
+type ArticleAttributes = {
+    /**
+     * - Yes/no indicating whether the article
+     * is powered by batteries.
+     */
+    battery_operated: string;
+    /**
+     * - Yes/no indicating whether the article is
+     * considered flammable or poses a fire hazard.
+     */
+    is_flammable: string;
+};
+/** @returns {ArticleDimension} */
+declare function ArticleDimension(): ArticleDimension;
+type ArticleDimension = {
+    /**
+     * - The height of the article.
+     */
+    height: number;
+    /**
+     * - A boolean indicating whether this dimension
+     * is the default dimension.
+     */
+    is_default: boolean;
+    /**
+     * - The length of the article.
+     */
+    length: number;
+    /**
+     * - The unit of measurement used for the dimensions.
+     */
+    unit: string;
+    /**
+     * - The width of the article.
+     */
+    width: number;
+};
 /** @returns {PlatformLocationArticles} */
 declare function PlatformLocationArticles(): PlatformLocationArticles;
 type PlatformLocationArticles = {
@@ -5999,30 +7070,6 @@ type ShipmentsCourierPartner = {
      * under quality control (nullable).
      */
     non_qc_shipment_item_quantity?: number;
-};
-/** @returns {AreaCode} */
-declare function AreaCode(): AreaCode;
-type AreaCode = {
-    /**
-     * - The starting area code.
-     */
-    source?: string;
-    /**
-     * - The ending area code.
-     */
-    destination?: string;
-};
-/** @returns {TAT} */
-declare function TAT(): TAT;
-type TAT = {
-    /**
-     * - The minimum tat in integer.
-     */
-    min?: number;
-    /**
-     * - The maximum tat in integer.
-     */
-    max?: number;
 };
 /** @returns {BusinessUnit} */
 declare function BusinessUnit(): BusinessUnit;
@@ -6647,6 +7694,12 @@ type ProductSchema = {
      * type of products selected for the delivery zone.
      */
     values: any[];
+    /**
+     * - The action to perform on the product values -
+     * 'add' to add values to the existing list, 'remove' to remove values from
+     * the existing list.
+     */
+    action?: string;
 };
 /** @returns {StoresSchema} */
 declare function StoresSchema(): StoresSchema;
@@ -7546,63 +8599,6 @@ type ShipmentsArticles = {
     delivery_slots?: ArticleDeliverySlots;
     return_reason?: ArticleReturnReason;
 };
-/** @returns {ArticleWeight} */
-declare function ArticleWeight(): ArticleWeight;
-type ArticleWeight = {
-    /**
-     * - The weight(grams) of the article for shipping
-     * purposes, typically measured in a specified unit.
-     */
-    shipping: number;
-    /**
-     * - The unit of measurement used for the weight value.
-     */
-    unit: string;
-    /**
-     * - A boolean indicating whether this weight is
-     * the default weight for the article.
-     */
-    is_default: boolean;
-};
-/** @returns {ArticleAttributes} */
-declare function ArticleAttributes(): ArticleAttributes;
-type ArticleAttributes = {
-    /**
-     * - Yes/no indicating whether the article
-     * is powered by batteries.
-     */
-    battery_operated: string;
-    /**
-     * - Yes/no indicating whether the article is
-     * considered flammable or poses a fire hazard.
-     */
-    is_flammable: string;
-};
-/** @returns {ArticleDimension} */
-declare function ArticleDimension(): ArticleDimension;
-type ArticleDimension = {
-    /**
-     * - The height of the article.
-     */
-    height: number;
-    /**
-     * - A boolean indicating whether this dimension
-     * is the default dimension.
-     */
-    is_default: boolean;
-    /**
-     * - The length of the article.
-     */
-    length: number;
-    /**
-     * - The unit of measurement used for the dimensions.
-     */
-    unit: string;
-    /**
-     * - The width of the article.
-     */
-    width: number;
-};
 /** @returns {ArticleSet} */
 declare function ArticleSet(): ArticleSet;
 type ArticleSet = {
@@ -8135,47 +9131,6 @@ type ArticleAssignment = {
      * specify the desired approach or criteria for selecting optimal locations.
      */
     strategy?: string;
-};
-/** @returns {LocationDetailsServiceability} */
-declare function LocationDetailsServiceability(): LocationDetailsServiceability;
-type LocationDetailsServiceability = {
-    /**
-     * - The pincode of the serviceability location.
-     */
-    pincode?: string;
-    /**
-     * - The sector of the serviceability location.
-     */
-    sector?: string;
-    /**
-     * - The state of the serviceability location.
-     */
-    state?: string;
-    /**
-     * - The country of the serviceability location.
-     */
-    country: string;
-    /**
-     * - The city of the serviceability location.
-     */
-    city?: string;
-    /**
-     * - The ISO code of the country.
-     */
-    country_iso_code: string;
-    location?: ServiceabilityLocation;
-};
-/** @returns {ServiceabilityLocation} */
-declare function ServiceabilityLocation(): ServiceabilityLocation;
-type ServiceabilityLocation = {
-    /**
-     * - The longitude of the serviceability location.
-     */
-    longitude: string;
-    /**
-     * - The latitude of the serviceability location.
-     */
-    latitude: string;
 };
 /** @returns {OptimalLocationsArticles} */
 declare function OptimalLocationsArticles(): OptimalLocationsArticles;
@@ -8845,4 +9800,221 @@ type HistoryObject = {
      * encountered errors during the batch processing.
      */
     total_error_count?: number;
+};
+/** @returns {StorePolygonServiceabilityRequestData} */
+declare function StorePolygonServiceabilityRequestData(): StorePolygonServiceabilityRequestData;
+type StorePolygonServiceabilityRequestData = {
+    /**
+     * - List of stores for
+     * which polygon-based serviceability is being configured.
+     */
+    stores: StorePolygonServiceabilityStore[];
+};
+/** @returns {StorePolygonServiceabilityStore} */
+declare function StorePolygonServiceabilityStore(): StorePolygonServiceabilityStore;
+type StorePolygonServiceabilityStore = {
+    /**
+     * - Unique identifier of the store.
+     */
+    store_code: string;
+    /**
+     * - Name of the store.
+     */
+    name: string;
+    /**
+     * - Address of the store.
+     */
+    address: string;
+    /**
+     * - Area code associated with the store.
+     */
+    area_code: string;
+    /**
+     * - Indicates whether the store is active.
+     */
+    is_active: boolean;
+    /**
+     * - Additional metadata associated with the store.
+     */
+    meta?: any;
+    coordinates: StorePolygonServiceabilityStoreCoordinates;
+    /**
+     * - List of
+     * polygon-based serviceability configurations for the store.
+     */
+    serviceabilities: StorePolygonServiceabilityConfig[];
+    /**
+     * - Timestamp when the store entry was created.
+     */
+    created_at?: string;
+    /**
+     * - Timestamp when the store entry was last updated.
+     */
+    updated_at?: string;
+};
+/** @returns {StorePolygonServiceabilityStoreCoordinates} */
+declare function StorePolygonServiceabilityStoreCoordinates(): StorePolygonServiceabilityStoreCoordinates;
+type StorePolygonServiceabilityStoreCoordinates = {
+    /**
+     * - Longitude of the store.
+     */
+    lng: number;
+    /**
+     * - Latitude of the store.
+     */
+    lat: number;
+};
+/** @returns {StorePolygonServiceabilityConfig} */
+declare function StorePolygonServiceabilityConfig(): StorePolygonServiceabilityConfig;
+type StorePolygonServiceabilityConfig = {
+    /**
+     * - Name of the polygon-based serviceability configuration.
+     */
+    name: string;
+    /**
+     * - Type of serviceability
+     * configuration. Currently supports quick_commerce.
+     */
+    serviceability_type: string;
+    polygon: StorePolygonServiceabilityPolygon;
+    /**
+     * - Additional metadata associated with the
+     * serviceability configuration.
+     */
+    meta?: any;
+    /**
+     * - Indicates whether the serviceability
+     * configuration is active.
+     */
+    is_active: boolean;
+    /**
+     * - Unique identifier of the serviceability configuration.
+     */
+    uid?: string;
+    /**
+     * - Timestamp when the serviceability
+     * configuration was created.
+     */
+    created_at?: string;
+    /**
+     * - Timestamp when the serviceability
+     * configuration was last updated.
+     */
+    updated_at?: string;
+};
+/** @returns {StorePolygonServiceabilityPolygon} */
+declare function StorePolygonServiceabilityPolygon(): StorePolygonServiceabilityPolygon;
+type StorePolygonServiceabilityPolygon = {
+    /**
+     * - Type of the GeoJSON collection, typically FeatureCollection.
+     */
+    type: string;
+    /**
+     * - List of GeoJSON
+     * features defining the polygon.
+     */
+    features: StorePolygonServiceabilityFeature[];
+    attributes?: StorePolygonServiceabilityAttributes;
+};
+/** @returns {StorePolygonServiceabilityFeature} */
+declare function StorePolygonServiceabilityFeature(): StorePolygonServiceabilityFeature;
+type StorePolygonServiceabilityFeature = {
+    /**
+     * - Type of the feature, typically Feature.
+     */
+    type: string;
+    /**
+     * - Additional properties for the feature.
+     */
+    properties?: any;
+    geometry: StorePolygonServiceabilityGeometry;
+};
+/** @returns {StorePolygonServiceabilityGeometry} */
+declare function StorePolygonServiceabilityGeometry(): StorePolygonServiceabilityGeometry;
+type StorePolygonServiceabilityGeometry = {
+    /**
+     * - Type of geometry, typically Polygon.
+     */
+    type?: string;
+    /**
+     * - List of polygon coordinates as
+     * longitude and latitude pairs.
+     */
+    coordinates?: number[][][];
+};
+/** @returns {StorePolygonServiceabilityAttributes} */
+declare function StorePolygonServiceabilityAttributes(): StorePolygonServiceabilityAttributes;
+type StorePolygonServiceabilityAttributes = {
+    /**
+     * - Type of contour used for the polygon,
+     * either distance-based or manually defined.
+     */
+    contour_type?: string;
+    /**
+     * - Travel distance used to derive the
+     * polygon contour, typically in meters.
+     */
+    travel_distance?: number;
+    reference_coordinates?: StorePolygonServiceabilityReferenceCoordinates;
+};
+/** @returns {StorePolygonServiceabilityReferenceCoordinates} */
+declare function StorePolygonServiceabilityReferenceCoordinates(): StorePolygonServiceabilityReferenceCoordinates;
+type StorePolygonServiceabilityReferenceCoordinates = {
+    /**
+     * - Longitude of the reference point.
+     */
+    lng: number;
+    /**
+     * - Latitude of the reference point.
+     */
+    lat: number;
+};
+/** @returns {StorePolygonServiceabilityStoreSummary} */
+declare function StorePolygonServiceabilityStoreSummary(): StorePolygonServiceabilityStoreSummary;
+type StorePolygonServiceabilityStoreSummary = {
+    /**
+     * - Unique identifier of the store.
+     */
+    store_code: string;
+    /**
+     * - Name of the store.
+     */
+    name?: string;
+};
+/** @returns {StorePolygonServiceabilityError} */
+declare function StorePolygonServiceabilityError(): StorePolygonServiceabilityError;
+type StorePolygonServiceabilityError = {
+    /**
+     * - Store code identifier.
+     */
+    store_code: string;
+    /**
+     * - Detailed error message describing the validation
+     * failure for a specific record.
+     */
+    message: string;
+    /**
+     * - Error code for the failure.
+     */
+    error_code?: string;
+};
+/** @returns {StorePolygonServiceabilityPagination} */
+declare function StorePolygonServiceabilityPagination(): StorePolygonServiceabilityPagination;
+type StorePolygonServiceabilityPagination = {
+    /**
+     * - Number of records per page.
+     */
+    page_size: number;
+    /**
+     * - The current page number.
+     */
+    page_number: number;
+    /**
+     * - Indicates whether more pages are available.
+     */
+    has_next: boolean;
+    /**
+     * - Total number of records matching the criteria.
+     */
+    total_records: number;
 };

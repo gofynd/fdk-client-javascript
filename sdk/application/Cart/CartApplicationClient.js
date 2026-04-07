@@ -934,13 +934,16 @@ class Cart {
    * @returns {Promise<EligibleProductsResult>} - Success response
    * @name getProductsByOfferId
    * @summary: List eligible offer products
-   * @description: List all products eligible for the given offer id. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getProductsByOfferId/).
+   * @description: List all products eligible for the given offer. Lookup can be done by offer_code (takes priority) or offer_id. At least one must be provided. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getProductsByOfferId/).
    */
   async getProductsByOfferId(
-    { offerId, page, pageSize, requestHeaders } = { requestHeaders: {} },
+    { offerCode, offerId, page, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const query_params = {};
+    query_params["offer_code"] = offerCode;
     query_params["offer_id"] = offerId;
     query_params["page"] = page;
     query_params["page_size"] = pageSize;

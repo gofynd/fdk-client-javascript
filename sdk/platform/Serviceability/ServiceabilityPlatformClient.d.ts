@@ -116,6 +116,20 @@ declare class Serviceability {
      */
     getCompanyConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyConfig>;
     /**
+     * @param {ServiceabilityPlatformValidator.GetCompanyCourierPartnersListParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult>}
+     *   - Success response
+     *
+     * @name getCompanyCourierPartnersList
+     * @summary: Get available company courier partners
+     * @description: Retrieves a list of courier partners available for shipping based on serviceability criteria, shipment details. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getCompanyCourierPartnersList/).
+     */
+    getCompanyCourierPartnersList({ body, requestHeaders }?: ServiceabilityPlatformValidator.GetCompanyCourierPartnersListParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GenerateShipmentsAndCourierPartnerResult>;
+    /**
      * @param {ServiceabilityPlatformValidator.GetCountriesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

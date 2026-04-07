@@ -1,6 +1,29 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GenerateShipmentsAndCourierPartnerResult
+ * @property {string} [journey] - Describes the shipment's journey or route.
+ * @property {CourierPartnerToServiceability} [to_serviceability]
+ * @property {CourierPartnerShipments[]} [shipments] - List of shipments
+ *   generated for the courier partner.
+ * @property {string} [payment_mode] - Specifies the mode of payment for the shipment.
+ * @property {string} [to_city] - The destination city for the shipment.
+ * @property {boolean} [is_cod_available] - Indicates if cash on delivery (COD)
+ *   is available.
+ */
+
+/**
+ * @typedef CourierPartnerDetails
+ * @property {LocationDetailsServiceability} to_serviceability
+ * @property {CourierPartnerShipments[]} shipments - A list of shipments for the
+ *   courier partner request.
+ * @property {string} journey - The journey details for the courier partner request.
+ * @property {string} [payment_mode] - The payment mode for the courier partner request.
+ * @property {boolean} [skip_delivery_rules] - This flag decided whether to run
+ *   delivery rules configuration for delivery rule fetch or not.
+ */
+
+/**
  * @typedef PlatformShipmentsRequestSchema
  * @property {string} journey - The journey or route for the shipment.
  * @property {PlatformLocationArticles[]} location_articles - A list of articles
@@ -1304,6 +1327,306 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef StorePolygonServiceabilityRequestBody
+ * @property {StorePolygonServiceabilityRequestData} data
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityResult
+ * @property {boolean} success - Indicates whether the polygon serviceability
+ *   operation was successful.
+ * @property {StorePolygonServiceabilityStoreSummary[]} data - List of stores
+ *   for which polygon serviceability was successfully processed.
+ * @property {StorePolygonServiceabilityError[]} errors - List of errors
+ *   encountered while processing individual entries, if any.
+ * @property {string} identifier - Unique identifier for the polygon
+ *   serviceability request.
+ * @property {StorePolygonServiceabilityError[]} failed_entries - List of
+ *   entries that failed during polygon serviceability processing.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityGetResult
+ * @property {boolean} success - Indicates whether the polygon serviceability
+ *   fetch operation was successful.
+ * @property {StorePolygonServiceabilityStore[]} data - List of stores with
+ *   their polygon-based serviceability details.
+ * @property {StorePolygonServiceabilityError[]} errors - List of errors
+ *   encountered while processing individual entries, if any.
+ * @property {string} identifier - Unique identifier for the polygon
+ *   serviceability request.
+ * @property {StorePolygonServiceabilityError[]} failed_entries - List of
+ *   entries that failed during polygon serviceability processing.
+ * @property {StorePolygonServiceabilityPagination} pagination - Pagination
+ *   details for the polygon serviceability result set.
+ */
+
+/**
+ * @typedef ZoneProductsBulkPatchDetails
+ * @property {string} file_url - URL of the CSV file containing the zone
+ *   products bulk patch data.
+ */
+
+/**
+ * @typedef GetZoneProductsBulkPatchResult
+ * @property {string} batch_id - A unique identifier for the performed batch operation.
+ * @property {string} [file_path] - CDN path of the uploaded file.
+ * @property {number} total - Total number of records in the batch.
+ * @property {number} failed - Number of failed records in the batch.
+ * @property {string} [error_file_url] - URL to the error file containing
+ *   details of failed records.
+ * @property {string} action - The action performed during the bulk operation.
+ * @property {string} updated_at - Timestamp when the batch was last updated.
+ * @property {string} updated_by - User who last updated the batch.
+ * @property {string} type - Type of the bulk operation.
+ * @property {number} company_id - The unique identifier for the company.
+ * @property {string} application_id - A unique identifier for the sales channel.
+ * @property {string} stage - Current stage of the bulk operation.
+ * @property {number} [partial] - Number of partially processed records.
+ * @property {string} [result_file_url] - URL to the result file after
+ *   processing is complete.
+ */
+
+/**
+ * @typedef CourierPartnerToServiceability
+ * @property {ServiceabilityLocation} [location]
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [country] - The country where the serviceability location
+ *   is situated.
+ * @property {string} [country_iso_code] - The ISO code for the country.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ */
+
+/**
+ * @typedef ServiceabilityLocation
+ * @property {string} longitude - The longitude of the serviceability location.
+ * @property {string} latitude - The latitude of the serviceability location.
+ */
+
+/**
+ * @typedef CourierPartnerShipments
+ * @property {PromiseObject} [promise]
+ * @property {boolean} [is_cod_available] - Indicates if cash on delivery (COD)
+ *   is available.
+ * @property {boolean} [is_auto_assign] - Specifies if the shipment should be
+ *   automatically assigned.
+ * @property {CourierPartnerShipmentsMeta} [meta]
+ * @property {number} [volumetric_weight] - The volumetric weight of the shipment.
+ * @property {number} [weight] - The actual weight of the shipment.
+ * @property {ShipmentCourierPartnersResult[]} [courier_partners] - List of
+ *   courier partners associated with the shipment.
+ * @property {number} fulfillment_id - The fulfillment Id.
+ * @property {string} fulfillment_type - Fulfillment Type
+ * @property {string[]} fulfillment_tags - Fulfillment level tags
+ * @property {LocationDetailsServiceability} from_serviceability
+ * @property {CourierPartnerShipmentsArticles[]} articles - A list of articles
+ *   in the courier partner shipment.
+ * @property {boolean} is_mto - A boolean indicating if the courier partner
+ *   supports Made to Order service.
+ * @property {string[]} ignore_scheme_ids - A list of scheme_id which we want to
+ *   ignore in courier_partner assignment.
+ * @property {Object} [error] - Error Details
+ */
+
+/**
+ * @typedef PromiseObject
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ * @property {PromiseData} customer_promise
+ * @property {PromiseMeta} meta
+ */
+
+/**
+ * @typedef PromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ */
+
+/**
+ * @typedef PromiseMeta
+ * @property {PromiseData} [seller_promise]
+ * @property {CourierPartnerPromiseData} [courier_partner_promise]
+ * @property {PromiseData} [customer_initial_promise]
+ */
+
+/**
+ * @typedef CourierPartnerPromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ * @property {DeliveryTat} [attributes]
+ */
+
+/**
+ * @typedef DeliveryTat
+ * @property {DeliveryTatSchema} [tat]
+ */
+
+/**
+ * @typedef DeliveryTatSchema
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+
+/**
+ * @typedef CourierPartnerShipmentsMeta
+ * @property {number} [shipment_cost] - The total cost associated with the
+ *   shipment, expressed as a floating-point number. This value includes all
+ *   applicable charges, such as transportation, handling, and any additional fees.
+ */
+
+/**
+ * @typedef ShipmentCourierPartnersResult
+ * @property {string} extension_id - The Id of the courier partner.
+ * @property {string} scheme_id - The scheme Id of the courier partner.
+ * @property {AreaCode} area_code
+ * @property {TAT} tat
+ * @property {string} display_name - The display name of the courier partner.
+ * @property {boolean} is_qc_enabled - A boolean indicating quality control by
+ *   the courier partner.
+ * @property {boolean} is_self_ship - A boolean indicating it is self delivery DP support.
+ * @property {boolean} [is_own_account] - Specifies if the courier partner
+ *   operates on its own account.
+ * @property {number} [ndr_attempts] - The number of non-delivery report (NDR) attempts.
+ * @property {string} [forward_pickup_cutoff] - Cutoff time for forward pickup (nullable).
+ * @property {string} [reverse_pickup_cutoff] - Cutoff time for reverse pickup (nullable).
+ * @property {number} [qc_shipment_item_quantity] - Quantity of items under
+ *   quality control (nullable).
+ * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
+ *   under quality control (nullable).
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   operates on dangerous goods.
+ * @property {boolean} [restricted_goods] - Specifies if the courier partner
+ *   operates on restricted goods.
+ * @property {boolean} [fragile_goods] - Specifies if the courier partner
+ *   operates on fragile goods.
+ * @property {boolean} [cold_storage_goods] - Specifies if the courier partner
+ *   operates on cold storage goods.
+ * @property {string} [delivery_type] - Specifies type of courier partner.
+ * @property {boolean} [is_cod] - Specifies if the courier partner operates on
+ *   cash on delivery orders.
+ * @property {string} [transport_type] - Mode of transport associated with the
+ *   courier partner scheme.
+ */
+
+/**
+ * @typedef AreaCode
+ * @property {string} [source] - The starting area code.
+ * @property {string} [destination] - The ending area code.
+ */
+
+/**
+ * @typedef TAT
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+
+/**
+ * @typedef LocationDetailsServiceability
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} country - The country of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ * @property {string} country_iso_code - The ISO code of the country.
+ * @property {ServiceabilityLocation} [location]
+ */
+
+/**
+ * @typedef CourierPartnerShipmentsArticles
+ * @property {string} [id] - A string serving as the unique identifier.
+ * @property {Object} [delivery_slots] - Represents the delivery date and time
+ *   slots available for an article.
+ * @property {Error} [error]
+ * @property {number} [fulfillment_id] - The fulfillment Id.
+ * @property {string[]} [fulfillment_tags] - Fulfillment level tags
+ * @property {string} [fulfillment_type] - Fulfillment Type
+ * @property {string} [group_id] - The group Id of the article.
+ * @property {boolean} [is_gift] - A boolean indicating if the courier partner
+ *   supports gift shipments.
+ * @property {boolean} [is_mto] - Flag indicating whether the shipment is MTO
+ *   (Make to Order).
+ * @property {boolean} [is_set] - A boolean indicating whether the article is a set.
+ * @property {number} [manufacturing_time] - The manufacturing time of the article.
+ * @property {string} [manufacturing_time_unit] - The unit of measurement for
+ *   manufacturing time.
+ * @property {number} [mto_quantity] - The Made to Order quantity of the article.
+ * @property {string} [sla] - Service level agreement (SLA) for the article,
+ *   represented as a date-time
+ * @property {number} [price_marked] - Marked price before discounts.
+ * @property {CourierPartnerArticlesPromise} [promise]
+ * @property {Object} [set] - Additional properties related to sets.
+ * @property {CourierPartnerArticlesReturnReasons} [return_reason]
+ * @property {number} [set_quantity] - It represents the number of set of this article
+ * @property {number} quantity - The quantity of the shipment article.
+ * @property {ArticleWeight} weight
+ * @property {ArticleAttributes} [attributes]
+ * @property {number} category_id - The category Id of the article.
+ * @property {ArticleDimension} dimension
+ * @property {number} brand_id - The brand Id of the article.
+ * @property {number} item_id - The Item Id of the article.
+ * @property {string} size - The size of the article.
+ * @property {string[]} tags - Tags assigned to Item
+ * @property {number} department_id - Department of the item
+ * @property {number} price - Final Price of the article after discounts
+ */
+
+/**
+ * @typedef CourierPartnerArticlesPromise
+ * @property {string} [min] - The minimum delivery promise date.
+ * @property {string} [max] - The maximum delivery promise date.
+ */
+
+/**
+ * @typedef CourierPartnerArticlesReturnReasons
+ * @property {number} [id] - The unique identifier for the return reason entry.
+ * @property {CourierPartnerArticlesReturnReasonsMeta} [meta]
+ * @property {string[]} [qc_type] - A list of quality check types that apply to
+ *   the return reasons.
+ * @property {string[]} [reasons] - A list of return reasons for the article.
+ * @property {boolean} [is_active] - A boolean indicating whether the return
+ *   reason is currently active.
+ * @property {string} [display_name] - The display name for the return reason.
+ * @property {string[]} [question_set] - A list of questions associated with the
+ *   return reason.
+ * @property {string} [reason_other_text] - Any additional text for other return reasons.
+ */
+
+/**
+ * @typedef CourierPartnerArticlesReturnReasonsMeta
+ * @property {boolean} [show_text_area] - A boolean indicating whether a text
+ *   area should be displayed for additional input regarding the return reason.
+ */
+
+/**
+ * @typedef ArticleWeight
+ * @property {number} shipping - The weight(grams) of the article for shipping
+ *   purposes, typically measured in a specified unit.
+ * @property {string} unit - The unit of measurement used for the weight value.
+ * @property {boolean} is_default - A boolean indicating whether this weight is
+ *   the default weight for the article.
+ */
+
+/**
+ * @typedef ArticleAttributes
+ * @property {string} battery_operated - Yes/no indicating whether the article
+ *   is powered by batteries.
+ * @property {string} is_flammable - Yes/no indicating whether the article is
+ *   considered flammable or poses a fire hazard.
+ */
+
+/**
+ * @typedef ArticleDimension
+ * @property {number} height - The height of the article.
+ * @property {boolean} is_default - A boolean indicating whether this dimension
+ *   is the default dimension.
+ * @property {number} length - The length of the article.
+ * @property {string} unit - The unit of measurement used for the dimensions.
+ * @property {number} width - The width of the article.
+ */
+
+/**
  * @typedef PlatformLocationArticles
  * @property {PlatformLocationArticle[]} articles - List of articles for this
  *   fulfillment location.
@@ -1516,18 +1839,6 @@ const Joi = require("joi");
  *   quality control (nullable).
  * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
  *   under quality control (nullable).
- */
-
-/**
- * @typedef AreaCode
- * @property {string} [source] - The starting area code.
- * @property {string} [destination] - The ending area code.
- */
-
-/**
- * @typedef TAT
- * @property {number} [min] - The minimum tat in integer.
- * @property {number} [max] - The maximum tat in integer.
  */
 
 /**
@@ -1780,6 +2091,9 @@ const Joi = require("joi");
  *   zone, whether it's a list of categories, departments, tags, or item_ids.
  * @property {Object[]} values - List of values representing the products or the
  *   type of products selected for the delivery zone.
+ * @property {string} [action] - The action to perform on the product values -
+ *   'add' to add values to the existing list, 'remove' to remove values from
+ *   the existing list.
  */
 
 /**
@@ -2183,33 +2497,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ArticleWeight
- * @property {number} shipping - The weight(grams) of the article for shipping
- *   purposes, typically measured in a specified unit.
- * @property {string} unit - The unit of measurement used for the weight value.
- * @property {boolean} is_default - A boolean indicating whether this weight is
- *   the default weight for the article.
- */
-
-/**
- * @typedef ArticleAttributes
- * @property {string} battery_operated - Yes/no indicating whether the article
- *   is powered by batteries.
- * @property {string} is_flammable - Yes/no indicating whether the article is
- *   considered flammable or poses a fire hazard.
- */
-
-/**
- * @typedef ArticleDimension
- * @property {number} height - The height of the article.
- * @property {boolean} is_default - A boolean indicating whether this dimension
- *   is the default dimension.
- * @property {number} length - The length of the article.
- * @property {string} unit - The unit of measurement used for the dimensions.
- * @property {number} width - The width of the article.
- */
-
-/**
  * @typedef ArticleSet
  * @property {string} [name] - The name of the article set.
  * @property {number} [quantity] - The quantity of the article set.
@@ -2479,23 +2766,6 @@ const Joi = require("joi");
  *   single-company, or single-store).
  * @property {string} [strategy] - The strategy parameter allows users to
  *   specify the desired approach or criteria for selecting optimal locations.
- */
-
-/**
- * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
- * @property {ServiceabilityLocation} [location]
- */
-
-/**
- * @typedef ServiceabilityLocation
- * @property {string} longitude - The longitude of the serviceability location.
- * @property {string} latitude - The latitude of the serviceability location.
  */
 
 /**
@@ -2798,7 +3068,137 @@ const Joi = require("joi");
  *   encountered errors during the batch processing.
  */
 
+/**
+ * @typedef StorePolygonServiceabilityRequestData
+ * @property {StorePolygonServiceabilityStore[]} stores - List of stores for
+ *   which polygon-based serviceability is being configured.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityStore
+ * @property {string} store_code - Unique identifier of the store.
+ * @property {string} name - Name of the store.
+ * @property {string} address - Address of the store.
+ * @property {string} area_code - Area code associated with the store.
+ * @property {boolean} is_active - Indicates whether the store is active.
+ * @property {Object} [meta] - Additional metadata associated with the store.
+ * @property {StorePolygonServiceabilityStoreCoordinates} coordinates
+ * @property {StorePolygonServiceabilityConfig[]} serviceabilities - List of
+ *   polygon-based serviceability configurations for the store.
+ * @property {string} [created_at] - Timestamp when the store entry was created.
+ * @property {string} [updated_at] - Timestamp when the store entry was last updated.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityStoreCoordinates
+ * @property {number} lng - Longitude of the store.
+ * @property {number} lat - Latitude of the store.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityConfig
+ * @property {string} name - Name of the polygon-based serviceability configuration.
+ * @property {string} serviceability_type - Type of serviceability
+ *   configuration. Currently supports quick_commerce.
+ * @property {StorePolygonServiceabilityPolygon} polygon
+ * @property {Object} [meta] - Additional metadata associated with the
+ *   serviceability configuration.
+ * @property {boolean} is_active - Indicates whether the serviceability
+ *   configuration is active.
+ * @property {string} [uid] - Unique identifier of the serviceability configuration.
+ * @property {string} [created_at] - Timestamp when the serviceability
+ *   configuration was created.
+ * @property {string} [updated_at] - Timestamp when the serviceability
+ *   configuration was last updated.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityPolygon
+ * @property {string} type - Type of the GeoJSON collection, typically FeatureCollection.
+ * @property {StorePolygonServiceabilityFeature[]} features - List of GeoJSON
+ *   features defining the polygon.
+ * @property {StorePolygonServiceabilityAttributes} [attributes]
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityFeature
+ * @property {string} type - Type of the feature, typically Feature.
+ * @property {Object} [properties] - Additional properties for the feature.
+ * @property {StorePolygonServiceabilityGeometry} geometry
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityGeometry
+ * @property {string} [type] - Type of geometry, typically Polygon.
+ * @property {number[][][]} [coordinates] - List of polygon coordinates as
+ *   longitude and latitude pairs.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityAttributes
+ * @property {string} [contour_type] - Type of contour used for the polygon,
+ *   either distance-based or manually defined.
+ * @property {number} [travel_distance] - Travel distance used to derive the
+ *   polygon contour, typically in meters.
+ * @property {StorePolygonServiceabilityReferenceCoordinates} [reference_coordinates]
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityReferenceCoordinates
+ * @property {number} lng - Longitude of the reference point.
+ * @property {number} lat - Latitude of the reference point.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityStoreSummary
+ * @property {string} store_code - Unique identifier of the store.
+ * @property {string} [name] - Name of the store.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityError
+ * @property {string} store_code - Store code identifier.
+ * @property {string} message - Detailed error message describing the validation
+ *   failure for a specific record.
+ * @property {string} [error_code] - Error code for the failure.
+ */
+
+/**
+ * @typedef StorePolygonServiceabilityPagination
+ * @property {number} page_size - Number of records per page.
+ * @property {number} page_number - The current page number.
+ * @property {boolean} has_next - Indicates whether more pages are available.
+ * @property {number} total_records - Total number of records matching the criteria.
+ */
+
 class ServiceabilityPlatformModel {
+  /** @returns {GenerateShipmentsAndCourierPartnerResult} */
+  static GenerateShipmentsAndCourierPartnerResult() {
+    return Joi.object({
+      journey: Joi.string().allow(""),
+      to_serviceability: ServiceabilityPlatformModel.CourierPartnerToServiceability(),
+      shipments: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartnerShipments()
+      ),
+      payment_mode: Joi.string().allow(""),
+      to_city: Joi.string().allow(""),
+      is_cod_available: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CourierPartnerDetails} */
+  static CourierPartnerDetails() {
+    return Joi.object({
+      to_serviceability: ServiceabilityPlatformModel.LocationDetailsServiceability().required(),
+      shipments: Joi.array()
+        .items(ServiceabilityPlatformModel.CourierPartnerShipments())
+        .required(),
+      journey: Joi.string().allow("").required(),
+      payment_mode: Joi.string().allow(""),
+      skip_delivery_rules: Joi.boolean(),
+    });
+  }
+
   /** @returns {PlatformShipmentsRequestSchema} */
   static PlatformShipmentsRequestSchema() {
     return Joi.object({
@@ -4193,6 +4593,329 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {StorePolygonServiceabilityRequestBody} */
+  static StorePolygonServiceabilityRequestBody() {
+    return Joi.object({
+      data: ServiceabilityPlatformModel.StorePolygonServiceabilityRequestData().required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityResult} */
+  static StorePolygonServiceabilityResult() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      data: Joi.array()
+        .items(
+          ServiceabilityPlatformModel.StorePolygonServiceabilityStoreSummary()
+        )
+        .required(),
+      errors: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityError())
+        .required(),
+      identifier: Joi.string().allow("").required(),
+      failed_entries: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityError())
+        .required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityGetResult} */
+  static StorePolygonServiceabilityGetResult() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      data: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityStore())
+        .required(),
+      errors: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityError())
+        .required(),
+      identifier: Joi.string().allow("").required(),
+      failed_entries: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityError())
+        .required(),
+      pagination: ServiceabilityPlatformModel.StorePolygonServiceabilityPagination().required(),
+    });
+  }
+
+  /** @returns {ZoneProductsBulkPatchDetails} */
+  static ZoneProductsBulkPatchDetails() {
+    return Joi.object({
+      file_url: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GetZoneProductsBulkPatchResult} */
+  static GetZoneProductsBulkPatchResult() {
+    return Joi.object({
+      batch_id: Joi.string().allow("").required(),
+      file_path: Joi.string().allow("").allow(null),
+      total: Joi.number().required(),
+      failed: Joi.number().required(),
+      error_file_url: Joi.string().allow("").allow(null),
+      action: Joi.string().allow("").required(),
+      updated_at: Joi.string().allow("").required(),
+      updated_by: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      application_id: Joi.string().allow("").required(),
+      stage: Joi.string().allow("").required(),
+      partial: Joi.number(),
+      result_file_url: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {CourierPartnerToServiceability} */
+  static CourierPartnerToServiceability() {
+    return Joi.object({
+      location: ServiceabilityPlatformModel.ServiceabilityLocation(),
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ServiceabilityLocation} */
+  static ServiceabilityLocation() {
+    return Joi.object({
+      longitude: Joi.string().allow("").required(),
+      latitude: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerShipments} */
+  static CourierPartnerShipments() {
+    return Joi.object({
+      promise: ServiceabilityPlatformModel.PromiseObject(),
+      is_cod_available: Joi.boolean(),
+      is_auto_assign: Joi.boolean(),
+      meta: ServiceabilityPlatformModel.CourierPartnerShipmentsMeta(),
+      volumetric_weight: Joi.number(),
+      weight: Joi.number(),
+      courier_partners: Joi.array().items(
+        ServiceabilityPlatformModel.ShipmentCourierPartnersResult()
+      ),
+      fulfillment_id: Joi.number().required(),
+      fulfillment_type: Joi.string().allow("").required(),
+      fulfillment_tags: Joi.array().items(Joi.string().allow("")).required(),
+      from_serviceability: ServiceabilityPlatformModel.LocationDetailsServiceability().required(),
+      articles: Joi.array()
+        .items(ServiceabilityPlatformModel.CourierPartnerShipmentsArticles())
+        .required(),
+      is_mto: Joi.boolean().required(),
+      ignore_scheme_ids: Joi.array().items(Joi.string().allow("")).required(),
+      error: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {PromiseObject} */
+  static PromiseObject() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+      customer_promise: ServiceabilityPlatformModel.PromiseData().required(),
+      meta: ServiceabilityPlatformModel.PromiseMeta().required(),
+    });
+  }
+
+  /** @returns {PromiseData} */
+  static PromiseData() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromiseMeta} */
+  static PromiseMeta() {
+    return Joi.object({
+      seller_promise: ServiceabilityPlatformModel.PromiseData(),
+      courier_partner_promise: ServiceabilityPlatformModel.CourierPartnerPromiseData(),
+      customer_initial_promise: ServiceabilityPlatformModel.PromiseData(),
+    });
+  }
+
+  /** @returns {CourierPartnerPromiseData} */
+  static CourierPartnerPromiseData() {
+    return Joi.object({
+      min: Joi.string().allow("").allow(null),
+      max: Joi.string().allow("").allow(null),
+      attributes: ServiceabilityPlatformModel.DeliveryTat(),
+    });
+  }
+
+  /** @returns {DeliveryTat} */
+  static DeliveryTat() {
+    return Joi.object({
+      tat: ServiceabilityPlatformModel.DeliveryTatSchema(),
+    });
+  }
+
+  /** @returns {DeliveryTatSchema} */
+  static DeliveryTatSchema() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {CourierPartnerShipmentsMeta} */
+  static CourierPartnerShipmentsMeta() {
+    return Joi.object({
+      shipment_cost: Joi.number(),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartnersResult} */
+  static ShipmentCourierPartnersResult() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      area_code: ServiceabilityPlatformModel.AreaCode().required(),
+      tat: ServiceabilityPlatformModel.TAT().required(),
+      display_name: Joi.string().allow("").required(),
+      is_qc_enabled: Joi.boolean().required(),
+      is_self_ship: Joi.boolean().required(),
+      is_own_account: Joi.boolean(),
+      ndr_attempts: Joi.number(),
+      forward_pickup_cutoff: Joi.string().allow("").allow(null),
+      reverse_pickup_cutoff: Joi.string().allow("").allow(null),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      dangerous_goods: Joi.boolean(),
+      restricted_goods: Joi.boolean(),
+      fragile_goods: Joi.boolean(),
+      cold_storage_goods: Joi.boolean(),
+      delivery_type: Joi.string().allow(""),
+      is_cod: Joi.boolean(),
+      transport_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AreaCode} */
+  static AreaCode() {
+    return Joi.object({
+      source: Joi.string().allow(""),
+      destination: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TAT} */
+  static TAT() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {LocationDetailsServiceability} */
+  static LocationDetailsServiceability() {
+    return Joi.object({
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      country: Joi.string().allow("").required(),
+      city: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow("").required(),
+      location: ServiceabilityPlatformModel.ServiceabilityLocation(),
+    });
+  }
+
+  /** @returns {CourierPartnerShipmentsArticles} */
+  static CourierPartnerShipmentsArticles() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      delivery_slots: Joi.object().pattern(/\S/, Joi.any()),
+      error: ServiceabilityPlatformModel.Error(),
+      fulfillment_id: Joi.number(),
+      fulfillment_tags: Joi.array().items(Joi.string().allow("")),
+      fulfillment_type: Joi.string().allow(""),
+      group_id: Joi.string().allow(""),
+      is_gift: Joi.boolean(),
+      is_mto: Joi.boolean(),
+      is_set: Joi.boolean(),
+      manufacturing_time: Joi.number(),
+      manufacturing_time_unit: Joi.string().allow(""),
+      mto_quantity: Joi.number(),
+      sla: Joi.string().allow(""),
+      price_marked: Joi.number(),
+      promise: ServiceabilityPlatformModel.CourierPartnerArticlesPromise(),
+      set: Joi.object().pattern(/\S/, Joi.any()),
+      return_reason: ServiceabilityPlatformModel.CourierPartnerArticlesReturnReasons(),
+      set_quantity: Joi.number(),
+      quantity: Joi.number().required(),
+      weight: ServiceabilityPlatformModel.ArticleWeight().required(),
+      attributes: ServiceabilityPlatformModel.ArticleAttributes(),
+      category_id: Joi.number().required(),
+      dimension: ServiceabilityPlatformModel.ArticleDimension().required(),
+      brand_id: Joi.number().required(),
+      item_id: Joi.number().required(),
+      size: Joi.string().allow("").required(),
+      tags: Joi.array().items(Joi.string().allow("")).required(),
+      department_id: Joi.number().required(),
+      price: Joi.number().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerArticlesPromise} */
+  static CourierPartnerArticlesPromise() {
+    return Joi.object({
+      min: Joi.string().allow(""),
+      max: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CourierPartnerArticlesReturnReasons} */
+  static CourierPartnerArticlesReturnReasons() {
+    return Joi.object({
+      id: Joi.number(),
+      meta: ServiceabilityPlatformModel.CourierPartnerArticlesReturnReasonsMeta(),
+      qc_type: Joi.array().items(Joi.string().allow("")),
+      reasons: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      display_name: Joi.string().allow(""),
+      question_set: Joi.array().items(Joi.string().allow("")),
+      reason_other_text: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CourierPartnerArticlesReturnReasonsMeta} */
+  static CourierPartnerArticlesReturnReasonsMeta() {
+    return Joi.object({
+      show_text_area: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ArticleWeight} */
+  static ArticleWeight() {
+    return Joi.object({
+      shipping: Joi.number().required(),
+      unit: Joi.string().allow("").required(),
+      is_default: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {ArticleAttributes} */
+  static ArticleAttributes() {
+    return Joi.object({
+      battery_operated: Joi.string().allow("").required(),
+      is_flammable: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ArticleDimension} */
+  static ArticleDimension() {
+    return Joi.object({
+      height: Joi.number().required(),
+      is_default: Joi.boolean().required(),
+      length: Joi.number().required(),
+      unit: Joi.string().allow("").required(),
+      width: Joi.number().required(),
+    });
+  }
+
   /** @returns {PlatformLocationArticles} */
   static PlatformLocationArticles() {
     return Joi.object({
@@ -4430,22 +5153,6 @@ class ServiceabilityPlatformModel {
       reverse_pickup_cutoff: Joi.string().allow("").allow(null),
       qc_shipment_item_quantity: Joi.number().allow(null),
       non_qc_shipment_item_quantity: Joi.number().allow(null),
-    });
-  }
-
-  /** @returns {AreaCode} */
-  static AreaCode() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-      destination: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {TAT} */
-  static TAT() {
-    return Joi.object({
-      min: Joi.number(),
-      max: Joi.number(),
     });
   }
 
@@ -4731,6 +5438,7 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       type: Joi.string().allow("").required(),
       values: Joi.array().items(Joi.any()).required(),
+      action: Joi.string().allow(""),
     });
   }
 
@@ -5170,34 +5878,6 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ArticleWeight} */
-  static ArticleWeight() {
-    return Joi.object({
-      shipping: Joi.number().required(),
-      unit: Joi.string().allow("").required(),
-      is_default: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {ArticleAttributes} */
-  static ArticleAttributes() {
-    return Joi.object({
-      battery_operated: Joi.string().allow("").required(),
-      is_flammable: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ArticleDimension} */
-  static ArticleDimension() {
-    return Joi.object({
-      height: Joi.number().required(),
-      is_default: Joi.boolean().required(),
-      length: Joi.number().required(),
-      unit: Joi.string().allow("").required(),
-      width: Joi.number().required(),
-    });
-  }
-
   /** @returns {ArticleSet} */
   static ArticleSet() {
     return Joi.object({
@@ -5513,27 +6193,6 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {LocationDetailsServiceability} */
-  static LocationDetailsServiceability() {
-    return Joi.object({
-      pincode: Joi.string().allow(""),
-      sector: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      country: Joi.string().allow("").required(),
-      city: Joi.string().allow(""),
-      country_iso_code: Joi.string().allow("").required(),
-      location: ServiceabilityPlatformModel.ServiceabilityLocation(),
-    });
-  }
-
-  /** @returns {ServiceabilityLocation} */
-  static ServiceabilityLocation() {
-    return Joi.object({
-      longitude: Joi.string().allow("").required(),
-      latitude: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {OptimalLocationsArticles} */
   static OptimalLocationsArticles() {
     return Joi.object({
@@ -5843,6 +6502,129 @@ class ServiceabilityPlatformModel {
       updated_at: Joi.string().allow("").allow(null),
       total_count: Joi.number(),
       total_error_count: Joi.number(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityRequestData} */
+  static StorePolygonServiceabilityRequestData() {
+    return Joi.object({
+      stores: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityStore())
+        .required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityStore} */
+  static StorePolygonServiceabilityStore() {
+    return Joi.object({
+      store_code: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      address: Joi.string().allow("").required(),
+      area_code: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      coordinates: ServiceabilityPlatformModel.StorePolygonServiceabilityStoreCoordinates().required(),
+      serviceabilities: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityConfig())
+        .required(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityStoreCoordinates} */
+  static StorePolygonServiceabilityStoreCoordinates() {
+    return Joi.object({
+      lng: Joi.number().required(),
+      lat: Joi.number().required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityConfig} */
+  static StorePolygonServiceabilityConfig() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      serviceability_type: Joi.string().allow("").required(),
+      polygon: ServiceabilityPlatformModel.StorePolygonServiceabilityPolygon().required(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      is_active: Joi.boolean().required(),
+      uid: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityPolygon} */
+  static StorePolygonServiceabilityPolygon() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      features: Joi.array()
+        .items(ServiceabilityPlatformModel.StorePolygonServiceabilityFeature())
+        .required(),
+      attributes: ServiceabilityPlatformModel.StorePolygonServiceabilityAttributes(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityFeature} */
+  static StorePolygonServiceabilityFeature() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      properties: Joi.object().pattern(/\S/, Joi.any()),
+      geometry: ServiceabilityPlatformModel.StorePolygonServiceabilityGeometry().required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityGeometry} */
+  static StorePolygonServiceabilityGeometry() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      coordinates: Joi.array().items(
+        Joi.array().items(Joi.array().items(Joi.number()))
+      ),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityAttributes} */
+  static StorePolygonServiceabilityAttributes() {
+    return Joi.object({
+      contour_type: Joi.string().allow(""),
+      travel_distance: Joi.number(),
+      reference_coordinates: ServiceabilityPlatformModel.StorePolygonServiceabilityReferenceCoordinates(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityReferenceCoordinates} */
+  static StorePolygonServiceabilityReferenceCoordinates() {
+    return Joi.object({
+      lng: Joi.number().required(),
+      lat: Joi.number().required(),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityStoreSummary} */
+  static StorePolygonServiceabilityStoreSummary() {
+    return Joi.object({
+      store_code: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityError} */
+  static StorePolygonServiceabilityError() {
+    return Joi.object({
+      store_code: Joi.string().allow("").required(),
+      message: Joi.string().allow("").required(),
+      error_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StorePolygonServiceabilityPagination} */
+  static StorePolygonServiceabilityPagination() {
+    return Joi.object({
+      page_size: Joi.number().required(),
+      page_number: Joi.number().required(),
+      has_next: Joi.boolean().required(),
+      total_records: Joi.number().required(),
     });
   }
 }

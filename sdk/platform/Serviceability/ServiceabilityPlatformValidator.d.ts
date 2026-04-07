@@ -62,6 +62,10 @@ export = ServiceabilityPlatformValidator;
  */
 /** @typedef GetCompanyConfigurationParam */
 /**
+ * @typedef GetCompanyCourierPartnersListParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerDetails} body
+ */
+/**
  * @typedef GetCountriesParam
  * @property {boolean} [onboard] - Only fetch countries which allowed for
  *   onboard on Platform.
@@ -199,6 +203,8 @@ declare class ServiceabilityPlatformValidator {
     static getBulkTat(): GetBulkTatParam;
     /** @returns {GetCompanyConfigurationParam} */
     static getCompanyConfiguration(): any;
+    /** @returns {GetCompanyCourierPartnersListParam} */
+    static getCompanyCourierPartnersList(): GetCompanyCourierPartnersListParam;
     /** @returns {GetCountriesParam} */
     static getCountries(): GetCountriesParam;
     /** @returns {GetCourierPartnerAccountParam} */
@@ -239,7 +245,7 @@ declare class ServiceabilityPlatformValidator {
     static updateSelfShipDetails(): UpdateSelfShipDetailsParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreateCourierPartnerSchemeParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCountriesParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetCourierPartnerSchemeParam, GetCourierPartnerSchemesParam, GetInstalledCourierPartnerExtensionsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialsParam, GetSampleFileServiceabilityStatusParam, GetSelfShipDetailsParam, SampleFileServiceabilityParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdateCourierPartnerSchemeParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateSelfShipDetailsParam };
+    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreateCourierPartnerSchemeParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCompanyCourierPartnersListParam, GetCountriesParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetCourierPartnerSchemeParam, GetCourierPartnerSchemesParam, GetInstalledCourierPartnerExtensionsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialsParam, GetSampleFileServiceabilityStatusParam, GetSelfShipDetailsParam, SampleFileServiceabilityParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdateCourierPartnerSchemeParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateSelfShipDetailsParam };
 }
 type BulkServiceabilityParam = {
     /**
@@ -374,6 +380,9 @@ type GetBulkTatParam = {
      * - Fetch job history before a particule date
      */
     endDate?: string;
+};
+type GetCompanyCourierPartnersListParam = {
+    body: ServiceabilityPlatformModel.CourierPartnerDetails;
 };
 type GetCountriesParam = {
     /**
