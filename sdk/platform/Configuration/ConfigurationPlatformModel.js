@@ -35,6 +35,7 @@ const Joi = require("joi");
  * @property {AppOrderConfig} [order]
  * @property {AppLogisticsConfig} [logistics]
  * @property {PiiMasking} [pii_masking]
+ * @property {ChannelCapabilities} [channel_capabilities]
  * @property {string[]} [tags]
  * @property {number} [__v]
  * @property {string} [business] - Indicates the business type for sales channel
@@ -57,6 +58,32 @@ const Joi = require("joi");
 /**
  * @typedef PiiMasking
  * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef ChannelCapabilities
+ * @property {string[]} commerce_model - Commerce model types supported by the
+ *   sales channel. Defines whether the channel operates as B2C/D2C
+ *   (business-to-consumer/direct-to-consumer) or B2B (business-to-business).
+ * @property {string[]} business_format - Business format types for the sales
+ *   channel. Options include standard_commerce for traditional e-commerce,
+ *   quick_commerce for rapid delivery models, and qsr for quick service
+ *   restaurant operations.
+ * @property {OrderingSources[]} ordering_sources - Represents an ordering
+ *   source that can be associated with a sales channel. Ordering sources define
+ *   the origin or platform from which orders are placed, enabling tracking and
+ *   differentiation of orders based on their source.
+ * @property {string} [seller_model] - Seller model for the sales channel.
+ *   single_seller for single seller, marketplace for multiple platforms,
+ *   cross_selling for franchise-enabled.
+ */
+
+/**
+ * @typedef OrderingSources
+ * @property {string} key - Unique identifier slug for the ordering source. Used
+ *   to reference and identify the source programmatically.
+ * @property {string} name - Human-readable display name of the ordering source.
+ *   Shown in UI for easy identification by users.
  */
 
 /**
@@ -199,6 +226,10 @@ const Joi = require("joi");
  * @property {boolean} [revenue_engine_coupon] - Allow coupon apply and credits
  *   together. Default value is false.
  * @property {PanCardConfig} [pan_card]
+ * @property {boolean} [engage_enabled] - If this is enabled, user can earn and
+ *   redeem loyalty points for the sales channel.
+ * @property {boolean} [offer_enabled] - If this is enabled, user can apply
+ *   coupons and promotions for the sales channel.
  */
 
 /**
@@ -1051,6 +1082,10 @@ const Joi = require("joi");
  * @property {SecurityFeature} [security]
  * @property {BuyboxFeature} [buybox]
  * @property {DeliveryStrategy} [delivery_strategy]
+ * @property {OrderingSources[]} [ordering_sources] - Represents an ordering
+ *   source that can be associated with a sales channel. Ordering sources define
+ *   the origin or platform from which orders are placed, enabling tracking and
+ *   differentiation of orders based on their source.
  * @property {string} [price_strategy] - Indicates whether price strategy
  *   enabled or not in an application.
  * @property {boolean} [international] - Indicates whether internation price
@@ -1665,6 +1700,7 @@ class ConfigurationPlatformModel {
       order: ConfigurationPlatformModel.AppOrderConfig(),
       logistics: ConfigurationPlatformModel.AppLogisticsConfig(),
       pii_masking: ConfigurationPlatformModel.PiiMasking(),
+      channel_capabilities: ConfigurationPlatformModel.ChannelCapabilities(),
       tags: Joi.array().items(Joi.string().allow("")),
       __v: Joi.number(),
       business: Joi.string().allow(""),
@@ -1684,6 +1720,26 @@ class ConfigurationPlatformModel {
   static PiiMasking() {
     return Joi.object({
       enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ChannelCapabilities} */
+  static ChannelCapabilities() {
+    return Joi.object({
+      commerce_model: Joi.array().items(Joi.string().allow("")).required(),
+      business_format: Joi.array().items(Joi.string().allow("")).required(),
+      ordering_sources: Joi.array()
+        .items(ConfigurationPlatformModel.OrderingSources())
+        .required(),
+      seller_model: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OrderingSources} */
+  static OrderingSources() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
     });
   }
 
@@ -1833,6 +1889,8 @@ class ConfigurationPlatformModel {
       bulk_coupons: Joi.boolean(),
       revenue_engine_coupon: Joi.boolean(),
       pan_card: ConfigurationPlatformModel.PanCardConfig(),
+      engage_enabled: Joi.boolean(),
+      offer_enabled: Joi.boolean(),
     });
   }
 
@@ -2792,6 +2850,9 @@ class ConfigurationPlatformModel {
       security: ConfigurationPlatformModel.SecurityFeature(),
       buybox: ConfigurationPlatformModel.BuyboxFeature(),
       delivery_strategy: ConfigurationPlatformModel.DeliveryStrategy(),
+      ordering_sources: Joi.array().items(
+        ConfigurationPlatformModel.OrderingSources()
+      ),
       price_strategy: Joi.string().allow(""),
       international: Joi.boolean(),
       strategy_change_pending: Joi.boolean(),

@@ -198,7 +198,8 @@ class Logistic {
     query_params["page_size"] = pageSize;
 
     const xHeaders = {};
-    xHeaders["x-location-detail"] = xLocationDetail;
+    if (xLocationDetail !== undefined)
+      xHeaders["x-location-detail"] = xLocationDetail;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
@@ -288,7 +289,8 @@ class Logistic {
     query_params["store_id"] = storeId;
 
     const xHeaders = {};
-    xHeaders["x-application-data"] = xApplicationData;
+    if (xApplicationData !== undefined)
+      xHeaders["x-application-data"] = xApplicationData;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,

@@ -4608,7 +4608,8 @@ export = CatalogPlatformModel;
 /**
  * @typedef CreateTaxRequestBody
  * @property {TaxReqBodyRule} rule
- * @property {TaxReqBodyVersion} versions
+ * @property {TaxReqBodyVersion[]} versions - One or more tax versions to create
+ *   with the rule (at least one required).
  */
 /**
  * @typedef TaxVersion
@@ -14896,7 +14897,11 @@ type RegionReference = {
 declare function CreateTaxRequestBody(): CreateTaxRequestBody;
 type CreateTaxRequestBody = {
     rule: TaxReqBodyRule;
-    versions: TaxReqBodyVersion;
+    /**
+     * - One or more tax versions to create
+     * with the rule (at least one required).
+     */
+    versions: TaxReqBodyVersion[];
 };
 /** @returns {TaxVersion} */
 declare function TaxVersion(): TaxVersion;

@@ -512,6 +512,20 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef RequestCourierPartnerForShipmentParam
+ * @property {string} shipmentId - The unique identifier for the shipment. This
+ *   ID is used to track and reference the shipment throughout its journey.
+ * @property {OrderPlatformModel.ShipmentCourierPartnerRequestSchema} body
+ */
+
+/**
+ * @typedef SaveCourierPartnerPreferenceForShipmentParam
+ * @property {string} shipmentId - The unique identifier for the shipment. This
+ *   ID is used to track and reference the shipment throughout its journey.
+ * @property {OrderPlatformModel.ShipmentCourierPartnerPreference} body
+ */
+
+/**
  * @typedef SendSmsNinjaParam
  * @property {OrderPlatformModel.SendSmsPayload} body
  */
@@ -1089,6 +1103,22 @@ class OrderPlatformValidator {
   static reassignLocation() {
     return Joi.object({
       body: OrderPlatformModel.StoreReassign().required(),
+    }).required();
+  }
+
+  /** @returns {RequestCourierPartnerForShipmentParam} */
+  static requestCourierPartnerForShipment() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.ShipmentCourierPartnerRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {SaveCourierPartnerPreferenceForShipmentParam} */
+  static saveCourierPartnerPreferenceForShipment() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.ShipmentCourierPartnerPreference().required(),
     }).required();
   }
 

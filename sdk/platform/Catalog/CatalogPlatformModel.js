@@ -5050,7 +5050,8 @@ const Joi = require("joi");
 /**
  * @typedef CreateTaxRequestBody
  * @property {TaxReqBodyRule} rule
- * @property {TaxReqBodyVersion} versions
+ * @property {TaxReqBodyVersion[]} versions - One or more tax versions to create
+ *   with the rule (at least one required).
  */
 
 /**
@@ -10788,7 +10789,9 @@ class CatalogPlatformModel {
   static CreateTaxRequestBody() {
     return Joi.object({
       rule: CatalogPlatformModel.TaxReqBodyRule().required(),
-      versions: CatalogPlatformModel.TaxReqBodyVersion().required(),
+      versions: Joi.array()
+        .items(CatalogPlatformModel.TaxReqBodyVersion())
+        .required(),
     });
   }
 

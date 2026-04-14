@@ -556,11 +556,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef UpdateInjectableTagParam
- * @property {ContentPlatformModel.CreateTagRequestSchema} body
- */
-
-/**
  * @typedef UpdateLandingPageParam
  * @property {string} id - ID allotted to a landing page.
  * @property {ContentPlatformModel.LandingPageSchema} body
@@ -1343,13 +1338,6 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: ContentPlatformModel.UpdateFaqCategoryRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateInjectableTagParam} */
-  static updateInjectableTag() {
-    return Joi.object({
-      body: ContentPlatformModel.CreateTagRequestSchema().required(),
     }).required();
   }
 

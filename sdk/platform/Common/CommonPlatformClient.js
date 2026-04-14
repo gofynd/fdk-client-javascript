@@ -129,7 +129,7 @@ class Common {
     query_params["query"] = query;
 
     const xHeaders = {};
-    xHeaders["authorization"] = authorization;
+    if (authorization !== undefined) xHeaders["authorization"] = authorization;
 
     const response = await PlatformAPIClient.execute(
       this.config,

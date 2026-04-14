@@ -3025,8 +3025,8 @@ const Joi = require("joi");
  * @property {CPRiderDetailsSchema} [rider_details]
  * @property {boolean} [qc_supported] - Specifies that Assigned CP support's
  *   quality checks
- * @property {boolean} using_own_creds - Specifies weather the Seller's Creds or
- *   Fynd's Creds are being used.
+ * @property {boolean} [using_own_creds] - Specifies weather the Seller's Creds
+ *   or Fynd's Creds are being used.
  * @property {number} [max_reattempts_for_delivery_allowed] - Reattempts Allowed
  *   (required for NDR)
  * @property {CPTatToDeliverTheShipmentSchema} [tat_to_deliver_the_shipment]
@@ -3220,6 +3220,9 @@ const Joi = require("joi");
 /**
  * @typedef CPConfigurationSchema
  * @property {string} shipping_by - Shipping Handled by FYND or SELLER
+ * @property {string} [logistics_by] - Specifies who manages the logistics
+ *   operations and how updates are handled. This determines the flow of
+ *   logistics information and responsibility for shipment management.
  */
 
 /**
@@ -3386,6 +3389,59 @@ const Joi = require("joi");
  *   company. Each account represents a different sales channel or marketplace
  *   integration.
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef TATSchema
+ * @property {number} min - Specifies the minimum delivery promise timestamp (in
+ *   UNIX epoch), indicating the earliest time delivery can be completed.
+ * @property {number} max - Specifies the maximum delivery promise timestamp (in
+ *   UNIX epoch), indicating the latest time by which delivery is expected to be
+ *   completed.
+ */
+
+/**
+ * @typedef ShipmentCourierPartnerPreference
+ * @property {string} scheme_id - Unique identifier for the courier partner
+ *   scheme, used to fetch or modify scheme-specific details for the selected
+ *   courier partner.
+ * @property {string} courier_partner_name - The human-readable name of the
+ *   courier partner that should be preferred when assigning a delivery partner
+ *   for the shipment.
+ * @property {string} extension_id - Unique identifier of the courier partner
+ *   extension configured in the logistics system. This is used to identify the
+ *   courier partner whose preference is saved.
+ * @property {string} [remarks] - Optional remarks or additional comments
+ *   provided by the user while saving the courier partner preference.
+ * @property {TATSchema} tat
+ */
+
+/**
+ * @typedef ShipmentCourierPartnerRequestSchema
+ * @property {string} scheme_id - Unique identifier for the courier partner
+ *   scheme, used to fetch or modify scheme-specific details for the selected
+ *   courier partner.
+ * @property {string} courier_partner_name - The name of the courier partner
+ *   selected by the user while manually assigning the delivery partner for the shipment.
+ * @property {string} extension_id - Unique identifier of the courier partner
+ *   extension configured in the logistics system. This is used to identify the
+ *   courier partner to be assigned.
+ * @property {string} [remarks] - Optional remarks or additional comments
+ *   provided by the user while manually assigning the courier partner.
+ * @property {TATSchema} tat
+ */
+
+/**
+ * @typedef CourierPartnerResponseSchema
+ * @property {string} [message] - A human-readable message describing the
+ *   outcome of the operation.
+ */
+
+/**
+ * @typedef CourierPartnerErrorSchema
+ * @property {string} [message] - A human-readable message explaining why the
+ *   request failed.
+ * @property {string} [error] - A short description of the error.
  */
 
 /**
@@ -8824,7 +8880,7 @@ class OrderPlatformModel {
       extension_id: Joi.string().allow("").required(),
       rider_details: OrderPlatformModel.CPRiderDetailsSchema(),
       qc_supported: Joi.boolean(),
-      using_own_creds: Joi.boolean().required(),
+      using_own_creds: Joi.boolean(),
       max_reattempts_for_delivery_allowed: Joi.number(),
       tat_to_deliver_the_shipment: OrderPlatformModel.CPTatToDeliverTheShipmentSchema(),
       is_self_ship: Joi.boolean(),
@@ -9000,6 +9056,7 @@ class OrderPlatformModel {
   static CPConfigurationSchema() {
     return Joi.object({
       shipping_by: Joi.string().allow("").required(),
+      logistics_by: Joi.string().allow(""),
     });
   }
 
@@ -9155,6 +9212,51 @@ class OrderPlatformModel {
     return Joi.object({
       data: Joi.array().items(OrderPlatformModel.Account()),
       page: OrderPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {TATSchema} */
+  static TATSchema() {
+    return Joi.object({
+      min: Joi.number().required(),
+      max: Joi.number().required(),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartnerPreference} */
+  static ShipmentCourierPartnerPreference() {
+    return Joi.object({
+      scheme_id: Joi.string().allow("").required(),
+      courier_partner_name: Joi.string().allow("").required(),
+      extension_id: Joi.string().allow("").required(),
+      remarks: Joi.string().allow(""),
+      tat: OrderPlatformModel.TATSchema().required(),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartnerRequestSchema} */
+  static ShipmentCourierPartnerRequestSchema() {
+    return Joi.object({
+      scheme_id: Joi.string().allow("").required(),
+      courier_partner_name: Joi.string().allow("").required(),
+      extension_id: Joi.string().allow("").required(),
+      remarks: Joi.string().allow(""),
+      tat: OrderPlatformModel.TATSchema().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerResponseSchema} */
+  static CourierPartnerResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CourierPartnerErrorSchema} */
+  static CourierPartnerErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
     });
   }
 

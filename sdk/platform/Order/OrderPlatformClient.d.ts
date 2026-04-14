@@ -761,6 +761,34 @@ declare class Order {
      */
     reassignLocation({ body, requestHeaders }?: OrderPlatformValidator.ReassignLocationParam, { responseHeaders }?: object): Promise<OrderPlatformModel.StoreReassignResponseSchema>;
     /**
+     * @param {OrderPlatformValidator.RequestCourierPartnerForShipmentParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerResponseSchema>} -
+     *   Success response
+     * @name requestCourierPartnerForShipment
+     * @summary: Manually request a courier partner for a shipment.
+     * @description: Use this API to manually assign a courier partner (delivery partner) to a shipment.
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/requestCourierPartnerForShipment/).
+     */
+    requestCourierPartnerForShipment({ shipmentId, body, requestHeaders }?: OrderPlatformValidator.RequestCourierPartnerForShipmentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerResponseSchema>;
+    /**
+     * @param {OrderPlatformValidator.SaveCourierPartnerPreferenceForShipmentParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerResponseSchema>} -
+     *   Success response
+     * @name saveCourierPartnerPreferenceForShipment
+     * @summary: Save courier partner preference for a shipment.
+     * @description: Use this API to save the preferred courier partner for a shipment. The preferred courier partner will be triggered automatically when the shipment moves to a state where delivery partner assignment is performed (for example, ready for DP assignment).
+     *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/saveCourierPartnerPreferenceForShipment/).
+     */
+    saveCourierPartnerPreferenceForShipment({ shipmentId, body, requestHeaders }?: OrderPlatformValidator.SaveCourierPartnerPreferenceForShipmentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerResponseSchema>;
+    /**
      * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

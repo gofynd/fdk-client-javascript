@@ -266,6 +266,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       i,
       b,
@@ -280,6 +281,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         i,
         b,
@@ -300,6 +302,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         i,
         b,
@@ -369,9 +372,16 @@ class Cart {
    * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/applyLoyaltyPoints/).
    */
   async applyLoyaltyPoints(
-    { body, xOrderingSource, id, i, b, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xOrderingSourceType,
+      id,
+      i,
+      b,
+      buyNow,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -380,6 +390,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         id,
         i,
         b,
@@ -398,6 +409,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         id,
         i,
         b,
@@ -467,7 +479,9 @@ class Cart {
    * @description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkCartServiceability/).
    */
   async checkCartServiceability(
-    { body, xOrderingSource, requestHeaders } = { requestHeaders: {} },
+    { body, xOrderingSource, xOrderingSourceType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -476,6 +490,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -490,6 +505,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -551,6 +567,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       xLocationDetail,
       xCurrencyCode,
@@ -562,6 +579,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         xLocationDetail,
         xCurrencyCode,
@@ -579,6 +597,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         xLocationDetail,
         xCurrencyCode,
@@ -1272,6 +1291,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xLocationDetail,
       xCurrencyCode,
       requestHeaders,
@@ -1284,6 +1304,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xLocationDetail,
         xCurrencyCode,
       },
@@ -1300,6 +1321,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xLocationDetail,
         xCurrencyCode,
       },
@@ -2023,6 +2045,7 @@ class Cart {
   async getCart(
     {
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       id,
       userId,
@@ -2038,6 +2061,7 @@ class Cart {
     const { error } = CartPlatformApplicationValidator.getCart().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         userId,
@@ -2059,6 +2083,7 @@ class Cart {
     } = CartPlatformApplicationValidator.getCart().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         userId,
@@ -3889,6 +3914,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xLocationDetail,
       xCurrencyCode,
       requestHeaders,
@@ -3899,6 +3925,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xLocationDetail,
         xCurrencyCode,
       },
@@ -3915,6 +3942,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xLocationDetail,
         xCurrencyCode,
       },
@@ -3978,6 +4006,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       i,
       b,
@@ -3995,6 +4024,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         i,
         b,
@@ -4016,6 +4046,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         i,
         b,
@@ -4089,9 +4120,14 @@ class Cart {
    * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/platformCheckoutCart/).
    */
   async platformCheckoutCart(
-    { body, xOrderingSource, xAnonymousCart, id, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xOrderingSourceType,
+      xAnonymousCart,
+      id,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4100,6 +4136,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
       },
@@ -4116,6 +4153,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
       },
@@ -4182,6 +4220,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       xLocationDetail,
       xCurrencyCode,
@@ -4196,6 +4235,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         xLocationDetail,
         xCurrencyCode,
@@ -4214,6 +4254,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         xLocationDetail,
         xCurrencyCode,
@@ -4280,6 +4321,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       id,
       i,
@@ -4297,6 +4339,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         i,
@@ -4318,6 +4361,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         i,
@@ -4469,14 +4513,20 @@ class Cart {
    * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/removeCoupon/).
    */
   async removeCoupon(
-    { xOrderingSource, xAnonymousCart, uid, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      xOrderingSource,
+      xOrderingSourceType,
+      xAnonymousCart,
+      uid,
+      buyNow,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         uid,
         buyNow,
@@ -4493,6 +4543,7 @@ class Cart {
     } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         uid,
         buyNow,
@@ -4640,6 +4691,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       cartId,
       buyNow,
@@ -4653,6 +4705,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         cartId,
         buyNow,
@@ -4672,6 +4725,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         cartId,
         buyNow,
@@ -4742,6 +4796,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       id,
       buyNow,
@@ -4756,6 +4811,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         buyNow,
@@ -4774,6 +4830,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         buyNow,
@@ -4839,9 +4896,15 @@ class Cart {
    * @description: Selection of payment mode that supports multiple MOP(mode of payment). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/selectPaymentModeV2/).
    */
   async selectPaymentModeV2(
-    { body, xOrderingSource, id, buyNow, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      xOrderingSource,
+      xOrderingSourceType,
+      id,
+      buyNow,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4850,6 +4913,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         id,
         buyNow,
         orderType,
@@ -4867,6 +4931,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         id,
         buyNow,
         orderType,
@@ -5095,6 +5160,7 @@ class Cart {
     {
       body,
       xOrderingSource,
+      xOrderingSourceType,
       xAnonymousCart,
       id,
       i,
@@ -5111,6 +5177,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         i,
@@ -5131,6 +5198,7 @@ class Cart {
       {
         body,
         xOrderingSource,
+        xOrderingSourceType,
         xAnonymousCart,
         id,
         i,
@@ -6211,6 +6279,7 @@ class Cart {
   async validateCouponForPayment(
     {
       xOrderingSource,
+      xOrderingSourceType,
       id,
       buyNow,
       addressId,
@@ -6227,6 +6296,7 @@ class Cart {
     } = CartPlatformApplicationValidator.validateCouponForPayment().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         id,
         buyNow,
         addressId,
@@ -6247,6 +6317,7 @@ class Cart {
     } = CartPlatformApplicationValidator.validateCouponForPayment().validate(
       {
         xOrderingSource,
+        xOrderingSourceType,
         id,
         buyNow,
         addressId,

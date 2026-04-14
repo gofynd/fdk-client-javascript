@@ -23,6 +23,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef ApplyCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -38,6 +40,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef ApplyLoyaltyPointsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
@@ -49,6 +53,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef CheckCartServiceabilityParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {CartPlatformModel.OpenApiCartServiceabilityCreation} body
  */
 
@@ -56,6 +62,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef CheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - It allows operations on cross-platform
  *   anonymous carts. When provided, the system retrieves the cart using only
  *   the cart_id, ignoring the user_id. Use this when interacting with an
@@ -111,6 +119,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef FetchAndvalidateCartItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xLocationDetail] - Location details for the cart checkout
  * @property {string} [xCurrencyCode] - Currency code for transactions.
  * @property {CartPlatformModel.OpenapiCartDetailsCreation} body
@@ -178,6 +188,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -362,6 +374,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef OverrideCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xLocationDetail] - Location details for the cart checkout
  * @property {string} [xCurrencyCode] - Currency code for transactions. Defaults
  *   to INR if the location is India.
@@ -372,6 +386,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformAddItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -394,6 +410,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformCheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -405,6 +423,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - It allows operations on cross-platform
  *   anonymous carts. When provided, the system retrieves the cart using only
  *   the cart_id, ignoring the user_id. Use this when interacting with an
@@ -420,6 +440,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef PlatformUpdateCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -448,6 +470,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef RemoveCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -464,6 +488,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef SelectAddressParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -478,6 +504,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef SelectPaymentModeParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -491,6 +519,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef SelectPaymentModeV2Param
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -515,6 +545,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [xOrderingSource] - Identifier for the ordering source
  *   (e.g., web, mobile app, POS). Used to determine the origin of the order
  *   request and apply source-specific rules.
+ * @property {string} [xOrderingSourceType] - Identifier for the ordering source
+ *   type (e.g., storefront, store_os_pos, kiosk). Used to determine the source
+ *   type for order governance and validations.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -619,6 +652,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef ValidateCouponForPaymentParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]
@@ -656,6 +691,7 @@ class CartPlatformApplicationValidator {
   static applyCoupon() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       i: Joi.boolean(),
@@ -671,6 +707,7 @@ class CartPlatformApplicationValidator {
   static applyLoyaltyPoints() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       i: Joi.boolean(),
@@ -684,6 +721,7 @@ class CartPlatformApplicationValidator {
   static checkCartServiceability() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
 
       body: CartPlatformModel.OpenApiCartServiceabilityCreation().required(),
     }).required();
@@ -693,6 +731,7 @@ class CartPlatformApplicationValidator {
   static checkoutCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
       xLocationDetail: Joi.string().allow(""),
       xCurrencyCode: Joi.string().allow(""),
@@ -762,6 +801,7 @@ class CartPlatformApplicationValidator {
   static fetchAndvalidateCartItems() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xLocationDetail: Joi.string().allow(""),
       xCurrencyCode: Joi.string().allow(""),
 
@@ -846,6 +886,7 @@ class CartPlatformApplicationValidator {
   static getCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
@@ -1054,6 +1095,7 @@ class CartPlatformApplicationValidator {
   static overrideCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xLocationDetail: Joi.string().allow(""),
       xCurrencyCode: Joi.string().allow(""),
 
@@ -1065,6 +1107,7 @@ class CartPlatformApplicationValidator {
   static platformAddItems() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       i: Joi.boolean(),
@@ -1081,6 +1124,7 @@ class CartPlatformApplicationValidator {
   static platformCheckoutCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
@@ -1092,6 +1136,7 @@ class CartPlatformApplicationValidator {
   static platformCheckoutCartV2() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
       xLocationDetail: Joi.string().allow(""),
       xCurrencyCode: Joi.string().allow(""),
@@ -1105,6 +1150,7 @@ class CartPlatformApplicationValidator {
   static platformUpdateCart() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
@@ -1129,6 +1175,7 @@ class CartPlatformApplicationValidator {
   static removeCoupon() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       uid: Joi.string().allow(""),
@@ -1147,6 +1194,7 @@ class CartPlatformApplicationValidator {
   static selectAddress() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       cartId: Joi.string().allow(""),
@@ -1161,6 +1209,7 @@ class CartPlatformApplicationValidator {
   static selectPaymentMode() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
@@ -1174,6 +1223,7 @@ class CartPlatformApplicationValidator {
   static selectPaymentModeV2() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -1203,6 +1253,7 @@ class CartPlatformApplicationValidator {
   static updateCartBreakup() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
       xAnonymousCart: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
@@ -1321,6 +1372,7 @@ class CartPlatformApplicationValidator {
   static validateCouponForPayment() {
     return Joi.object({
       xOrderingSource: Joi.string().allow(""),
+      xOrderingSourceType: Joi.string().allow(""),
 
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),

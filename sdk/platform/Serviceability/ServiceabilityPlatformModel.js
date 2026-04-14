@@ -58,6 +58,7 @@ const Joi = require("joi");
  * @property {boolean} [is_default] - Whether this is the default fulfillment option.
  * @property {string} [type] - Type of fulfillment option.
  * @property {string} [status] - Status of the fulfillment option.
+ * @property {FulfillmentOptionDefaultFor} [default_for]
  * @property {BusinessUnit[]} [business_unit] - Name of the ordering-channel or
  *   business, e.g. storefront, storeos.
  * @property {FulfillmentStores} [fulfillment_stores]
@@ -1842,6 +1843,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FulfillmentOptionDefaultFor
+ * @property {boolean} [storefront] - If set to true, this fulfillment option
+ *   will be default for storefront.
+ * @property {boolean} [storeos] - If set to true, this fulfillment option will
+ *   be default for storeos.
+ */
+
+/**
  * @typedef BusinessUnit
  * @property {string} [name] - Name of the business unit.
  * @property {boolean} [is_active] - Whether the business unit is active.
@@ -3241,6 +3250,7 @@ class ServiceabilityPlatformModel {
       is_default: Joi.boolean(),
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      default_for: ServiceabilityPlatformModel.FulfillmentOptionDefaultFor(),
       business_unit: Joi.array().items(
         ServiceabilityPlatformModel.BusinessUnit()
       ),
@@ -5153,6 +5163,14 @@ class ServiceabilityPlatformModel {
       reverse_pickup_cutoff: Joi.string().allow("").allow(null),
       qc_shipment_item_quantity: Joi.number().allow(null),
       non_qc_shipment_item_quantity: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {FulfillmentOptionDefaultFor} */
+  static FulfillmentOptionDefaultFor() {
+    return Joi.object({
+      storefront: Joi.boolean(),
+      storeos: Joi.boolean(),
     });
   }
 

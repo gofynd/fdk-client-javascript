@@ -57,7 +57,7 @@ declare class Cart {
      * @summary: Add items to a cart
      * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/addItems/).
      */
-    addItems({ body, xOrderingSource, i, b, includeCartCalculation, areaCode, buyNow, id, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddCartDetailResult>;
+    addItems({ body, xOrderingSource, xOrderingSourceType, i, b, includeCartCalculation, areaCode, buyNow, id, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AddCartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -66,7 +66,7 @@ declare class Cart {
      * @summary: Apply coupon
      * @description: Apply a coupon code to the cart to trigger discounts on eligible items. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyCoupon/).
      */
-    applyCoupon({ body, xOrderingSource, i, b, p, id, buyNow, cartType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    applyCoupon({ body, xOrderingSource, xOrderingSourceType, i, b, p, id, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -75,7 +75,7 @@ declare class Cart {
      * @summary: Use loyalty points
      * @description: Users can redeem their accumulated loyalty points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/applyLoyaltyPoints/).
      */
-    applyLoyaltyPoints({ body, xOrderingSource, id, i, b, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    applyLoyaltyPoints({ body, xOrderingSource, xOrderingSourceType, id, i, b, buyNow, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -93,7 +93,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCart/).
      */
-    checkoutCart({ body, xOrderingSource, buyNow, cartType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
+    checkoutCart({ body, xOrderingSource, xOrderingSourceType, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -102,7 +102,7 @@ declare class Cart {
      * @summary: Checkout cart
      * @description: The checkout cart initiates the order creation process based on the items in the user's cart, their selected address, and chosen payment methods. It also supports multiple payment method options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/checkoutCartV2/).
      */
-    checkoutCartV2({ body, xOrderingSource, xLocationDetail, xCurrencyCode, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
+    checkoutCartV2({ body, xOrderingSource, xOrderingSourceType, xLocationDetail, xCurrencyCode, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -147,7 +147,7 @@ declare class Cart {
      * @summary: Get a cart
      * @description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/getCart/).
      */
-    getCart({ xOrderingSource, id, i, b, c, assignCardId, areaCode, buyNow, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    getCart({ xOrderingSource, xOrderingSourceType, id, i, b, c, assignCardId, areaCode, buyNow, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -264,7 +264,7 @@ declare class Cart {
      * @summary: Remove coupon
      * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/removeCoupon/).
      */
-    removeCoupon({ xOrderingSource, id, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    removeCoupon({ xOrderingSource, xOrderingSourceType, id, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -282,7 +282,7 @@ declare class Cart {
      * @summary: Select customer address for order processing
      * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/selectAddress/).
      */
-    selectAddress({ body, xOrderingSource, cartId, buyNow, i, b, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    selectAddress({ body, xOrderingSource, xOrderingSourceType, cartId, buyNow, i, b, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -291,7 +291,7 @@ declare class Cart {
      * @summary: Select payment mode
      * @description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/selectPaymentMode/).
      */
-    selectPaymentMode({ body, xOrderingSource, id, buyNow, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
+    selectPaymentMode({ body, xOrderingSource, xOrderingSourceType, id, buyNow, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -309,7 +309,7 @@ declare class Cart {
      * @summary: Update cart items
      * @description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateCart/).
      */
-    updateCart({ body, xOrderingSource, id, i, b, includeCartCalculation, areaCode, buyNow, cartType, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
+    updateCart({ body, xOrderingSource, xOrderingSourceType, id, i, b, includeCartCalculation, areaCode, buyNow, cartType, orderType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -318,7 +318,7 @@ declare class Cart {
      * @summary: Update store credits into cart and their items
      * @description: Update cart. Customers can adjust the cart breakup by applying or removing store credits as needed. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/updateCartBreakup/).
      */
-    updateCartBreakup({ body, xOrderingSource, id, i, b, buyNow, cartType, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
+    updateCartBreakup({ body, xOrderingSource, xOrderingSourceType, id, i, b, buyNow, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResult>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -345,5 +345,5 @@ declare class Cart {
      * @summary: Validate applied coupon
      * @description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/cart/validateCouponForPayment/).
      */
-    validateCouponForPayment({ xOrderingSource, id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentCouponValidate>;
+    validateCouponForPayment({ xOrderingSource, xOrderingSourceType, id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, cartType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentCouponValidate>;
 }

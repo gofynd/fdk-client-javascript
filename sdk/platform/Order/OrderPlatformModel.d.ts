@@ -2773,8 +2773,8 @@ export = OrderPlatformModel;
  * @property {CPRiderDetailsSchema} [rider_details]
  * @property {boolean} [qc_supported] - Specifies that Assigned CP support's
  *   quality checks
- * @property {boolean} using_own_creds - Specifies weather the Seller's Creds or
- *   Fynd's Creds are being used.
+ * @property {boolean} [using_own_creds] - Specifies weather the Seller's Creds
+ *   or Fynd's Creds are being used.
  * @property {number} [max_reattempts_for_delivery_allowed] - Reattempts Allowed
  *   (required for NDR)
  * @property {CPTatToDeliverTheShipmentSchema} [tat_to_deliver_the_shipment]
@@ -2954,6 +2954,9 @@ export = OrderPlatformModel;
 /**
  * @typedef CPConfigurationSchema
  * @property {string} shipping_by - Shipping Handled by FYND or SELLER
+ * @property {string} [logistics_by] - Specifies who manages the logistics
+ *   operations and how updates are handled. This determines the flow of
+ *   logistics information and responsibility for shipment management.
  */
 /**
  * @typedef ShippingDetailsSchema
@@ -3108,6 +3111,54 @@ export = OrderPlatformModel;
  *   company. Each account represents a different sales channel or marketplace
  *   integration.
  * @property {Page} [page]
+ */
+/**
+ * @typedef TATSchema
+ * @property {number} min - Specifies the minimum delivery promise timestamp (in
+ *   UNIX epoch), indicating the earliest time delivery can be completed.
+ * @property {number} max - Specifies the maximum delivery promise timestamp (in
+ *   UNIX epoch), indicating the latest time by which delivery is expected to be
+ *   completed.
+ */
+/**
+ * @typedef ShipmentCourierPartnerPreference
+ * @property {string} scheme_id - Unique identifier for the courier partner
+ *   scheme, used to fetch or modify scheme-specific details for the selected
+ *   courier partner.
+ * @property {string} courier_partner_name - The human-readable name of the
+ *   courier partner that should be preferred when assigning a delivery partner
+ *   for the shipment.
+ * @property {string} extension_id - Unique identifier of the courier partner
+ *   extension configured in the logistics system. This is used to identify the
+ *   courier partner whose preference is saved.
+ * @property {string} [remarks] - Optional remarks or additional comments
+ *   provided by the user while saving the courier partner preference.
+ * @property {TATSchema} tat
+ */
+/**
+ * @typedef ShipmentCourierPartnerRequestSchema
+ * @property {string} scheme_id - Unique identifier for the courier partner
+ *   scheme, used to fetch or modify scheme-specific details for the selected
+ *   courier partner.
+ * @property {string} courier_partner_name - The name of the courier partner
+ *   selected by the user while manually assigning the delivery partner for the shipment.
+ * @property {string} extension_id - Unique identifier of the courier partner
+ *   extension configured in the logistics system. This is used to identify the
+ *   courier partner to be assigned.
+ * @property {string} [remarks] - Optional remarks or additional comments
+ *   provided by the user while manually assigning the courier partner.
+ * @property {TATSchema} tat
+ */
+/**
+ * @typedef CourierPartnerResponseSchema
+ * @property {string} [message] - A human-readable message describing the
+ *   outcome of the operation.
+ */
+/**
+ * @typedef CourierPartnerErrorSchema
+ * @property {string} [message] - A human-readable message explaining why the
+ *   request failed.
+ * @property {string} [error] - A short description of the error.
  */
 /**
  * @typedef PackageProduct
@@ -5607,7 +5658,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { PackageSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, RefundModeTransitionData, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, PackagesSchema, PackagesResponseSchema, PackagesErrorResponseSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, PackageProduct, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, OrderingSourceDetails, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, SellerQcDetails, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
+    export { PackageSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, RefundModeTransitionData, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, PackagesSchema, PackagesResponseSchema, PackagesErrorResponseSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, TATSchema, ShipmentCourierPartnerPreference, ShipmentCourierPartnerRequestSchema, CourierPartnerResponseSchema, CourierPartnerErrorSchema, PackageProduct, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, OrderingSourceDetails, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, SellerQcDetails, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
 }
 /** @returns {PackageSchema} */
 declare function PackageSchema(): PackageSchema;
@@ -11189,10 +11240,10 @@ type CourierPartnerDetailsSchema = {
      */
     qc_supported?: boolean;
     /**
-     * - Specifies weather the Seller's Creds or
-     * Fynd's Creds are being used.
+     * - Specifies weather the Seller's Creds
+     * or Fynd's Creds are being used.
      */
-    using_own_creds: boolean;
+    using_own_creds?: boolean;
     /**
      * - Reattempts Allowed
      * (required for NDR)
@@ -11581,6 +11632,12 @@ type CPConfigurationSchema = {
      * - Shipping Handled by FYND or SELLER
      */
     shipping_by: string;
+    /**
+     * - Specifies who manages the logistics
+     * operations and how updates are handled. This determines the flow of
+     * logistics information and responsibility for shipment management.
+     */
+    logistics_by?: string;
 };
 /** @returns {ShippingDetailsSchema} */
 declare function ShippingDetailsSchema(): ShippingDetailsSchema;
@@ -11945,6 +12002,98 @@ type AccountsList = {
      */
     data?: Account[];
     page?: Page;
+};
+/** @returns {TATSchema} */
+declare function TATSchema(): TATSchema;
+type TATSchema = {
+    /**
+     * - Specifies the minimum delivery promise timestamp (in
+     * UNIX epoch), indicating the earliest time delivery can be completed.
+     */
+    min: number;
+    /**
+     * - Specifies the maximum delivery promise timestamp (in
+     * UNIX epoch), indicating the latest time by which delivery is expected to be
+     * completed.
+     */
+    max: number;
+};
+/** @returns {ShipmentCourierPartnerPreference} */
+declare function ShipmentCourierPartnerPreference(): ShipmentCourierPartnerPreference;
+type ShipmentCourierPartnerPreference = {
+    /**
+     * - Unique identifier for the courier partner
+     * scheme, used to fetch or modify scheme-specific details for the selected
+     * courier partner.
+     */
+    scheme_id: string;
+    /**
+     * - The human-readable name of the
+     * courier partner that should be preferred when assigning a delivery partner
+     * for the shipment.
+     */
+    courier_partner_name: string;
+    /**
+     * - Unique identifier of the courier partner
+     * extension configured in the logistics system. This is used to identify the
+     * courier partner whose preference is saved.
+     */
+    extension_id: string;
+    /**
+     * - Optional remarks or additional comments
+     * provided by the user while saving the courier partner preference.
+     */
+    remarks?: string;
+    tat: TATSchema;
+};
+/** @returns {ShipmentCourierPartnerRequestSchema} */
+declare function ShipmentCourierPartnerRequestSchema(): ShipmentCourierPartnerRequestSchema;
+type ShipmentCourierPartnerRequestSchema = {
+    /**
+     * - Unique identifier for the courier partner
+     * scheme, used to fetch or modify scheme-specific details for the selected
+     * courier partner.
+     */
+    scheme_id: string;
+    /**
+     * - The name of the courier partner
+     * selected by the user while manually assigning the delivery partner for the shipment.
+     */
+    courier_partner_name: string;
+    /**
+     * - Unique identifier of the courier partner
+     * extension configured in the logistics system. This is used to identify the
+     * courier partner to be assigned.
+     */
+    extension_id: string;
+    /**
+     * - Optional remarks or additional comments
+     * provided by the user while manually assigning the courier partner.
+     */
+    remarks?: string;
+    tat: TATSchema;
+};
+/** @returns {CourierPartnerResponseSchema} */
+declare function CourierPartnerResponseSchema(): CourierPartnerResponseSchema;
+type CourierPartnerResponseSchema = {
+    /**
+     * - A human-readable message describing the
+     * outcome of the operation.
+     */
+    message?: string;
+};
+/** @returns {CourierPartnerErrorSchema} */
+declare function CourierPartnerErrorSchema(): CourierPartnerErrorSchema;
+type CourierPartnerErrorSchema = {
+    /**
+     * - A human-readable message explaining why the
+     * request failed.
+     */
+    message?: string;
+    /**
+     * - A short description of the error.
+     */
+    error?: string;
 };
 /** @returns {PackageProduct} */
 declare function PackageProduct(): PackageProduct;

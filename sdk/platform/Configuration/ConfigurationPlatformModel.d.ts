@@ -32,6 +32,7 @@ export = ConfigurationPlatformModel;
  * @property {AppOrderConfig} [order]
  * @property {AppLogisticsConfig} [logistics]
  * @property {PiiMasking} [pii_masking]
+ * @property {ChannelCapabilities} [channel_capabilities]
  * @property {string[]} [tags]
  * @property {number} [__v]
  * @property {string} [business] - Indicates the business type for sales channel
@@ -53,6 +54,30 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef PiiMasking
  * @property {boolean} [enabled]
+ */
+/**
+ * @typedef ChannelCapabilities
+ * @property {string[]} commerce_model - Commerce model types supported by the
+ *   sales channel. Defines whether the channel operates as B2C/D2C
+ *   (business-to-consumer/direct-to-consumer) or B2B (business-to-business).
+ * @property {string[]} business_format - Business format types for the sales
+ *   channel. Options include standard_commerce for traditional e-commerce,
+ *   quick_commerce for rapid delivery models, and qsr for quick service
+ *   restaurant operations.
+ * @property {OrderingSources[]} ordering_sources - Represents an ordering
+ *   source that can be associated with a sales channel. Ordering sources define
+ *   the origin or platform from which orders are placed, enabling tracking and
+ *   differentiation of orders based on their source.
+ * @property {string} [seller_model] - Seller model for the sales channel.
+ *   single_seller for single seller, marketplace for multiple platforms,
+ *   cross_selling for franchise-enabled.
+ */
+/**
+ * @typedef OrderingSources
+ * @property {string} key - Unique identifier slug for the ordering source. Used
+ *   to reference and identify the source programmatically.
+ * @property {string} name - Human-readable display name of the ordering source.
+ *   Shown in UI for easy identification by users.
  */
 /**
  * @typedef FstIdentification
@@ -179,6 +204,10 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [revenue_engine_coupon] - Allow coupon apply and credits
  *   together. Default value is false.
  * @property {PanCardConfig} [pan_card]
+ * @property {boolean} [engage_enabled] - If this is enabled, user can earn and
+ *   redeem loyalty points for the sales channel.
+ * @property {boolean} [offer_enabled] - If this is enabled, user can apply
+ *   coupons and promotions for the sales channel.
  */
 /**
  * @typedef InternationalDeliveryCharges
@@ -928,6 +957,10 @@ export = ConfigurationPlatformModel;
  * @property {SecurityFeature} [security]
  * @property {BuyboxFeature} [buybox]
  * @property {DeliveryStrategy} [delivery_strategy]
+ * @property {OrderingSources[]} [ordering_sources] - Represents an ordering
+ *   source that can be associated with a sales channel. Ordering sources define
+ *   the origin or platform from which orders are placed, enabling tracking and
+ *   differentiation of orders based on their source.
  * @property {string} [price_strategy] - Indicates whether price strategy
  *   enabled or not in an application.
  * @property {boolean} [international] - Indicates whether internation price
@@ -1443,7 +1476,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, FstIdentification, SkgIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, ProcessingSchedule, StartAfter, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, BuyboxFeature, DeliveryStrategy, FulfillmentOption, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, SecurityFeature, AllowedDomain, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
+    export { CurrencyExchangeResponseV2, CurrencyExchangeItem, ApplicationInventory, PiiMasking, ChannelCapabilities, OrderingSources, FstIdentification, SkgIdentification, QuerySuggestions, SearchConfig, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, ProcessingSchedule, StartAfter, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequestSchema, CompanyByBrandsResponseSchema, StoreByBrandsRequestSchema, StoreByBrandsResponseSchema, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponseSchema, ValidationFailedResponseSchema, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequestSchema, CreateAppResponseSchema, ApplicationsResponseSchema, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequestSchema, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequestSchema, Domain, DomainsResponseSchema, UpdateDomain, UpdateDomainTypeRequestSchema, DomainStatusRequestSchema, DomainStatus, DomainStatusResponseSchema, DomainSuggestionsRequestSchema, DomainSuggestion, DomainSuggestionsResponseSchema, SuccessMessageResponseSchema, App, AppDomain, CompaniesResponseSchema, AppInventoryCompanies, StoresResponseSchema, AppInventoryStores, FilterOrderingStoreRequestSchema, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequestSchema, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponseSchema, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, BuyboxFeature, DeliveryStrategy, FulfillmentOption, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, SecurityFeature, AllowedDomain, AppFeatureRequestSchema, AppFeatureResponseSchema, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequestSchema, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponseSchema, ValidationErrors, ValidationError };
 }
 /** @returns {CurrencyExchangeResponseV2} */
 declare function CurrencyExchangeResponseV2(): CurrencyExchangeResponseV2;
@@ -1520,6 +1553,7 @@ type ApplicationInventory = {
     order?: AppOrderConfig;
     logistics?: AppLogisticsConfig;
     pii_masking?: PiiMasking;
+    channel_capabilities?: ChannelCapabilities;
     tags?: string[];
     __v?: number;
     /**
@@ -1563,6 +1597,50 @@ type ApplicationInventory = {
 declare function PiiMasking(): PiiMasking;
 type PiiMasking = {
     enabled?: boolean;
+};
+/** @returns {ChannelCapabilities} */
+declare function ChannelCapabilities(): ChannelCapabilities;
+type ChannelCapabilities = {
+    /**
+     * - Commerce model types supported by the
+     * sales channel. Defines whether the channel operates as B2C/D2C
+     * (business-to-consumer/direct-to-consumer) or B2B (business-to-business).
+     */
+    commerce_model: string[];
+    /**
+     * - Business format types for the sales
+     * channel. Options include standard_commerce for traditional e-commerce,
+     * quick_commerce for rapid delivery models, and qsr for quick service
+     * restaurant operations.
+     */
+    business_format: string[];
+    /**
+     * - Represents an ordering
+     * source that can be associated with a sales channel. Ordering sources define
+     * the origin or platform from which orders are placed, enabling tracking and
+     * differentiation of orders based on their source.
+     */
+    ordering_sources: OrderingSources[];
+    /**
+     * - Seller model for the sales channel.
+     * single_seller for single seller, marketplace for multiple platforms,
+     * cross_selling for franchise-enabled.
+     */
+    seller_model?: string;
+};
+/** @returns {OrderingSources} */
+declare function OrderingSources(): OrderingSources;
+type OrderingSources = {
+    /**
+     * - Unique identifier slug for the ordering source. Used
+     * to reference and identify the source programmatically.
+     */
+    key: string;
+    /**
+     * - Human-readable display name of the ordering source.
+     * Shown in UI for easy identification by users.
+     */
+    name: string;
 };
 /** @returns {FstIdentification} */
 declare function FstIdentification(): FstIdentification;
@@ -1810,6 +1888,16 @@ type AppCartConfig = {
      */
     revenue_engine_coupon?: boolean;
     pan_card?: PanCardConfig;
+    /**
+     * - If this is enabled, user can earn and
+     * redeem loyalty points for the sales channel.
+     */
+    engage_enabled?: boolean;
+    /**
+     * - If this is enabled, user can apply
+     * coupons and promotions for the sales channel.
+     */
+    offer_enabled?: boolean;
 };
 /** @returns {InternationalDeliveryCharges} */
 declare function InternationalDeliveryCharges(): InternationalDeliveryCharges;
@@ -3304,6 +3392,13 @@ type AppFeature = {
     security?: SecurityFeature;
     buybox?: BuyboxFeature;
     delivery_strategy?: DeliveryStrategy;
+    /**
+     * - Represents an ordering
+     * source that can be associated with a sales channel. Ordering sources define
+     * the origin or platform from which orders are placed, enabling tracking and
+     * differentiation of orders based on their source.
+     */
+    ordering_sources?: OrderingSources[];
     /**
      * - Indicates whether price strategy
      * enabled or not in an application.

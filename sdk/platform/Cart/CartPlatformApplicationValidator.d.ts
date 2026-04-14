@@ -17,6 +17,8 @@ export = CartPlatformApplicationValidator;
  * @typedef ApplyCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -31,6 +33,8 @@ export = CartPlatformApplicationValidator;
  * @typedef ApplyLoyaltyPointsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
@@ -41,12 +45,16 @@ export = CartPlatformApplicationValidator;
  * @typedef CheckCartServiceabilityParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {CartPlatformModel.OpenApiCartServiceabilityCreation} body
  */
 /**
  * @typedef CheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - It allows operations on cross-platform
  *   anonymous carts. When provided, the system retrieves the cart using only
  *   the cart_id, ignoring the user_id. Use this when interacting with an
@@ -93,6 +101,8 @@ export = CartPlatformApplicationValidator;
  * @typedef FetchAndvalidateCartItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xLocationDetail] - Location details for the cart checkout
  * @property {string} [xCurrencyCode] - Currency code for transactions.
  * @property {CartPlatformModel.OpenapiCartDetailsCreation} body
@@ -152,6 +162,8 @@ export = CartPlatformApplicationValidator;
  * @typedef GetCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -316,6 +328,8 @@ export = CartPlatformApplicationValidator;
  * @typedef OverrideCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xLocationDetail] - Location details for the cart checkout
  * @property {string} [xCurrencyCode] - Currency code for transactions. Defaults
  *   to INR if the location is India.
@@ -325,6 +339,8 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformAddItemsParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -346,6 +362,8 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformCheckoutCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -356,6 +374,8 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - It allows operations on cross-platform
  *   anonymous carts. When provided, the system retrieves the cart using only
  *   the cart_id, ignoring the user_id. Use this when interacting with an
@@ -370,6 +390,8 @@ export = CartPlatformApplicationValidator;
  * @typedef PlatformUpdateCartParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -396,6 +418,8 @@ export = CartPlatformApplicationValidator;
  * @typedef RemoveCouponParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -410,6 +434,8 @@ export = CartPlatformApplicationValidator;
  * @typedef SelectAddressParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -423,6 +449,8 @@ export = CartPlatformApplicationValidator;
  * @typedef SelectPaymentModeParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -435,6 +463,8 @@ export = CartPlatformApplicationValidator;
  * @typedef SelectPaymentModeV2Param
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType]
@@ -456,6 +486,9 @@ export = CartPlatformApplicationValidator;
  * @property {string} [xOrderingSource] - Identifier for the ordering source
  *   (e.g., web, mobile app, POS). Used to determine the origin of the order
  *   request and apply source-specific rules.
+ * @property {string} [xOrderingSourceType] - Identifier for the ordering source
+ *   type (e.g., storefront, store_os_pos, kiosk). Used to determine the source
+ *   type for order governance and validations.
  * @property {string} [xAnonymousCart] - Anonymous cart header used to perform
  *   operations on cross-platform anonymous cart. When enabled, the system
  *   fetches the cart only based on cart_id instead of user_id.
@@ -547,6 +580,8 @@ export = CartPlatformApplicationValidator;
  * @typedef ValidateCouponForPaymentParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
+ * @property {string} [xOrderingSourceType] - Ordering source type header, to be
+ *   used to identify source type of order creation.
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]
@@ -721,6 +756,11 @@ type ApplyCouponParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
+    /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
      * fetches the cart only based on cart_id instead of user_id.
@@ -739,6 +779,11 @@ type ApplyLoyaltyPointsParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - The unique identifier of the cart.
      */
@@ -763,6 +808,11 @@ type CheckCartServiceabilityParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     body: CartPlatformModel.OpenApiCartServiceabilityCreation;
 };
 type CheckoutCartParam = {
@@ -771,6 +821,11 @@ type CheckoutCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - It allows operations on cross-platform
      * anonymous carts. When provided, the system retrieves the cart using only
@@ -823,6 +878,11 @@ type FetchAndvalidateCartItemsParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Location details for the cart checkout
      */
@@ -883,6 +943,11 @@ type GetCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
@@ -1163,6 +1228,11 @@ type OverrideCartParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
+    /**
      * - Location details for the cart checkout
      */
     xLocationDetail?: string;
@@ -1179,6 +1249,11 @@ type PlatformAddItemsParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
@@ -1224,6 +1299,11 @@ type PlatformCheckoutCartParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
+    /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
      * fetches the cart only based on cart_id instead of user_id.
@@ -1241,6 +1321,11 @@ type PlatformCheckoutCartV2Param = {
      * identify source of order creation
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - It allows operations on cross-platform
      * anonymous carts. When provided, the system retrieves the cart using only
@@ -1269,6 +1354,11 @@ type PlatformUpdateCartParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
@@ -1324,6 +1414,11 @@ type RemoveCouponParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
+    /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
      * fetches the cart only based on cart_id instead of user_id.
@@ -1341,6 +1436,11 @@ type SelectAddressParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
@@ -1360,6 +1460,11 @@ type SelectPaymentModeParam = {
      */
     xOrderingSource?: string;
     /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
+    /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
      * fetches the cart only based on cart_id instead of user_id.
@@ -1376,6 +1481,11 @@ type SelectPaymentModeV2Param = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     id?: string;
     buyNow?: boolean;
     orderType?: string;
@@ -1403,6 +1513,12 @@ type UpdateCartBreakupParam = {
      * request and apply source-specific rules.
      */
     xOrderingSource?: string;
+    /**
+     * - Identifier for the ordering source
+     * type (e.g., storefront, store_os_pos, kiosk). Used to determine the source
+     * type for order governance and validations.
+     */
+    xOrderingSourceType?: string;
     /**
      * - Anonymous cart header used to perform
      * operations on cross-platform anonymous cart. When enabled, the system
@@ -1529,6 +1645,11 @@ type ValidateCouponForPaymentParam = {
      * identify source of order creation.
      */
     xOrderingSource?: string;
+    /**
+     * - Ordering source type header, to be
+     * used to identify source type of order creation.
+     */
+    xOrderingSourceType?: string;
     id?: string;
     buyNow?: boolean;
     addressId?: string;

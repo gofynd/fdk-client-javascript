@@ -603,6 +603,7 @@ const Joi = require("joi");
  * @property {Facebook} [facebook]
  * @property {Accountkit} [account_kit]
  * @property {Google} [google]
+ * @property {Apple} [apple]
  */
 
 /**
@@ -648,6 +649,12 @@ const Joi = require("joi");
  * @typedef Google
  * @property {string} [app_id]
  * @property {string} [app_secret]
+ */
+
+/**
+ * @typedef Apple
+ * @property {string} [app_id]
+ * @property {string} [redirect_uri]
  */
 
 /**
@@ -1489,6 +1496,7 @@ class UserPlatformModel {
       facebook: UserPlatformModel.Facebook(),
       account_kit: UserPlatformModel.Accountkit(),
       google: UserPlatformModel.Google(),
+      apple: UserPlatformModel.Apple(),
     });
   }
 
@@ -1548,6 +1556,14 @@ class UserPlatformModel {
     return Joi.object({
       app_id: Joi.string().allow(""),
       app_secret: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Apple} */
+  static Apple() {
+    return Joi.object({
+      app_id: Joi.string().allow(""),
+      redirect_uri: Joi.string().allow(""),
     });
   }
 

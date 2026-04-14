@@ -645,9 +645,11 @@ class Order {
     const query_params = {};
 
     const xHeaders = {};
-    xHeaders["x-ordering-source"] = xOrderingSource;
-    xHeaders["x-application-id"] = xApplicationId;
-    xHeaders["x-extension-id"] = xExtensionId;
+    if (xOrderingSource !== undefined)
+      xHeaders["x-ordering-source"] = xOrderingSource;
+    if (xApplicationId !== undefined)
+      xHeaders["x-application-id"] = xApplicationId;
+    if (xExtensionId !== undefined) xHeaders["x-extension-id"] = xExtensionId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -5021,6 +5023,180 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > reassignLocation \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.RequestCourierPartnerForShipmentParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.CourierPartnerResponseSchema>} -
+   *   Success response
+   * @name requestCourierPartnerForShipment
+   * @summary: Manually request a courier partner for a shipment.
+   * @description: Use this API to manually assign a courier partner (delivery partner) to a shipment.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/requestCourierPartnerForShipment/).
+   */
+  async requestCourierPartnerForShipment(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformValidator.requestCourierPartnerForShipment().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.requestCourierPartnerForShipment().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > requestCourierPartnerForShipment \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/courier-partner/request`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.CourierPartnerResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > requestCourierPartnerForShipment \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.SaveCourierPartnerPreferenceForShipmentParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.CourierPartnerResponseSchema>} -
+   *   Success response
+   * @name saveCourierPartnerPreferenceForShipment
+   * @summary: Save courier partner preference for a shipment.
+   * @description: Use this API to save the preferred courier partner for a shipment. The preferred courier partner will be triggered automatically when the shipment moves to a state where delivery partner assignment is performed (for example, ready for DP assignment).
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/saveCourierPartnerPreferenceForShipment/).
+   */
+  async saveCourierPartnerPreferenceForShipment(
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformValidator.saveCourierPartnerPreferenceForShipment().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.saveCourierPartnerPreferenceForShipment().validate(
+      {
+        shipmentId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > saveCourierPartnerPreferenceForShipment \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/courier-partner/preference`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.CourierPartnerResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > saveCourierPartnerPreferenceForShipment \n ${res_error}`,
         });
       }
     }

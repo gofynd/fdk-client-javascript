@@ -1146,18 +1146,6 @@ declare class Content {
      */
     updateFaqCategory({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateFaqCategoryParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateFaqCategorySchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.UpdateInjectableTagParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-     * @name updateInjectableTag
-     * @summary: Update HTML tag
-     * @description: Modify settings for an injectable tag. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/updateInjectableTag/).
-     */
-    updateInjectableTag({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateInjectableTagParam, { responseHeaders }?: object): Promise<ContentPlatformModel.TagsSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.UpdateLandingPageParam} arg
      *   - Arg object
      *

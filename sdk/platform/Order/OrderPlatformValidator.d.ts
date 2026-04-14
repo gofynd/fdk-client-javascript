@@ -458,6 +458,18 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.StoreReassign} body
  */
 /**
+ * @typedef RequestCourierPartnerForShipmentParam
+ * @property {string} shipmentId - The unique identifier for the shipment. This
+ *   ID is used to track and reference the shipment throughout its journey.
+ * @property {OrderPlatformModel.ShipmentCourierPartnerRequestSchema} body
+ */
+/**
+ * @typedef SaveCourierPartnerPreferenceForShipmentParam
+ * @property {string} shipmentId - The unique identifier for the shipment. This
+ *   ID is used to track and reference the shipment throughout its journey.
+ * @property {OrderPlatformModel.ShipmentCourierPartnerPreference} body
+ */
+/**
  * @typedef SendSmsNinjaParam
  * @property {OrderPlatformModel.SendSmsPayload} body
  */
@@ -619,6 +631,10 @@ declare class OrderPlatformValidator {
     static postShipmentHistory(): PostShipmentHistoryParam;
     /** @returns {ReassignLocationParam} */
     static reassignLocation(): ReassignLocationParam;
+    /** @returns {RequestCourierPartnerForShipmentParam} */
+    static requestCourierPartnerForShipment(): RequestCourierPartnerForShipmentParam;
+    /** @returns {SaveCourierPartnerPreferenceForShipmentParam} */
+    static saveCourierPartnerPreferenceForShipment(): SaveCourierPartnerPreferenceForShipmentParam;
     /** @returns {SendSmsNinjaParam} */
     static sendSmsNinja(): SendSmsNinjaParam;
     /** @returns {SendUserMobileOTPParam} */
@@ -647,7 +663,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateShipmentPackagesParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentPackagesParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentPackagesParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateShipmentPackagesParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentPackagesParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, RequestCourierPartnerForShipmentParam, SaveCourierPartnerPreferenceForShipmentParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentPackagesParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -1571,6 +1587,22 @@ type PostShipmentHistoryParam = {
 };
 type ReassignLocationParam = {
     body: OrderPlatformModel.StoreReassign;
+};
+type RequestCourierPartnerForShipmentParam = {
+    /**
+     * - The unique identifier for the shipment. This
+     * ID is used to track and reference the shipment throughout its journey.
+     */
+    shipmentId: string;
+    body: OrderPlatformModel.ShipmentCourierPartnerRequestSchema;
+};
+type SaveCourierPartnerPreferenceForShipmentParam = {
+    /**
+     * - The unique identifier for the shipment. This
+     * ID is used to track and reference the shipment throughout its journey.
+     */
+    shipmentId: string;
+    body: OrderPlatformModel.ShipmentCourierPartnerPreference;
 };
 type SendSmsNinjaParam = {
     body: OrderPlatformModel.SendSmsPayload;

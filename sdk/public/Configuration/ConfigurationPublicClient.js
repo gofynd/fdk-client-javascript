@@ -157,7 +157,7 @@ class Configuration {
     query_params["query"] = query;
 
     const xHeaders = {};
-    xHeaders["authorization"] = authorization;
+    if (authorization !== undefined) xHeaders["authorization"] = authorization;
 
     const response = await PublicAPIClient.execute(
       this._conf,
