@@ -84,6 +84,18 @@ declare class Content {
      */
     createAnnouncement({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAnnouncementParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
     /**
+     * @param {ContentPlatformApplicationValidator.CreateAppAssociationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+     * @name createAppAssociation
+     * @summary: Create app association
+     * @description: Create-only. Returns 409 if a record already exists for this application (caller should use PUT to update). 422 on shape/size violations. Body fields `ios_payload` (object|null) and `android_payload` (array|null) are both optional and independent. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/createAppAssociation/).
+     */
+    createAppAssociation({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateAppAssociationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.AppAssociationRecord>;
+    /**
      * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam} arg
      *   - Arg object
      *
@@ -226,6 +238,18 @@ declare class Content {
      * @description: Remove a specific announcement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/deleteAnnouncement/).
      */
     deleteAnnouncement({ announcementId, requestHeaders }?: ContentPlatformApplicationValidator.DeleteAnnouncementParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.DeleteAppAssociationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.AppAssociationDeleted>} - Success response
+     * @name deleteAppAssociation
+     * @summary: Delete app association
+     * @description: Remove the app-association record entirely. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/deleteAppAssociation/).
+     */
+    deleteAppAssociation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.AppAssociationDeleted>;
     /**
      * @param {ContentPlatformApplicationValidator.DeleteAppCustomFieldDefinitionBySlugParam} arg
      *   - Arg object
@@ -471,6 +495,18 @@ declare class Content {
      * @description: Lists all announcements - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getAnnouncementsList/).
      */
     getAnnouncementsList({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetAnnouncementsListParam, { responseHeaders }?: object): Promise<ContentPlatformModel.GetAnnouncementListSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.GetAppAssociationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+     * @name getAppAssociation
+     * @summary: Get app association
+     * @description: Fetch the app-association configuration (Apple AASA + Google Asset Links payloads) for this application. Returns 404 if no record exists. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getAppAssociation/).
+     */
+    getAppAssociation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.AppAssociationRecord>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionByResourceParam} arg
      *   - Arg object
@@ -1034,6 +1070,18 @@ declare class Content {
      * @description: Modify the scheduling of a specific announcement. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/updateAnnouncementSchedule/).
      */
     updateAnnouncementSchedule({ announcementId, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAnnouncementScheduleParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CreateAnnouncementSchema>;
+    /**
+     * @param {ContentPlatformApplicationValidator.UpdateAppAssociationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+     * @name updateAppAssociation
+     * @summary: Update app association
+     * @description: Update-only. Returns 404 if no record exists (caller should use POST to create). Partial-update semantics: keys present are written (explicit null clears the field); keys absent are no-op. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/updateAppAssociation/).
+     */
+    updateAppAssociation({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateAppAssociationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.AppAssociationRecord>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateAppCustomFieldByResourceSlugParam} arg
      *   - Arg object

@@ -575,6 +575,87 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.CreateAppAssociationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+   * @name createAppAssociation
+   * @summary: Create app association
+   * @description: Create-only. Returns 409 if a record already exists for this application (caller should use PUT to update). 422 on shape/size violations. Body fields `ios_payload` (object|null) and `android_payload` (array|null) are both optional and independent. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/createAppAssociation/).
+   */
+  async createAppAssociation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.createAppAssociation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.createAppAssociation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > createAppAssociation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-association`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.AppAssociationRecord().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > createAppAssociation \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ContentPlatformApplicationValidator.CreateAppCustomFieldDefinitionParam} arg
    *   - Arg object
    *
@@ -1538,6 +1619,83 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > deleteAnnouncement \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.DeleteAppAssociationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.AppAssociationDeleted>} - Success response
+   * @name deleteAppAssociation
+   * @summary: Delete app association
+   * @description: Remove the app-association record entirely. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/deleteAppAssociation/).
+   */
+  async deleteAppAssociation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.deleteAppAssociation().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.deleteAppAssociation().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > deleteAppAssociation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-association`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.AppAssociationDeleted().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > deleteAppAssociation \n ${res_error}`,
         });
       }
     }
@@ -3244,6 +3402,83 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getAnnouncementsList \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.GetAppAssociationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+   * @name getAppAssociation
+   * @summary: Get app association
+   * @description: Fetch the app-association configuration (Apple AASA + Google Asset Links payloads) for this application. Returns 404 if no record exists. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/getAppAssociation/).
+   */
+  async getAppAssociation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.getAppAssociation().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.getAppAssociation().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > getAppAssociation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-association`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.AppAssociationRecord().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > getAppAssociation \n ${res_error}`,
         });
       }
     }
@@ -7232,6 +7467,87 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > updateAnnouncementSchedule \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentPlatformApplicationValidator.UpdateAppAssociationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ContentPlatformModel.AppAssociationRecord>} - Success response
+   * @name updateAppAssociation
+   * @summary: Update app association
+   * @description: Update-only. Returns 404 if no record exists (caller should use POST to create). Partial-update semantics: keys present are written (explicit null clears the field); keys absent are no-op. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/content/updateAppAssociation/).
+   */
+  async updateAppAssociation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentPlatformApplicationValidator.updateAppAssociation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentPlatformApplicationValidator.updateAppAssociation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Content > updateAppAssociation \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-association`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentPlatformModel.AppAssociationRecord().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Content > updateAppAssociation \n ${res_error}`,
         });
       }
     }

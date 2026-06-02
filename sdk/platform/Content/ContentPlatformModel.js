@@ -1,6 +1,44 @@
 const Joi = require("joi");
 
 /**
+ * @typedef AppAssociationDeleted
+ * @property {string} [message] - Operation status string (e.g. "deleted").
+ * @property {string} [application_id] - The application_id whose record was deleted.
+ */
+
+/**
+ * @typedef AppAssociationIosPayload
+ * @property {Object} [applinks] - Universal Links configuration.
+ * @property {Object} [appclips] - App Clips configuration.
+ * @property {Object} [webcredentials] - Shared Web Credentials.
+ * @property {Object} [activitycontinuation] - Handoff. Deprecated in iOS 14+.
+ */
+
+/**
+ * @typedef AppAssociationAndroidStatement
+ * @property {string[]} [relation] - Permission relations granted by this statement.
+ * @property {Object} [target] - Subject of the statement (android_app or web).
+ */
+
+/**
+ * @typedef AppAssociationWriteBody
+ * @property {AppAssociationIosPayload} [ios_payload] - Apple App Site
+ *   Association JSON. Null to clear.
+ * @property {AppAssociationAndroidStatement[]} [android_payload] - Digital
+ *   Asset Links JSON (array of statements). Null to clear.
+ */
+
+/**
+ * @typedef AppAssociationRecord
+ * @property {AppAssociationIosPayload} [ios_payload]
+ * @property {AppAssociationAndroidStatement[]} [android_payload]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+
+/**
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
@@ -1830,6 +1868,56 @@ const Joi = require("joi");
  */
 
 class ContentPlatformModel {
+  /** @returns {AppAssociationDeleted} */
+  static AppAssociationDeleted() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AppAssociationIosPayload} */
+  static AppAssociationIosPayload() {
+    return Joi.object({
+      applinks: Joi.object().pattern(/\S/, Joi.any()),
+      appclips: Joi.object().pattern(/\S/, Joi.any()),
+      webcredentials: Joi.object().pattern(/\S/, Joi.any()),
+      activitycontinuation: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {AppAssociationAndroidStatement} */
+  static AppAssociationAndroidStatement() {
+    return Joi.object({
+      relation: Joi.array().items(Joi.string().allow("")),
+      target: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {AppAssociationWriteBody} */
+  static AppAssociationWriteBody() {
+    return Joi.object({
+      ios_payload: ContentPlatformModel.AppAssociationIosPayload(),
+      android_payload: Joi.array()
+        .items(ContentPlatformModel.AppAssociationAndroidStatement())
+        .allow(null, ""),
+    });
+  }
+
+  /** @returns {AppAssociationRecord} */
+  static AppAssociationRecord() {
+    return Joi.object({
+      ios_payload: ContentPlatformModel.AppAssociationIosPayload(),
+      android_payload: Joi.array()
+        .items(ContentPlatformModel.AppAssociationAndroidStatement())
+        .allow(null, ""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ValidationError} */
   static ValidationError() {
     return Joi.object({

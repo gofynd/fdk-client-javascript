@@ -1384,7 +1384,7 @@ class Catalog {
    * @returns {Promise<ProductSizes>} - Success response
    * @name getProductSizesBySlug
    * @summary: List sizes
-   * @description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSizesBySlug/).
+   * @description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ). Each size includes `seller_identifiers` (primary identifiers) and `all_identifiers` (primary and non-primary seller identifiers combined). - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSizesBySlug/).
    */
   async getProductSizesBySlug(
     { slug, storeId, requestHeaders } = { requestHeaders: {} },

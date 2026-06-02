@@ -216,6 +216,8 @@ class Order {
       toDate,
       startDate,
       endDate,
+      startDatetime,
+      endDatetime,
       customMeta,
       allowInactive,
       requestHeaders,
@@ -230,6 +232,8 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["start_date"] = startDate;
     query_params["end_date"] = endDate;
+    query_params["start_datetime"] = startDatetime;
+    query_params["end_datetime"] = endDatetime;
     query_params["custom_meta"] = customMeta;
     query_params["allow_inactive"] = allowInactive;
 

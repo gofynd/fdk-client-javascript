@@ -1442,6 +1442,7 @@ const Joi = require("joi");
  * @property {string} [item_type] - Type of the item in cart.
  * @property {ArticleCharges[]} [charges] - Charges information which denotes
  *   types of charges and amount of charge applied to that product in cart.
+ * @property {string} [added_on] - Date and time when the item was added to the cart.
  */
 
 /**
@@ -2150,6 +2151,11 @@ const Joi = require("joi");
  *   applied to cart or not
  * @property {string} [coupon_type] - Type of the coupon applied to cart
  * @property {string} [expires_on] - Message to display to user for expiry of the coupon
+ * @property {string} [expires_at] - Represents the last valid timeslot date on
+ *   which the coupon can be applied in ISO 8601 (UTC Z) format,based on its
+ *   configured schedule. If the coupon is restricted to specific days (e.g.,
+ *   Mondays and Thursdays), the expiry date will be the last eligible day
+ *   within the overall end date range, not necessarily the end date itself.
  * @property {number} [coupon_value] - Coupon value of the coupon applied to cart
  * @property {string} [sub_title] - Coupon subtitle of the coupon applied to
  *   cart which is used to display
@@ -3059,18 +3065,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NextScheduleItems
- * @property {string} [start] - Start date of schedule
- * @property {string} [end] - End date of schedule
- */
-
-/**
  * @typedef OfferSchedule
  * @property {string} end - The end date and time until which the offer remains valid.
  * @property {string} start - The start date and time from which the offer becomes valid.
- * @property {NextScheduleItems[]} [next_schedule] - A auto generated list of
- *   date-time entries based on start, end, cron and duration data on which the
- *   offer is scheduled to activate in the future.
  * @property {string} [cron] - A cron expression used to schedule the offer to
  *   activate periodically. When cron is null or not provided, duration is optional.
  * @property {number} [duration] - Duration of the offer activation in seconds.
@@ -4567,6 +4564,7 @@ class CartPlatformModel {
       custom_order: Joi.object().pattern(/\S/, Joi.any()),
       item_type: Joi.string().allow(""),
       charges: Joi.array().items(CartPlatformModel.ArticleCharges()),
+      added_on: Joi.string().allow("").allow(null),
     });
   }
 
@@ -5280,6 +5278,7 @@ class CartPlatformModel {
       is_applied: Joi.boolean(),
       coupon_type: Joi.string().allow("").allow(null),
       expires_on: Joi.string().allow(""),
+      expires_at: Joi.string().allow("").allow(null),
       coupon_value: Joi.number(),
       sub_title: Joi.string().allow(""),
       minimum_cart_value: Joi.number(),
@@ -6153,20 +6152,11 @@ class CartPlatformModel {
     });
   }
 
-  /** @returns {NextScheduleItems} */
-  static NextScheduleItems() {
-    return Joi.object({
-      start: Joi.string().allow(""),
-      end: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {OfferSchedule} */
   static OfferSchedule() {
     return Joi.object({
       end: Joi.string().allow("").required(),
       start: Joi.string().allow("").required(),
-      next_schedule: Joi.array().items(CartPlatformModel.NextScheduleItems()),
       cron: Joi.string().allow("").allow(null),
       duration: Joi.number().allow(null),
     });

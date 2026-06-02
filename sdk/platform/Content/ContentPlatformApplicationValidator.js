@@ -39,6 +39,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef CreateAppAssociationParam
+ * @property {ContentPlatformModel.AppAssociationWriteBody} body
+ */
+
+/**
  * @typedef CreateAppCustomFieldDefinitionParam
  * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
@@ -99,6 +104,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
+
+/** @typedef DeleteAppAssociationParam */
 
 /**
  * @typedef DeleteAppCustomFieldDefinitionBySlugParam
@@ -219,6 +226,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
+
+/** @typedef GetAppAssociationParam */
 
 /**
  * @typedef GetAppCustomFieldDefinitionByResourceParam
@@ -497,6 +506,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
+ * @typedef UpdateAppAssociationParam
+ * @property {ContentPlatformModel.AppAssociationWriteBody} body
+ */
+
+/**
  * @typedef UpdateAppCustomFieldByResourceSlugParam
  * @property {string} resource
  * @property {string} resourceSlug
@@ -663,6 +677,13 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateAppAssociationParam} */
+  static createAppAssociation() {
+    return Joi.object({
+      body: ContentPlatformModel.AppAssociationWriteBody().required(),
+    }).required();
+  }
+
   /** @returns {CreateAppCustomFieldDefinitionParam} */
   static createAppCustomFieldDefinition() {
     return Joi.object({
@@ -747,6 +768,11 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {DeleteAppAssociationParam} */
+  static deleteAppAssociation() {
+    return Joi.object({}).required();
   }
 
   /** @returns {DeleteAppCustomFieldDefinitionBySlugParam} */
@@ -903,6 +929,11 @@ class ContentPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
     }).required();
+  }
+
+  /** @returns {GetAppAssociationParam} */
+  static getAppAssociation() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAppCustomFieldDefinitionByResourceParam} */
@@ -1261,6 +1292,13 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
       body: ContentPlatformModel.ScheduleSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAppAssociationParam} */
+  static updateAppAssociation() {
+    return Joi.object({
+      body: ContentPlatformModel.AppAssociationWriteBody().required(),
     }).required();
   }
 

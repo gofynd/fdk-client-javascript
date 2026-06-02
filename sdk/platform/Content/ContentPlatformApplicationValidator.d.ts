@@ -29,6 +29,10 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 /**
+ * @typedef CreateAppAssociationParam
+ * @property {ContentPlatformModel.AppAssociationWriteBody} body
+ */
+/**
  * @typedef CreateAppCustomFieldDefinitionParam
  * @property {string} resource
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
@@ -78,6 +82,7 @@ export = ContentPlatformApplicationValidator;
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
+/** @typedef DeleteAppAssociationParam */
 /**
  * @typedef DeleteAppCustomFieldDefinitionBySlugParam
  * @property {string} slug
@@ -177,6 +182,7 @@ export = ContentPlatformApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
+/** @typedef GetAppAssociationParam */
 /**
  * @typedef GetAppCustomFieldDefinitionByResourceParam
  * @property {string} pageNo
@@ -406,6 +412,10 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.ScheduleSchema} body
  */
 /**
+ * @typedef UpdateAppAssociationParam
+ * @property {ContentPlatformModel.AppAssociationWriteBody} body
+ */
+/**
  * @typedef UpdateAppCustomFieldByResourceSlugParam
  * @property {string} resource
  * @property {string} resourceSlug
@@ -517,6 +527,8 @@ declare class ContentPlatformApplicationValidator {
     static bulkUnPublishApplicationLanguage(): BulkUnPublishApplicationLanguageParam;
     /** @returns {CreateAnnouncementParam} */
     static createAnnouncement(): CreateAnnouncementParam;
+    /** @returns {CreateAppAssociationParam} */
+    static createAppAssociation(): CreateAppAssociationParam;
     /** @returns {CreateAppCustomFieldDefinitionParam} */
     static createAppCustomFieldDefinition(): CreateAppCustomFieldDefinitionParam;
     /** @returns {CreateAppCustomObjectBySlugParam} */
@@ -541,6 +553,8 @@ declare class ContentPlatformApplicationValidator {
     static createTranslateUILabels(): CreateTranslateUILabelsParam;
     /** @returns {DeleteAnnouncementParam} */
     static deleteAnnouncement(): DeleteAnnouncementParam;
+    /** @returns {DeleteAppAssociationParam} */
+    static deleteAppAssociation(): any;
     /** @returns {DeleteAppCustomFieldDefinitionBySlugParam} */
     static deleteAppCustomFieldDefinitionBySlug(): DeleteAppCustomFieldDefinitionBySlugParam;
     /** @returns {DeleteAppCustomObjectBySlugParam} */
@@ -583,6 +597,8 @@ declare class ContentPlatformApplicationValidator {
     static getAnnouncementById(): GetAnnouncementByIdParam;
     /** @returns {GetAnnouncementsListParam} */
     static getAnnouncementsList(): GetAnnouncementsListParam;
+    /** @returns {GetAppAssociationParam} */
+    static getAppAssociation(): any;
     /** @returns {GetAppCustomFieldDefinitionByResourceParam} */
     static getAppCustomFieldDefinitionByResource(): GetAppCustomFieldDefinitionByResourceParam;
     /** @returns {GetAppCustomFieldDefinitionBySlugParam} */
@@ -679,6 +695,8 @@ declare class ContentPlatformApplicationValidator {
     static updateAnnouncement(): UpdateAnnouncementParam;
     /** @returns {UpdateAnnouncementScheduleParam} */
     static updateAnnouncementSchedule(): UpdateAnnouncementScheduleParam;
+    /** @returns {UpdateAppAssociationParam} */
+    static updateAppAssociation(): UpdateAppAssociationParam;
     /** @returns {UpdateAppCustomFieldByResourceSlugParam} */
     static updateAppCustomFieldByResourceSlug(): UpdateAppCustomFieldByResourceSlugParam;
     /** @returns {UpdateAppCustomFieldDefinitionBySlugParam} */
@@ -719,7 +737,7 @@ declare class ContentPlatformApplicationValidator {
     static upsertApplicationResourceTranslationInBulk(): UpsertApplicationResourceTranslationInBulkParam;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { AddApplicationLanguageParam, AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, BulkUnPublishApplicationLanguageParam, CreateAnnouncementParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectBySlugParam, CreateAppCustomObjectDefinitionParam, CreateApplicationResourceTranslationParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreateSEOMarkupSchemaParam, CreateTranslateUILabelsParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionBySlugParam, DeleteAppCustomObjectBySlugParam, DeleteAppCustomObjectDefinitionBySlugParam, DeleteApplicationLanguageParam, DeleteApplicationResourceTranslationParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesBySlugParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionByResourceParam, GetAppCustomFieldDefinitionBySlugParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsByResourceSlugParam, GetAppCustomObjectBySlugParam, GetAppCustomObjectDefinitionBySlugParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsBySlugParam, GetAppJobsParam, GetAppResourcesParam, GetApplicationLanguagesParam, GetApplicationResourceTranslationsParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSupportInformationParam, GetTagsTemplateParam, GetTranslateUILabelsParam, GetTranslateUILabelsByIdParam, ImportAppCustomObjectEntriesBySlugParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryBySlugParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldByResourceSlugParam, UpdateAppCustomFieldDefinitionBySlugParam, UpdateAppCustomObjectBySlugParam, UpdateAppCustomObjectDefinitionBySlugParam, UpdateApplicationLanguageStatusParam, UpdateApplicationResourceTranslationParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSupportInformationParam, UpdateTranslateUILabelsParam, UpsertApplicationResourceTranslationInBulkParam };
+    export { AddApplicationLanguageParam, AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, BulkUnPublishApplicationLanguageParam, CreateAnnouncementParam, CreateAppAssociationParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectBySlugParam, CreateAppCustomObjectDefinitionParam, CreateApplicationResourceTranslationParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreateSEOMarkupSchemaParam, CreateTranslateUILabelsParam, DeleteAnnouncementParam, DeleteAppAssociationParam, DeleteAppCustomFieldDefinitionBySlugParam, DeleteAppCustomObjectBySlugParam, DeleteAppCustomObjectDefinitionBySlugParam, DeleteApplicationLanguageParam, DeleteApplicationResourceTranslationParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesBySlugParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppAssociationParam, GetAppCustomFieldDefinitionByResourceParam, GetAppCustomFieldDefinitionBySlugParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsByResourceSlugParam, GetAppCustomObjectBySlugParam, GetAppCustomObjectDefinitionBySlugParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsBySlugParam, GetAppJobsParam, GetAppResourcesParam, GetApplicationLanguagesParam, GetApplicationResourceTranslationsParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSupportInformationParam, GetTagsTemplateParam, GetTranslateUILabelsParam, GetTranslateUILabelsByIdParam, ImportAppCustomObjectEntriesBySlugParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryBySlugParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppAssociationParam, UpdateAppCustomFieldByResourceSlugParam, UpdateAppCustomFieldDefinitionBySlugParam, UpdateAppCustomObjectBySlugParam, UpdateAppCustomObjectDefinitionBySlugParam, UpdateApplicationLanguageStatusParam, UpdateApplicationResourceTranslationParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSupportInformationParam, UpdateTranslateUILabelsParam, UpsertApplicationResourceTranslationInBulkParam };
 }
 type AddApplicationLanguageParam = {
     body: ContentPlatformModel.ApplicationLanguageCreate;
@@ -745,6 +763,9 @@ type BulkUnPublishApplicationLanguageParam = {
 };
 type CreateAnnouncementParam = {
     body: ContentPlatformModel.AdminAnnouncementSchema;
+};
+type CreateAppAssociationParam = {
+    body: ContentPlatformModel.AppAssociationWriteBody;
 };
 type CreateAppCustomFieldDefinitionParam = {
     resource: string;
@@ -1225,6 +1246,9 @@ type UpdateAnnouncementScheduleParam = {
     announcementId: string;
     body: ContentPlatformModel.ScheduleSchema;
 };
+type UpdateAppAssociationParam = {
+    body: ContentPlatformModel.AppAssociationWriteBody;
+};
 type UpdateAppCustomFieldByResourceSlugParam = {
     resource: string;
     resourceSlug: string;
@@ -1333,6 +1357,8 @@ type UpdateTranslateUILabelsParam = {
 type UpsertApplicationResourceTranslationInBulkParam = {
     body: ContentPlatformModel.ResourceTranslationList;
 };
+type DeleteAppAssociationParam = any;
+type GetAppAssociationParam = any;
 type GetAppCustomFieldTypesParam = any;
 type GetAppResourcesParam = any;
 type GetApplicationLanguagesParam = any;

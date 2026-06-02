@@ -1,5 +1,38 @@
 export = ContentPlatformModel;
 /**
+ * @typedef AppAssociationDeleted
+ * @property {string} [message] - Operation status string (e.g. "deleted").
+ * @property {string} [application_id] - The application_id whose record was deleted.
+ */
+/**
+ * @typedef AppAssociationIosPayload
+ * @property {Object} [applinks] - Universal Links configuration.
+ * @property {Object} [appclips] - App Clips configuration.
+ * @property {Object} [webcredentials] - Shared Web Credentials.
+ * @property {Object} [activitycontinuation] - Handoff. Deprecated in iOS 14+.
+ */
+/**
+ * @typedef AppAssociationAndroidStatement
+ * @property {string[]} [relation] - Permission relations granted by this statement.
+ * @property {Object} [target] - Subject of the statement (android_app or web).
+ */
+/**
+ * @typedef AppAssociationWriteBody
+ * @property {AppAssociationIosPayload} [ios_payload] - Apple App Site
+ *   Association JSON. Null to clear.
+ * @property {AppAssociationAndroidStatement[]} [android_payload] - Digital
+ *   Asset Links JSON (array of statements). Null to clear.
+ */
+/**
+ * @typedef AppAssociationRecord
+ * @property {AppAssociationIosPayload} [ios_payload]
+ * @property {AppAssociationAndroidStatement[]} [android_payload]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+/**
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
@@ -1629,8 +1662,76 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, TemplateSchema, TemplateField, CreateTagRequestSchema, DataLoaderSchema, TagsTemplateSchema, TagTemplateItem, TemplateLayout, FieldDefinition, FieldValidation, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, SeoTranslate, MetaTag, MetaTagItem, ResourceTranslation, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
+    export { AppAssociationDeleted, AppAssociationIosPayload, AppAssociationAndroidStatement, AppAssociationWriteBody, AppAssociationRecord, ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, TemplateSchema, TemplateField, CreateTagRequestSchema, DataLoaderSchema, TagsTemplateSchema, TagTemplateItem, TemplateLayout, FieldDefinition, FieldValidation, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, TranslateUiLabels, TranslateUiLabelsCreate, StaticResourceUpdate, TranslateUiLabelsPage, Error, Meta, CompanyLanguage, CompanyLanguageCreate, CompanyLanguageUpdate, ApplicationLanguage, unPublishApplicationLanguage, ApplicationLanguageCreate, ApplicationLanguageUpdate, TranslatableResource, ResourceDefinition, ResourceJsonSchema, ResourceJsonSchemaType, ResourceUISchema, ResourceBulkDetails, Title, FeatureImage, SeoTranslate, MetaTag, MetaTagItem, ResourceTranslation, TranslationSeo, ResourceTranslationList, ResourceTranslationCreate, ResourceTranslationUpdate, TranslatableSection, Metrics, ResourceTranslationUpsertItem, ResourceTranslationBulkUpsert, StandardError, OperationResponseSchema, GenerationEntityType, PageType };
 }
+/** @returns {AppAssociationDeleted} */
+declare function AppAssociationDeleted(): AppAssociationDeleted;
+type AppAssociationDeleted = {
+    /**
+     * - Operation status string (e.g. "deleted").
+     */
+    message?: string;
+    /**
+     * - The application_id whose record was deleted.
+     */
+    application_id?: string;
+};
+/** @returns {AppAssociationIosPayload} */
+declare function AppAssociationIosPayload(): AppAssociationIosPayload;
+type AppAssociationIosPayload = {
+    /**
+     * - Universal Links configuration.
+     */
+    applinks?: any;
+    /**
+     * - App Clips configuration.
+     */
+    appclips?: any;
+    /**
+     * - Shared Web Credentials.
+     */
+    webcredentials?: any;
+    /**
+     * - Handoff. Deprecated in iOS 14+.
+     */
+    activitycontinuation?: any;
+};
+/** @returns {AppAssociationAndroidStatement} */
+declare function AppAssociationAndroidStatement(): AppAssociationAndroidStatement;
+type AppAssociationAndroidStatement = {
+    /**
+     * - Permission relations granted by this statement.
+     */
+    relation?: string[];
+    /**
+     * - Subject of the statement (android_app or web).
+     */
+    target?: any;
+};
+/** @returns {AppAssociationWriteBody} */
+declare function AppAssociationWriteBody(): AppAssociationWriteBody;
+type AppAssociationWriteBody = {
+    /**
+     * - Apple App Site
+     * Association JSON. Null to clear.
+     */
+    ios_payload?: AppAssociationIosPayload;
+    /**
+     * - Digital
+     * Asset Links JSON (array of statements). Null to clear.
+     */
+    android_payload?: AppAssociationAndroidStatement[];
+};
+/** @returns {AppAssociationRecord} */
+declare function AppAssociationRecord(): AppAssociationRecord;
+type AppAssociationRecord = {
+    ios_payload?: AppAssociationIosPayload;
+    android_payload?: AppAssociationAndroidStatement[];
+    created_at?: string;
+    updated_at?: string;
+    created_by?: string;
+    modified_by?: string;
+};
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
 type ValidationError = {

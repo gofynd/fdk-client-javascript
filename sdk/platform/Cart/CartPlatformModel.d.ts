@@ -1323,6 +1323,7 @@ export = CartPlatformModel;
  * @property {string} [item_type] - Type of the item in cart.
  * @property {ArticleCharges[]} [charges] - Charges information which denotes
  *   types of charges and amount of charge applied to that product in cart.
+ * @property {string} [added_on] - Date and time when the item was added to the cart.
  */
 /**
  * @typedef OpenapiCartDetailsResult
@@ -1978,6 +1979,11 @@ export = CartPlatformModel;
  *   applied to cart or not
  * @property {string} [coupon_type] - Type of the coupon applied to cart
  * @property {string} [expires_on] - Message to display to user for expiry of the coupon
+ * @property {string} [expires_at] - Represents the last valid timeslot date on
+ *   which the coupon can be applied in ISO 8601 (UTC Z) format,based on its
+ *   configured schedule. If the coupon is restricted to specific days (e.g.,
+ *   Mondays and Thursdays), the expiry date will be the last eligible day
+ *   within the overall end date range, not necessarily the end date itself.
  * @property {number} [coupon_value] - Coupon value of the coupon applied to cart
  * @property {string} [sub_title] - Coupon subtitle of the coupon applied to
  *   cart which is used to display
@@ -2822,17 +2828,9 @@ export = CartPlatformModel;
  * @property {string} [rejected_on] - Date time format when the offer rejected
  */
 /**
- * @typedef NextScheduleItems
- * @property {string} [start] - Start date of schedule
- * @property {string} [end] - End date of schedule
- */
-/**
  * @typedef OfferSchedule
  * @property {string} end - The end date and time until which the offer remains valid.
  * @property {string} start - The start date and time from which the offer becomes valid.
- * @property {NextScheduleItems[]} [next_schedule] - A auto generated list of
- *   date-time entries based on start, end, cron and duration data on which the
- *   offer is scheduled to activate in the future.
  * @property {string} [cron] - A cron expression used to schedule the offer to
  *   activate periodically. When cron is null or not provided, duration is optional.
  * @property {number} [duration] - Duration of the offer activation in seconds.
@@ -2858,7 +2856,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, NextScheduleItems, OfferSchedule, OfferListItem, OfferListResult };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, OfferSchedule, OfferListItem, OfferListResult };
 }
 /** @returns {RedeemLoyaltyPoints} */
 declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
@@ -6085,6 +6083,10 @@ type CartProductInfo = {
      * types of charges and amount of charge applied to that product in cart.
      */
     charges?: ArticleCharges[];
+    /**
+     * - Date and time when the item was added to the cart.
+     */
+    added_on?: string;
 };
 /** @returns {OpenapiCartDetailsResult} */
 declare function OpenapiCartDetailsResult(): OpenapiCartDetailsResult;
@@ -7807,6 +7809,14 @@ type Coupon = {
      * - Message to display to user for expiry of the coupon
      */
     expires_on?: string;
+    /**
+     * - Represents the last valid timeslot date on
+     * which the coupon can be applied in ISO 8601 (UTC Z) format,based on its
+     * configured schedule. If the coupon is restricted to specific days (e.g.,
+     * Mondays and Thursdays), the expiry date will be the last eligible day
+     * within the overall end date range, not necessarily the end date itself.
+     */
+    expires_at?: string;
     /**
      * - Coupon value of the coupon applied to cart
      */
@@ -9854,18 +9864,6 @@ type OfferDateMeta = {
      */
     rejected_on?: string;
 };
-/** @returns {NextScheduleItems} */
-declare function NextScheduleItems(): NextScheduleItems;
-type NextScheduleItems = {
-    /**
-     * - Start date of schedule
-     */
-    start?: string;
-    /**
-     * - End date of schedule
-     */
-    end?: string;
-};
 /** @returns {OfferSchedule} */
 declare function OfferSchedule(): OfferSchedule;
 type OfferSchedule = {
@@ -9877,12 +9875,6 @@ type OfferSchedule = {
      * - The start date and time from which the offer becomes valid.
      */
     start: string;
-    /**
-     * - A auto generated list of
-     * date-time entries based on start, end, cron and duration data on which the
-     * offer is scheduled to activate in the future.
-     */
-    next_schedule?: NextScheduleItems[];
     /**
      * - A cron expression used to schedule the offer to
      * activate periodically. When cron is null or not provided, duration is optional.

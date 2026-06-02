@@ -199,6 +199,7 @@ const Joi = require("joi");
  * @property {ListViewItems[]} items - List of zone items, each representing a
  *   zone's details.
  * @property {Page} page
+ * @property {FoDetails} [fo_details]
  */
 
 /**
@@ -1426,6 +1427,9 @@ const Joi = require("joi");
  *   in the courier partner shipment.
  * @property {boolean} is_mto - A boolean indicating if the courier partner
  *   supports Made to Order service.
+ * @property {boolean} [is_mps] - Indicates if shipment configuration is
+ *   multi-part shipment or single shipment.
+ * @property {boolean} [is_b2b] - Indicates if the shipment is business-to-business.
  * @property {string[]} ignore_scheme_ids - A list of scheme_id which we want to
  *   ignore in courier_partner assignment.
  * @property {Object} [error] - Error Details
@@ -2166,6 +2170,16 @@ const Joi = require("joi");
  * @typedef RegionSchema
  * @property {string} [name] - Name of the region.
  * @property {number} [count] - Count of items in the region.
+ */
+
+/**
+ * @typedef FoDetails
+ * @property {string} serviceability_type - Serviceability strategy configured
+ *   for the fulfillment option. `zone_based` corresponds to the "Restrict to
+ *   Zones" strategy and `all` to "Ship to All".
+ * @property {number} active_non_default_zone_count - Number of active,
+ *   non-default zones (excluding zones still in progress) mapped to this
+ *   fulfillment option.
  */
 
 /**
@@ -3419,6 +3433,7 @@ class ServiceabilityPlatformModel {
         .items(ServiceabilityPlatformModel.ListViewItems())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
+      fo_details: ServiceabilityPlatformModel.FoDetails(),
     });
   }
 
@@ -4715,6 +4730,8 @@ class ServiceabilityPlatformModel {
         .items(ServiceabilityPlatformModel.CourierPartnerShipmentsArticles())
         .required(),
       is_mto: Joi.boolean().required(),
+      is_mps: Joi.boolean(),
+      is_b2b: Joi.boolean(),
       ignore_scheme_ids: Joi.array().items(Joi.string().allow("")).required(),
       error: Joi.object().pattern(/\S/, Joi.any()),
     });
@@ -5536,6 +5553,14 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       name: Joi.string().allow(""),
       count: Joi.number(),
+    });
+  }
+
+  /** @returns {FoDetails} */
+  static FoDetails() {
+    return Joi.object({
+      serviceability_type: Joi.string().allow("").required(),
+      active_non_default_zone_count: Joi.number().required(),
     });
   }
 

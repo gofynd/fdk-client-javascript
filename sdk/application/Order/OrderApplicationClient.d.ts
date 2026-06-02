@@ -56,7 +56,7 @@ declare class Order {
      * @summary: List customer orders
      * @description: Get all orders associated with a customer account. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/order/getOrders/).
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, allowInactive, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderList>;
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, startDatetime, endDatetime, customMeta, allowInactive, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderList>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
