@@ -1279,7 +1279,7 @@ class Catalog {
    * @returns {Promise<ProductSizeSellersResponseV4>} - Success response
    * @name getProductSellersBySlug
    * @summary: List sellers
-   * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSellersBySlug/).
+   * @description: List all sellers offering a specific product identified by its slug and size. Optionally filter the seller list by store name, seller name, or store code using the `q` query parameter. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSellersBySlug/).
    */
   async getProductSellersBySlug(
     {
@@ -1289,6 +1289,7 @@ class Catalog {
       fulfillmentOptionSlug,
       pageNo,
       pageSize,
+      q,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1307,6 +1308,7 @@ class Catalog {
     query_params["fulfillment_option_slug"] = fulfillmentOptionSlug;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["q"] = q;
 
     const xHeaders = {};
 
@@ -1344,9 +1346,11 @@ class Catalog {
    * @param {string} [arg.fulfillmentOptionSlug] - Specifies the fulfillment
    *   method, indicating whether an order is for home delivery or store pickup
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {string} [arg.q] - Filter sellers by matching text against store
+   *   name, seller name, or store code. Case-insensitive partial match.
    * @returns {Paginator<ProductSizeSellersResponseV4>}
    * @summary: List sellers
-   * @description: List all sellers offering a specific product identified by its slug and size.
+   * @description: List all sellers offering a specific product identified by its slug and size. Optionally filter the seller list by store name, seller name, or store code using the `q` query parameter.
    */
   getProductSellersBySlugPaginator({
     slug,
@@ -1354,6 +1358,7 @@ class Catalog {
     strategy,
     fulfillmentOptionSlug,
     pageSize,
+    q,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -1367,6 +1372,7 @@ class Catalog {
         fulfillmentOptionSlug: fulfillmentOptionSlug,
         pageNo: pageNo,
         pageSize: pageSize,
+        q: q,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

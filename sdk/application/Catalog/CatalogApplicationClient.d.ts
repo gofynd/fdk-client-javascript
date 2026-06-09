@@ -344,9 +344,9 @@ declare class Catalog {
      * @returns {Promise<ProductSizeSellersResponseV4>} - Success response
      * @name getProductSellersBySlug
      * @summary: List sellers
-     * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSellersBySlug/).
+     * @description: List all sellers offering a specific product identified by its slug and size. Optionally filter the seller list by store name, seller name, or store code using the `q` query parameter. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSellersBySlug/).
      */
-    getProductSellersBySlug({ slug, size, strategy, fulfillmentOptionSlug, pageNo, pageSize, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizeSellersResponseV4>;
+    getProductSellersBySlug({ slug, size, strategy, fulfillmentOptionSlug, pageNo, pageSize, q, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductSizeSellersResponseV4>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -360,16 +360,19 @@ declare class Catalog {
      * @param {string} [arg.fulfillmentOptionSlug] - Specifies the fulfillment
      *   method, indicating whether an order is for home delivery or store pickup
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.q] - Filter sellers by matching text against store
+     *   name, seller name, or store code. Case-insensitive partial match.
      * @returns {Paginator<ProductSizeSellersResponseV4>}
      * @summary: List sellers
-     * @description: List all sellers offering a specific product identified by its slug and size.
+     * @description: List all sellers offering a specific product identified by its slug and size. Optionally filter the seller list by store name, seller name, or store code using the `q` query parameter.
      */
-    getProductSellersBySlugPaginator({ slug, size, strategy, fulfillmentOptionSlug, pageSize, }?: {
+    getProductSellersBySlugPaginator({ slug, size, strategy, fulfillmentOptionSlug, pageSize, q, }?: {
         slug: string;
         size: string;
         strategy?: string;
         fulfillmentOptionSlug?: string;
         pageSize?: number;
+        q?: string;
     }): Paginator<ProductSizeSellersResponseV4>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

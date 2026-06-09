@@ -667,6 +667,7 @@ const Joi = require("joi");
  *   | "profile-company"
  *   | "profile-email"
  *   | "profile-phone"
+ *   | "profile-loyalty-rewards"
  *   | "rate-us"
  *   | "refer-earn"
  *   | "settings"
@@ -1560,6 +1561,8 @@ class ThemePlatformModel {
       "profile-email",
 
       "profile-phone",
+
+      "profile-loyalty-rewards",
 
       "rate-us",
 
