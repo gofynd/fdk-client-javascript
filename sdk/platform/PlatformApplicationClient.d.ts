@@ -15,7 +15,6 @@ declare class PlatformApplicationClient {
     config: import("./PlatformConfig");
     companyId: string;
     applicationId: string;
-    analytics: Analytics;
     cart: Cart;
     catalog: Catalog;
     communication: Communication;
@@ -38,7 +37,6 @@ declare class PlatformApplicationClient {
      */
     setExtraHeaders(header: object): void;
 }
-import Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
 import Cart = require("./Cart/CartPlatformApplicationClient");
 import Catalog = require("./Catalog/CatalogPlatformApplicationClient");
 import Communication = require("./Communication/CommunicationPlatformApplicationClient");

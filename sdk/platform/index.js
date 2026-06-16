@@ -2,8 +2,6 @@ module.exports = {
   PlatformConfig: require("./PlatformConfig"),
   PlatformClient: require("./PlatformClient"),
   PlatformModel: {
-    AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
-
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
 
     BillingPlatformModel: require("./Billing/BillingPlatformModel"),

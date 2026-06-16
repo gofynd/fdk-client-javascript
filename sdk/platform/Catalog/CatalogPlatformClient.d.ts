@@ -33,6 +33,16 @@ declare class Catalog {
      */
     bulkHsnCode({ body, requestHeaders }?: CatalogPlatformValidator.BulkHsnCodeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkHsnResponseSchema>;
     /**
+     * @param {CatalogPlatformValidator.CbsOnboardGetParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetCompanySchema>} - Success response
+     * @name cbsOnboardGet
+     * @summary: Get company profile
+     * @description: Retrieves the seller-facing company profile for the specified company. The response includes onboarding metadata, contact and address details, legal documents, and deployment region metadata for the company. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/cbsOnboardGet/).
+     */
+    cbsOnboardGet({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCompanySchema>;
+    /**
      * @param {CatalogPlatformValidator.CreateBulkInventoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

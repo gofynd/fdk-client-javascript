@@ -13,6 +13,7 @@ export = CatalogPlatformValidator;
  * @typedef BulkHsnCodeParam
  * @property {CatalogPlatformModel.BulkHsnUpsert} body
  */
+/** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBulkInventoryParam
  * @property {string} batchId - Batch Id of the bulk create job.
@@ -535,6 +536,8 @@ declare class CatalogPlatformValidator {
     static allSizes(): AllSizesParam;
     /** @returns {BulkHsnCodeParam} */
     static bulkHsnCode(): BulkHsnCodeParam;
+    /** @returns {CbsOnboardGetParam} */
+    static cbsOnboardGet(): any;
     /** @returns {CreateBulkInventoryParam} */
     static createBulkInventory(): CreateBulkInventoryParam;
     /** @returns {CreateBulkInventoryJobParam} */
@@ -699,7 +702,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PartialUpdateProductParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CbsOnboardGetParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateHsCodeParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, CreateTaxParam, CreateTaxComponentNameParam, CreateTaxVersionParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DeleteTaxRuleParam, DeleteTaxVersionParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAllTaxRulesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetHsCodesParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetTaxComponentNamesParam, GetTaxVersionDetailsParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PartialUpdateProductParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateLocationPriceParam, UpdateLocationQuantityParam, UpdateMarketplaceOptinParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UpdateTaxRuleParam, UpdateTaxVersionParam, ValidateProductGlobalTemplateParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AddInventoryParam = {
     /**
@@ -1704,6 +1707,7 @@ type ValidateProductTemplateSchemaParam = {
      */
     schemaType?: string;
 };
+type CbsOnboardGetParam = any;
 type GetCompanyDetailParam = any;
 type GetCompanyMetricsParam = any;
 type GetInventoryExportParam = any;

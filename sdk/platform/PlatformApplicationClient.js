@@ -1,5 +1,3 @@
-const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
-
 const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Catalog = require("./Catalog/CatalogPlatformApplicationClient");
@@ -46,8 +44,6 @@ class PlatformApplicationClient {
     this.config = config;
     this.companyId = config.companyId;
     this.applicationId = applicationId;
-
-    this.analytics = new Analytics(config, applicationId);
 
     this.cart = new Cart(config, applicationId);
 

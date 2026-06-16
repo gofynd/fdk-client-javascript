@@ -19,6 +19,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {CatalogPlatformModel.BulkHsnUpsert} body
  */
 
+/** @typedef CbsOnboardGetParam */
+
 /**
  * @typedef CreateBulkInventoryParam
  * @property {string} batchId - Batch Id of the bulk create job.
@@ -637,6 +639,11 @@ class CatalogPlatformValidator {
     return Joi.object({
       body: CatalogPlatformModel.BulkHsnUpsert().required(),
     }).required();
+  }
+
+  /** @returns {CbsOnboardGetParam} */
+  static cbsOnboardGet() {
+    return Joi.object({}).required();
   }
 
   /** @returns {CreateBulkInventoryParam} */

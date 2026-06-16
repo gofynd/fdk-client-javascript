@@ -1732,6 +1732,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RegionDetailsSchema
+ * @property {string} [slug] - Base region slug.
+ * @property {string} [zone] - Zone or cluster slug.
+ */
+
+/**
  * @typedef GetAllSizes
  * @property {AllSizes[]} [all_sizes]
  */
@@ -1849,6 +1855,10 @@ const Joi = require("joi");
  * @property {string} [modified_on] - The date and time when the company record
  *   was last updated.
  * @property {string} [name] - The registered name of the company.
+ * @property {string} [region] - Deployment region slug for the company profile.
+ *   When the zone is default, this is the region slug; otherwise it is
+ *   formatted as region/zone.
+ * @property {RegionDetailsSchema} [region_details]
  * @property {string} [reject_reason] - If applicable, the reason why the
  *   company's application or status was rejected.
  * @property {string} [stage] - Current operational stage of the company, such
@@ -7280,6 +7290,14 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {RegionDetailsSchema} */
+  static RegionDetailsSchema() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      zone: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {GetAllSizes} */
   static GetAllSizes() {
     return Joi.object({
@@ -7411,6 +7429,8 @@ class CatalogPlatformModel {
       modified_by: CatalogPlatformModel.UserSchema(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+      region_details: CatalogPlatformModel.RegionDetailsSchema(),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
