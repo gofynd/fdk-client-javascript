@@ -22,9 +22,14 @@ jobs:
           version: ${{ github.ref_name }}
           rename: "@gofynd/fdk-client-javascript"
       - run: npm ci
-      - run: |
-          if [[ "${{ github.ref_name }}" == *"-beta."* ]]; then
-            npm publish --access public --tag beta
+      - name: Publish package
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+
+          if [[ "$VERSION" =~ -([A-Za-z]+) ]]; then
+            TAG="${BASH_REMATCH[1]}"
+            echo "Publishing prerelease with tag $TAG"
+            npm publish --access public --tag "$TAG"
           else
             npm publish --access public
           fi
