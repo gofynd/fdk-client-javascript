@@ -1270,6 +1270,39 @@ export = ServiceabilityPlatformModel;
  *   processing is complete.
  */
 /**
+ * @typedef ZoneProductsAtomicPatchItem
+ * @property {string} zone_id - The unique identifier of the zone to patch.
+ * @property {string} product_type - The type the zone's product list is made
+ *   of. Must match the existing zone product type. Product ids are not
+ *   validated against the catalog for any type.
+ * @property {Object[]} values - Product identifiers to add or remove - uids for
+ *   item_id/product/department/category (integers) or tag strings.
+ * @property {string} action - Whether to add the values to, or remove them
+ *   from, the zone product list.
+ */
+/**
+ * @typedef ZoneProductsAtomicPatchDetails
+ * @property {ZoneProductsAtomicPatchItem[]} items - List of per-zone product
+ *   patch operations.
+ */
+/**
+ * @typedef ZoneProductsAtomicPatchResultItem
+ * @property {string} zone_id
+ * @property {string} product_type - The type the zone's product list is made
+ *   of. Mirrors the product_type sent in the patch request.
+ * @property {string} action
+ * @property {string} status
+ * @property {number} [values_count] - Number of products in the zone's product
+ *   list after a successful patch.
+ * @property {ZoneProductsAtomicPatchItemError[]} [error] - Present when status
+ *   is `failed`.
+ */
+/**
+ * @typedef ZoneProductsAtomicPatchResult
+ * @property {ZoneProductsAtomicPatchResultItem[]} items
+ * @property {ZoneProductsAtomicPatchSummary} summary
+ */
+/**
  * @typedef CourierPartnerToServiceability
  * @property {ServiceabilityLocation} [location]
  * @property {string} [pincode] - The pincode of the serviceability location.
@@ -2897,10 +2930,22 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} has_next - Indicates whether more pages are available.
  * @property {number} total_records - Total number of records matching the criteria.
  */
+/**
+ * @typedef ZoneProductsAtomicPatchItemError
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
+ */
+/**
+ * @typedef ZoneProductsAtomicPatchSummary
+ * @property {number} total
+ * @property {number} success
+ * @property {number} failed
+ */
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { GenerateShipmentsAndCourierPartnerResult, CourierPartnerDetails, PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, StorePolygonServiceabilityRequestBody, StorePolygonServiceabilityResult, StorePolygonServiceabilityGetResult, ZoneProductsBulkPatchDetails, GetZoneProductsBulkPatchResult, CourierPartnerToServiceability, ServiceabilityLocation, CourierPartnerShipments, PromiseObject, PromiseData, PromiseMeta, CourierPartnerPromiseData, DeliveryTat, DeliveryTatSchema, CourierPartnerShipmentsMeta, ShipmentCourierPartnersResult, AreaCode, TAT, LocationDetailsServiceability, CourierPartnerShipmentsArticles, CourierPartnerArticlesPromise, CourierPartnerArticlesReturnReasons, CourierPartnerArticlesReturnReasonsMeta, ArticleWeight, ArticleAttributes, ArticleDimension, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, FulfillmentOptionDefaultFor, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, FoDetails, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject, StorePolygonServiceabilityRequestData, StorePolygonServiceabilityStore, StorePolygonServiceabilityStoreCoordinates, StorePolygonServiceabilityConfig, StorePolygonServiceabilityPolygon, StorePolygonServiceabilityFeature, StorePolygonServiceabilityGeometry, StorePolygonServiceabilityAttributes, StorePolygonServiceabilityReferenceCoordinates, StorePolygonServiceabilityStoreSummary, StorePolygonServiceabilityError, StorePolygonServiceabilityPagination };
+    export { GenerateShipmentsAndCourierPartnerResult, CourierPartnerDetails, PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, StorePolygonServiceabilityRequestBody, StorePolygonServiceabilityResult, StorePolygonServiceabilityGetResult, ZoneProductsBulkPatchDetails, GetZoneProductsBulkPatchResult, ZoneProductsAtomicPatchItem, ZoneProductsAtomicPatchDetails, ZoneProductsAtomicPatchResultItem, ZoneProductsAtomicPatchResult, CourierPartnerToServiceability, ServiceabilityLocation, CourierPartnerShipments, PromiseObject, PromiseData, PromiseMeta, CourierPartnerPromiseData, DeliveryTat, DeliveryTatSchema, CourierPartnerShipmentsMeta, ShipmentCourierPartnersResult, AreaCode, TAT, LocationDetailsServiceability, CourierPartnerShipmentsArticles, CourierPartnerArticlesPromise, CourierPartnerArticlesReturnReasons, CourierPartnerArticlesReturnReasonsMeta, ArticleWeight, ArticleAttributes, ArticleDimension, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, FulfillmentOptionDefaultFor, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, FoDetails, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject, StorePolygonServiceabilityRequestData, StorePolygonServiceabilityStore, StorePolygonServiceabilityStoreCoordinates, StorePolygonServiceabilityConfig, StorePolygonServiceabilityPolygon, StorePolygonServiceabilityFeature, StorePolygonServiceabilityGeometry, StorePolygonServiceabilityAttributes, StorePolygonServiceabilityReferenceCoordinates, StorePolygonServiceabilityStoreSummary, StorePolygonServiceabilityError, StorePolygonServiceabilityPagination, ZoneProductsAtomicPatchItemError, ZoneProductsAtomicPatchSummary };
 }
 /** @returns {GenerateShipmentsAndCourierPartnerResult} */
 declare function GenerateShipmentsAndCourierPartnerResult(): GenerateShipmentsAndCourierPartnerResult;
@@ -6042,6 +6087,67 @@ type GetZoneProductsBulkPatchResult = {
      * processing is complete.
      */
     result_file_url?: string;
+};
+/** @returns {ZoneProductsAtomicPatchItem} */
+declare function ZoneProductsAtomicPatchItem(): ZoneProductsAtomicPatchItem;
+type ZoneProductsAtomicPatchItem = {
+    /**
+     * - The unique identifier of the zone to patch.
+     */
+    zone_id: string;
+    /**
+     * - The type the zone's product list is made
+     * of. Must match the existing zone product type. Product ids are not
+     * validated against the catalog for any type.
+     */
+    product_type: string;
+    /**
+     * - Product identifiers to add or remove - uids for
+     * item_id/product/department/category (integers) or tag strings.
+     */
+    values: any[];
+    /**
+     * - Whether to add the values to, or remove them
+     * from, the zone product list.
+     */
+    action: string;
+};
+/** @returns {ZoneProductsAtomicPatchDetails} */
+declare function ZoneProductsAtomicPatchDetails(): ZoneProductsAtomicPatchDetails;
+type ZoneProductsAtomicPatchDetails = {
+    /**
+     * - List of per-zone product
+     * patch operations.
+     */
+    items: ZoneProductsAtomicPatchItem[];
+};
+/** @returns {ZoneProductsAtomicPatchResultItem} */
+declare function ZoneProductsAtomicPatchResultItem(): ZoneProductsAtomicPatchResultItem;
+type ZoneProductsAtomicPatchResultItem = {
+    zone_id: string;
+    /**
+     * - The type the zone's product list is made
+     * of. Mirrors the product_type sent in the patch request.
+     */
+    product_type: string;
+    action: string;
+    status: string;
+    /**
+     * - Number of products in the zone's product
+     * list after a successful patch.
+     */
+    values_count?: number;
+    /**
+     * - Present when status
+     * is `failed`.
+     */
+    error?: ZoneProductsAtomicPatchItemError[];
+};
+/** @returns {ZoneProductsAtomicPatchResult} */
+declare function ZoneProductsAtomicPatchResult(): ZoneProductsAtomicPatchResult;
+type ZoneProductsAtomicPatchResult = {
+    items: ZoneProductsAtomicPatchResultItem[];
+    summary: ZoneProductsAtomicPatchSummary;
 };
 /** @returns {CourierPartnerToServiceability} */
 declare function CourierPartnerToServiceability(): CourierPartnerToServiceability;
@@ -10079,4 +10185,18 @@ type StorePolygonServiceabilityPagination = {
      * - Total number of records matching the criteria.
      */
     total_records: number;
+};
+/** @returns {ZoneProductsAtomicPatchItemError} */
+declare function ZoneProductsAtomicPatchItemError(): ZoneProductsAtomicPatchItemError;
+type ZoneProductsAtomicPatchItemError = {
+    type?: string;
+    value?: string;
+    message?: string;
+};
+/** @returns {ZoneProductsAtomicPatchSummary} */
+declare function ZoneProductsAtomicPatchSummary(): ZoneProductsAtomicPatchSummary;
+type ZoneProductsAtomicPatchSummary = {
+    total: number;
+    success: number;
+    failed: number;
 };

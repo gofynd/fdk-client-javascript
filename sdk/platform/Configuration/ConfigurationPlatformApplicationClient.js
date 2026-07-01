@@ -1637,6 +1637,47 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   *   on Fynd Platform
+   * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+   *   application (sales channel website) created within a business account
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
+   * @summary: Get staff ordering stores
+   * @description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the sales channel will be utilized for placing orders).
+   */
+  getStaffOrderingStoresPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    q,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getStaffOrderingStores({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
    *   - Arg object
    *

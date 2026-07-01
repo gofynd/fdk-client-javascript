@@ -182,6 +182,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.ApplicationConfigPatch} body
  */
 /**
+ * @typedef PatchZoneProductsAtomicParam
+ * @property {ServiceabilityPlatformModel.ZoneProductsAtomicPatchDetails} body
+ */
+/**
  * @typedef PutFulfillmentOptionParam
  * @property {string} slug - Slug of the fulfillment option for retrieving details.
  * @property {ServiceabilityPlatformModel.FulfillmentOption} body
@@ -336,6 +340,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static insertApplicationConfig(): InsertApplicationConfigParam;
     /** @returns {PatchApplicationConfigurationParam} */
     static patchApplicationConfiguration(): PatchApplicationConfigurationParam;
+    /** @returns {PatchZoneProductsAtomicParam} */
+    static patchZoneProductsAtomic(): PatchZoneProductsAtomicParam;
     /** @returns {PutFulfillmentOptionParam} */
     static putFulfillmentOption(): PutFulfillmentOptionParam;
     /** @returns {UpdateBulkGeoAreaParam} */
@@ -370,7 +376,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static validateBulkFulfillmentOptions(): ValidateBulkFulfillmentOptionsParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreatePolygonParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, CreateZoneProductsBulkPatchJobParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, DownloadZoneProductsBulkSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationCourierPartnersListParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetPolygonParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZoneProductsBulkPatchJobStatusParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PutFulfillmentOptionParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdatePolygonParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateCourierPartnerRuleParam, CreateFulfillmentOptionParam, CreateGeoAreaParam, CreateGeoAreaExportJobParam, CreatePolygonParam, CreateShipmentsParam, CreateStoreRulesParam, CreateZoneParam, CreateZoneProductsBulkPatchJobParam, DeleteFulfillmentOptionsParam, DeleteZoneParam, DownloadGeoareaSampleFileParam, DownloadZoneProductsBulkSampleFileParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationCourierPartnersListParam, GetBulkExportParam, GetBulkFulfillmentValidationStatusParam, GetBulkGeoAreaParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetFulfillmentOptionProductsParam, GetFulfillmentOptionStoresParam, GetFulfillmentOptionsParam, GetFulfillmentOptionsListParam, GetGeoAreaParam, GetGeoAreaExportJobStatusParam, GetGeoAreasParam, GetPolygonParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZoneProductsBulkPatchJobStatusParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PatchZoneProductsAtomicParam, PutFulfillmentOptionParam, UpdateBulkGeoAreaParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdatePolygonParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam, UploadBulkFulfillmentOptionsParam, ValidateBulkFulfillmentOptionsParam };
 }
 type CreateBulkExportParam = {
     body: ServiceabilityPlatformModel.BulkCreateZoneExport;
@@ -673,6 +679,9 @@ type InsertApplicationConfigParam = {
 };
 type PatchApplicationConfigurationParam = {
     body: ServiceabilityPlatformModel.ApplicationConfigPatch;
+};
+type PatchZoneProductsAtomicParam = {
+    body: ServiceabilityPlatformModel.ZoneProductsAtomicPatchDetails;
 };
 type PutFulfillmentOptionParam = {
     /**

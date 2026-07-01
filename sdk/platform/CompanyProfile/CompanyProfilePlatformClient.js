@@ -1052,6 +1052,58 @@ class CompanyProfile {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.storeType] - Helps to sort the location list on the
+   *   basis of location type.
+   * @param {string} [arg.q] - Query that is to be searched.
+   * @param {string} [arg.stage] - To filter companies on basis of verified or
+   *   unverified companies.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+   * @param {string[]} [arg.types] - Helps to get the location list on the
+   *   basis of multiple location type.
+   * @param {string[]} [arg.tags] - Helps to get the location list on the
+   *   basis of multiple location tag.
+   * @returns {Paginator<CompanyProfilePlatformModel.LocationListSchema>}
+   * @summary: Get company specific stores
+   * @description: Retrieve a list of locations associated with the company.
+   */
+  getLocationsPaginator({
+    storeType,
+    q,
+    stage,
+    pageSize,
+    locationIds,
+    types,
+    tags,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getLocations({
+        storeType: storeType,
+        q: q,
+        stage: stage,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        locationIds: locationIds,
+        types: types,
+        tags: tags,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

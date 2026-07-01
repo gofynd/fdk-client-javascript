@@ -39,7 +39,7 @@ declare class Configuration {
      * @summary: List staff members
      * @description: List all staff members of the sales channel. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/configuration/getAppStaffList/).
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffListResponseSchema>;
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, appPermissions, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AppStaffListResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -50,16 +50,18 @@ declare class Configuration {
      * @param {string} [arg.user] - ID of the staff. Helps in retrieving the
      *   details of a particular staff member.
      * @param {string} [arg.userName] - Username of the member.
+     * @param {string} [arg.appPermissions] - App permissions.
      * @returns {Paginator<AppStaffListResponseSchema>}
      * @summary: List staff members
      * @description: List all staff members of the sales channel.
      */
-    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, userName, }?: {
+    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, userName, appPermissions, }?: {
         pageSize?: number;
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
         userName?: string;
+        appPermissions?: string;
     }): Paginator<AppStaffListResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

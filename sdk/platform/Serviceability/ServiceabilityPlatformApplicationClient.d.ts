@@ -518,6 +518,20 @@ declare class Serviceability {
      */
     patchApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResult>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.PatchZoneProductsAtomicParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneProductsAtomicPatchResult>}
+     *   - Success response
+     *
+     * @name patchZoneProductsAtomic
+     * @summary: Atomically add or remove products on zones (concurrency-safe)
+     * @description: Synchronously adds or removes products on one or more zones. Each item is applied with an atomic MongoDB array operator (`$addToSet` for add, `$pull` for remove) rather than a read-modify-write of the whole product list, so concurrent writes to the same zone never lose each other's changes. `product_type` must match the existing zone's product type. Product ids are not validated against the catalog (this is a synchronous API; callers send already-known ids). Returns a per-item status and a summary; per-item failures (e.g. zone not found, product type mismatch) do not fail the whole request. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/patchZoneProductsAtomic/).
+     */
+    patchZoneProductsAtomic({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchZoneProductsAtomicParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneProductsAtomicPatchResult>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.PutFulfillmentOptionParam} arg
      *   - Arg object
      *

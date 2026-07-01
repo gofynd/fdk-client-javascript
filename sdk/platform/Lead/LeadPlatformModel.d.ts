@@ -136,6 +136,12 @@ export = LeadPlatformModel;
  * @property {TicketAsset[]} [attachments] - List of all attachments related to the ticket
  */
 /**
+ * @typedef AdditionalInfo
+ * @property {string} [display_name] - Human readable name for this info
+ * @property {string} [display_value] - Human readable value for the info
+ * @property {number} [priority] - Priority of this additional info
+ */
+/**
  * @typedef AddTicketPayload
  * @property {Object} [created_by] - Creator of the ticket
  * @property {string} [status] - Status of the ticket
@@ -143,6 +149,8 @@ export = LeadPlatformModel;
  * @property {string} category - Category of the ticket
  * @property {TicketContent} content
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
+ * @property {AdditionalInfo[]} [additional_info] - Additional information
+ *   related to the ticket
  */
 /**
  * @typedef Priority
@@ -289,7 +297,7 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { GeneralConfigDetails, SupportCommunicationSchema, SupportSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { GeneralConfigDetails, SupportCommunicationSchema, SupportSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AdditionalInfo, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {GeneralConfigDetails} */
 declare function GeneralConfigDetails(): GeneralConfigDetails;
@@ -577,6 +585,22 @@ type TicketContent = {
      */
     attachments?: TicketAsset[];
 };
+/** @returns {AdditionalInfo} */
+declare function AdditionalInfo(): AdditionalInfo;
+type AdditionalInfo = {
+    /**
+     * - Human readable name for this info
+     */
+    display_name?: string;
+    /**
+     * - Human readable value for the info
+     */
+    display_value?: string;
+    /**
+     * - Priority of this additional info
+     */
+    priority?: number;
+};
 /** @returns {AddTicketPayload} */
 declare function AddTicketPayload(): AddTicketPayload;
 type AddTicketPayload = {
@@ -598,6 +622,11 @@ type AddTicketPayload = {
      * - Optional custom data that needs to be sent
      */
     _custom_json?: any;
+    /**
+     * - Additional information
+     * related to the ticket
+     */
+    additional_info?: AdditionalInfo[];
 };
 /** @returns {Priority} */
 declare function Priority(): Priority;

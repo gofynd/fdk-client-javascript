@@ -3325,6 +3325,89 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.PatchZoneProductsAtomicParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneProductsAtomicPatchResult>}
+   *   - Success response
+   *
+   * @name patchZoneProductsAtomic
+   * @summary: Atomically add or remove products on zones (concurrency-safe)
+   * @description: Synchronously adds or removes products on one or more zones. Each item is applied with an atomic MongoDB array operator (`$addToSet` for add, `$pull` for remove) rather than a read-modify-write of the whole product list, so concurrent writes to the same zone never lose each other's changes. `product_type` must match the existing zone's product type. Product ids are not validated against the catalog (this is a synchronous API; callers send already-known ids). Returns a per-item status and a summary; per-item failures (e.g. zone not found, product type mismatch) do not fail the whole request. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/patchZoneProductsAtomic/).
+   */
+  async patchZoneProductsAtomic(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.patchZoneProductsAtomic().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.patchZoneProductsAtomic().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > patchZoneProductsAtomic \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v2.0/company/${this.config.companyId}/application/${this.applicationId}/zones/bulk/products/patch`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.ZoneProductsAtomicPatchResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > patchZoneProductsAtomic \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.PutFulfillmentOptionParam} arg
    *   - Arg object
    *

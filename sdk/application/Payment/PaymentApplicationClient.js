@@ -52,6 +52,8 @@ class Payment {
         "/service/application/payment/v1.0/config/aggregators/key",
       getOrderBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/order/beneficiaries",
+      getOrderTransactions:
+        "/service/application/payment/v1.0/orders/{order_id}/transactions",
       getPaymentLink: "/service/application/payment/v1.0/create-payment-link/",
       getPaymentModeRoutes: "/service/application/payment/v1.0/payment/options",
       getPaymentModeRoutesPaymentLink:
@@ -1029,6 +1031,52 @@ class Payment {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderTransactionList>} - Success response
+   * @name getOrderTransactions
+   * @summary: List all transactions for an order
+   * @description: Returns all payment transactions for the given order ID, ordered by creation timestamp ascending. Each entry includes merchant transaction ID, payment mode name, logo, amount, latest status, and created_on. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getOrderTransactions/).
+   */
+  async getOrderTransactions(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const errors = validateRequiredParams(arguments[0], ["orderId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
+      });
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getOrderTransactions"],
+        params: { orderId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<GetPaymentLinkDetails>} - Success response
    * @name getPaymentLink
    * @summary: Get payment link
@@ -1182,6 +1230,7 @@ class Payment {
       cardReference,
       fulfillmentOption,
       userDetails,
+      displaySplit,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1196,6 +1245,7 @@ class Payment {
     query_params["order_type"] = orderType;
     query_params["fulfillment_option"] = fulfillmentOption;
     query_params["user_details"] = userDetails;
+    query_params["display_split"] = displaySplit;
 
     const xHeaders = {};
 

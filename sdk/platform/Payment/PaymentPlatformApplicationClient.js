@@ -1109,6 +1109,87 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetOrderTransactionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.OrderTransactionList>} - Success response
+   * @name getOrderTransactions
+   * @summary: List all transactions for an order
+   * @description: Returns all payment transactions associated with the given order ID, ordered by creation timestamp ascending. Each entry includes the merchant transaction ID, payment mode name, logo URL (small, falling back to large), transaction amount, latest status, and creation timestamp. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getOrderTransactions/).
+   */
+  async getOrderTransactions(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getOrderTransactions().validate(
+      {
+        orderId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getOrderTransactions().validate(
+      {
+        orderId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getOrderTransactions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/transactions`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.OrderTransactionList().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getOrderTransactions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
    *   - Arg object
    *
@@ -3387,6 +3468,88 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > updateMerchantRefundPriority \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.UpdateOrderMetaParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.OrderMetaResult>} - Success response
+   * @name updateOrderMeta
+   * @summary: Update order metadata
+   * @description: Update metadata associated with a payment order. Use this to set or update PAN (Permanent Account Number) for an order. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/updateOrderMeta/).
+   */
+  async updateOrderMeta(
+    { orderId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.updateOrderMeta().validate(
+      {
+        orderId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.updateOrderMeta().validate(
+      {
+        orderId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > updateOrderMeta \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["order_id"] = orderId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/order/meta`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.OrderMetaResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > updateOrderMeta \n ${res_error}`,
         });
       }
     }

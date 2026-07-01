@@ -3,6 +3,9 @@ export = CartPlatformModel;
  * @typedef RedeemLoyaltyPoints
  * @property {boolean} redeem_points - Marks if engage points are to be redeemed
  *   for the given cart.
+ * @property {Object} [meta] - Free-form metadata forwarded to the loyalty
+ *   engine. Any field can be passed (e.g. points, redeem_rule_id). Engage reads
+ *   from this dict when processing redemption.
  */
 /**
  * @typedef CouponDateMeta
@@ -945,6 +948,9 @@ export = CartPlatformModel;
  * @property {string} [title] - Unique title for loyalty program applicable.
  * @property {number} [discount_amount] - Engage discount amount applied on the
  *   cart as payment mode
+ * @property {Object} [meta] - Free-form metadata returned by the loyalty engine
+ *   in its response. Structure varies; may include rule details, campaign info,
+ *   or any additional fields Engage sends back.
  */
 /**
  * @typedef RawBreakup
@@ -1608,12 +1614,17 @@ export = CartPlatformModel;
  * @property {boolean} [buy_now] - Buy now flag for the cart which denotes user
  *   is doing fast checkout for the cart using buy now
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
  *   promotions data to cart which includes promotion id, promotion name, offer
  *   text, description, buy rules, discount rules and promotion type
  * @property {string} [pan_no] - Permanent Account Number of the user
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload
+ * @property {Object} [loyalty_meta] - Free-form metadata stored against the
+ *   loyalty redemption for this cart. Contains fields passed via the
+ *   applyLoyaltyPoints meta input (e.g. points, redeem_rule_id) and is
+ *   forwarded to the loyalty engine on each cart calculation.
  * @property {PlatformAlternatePickupPerson} [alternate_pickup_person]
  * @property {boolean} [free_gift_selection_available] - Determines if the cart
  *   has available promotion free gift items to choose on its added items
@@ -1840,6 +1851,7 @@ export = CartPlatformModel;
  * @property {boolean} [buy_now] - Buy now flag of user cart
  * @property {number} [cart_id] - Cart id of user cart for generating cart sharing token
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [custom_cart_meta] - Custom cart meta of user cart added
  *   via update cart meta API
  */
@@ -1909,6 +1921,7 @@ export = CartPlatformModel;
  * @property {boolean} [buy_now] - Buy now flag for the cart which denotes user
  *   is doing fast checkout for the cart using buy now
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
@@ -2155,6 +2168,7 @@ export = CartPlatformModel;
  * @property {string} [last_modified] - Last modified timestamp of cart
  * @property {boolean} [buy_now] - Buy now flag of user cart
  * @property {string} [gstin] - GSTIN number added in cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
  *   promotions data to cart which includes promotion id, promotion name, offer
  *   text, description, buy rules, discount rules and promotion type
@@ -2179,8 +2193,15 @@ export = CartPlatformModel;
  *   type, shipment order type, shipment dp options etc
  */
 /**
+ * @typedef ShipToGstDetails
+ * @property {string} [gstin] - Ship-to GSTIN for bill-to ship-to e-way bill generation.
+ * @property {string} [trade_name] - Ship-to trade name for bill-to ship-to
+ *   e-way bill generation.
+ */
+/**
  * @typedef PlatformCartMetaCreation
  * @property {string} [gstin] - GSTIN number to be added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [pick_up_customer_details] - Customer contact details for
  *   customer pickup at store
  * @property {PlatformAlternatePickupPerson} [alternate_pickup_person]
@@ -2309,6 +2330,7 @@ export = CartPlatformModel;
  * @property {number} [cart_id] - Cart id of the user cart for which the order placed
  * @property {Object[]} [store_emps] - Store employees data
  * @property {string} [gstin] - GSTIN number added in cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {boolean} [cod_available] - Whether Cash On Delivery available
  * @property {number} [delivery_charges] - Delivery charges of the order placed
  *   via checkout API
@@ -2856,7 +2878,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, OfferSchedule, OfferListItem, OfferListResult };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, ShipToGstDetails, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, OfferSchedule, OfferListItem, OfferListResult };
 }
 /** @returns {RedeemLoyaltyPoints} */
 declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
@@ -2866,6 +2888,12 @@ type RedeemLoyaltyPoints = {
      * for the given cart.
      */
     redeem_points: boolean;
+    /**
+     * - Free-form metadata forwarded to the loyalty
+     * engine. Any field can be passed (e.g. points, redeem_rule_id). Engage reads
+     * from this dict when processing redemption.
+     */
+    meta?: any;
 };
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
@@ -5182,6 +5210,12 @@ type LoyaltyPoints = {
      * cart as payment mode
      */
     discount_amount?: number;
+    /**
+     * - Free-form metadata returned by the loyalty engine
+     * in its response. Structure varies; may include rule details, campaign info,
+     * or any additional fields Engage sends back.
+     */
+    meta?: any;
 };
 /** @returns {RawBreakup} */
 declare function RawBreakup(): RawBreakup;
@@ -6879,6 +6913,7 @@ type CartDetailResult = {
      * - GSTIN added in user cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - List of applied
      * promotions data to cart which includes promotion id, promotion name, offer
@@ -6894,6 +6929,13 @@ type CartDetailResult = {
      * checkout API payload
      */
     custom_cart_meta?: any;
+    /**
+     * - Free-form metadata stored against the
+     * loyalty redemption for this cart. Contains fields passed via the
+     * applyLoyaltyPoints meta input (e.g. points, redeem_rule_id) and is
+     * forwarded to the loyalty engine on each cart calculation.
+     */
+    loyalty_meta?: any;
     alternate_pickup_person?: PlatformAlternatePickupPerson;
     /**
      * - Determines if the cart
@@ -7479,6 +7521,7 @@ type SharedCart = {
      * - GSTIN added in user cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - Custom cart meta of user cart added
      * via update cart meta API
@@ -7656,6 +7699,7 @@ type UserCartMappingResult = {
      * - GSTIN added in user cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - Custom meta details added cart
      * checkout API payload
@@ -8278,6 +8322,7 @@ type PlatformCartShipmentsResult = {
      * - GSTIN number added in cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - List of applied
      * promotions data to cart which includes promotion id, promotion name, offer
@@ -8333,6 +8378,19 @@ type UpdateCartShipmentCreation = {
      */
     shipments: UpdateCartShipmentItem[];
 };
+/** @returns {ShipToGstDetails} */
+declare function ShipToGstDetails(): ShipToGstDetails;
+type ShipToGstDetails = {
+    /**
+     * - Ship-to GSTIN for bill-to ship-to e-way bill generation.
+     */
+    gstin?: string;
+    /**
+     * - Ship-to trade name for bill-to ship-to
+     * e-way bill generation.
+     */
+    trade_name?: string;
+};
 /** @returns {PlatformCartMetaCreation} */
 declare function PlatformCartMetaCreation(): PlatformCartMetaCreation;
 type PlatformCartMetaCreation = {
@@ -8340,6 +8398,7 @@ type PlatformCartMetaCreation = {
      * - GSTIN number to be added in user cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - Customer contact details for
      * customer pickup at store
@@ -8630,6 +8689,7 @@ type CheckCart = {
      * - GSTIN number added in cart
      */
     gstin?: string;
+    ship_to_gst_details?: ShipToGstDetails;
     /**
      * - Whether Cash On Delivery available
      */

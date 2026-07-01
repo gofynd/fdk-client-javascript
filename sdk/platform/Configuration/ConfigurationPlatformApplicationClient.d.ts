@@ -261,6 +261,25 @@ declare class Configuration {
      */
     getStaffOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoresResponseSchema>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+     *   application (sales channel website) created within a business account
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {string} [arg.q] - Store code or name of the ordering store.
+     * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponseSchema>}
+     * @summary: Get staff ordering stores
+     * @description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the sales channel will be utilized for placing orders).
+     */
+    getStaffOrderingStoresPaginator({ companyId, applicationId, pageSize, q, }?: {
+        companyId: number;
+        applicationId: string;
+        pageSize?: number;
+        q?: string;
+    }): Paginator<ConfigurationPlatformModel.OrderingStoresResponseSchema>;
+    /**
      * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
      *   - Arg object
      *
@@ -417,3 +436,4 @@ declare class Configuration {
 }
 import ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import Paginator = require("../../common/Paginator");

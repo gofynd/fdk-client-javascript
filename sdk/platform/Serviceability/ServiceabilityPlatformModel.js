@@ -1390,6 +1390,43 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ZoneProductsAtomicPatchItem
+ * @property {string} zone_id - The unique identifier of the zone to patch.
+ * @property {string} product_type - The type the zone's product list is made
+ *   of. Must match the existing zone product type. Product ids are not
+ *   validated against the catalog for any type.
+ * @property {Object[]} values - Product identifiers to add or remove - uids for
+ *   item_id/product/department/category (integers) or tag strings.
+ * @property {string} action - Whether to add the values to, or remove them
+ *   from, the zone product list.
+ */
+
+/**
+ * @typedef ZoneProductsAtomicPatchDetails
+ * @property {ZoneProductsAtomicPatchItem[]} items - List of per-zone product
+ *   patch operations.
+ */
+
+/**
+ * @typedef ZoneProductsAtomicPatchResultItem
+ * @property {string} zone_id
+ * @property {string} product_type - The type the zone's product list is made
+ *   of. Mirrors the product_type sent in the patch request.
+ * @property {string} action
+ * @property {string} status
+ * @property {number} [values_count] - Number of products in the zone's product
+ *   list after a successful patch.
+ * @property {ZoneProductsAtomicPatchItemError[]} [error] - Present when status
+ *   is `failed`.
+ */
+
+/**
+ * @typedef ZoneProductsAtomicPatchResult
+ * @property {ZoneProductsAtomicPatchResultItem[]} items
+ * @property {ZoneProductsAtomicPatchSummary} summary
+ */
+
+/**
  * @typedef CourierPartnerToServiceability
  * @property {ServiceabilityLocation} [location]
  * @property {string} [pincode] - The pincode of the serviceability location.
@@ -3194,6 +3231,20 @@ const Joi = require("joi");
  * @property {number} total_records - Total number of records matching the criteria.
  */
 
+/**
+ * @typedef ZoneProductsAtomicPatchItemError
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef ZoneProductsAtomicPatchSummary
+ * @property {number} total
+ * @property {number} success
+ * @property {number} failed
+ */
+
 class ServiceabilityPlatformModel {
   /** @returns {GenerateShipmentsAndCourierPartnerResult} */
   static GenerateShipmentsAndCourierPartnerResult() {
@@ -4686,6 +4737,49 @@ class ServiceabilityPlatformModel {
       stage: Joi.string().allow("").required(),
       partial: Joi.number(),
       result_file_url: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchItem} */
+  static ZoneProductsAtomicPatchItem() {
+    return Joi.object({
+      zone_id: Joi.string().allow("").required(),
+      product_type: Joi.string().allow("").required(),
+      values: Joi.array().items(Joi.any()).required(),
+      action: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchDetails} */
+  static ZoneProductsAtomicPatchDetails() {
+    return Joi.object({
+      items: Joi.array()
+        .items(ServiceabilityPlatformModel.ZoneProductsAtomicPatchItem())
+        .required(),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchResultItem} */
+  static ZoneProductsAtomicPatchResultItem() {
+    return Joi.object({
+      zone_id: Joi.string().allow("").required(),
+      product_type: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      values_count: Joi.number(),
+      error: Joi.array()
+        .items(ServiceabilityPlatformModel.ZoneProductsAtomicPatchItemError())
+        .allow(null, ""),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchResult} */
+  static ZoneProductsAtomicPatchResult() {
+    return Joi.object({
+      items: Joi.array()
+        .items(ServiceabilityPlatformModel.ZoneProductsAtomicPatchResultItem())
+        .required(),
+      summary: ServiceabilityPlatformModel.ZoneProductsAtomicPatchSummary().required(),
     });
   }
 
@@ -6668,6 +6762,24 @@ class ServiceabilityPlatformModel {
       page_number: Joi.number().required(),
       has_next: Joi.boolean().required(),
       total_records: Joi.number().required(),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchItemError} */
+  static ZoneProductsAtomicPatchItemError() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ZoneProductsAtomicPatchSummary} */
+  static ZoneProductsAtomicPatchSummary() {
+    return Joi.object({
+      total: Joi.number().required(),
+      success: Joi.number().required(),
+      failed: Joi.number().required(),
     });
   }
 }

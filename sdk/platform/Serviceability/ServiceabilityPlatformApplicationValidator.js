@@ -224,6 +224,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef PatchZoneProductsAtomicParam
+ * @property {ServiceabilityPlatformModel.ZoneProductsAtomicPatchDetails} body
+ */
+
+/**
  * @typedef PutFulfillmentOptionParam
  * @property {string} slug - Slug of the fulfillment option for retrieving details.
  * @property {ServiceabilityPlatformModel.FulfillmentOption} body
@@ -611,6 +616,13 @@ class ServiceabilityPlatformApplicationValidator {
   static patchApplicationConfiguration() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ApplicationConfigPatch().required(),
+    }).required();
+  }
+
+  /** @returns {PatchZoneProductsAtomicParam} */
+  static patchZoneProductsAtomic() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ZoneProductsAtomicPatchDetails().required(),
     }).required();
   }
 

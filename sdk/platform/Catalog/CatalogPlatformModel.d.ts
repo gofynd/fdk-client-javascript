@@ -1,5 +1,14 @@
 export = CatalogPlatformModel;
 /**
+ * @typedef InventoryTransaction
+ * @property {string} [type] - Reason category for the inventory change.
+ * @property {string} [reference_id] - External transaction reference id (e.g.
+ *   inbound / PO / transfer id).
+ * @property {string} [reason] - Free-text reason for the inventory change.
+ * @property {string} [source] - Origin system of the change.
+ * @property {string} [user_ref] - Reference to the user who initiated the change.
+ */
+/**
  * @typedef Action
  * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
@@ -2197,6 +2206,13 @@ export = CatalogPlatformModel;
  * @property {number} company_id
  * @property {InventoryJobPayload[]} sizes
  * @property {Object} [user]
+ * @property {string} [transaction_type] - Reason for the bulk inventory update.
+ *   Recorded in the audit-trail event; per-row values on
+ *   `sizes[].transaction_type` override this top-level value. Optional;
+ *   defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef InventoryConfig
@@ -2332,6 +2348,12 @@ export = CatalogPlatformModel;
  * @property {string[]} [tags] - The tags associated with the item.
  * @property {number} [total_quantity] - The total quantity of the item.
  * @property {string} [trace_id] - The trace ID of the inventory job payload.
+ * @property {string} [transaction_type] - Reason for this row's inventory
+ *   update. Recorded in the audit-trail event. Overrides the request-level
+ *   `transaction_type` when both are present. Optional.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef InventoryPage
@@ -2353,6 +2375,7 @@ export = CatalogPlatformModel;
  * @property {string} [expiration_date] - The expiration date of the inventory item.
  * @property {number} [price_effective] - The effective price of the inventory item.
  * @property {number} [price_marked] - The marked price of the inventory item.
+ * @property {number} [price_cost] - The cost price of the article.
  * @property {string} seller_identifier - The identifier of the seller.
  * @property {number} store_id - The ID of the store.
  * @property {string[]} [tags] - The tags associated with the inventory item.
@@ -2363,18 +2386,37 @@ export = CatalogPlatformModel;
  *   the inventory item.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
  * @property {Object} [meta]
+ * @property {string} [transaction_type] - Reason for this row's inventory
+ *   update. Recorded in the audit-trail event. Overrides the request-level
+ *   `transaction_type` when both are present. Optional.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef InventoryRequestSchema
  * @property {number} company_id
  * @property {ItemQuery} item
  * @property {InvSize[]} sizes
+ * @property {string} [transaction_type] - Reason for the inventory update.
+ *   Recorded in the audit-trail event for the resulting article mutation.
+ *   Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef InventoryRequestSchemaV2
  * @property {number} company_id - The ID of the company.
  * @property {Object} [meta] - Additional metadata for the inventory request.
  * @property {InventoryPayload[]} [payload] - The list of inventory payloads.
+ * @property {string} [transaction_type] - Reason for the inventory update.
+ *   Recorded in the audit-trail event for the resulting article mutation;
+ *   per-row values on `payload[].transaction_type` override this top-level
+ *   value. Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef InventoryResponseSchema
@@ -2786,7 +2828,14 @@ export = CatalogPlatformModel;
  * @typedef LocationPriceRequestSchema
  * @property {number} price_effective - The effective price of the inventory item.
  * @property {number} price_marked - The marked price of the inventory item.
+ * @property {number} [price_cost] - The cost price of the article.
  * @property {string[]} [tags] - Tags associated with inventory item.
+ * @property {string} [transaction_type] - Reason for the price update. Recorded
+ *   in the audit-trail event for the resulting article mutation. Optional;
+ *   defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef LocationQuantityRequestSchema
@@ -2801,6 +2850,12 @@ export = CatalogPlatformModel;
  *   the inventory item. Any one of total_quantity, damaged_quantity,
  *   not_available_quantity should be provided.
  * @property {string} [mode] - Indicates whether delta or replace operation for inventory
+ * @property {string} [transaction_type] - Reason for the quantity update.
+ *   Recorded in the audit-trail event for the resulting article mutation.
+ *   Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 /**
  * @typedef LocationPriceQuantitySuccessResponseSchema
@@ -5006,8 +5061,33 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ValidationErrors, StandardError, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, SortWeights, CohortWeights, HighSpenderRepeatCustomerWeights, HyperactiveRepeatCustomerWeights, HighSpenderOccasionalCustomerWeights, StandardOccasionalCustomerWeights, DormantPremiumCustomerWeights, BudgetRegularCustomerWeights, HighSpenderRegularCustomerWeights, StandardCustomerAboutToChurnWeights, PremiumCustomerAboutToChurnWeights, HighSpenderCustomerAboutToChurnWeights, StandardDormantCustomerWeights, HighSpenderDormantCustomerWeights, PotentialCustomerWeights, NewCustomerWeights, BudgetRepeatCustomerWeights, AverageSpenderRepeatCustomerWeights, CohortSortingConfiguration, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, InventoryRecord, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, RegionDetailsSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, PriceStrategySchema, PriceFactoryResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, TaxGeoArea, AreaDetails, Country, Area, RegionReference, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, PriceFactoryListItemsSchema, PriceFactoryListResponseSchema, CreatePriceFactoryConfigSchema, UpdatePriceFactoryConfigSchema, PriceFactoryConfigSchema, CurrencyPriceSchema, UpsertPriceFactorySizesSchema, UpsertPriceFactoryProductSchema, PriceFactoryCurrencyPriceSchema, PriceFactorySizesSchema, PriceFactoryProductResponseSchema, PriceFactoryProductListResponseSchema, PriceRange, CurrencyPrice, ProductPrice, AppProductPricesSchema, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, TaxVersionScopeEnum, HsTypeEnum, PageType };
+    export { InventoryTransaction, Action, ValidationErrors, StandardError, AllSizes, AllowSingleRequestSchema, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponseSchema, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, SortWeights, CohortWeights, HighSpenderRepeatCustomerWeights, HyperactiveRepeatCustomerWeights, HighSpenderOccasionalCustomerWeights, StandardOccasionalCustomerWeights, DormantPremiumCustomerWeights, BudgetRegularCustomerWeights, HighSpenderRegularCustomerWeights, StandardCustomerAboutToChurnWeights, PremiumCustomerAboutToChurnWeights, HighSpenderCustomerAboutToChurnWeights, StandardDormantCustomerWeights, HighSpenderDormantCustomerWeights, PotentialCustomerWeights, NewCustomerWeights, BudgetRepeatCustomerWeights, AverageSpenderRepeatCustomerWeights, CohortSortingConfiguration, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponseSchema, ApplicationItemMOQ, Scores, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductsSchema, ApplicationProductListingResponseSchema, ApplicationStoreJson, AppReturnConfigResponseSchema, ArticleStoreResponseSchema, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSchema, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponseSchema, Brand, BrandItem, BrandListingResponseSchema, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponseSchema, BulkHsnResponseSchema, BulkHsnUpsert, BulkInventoryGet, InventoryRecord, FailedRecord, BulkInventoryGetItems, BulkMeta, BulkProductJob, BulkJob, BulkProductRequestSchema, BulkResponseSchema, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponseSchema, CategoriesResponseSchema, Category, CategoryItems, CategoryListingResponseSchema, CategoryMapping, CategoryMappingValues, CategoryResponseSchema, Child, CollectionBadge, CollectionBanner, CollectionCreateResponseSchema, CollectionDetailResponseSchema, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponseSchema, ConfigSuccessResponseSchema, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponseSchema, CreateCollection, CreateSearchConfigurationRequestSchema, CreateSearchConfigurationResponseSchema, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponseSchema, CustomOrder, DateMeta, DefaultKeyRequestSchema, DeleteAppCategoryReturnConfig, DeleteResponseSchema, DeleteSearchConfigurationResponseSchema, Department, DepartmentCategoryTree, DepartmentErrorResponseSchema, DepartmentIdentifier, DepartmentResponseSchema, DepartmentsResponseSchema, DimensionResponseSchema, InventoryDimensionResponseSchema, Document, EntityConfiguration, ErrorResponseSchema, FilerList, RawProduct, RawProductListingResponseSchema, GTIN, AttributeDetail, LatLong, ApplicationLocationAddressSchema, GetAddressSchema, RegionDetailsSchema, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponseSchema, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionListingResponseSchema, GetCollectionQueryOptionResponseSchema, GetCompanySchema, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponseSchema, GetConfigMetadataValues, GetConfigResponseSchema, ConfigItem, AttributeConfig, GetDepartment, GetInventories, GetInventoriesResponseSchema, GetLocationSchema, GetOptInPlatform, GetProducts, ProductDetails, GetCollectionDetailResponseSchema, CommonResponseSchemaCollection, GetQueryFiltersKeysResponseSchema, GetQueryFiltersResponseSchema, GetCollectionItemsResponseSchemaV2, CollectionItemV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponseSchema, GetSearchWordsData, GetSearchWordsDetailResponseSchema, GetSearchWordsResponseSchema, GlobalValidation, Guide, HSNCodesResponseSchema, HSNData, CreatedBySchema, ModifiedBySchema, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequestSchema, InventoryConfig, InventoryCreateRequestSchema, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponseSchema, InventoryExportQuantityFilter, InventoryExportRequestSchema, InventoryExportResponseSchema, InventoryFailedReason, InventoryJobDetailResponseSchema, InventoryJobFilters, InventoryJobPayload, InventoryPage, AddInventoryRequestPayload, InventoryPayload, InventoryRequestSchema, InventoryRequestSchemaV2, InventoryResponseSchema, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, ApplicationInventorySellerIdentifierResponsePaginated, InventorySellerResponseSchema, ApplicationInventorySellerResponseSchema, InventorySet, InventoryStockResponseSchema, InventoryUpdateResponseSchema, InventoryValidationResponseSchema, InvoiceCredSchema, InvoiceDetailsSchema, ItemQuery, Items, LimitedProductData, SizeGuideItem, ListSizeGuide, LocationDayWiseSchema, LocationIntegrationType, LocationListSchema, LocationManagerSchema, LocationTimingSchema, Logo, MOQData, ManufacturerResponseSchema, InventoryManufacturerResponseSchema, Media, Media1, DepartmentMedia, BrandMedia, BundleDetails, Meta, MetaDataListingFilterMetaResponseSchema, MetaDataListingFilterResponseSchema, MetaDataListingResponseSchema, MetaDataListingSortMetaResponseSchema, MetaDataListingSortResponseSchema, MetaFields, NetQuantity, NetQuantityResponseSchema, NextSchedule, LocationPriceRequestSchema, LocationQuantityRequestSchema, LocationPriceQuantitySuccessResponseSchema, OptInPostRequestSchema, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponseSchema, PTErrorResponseSchema, Page, PageResponseSchema, PageResponseType, Price, ProductListingDetailPrice, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponseSchema, PriceStrategySchema, PriceFactoryResponseSchema, Product, ProductAttributesResponseSchema, ProductBrand, ProductBulkAssets, ProductBulkRequestSchema, ProductBulkRequestList, ProductConfigurationDownloads, ProductCreateSchemaV3, ProductUpdateSchemaV3, ProductPatchSchemaV3, ProductSizePatch, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponseSchema, CollectionProductFilters, ProductFilters, GetQueryFiltersValuesResponseSchema, ProductFiltersKeysOnly, ProductFiltersKey, ProductQueryFiltersValue, CollectionProductFiltersValue, ProductFiltersValue, CollectionProductListingDetail, ProductCategory, ApplicationCategoryAction, ApplicationCategoryItem, ApplicationProductMedia, ApplicationProductCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, ActionObject, PageAction, ProductListingPrice, ProductListingResponseSchema, ProductListingResponseV2, ProductPublish, ProductPublished, ProductReturnConfigSchema, ProductReturnConfigBaseSchema, Identifier, SizeDetails, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponseSchema, ProductSizeDeleteResponseSchema, CollectionProductSortOn, ProductSortOn, ProductTagsViewResponseSchema, CreatedBy, ModifiedBy, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequestSchema, ProductTemplateExportResponseSchema, ProductVariants, ProductVariantsResponseSchema, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, InventoryReturnConfig, ReturnConfig2, ReturnConfigResponseSchema, Sitemap, PageQuery, ApplicationCollectionItemSeoPage, ApplicationCollectionItemSeoAction, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationCollectionItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, CollectionSeoDetail, SeoDetail, SetSize, SingleCategoryResponseSchema, SingleProductResponseSchema, Size, SizeDistribution, SizeGuideResponseSchema, StoreDetail, StoreMeta, SuccessResponseSchema, SuccessResponseObject, TaxIdentifier, TaxIdentifierV3, TaxSlab, TeaserTag, TemplateDetails, TemplateGlobalValidationData, TemplateValidationData, TemplatesResponseSchema, TemplatesGlobalValidationResponseSchema, TemplatesValidationResponseSchema, ThirdLevelChild, Trader, Trader1, TraderResponseSchema, UpdateCollection, UpdateSearchConfigurationRequestSchema, UpdateSearchConfigurationResponseSchema, CreateMarketplaceOptinResponseSchema, UserCommon, UserDetail, UserDetail1, UserInfo, UserSchema, RequestUserSchema, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponseSchema, InventoryWeightResponseSchema, BulkInventoryJob, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequestSchema, UpdateMarketplaceOptinResponseSchema, Filters, FollowedProducts, FollowProduct, TaxReqBodyRule, TaxThreshold, TaxComponent, TaxComponentResponseSchema, TaxComponentName, CreateTaxComponentNameRequestSchema, TaxReqBodyVersion, TaxGeoArea, AreaDetails, Country, Area, RegionReference, CreateTaxRequestBody, TaxVersion, UpdateTaxVersionRequestBody, CreateTaxVersionRequestBody, TaxRule, TaxVersionDetail, CreateTax, UpdateTaxRequestBody, TaxRuleItem, TaxRules, TaxVersionPastData, TaxRuleVersion, HSCodeItem, HSCodes, GetTaxComponents, PriceFactoryListItemsSchema, PriceFactoryListResponseSchema, CreatePriceFactoryConfigSchema, UpdatePriceFactoryConfigSchema, PriceFactoryConfigSchema, CurrencyPriceSchema, UpsertPriceFactorySizesSchema, UpsertPriceFactoryProductSchema, PriceFactoryCurrencyPriceSchema, PriceFactorySizesSchema, PriceFactoryProductResponseSchema, PriceFactoryProductListResponseSchema, PriceRange, CurrencyPrice, ProductPrice, AppProductPricesSchema, ActionPage, ValidationError, Price1, MultiCategoriesSchema, NetQuantitySchema, CustomMeta, TaxStatusEnum, TaxVersionScopeEnum, HsTypeEnum, PageType };
 }
+/** @returns {InventoryTransaction} */
+declare function InventoryTransaction(): InventoryTransaction;
+type InventoryTransaction = {
+    /**
+     * - Reason category for the inventory change.
+     */
+    type?: string;
+    /**
+     * - External transaction reference id (e.g.
+     * inbound / PO / transfer id).
+     */
+    reference_id?: string;
+    /**
+     * - Free-text reason for the inventory change.
+     */
+    reason?: string;
+    /**
+     * - Origin system of the change.
+     */
+    source?: string;
+    /**
+     * - Reference to the user who initiated the change.
+     */
+    user_ref?: string;
+};
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
@@ -9519,6 +9599,19 @@ type InventoryBulkRequestSchema = {
     company_id: number;
     sizes: InventoryJobPayload[];
     user?: any;
+    /**
+     * - Reason for the bulk inventory update.
+     * Recorded in the audit-trail event; per-row values on
+     * `sizes[].transaction_type` override this top-level value. Optional;
+     * defaults to "other" when omitted.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {InventoryConfig} */
 declare function InventoryConfig(): InventoryConfig;
@@ -9859,6 +9952,18 @@ type InventoryJobPayload = {
      * - The trace ID of the inventory job payload.
      */
     trace_id?: string;
+    /**
+     * - Reason for this row's inventory
+     * update. Recorded in the audit-trail event. Overrides the request-level
+     * `transaction_type` when both are present. Optional.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {InventoryPage} */
 declare function InventoryPage(): InventoryPage;
@@ -9908,6 +10013,10 @@ type InventoryPayload = {
      */
     price_marked?: number;
     /**
+     * - The cost price of the article.
+     */
+    price_cost?: number;
+    /**
      * - The identifier of the seller.
      */
     seller_identifier: string;
@@ -9941,6 +10050,18 @@ type InventoryPayload = {
      */
     trace_id?: string;
     meta?: any;
+    /**
+     * - Reason for this row's inventory
+     * update. Recorded in the audit-trail event. Overrides the request-level
+     * `transaction_type` when both are present. Optional.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {InventoryRequestSchema} */
 declare function InventoryRequestSchema(): InventoryRequestSchema;
@@ -9948,6 +10069,18 @@ type InventoryRequestSchema = {
     company_id: number;
     item: ItemQuery;
     sizes: InvSize[];
+    /**
+     * - Reason for the inventory update.
+     * Recorded in the audit-trail event for the resulting article mutation.
+     * Optional; defaults to "other" when omitted.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {InventoryRequestSchemaV2} */
 declare function InventoryRequestSchemaV2(): InventoryRequestSchemaV2;
@@ -9964,6 +10097,19 @@ type InventoryRequestSchemaV2 = {
      * - The list of inventory payloads.
      */
     payload?: InventoryPayload[];
+    /**
+     * - Reason for the inventory update.
+     * Recorded in the audit-trail event for the resulting article mutation;
+     * per-row values on `payload[].transaction_type` override this top-level
+     * value. Optional; defaults to "other" when omitted.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {InventoryResponseSchema} */
 declare function InventoryResponseSchema(): InventoryResponseSchema;
@@ -10875,9 +11021,25 @@ type LocationPriceRequestSchema = {
      */
     price_marked: number;
     /**
+     * - The cost price of the article.
+     */
+    price_cost?: number;
+    /**
      * - Tags associated with inventory item.
      */
     tags?: string[];
+    /**
+     * - Reason for the price update. Recorded
+     * in the audit-trail event for the resulting article mutation. Optional;
+     * defaults to "other" when omitted.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {LocationQuantityRequestSchema} */
 declare function LocationQuantityRequestSchema(): LocationQuantityRequestSchema;
@@ -10908,6 +11070,18 @@ type LocationQuantityRequestSchema = {
      * - Indicates whether delta or replace operation for inventory
      */
     mode?: string;
+    /**
+     * - Reason for the quantity update.
+     * Recorded in the audit-trail event for the resulting article mutation.
+     * Optional; defaults to "other" when omitted.
+     */
+    transaction_type?: string;
+    /**
+     * - Audit transaction context;
+     * supersedes the flat `transaction_type` (its `type` carries the same value).
+     * All fields optional; recorded in the audit-trail event.
+     */
+    transaction?: InventoryTransaction;
 };
 /** @returns {LocationPriceQuantitySuccessResponseSchema} */
 declare function LocationPriceQuantitySuccessResponseSchema(): LocationPriceQuantitySuccessResponseSchema;

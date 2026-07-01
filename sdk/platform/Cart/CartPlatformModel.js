@@ -4,6 +4,9 @@ const Joi = require("joi");
  * @typedef RedeemLoyaltyPoints
  * @property {boolean} redeem_points - Marks if engage points are to be redeemed
  *   for the given cart.
+ * @property {Object} [meta] - Free-form metadata forwarded to the loyalty
+ *   engine. Any field can be passed (e.g. points, redeem_rule_id). Engage reads
+ *   from this dict when processing redemption.
  */
 
 /**
@@ -1024,6 +1027,9 @@ const Joi = require("joi");
  * @property {string} [title] - Unique title for loyalty program applicable.
  * @property {number} [discount_amount] - Engage discount amount applied on the
  *   cart as payment mode
+ * @property {Object} [meta] - Free-form metadata returned by the loyalty engine
+ *   in its response. Structure varies; may include rule details, campaign info,
+ *   or any additional fields Engage sends back.
  */
 
 /**
@@ -1749,12 +1755,17 @@ const Joi = require("joi");
  * @property {boolean} [buy_now] - Buy now flag for the cart which denotes user
  *   is doing fast checkout for the cart using buy now
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
  *   promotions data to cart which includes promotion id, promotion name, offer
  *   text, description, buy rules, discount rules and promotion type
  * @property {string} [pan_no] - Permanent Account Number of the user
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload
+ * @property {Object} [loyalty_meta] - Free-form metadata stored against the
+ *   loyalty redemption for this cart. Contains fields passed via the
+ *   applyLoyaltyPoints meta input (e.g. points, redeem_rule_id) and is
+ *   forwarded to the loyalty engine on each cart calculation.
  * @property {PlatformAlternatePickupPerson} [alternate_pickup_person]
  * @property {boolean} [free_gift_selection_available] - Determines if the cart
  *   has available promotion free gift items to choose on its added items
@@ -1998,6 +2009,7 @@ const Joi = require("joi");
  * @property {boolean} [buy_now] - Buy now flag of user cart
  * @property {number} [cart_id] - Cart id of user cart for generating cart sharing token
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [custom_cart_meta] - Custom cart meta of user cart added
  *   via update cart meta API
  */
@@ -2073,6 +2085,7 @@ const Joi = require("joi");
  * @property {boolean} [buy_now] - Buy now flag for the cart which denotes user
  *   is doing fast checkout for the cart using buy now
  * @property {string} [gstin] - GSTIN added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
@@ -2341,6 +2354,7 @@ const Joi = require("joi");
  * @property {string} [last_modified] - Last modified timestamp of cart
  * @property {boolean} [buy_now] - Buy now flag of user cart
  * @property {string} [gstin] - GSTIN number added in cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
  *   promotions data to cart which includes promotion id, promotion name, offer
  *   text, description, buy rules, discount rules and promotion type
@@ -2368,8 +2382,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ShipToGstDetails
+ * @property {string} [gstin] - Ship-to GSTIN for bill-to ship-to e-way bill generation.
+ * @property {string} [trade_name] - Ship-to trade name for bill-to ship-to
+ *   e-way bill generation.
+ */
+
+/**
  * @typedef PlatformCartMetaCreation
  * @property {string} [gstin] - GSTIN number to be added in user cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {Object} [pick_up_customer_details] - Customer contact details for
  *   customer pickup at store
  * @property {PlatformAlternatePickupPerson} [alternate_pickup_person]
@@ -2507,6 +2529,7 @@ const Joi = require("joi");
  * @property {number} [cart_id] - Cart id of the user cart for which the order placed
  * @property {Object[]} [store_emps] - Store employees data
  * @property {string} [gstin] - GSTIN number added in cart
+ * @property {ShipToGstDetails} [ship_to_gst_details]
  * @property {boolean} [cod_available] - Whether Cash On Delivery available
  * @property {number} [delivery_charges] - Delivery charges of the order placed
  *   via checkout API
@@ -3098,6 +3121,7 @@ class CartPlatformModel {
   static RedeemLoyaltyPoints() {
     return Joi.object({
       redeem_points: Joi.boolean().required(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -4120,6 +4144,7 @@ class CartPlatformModel {
       earn_title: Joi.string().allow(""),
       title: Joi.string().allow(""),
       discount_amount: Joi.number(),
+      meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
     });
   }
 
@@ -4883,11 +4908,13 @@ class CartPlatformModel {
       last_modified: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       applied_promo_details: Joi.array().items(
         CartPlatformModel.AppliedPromotion()
       ),
       pan_no: Joi.string().allow(""),
       custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
+      loyalty_meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       alternate_pickup_person: CartPlatformModel.PlatformAlternatePickupPerson(),
       free_gift_selection_available: Joi.boolean(),
     });
@@ -5125,6 +5152,7 @@ class CartPlatformModel {
       buy_now: Joi.boolean(),
       cart_id: Joi.number(),
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -5201,6 +5229,7 @@ class CartPlatformModel {
       last_modified: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
       applied_promo_details: Joi.array().items(
         CartPlatformModel.AppliedPromotion()
@@ -5464,6 +5493,7 @@ class CartPlatformModel {
       last_modified: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       applied_promo_details: Joi.array().items(
         CartPlatformModel.AppliedPromotion()
       ),
@@ -5493,10 +5523,19 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {ShipToGstDetails} */
+  static ShipToGstDetails() {
+    return Joi.object({
+      gstin: Joi.string().allow("").allow(null),
+      trade_name: Joi.string().allow("").allow(null),
+    }).allow(null);
+  }
+
   /** @returns {PlatformCartMetaCreation} */
   static PlatformCartMetaCreation() {
     return Joi.object({
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       pick_up_customer_details: Joi.object().pattern(/\S/, Joi.any()),
       alternate_pickup_person: CartPlatformModel.PlatformAlternatePickupPerson(),
       checkout_mode: Joi.string().allow(""),
@@ -5638,6 +5677,7 @@ class CartPlatformModel {
       cart_id: Joi.number(),
       store_emps: Joi.array().items(Joi.any()),
       gstin: Joi.string().allow(""),
+      ship_to_gst_details: CartPlatformModel.ShipToGstDetails(),
       cod_available: Joi.boolean(),
       delivery_charges: Joi.number(),
       custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),

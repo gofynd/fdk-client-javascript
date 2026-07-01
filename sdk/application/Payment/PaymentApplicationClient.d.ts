@@ -27,6 +27,7 @@ declare class Payment {
         getActiveUserCards: string;
         getAggregatorsConfig: string;
         getOrderBeneficiariesDetail: string;
+        getOrderTransactions: string;
         getPaymentLink: string;
         getPaymentModeRoutes: string;
         getPaymentModeRoutesPaymentLink: string;
@@ -274,6 +275,15 @@ declare class Payment {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderTransactionList>} - Success response
+     * @name getOrderTransactions
+     * @summary: List all transactions for an order
+     * @description: Returns all payment transactions for the given order ID, ordered by creation timestamp ascending. Each entry includes merchant transaction ID, payment mode name, logo, amount, latest status, and created_on. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getOrderTransactions/).
+     */
+    getOrderTransactions({ orderId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<OrderTransactionList>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GetPaymentLinkDetails>} - Success response
      * @name getPaymentLink
      * @summary: Get payment link
@@ -306,7 +316,7 @@ declare class Payment {
      * @summary: POS payment modes
      * @description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/payment/getPosPaymentModeRoutes/).
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, orderType, checkoutMode, refresh, cardReference, fulfillmentOption, userDetails, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteDetails>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, orderType, checkoutMode, refresh, cardReference, fulfillmentOption, userDetails, displaySplit, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PaymentModeRouteDetails>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

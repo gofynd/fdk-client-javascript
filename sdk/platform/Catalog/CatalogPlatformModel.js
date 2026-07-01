@@ -1,6 +1,16 @@
 const Joi = require("joi");
 
 /**
+ * @typedef InventoryTransaction
+ * @property {string} [type] - Reason category for the inventory change.
+ * @property {string} [reference_id] - External transaction reference id (e.g.
+ *   inbound / PO / transfer id).
+ * @property {string} [reason] - Free-text reason for the inventory change.
+ * @property {string} [source] - Origin system of the change.
+ * @property {string} [user_ref] - Reference to the user who initiated the change.
+ */
+
+/**
  * @typedef Action
  * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
@@ -2413,6 +2423,13 @@ const Joi = require("joi");
  * @property {number} company_id
  * @property {InventoryJobPayload[]} sizes
  * @property {Object} [user]
+ * @property {string} [transaction_type] - Reason for the bulk inventory update.
+ *   Recorded in the audit-trail event; per-row values on
+ *   `sizes[].transaction_type` override this top-level value. Optional;
+ *   defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -2561,6 +2578,12 @@ const Joi = require("joi");
  * @property {string[]} [tags] - The tags associated with the item.
  * @property {number} [total_quantity] - The total quantity of the item.
  * @property {string} [trace_id] - The trace ID of the inventory job payload.
+ * @property {string} [transaction_type] - Reason for this row's inventory
+ *   update. Recorded in the audit-trail event. Overrides the request-level
+ *   `transaction_type` when both are present. Optional.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -2585,6 +2608,7 @@ const Joi = require("joi");
  * @property {string} [expiration_date] - The expiration date of the inventory item.
  * @property {number} [price_effective] - The effective price of the inventory item.
  * @property {number} [price_marked] - The marked price of the inventory item.
+ * @property {number} [price_cost] - The cost price of the article.
  * @property {string} seller_identifier - The identifier of the seller.
  * @property {number} store_id - The ID of the store.
  * @property {string[]} [tags] - The tags associated with the inventory item.
@@ -2595,6 +2619,12 @@ const Joi = require("joi");
  *   the inventory item.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
  * @property {Object} [meta]
+ * @property {string} [transaction_type] - Reason for this row's inventory
+ *   update. Recorded in the audit-trail event. Overrides the request-level
+ *   `transaction_type` when both are present. Optional.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -2602,6 +2632,12 @@ const Joi = require("joi");
  * @property {number} company_id
  * @property {ItemQuery} item
  * @property {InvSize[]} sizes
+ * @property {string} [transaction_type] - Reason for the inventory update.
+ *   Recorded in the audit-trail event for the resulting article mutation.
+ *   Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -2609,6 +2645,13 @@ const Joi = require("joi");
  * @property {number} company_id - The ID of the company.
  * @property {Object} [meta] - Additional metadata for the inventory request.
  * @property {InventoryPayload[]} [payload] - The list of inventory payloads.
+ * @property {string} [transaction_type] - Reason for the inventory update.
+ *   Recorded in the audit-trail event for the resulting article mutation;
+ *   per-row values on `payload[].transaction_type` override this top-level
+ *   value. Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -3063,7 +3106,14 @@ const Joi = require("joi");
  * @typedef LocationPriceRequestSchema
  * @property {number} price_effective - The effective price of the inventory item.
  * @property {number} price_marked - The marked price of the inventory item.
+ * @property {number} [price_cost] - The cost price of the article.
  * @property {string[]} [tags] - Tags associated with inventory item.
+ * @property {string} [transaction_type] - Reason for the price update. Recorded
+ *   in the audit-trail event for the resulting article mutation. Optional;
+ *   defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -3079,6 +3129,12 @@ const Joi = require("joi");
  *   the inventory item. Any one of total_quantity, damaged_quantity,
  *   not_available_quantity should be provided.
  * @property {string} [mode] - Indicates whether delta or replace operation for inventory
+ * @property {string} [transaction_type] - Reason for the quantity update.
+ *   Recorded in the audit-trail event for the resulting article mutation.
+ *   Optional; defaults to "other" when omitted.
+ * @property {InventoryTransaction} [transaction] - Audit transaction context;
+ *   supersedes the flat `transaction_type` (its `type` carries the same value).
+ *   All fields optional; recorded in the audit-trail event.
  */
 
 /**
@@ -5488,6 +5544,17 @@ const Joi = require("joi");
  */
 
 class CatalogPlatformModel {
+  /** @returns {InventoryTransaction} */
+  static InventoryTransaction() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      reference_id: Joi.string().allow(""),
+      reason: Joi.string().allow(""),
+      source: Joi.string().allow(""),
+      user_ref: Joi.string().allow(""),
+    }).allow(null);
+  }
+
   /** @returns {Action} */
   static Action() {
     return Joi.object({
@@ -8028,6 +8095,8 @@ class CatalogPlatformModel {
         .items(CatalogPlatformModel.InventoryJobPayload())
         .required(),
       user: Joi.object().pattern(/\S/, Joi.any()),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8184,6 +8253,8 @@ class CatalogPlatformModel {
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       total_quantity: Joi.number(),
       trace_id: Joi.string().allow("").allow(null),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8211,6 +8282,7 @@ class CatalogPlatformModel {
       expiration_date: Joi.string().allow(""),
       price_effective: Joi.number(),
       price_marked: Joi.number(),
+      price_cost: Joi.number(),
       seller_identifier: Joi.string().allow("").required(),
       store_id: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
@@ -8220,6 +8292,8 @@ class CatalogPlatformModel {
       not_available_quantity: Joi.number().allow(null),
       trace_id: Joi.string().allow(""),
       meta: Joi.object().pattern(/\S/, Joi.any()),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8229,6 +8303,8 @@ class CatalogPlatformModel {
       company_id: Joi.number().required(),
       item: CatalogPlatformModel.ItemQuery().required(),
       sizes: Joi.array().items(CatalogPlatformModel.InvSize()).required(),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8238,6 +8314,8 @@ class CatalogPlatformModel {
       company_id: Joi.number().required(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       payload: Joi.array().items(CatalogPlatformModel.InventoryPayload()),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8739,7 +8817,10 @@ class CatalogPlatformModel {
     return Joi.object({
       price_effective: Joi.number().required(),
       price_marked: Joi.number().required(),
+      price_cost: Joi.number(),
       tags: Joi.array().items(Joi.string().allow("")),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 
@@ -8751,6 +8832,8 @@ class CatalogPlatformModel {
       damaged_quantity: Joi.number(),
       not_available_quantity: Joi.number(),
       mode: Joi.string().allow(""),
+      transaction_type: Joi.string().allow("").allow(null),
+      transaction: CatalogPlatformModel.InventoryTransaction(),
     });
   }
 

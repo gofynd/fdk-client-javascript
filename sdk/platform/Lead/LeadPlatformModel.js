@@ -155,6 +155,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AdditionalInfo
+ * @property {string} [display_name] - Human readable name for this info
+ * @property {string} [display_value] - Human readable value for the info
+ * @property {number} [priority] - Priority of this additional info
+ */
+
+/**
  * @typedef AddTicketPayload
  * @property {Object} [created_by] - Creator of the ticket
  * @property {string} [status] - Status of the ticket
@@ -162,6 +169,8 @@ const Joi = require("joi");
  * @property {string} category - Category of the ticket
  * @property {TicketContent} content
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
+ * @property {AdditionalInfo[]} [additional_info] - Additional information
+ *   related to the ticket
  */
 
 /**
@@ -514,6 +523,15 @@ class LeadPlatformModel {
     });
   }
 
+  /** @returns {AdditionalInfo} */
+  static AdditionalInfo() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      display_value: Joi.string().allow(""),
+      priority: Joi.number(),
+    });
+  }
+
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
@@ -523,6 +541,7 @@ class LeadPlatformModel {
       category: Joi.string().allow("").required(),
       content: LeadPlatformModel.TicketContent().required(),
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      additional_info: Joi.array().items(LeadPlatformModel.AdditionalInfo()),
     });
   }
 

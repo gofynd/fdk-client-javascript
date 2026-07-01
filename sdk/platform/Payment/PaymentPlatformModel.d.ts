@@ -873,6 +873,21 @@ export = PaymentPlatformModel;
  * @property {AppliedOffer[]} [applied_offers] - List of offers applied on the order.
  */
 /**
+ * @typedef OrderMetaUpdate
+ * @property {string} pan_no - Valid Indian PAN (Permanent Account Number).
+ *   Format: 5 letters, 4 digits, 1 letter (e.g. AAAAA9999A). Case-insensitive;
+ *   stored in uppercase.
+ */
+/**
+ * @typedef OrderMetaResult
+ * @property {string} [message] - Success message indicating order meta was updated.
+ */
+/**
+ * @typedef OrderMetaErrorResult
+ * @property {boolean} [success] - Indicates whether the request was successful.
+ * @property {string} [message] - Error message describing the failure.
+ */
+/**
  * @typedef AddressDetail
  * @property {Object} [google_map_point] - Google map point of location
  * @property {string} [landmark] - Landmark
@@ -1261,6 +1276,23 @@ export = PaymentPlatformModel;
  * @property {CreditAccountSummary} [account]
  */
 /**
+ * @typedef OrderTransactionList
+ * @property {boolean} [success] - Whether the request was successful.
+ * @property {OrderTransactionItem[]} [items] - List of transactions ordered by
+ *   created_on ascending.
+ */
+/**
+ * @typedef OrderTransactionItem
+ * @property {string} [transaction_id] - Merchant transaction ID.
+ * @property {string} [payment_mode] - Payment mode name (e.g. UPI, Card, COD).
+ * @property {string} [logo] - Payment mode logo URL. Returns the small logo if
+ *   available, falls back to large logo. Null if no logo is configured.
+ * @property {number} [amount] - Transaction amount.
+ * @property {string} [status] - Latest transaction status (e.g. complete,
+ *   pending, failed, cancelled).
+ * @property {string} [created_on] - Transaction creation timestamp (ISO 8601).
+ */
+/**
  * @typedef OperationResponseSchema
  * @property {boolean} success - Indicates if the operation was successful
  * @property {string} [message] - Optional message providing additional
@@ -1269,7 +1301,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { AggregatorToken, PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, PaymentModeConfig, PaymentModeItems, SubPaymentMode, LogoSet, PlatformLogoSet, PlatformConfigPaymentModeDetails, PlatformPaymentModeItem, PlatformSubPaymentMode, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OperationResponseSchema };
+    export { AggregatorToken, PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, PaymentModeConfig, PaymentModeItems, SubPaymentMode, LogoSet, PlatformLogoSet, PlatformConfigPaymentModeDetails, PlatformPaymentModeItem, PlatformSubPaymentMode, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, OrderMetaUpdate, OrderMetaResult, OrderMetaErrorResult, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OrderTransactionList, OrderTransactionItem, OperationResponseSchema };
 }
 /** @returns {AggregatorToken} */
 declare function AggregatorToken(): AggregatorToken;
@@ -3550,6 +3582,36 @@ type OrderDetail = {
      */
     applied_offers?: AppliedOffer[];
 };
+/** @returns {OrderMetaUpdate} */
+declare function OrderMetaUpdate(): OrderMetaUpdate;
+type OrderMetaUpdate = {
+    /**
+     * - Valid Indian PAN (Permanent Account Number).
+     * Format: 5 letters, 4 digits, 1 letter (e.g. AAAAA9999A). Case-insensitive;
+     * stored in uppercase.
+     */
+    pan_no: string;
+};
+/** @returns {OrderMetaResult} */
+declare function OrderMetaResult(): OrderMetaResult;
+type OrderMetaResult = {
+    /**
+     * - Success message indicating order meta was updated.
+     */
+    message?: string;
+};
+/** @returns {OrderMetaErrorResult} */
+declare function OrderMetaErrorResult(): OrderMetaErrorResult;
+type OrderMetaErrorResult = {
+    /**
+     * - Indicates whether the request was successful.
+     */
+    success?: boolean;
+    /**
+     * - Error message describing the failure.
+     */
+    message?: string;
+};
 /** @returns {AddressDetail} */
 declare function AddressDetail(): AddressDetail;
 type AddressDetail = {
@@ -4562,6 +4624,49 @@ type ValidateCustomerCreditSchema = {
      */
     cart_id?: string;
     account?: CreditAccountSummary;
+};
+/** @returns {OrderTransactionList} */
+declare function OrderTransactionList(): OrderTransactionList;
+type OrderTransactionList = {
+    /**
+     * - Whether the request was successful.
+     */
+    success?: boolean;
+    /**
+     * - List of transactions ordered by
+     * created_on ascending.
+     */
+    items?: OrderTransactionItem[];
+};
+/** @returns {OrderTransactionItem} */
+declare function OrderTransactionItem(): OrderTransactionItem;
+type OrderTransactionItem = {
+    /**
+     * - Merchant transaction ID.
+     */
+    transaction_id?: string;
+    /**
+     * - Payment mode name (e.g. UPI, Card, COD).
+     */
+    payment_mode?: string;
+    /**
+     * - Payment mode logo URL. Returns the small logo if
+     * available, falls back to large logo. Null if no logo is configured.
+     */
+    logo?: string;
+    /**
+     * - Transaction amount.
+     */
+    amount?: number;
+    /**
+     * - Latest transaction status (e.g. complete,
+     * pending, failed, cancelled).
+     */
+    status?: string;
+    /**
+     * - Transaction creation timestamp (ISO 8601).
+     */
+    created_on?: string;
 };
 /** @returns {OperationResponseSchema} */
 declare function OperationResponseSchema(): OperationResponseSchema;

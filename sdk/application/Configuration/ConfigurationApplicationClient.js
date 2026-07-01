@@ -102,6 +102,7 @@ class Configuration {
       orderingStore,
       user,
       userName,
+      appPermissions,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -113,6 +114,7 @@ class Configuration {
     query_params["ordering_store"] = orderingStore;
     query_params["user"] = user;
     query_params["user_name"] = userName;
+    query_params["app_permissions"] = appPermissions;
 
     const xHeaders = {};
 
@@ -147,6 +149,7 @@ class Configuration {
    * @param {string} [arg.user] - ID of the staff. Helps in retrieving the
    *   details of a particular staff member.
    * @param {string} [arg.userName] - Username of the member.
+   * @param {string} [arg.appPermissions] - App permissions.
    * @returns {Paginator<AppStaffListResponseSchema>}
    * @summary: List staff members
    * @description: List all staff members of the sales channel.
@@ -157,6 +160,7 @@ class Configuration {
     orderingStore,
     user,
     userName,
+    appPermissions,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -170,6 +174,7 @@ class Configuration {
         orderingStore: orderingStore,
         user: user,
         userName: userName,
+        appPermissions: appPermissions,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

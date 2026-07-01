@@ -976,6 +976,24 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef OrderMetaUpdate
+ * @property {string} pan_no - Valid Indian PAN (Permanent Account Number).
+ *   Format: 5 letters, 4 digits, 1 letter (e.g. AAAAA9999A). Case-insensitive;
+ *   stored in uppercase.
+ */
+
+/**
+ * @typedef OrderMetaResult
+ * @property {string} [message] - Success message indicating order meta was updated.
+ */
+
+/**
+ * @typedef OrderMetaErrorResult
+ * @property {boolean} [success] - Indicates whether the request was successful.
+ * @property {string} [message] - Error message describing the failure.
+ */
+
+/**
  * @typedef AddressDetail
  * @property {Object} [google_map_point] - Google map point of location
  * @property {string} [landmark] - Landmark
@@ -1401,6 +1419,25 @@ const Joi = require("joi");
  * @property {string} message - Detailed message about the user credt eligibility.
  * @property {string} [cart_id] - Unique identifier for the shopping cart.
  * @property {CreditAccountSummary} [account]
+ */
+
+/**
+ * @typedef OrderTransactionList
+ * @property {boolean} [success] - Whether the request was successful.
+ * @property {OrderTransactionItem[]} [items] - List of transactions ordered by
+ *   created_on ascending.
+ */
+
+/**
+ * @typedef OrderTransactionItem
+ * @property {string} [transaction_id] - Merchant transaction ID.
+ * @property {string} [payment_mode] - Payment mode name (e.g. UPI, Card, COD).
+ * @property {string} [logo] - Payment mode logo URL. Returns the small logo if
+ *   available, falls back to large logo. Null if no logo is configured.
+ * @property {number} [amount] - Transaction amount.
+ * @property {string} [status] - Latest transaction status (e.g. complete,
+ *   pending, failed, cancelled).
+ * @property {string} [created_on] - Transaction creation timestamp (ISO 8601).
  */
 
 /**
@@ -2571,6 +2608,28 @@ class PaymentPlatformModel {
     });
   }
 
+  /** @returns {OrderMetaUpdate} */
+  static OrderMetaUpdate() {
+    return Joi.object({
+      pan_no: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OrderMetaResult} */
+  static OrderMetaResult() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OrderMetaErrorResult} */
+  static OrderMetaErrorResult() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {AddressDetail} */
   static AddressDetail() {
     return Joi.object({
@@ -3050,6 +3109,26 @@ class PaymentPlatformModel {
       message: Joi.string().allow("").required(),
       cart_id: Joi.string().allow(""),
       account: PaymentPlatformModel.CreditAccountSummary(),
+    });
+  }
+
+  /** @returns {OrderTransactionList} */
+  static OrderTransactionList() {
+    return Joi.object({
+      success: Joi.boolean(),
+      items: Joi.array().items(PaymentPlatformModel.OrderTransactionItem()),
+    });
+  }
+
+  /** @returns {OrderTransactionItem} */
+  static OrderTransactionItem() {
+    return Joi.object({
+      transaction_id: Joi.string().allow(""),
+      payment_mode: Joi.string().allow("").allow(null),
+      logo: Joi.string().allow("").allow(null),
+      amount: Joi.number().allow(null),
+      status: Joi.string().allow("").allow(null),
+      created_on: Joi.string().allow(""),
     });
   }
 

@@ -165,6 +165,18 @@ declare class Payment {
      */
     getMerchantRefundPriority({ configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityDetails>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetOrderTransactionsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.OrderTransactionList>} - Success response
+     * @name getOrderTransactions
+     * @summary: List all transactions for an order
+     * @description: Returns all payment transactions associated with the given order ID, ordered by creation timestamp ascending. Each entry includes the merchant transaction ID, payment mode name, logo URL (small, falling back to large), transaction amount, latest status, and creation timestamp. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getOrderTransactions/).
+     */
+    getOrderTransactions({ orderId, requestHeaders }?: PaymentPlatformApplicationValidator.GetOrderTransactionsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.OrderTransactionList>;
+    /**
      * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
      *   - Arg object
      *
@@ -502,6 +514,16 @@ declare class Payment {
      * @description: Update merchant refund priority configurations, with the provided refund sources priority details, and return the status of the operation. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/updateMerchantRefundPriority/).
      */
     updateMerchantRefundPriority({ configType, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityDetails>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.UpdateOrderMetaParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.OrderMetaResult>} - Success response
+     * @name updateOrderMeta
+     * @summary: Update order metadata
+     * @description: Update metadata associated with a payment order. Use this to set or update PAN (Permanent Account Number) for an order. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/updateOrderMeta/).
+     */
+    updateOrderMeta({ orderId, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateOrderMetaParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.OrderMetaResult>;
     /**
      * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
      *   - Arg object
