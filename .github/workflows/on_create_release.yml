@@ -22,4 +22,9 @@ jobs:
           version: ${{ github.ref_name }}
           rename: "@gofynd/fdk-client-javascript"
       - run: npm ci
-      - run: npm publish --access public
+      - run: |
+          if [[ "${{ github.ref_name }}" == *"-beta."* ]]; then
+            npm publish --access public --tag beta
+          else
+            npm publish --access public
+          fi
