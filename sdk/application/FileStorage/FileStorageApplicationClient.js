@@ -42,7 +42,7 @@ class FileStorage {
    * @returns {Promise<FileUploadComplete>} - Success response
    * @name completeUpload
    * @summary: Finalizes upload process.
-   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -88,7 +88,7 @@ class FileStorage {
    * @returns {Promise<SignUrlResult>} - Success response
    * @name signUrls
    * @summary: Signs file URLs.
-   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
+   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -125,7 +125,7 @@ class FileStorage {
    * @returns {Promise<FileUpload>} - Success response
    * @name startUpload
    * @summary: Initiates file upload
-   * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
+   * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -173,7 +173,6 @@ class FileStorage {
  * @param {string} namespace
  * @param {number} size
  * @param {number} tags
- * @param {string} enc_key
  */
 FileStorage.prototype.upload = function ({
   data,
@@ -182,7 +181,6 @@ FileStorage.prototype.upload = function ({
   namespace,
   size,
   tags,
-  enc_key,
 } = {}) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -193,7 +191,6 @@ FileStorage.prototype.upload = function ({
           content_type,
           size: size,
           tags: tags,
-          enc_key: enc_key,
         },
       });
       if (dataObj.upload && dataObj.upload.url) {

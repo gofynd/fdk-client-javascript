@@ -21,7 +21,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.TicketList>} - Success response
    * @name getTickets
    * @summary: Gets the list of partner level tickets and/or ticket filters depending on query params
-   * @description: Gets the list of partner level tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getTickets/).
+   * @description: Gets the list of partner level tickets and/or ticket filters - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/getTickets/).
    */
   async getTickets(
     {
@@ -129,7 +129,7 @@ class Lead {
    *   the ticket filters
    * @param {string} [arg.q] - Search through ticket titles and description
    * @param {string} [arg.status] - Filter tickets on status
-   * @param {string} [arg.priority] - Filter tickets on priority
+   * @param {LeadPartnerModel.PriorityEnum} [arg.priority] - Filter tickets on priority
    * @param {string} [arg.category] - Filter tickets on category
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
@@ -178,7 +178,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a partner level ticket
-   * @description: Creates a partner level ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/createTicket/).
+   * @description: Creates a partner level ticket - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/createTicket/).
    */
   async createTicket(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -253,7 +253,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.Ticket>} - Success response
    * @name getTicket
    * @summary: Retreives ticket details of a partner level ticket with ticket ID
-   * @description: Retreives ticket details of a partner level ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getTicket/).
+   * @description: Retreives ticket details of a partner level ticket - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/getTicket/).
    */
   async getTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -328,7 +328,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.Ticket>} - Success response
    * @name editTicket
    * @summary: Edits ticket details of a partner level ticket
-   * @description: Edits ticket details of a partner level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/editTicket/).
+   * @description: Edits ticket details of a partner level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/editTicket/).
    */
   async editTicket(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -405,7 +405,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Create history for specific partner level ticket
-   * @description: Create history for specific partner level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/createHistory/).
+   * @description: Create history for specific partner level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/createHistory/).
    */
   async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -482,7 +482,7 @@ class Lead {
    * @returns {Promise<LeadPartnerModel.TicketHistoryList>} - Success response
    * @name getTicketHistory
    * @summary: Gets history list for specific partner level ticket
-   * @description: Gets history list for specific partner level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getTicketHistory/).
+   * @description: Gets history list for specific partner level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/getTicketHistory/).
    */
   async getTicketHistory(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -556,10 +556,10 @@ class Lead {
    * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
+   * @returns {Promise<LeadPartnerModel.GeneralConfigDetails>} - Success response
    * @name getGeneralConfig
-   * @summary: Get general support configuration.
-   * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getGeneralConfig/).
+   * @summary: Get general support configuration
+   * @description: Get general support configuration. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/lead/getGeneralConfig/).
    */
   async getGeneralConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -606,7 +606,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPartnerModel.GeneralConfigResponse().validate(responseData, {
+    } = LeadPartnerModel.GeneralConfigDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

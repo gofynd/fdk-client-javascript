@@ -2,190 +2,94 @@ export = AuditTrailPlatformModel;
 /**
  * @typedef RequestBodyAuditLog
  * @property {LogMetaObj} log_meta
- * @property {Object} log_payload
+ * @property {Object} log_payload - Detailed information about payload.
  */
 /**
- * @typedef CreateLogResponse
- * @property {string} [message]
- * @property {string} [internal_message]
+ * @typedef CreateLogResp
+ * @property {string} [message] - Acknowledgement about success or failure of audit log.
+ * @property {string} [internal_message] - Status of audit log in internal system.
  */
 /**
  * @typedef LogMetaObj
- * @property {Object} [modifier]
- * @property {string} [application]
+ * @property {Object} [modifier] - Details about user responsible for modifying events.
+ * @property {string} [application] - The application id generating the log event.
  * @property {EntityObject} [entity]
- * @property {Object} [device_info]
- * @property {Object} [location]
+ * @property {Object} [device_info] - Contains device-specific information for
+ *   the log event.
+ * @property {Object} [location] - Holds location-related data for the event context.
+ * @property {string} [sessions] - Identifies the session associated with the log event.
  */
 /**
  * @typedef EntityObject
- * @property {string} [id]
- * @property {string} [type]
- * @property {string} [action]
- */
-/**
- * @typedef LogSchemaResponse
- * @property {LogDocs[]} [docs]
- */
-/**
- * @typedef LogDocs
- * @property {EntityObj} [entity]
- * @property {Modifier} [modifier]
- * @property {DeviceInfo} [device_info]
- * @property {Location} [location]
- * @property {string} [_id]
- * @property {string} [company]
- * @property {string} [application]
- * @property {string} [sessions]
- * @property {string} [date]
- * @property {Object} [logs]
- */
-/**
- * @typedef EntityObj
- * @property {string} [id]
- * @property {string} [type]
- * @property {string} [action]
- * @property {Object} [entity_details]
- */
-/**
- * @typedef Modifier
- * @property {string} [user_id]
- * @property {boolean} [as_administrator]
- * @property {Object} [user_details]
- */
-/**
- * @typedef DeviceInfo
- * @property {string} [user_agent]
- * @property {Object} [extra_meta]
- */
-/**
- * @typedef Location
- * @property {Object} [extra_meta]
- */
-/**
- * @typedef BadRequest
- * @property {string} [message] - Failure message.
- */
-/**
- * @typedef InternalServerError
- * @property {string} [message] - Internal server Server error
- * @property {string} [code] - Error code
- */
-/**
- * @typedef EntityTypesResponse
- * @property {EntityTypeObj[]} [items]
- */
-/**
- * @typedef EntityTypeObj
- * @property {string} [entity_value]
- * @property {string} [display_name]
+ * @property {string} [id] - Unique identifier for the entity.
+ * @property {string} [type] - The type/category of the entity.
+ * @property {string} [action] - The action performed on or by the entity.
  */
 declare class AuditTrailPlatformModel {
 }
 declare namespace AuditTrailPlatformModel {
-    export { RequestBodyAuditLog, CreateLogResponse, LogMetaObj, EntityObject, LogSchemaResponse, LogDocs, EntityObj, Modifier, DeviceInfo, Location, BadRequest, InternalServerError, EntityTypesResponse, EntityTypeObj };
+    export { RequestBodyAuditLog, CreateLogResp, LogMetaObj, EntityObject };
 }
 /** @returns {RequestBodyAuditLog} */
 declare function RequestBodyAuditLog(): RequestBodyAuditLog;
 type RequestBodyAuditLog = {
     log_meta: LogMetaObj;
+    /**
+     * - Detailed information about payload.
+     */
     log_payload: any;
 };
-/** @returns {CreateLogResponse} */
-declare function CreateLogResponse(): CreateLogResponse;
-type CreateLogResponse = {
+/** @returns {CreateLogResp} */
+declare function CreateLogResp(): CreateLogResp;
+type CreateLogResp = {
+    /**
+     * - Acknowledgement about success or failure of audit log.
+     */
     message?: string;
+    /**
+     * - Status of audit log in internal system.
+     */
     internal_message?: string;
 };
 /** @returns {LogMetaObj} */
 declare function LogMetaObj(): LogMetaObj;
 type LogMetaObj = {
+    /**
+     * - Details about user responsible for modifying events.
+     */
     modifier?: any;
+    /**
+     * - The application id generating the log event.
+     */
     application?: string;
     entity?: EntityObject;
+    /**
+     * - Contains device-specific information for
+     * the log event.
+     */
     device_info?: any;
+    /**
+     * - Holds location-related data for the event context.
+     */
     location?: any;
+    /**
+     * - Identifies the session associated with the log event.
+     */
+    sessions?: string;
 };
 /** @returns {EntityObject} */
 declare function EntityObject(): EntityObject;
 type EntityObject = {
+    /**
+     * - Unique identifier for the entity.
+     */
     id?: string;
+    /**
+     * - The type/category of the entity.
+     */
     type?: string;
+    /**
+     * - The action performed on or by the entity.
+     */
     action?: string;
-};
-/** @returns {LogSchemaResponse} */
-declare function LogSchemaResponse(): LogSchemaResponse;
-type LogSchemaResponse = {
-    docs?: LogDocs[];
-};
-/** @returns {LogDocs} */
-declare function LogDocs(): LogDocs;
-type LogDocs = {
-    entity?: EntityObj;
-    modifier?: Modifier;
-    device_info?: DeviceInfo;
-    location?: Location;
-    _id?: string;
-    company?: string;
-    application?: string;
-    sessions?: string;
-    date?: string;
-    logs?: any;
-};
-/** @returns {EntityObj} */
-declare function EntityObj(): EntityObj;
-type EntityObj = {
-    id?: string;
-    type?: string;
-    action?: string;
-    entity_details?: any;
-};
-/** @returns {Modifier} */
-declare function Modifier(): Modifier;
-type Modifier = {
-    user_id?: string;
-    as_administrator?: boolean;
-    user_details?: any;
-};
-/** @returns {DeviceInfo} */
-declare function DeviceInfo(): DeviceInfo;
-type DeviceInfo = {
-    user_agent?: string;
-    extra_meta?: any;
-};
-/** @returns {Location} */
-declare function Location(): Location;
-type Location = {
-    extra_meta?: any;
-};
-/** @returns {BadRequest} */
-declare function BadRequest(): BadRequest;
-type BadRequest = {
-    /**
-     * - Failure message.
-     */
-    message?: string;
-};
-/** @returns {InternalServerError} */
-declare function InternalServerError(): InternalServerError;
-type InternalServerError = {
-    /**
-     * - Internal server Server error
-     */
-    message?: string;
-    /**
-     * - Error code
-     */
-    code?: string;
-};
-/** @returns {EntityTypesResponse} */
-declare function EntityTypesResponse(): EntityTypesResponse;
-type EntityTypesResponse = {
-    items?: EntityTypeObj[];
-};
-/** @returns {EntityTypeObj} */
-declare function EntityTypeObj(): EntityTypeObj;
-type EntityTypeObj = {
-    entity_value?: string;
-    display_name?: string;
 };

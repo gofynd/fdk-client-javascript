@@ -27,7 +27,6 @@ declare class PlatformApplicationClient {
     order: Order;
     partner: Partner;
     payment: Payment;
-    rewards: Rewards;
     share: Share;
     theme: Theme;
     user: User;
@@ -51,7 +50,6 @@ import Serviceability = require("./Serviceability/ServiceabilityPlatformApplicat
 import Order = require("./Order/OrderPlatformApplicationClient");
 import Partner = require("./Partner/PartnerPlatformApplicationClient");
 import Payment = require("./Payment/PaymentPlatformApplicationClient");
-import Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 import Share = require("./Share/SharePlatformApplicationClient");
 import Theme = require("./Theme/ThemePlatformApplicationClient");
 import User = require("./User/UserPlatformApplicationClient");

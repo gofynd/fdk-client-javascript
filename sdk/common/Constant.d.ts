@@ -27,8 +27,8 @@ export namespace AVAILABLE_PAGE_TYPE {
     const PROFILE_ORDER_SHIPMENT: string;
     const PROFILE_BASIC: string;
     const PROFILE_COMPANY: string;
-    const PROFILE_EMAILS: string;
-    const PROFILE_PHONES: string;
+    const PROFILE_EMAIL: string;
+    const PROFILE_PHONE: string;
     const RATE_US: string;
     const REFER_EARN: string;
     const SETTINGS: string;
@@ -47,6 +47,9 @@ export namespace AVAILABLE_PAGE_TYPE {
     const RETURN_POLICY: string;
     const ORDER_STATUS: string;
     const LOCATE_US: string;
+    const SINGLE_PAGE_CHECKOUT: string;
+    const REQUEST_REATTEMPT: string;
+    const FILES: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -205,11 +208,11 @@ export const NAVIGATORS: {
         name: string;
         link: string;
     };
-    "profile-emails": {
+    "profile-email": {
         name: string;
         link: string;
     };
-    "profile-phones": {
+    "profile-phone": {
         name: string;
         link: string;
     };
@@ -300,5 +303,25 @@ export const NAVIGATORS: {
     "locate-us": {
         name: string;
         link: string;
+    };
+    "single-page-checkout": {
+        name: string;
+        link: string;
+    };
+    "request-reattempt": {
+        name: string;
+        link: string;
+        params: {
+            key: string;
+            required: boolean;
+        }[];
+    };
+    files: {
+        name: string;
+        link: string;
+        params: {
+            key: string;
+            required: boolean;
+        }[];
     };
 };

@@ -21,7 +21,7 @@ class Webhook {
    * @returns {Promise<WebhookPartnerModel.ResponseTimeTs>} - Success response
    * @name responseTimeSummary
    * @summary: Response time summary
-   * @description: Response time summary - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/responseTimeSummary/).
+   * @description: Response time summary - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/responseTimeSummary/).
    */
   async responseTimeSummary(
     { extensionId, startDate, endDate, requestHeaders } = {
@@ -103,10 +103,10 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchDeliverySummaryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliverySummaryResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliverySummaryResult>} - Success response
    * @name fetchDeliverySummary
    * @summary: Webhook delivery summary
-   * @description: Webhook delivery summary - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchDeliverySummary/).
+   * @description: Webhook delivery summary - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/fetchDeliverySummary/).
    */
   async fetchDeliverySummary(
     { extensionId, startDate, endDate, requestHeaders } = {
@@ -165,7 +165,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliverySummaryResponse().validate(responseData, {
+    } = WebhookPartnerModel.DeliverySummaryResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -188,10 +188,10 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetDeliveryDetailInsightsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliveryDetailsResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliveryDetailsResult>} - Success response
    * @name getDeliveryDetailInsights
    * @summary: Get the insights of delivery details of the events that was pushed to subscribers
-   * @description: Get the delivery details insights - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/getDeliveryDetailInsights/).
+   * @description: Get the delivery details insights - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/getDeliveryDetailInsights/).
    */
   async getDeliveryDetailInsights(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -246,7 +246,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliveryDetailsResponse().validate(responseData, {
+    } = WebhookPartnerModel.DeliveryDetailsResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -269,10 +269,10 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchDeliveryTsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.DeliveryTsResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.DeliveryTsResult>} - Success response
    * @name fetchDeliveryTs
    * @summary: Webhook delivery ts
-   * @description: Webhook delivery ts - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchDeliveryTs/).
+   * @description: Webhook delivery ts - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/fetchDeliveryTs/).
    */
   async fetchDeliveryTs(
     { extensionId, startDate, endDate, requestHeaders } = {
@@ -331,7 +331,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.DeliveryTsResponse().validate(responseData, {
+    } = WebhookPartnerModel.DeliveryTsResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -354,10 +354,10 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchReportFiltersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.FilterReportResponse[]>} - Success response
+   * @returns {Promise<WebhookPartnerModel.FilterReportResult[]>} - Success response
    * @name fetchReportFilters
    * @summary: Fetch webhook report filters
-   * @description: Fetch webhook report filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchReportFilters/).
+   * @description: Fetch webhook report filters - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/fetchReportFilters/).
    */
   async fetchReportFilters(
     { extensionId, startDate, endDate, pageNo, pageSize, requestHeaders } = {
@@ -421,7 +421,7 @@ class Webhook {
     }
 
     const { error: res_error } = Joi.array()
-      .items(WebhookPartnerModel.FilterReportResponse())
+      .items(WebhookPartnerModel.FilterReportResult())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -439,13 +439,92 @@ class Webhook {
   }
 
   /**
+   * @param {WebhookPartnerValidator.DownloadDeliveryReportParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.DownloadReportResult>} - Success response
+   * @name downloadDeliveryReport
+   * @summary: Download webhook delivery report
+   * @description: Download webhook delivery report - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/downloadDeliveryReport/).
+   */
+  async downloadDeliveryReport(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = WebhookPartnerValidator.downloadDeliveryReport().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.downloadDeliveryReport().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > downloadDeliveryReport \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/report/download`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.DownloadReportResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > downloadDeliveryReport \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {WebhookPartnerValidator.CancelReportDownloadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.CancelDownloadResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.CancelDownloadResult>} - Success response
    * @name cancelReportDownload
    * @summary: Cancel report download job
-   * @description: Cancel report download job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/cancelReportDownload/).
+   * @description: Cancel report download job - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/cancelReportDownload/).
    */
   async cancelReportDownload(
     { extensionId, filename, requestHeaders } = { requestHeaders: {} },
@@ -498,7 +577,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.CancelDownloadResponse().validate(responseData, {
+    } = WebhookPartnerModel.CancelDownloadResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -521,11 +600,11 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetHistoricalReportsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.HistoryResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.HistoryResult>} - Success response
    * @name getHistoricalReports
    * @summary: Get report download history.
    * @description: Retrieve history reports for a specific company based on the provided filters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/getHistoricalReports/).
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/getHistoricalReports/).
    */
   async getHistoricalReports(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -578,7 +657,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.HistoryResponse().validate(responseData, {
+    } = WebhookPartnerModel.HistoryResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -601,11 +680,11 @@ class Webhook {
    * @param {WebhookPartnerValidator.GetInvalidEventListParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.InvalidEventsResponse[]>} - Success response
+   * @returns {Promise<WebhookPartnerModel.InvalidEventsResult[]>} - Success response
    * @name getInvalidEventList
    * @summary: Get invalid event list
    * @description: Get invalid event list.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/getInvalidEventList/).
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/getInvalidEventList/).
    */
   async getInvalidEventList(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -657,7 +736,7 @@ class Webhook {
     }
 
     const { error: res_error } = Joi.array()
-      .items(WebhookPartnerModel.InvalidEventsResponse())
+      .items(WebhookPartnerModel.InvalidEventsResult())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -678,10 +757,10 @@ class Webhook {
    * @param {WebhookPartnerValidator.FetchSubscribersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.SubscriberConfigResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.SubscriberConfigDetails>} - Success response
    * @name fetchSubscribers
    * @summary: Fetch subscriber by filters
-   * @description: Fetch subscriber by filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchSubscribers/).
+   * @description: Fetch subscriber by filters - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/fetchSubscribers/).
    */
   async fetchSubscribers(
     { extensionId, requestHeaders } = { requestHeaders: {} },
@@ -732,7 +811,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.SubscriberConfigResponse().validate(responseData, {
+    } = WebhookPartnerModel.SubscriberConfigDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -755,11 +834,11 @@ class Webhook {
    * @param {WebhookPartnerValidator.UpdateSubscriberParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<WebhookPartnerModel.UpdateSubscriberResponse>} - Success response
+   * @returns {Promise<WebhookPartnerModel.SubscriberUpdateResult>} - Success response
    * @name updateSubscriber
    * @summary: Update subscriber status by id.
    * @description: Update subscriber status by id.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/updateSubscriber/).
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/updateSubscriber/).
    */
   async updateSubscriber(
     { extensionId, subscriberId, body, requestHeaders } = {
@@ -816,7 +895,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPartnerModel.UpdateSubscriberResponse().validate(responseData, {
+    } = WebhookPartnerModel.SubscriberUpdateResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -828,6 +907,261 @@ class Webhook {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Webhook > updateSubscriber \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.ValidateFilterConfigurationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.FilterValidationResult>} - Success response
+   * @name validateFilterConfiguration
+   * @summary: Validate filter configuration.
+   * @description: Validate a filter configuration against sample payload data.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateFilterConfiguration/).
+   */
+  async validateFilterConfiguration(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.validateFilterConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.validateFilterConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > validateFilterConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/validate/filter`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.FilterValidationResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > validateFilterConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.ValidateReducerConfigurationParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.ReducerValidationResult>} - Success response
+   * @name validateReducerConfiguration
+   * @summary: Validate reducer configuration.
+   * @description: Validate a reducer configuration against sample payload data.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/validateReducerConfiguration/).
+   */
+  async validateReducerConfiguration(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.validateReducerConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.validateReducerConfiguration().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > validateReducerConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/validate/reducer`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.ReducerValidationResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > validateReducerConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {WebhookPartnerValidator.SaveFilterReducerConfigurationParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<WebhookPartnerModel.FilterReducerSaveResult>} - Success response
+   * @name saveFilterReducerConfiguration
+   * @summary: Save filter or reducer configuration.
+   * @description: Save filter and/or reducer configuration for a subscriber event mapping.
+   *  - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/webhook/saveFilterReducerConfiguration/).
+   */
+  async saveFilterReducerConfiguration(
+    { extensionId, companyId, subscriberId, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPartnerValidator.saveFilterReducerConfiguration().validate(
+      {
+        extensionId,
+        companyId,
+        subscriberId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookPartnerValidator.saveFilterReducerConfiguration().validate(
+      {
+        extensionId,
+        companyId,
+        subscriberId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Webhook > saveFilterReducerConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "put",
+      `/service/partner/webhook/v1.0/organization/${this.config.organizationId}/extension/${extensionId}/company/${companyId}/subscriber/${subscriberId}/filter_reducer`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = WebhookPartnerModel.FilterReducerSaveResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Webhook > saveFilterReducerConfiguration \n ${res_error}`,
         });
       }
     }

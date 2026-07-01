@@ -23,7 +23,7 @@ class FileStorage {
    * @returns {Promise<Object>} - Success response
    * @name browse
    * @summary: Browse files.
-   * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
+   * @description: View and navigate through available files. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/browse/).
    */
   async browse(
     { namespace, page, limit, requestHeaders } = { requestHeaders: {} },
@@ -103,10 +103,10 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.FileUploadComplete>} - Success response
    * @name completeUpload
    * @summary: Complete file upload.
-   * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
+   * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -163,7 +163,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.CompleteResponse().validate(responseData, {
+    } = FileStoragePlatformModel.FileUploadComplete().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -189,7 +189,7 @@ class FileStorage {
    * @returns {Promise<Object>} - Success response
    * @name copyFiles
    * @summary: Copy files.
-   * @description: Duplicate files to another location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
+   * @description: Duplicate files to another location. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/copyFiles/).
    */
   async copyFiles(
     { body, sync, requestHeaders } = { requestHeaders: {} },
@@ -266,10 +266,10 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.SignUrlResult>} - Success response
    * @name getSignUrls
    * @summary: Get signed URLs.
-   * @description: Retrieve signed URLs for file access. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
+   * @description: Retrieve signed URLs for file access. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/getSignUrls/).
    */
   async getSignUrls(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -322,7 +322,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.SignUrlResponse().validate(responseData, {
+    } = FileStoragePlatformModel.SignUrlResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -345,10 +345,10 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.ProxyFileAccess>} - Success response
    * @name proxy
    * @summary: Proxy file access.
-   * @description: Access files through a proxy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
+   * @description: Access files through a proxy. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/proxy/).
    */
   async proxy(
     { url, requestHeaders } = { requestHeaders: {} },
@@ -400,7 +400,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.ProxyResponse().validate(responseData, {
+    } = FileStoragePlatformModel.ProxyFileAccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -423,10 +423,10 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.FileUpload>} - Success response
    * @name startUpload
    * @summary: Start file upload.
-   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
+   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -483,7 +483,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.StartResponse().validate(responseData, {
+    } = FileStoragePlatformModel.FileUpload().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -510,7 +510,6 @@ class FileStorage {
  * @param {string} namespace
  * @param {number} size
  * @param {number} tags
- * @param {string} enc_key
  */
 FileStorage.prototype.upload = function ({
   data,
@@ -519,7 +518,6 @@ FileStorage.prototype.upload = function ({
   namespace,
   size,
   tags,
-  enc_key,
 } = {}) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -530,7 +528,6 @@ FileStorage.prototype.upload = function ({
           content_type,
           size: size,
           tags: tags,
-          enc_key: enc_key,
         },
       });
       if (dataObj.upload && dataObj.upload.url) {

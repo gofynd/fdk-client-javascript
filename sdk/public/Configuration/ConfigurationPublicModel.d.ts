@@ -1,6 +1,6 @@
 export = ConfigurationPublicModel;
 /**
- * @typedef ApplicationResponse
+ * @typedef ApplicationResponseSchema
  * @property {Application} [application]
  */
 /**
@@ -10,8 +10,7 @@ export = ConfigurationPublicModel;
  * @property {boolean} [is_primary] - Indicates domain is primary or not.
  *   Primary domain is the default/main domain.
  * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
+ * @property {string} [_id] - The unique identifier of the domain
  * @property {string} [name]
  * @property {boolean} [is_predefined] - Domain is hosting domain or not
  */
@@ -39,6 +38,11 @@ export = ConfigurationPublicModel;
  *   for a short time period.
  */
 /**
+ * @typedef RegionDetails
+ * @property {string} [slug] - Region slug identifier.
+ * @property {string} [zone] - Zone identifier within the region.
+ */
+/**
  * @typedef ApplicationMeta
  * @property {string} [name] - Indicates the name of application meta
  * @property {string} [value] - Value related to application meta name
@@ -53,45 +57,47 @@ export = ConfigurationPublicModel;
  * @property {ApplicationCors} [cors]
  * @property {ApplicationAuth} [auth]
  * @property {string} [description] - It contains detailed information about the
- *   sales channel.
+ *   sales channel
  * @property {string} [channel_type] - It indicates different channel types like
- *   store, website-and-mobile-apps. Default value is store
+ *   store, website-and-mobile-apps. Default value is store.
  * @property {number} [cache_ttl] - An integer value that specifies the number
  *   of seconds until the key expires
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
- * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
+ * @property {boolean} [is_active] - Indicates whether a sales channel is active
+ *   or not active
+ * @property {string} [_id] - The unique identifier of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
+ * @property {string} [owner] - The unique identifier of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
- * @property {string} [token] - Random generated fix length string for sales
+ * @property {string} [token] - Randomly generated fixed-length string for sales
  *   channel. It is required and auto-generated.
  * @property {ApplicationRedirections[]} [redirections]
  * @property {ApplicationMeta[]} [meta]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {SecureUrl} [banner]
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [favicon]
  * @property {Domain[]} [domains]
- * @property {string} [app_type] - It shows application is live or in development mode.
+ * @property {string} [app_type] - It shows whether application is live or in
+ *   development mode
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
- * @property {string} [mode]
- * @property {string} [status]
- * @property {TokenSchema[]} [tokens]
+ * @property {string} [region] - Region identifier for the sales channel. When
+ *   zone is "default", this equals the slug. Otherwise, it is formatted as "slug/zone".
+ * @property {RegionDetails} [region_details]
  */
 /**
- * @typedef TokenSchema
- * @property {string} [token]
- * @property {Object} [created_by]
- * @property {string} [created_at] - ISO 8601 timestamp of when token created
+ * @typedef NotFound
+ * @property {string} [message] - Response message for not found
+ */
+/**
+ * @typedef BadRequestSchema
+ * @property {string} [message] - Failure message (in a string format)
  */
 /**
  * @typedef LocationDefaultLanguage
@@ -128,45 +134,14 @@ export = ConfigurationPublicModel;
  * @typedef Locations
  * @property {LocationCountry[]} [items]
  */
-/**
- * @typedef VersionApplication
- * @property {string} [name]
- * @property {string} [version]
- */
-/**
- * @typedef VersionDeviceOS
- * @property {string} [name]
- */
-/**
- * @typedef VersionDevice
- * @property {VersionDeviceOS} [os]
- */
-/**
- * @typedef VersionRequest
- * @property {VersionApplication} application
- * @property {VersionDevice} device
- */
-/**
- * @typedef VersionUpdateDialogue
- * @property {string} [type]
- * @property {number} [interval]
- */
-/**
- * @typedef VersionResponse
- * @property {string} type
- * @property {string} title
- * @property {string} description
- * @property {VersionUpdateDialogue} update_dialog
- * @property {boolean} is_app_blocked
- */
 declare class ConfigurationPublicModel {
 }
 declare namespace ConfigurationPublicModel {
-    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, VersionApplication, VersionDeviceOS, VersionDevice, VersionRequest, VersionUpdateDialogue, VersionResponse };
+    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, RegionDetails, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
-/** @returns {ApplicationResponse} */
-declare function ApplicationResponse(): ApplicationResponse;
-type ApplicationResponse = {
+/** @returns {ApplicationResponseSchema} */
+declare function ApplicationResponseSchema(): ApplicationResponseSchema;
+type ApplicationResponseSchema = {
     application?: Application;
 };
 /** @returns {Domain} */
@@ -187,8 +162,7 @@ type Domain = {
      */
     is_shortlink?: boolean;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the domain
+     * - The unique identifier of the domain
      */
     _id?: string;
     name?: string;
@@ -242,6 +216,18 @@ type ApplicationRedirections = {
      */
     type?: string;
 };
+/** @returns {RegionDetails} */
+declare function RegionDetails(): RegionDetails;
+type RegionDetails = {
+    /**
+     * - Region slug identifier.
+     */
+    slug?: string;
+    /**
+     * - Zone identifier within the region.
+     */
+    zone?: string;
+};
 /** @returns {ApplicationMeta} */
 declare function ApplicationMeta(): ApplicationMeta;
 type ApplicationMeta = {
@@ -270,12 +256,12 @@ type Application = {
     auth?: ApplicationAuth;
     /**
      * - It contains detailed information about the
-     * sales channel.
+     * sales channel
      */
     description?: string;
     /**
      * - It indicates different channel types like
-     * store, website-and-mobile-apps. Default value is store
+     * store, website-and-mobile-apps. Default value is store.
      */
     channel_type?: string;
     /**
@@ -289,12 +275,12 @@ type Application = {
      */
     is_internal?: boolean;
     /**
-     * - Indicates sales channel is active or not active
+     * - Indicates whether a sales channel is active
+     * or not active
      */
     is_active?: boolean;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the sales channel
+     * - The unique identifier of the sales channel
      */
     _id?: string;
     /**
@@ -302,8 +288,7 @@ type Application = {
      */
     name?: string;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of owner who owns the application
+     * - The unique identifier of owner who owns the application
      */
     owner?: string;
     /**
@@ -312,7 +297,7 @@ type Application = {
      */
     company_id?: number;
     /**
-     * - Random generated fix length string for sales
+     * - Randomly generated fixed-length string for sales
      * channel. It is required and auto-generated.
      */
     token?: string;
@@ -325,7 +310,7 @@ type Application = {
     /**
      * - ISO 8601 timestamp of sales channel updation
      */
-    modified_at?: string;
+    updated_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero.
      */
@@ -335,25 +320,35 @@ type Application = {
     favicon?: SecureUrl;
     domains?: Domain[];
     /**
-     * - It shows application is live or in development mode.
+     * - It shows whether application is live or in
+     * development mode
      */
     app_type?: string;
     mobile_logo?: SecureUrl;
     domain?: Domain;
     slug?: string;
-    mode?: string;
-    status?: string;
-    tokens?: TokenSchema[];
-};
-/** @returns {TokenSchema} */
-declare function TokenSchema(): TokenSchema;
-type TokenSchema = {
-    token?: string;
-    created_by?: any;
     /**
-     * - ISO 8601 timestamp of when token created
+     * - Region identifier for the sales channel. When
+     * zone is "default", this equals the slug. Otherwise, it is formatted as "slug/zone".
      */
-    created_at?: string;
+    region?: string;
+    region_details?: RegionDetails;
+};
+/** @returns {NotFound} */
+declare function NotFound(): NotFound;
+type NotFound = {
+    /**
+     * - Response message for not found
+     */
+    message?: string;
+};
+/** @returns {BadRequestSchema} */
+declare function BadRequestSchema(): BadRequestSchema;
+type BadRequestSchema = {
+    /**
+     * - Failure message (in a string format)
+     */
+    message?: string;
 };
 /** @returns {LocationDefaultLanguage} */
 declare function LocationDefaultLanguage(): LocationDefaultLanguage;
@@ -393,41 +388,4 @@ type LocationCountry = {
 declare function Locations(): Locations;
 type Locations = {
     items?: LocationCountry[];
-};
-/** @returns {VersionApplication} */
-declare function VersionApplication(): VersionApplication;
-type VersionApplication = {
-    name?: string;
-    version?: string;
-};
-/** @returns {VersionDeviceOS} */
-declare function VersionDeviceOS(): VersionDeviceOS;
-type VersionDeviceOS = {
-    name?: string;
-};
-/** @returns {VersionDevice} */
-declare function VersionDevice(): VersionDevice;
-type VersionDevice = {
-    os?: VersionDeviceOS;
-};
-/** @returns {VersionRequest} */
-declare function VersionRequest(): VersionRequest;
-type VersionRequest = {
-    application: VersionApplication;
-    device: VersionDevice;
-};
-/** @returns {VersionUpdateDialogue} */
-declare function VersionUpdateDialogue(): VersionUpdateDialogue;
-type VersionUpdateDialogue = {
-    type?: string;
-    interval?: number;
-};
-/** @returns {VersionResponse} */
-declare function VersionResponse(): VersionResponse;
-type VersionResponse = {
-    type: string;
-    title: string;
-    description: string;
-    update_dialog: VersionUpdateDialogue;
-    is_app_blocked: boolean;
 };

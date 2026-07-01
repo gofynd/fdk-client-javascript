@@ -1,3 +1,5 @@
+const Catalog = require("./Catalog/CatalogPublicClient");
+
 const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Content = require("./Content/ContentPublicClient");
@@ -7,6 +9,7 @@ const Partner = require("./Partner/PartnerPublicClient");
 const Webhook = require("./Webhook/WebhookPublicClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
+const PublicConfig = require("./PublicConfig");
 
 /**
  * Represents the client for the public APIs.
@@ -19,16 +22,23 @@ class PublicClient {
    *
    * @param {import("./PublicConfig")} config - The configuration for the public client.
    */
-  constructor(config) {
-    this.config = config;
+  constructor(config, options) {
+    if (config instanceof PublicConfig) {
+      this.config = config;
+    } else {
+      let publicConfig = new PublicConfig(config, options);
+      this.config = publicConfig;
+    }
 
-    this.configuration = new Configuration(config);
+    this.catalog = new Catalog(this.config);
 
-    this.content = new Content(config);
+    this.configuration = new Configuration(this.config);
 
-    this.partner = new Partner(config);
+    this.content = new Content(this.config);
 
-    this.webhook = new Webhook(config);
+    this.partner = new Partner(this.config);
+
+    this.webhook = new Webhook(this.config);
   }
 
   /**

@@ -1,25 +1,36 @@
 export = PartnerPlatformModel;
 /**
  * @typedef AddProxyReq
- * @property {string} [attached_path] - Proxy path slug
- * @property {string} [proxy_url] - The external URL for which the proxy URL
- *   will be generated
+ * @property {string} [attached_path] - Attached path can be any slug that will
+ *   be appended to the base URL to create a proxy endpoint, e.g.,
+ *   /ext/{attached_path}. Note: attached_path should be unique for each
+ *   extension within the same application.
+ * @property {string} [proxy_url] - External URL for which the proxy URL will be generated
  */
 /**
- * @typedef AddProxyResponse
- * @property {string} [_id]
- * @property {string} [attached_path]
- * @property {string} [proxy_url]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [extension_id]
- * @property {string} [created_at]
- * @property {string} [modified_at]
+ * @typedef ExtensionProxyPathCreation
+ * @property {string} [_id] - Unique identifier for the proxy URL entry in the database.
+ * @property {string} [attached_path] - The slug path appended to the base URL
+ *   for creating the proxy endpoint.
+ * @property {string} [proxy_url] - The external URL that the proxy endpoint
+ *   will forward requests to.
+ * @property {string} [company_id] - Unique identifier of the company that owns
+ *   the proxy URL.
+ * @property {string} [application_id] - Unique identifier of the application
+ *   associated with the proxy URL.
+ * @property {string} [extension_id] - Unique identifier of the extension where
+ *   the proxy URL is configured.
+ * @property {string} [created_at] - The timestamp indicating when the proxy URL
+ *   configuration was created.
+ * @property {string} [modified_at] - The timestamp indicating the last update
+ *   made to the proxy URL configuration.
  */
 /**
- * @typedef RemoveProxyResponse
- * @property {string} [message]
- * @property {Object} [data]
+ * @typedef ExtensionProxyPathDelete
+ * @property {string} [message] - Descriptive message indicating the status or
+ *   result of the deletion operation.
+ * @property {Object} [data] - Additional information or metadata about the
+ *   deleted proxy configuration.
  */
 /**
  * @typedef APIError
@@ -32,37 +43,78 @@ export = PartnerPlatformModel;
 declare class PartnerPlatformModel {
 }
 declare namespace PartnerPlatformModel {
-    export { AddProxyReq, AddProxyResponse, RemoveProxyResponse, APIError };
+    export { AddProxyReq, ExtensionProxyPathCreation, ExtensionProxyPathDelete, APIError };
 }
 /** @returns {AddProxyReq} */
 declare function AddProxyReq(): AddProxyReq;
 type AddProxyReq = {
     /**
-     * - Proxy path slug
+     * - Attached path can be any slug that will
+     * be appended to the base URL to create a proxy endpoint, e.g.,
+     * /ext/{attached_path}. Note: attached_path should be unique for each
+     * extension within the same application.
      */
     attached_path?: string;
     /**
-     * - The external URL for which the proxy URL
-     * will be generated
+     * - External URL for which the proxy URL will be generated
      */
     proxy_url?: string;
 };
-/** @returns {AddProxyResponse} */
-declare function AddProxyResponse(): AddProxyResponse;
-type AddProxyResponse = {
+/** @returns {ExtensionProxyPathCreation} */
+declare function ExtensionProxyPathCreation(): ExtensionProxyPathCreation;
+type ExtensionProxyPathCreation = {
+    /**
+     * - Unique identifier for the proxy URL entry in the database.
+     */
     _id?: string;
+    /**
+     * - The slug path appended to the base URL
+     * for creating the proxy endpoint.
+     */
     attached_path?: string;
+    /**
+     * - The external URL that the proxy endpoint
+     * will forward requests to.
+     */
     proxy_url?: string;
+    /**
+     * - Unique identifier of the company that owns
+     * the proxy URL.
+     */
     company_id?: string;
+    /**
+     * - Unique identifier of the application
+     * associated with the proxy URL.
+     */
     application_id?: string;
+    /**
+     * - Unique identifier of the extension where
+     * the proxy URL is configured.
+     */
     extension_id?: string;
+    /**
+     * - The timestamp indicating when the proxy URL
+     * configuration was created.
+     */
     created_at?: string;
+    /**
+     * - The timestamp indicating the last update
+     * made to the proxy URL configuration.
+     */
     modified_at?: string;
 };
-/** @returns {RemoveProxyResponse} */
-declare function RemoveProxyResponse(): RemoveProxyResponse;
-type RemoveProxyResponse = {
+/** @returns {ExtensionProxyPathDelete} */
+declare function ExtensionProxyPathDelete(): ExtensionProxyPathDelete;
+type ExtensionProxyPathDelete = {
+    /**
+     * - Descriptive message indicating the status or
+     * result of the deletion operation.
+     */
     message?: string;
+    /**
+     * - Additional information or metadata about the
+     * deleted proxy configuration.
+     */
     data?: any;
 };
 /** @returns {APIError} */

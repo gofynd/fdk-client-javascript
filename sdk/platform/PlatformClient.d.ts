@@ -10,8 +10,8 @@ declare class PlatformClient {
      *
      * @param {import("./PlatformConfig")} config - The application configuration.
      */
-    constructor(config: import("./PlatformConfig"));
-    config: import("./PlatformConfig");
+    constructor(config: import("./PlatformConfig"), options: any);
+    config: PlatformConfig;
     auditTrail: AuditTrail;
     billing: Billing;
     catalog: Catalog;
@@ -22,7 +22,6 @@ declare class PlatformClient {
     content: Content;
     discount: Discount;
     fileStorage: FileStorage;
-    finance: Finance;
     lead: Lead;
     serviceability: Serviceability;
     order: Order;
@@ -54,7 +53,10 @@ declare class PlatformClient {
         headers: any;
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
+    getAccesstokenObj(options: any): Promise<import("axios").AxiosResponse<any, any>>;
+    setToken(token: any): void;
 }
+import PlatformConfig = require("./PlatformConfig");
 import AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 import Billing = require("./Billing/BillingPlatformClient");
 import Catalog = require("./Catalog/CatalogPlatformClient");
@@ -65,7 +67,6 @@ import Configuration = require("./Configuration/ConfigurationPlatformClient");
 import Content = require("./Content/ContentPlatformClient");
 import Discount = require("./Discount/DiscountPlatformClient");
 import FileStorage = require("./FileStorage/FileStoragePlatformClient");
-import Finance = require("./Finance/FinancePlatformClient");
 import Lead = require("./Lead/LeadPlatformClient");
 import Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
 import Order = require("./Order/OrderPlatformClient");

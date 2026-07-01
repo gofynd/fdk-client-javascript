@@ -9,24 +9,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef AddProductsInPriceFactoryByZoneIdParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreatePriceFactoryProductRequest} body
- */
-
-/**
- * @typedef ClearCollectionItemsPriorityParam
- * @property {string} id - A `id` is a unique identifier of a collection.
- */
-
-/**
  * @typedef CreateAppCategoryReturnConfigurationParam
  * @property {CatalogPlatformModel.BaseAppCategoryReturnConfig} body
- */
-
-/**
- * @typedef CreateAppPriceFactoryParam
- * @property {CatalogPlatformModel.CreateAppPriceFactoryRequestSchema} body
  */
 
 /**
@@ -35,12 +19,17 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef CreateAutocompleteSettingsParam
- * @property {CatalogPlatformModel.AutocompleteRequestSchema} body
- */
-
-/**
  * @typedef CreateCollectionParam
+ * @property {string} [q] - Get collection list filtered by q string,
+ * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
+ * @property {string} [type] - Type of the collections
+ * @property {string[]} [tags] - Each response will contain next_id param, which
+ *   should be sent back to make pagination work.
+ * @property {boolean} [isActive] - Get collections filtered by active status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 
@@ -69,68 +58,24 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef CreateGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
- * @property {CatalogPlatformModel.AppConfigurationCreateDetail} body
+ * @property {CatalogPlatformModel.AppConfigurationDetail} body
  */
 
 /**
  * @typedef CreateListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
- * @property {CatalogPlatformModel.AppConfigurationsFilter} body
+ * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 
 /**
- * @typedef CreateMerchandisingRuleBoostActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PostMerchandisingRuleBoostAction} body
- */
-
-/**
- * @typedef CreateMerchandisingRuleBuryActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PostMerchandisingRuleBoostAction} body
- */
-
-/**
- * @typedef CreateMerchandisingRuleHideActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequest} body
- */
-
-/**
- * @typedef CreateMerchandisingRulePinActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequest} body
- */
-
-/**
- * @typedef CreateMerchandisingRuleQueryParam
- * @property {CatalogPlatformModel.MerchandisingRuleQueryPost} body
- */
-
-/**
- * @typedef CreateProductPriceFactoryBulkJobParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
+ * @typedef CreatePriceFactoryParam
+ * @property {CatalogPlatformModel.CreatePriceFactoryConfigSchema} body
  */
 
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
- */
-
-/**
- * @typedef CreateSearchRerankParam
- * @property {CatalogPlatformModel.CreateSearchRerankRequest} body
- */
-
-/**
- * @typedef CreateSynonymsParam
- * @property {CatalogPlatformModel.SynonymCreateRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
  */
 
 /**
@@ -166,15 +111,9 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef DeleteMerchandisingRuleParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- */
-
-/**
- * @typedef DeleteMerchandisingRulesPreviewParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
+ * @typedef DeletePriceFactoryParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular price factory configuration.
  */
 
 /** @typedef DeleteSearchConfigurationParam */
@@ -186,37 +125,17 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef DeleteSearchRerankConfigurationParam
- * @property {string} id - An `id` is the identifier for a particular search
- *   rerank configuration. channel.
+ * @typedef FollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
  */
-
-/**
- * @typedef DeleteSynonymParam
- * @property {string} id - A `id` is a unique identifier of a synonym that is to
- *   be deleted.
- */
-
-/**
- * @typedef EditAppPriceFactoryParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.EditAppPriceFactoryRequestSchema} body
- */
-
-/**
- * @typedef ExportProductsInPriceFactoryParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest} body
- */
-
-/** @typedef ExportSynonymsParam */
 
 /**
  * @typedef GetAllCollectionsParam
  * @property {string} [q] - Get collection list filtered by q string,
  * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
  * @property {string} [type] - Type of the collections
- * @property {string[]} [tag] - Each response will contain next_id param, which
+ * @property {string[]} [tags] - Each response will contain next_id param, which
  *   should be sent back to make pagination work.
  * @property {boolean} [isActive] - Get collections filtered by active status.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -225,17 +144,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   Default is 12.
  */
 
-/**
- * @typedef GetAllSearchKeywordParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - Search query with words name.Use this parameter to
- *   search keywords by words.
- * @property {boolean} [isActive] - Can query for keywords based on whether they
- *   are active or inactive.
- */
+/** @typedef GetAllSearchKeywordParam */
 
 /**
  * @typedef GetAppCategoryReturnConfigParam
@@ -283,54 +192,16 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   Default is 20.
  * @property {string[]} [tags] - Get locations filtered by tags.
  * @property {string[]} [storeTypes] - Get locations filtered by store types.
- * @property {number[]} [companyUids] - Filter stores by company IDs available
- *   in the application.
- */
-
-/**
- * @typedef GetAppPriceByIdParam
- * @property {number} itemId - Unique identifier of the product
- * @property {number[]} [storeIds] - An array of unique identifiers representing
- *   the store locations from which the product pricing should be fetched. If
- *   not provided, pricing for all applicable store locations will be returned.
- * @property {string[]} [factoryTypeIds] - An array of unique factory type
- *   identifiers that specify that pricing from which factory type should be
- *   retrieved. This parameter allows filtering the price based on factory types.
- * @property {number} [sellerId] - The company uid for which we want to fetch
- *   discounted pricing for a product
- */
-
-/**
- * @typedef GetAppPriceFactoriesParam
- * @property {boolean} [isActive] - Gets price factory filtered by active status.
- * @property {string} [factoryTypeId] - Gets price factory filtered by factory_type_id.
- * @property {string} [code] - Gets price factory filtered by pricezone code.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- */
-
-/**
- * @typedef GetAppPriceFactoryParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
  */
 
 /**
  * @typedef GetAppProductParam
- * @property {number} itemId - Product id for a particular product.
+ * @property {string} itemId - Product id for a particular product.
  */
 
 /**
  * @typedef GetAppProductPricesParam
- * @property {number[]} [itemIds] - List of item ids to get product prices
- *   filtered by items.
- * @property {string[]} [factoryTypeIds] - List of factory type ids to get
- *   product prices filtered by factory type id.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 10.
+ * @property {number[]} itemIds - List of item IDs for which to retrieve pricing.
  */
 
 /**
@@ -369,7 +240,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -400,26 +271,27 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  */
 
 /**
  * @typedef GetApplicationFilterValuesParam
- * @property {string} filterKey - A `filter_key` is a filter key for a for which
- *   all the available filter values will returned. channel.
+ * @property {string} filterKey - A `filter_key` is a filter key which returns
+ *   all the available filter values.
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  * @property {string} [collectionId] - A `collection_id` is a unique identifier
- *   for a particular collection. channel.
+ *   for a particular collection.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {string} [q] - Get Values filtered by q string
+ * @property {string} [q] - The `q` parameter allows you to search and filter
+ *   specific data within the filter options. It acts as a query keyword that
+ *   can refine the results by matching relevant filter values, such as a
+ *   category name or any other applicable filter criteria.
  */
 
 /**
@@ -437,9 +309,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   details. This flag is used to fetch all filters
  * @property {boolean} [isDependent] - This query parameter is used to get the
  *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
+ * @property {string} [sortOn] - The order to sort the list of products on.
+ *   Supported values include latest, popular, price_asc, price_dsc,
+ *   discount_asc, discount_dsc. Custom sort keys configured via listing
+ *   configuration (e.g., best_selling) are also supported for cohort-based sorting.
  * @property {string} [pageId] - Each response will contain **page_id** param,
  *   which should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -451,35 +324,13 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string[]} [itemIds] - Item Ids of product
  */
 
-/**
- * @typedef GetAutocompleteConfigParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - Search query with words name.Use this parameter to
- *   search keywords by words.
- * @property {boolean} [isActive] - Can query for keywords based on whether they
- *   are active or inactive.
- */
+/** @typedef GetAutocompleteConfigParam */
 
 /**
  * @typedef GetAutocompleteKeywordDetailParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
-
-/**
- * @typedef GetAutocompletePreviewParam
- * @property {string} [q] - Get suggestions related to `q` string.
- * @property {number} [categorySuggestion] - For getting related category suggestions.
- * @property {number} [brandSuggestion] - For getting related brand suggestions.
- * @property {number} [collectionSuggestion] - For getting collection suggestions.
- * @property {number} [productSuggestion] - For getting product suggestions.
- * @property {number} [querySuggestion] - For getting query suggestions.
- */
-
-/** @typedef GetAutocompleteSettingsParam */
 
 /** @typedef GetCatalogConfigurationParam */
 
@@ -505,22 +356,22 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCollectionItemsParam
- * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {string} [sortOn] - Each response will contain sort_on param, which
- *   should be sent back to make pagination work.
+ * @property {string} collectionId - A `collection_id` is a unique identifier of
+ *   a collection.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - Identifies the specific page of results being requested.
- * @property {boolean} [isPinned] - Number of items that are pinned and have
- *   priority in each page. Default is 12.
- * @property {string} [q] - Get multiple products filtered by q string
- * @property {boolean} [isExcluded] - Number of items that are excluded from
- *   collections in each page. Default is 12.
+ *   Default is 10.
+ * @property {string} [q] - Query string to search collection items by substring
+ *   match on item's name (case-insensitive) or exact item_code.
  */
 
 /**
  * @typedef GetConfigurationByTypeParam
  * @property {string} type - Type can be brands, categories etc.
+ * @property {boolean} [includeInactive] - Pass the `include_inactive` parameter
+ *   to retrieve inactive brand or category details. This flag enables fetching
+ *   all brands or categories,including those that are inactive.
  */
 
 /**
@@ -529,27 +380,34 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ * @property {string} [q] - Get configuration list filtered by `q` string.
  */
 
 /** @typedef GetConfigurationsParam */
-
-/**
- * @typedef GetConfigurationsFilterMetadataParam
- * @property {string} filter - Filter whose values needs to be fetched.
- */
 
 /** @typedef GetDepartmentsParam */
 
 /**
  * @typedef GetDiscountedInventoryBySizeIdentifierParam
- * @property {number} itemId - Item code of the product of which size is to be get.
+ * @property {number} itemId - A `item_id` is a unique identifier for a specific product.
  * @property {number} sizeIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier) of which inventory is to get.
+ *   Primary Identifier).
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
  * @property {number[]} [locationIds] - Search by store ids.
+ */
+
+/**
+ * @typedef GetFollowedProductsParam
+ * @property {string} userId - User ID to fetch the followed list
+ * @property {string} [pageId] - The identifier used to retrieve the next set of
+ *   results. This parameter follows cursor-based pagination.
+ * @property {number} [pageSize] - Number of items per page
  */
 
 /**
@@ -574,52 +432,46 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
  * @property {string} [search] - Get configuration list filtered by `search` string.
- * @property {number[]} [uids] - Only for categories config type, Get
- *   configuration list filtered by `uids`.
  */
 
 /**
- * @typedef GetLivePreviewParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {string} [searchKeyword] - A sample query that can be used to get a
- *   live preview of the merchandising rule.
+ * @typedef GetPriceFactoriesParam
+ * @property {string} [q] - Optional q to filter price factories by name.
  */
 
 /**
- * @typedef GetMerchandisingQueryParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
+ * @typedef GetPriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be retrieved.
  */
 
 /**
- * @typedef GetMerchandisingRuleBoostActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
+ * @typedef GetPriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a particular sale channel.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
  */
 
 /**
- * @typedef GetMerchandisingRuleBuryActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- */
-
-/**
- * @typedef GetMerchandisingRuleHideActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- */
-
-/**
- * @typedef GetMerchandisingRulePinActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- */
-
-/**
- * @typedef GetMerchandisingRulesParam
- * @property {string} [pageId] - Each response will contain next_id param, which
- *   should be sent back to make pagination work.
+ * @typedef GetPriceFactoryProductsParam
+ * @property {string} priceFactoryId - A `price_factory_id` uniquely identifies
+ *   a price factory configuration for a specific application.
+ * @property {number[]} [brandIds] - Optional list of brand IDs to filter price
+ *   factories associated with specific brands.
+ * @property {number[]} [categoryIds] - Optional list of category IDs to filter
+ *   price factories related to specific product categories.
+ * @property {string} [sellerIdentifier] - Optional seller identifier to filter
+ *   price factories associated with a particular seller.
+ * @property {string} [itemCode] - Optional item code to filter price factories
+ *   configured for a specific product code.
+ * @property {string} [slug] - Optional slug to filter price factories by product slug.
+ * @property {string} [name] - Optional name to filter price factories by
+ *   product or configuration name.
+ * @property {boolean} [active] - Optional name to filter price factories by
+ *   product status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
  */
@@ -628,20 +480,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   **v1.0/products/**
- */
-
-/**
- * @typedef GetProductsInPriceFactoryByZoneIdParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} zoneId - An `zone_id` is a unique identifier for a
- *   particular price factory zone.
- * @property {number} [itemId] - Gets price factory filtered by item_id.
- * @property {string} [q] - Gets price factory filtered by search query.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
+ *   "v1.0/products/"
  */
 
 /** @typedef GetQueryFiltersParam */
@@ -654,81 +493,27 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
 
-/** @typedef GetSearchRerankParam */
-
 /**
- * @typedef GetSearchRerankDetailParam
- * @property {string} id - An `id` is the identifier for a particular search
- *   rerank configuration. channel.
- */
-
-/**
- * @typedef GetSynonymsParam
- * @property {string} [id] - Mongo id of the particular synonym
- * @property {string} [name] - Synonym name
- * @property {string} [type] - Synonym type - oneway/twoway
- */
-
-/**
- * @typedef PollBulkSynonymsParam
- * @property {string} id - Id of the bulk job that needs to be polled.
- */
-
-/**
- * @typedef PollPriceFactoryJobsParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} [startDate] - Date that filters the jobs created after this date
- * @property {string} [endDate] - Date that filters the jobs created before this date
- * @property {string[]} [stage] - Filter jobs by the stage
- * @property {boolean} [isActive] - Filter active or inactive jobs
- * @property {string} [q] - Pass unique identifier for a particular job to poll
- * @property {string[]} [type] - Pass type for a particular job to poll
- */
-
-/**
- * @typedef PollProductPriceFactoryBulkJobParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- */
-
-/**
- * @typedef ProcessBulkSynonymsParam
- * @property {CatalogPlatformModel.SynonymBulkProcessRequestSchema} body
- */
-
-/**
- * @typedef ProcessProductPriceFactoryBulkJobParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
- */
-
-/**
- * @typedef SampleBulkSynonymsFileParam
- * @property {string} type - Type of the file
- */
-
-/**
- * @typedef SaveMerchandisingRulesParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.MerchandisingRuleSave} body
+ * @typedef UnfollowProductByIdParam
+ * @property {string} userId - User ID of User
+ * @property {string} itemId - Item ID of Product
  */
 
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequest} body
+ * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
  */
 
 /**
  * @typedef UpdateAppBrandParam
- * @property {number} brandUid - Brand id for which the custom_json is associated.
+ * @property {number} brandUid - A `brand id` is a unique identifier for a
+ *   particular brand.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 
 /**
  * @typedef UpdateAppCategoryParam
- * @property {number} categoryUid - A `category id` is a unique identifier for a
+ * @property {string} categoryUid - A `category id` is a unique identifier for a
  *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
@@ -740,8 +525,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppDepartmentParam
- * @property {number} departmentUid - Department id for which the custom_json is
- *   associated.
+ * @property {number} departmentUid - A `department id` is a unique identifier
+ *   for a particular department.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 
@@ -753,7 +538,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppProductParam
- * @property {number} itemId - Product id for which the custom_meta is associated.
+ * @property {number} itemId - A `item_id` is a unique identifier for a particular item.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 
@@ -770,13 +555,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef UpdateAutocompleteSettingsParam
- * @property {string} id - An `id` is a unique identifier for a particular
- *   autocomplete settings config.
- * @property {CatalogPlatformModel.AutocompleteRequestSchema} body
- */
-
-/**
  * @typedef UpdateCollectionParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {CatalogPlatformModel.UpdateCollection} body
@@ -784,7 +562,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequest} body
+ * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
  */
 
 /**
@@ -802,47 +580,28 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
- * @property {CatalogPlatformModel.AppConfigurationsFilterResponse} body
+ * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 
 /**
- * @typedef UpdateMerchandisingRuleBoostActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PostMerchandisingRuleBoostAction} body
+ * @typedef UpdatePriceFactoryParam
+ * @property {string} priceFactoryId - Unique identifier of the specific price
+ *   factory to be updated.
+ * @property {CatalogPlatformModel.UpdatePriceFactoryConfigSchema} body
  */
 
 /**
- * @typedef UpdateMerchandisingRuleBuryActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PostMerchandisingRuleBoostAction} body
- */
-
-/**
- * @typedef UpdateMerchandisingRuleHideActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.HideRequest} body
- */
-
-/**
- * @typedef UpdateMerchandisingRulePinActionParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.PinRequest} body
- */
-
-/**
- * @typedef UpdateMerchandisingRuleQueryParam
- * @property {string} merchandisingRuleId - A `merchandising_rule_id` is a
- *   unique identifier for a particular merchandising rule.
- * @property {CatalogPlatformModel.MerchandisingRuleQueryPost} body
+ * @typedef UpdatePriceFactoryProductParam
+ * @property {string} priceFactoryId - A `price_factory_id` is a unique
+ *   identifier for a specific price factory configuration.
+ * @property {number} itemId - A `item_id` is a unique identifier for a
+ *   particular product.
+ * @property {CatalogPlatformModel.UpsertPriceFactoryProductSchema} body
  */
 
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
  */
 
 /**
@@ -850,37 +609,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.CreateSearchKeyword} body
- */
-
-/**
- * @typedef UpdateSearchRerankConfigurationParam
- * @property {string} id - An `id` is the identifier for a particular search
- *   rerank configuration. channel.
- * @property {CatalogPlatformModel.UpdateSearchRerankRequest} body
- */
-
-/**
- * @typedef UpdateSynonymsParam
- * @property {string} id - An `id` is a unique identifier for a particular
- *   synonym channel.
- * @property {CatalogPlatformModel.SynonymCreateRequestSchema} body
- */
-
-/**
- * @typedef UploadSynonymsParam
- * @property {CatalogPlatformModel.SynonymUploadRequestSchema} body
- */
-
-/**
- * @typedef ValidateBulkSynonymsParam
- * @property {CatalogPlatformModel.SynonymBulkValidateRequestSchema} body
- */
-
-/**
- * @typedef ValidateProductPriceFactoryBulkJobParam
- * @property {string} id - An `id` is a unique identifier for a particular price factory.
- * @property {string} jobId - A `job_id` is a unique identifier for a particular bulk job.
- * @property {CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest} body
  */
 
 class CatalogPlatformApplicationValidator {
@@ -892,32 +620,10 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {AddProductsInPriceFactoryByZoneIdParam} */
-  static addProductsInPriceFactoryByZoneId() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreatePriceFactoryProductRequest().required(),
-    }).required();
-  }
-
-  /** @returns {ClearCollectionItemsPriorityParam} */
-  static clearCollectionItemsPriority() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {CreateAppCategoryReturnConfigurationParam} */
   static createAppCategoryReturnConfiguration() {
     return Joi.object({
       body: CatalogPlatformModel.BaseAppCategoryReturnConfig().required(),
-    }).required();
-  }
-
-  /** @returns {CreateAppPriceFactoryParam} */
-  static createAppPriceFactory() {
-    return Joi.object({
-      body: CatalogPlatformModel.CreateAppPriceFactoryRequestSchema().required(),
     }).required();
   }
 
@@ -928,16 +634,16 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateAutocompleteSettingsParam} */
-  static createAutocompleteSettings() {
-    return Joi.object({
-      body: CatalogPlatformModel.AutocompleteRequestSchema().required(),
-    }).required();
-  }
-
   /** @returns {CreateCollectionParam} */
   static createCollection() {
     return Joi.object({
+      q: Joi.string().allow(""),
+      scheduleStatus: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      isActive: Joi.boolean(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
       body: CatalogPlatformModel.CreateCollection().required(),
     }).required();
   }
@@ -975,7 +681,7 @@ class CatalogPlatformApplicationValidator {
   static createGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.AppConfigurationCreateDetail().required(),
+      body: CatalogPlatformModel.AppConfigurationDetail().required(),
     }).required();
   }
 
@@ -983,75 +689,21 @@ class CatalogPlatformApplicationValidator {
   static createListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.AppConfigurationsFilter().required(),
+      body: CatalogPlatformModel.AppConfigurationsSort().required(),
     }).required();
   }
 
-  /** @returns {CreateMerchandisingRuleBoostActionParam} */
-  static createMerchandisingRuleBoostAction() {
+  /** @returns {CreatePriceFactoryParam} */
+  static createPriceFactory() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PostMerchandisingRuleBoostAction().required(),
-    }).required();
-  }
-
-  /** @returns {CreateMerchandisingRuleBuryActionParam} */
-  static createMerchandisingRuleBuryAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PostMerchandisingRuleBoostAction().required(),
-    }).required();
-  }
-
-  /** @returns {CreateMerchandisingRuleHideActionParam} */
-  static createMerchandisingRuleHideAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.HideRequest().required(),
-    }).required();
-  }
-
-  /** @returns {CreateMerchandisingRulePinActionParam} */
-  static createMerchandisingRulePinAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PinRequest().required(),
-    }).required();
-  }
-
-  /** @returns {CreateMerchandisingRuleQueryParam} */
-  static createMerchandisingRuleQuery() {
-    return Joi.object({
-      body: CatalogPlatformModel.MerchandisingRuleQueryPost().required(),
-    }).required();
-  }
-
-  /** @returns {CreateProductPriceFactoryBulkJobParam} */
-  static createProductPriceFactoryBulkJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
+      body: CatalogPlatformModel.CreatePriceFactoryConfigSchema().required(),
     }).required();
   }
 
   /** @returns {CreateSearchConfigurationParam} */
   static createSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.CreateSearchConfigurationRequest().required(),
-    }).required();
-  }
-
-  /** @returns {CreateSearchRerankParam} */
-  static createSearchRerank() {
-    return Joi.object({
-      body: CatalogPlatformModel.CreateSearchRerankRequest().required(),
-    }).required();
-  }
-
-  /** @returns {CreateSynonymsParam} */
-  static createSynonyms() {
-    return Joi.object({
-      body: CatalogPlatformModel.SynonymCreateRequestSchema().required(),
+      body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema().required(),
     }).required();
   }
 
@@ -1092,17 +744,10 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteMerchandisingRuleParam} */
-  static deleteMerchandisingRule() {
+  /** @returns {DeletePriceFactoryParam} */
+  static deletePriceFactory() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteMerchandisingRulesPreviewParam} */
-  static deleteMerchandisingRulesPreview() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
+      priceFactoryId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -1118,39 +763,12 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteSearchRerankConfigurationParam} */
-  static deleteSearchRerankConfiguration() {
+  /** @returns {FollowProductByIdParam} */
+  static followProductById() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      userId: Joi.string().allow("").required(),
+      itemId: Joi.string().allow("").required(),
     }).required();
-  }
-
-  /** @returns {DeleteSynonymParam} */
-  static deleteSynonym() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {EditAppPriceFactoryParam} */
-  static editAppPriceFactory() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.EditAppPriceFactoryRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {ExportProductsInPriceFactoryParam} */
-  static exportProductsInPriceFactory() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductExportJobRequest().required(),
-    }).required();
-  }
-
-  /** @returns {ExportSynonymsParam} */
-  static exportSynonyms() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetAllCollectionsParam} */
@@ -1159,7 +777,7 @@ class CatalogPlatformApplicationValidator {
       q: Joi.string().allow(""),
       scheduleStatus: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      tag: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
       isActive: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -1168,12 +786,7 @@ class CatalogPlatformApplicationValidator {
 
   /** @returns {GetAllSearchKeywordParam} */
   static getAllSearchKeyword() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
-    }).required();
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAppCategoryReturnConfigParam} */
@@ -1214,52 +827,20 @@ class CatalogPlatformApplicationValidator {
       pageSize: Joi.number(),
       tags: Joi.array().items(Joi.string().allow("")),
       storeTypes: Joi.array().items(Joi.string().allow("")),
-      companyUids: Joi.array().items(Joi.number()),
-    }).required();
-  }
-
-  /** @returns {GetAppPriceByIdParam} */
-  static getAppPriceById() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-      storeIds: Joi.array().items(Joi.number()),
-      factoryTypeIds: Joi.array().items(Joi.string().allow("")),
-      sellerId: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetAppPriceFactoriesParam} */
-  static getAppPriceFactories() {
-    return Joi.object({
-      isActive: Joi.boolean(),
-      factoryTypeId: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetAppPriceFactoryParam} */
-  static getAppPriceFactory() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
   /** @returns {GetAppProductParam} */
   static getAppProduct() {
     return Joi.object({
-      itemId: Joi.number().required(),
+      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
   /** @returns {GetAppProductPricesParam} */
   static getAppProductPrices() {
     return Joi.object({
-      itemIds: Joi.array().items(Joi.number()),
-      factoryTypeIds: Joi.array().items(Joi.string().allow("")),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
+      itemIds: Joi.array().items(Joi.number()).required(),
     }).required();
   }
 
@@ -1359,12 +940,7 @@ class CatalogPlatformApplicationValidator {
 
   /** @returns {GetAutocompleteConfigParam} */
   static getAutocompleteConfig() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
-    }).required();
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAutocompleteKeywordDetailParam} */
@@ -1372,23 +948,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
-  }
-
-  /** @returns {GetAutocompletePreviewParam} */
-  static getAutocompletePreview() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-      categorySuggestion: Joi.number(),
-      brandSuggestion: Joi.number(),
-      collectionSuggestion: Joi.number(),
-      productSuggestion: Joi.number(),
-      querySuggestion: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetAutocompleteSettingsParam} */
-  static getAutocompleteSettings() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetCatalogConfigurationParam} */
@@ -1420,13 +979,10 @@ class CatalogPlatformApplicationValidator {
   /** @returns {GetCollectionItemsParam} */
   static getCollectionItems() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      sortOn: Joi.string().allow(""),
-      pageSize: Joi.number(),
+      collectionId: Joi.string().allow("").required(),
       pageNo: Joi.number(),
-      isPinned: Joi.boolean(),
+      pageSize: Joi.number(),
       q: Joi.string().allow(""),
-      isExcluded: Joi.boolean(),
     }).required();
   }
 
@@ -1434,6 +990,7 @@ class CatalogPlatformApplicationValidator {
   static getConfigurationByType() {
     return Joi.object({
       type: Joi.string().allow("").required(),
+      includeInactive: Joi.boolean(),
     }).required();
   }
 
@@ -1442,19 +999,15 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       templateSlug: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
     }).required();
   }
 
   /** @returns {GetConfigurationsParam} */
   static getConfigurations() {
     return Joi.object({}).required();
-  }
-
-  /** @returns {GetConfigurationsFilterMetadataParam} */
-  static getConfigurationsFilterMetadata() {
-    return Joi.object({
-      filter: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {GetDepartmentsParam} */
@@ -1470,6 +1023,15 @@ class CatalogPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       locationIds: Joi.array().items(Joi.number()),
+    }).required();
+  }
+
+  /** @returns {GetFollowedProductsParam} */
+  static getFollowedProducts() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -1491,57 +1053,43 @@ class CatalogPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       search: Joi.string().allow(""),
-      uids: Joi.array().items(Joi.number()),
     }).required();
   }
 
-  /** @returns {GetLivePreviewParam} */
-  static getLivePreview() {
+  /** @returns {GetPriceFactoriesParam} */
+  static getPriceFactories() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      searchKeyword: Joi.string().allow(""),
+      q: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {GetMerchandisingQueryParam} */
-  static getMerchandisingQuery() {
+  /** @returns {GetPriceFactoryParam} */
+  static getPriceFactory() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
+      priceFactoryId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetMerchandisingRuleBoostActionParam} */
-  static getMerchandisingRuleBoostAction() {
+  /** @returns {GetPriceFactoryProductParam} */
+  static getPriceFactoryProduct() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
+      priceFactoryId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {GetMerchandisingRuleBuryActionParam} */
-  static getMerchandisingRuleBuryAction() {
+  /** @returns {GetPriceFactoryProductsParam} */
+  static getPriceFactoryProducts() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetMerchandisingRuleHideActionParam} */
-  static getMerchandisingRuleHideAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetMerchandisingRulePinActionParam} */
-  static getMerchandisingRulePinAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetMerchandisingRulesParam} */
-  static getMerchandisingRules() {
-    return Joi.object({
-      pageId: Joi.string().allow(""),
+      priceFactoryId: Joi.string().allow("").required(),
+      brandIds: Joi.array().items(Joi.number()),
+      categoryIds: Joi.array().items(Joi.number()),
+      sellerIdentifier: Joi.string().allow(""),
+      itemCode: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      active: Joi.boolean(),
+      pageNo: Joi.number(),
       pageSize: Joi.number(),
     }).required();
   }
@@ -1550,18 +1098,6 @@ class CatalogPlatformApplicationValidator {
   static getProductDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetProductsInPriceFactoryByZoneIdParam} */
-  static getProductsInPriceFactoryByZoneId() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      zoneId: Joi.string().allow("").required(),
-      itemId: Joi.number(),
-      q: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -1582,90 +1118,18 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetSearchRerankParam} */
-  static getSearchRerank() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {GetSearchRerankDetailParam} */
-  static getSearchRerankDetail() {
+  /** @returns {UnfollowProductByIdParam} */
+  static unfollowProductById() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetSynonymsParam} */
-  static getSynonyms() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {PollBulkSynonymsParam} */
-  static pollBulkSynonyms() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {PollPriceFactoryJobsParam} */
-  static pollPriceFactoryJobs() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
-      stage: Joi.array().items(Joi.string().allow("")),
-      isActive: Joi.boolean(),
-      q: Joi.string().allow(""),
-      type: Joi.array().items(Joi.string().allow("")),
-    }).required();
-  }
-
-  /** @returns {PollProductPriceFactoryBulkJobParam} */
-  static pollProductPriceFactoryBulkJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      jobId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {ProcessBulkSynonymsParam} */
-  static processBulkSynonyms() {
-    return Joi.object({
-      body: CatalogPlatformModel.SynonymBulkProcessRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {ProcessProductPriceFactoryBulkJobParam} */
-  static processProductPriceFactoryBulkJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      jobId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
-    }).required();
-  }
-
-  /** @returns {SampleBulkSynonymsFileParam} */
-  static sampleBulkSynonymsFile() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {SaveMerchandisingRulesParam} */
-  static saveMerchandisingRules() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.MerchandisingRuleSave().required(),
+      userId: Joi.string().allow("").required(),
+      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
   /** @returns {UpdateAllowSingleParam} */
   static updateAllowSingle() {
     return Joi.object({
-      body: CatalogPlatformModel.AllowSingleRequest().required(),
+      body: CatalogPlatformModel.AllowSingleRequestSchema().required(),
     }).required();
   }
 
@@ -1680,7 +1144,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppCategoryParam} */
   static updateAppCategory() {
     return Joi.object({
-      categoryUid: Joi.number().required(),
+      categoryUid: Joi.string().allow("").required(),
       body: CatalogPlatformModel.ApplicationCategoryJson().required(),
     }).required();
   }
@@ -1731,14 +1195,6 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateAutocompleteSettingsParam} */
-  static updateAutocompleteSettings() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.AutocompleteRequestSchema().required(),
-    }).required();
-  }
-
   /** @returns {UpdateCollectionParam} */
   static updateCollection() {
     return Joi.object({
@@ -1750,7 +1206,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateDefaultSortParam} */
   static updateDefaultSort() {
     return Joi.object({
-      body: CatalogPlatformModel.DefaultKeyRequest().required(),
+      body: CatalogPlatformModel.DefaultKeyRequestSchema().required(),
     }).required();
   }
 
@@ -1768,54 +1224,31 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.AppConfigurationsFilterResponse().required(),
+      body: CatalogPlatformModel.AppConfigurationsSort().required(),
     }).required();
   }
 
-  /** @returns {UpdateMerchandisingRuleBoostActionParam} */
-  static updateMerchandisingRuleBoostAction() {
+  /** @returns {UpdatePriceFactoryParam} */
+  static updatePriceFactory() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PostMerchandisingRuleBoostAction().required(),
+      priceFactoryId: Joi.string().allow("").required(),
+      body: CatalogPlatformModel.UpdatePriceFactoryConfigSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdateMerchandisingRuleBuryActionParam} */
-  static updateMerchandisingRuleBuryAction() {
+  /** @returns {UpdatePriceFactoryProductParam} */
+  static updatePriceFactoryProduct() {
     return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PostMerchandisingRuleBoostAction().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateMerchandisingRuleHideActionParam} */
-  static updateMerchandisingRuleHideAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.HideRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateMerchandisingRulePinActionParam} */
-  static updateMerchandisingRulePinAction() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.PinRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateMerchandisingRuleQueryParam} */
-  static updateMerchandisingRuleQuery() {
-    return Joi.object({
-      merchandisingRuleId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.MerchandisingRuleQueryPost().required(),
+      priceFactoryId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
+      body: CatalogPlatformModel.UpsertPriceFactoryProductSchema().required(),
     }).required();
   }
 
   /** @returns {UpdateSearchConfigurationParam} */
   static updateSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.UpdateSearchConfigurationRequest().required(),
+      body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema().required(),
     }).required();
   }
 
@@ -1824,45 +1257,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CatalogPlatformModel.CreateSearchKeyword().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateSearchRerankConfigurationParam} */
-  static updateSearchRerankConfiguration() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateSearchRerankRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateSynonymsParam} */
-  static updateSynonyms() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.SynonymCreateRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {UploadSynonymsParam} */
-  static uploadSynonyms() {
-    return Joi.object({
-      body: CatalogPlatformModel.SynonymUploadRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {ValidateBulkSynonymsParam} */
-  static validateBulkSynonyms() {
-    return Joi.object({
-      body: CatalogPlatformModel.SynonymBulkValidateRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {ValidateProductPriceFactoryBulkJobParam} */
-  static validateProductPriceFactoryBulkJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      jobId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobRequest().required(),
     }).required();
   }
 }

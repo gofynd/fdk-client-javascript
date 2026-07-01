@@ -1,4 +1,5 @@
 const { FDKException } = require("./FDKError");
+const { Buffer: BufferPolyFill } = require("buffer");
 
 const SLUG_DELIMETER = ":::";
 const transformRequestOptions = (params) => {
@@ -57,9 +58,12 @@ const generateUrlWithParams = (item = {}, params) => {
   let url = "";
   for (let linkSubString of linkArr) {
     if (linkSubString.startsWith(":")) {
-      linkSubString = linkSubString.slice(1);
-      url += `${joinedParamsObj[linkSubString]}`;
-    } else url += `${linkSubString}`;
+      const paramKey = linkSubString.slice(1);
+      const paramVal = joinedParamsObj[paramKey];
+      url += paramVal || ""; // Prevent undefined
+    } else {
+      url += linkSubString;
+    }
     url += "/";
   }
   url = trimChar(url);
@@ -163,11 +167,27 @@ const isNode = () => {
   );
 };
 
+/**
+ * Checks if the current execution context is a Web Worker (DedicatedWorker).
+ *
+ * This function determines whether the code is running inside a Dedicated Web
+ * Worker by verifying that the global `self` object exists, has a constructor,
+ * and that the constructor's name is "DedicatedWorkerGlobalScope".
+ *
+ * @returns {boolean} True if running in a Dedicated Web Worker, otherwise false.
+ */
+const isWebWorker = () =>
+  typeof self === "object" &&
+  self.constructor &&
+  self.constructor.name === "DedicatedWorkerGlobalScope";
+
 const convertStringToBase64 = (string) => {
   if (isNode()) {
     return Buffer.from(string, "utf-8").toString("base64");
   } else if (isBrowser()) {
     return window.btoa(string);
+  } else if (isWebWorker()) {
+    return BufferPolyFill.from(string, "utf-8").toString("base64");
   } else {
     throw new FDKException("Base64 conversion error: Unsupported environment");
   }
@@ -214,4 +234,5 @@ module.exports = {
   NAV_TYPE,
   combineURLs,
   isAbsoluteURL,
+  isWebWorker,
 };

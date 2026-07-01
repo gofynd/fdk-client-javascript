@@ -22,8 +22,6 @@ const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
 const Payment = require("./Payment/PaymentPlatformApplicationClient");
 
-const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
-
 const Share = require("./Share/SharePlatformApplicationClient");
 
 const Theme = require("./Theme/ThemePlatformApplicationClient");
@@ -72,8 +70,6 @@ class PlatformApplicationClient {
     this.partner = new Partner(config, applicationId);
 
     this.payment = new Payment(config, applicationId);
-
-    this.rewards = new Rewards(config, applicationId);
 
     this.share = new Share(config, applicationId);
 

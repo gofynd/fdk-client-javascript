@@ -5,19 +5,19 @@ const Communication = require("./Communication/CommunicationApplicationClient");
 const Configuration = require("./Configuration/ConfigurationApplicationClient");
 const Content = require("./Content/ContentApplicationClient");
 const FileStorage = require("./FileStorage/FileStorageApplicationClient");
+const Finance = require("./Finance/FinanceApplicationClient");
 const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
 const Payment = require("./Payment/PaymentApplicationClient");
-const Rewards = require("./Rewards/RewardsApplicationClient");
 const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
 const User = require("./User/UserApplicationClient");
-const Webhook = require("./Webhook/WebhookApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const { convertStringToBase64 } = require("../common/utils");
 const { execute } = require("./ApplicationAPIClient");
+const ApplicationConfig = require("./ApplicationConfig");
 
 /**
  * Represents the client for the application.
@@ -26,24 +26,28 @@ const { execute } = require("./ApplicationAPIClient");
  */
 class ApplicationClient {
   /** @param {import("./ApplicationConfig")} config - The application configuration. */
-  constructor(config) {
-    this.config = config;
-    this.cart = new Cart(config);
-    this.catalog = new Catalog(config);
-    this.common = new Common(config);
-    this.communication = new Communication(config);
-    this.configuration = new Configuration(config);
-    this.content = new Content(config);
-    this.fileStorage = new FileStorage(config);
-    this.lead = new Lead(config);
-    this.logistic = new Logistic(config);
-    this.order = new Order(config);
-    this.payment = new Payment(config);
-    this.rewards = new Rewards(config);
-    this.share = new Share(config);
-    this.theme = new Theme(config);
-    this.user = new User(config);
-    this.webhook = new Webhook(config);
+  constructor(config, options) {
+    if (config instanceof ApplicationConfig) {
+      this.config = config;
+    } else {
+      let applicationConfig = new ApplicationConfig(config, options);
+      this.config = applicationConfig;
+    }
+    this.cart = new Cart(this.config);
+    this.catalog = new Catalog(this.config);
+    this.common = new Common(this.config);
+    this.communication = new Communication(this.config);
+    this.configuration = new Configuration(this.config);
+    this.content = new Content(this.config);
+    this.fileStorage = new FileStorage(this.config);
+    this.finance = new Finance(this.config);
+    this.lead = new Lead(this.config);
+    this.logistic = new Logistic(this.config);
+    this.order = new Order(this.config);
+    this.payment = new Payment(this.config);
+    this.share = new Share(this.config);
+    this.theme = new Theme(this.config);
+    this.user = new User(this.config);
   }
 
   /**

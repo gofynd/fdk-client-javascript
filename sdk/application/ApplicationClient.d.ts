@@ -6,8 +6,8 @@ export = ApplicationClient;
  */
 declare class ApplicationClient {
     /** @param {import("./ApplicationConfig")} config - The application configuration. */
-    constructor(config: import("./ApplicationConfig"));
-    config: import("./ApplicationConfig");
+    constructor(config: import("./ApplicationConfig"), options: any);
+    config: ApplicationConfig;
     cart: Cart;
     catalog: Catalog;
     common: Common;
@@ -15,15 +15,14 @@ declare class ApplicationClient {
     configuration: Configuration;
     content: Content;
     fileStorage: FileStorage;
+    finance: Finance;
     lead: Lead;
     logistic: Logistic;
     order: Order;
     payment: Payment;
-    rewards: Rewards;
     share: Share;
     theme: Theme;
     user: User;
-    webhook: Webhook;
     /**
      * Sets the cookie for the application.
      *
@@ -64,6 +63,7 @@ declare class ApplicationClient {
         responseHeaders?: boolean;
     }): Promise<import("axios").AxiosResponse<any, any>>;
 }
+import ApplicationConfig = require("./ApplicationConfig");
 import Cart = require("./Cart/CartApplicationClient");
 import Catalog = require("./Catalog/CatalogApplicationClient");
 import Common = require("./Common/CommonApplicationClient");
@@ -71,12 +71,11 @@ import Communication = require("./Communication/CommunicationApplicationClient")
 import Configuration = require("./Configuration/ConfigurationApplicationClient");
 import Content = require("./Content/ContentApplicationClient");
 import FileStorage = require("./FileStorage/FileStorageApplicationClient");
+import Finance = require("./Finance/FinanceApplicationClient");
 import Lead = require("./Lead/LeadApplicationClient");
 import Logistic = require("./Logistic/LogisticApplicationClient");
 import Order = require("./Order/OrderApplicationClient");
 import Payment = require("./Payment/PaymentApplicationClient");
-import Rewards = require("./Rewards/RewardsApplicationClient");
 import Share = require("./Share/ShareApplicationClient");
 import Theme = require("./Theme/ThemeApplicationClient");
 import User = require("./User/UserApplicationClient");
-import Webhook = require("./Webhook/WebhookApplicationClient");

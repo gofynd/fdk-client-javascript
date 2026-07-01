@@ -26,8 +26,6 @@ module.exports = {
 
     FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
 
-    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
-
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
 
     ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
@@ -37,8 +35,6 @@ module.exports = {
     PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
 
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
-
-    RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
 

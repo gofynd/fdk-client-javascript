@@ -13,13 +13,11 @@ export namespace PlatformModel {
     const ContentPlatformModel: typeof import("./Content/ContentPlatformModel");
     const DiscountPlatformModel: typeof import("./Discount/DiscountPlatformModel");
     const FileStoragePlatformModel: typeof import("./FileStorage/FileStoragePlatformModel");
-    const FinancePlatformModel: typeof import("./Finance/FinancePlatformModel");
     const LeadPlatformModel: typeof import("./Lead/LeadPlatformModel");
     const ServiceabilityPlatformModel: typeof import("./Serviceability/ServiceabilityPlatformModel");
     const OrderPlatformModel: typeof import("./Order/OrderPlatformModel");
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const PaymentPlatformModel: typeof import("./Payment/PaymentPlatformModel");
-    const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");
     const SharePlatformModel: typeof import("./Share/SharePlatformModel");
     const ThemePlatformModel: typeof import("./Theme/ThemePlatformModel");
     const UserPlatformModel: typeof import("./User/UserPlatformModel");

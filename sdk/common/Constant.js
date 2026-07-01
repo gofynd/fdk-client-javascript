@@ -27,8 +27,8 @@ const AVAILABLE_PAGE_TYPE = {
   PROFILE_ORDER_SHIPMENT: "profile-order-shipment",
   PROFILE_BASIC: "profile-basic",
   PROFILE_COMPANY: "profile-company",
-  PROFILE_EMAILS: "profile-emails",
-  PROFILE_PHONES: "profile-phones",
+  PROFILE_EMAIL: "profile-email",
+  PROFILE_PHONE: "profile-phone",
   RATE_US: "rate-us",
   REFER_EARN: "refer-earn",
   SETTINGS: "settings",
@@ -47,6 +47,9 @@ const AVAILABLE_PAGE_TYPE = {
   RETURN_POLICY: "return-policy",
   ORDER_STATUS: "order-status",
   LOCATE_US: "locate-us",
+  SINGLE_PAGE_CHECKOUT: "single-page-checkout",
+  REQUEST_REATTEMPT: "request-reattempt",
+  FILES: "files",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -230,12 +233,12 @@ const NAVIGATORS = {
     name: "Profile Company",
     link: "/profile/company",
   },
-  "profile-emails": {
-    name: "Profile Emails",
+  "profile-email": {
+    name: "Profile Email",
     link: "/profile/email",
   },
-  "profile-phones": {
-    name: "Profile Phones",
+  "profile-phone": {
+    name: "Profile Phone",
     link: "/profile/phone",
   },
   "rate-us": {
@@ -333,6 +336,30 @@ const NAVIGATORS = {
   "locate-us": {
     name: "Locate us",
     link: "/locate-us",
+  },
+  "single-page-checkout": {
+    name: "Single Page Checkout",
+    link: "/cart/checkout",
+  },
+  "request-reattempt": {
+    name: "Request Reattempt",
+    link: "/reattempt/shipment/:shipmentId",
+    params: [
+      {
+        key: "shipmentId",
+        required: true,
+      },
+    ],
+  },
+  files: {
+    name: "Files",
+    link: "/files/:file_name",
+    params: [
+      {
+        key: "file_name",
+        required: true,
+      },
+    ],
   },
 };
 

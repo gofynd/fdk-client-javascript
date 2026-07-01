@@ -2,29 +2,24 @@ const Joi = require("joi");
 
 /**
  * @typedef CategoryL1
- * @property {string} [description]
- * @property {string} [display]
- * @property {number} [level]
- * @property {string} [logo]
- * @property {string} [slug]
- * @property {string} [value]
- * @property {string} [_id]
+ * @property {string} [slug] - URL-friendly identifier for the category.
+ * @property {string} [_id] - Unique identifier for the level 1 category.
  */
 
 /**
  * @typedef CategoryL2
- * @property {string} [parent]
- * @property {string} [display]
- * @property {number} [level]
- * @property {string} [slug]
- * @property {string} [value]
- * @property {string} [_id]
+ * @property {string} [parent] - ID of the parent category (Level 1) to which
+ *   this category belongs.
+ * @property {string} [slug] - URL-friendly identifier for the category.
+ * @property {string} [_id] - Unique identifier for the level 2 category.
  */
 
 /**
  * @typedef CategoryCommon
- * @property {CategoryL1[]} [category_l1]
- * @property {CategoryL2[]} [category_l2]
+ * @property {CategoryL1[]} [categories_l1] - Array of level 1 categories
+ *   associated with an extension.
+ * @property {CategoryL2[]} [categories_l2] - Array of level 2 categories
+ *   associated with an extension.
  */
 
 /**
@@ -33,107 +28,116 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CommingSoon
+ * @property {boolean} [is_coming_soon] - Flag indicating whether the extension
+ *   is marked as "coming soon."
+ * @property {number} [upvote_count] - Number of upvotes for the "coming soon" extension.
+ */
+
+/**
  * @typedef ExtensionUsingSlug
  * @property {CategoryCommon} [category]
  * @property {ContactInfo} [contact_info]
- * @property {string} [created_at]
- * @property {string} [current_status]
+ * @property {string} [created_at] - Timestamp indicating when the extension was created.
+ * @property {string} [current_status] - Current status of the extension.
  * @property {Details} [details]
- * @property {string} [extension_id]
- * @property {boolean} [is_coming_soon]
+ * @property {string} [extension_id] - Unique identifier for the extension.
+ * @property {CommingSoon} [coming_soon]
  * @property {ListingInfo} [listing_info]
- * @property {string} [modified_at]
+ * @property {string} [modified_at] - Timestamp indicating when the extension
+ *   was last modified.
  * @property {Organization} [organization]
- * @property {string} [organization_id]
- * @property {string} [plan_type]
- * @property {Plans[]} [plans]
- * @property {string} [plans_url]
- * @property {string} [review_instructions]
- * @property {string[]} [scope]
- * @property {string} [slug]
- * @property {string} [_id]
+ * @property {string} [organization_id] - Unique identifier for the organization
+ *   where the extension is created.
+ * @property {string} [plan_type] - Type of pricing plan for the extension
+ *   (e.g., free, one-time, recurring).
+ * @property {Plans[]} [plans] - Array of pricing plans associated with the extension.
+ * @property {string} [plans_url] - URL to access detailed pricing plan information.
+ * @property {string[]} [scope] - Array of permissions or scopes required by the
+ *   extension.
+ * @property {string} [slug] - URL-friendly identifier for the extension.
+ * @property {string} [_id] - Unique identifier for the extension.
  */
 
 /**
  * @typedef Organization
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {string} [name] - Name of the organization.
+ * @property {string} [slug] - URL-friendly identifier for the organization.
  */
 
 /**
  * @typedef ListingInfo
- * @property {string} [icon]
- * @property {string[]} [keywords]
- * @property {string} [name]
- * @property {string} [tagline]
+ * @property {string} [icon] - URL for the extension's icon.
+ * @property {string[]} [keywords] - Array of keywords associated with the extension.
+ * @property {string} [name] - Display name of the extension.
+ * @property {string} [tagline] - Short tagline summarizing the extension's purpose.
  */
 
 /**
  * @typedef Benefits
- * @property {string} [title]
- * @property {string} [description]
+ * @property {string} [title] - Title of the benefit offered by the extension.
+ * @property {string} [description] - Detailed explanation of the benefit.
  */
 
 /**
  * @typedef Screenshots
- * @property {string[]} [desktop]
- * @property {string[]} [mobile]
+ * @property {string[]} [desktop] - Array of URLs for desktop screenshots.
+ * @property {string[]} [mobile] - Array of URLs for mobile screenshots.
  */
 
 /**
  * @typedef Details
- * @property {Benefits[]} [benefits]
- * @property {string} [demo_url]
- * @property {string} [description]
- * @property {string[]} [integration]
- * @property {Object[]} [video_url]
- * @property {string[]} [youtube]
+ * @property {Benefits[]} [benefits] - Array of benefits provided by the extension.
+ * @property {string} [demo_url] - URL for a demo or preview of the extension.
+ * @property {string} [description] - Detailed description of the extension.
+ * @property {string[]} [integration] - Array of integration points supported by
+ *   the extension.
+ * @property {Object[]} [video_url] - Array of video URLs showcasing the extension.
+ * @property {string[]} [youtube] - Array of YouTube video URLs about the extension.
  * @property {Screenshots} [screenshots]
  */
 
 /**
  * @typedef Support
- * @property {string} [email]
- * @property {string} [faq_url]
- * @property {string} [phone]
- * @property {string} [privacy_policy_url]
- * @property {string} [website_url]
+ * @property {string} [email] - Support email address.
+ * @property {string} [faq_url] - URL for the FAQ page.
+ * @property {string} [phone] - Support phone number.
+ * @property {string} [privacy_policy_url] - URL for the privacy policy.
+ * @property {string} [website_url] - Official website URL.
+ * @property {string} [terms_of_service] - URL for the terms of service.
+ * @property {string} [country_code] - The dialing code for the country, used
+ *   with mobile numbers.
  */
 
 /**
  * @typedef Price
- * @property {number} [amount]
- * @property {string} [currency]
+ * @property {number} [amount] - Amount for the pricing.
+ * @property {string} [currency] - Currency in which the price is specified.
  */
 
 /**
  * @typedef Plans
- * @property {string} [additional_charges]
- * @property {string} [features]
- * @property {string} [name]
- * @property {number} [trial_days]
- * @property {string} [type]
+ * @property {string} [additional_charges] - Additional charges applicable to the plan.
+ * @property {string} [features] - Features included in the plan.
+ * @property {string} [name] - Name of the plan.
+ * @property {number} [trial_days] - Number of trial days offered with the plan.
+ * @property {string} [type] - Type of plan (e.g., free, recurring, one-time).
  * @property {Price} [price]
  * @property {Recurring} [recurring]
  */
 
 /**
  * @typedef Recurring
- * @property {number} [recurring_time]
- * @property {number} [yearly_amount]
- * @property {string} [type]
+ * @property {number} [recurring_time] - Frequency of the recurring charge in days.
+ * @property {number} [yearly_amount] - Total yearly amount for the recurring plan.
+ * @property {string} [type] - Type of recurring plan (e.g., monthly, yearly).
  */
 
 class PartnerPublicModel {
   /** @returns {CategoryL1} */
   static CategoryL1() {
     return Joi.object({
-      description: Joi.string().allow(""),
-      display: Joi.string().allow(""),
-      level: Joi.number(),
-      logo: Joi.string().allow(""),
       slug: Joi.string().allow(""),
-      value: Joi.string().allow(""),
       _id: Joi.string().allow(""),
     });
   }
@@ -142,10 +146,7 @@ class PartnerPublicModel {
   static CategoryL2() {
     return Joi.object({
       parent: Joi.string().allow(""),
-      display: Joi.string().allow(""),
-      level: Joi.number(),
       slug: Joi.string().allow(""),
-      value: Joi.string().allow(""),
       _id: Joi.string().allow(""),
     });
   }
@@ -153,8 +154,8 @@ class PartnerPublicModel {
   /** @returns {CategoryCommon} */
   static CategoryCommon() {
     return Joi.object({
-      category_l1: Joi.array().items(PartnerPublicModel.CategoryL1()),
-      category_l2: Joi.array().items(PartnerPublicModel.CategoryL2()),
+      categories_l1: Joi.array().items(PartnerPublicModel.CategoryL1()),
+      categories_l2: Joi.array().items(PartnerPublicModel.CategoryL2()),
     });
   }
 
@@ -162,6 +163,14 @@ class PartnerPublicModel {
   static ContactInfo() {
     return Joi.object({
       support: PartnerPublicModel.Support(),
+    });
+  }
+
+  /** @returns {CommingSoon} */
+  static CommingSoon() {
+    return Joi.object({
+      is_coming_soon: Joi.boolean(),
+      upvote_count: Joi.number(),
     });
   }
 
@@ -174,7 +183,7 @@ class PartnerPublicModel {
       current_status: Joi.string().allow(""),
       details: PartnerPublicModel.Details(),
       extension_id: Joi.string().allow(""),
-      is_coming_soon: Joi.boolean(),
+      coming_soon: PartnerPublicModel.CommingSoon(),
       listing_info: PartnerPublicModel.ListingInfo(),
       modified_at: Joi.string().allow(""),
       organization: PartnerPublicModel.Organization(),
@@ -182,7 +191,6 @@ class PartnerPublicModel {
       plan_type: Joi.string().allow(""),
       plans: Joi.array().items(PartnerPublicModel.Plans()),
       plans_url: Joi.string().allow(""),
-      review_instructions: Joi.string().allow(""),
       scope: Joi.array().items(Joi.string().allow("")),
       slug: Joi.string().allow(""),
       _id: Joi.string().allow(""),
@@ -244,6 +252,8 @@ class PartnerPublicModel {
       phone: Joi.string().allow(""),
       privacy_policy_url: Joi.string().allow(""),
       website_url: Joi.string().allow(""),
+      terms_of_service: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
     });
   }
 

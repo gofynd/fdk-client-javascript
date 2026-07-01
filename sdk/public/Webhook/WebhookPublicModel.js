@@ -2,104 +2,120 @@ const Joi = require("joi");
 
 /**
  * @typedef EventConfig
- * @property {number} [id]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {Object} [event_schema]
- * @property {string} [version]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [created_on]
- * @property {string} [updated_on]
- * @property {string} [group]
+ * @property {number} [id] - The unique identifier for the event configuration.
+ * @property {string} [event_name] - The name of the event.
+ * @property {string} [event_type] - The type of the event.
+ * @property {string} [event_category] - The category of the event.
+ * @property {Object} [event_schema] - The schema defining the event data structure.
+ * @property {string} [version] - The version of the event configuration.
+ * @property {string} [display_name] - A user-friendly name for the event.
+ * @property {string} [description] - A detailed description of the event.
+ * @property {string} [created_on] - The timestamp when the event configuration
+ *   was created.
+ * @property {string} [updated_on] - The timestamp when the event configuration
+ *   was last updated.
+ * @property {string} [group] - The group to which the event belongs.
+ * @property {string} [sunset_date] - The date and time after which the event is
+ *   considered sunset. After this timestamp, the entity should no longer be
+ *   actively used, referenced, or offered for new operations, even if it still exists.
+ * @property {string} [announcement_date] - The date and time when the
+ *   deprecation of the event is officially announced. This marks the start of
+ *   the deprecation notice period and indicates that the entity is planned to
+ *   be retired in the future, but may still remain available until the sunset date.
+ * @property {string} [support_end_date] - The date and time after which
+ *   official support for the event ends. Beyond this point, no guarantees are
+ *   made for maintenance, updates, fixes, or issue resolution.
  */
 
 /**
- * @typedef EventConfigResponse
- * @property {EventConfig[]} [event_configs]
+ * @typedef EventDetails
+ * @property {EventConfig[]} [event_configs] - A list of event configuration details.
  */
 
 /**
  * @typedef EventConfigBase
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [version]
+ * @property {string} [event_name] - The name of the event.
+ * @property {string} [event_type] - The type of the event.
+ * @property {string} [event_category] - The category of the event.
+ * @property {string} [version] - The version of the event configuration.
  */
 
 /**
  * @typedef EventNotifier
- * @property {string} [message]
- * @property {string[]} [emails]
+ * @property {string} [message] - The message to be sent in the notification.
+ * @property {string[]} [emails] - List of email addresses to notify.
  */
 
 /**
  * @typedef EventSchema
- * @property {Object} [payload]
- * @property {Object} [meta]
+ * @property {Object} [payload] - The event data payload.
+ * @property {Object} [meta] - Metadata related to the event.
  */
 
 /**
  * @typedef InternalTransformEvent
- * @property {string[]} [trace_id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string} [version]
- * @property {number} [created_timestamp]
+ * @property {string[]} [trace_id] - List of trace IDs related to the event.
+ * @property {string} [name] - The name of the transformation event.
+ * @property {string} [type] - The type of the transformation event.
+ * @property {string} [version] - The version of the transformation event.
+ * @property {number} [created_timestamp] - The timestamp when the event was created.
  */
 
 /**
  * @typedef TransformEventData
+ * @property {string} [region] - The region of the transformation event.
  * @property {InternalTransformEvent} [event]
- * @property {number} [company_id]
- * @property {string[]} [contains]
- * @property {Object} [payload]
+ * @property {number} [company_id] - The company ID associated with the event.
+ * @property {string[]} [contains] - List of strings related to the event.
+ * @property {Object} [payload] - Event data payload.
  */
 
 /**
  * @typedef TransformEventServiceMeta
- * @property {string} [name]
+ * @property {string} [name] - The name of the transformation service.
  */
 
 /**
  * @typedef TransformEventAssociation
- * @property {number} [company_id]
+ * @property {number} [company_id] - The company ID associated with the event.
  */
 
 /**
- * @typedef TransformEventRequest
- * @property {string} event_name
- * @property {string} event_type
- * @property {string} event_category
- * @property {string} event_version
+ * @typedef TransformEventPayload
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_version - The version of the event.
  * @property {EventSchema} event
  */
 
 /**
- * @typedef ValidateSchemaRequest
- * @property {string} event_name
- * @property {string} event_type
- * @property {string} event_category
- * @property {string} event_version
+ * @typedef ValidateSchemaPayload
+ * @property {string} event_name - The name of the event to validate.
+ * @property {string} event_type - The type of the event.
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_version - The version of the event to validate.
  * @property {EventSchema} event
- * @property {Object} event_schema
+ * @property {Object} event_schema - The schema defining the structure of the event.
  */
 
 /**
- * @typedef ValidateSchemaResponse
- * @property {boolean} [status]
- * @property {string} [message]
+ * @typedef ValidateSchemaResult
+ * @property {boolean} [status] - Indicates whether the schema is valid (true)
+ *   or invalid (false).
+ * @property {string} [message] - A message providing additional details about
+ *   the validation result.
  */
 
 /**
- * @typedef TransformEventResponse
- * @property {string[]} [event_trace_id]
+ * @typedef TransformEventResult
+ * @property {string[]} [event_trace_id] - List of trace IDs related to the
+ *   transformation event.
  * @property {TransformEventData} [data]
- * @property {string} [event_name]
- * @property {string} [version]
- * @property {boolean} [status]
- * @property {string} [event_type]
+ * @property {string} [event_name] - The name of the transformation event.
+ * @property {string} [version] - The version of the transformation event.
+ * @property {boolean} [status] - The status of the event processing.
+ * @property {string} [event_type] - The type of the transformation event.
  * @property {TransformEventServiceMeta} [service_meta]
  * @property {TransformEventAssociation} [association]
  */
@@ -119,11 +135,14 @@ class WebhookPublicModel {
       created_on: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
       group: Joi.string().allow("").allow(null),
+      sunset_date: Joi.string().allow("").allow(null),
+      announcement_date: Joi.string().allow("").allow(null),
+      support_end_date: Joi.string().allow("").allow(null),
     });
   }
 
-  /** @returns {EventConfigResponse} */
-  static EventConfigResponse() {
+  /** @returns {EventDetails} */
+  static EventDetails() {
     return Joi.object({
       event_configs: Joi.array().items(WebhookPublicModel.EventConfig()),
     });
@@ -169,6 +188,7 @@ class WebhookPublicModel {
   /** @returns {TransformEventData} */
   static TransformEventData() {
     return Joi.object({
+      region: Joi.string().allow(""),
       event: WebhookPublicModel.InternalTransformEvent(),
       company_id: Joi.number(),
       contains: Joi.array().items(Joi.string().allow("")),
@@ -190,8 +210,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {TransformEventRequest} */
-  static TransformEventRequest() {
+  /** @returns {TransformEventPayload} */
+  static TransformEventPayload() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -201,8 +221,8 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaRequest} */
-  static ValidateSchemaRequest() {
+  /** @returns {ValidateSchemaPayload} */
+  static ValidateSchemaPayload() {
     return Joi.object({
       event_name: Joi.string().allow("").required(),
       event_type: Joi.string().allow("").required(),
@@ -213,16 +233,16 @@ class WebhookPublicModel {
     });
   }
 
-  /** @returns {ValidateSchemaResponse} */
-  static ValidateSchemaResponse() {
+  /** @returns {ValidateSchemaResult} */
+  static ValidateSchemaResult() {
     return Joi.object({
       status: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {TransformEventResponse} */
-  static TransformEventResponse() {
+  /** @returns {TransformEventResult} */
+  static TransformEventResult() {
     return Joi.object({
       event_trace_id: Joi.array().items(Joi.string().allow("")),
       data: WebhookPublicModel.TransformEventData(),

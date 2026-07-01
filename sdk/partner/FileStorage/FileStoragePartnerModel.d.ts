@@ -5,13 +5,11 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef SaveProxy
- * @property {number} [id]
- * @property {string} [token]
+ * @property {boolean} [success]
  */
 /**
  * @typedef ProxyFileData
- * @property {string} [email]
- * @property {string} [password]
+ * @property {string} [name]
  */
 /**
  * @typedef ProxyFile
@@ -24,8 +22,7 @@ export = FileStoragePartnerModel;
  */
 /**
  * @typedef FetchProxyDetails
- * @property {Object} [data]
- * @property {Object} [support]
+ * @property {boolean} [success]
  */
 /**
  * @typedef NamespaceDetails
@@ -69,7 +66,6 @@ export = FileStoragePartnerModel;
  * @property {number} size
  * @property {string[]} [tags]
  * @property {Object} [params]
- * @property {string} [enc_key]
  */
 /**
  * @typedef CreatedBy
@@ -96,10 +92,26 @@ export = FileStoragePartnerModel;
  * @typedef FailedBrowseFilesResult
  * @property {string} message
  */
+/**
+ * @typedef SignedUrl
+ * @property {string} url - This is the original asset URL provided in the
+ *   request. This is the URL for which a signed URL has been generated.
+ * @property {string} signed_url - Generated signed URL.
+ * @property {number} expiry - The expiration time for the signed URL in seconds.
+ */
+/**
+ * @typedef SignUrlResult
+ * @property {SignedUrl[]} urls - Signed URL object.
+ */
+/**
+ * @typedef SignUrl
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string[]} urls - List of asset URLs to be signed.
+ */
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { SizeConstraints, SaveProxy, ProxyFileData, ProxyFile, FetchProxyDetails, NamespaceDetails, AllNamespaceDetails, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, FailedBrowseFilesResult };
+    export { SizeConstraints, SaveProxy, ProxyFileData, ProxyFile, FetchProxyDetails, NamespaceDetails, AllNamespaceDetails, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, FailedBrowseFilesResult, SignedUrl, SignUrlResult, SignUrl };
 }
 /** @returns {SizeConstraints} */
 declare function SizeConstraints(): SizeConstraints;
@@ -112,14 +124,12 @@ type SizeConstraints = {
 /** @returns {SaveProxy} */
 declare function SaveProxy(): SaveProxy;
 type SaveProxy = {
-    id?: number;
-    token?: string;
+    success?: boolean;
 };
 /** @returns {ProxyFileData} */
 declare function ProxyFileData(): ProxyFileData;
 type ProxyFileData = {
-    email?: string;
-    password?: string;
+    name?: string;
 };
 /** @returns {ProxyFile} */
 declare function ProxyFile(): ProxyFile;
@@ -134,8 +144,7 @@ type ProxyFile = {
 /** @returns {FetchProxyDetails} */
 declare function FetchProxyDetails(): FetchProxyDetails;
 type FetchProxyDetails = {
-    data?: any;
-    support?: any;
+    success?: boolean;
 };
 /** @returns {NamespaceDetails} */
 declare function NamespaceDetails(): NamespaceDetails;
@@ -194,7 +203,6 @@ type FileUploadStart = {
     size: number;
     tags?: string[];
     params?: any;
-    enc_key?: string;
 };
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;
@@ -223,4 +231,41 @@ type FileUploadComplete = {
 declare function FailedBrowseFilesResult(): FailedBrowseFilesResult;
 type FailedBrowseFilesResult = {
     message: string;
+};
+/** @returns {SignedUrl} */
+declare function SignedUrl(): SignedUrl;
+type SignedUrl = {
+    /**
+     * - This is the original asset URL provided in the
+     * request. This is the URL for which a signed URL has been generated.
+     */
+    url: string;
+    /**
+     * - Generated signed URL.
+     */
+    signed_url: string;
+    /**
+     * - The expiration time for the signed URL in seconds.
+     */
+    expiry: number;
+};
+/** @returns {SignUrlResult} */
+declare function SignUrlResult(): SignUrlResult;
+type SignUrlResult = {
+    /**
+     * - Signed URL object.
+     */
+    urls: SignedUrl[];
+};
+/** @returns {SignUrl} */
+declare function SignUrl(): SignUrl;
+type SignUrl = {
+    /**
+     * - The expiration time for the signed URL.
+     */
+    expiry: number;
+    /**
+     * - List of asset URLs to be signed.
+     */
+    urls: string[];
 };

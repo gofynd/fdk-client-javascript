@@ -19,6 +19,11 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
 
+/**
+ * @typedef GetFeedbacksParam
+ * @property {string} id - Ticket ID for which feedbacks are to be fetched
+ */
+
 /** @typedef GetGeneralConfigParam */
 
 /**
@@ -38,12 +43,18 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {string} [priority] - Filter tickets on priority
+ * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ */
+
+/**
+ * @typedef SubmitFeedbackParam
+ * @property {string} id - Ticket ID for which feedback is to be submitted
+ * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 
 class LeadPlatformValidator {
@@ -67,6 +78,13 @@ class LeadPlatformValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.EditTicketPayload().required(),
+    }).required();
+  }
+
+  /** @returns {GetFeedbacksParam} */
+  static getFeedbacks() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -96,10 +114,18 @@ class LeadPlatformValidator {
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: Joi.string().allow(""),
+      priority: LeadPlatformModel.PriorityEnum(),
       category: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {SubmitFeedbackParam} */
+  static submitFeedback() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: LeadPlatformModel.TicketFeedbackPayload().required(),
     }).required();
   }
 }
