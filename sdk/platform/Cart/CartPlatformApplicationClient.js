@@ -2645,6 +2645,7 @@ class Cart {
       reviewStartTime,
       reviewEndTime,
       status,
+      filterTags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2666,6 +2667,7 @@ class Cart {
         reviewStartTime,
         reviewEndTime,
         status,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2693,6 +2695,7 @@ class Cart {
         reviewStartTime,
         reviewEndTime,
         status,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2719,6 +2722,7 @@ class Cart {
     query_params["review_start_time"] = reviewStartTime;
     query_params["review_end_time"] = reviewEndTime;
     query_params["status"] = status;
+    query_params["filter_tags"] = filterTags;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2940,6 +2944,7 @@ class Cart {
       status,
       code,
       isPublic,
+      filterTags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2961,6 +2966,7 @@ class Cart {
         status,
         code,
         isPublic,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2988,6 +2994,7 @@ class Cart {
         status,
         code,
         isPublic,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3014,6 +3021,7 @@ class Cart {
     query_params["status"] = status;
     query_params["code"] = code;
     query_params["is_public"] = isPublic;
+    query_params["filter_tags"] = filterTags;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3598,6 +3606,7 @@ class Cart {
       reviewStartTime,
       reviewEndTime,
       status,
+      filterTags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3619,6 +3628,7 @@ class Cart {
         reviewStartTime,
         reviewEndTime,
         status,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3646,6 +3656,7 @@ class Cart {
         reviewStartTime,
         reviewEndTime,
         status,
+        filterTags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3672,6 +3683,7 @@ class Cart {
     query_params["review_start_time"] = reviewStartTime;
     query_params["review_end_time"] = reviewEndTime;
     query_params["status"] = status;
+    query_params["filter_tags"] = filterTags;
 
     const response = await PlatformAPIClient.execute(
       this.config,

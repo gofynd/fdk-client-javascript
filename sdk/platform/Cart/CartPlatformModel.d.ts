@@ -180,6 +180,9 @@ export = CartPlatformModel;
  * @property {string} [coupon_prefix] - Bulk coupon code prefix string
  * @property {number} [coupon_counts] - Counts of bulk coupon
  * @property {string[]} [tags] - List of tags specify to platform
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {CouponSchedule} [_schedule]
  * @property {Rule[]} [rule]
  * @property {DisplayMeta} [display_meta]
@@ -227,6 +230,9 @@ export = CartPlatformModel;
  * @property {Validation} [validation]
  * @property {CouponAction} [action]
  * @property {string[]} [tags] - List of tags specify to platform
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {CouponSchedule} [_schedule]
  * @property {Rule[]} [rule]
  * @property {DisplayMeta} [display_meta]
@@ -559,6 +565,9 @@ export = CartPlatformModel;
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Unique identifier of promotion
  * @property {string[]} [tags] - List of tags on which promotion is applicable
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -596,6 +605,9 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -630,6 +642,9 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -664,6 +679,9 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -700,6 +718,9 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -722,6 +743,8 @@ export = CartPlatformModel;
  * @property {string} [type] - Coupon or promotion type
  * @property {string} [subtitle] - Small description of the current offer
  * @property {string} [description] - The description of the offer in the form of an HTML
+ * @property {string} [discount_type] - Determines the type of discount offered
+ *   i.e percentage, amount, free item, etc.
  */
 /**
  * @typedef Charges
@@ -2830,6 +2853,9 @@ export = CartPlatformModel;
  * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
  *   be applied on cart and ready to update promotion
  * @property {boolean} [is_bank_offer] - Flag to determine if any bank offer is applicable
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  */
 /**
  * @typedef OfferPartialUpdate
@@ -2869,6 +2895,9 @@ export = CartPlatformModel;
  * @property {OfferAuthor} [author]
  * @property {OfferDateMeta} [date_meta]
  * @property {OfferSchedule} [schedule]
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  */
 /**
  * @typedef OfferListResult
@@ -3318,6 +3347,12 @@ type CouponAdd = {
      * - List of tags specify to platform
      */
     tags?: string[];
+    /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
     _schedule?: CouponSchedule;
     rule?: Rule[];
     display_meta?: DisplayMeta;
@@ -3424,6 +3459,12 @@ type CouponUpdate = {
      * - List of tags specify to platform
      */
     tags?: string[];
+    /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
     _schedule?: CouponSchedule;
     rule?: Rule[];
     display_meta?: DisplayMeta;
@@ -4228,6 +4269,12 @@ type PromotionListItem = {
      */
     tags?: string[];
     /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
+    /**
      * - Boolean value to determine if the
      * promotion should be applied automatically or not
      */
@@ -4315,6 +4362,12 @@ type PromotionAdd = {
      */
     tags?: string[];
     /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
+    /**
      * - Boolean value to determine if the
      * promotion should be applied automatically or not
      */
@@ -4398,6 +4451,12 @@ type PromotionAddResult = {
      */
     tags?: string[];
     /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
+    /**
      * - Boolean value to determine if the
      * promotion should be applied automatically or not
      */
@@ -4480,6 +4539,12 @@ type PromotionUpdate = {
      * - List of tags applicable for promotion
      */
     tags?: string[];
+    /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
     /**
      * - Boolean value to determine if the
      * promotion should be applied automatically or not
@@ -4569,6 +4634,12 @@ type PromotionUpdateResult = {
      */
     tags?: string[];
     /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
+    /**
      * - Boolean value to determine if the
      * promotion should be applied automatically or not
      */
@@ -4628,6 +4699,11 @@ type ActivePromosResult = {
      * - The description of the offer in the form of an HTML
      */
     description?: string;
+    /**
+     * - Determines the type of discount offered
+     * i.e percentage, amount, free item, etc.
+     */
+    discount_type?: string;
 };
 /** @returns {Charges} */
 declare function Charges(): Charges;
@@ -9878,6 +9954,12 @@ type OfferSchema = {
      * - Flag to determine if any bank offer is applicable
      */
     is_bank_offer?: boolean;
+    /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
 };
 /** @returns {OfferPartialUpdate} */
 declare function OfferPartialUpdate(): OfferPartialUpdate;
@@ -9970,6 +10052,12 @@ type OfferListItem = {
     author?: OfferAuthor;
     date_meta?: OfferDateMeta;
     schedule?: OfferSchedule;
+    /**
+     * - Tags used to filter coupons, promotions,
+     * or offers in list APIs. When multiple values are provided in a list
+     * request, entities matching any tag are returned (OR).
+     */
+    filter_tags?: string[];
 };
 /** @returns {OfferListResult} */
 declare function OfferListResult(): OfferListResult;

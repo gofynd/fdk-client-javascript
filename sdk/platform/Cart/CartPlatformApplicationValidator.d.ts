@@ -220,6 +220,10 @@ export = CartPlatformApplicationValidator;
  * @property {string} [reviewStartTime]
  * @property {string} [reviewEndTime]
  * @property {string} [status]
+ * @property {string} [filterTags] - Filter by filter tag. Repeat this query
+ *   parameter for multiple values (e.g.
+ *   `?filter_tags=homepage&filter_tags=seasonal`). Entities matching any
+ *   provided tag are returned (OR).
  */
 /**
  * @typedef GetItemCountParam
@@ -250,6 +254,10 @@ export = CartPlatformApplicationValidator;
  *   as draft, review and more
  * @property {string} [code] - Filter by offer code in case of coupons
  * @property {boolean} [isPublic] - Filter offers which are public
+ * @property {string} [filterTags] - Filter by filter tag. Repeat this query
+ *   parameter for multiple values (e.g.
+ *   `?filter_tags=homepage&filter_tags=special`) or pass a comma-separated
+ *   value. Entities matching any provided tag are returned (OR).
  */
 /**
  * @typedef GetPriceAdjustmentsParam
@@ -304,6 +312,10 @@ export = CartPlatformApplicationValidator;
  * @property {string} [reviewStartTime]
  * @property {string} [reviewEndTime]
  * @property {string} [status]
+ * @property {string} [filterTags] - Filter by filter tag. Repeat this query
+ *   parameter for multiple values (e.g.
+ *   `?filter_tags=flash_sale&filter_tags=vip`). Entities matching any provided
+ *   tag are returned (OR).
  */
 /**
  * @typedef GetShipmentsParam
@@ -1024,6 +1036,13 @@ type GetCouponsParam = {
     reviewStartTime?: string;
     reviewEndTime?: string;
     status?: string;
+    /**
+     * - Filter by filter tag. Repeat this query
+     * parameter for multiple values (e.g.
+     * `?filter_tags=homepage&filter_tags=seasonal`). Entities matching any
+     * provided tag are returned (OR).
+     */
+    filterTags?: string;
 };
 type GetItemCountParam = {
     /**
@@ -1099,6 +1118,13 @@ type GetOffersParam = {
      * - Filter offers which are public
      */
     isPublic?: boolean;
+    /**
+     * - Filter by filter tag. Repeat this query
+     * parameter for multiple values (e.g.
+     * `?filter_tags=homepage&filter_tags=special`) or pass a comma-separated
+     * value. Entities matching any provided tag are returned (OR).
+     */
+    filterTags?: string;
 };
 type GetPriceAdjustmentsParam = {
     /**
@@ -1185,6 +1211,13 @@ type GetPromotionsParam = {
     reviewStartTime?: string;
     reviewEndTime?: string;
     status?: string;
+    /**
+     * - Filter by filter tag. Repeat this query
+     * parameter for multiple values (e.g.
+     * `?filter_tags=flash_sale&filter_tags=vip`). Entities matching any provided
+     * tag are returned (OR).
+     */
+    filterTags?: string;
 };
 type GetShipmentsParam = {
     pickAtStoreUid?: number;

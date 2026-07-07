@@ -203,6 +203,9 @@ const Joi = require("joi");
  * @property {string} [coupon_prefix] - Bulk coupon code prefix string
  * @property {number} [coupon_counts] - Counts of bulk coupon
  * @property {string[]} [tags] - List of tags specify to platform
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {CouponSchedule} [_schedule]
  * @property {Rule[]} [rule]
  * @property {DisplayMeta} [display_meta]
@@ -255,6 +258,9 @@ const Joi = require("joi");
  * @property {Validation} [validation]
  * @property {CouponAction} [action]
  * @property {string[]} [tags] - List of tags specify to platform
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {CouponSchedule} [_schedule]
  * @property {Rule[]} [rule]
  * @property {DisplayMeta} [display_meta]
@@ -611,6 +617,9 @@ const Joi = require("joi");
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Unique identifier of promotion
  * @property {string[]} [tags] - List of tags on which promotion is applicable
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -650,6 +659,9 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -685,6 +697,9 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -720,6 +735,9 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -757,6 +775,9 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  * @property {boolean} [auto_apply] - Boolean value to determine if the
  *   promotion should be applied automatically or not
  */
@@ -781,6 +802,8 @@ const Joi = require("joi");
  * @property {string} [type] - Coupon or promotion type
  * @property {string} [subtitle] - Small description of the current offer
  * @property {string} [description] - The description of the offer in the form of an HTML
+ * @property {string} [discount_type] - Determines the type of discount offered
+ *   i.e percentage, amount, free item, etc.
  */
 
 /**
@@ -3064,6 +3087,9 @@ const Joi = require("joi");
  * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
  *   be applied on cart and ready to update promotion
  * @property {boolean} [is_bank_offer] - Flag to determine if any bank offer is applicable
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  */
 
 /**
@@ -3108,6 +3134,9 @@ const Joi = require("joi");
  * @property {OfferAuthor} [author]
  * @property {OfferDateMeta} [date_meta]
  * @property {OfferSchedule} [schedule]
+ * @property {string[]} [filter_tags] - Tags used to filter coupons, promotions,
+ *   or offers in list APIs. When multiple values are provided in a list
+ *   request, entities matching any tag are returned (OR).
  */
 
 /**
@@ -3349,6 +3378,7 @@ class CartPlatformModel {
       coupon_prefix: Joi.string().allow("").allow(null),
       coupon_counts: Joi.number(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       _schedule: CartPlatformModel.CouponSchedule(),
       rule: Joi.array().items(CartPlatformModel.Rule()),
       display_meta: CartPlatformModel.DisplayMeta(),
@@ -3411,6 +3441,7 @@ class CartPlatformModel {
       validation: CartPlatformModel.Validation(),
       action: CartPlatformModel.CouponAction(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       _schedule: CartPlatformModel.CouponSchedule(),
       rule: Joi.array().items(CartPlatformModel.Rule()),
       display_meta: CartPlatformModel.DisplayMeta(),
@@ -3743,6 +3774,7 @@ class CartPlatformModel {
       date_meta: CartPlatformModel.PromotionDateMeta(),
       _id: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       auto_apply: Joi.boolean(),
     });
   }
@@ -3781,6 +3813,7 @@ class CartPlatformModel {
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       auto_apply: Joi.boolean(),
     });
   }
@@ -3812,6 +3845,7 @@ class CartPlatformModel {
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       auto_apply: Joi.boolean(),
     });
   }
@@ -3843,6 +3877,7 @@ class CartPlatformModel {
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       auto_apply: Joi.boolean(),
     });
   }
@@ -3875,6 +3910,7 @@ class CartPlatformModel {
       _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       tags: Joi.array().items(Joi.string().allow("")),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
       auto_apply: Joi.boolean(),
     });
   }
@@ -3900,6 +3936,7 @@ class CartPlatformModel {
       type: Joi.string().allow(""),
       subtitle: Joi.string().allow(""),
       description: Joi.string().allow(""),
+      discount_type: Joi.string().allow(""),
     });
   }
 
@@ -6162,6 +6199,7 @@ class CartPlatformModel {
       coupon_config: CartPlatformModel.OfferCouponConfiguration(),
       is_processed: Joi.boolean(),
       is_bank_offer: Joi.boolean(),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -6213,6 +6251,7 @@ class CartPlatformModel {
       author: CartPlatformModel.OfferAuthor(),
       date_meta: CartPlatformModel.OfferDateMeta(),
       schedule: CartPlatformModel.OfferSchedule(),
+      filter_tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 

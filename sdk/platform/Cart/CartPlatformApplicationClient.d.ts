@@ -326,7 +326,7 @@ declare class Cart {
      * @summary: List of coupons
      * @description: Retrieve a list of all created coupons for specific sales channel. It also supports searching based on text search, pagination and other flags to filter coupons. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getCoupons/).
      */
-    getCoupons({ pageNo, pageSize, isArchived, title, isPublic, isDisplay, typeSlug, code, createdBy, reviewedBy, approvedStartTime, approvedEndTime, reviewStartTime, reviewEndTime, status, requestHeaders, }?: CartPlatformApplicationValidator.GetCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CouponsResult>;
+    getCoupons({ pageNo, pageSize, isArchived, title, isPublic, isDisplay, typeSlug, code, createdBy, reviewedBy, approvedStartTime, approvedEndTime, reviewStartTime, reviewEndTime, status, filterTags, requestHeaders, }?: CartPlatformApplicationValidator.GetCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CouponsResult>;
     /**
      * @param {CartPlatformApplicationValidator.GetItemCountParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -356,7 +356,7 @@ declare class Cart {
      * @summary: List of offers
      * @description: Retrieve a list of all created offers for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized offers listing for streamlined navigation and management. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getOffers/).
      */
-    getOffers({ pageNo, pageSize, search, mode, type, promoGroup, excludeContractOffers, offerId, createdBy, reviewedBy, approvedStartTime, approvedEndTime, status, code, isPublic, requestHeaders, }?: CartPlatformApplicationValidator.GetOffersParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferListResult>;
+    getOffers({ pageNo, pageSize, search, mode, type, promoGroup, excludeContractOffers, offerId, createdBy, reviewedBy, approvedStartTime, approvedEndTime, status, code, isPublic, filterTags, requestHeaders, }?: CartPlatformApplicationValidator.GetOffersParam, { responseHeaders }?: object): Promise<CartPlatformModel.OfferListResult>;
     /**
      * @param {CartPlatformApplicationValidator.GetPriceAdjustmentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -433,7 +433,7 @@ declare class Cart {
      * @summary: List of promotions
      * @description: Retrieve a list of all created promotions for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized promotion listing for streamlined navigation and management. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/getPromotions/).
      */
-    getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, createdBy, reviewedBy, approvedStartTime, approvedEndTime, reviewStartTime, reviewEndTime, status, requestHeaders, }?: CartPlatformApplicationValidator.GetPromotionsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionsResult>;
+    getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, createdBy, reviewedBy, approvedStartTime, approvedEndTime, reviewStartTime, reviewEndTime, status, filterTags, requestHeaders, }?: CartPlatformApplicationValidator.GetPromotionsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionsResult>;
     /**
      * @param {CartPlatformApplicationValidator.GetShipmentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
