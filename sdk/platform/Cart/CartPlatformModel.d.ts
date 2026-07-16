@@ -84,6 +84,8 @@ export = CartPlatformModel;
  * @property {PostOrder} [post_order]
  * @property {BulkBundleRestriction} [bulk_bundle]
  * @property {number[]} [user_groups] - List of user group on which coupon allowed
+ * @property {number[]} [exclude_user_groups] - List of user groups on which
+ *   coupon is not allowed
  * @property {boolean} [coupon_allowed] - Allow applying normal coupon if bulk
  *   coupon is applied
  * @property {UsesRestriction} [uses]
@@ -486,6 +488,8 @@ export = CartPlatformModel;
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups] - List of user groups on which promotion
  *   is applicable
+ * @property {number[]} [exclude_user_groups] - List of user groups on which
+ *   promotion is not applicable
  * @property {number} [order_quantity] - Prmomotion max order count
  * @property {boolean} [anonymous_users] - Set true, if promotion is applicable
  *   for guest user
@@ -823,6 +827,10 @@ export = CartPlatformModel;
  *   and return are allowed.
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
+ * @property {boolean} [included_in_eligibility_amount] - When true (valid only
+ *   for charge type with article_level_distribution=true), the distributed
+ *   charge value is added to the price_total used for coupon eligibility
+ *   checks. Defaults to false.
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, mop, discount etc.
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
@@ -846,6 +854,10 @@ export = CartPlatformModel;
  *   return are permitted, except for `charge` type.
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
+ * @property {boolean} [included_in_eligibility_amount] - When true (valid only
+ *   for charge type with article_level_distribution=true), the distributed
+ *   charge value is added to the price_total used for coupon eligibility
+ *   checks. Defaults to false.
  * @property {string} [id] - Unique identifier of Price adjustment
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, discount, mop etc.
@@ -879,6 +891,10 @@ export = CartPlatformModel;
  * @property {string} [created_by] - The entity that created the field
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
+ * @property {boolean} [included_in_eligibility_amount] - When true (valid only
+ *   for charge type with article_level_distribution=true), the distributed
+ *   charge value is added to the price_total used for coupon eligibility
+ *   checks. Defaults to false.
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
@@ -2637,6 +2653,8 @@ export = CartPlatformModel;
 /**
  * @typedef OfferUser
  * @property {number[]} [groups] - List of user group on which offer is allowed
+ * @property {number[]} [exclude_groups] - List of user groups on which offer is
+ *   not allowed
  * @property {string} [type] - User type of the cart user who places the order
  * @property {boolean} [anonymous] - Set true, if offer is applicable for guest user
  * @property {string[]} [id] - List of user id on which offer is applicable
@@ -3103,6 +3121,11 @@ type Restrictions = {
      * - List of user group on which coupon allowed
      */
     user_groups?: number[];
+    /**
+     * - List of user groups on which
+     * coupon is not allowed
+     */
+    exclude_user_groups?: number[];
     /**
      * - Allow applying normal coupon if bulk
      * coupon is applied
@@ -4061,6 +4084,11 @@ type Restrictions1 = {
      */
     user_groups?: number[];
     /**
+     * - List of user groups on which
+     * promotion is not applicable
+     */
+    exclude_user_groups?: number[];
+    /**
      * - Prmomotion max order count
      */
     order_quantity?: number;
@@ -4907,6 +4935,13 @@ type PriceAdjustmentUpdate = {
      * distribution should is done at the article level
      */
     article_level_distribution: boolean;
+    /**
+     * - When true (valid only
+     * for charge type with article_level_distribution=true), the distributed
+     * charge value is added to the price_total used for coupon eligibility
+     * checks. Defaults to false.
+     */
+    included_in_eligibility_amount?: boolean;
     collection: Collection;
     /**
      * - Type of price adjusment like charge, mop, discount etc.
@@ -4967,6 +5002,13 @@ type PriceAdjustment = {
      * distribution should is done at the article level
      */
     article_level_distribution: boolean;
+    /**
+     * - When true (valid only
+     * for charge type with article_level_distribution=true), the distributed
+     * charge value is added to the price_total used for coupon eligibility
+     * checks. Defaults to false.
+     */
+    included_in_eligibility_amount?: boolean;
     /**
      * - Unique identifier of Price adjustment
      */
@@ -5045,6 +5087,13 @@ type PriceAdjustmentAdd = {
      * distribution should is done at the article level
      */
     article_level_distribution: boolean;
+    /**
+     * - When true (valid only
+     * for charge type with article_level_distribution=true), the distributed
+     * charge value is added to the price_total used for coupon eligibility
+     * checks. Defaults to false.
+     */
+    included_in_eligibility_amount?: boolean;
     collection: Collection;
     /**
      * - Type of price adjusment
@@ -9472,6 +9521,11 @@ type OfferUser = {
      * - List of user group on which offer is allowed
      */
     groups?: number[];
+    /**
+     * - List of user groups on which offer is
+     * not allowed
+     */
+    exclude_groups?: number[];
     /**
      * - User type of the cart user who places the order
      */
