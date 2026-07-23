@@ -26,6 +26,7 @@ declare class Catalog {
         getProductPriceBySlug: string;
         getProductSellersBySlug: string;
         getProductSizesBySlug: string;
+        getProductSizesBySlugs: string;
         getProductStockByIds: string;
         getProductStockForTimeByIds: string;
         getProductVariantsBySlug: string;
@@ -115,7 +116,7 @@ declare class Catalog {
      * @summary: Lists items of collection
      * @description: Fetch items within a particular collection identified by its slug. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getCollectionItemsBySlug/).
      */
-    getCollectionItemsBySlug({ slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductListingResponseSchema>;
+    getCollectionItemsBySlug({ slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType, showAllVariants, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ProductListingResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -135,17 +136,21 @@ declare class Catalog {
      *   listing configuration (e.g., best_selling) are also supported for
      *   cohort-based sorting.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {boolean} [arg.showAllVariants] - When true, return every product
+     *   variant in the listing response. When false or omitted, each variant
+     *   group is capped at 5 items (storefront default).
      * @returns {Paginator<ProductListingResponseSchema>}
      * @summary: Lists items of collection
      * @description: Fetch items within a particular collection identified by its slug.
      */
-    getCollectionItemsBySlugPaginator({ slug, f, q, filters, sortOn, pageSize, }?: {
+    getCollectionItemsBySlugPaginator({ slug, f, q, filters, sortOn, pageSize, showAllVariants, }?: {
         slug: string;
         f?: string;
         q?: string;
         filters?: boolean;
         sortOn?: string;
         pageSize?: number;
+        showAllVariants?: boolean;
     }): Paginator<ProductListingResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -386,6 +391,15 @@ declare class Catalog {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ProductSizesBySlugsSchema>} - Success response
+     * @name getProductSizesBySlugs
+     * @summary: List sizes for multiple products
+     * @description: Provides detailed size information (availability, quantities, dimensions, weight, price details, seller identifiers) for multiple products in a single request. Pass repeated `slug` query parameters (up to 50) to avoid N+1 per-product size lookups when rendering listings. Each entry in the response is a ProductSizes object annotated with its `slug`. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSizesBySlugs/).
+     */
+    getProductSizesBySlugs({ slug, storeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ProductSizesBySlugsSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ProductStockStatusResponseSchema>} - Success response
      * @name getProductStockByIds
      * @summary: Get product stocks
@@ -430,7 +444,7 @@ declare class Catalog {
      * @summary: List products
      * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProducts/).
      */
-    getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ProductListingResponseSchema>;
+    getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, showAllVariants, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ProductListingResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query for entering partial or full
@@ -447,16 +461,20 @@ declare class Catalog {
      *   listing configuration (e.g., best_selling) are also supported for
      *   cohort-based sorting.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {boolean} [arg.showAllVariants] - When true, return every product
+     *   variant in the listing response. When false or omitted, each variant
+     *   group is capped at 5 items (storefront default).
      * @returns {Paginator<ProductListingResponseSchema>}
      * @summary: List products
      * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
      */
-    getProductsPaginator({ q, f, filters, sortOn, pageSize }?: {
+    getProductsPaginator({ q, f, filters, sortOn, pageSize, showAllVariants, }?: {
         q?: string;
         f?: string;
         filters?: boolean;
         sortOn?: string;
         pageSize?: number;
+        showAllVariants?: boolean;
     }): Paginator<ProductListingResponseSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -85,7 +85,7 @@ declare class Order {
      * @returns {Promise<Object>} - Success response
      * @name createOrder
      * @summary: Create Order
-     * @description: Creates an order in the OMS. Note: Use the Serviceability API (<a href='/commerce/sdk/latest/platform/company/serviceability#createShipments'>createShipments</a>) to determine shipments before creating an order. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
+     * @description: Creates an order in the Order Management System (OMS). You can use <a href='/commerce/sdk/latest/platform/company/serviceability#getOptimalLocations'>getOptimalLocations</a> (optional) to identify the most suitable fulfilment location and <a href='/commerce/sdk/latest/platform/application/serviceability#createShipments'>createShipments</a> (optional) to create shipments before creating the order.  See the <a href='https://docs.fynd.com/partners/commerce/miscellaneous/createOrder-useCases'>Create Order use-case</a> document for various order creation scenarios to accommodate different business requirements and customer needs. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/createOrder/).
      */
     createOrder({ xOrderingSource, body, xApplicationId, xExtensionId, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<any>;
     /**

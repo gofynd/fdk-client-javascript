@@ -23,6 +23,7 @@ declare class ApplicationClient {
     share: Share;
     theme: Theme;
     user: User;
+    webhook: Webhook;
     /**
      * Sets the cookie for the application.
      *
@@ -79,3 +80,4 @@ import Payment = require("./Payment/PaymentApplicationClient");
 import Share = require("./Share/ShareApplicationClient");
 import Theme = require("./Theme/ThemeApplicationClient");
 import User = require("./User/UserApplicationClient");
+import Webhook = require("./Webhook/WebhookApplicationClient");

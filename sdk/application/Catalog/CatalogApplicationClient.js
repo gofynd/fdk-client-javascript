@@ -51,6 +51,8 @@ class Catalog {
         "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers/",
       getProductSizesBySlug:
         "/service/application/catalog/v1.0/products/{slug}/sizes/",
+      getProductSizesBySlugs:
+        "/service/application/catalog/v2.0/products/sizes/",
       getProductStockByIds:
         "/service/application/catalog/v1.0/products/stock-status/",
       getProductStockForTimeByIds:
@@ -399,6 +401,7 @@ class Catalog {
       pageSize,
       pageNo,
       pageType,
+      showAllVariants,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -421,6 +424,7 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["page_type"] = pageType;
+    query_params["show_all_variants"] = showAllVariants;
 
     const xHeaders = {};
 
@@ -464,6 +468,9 @@ class Catalog {
    *   listing configuration (e.g., best_selling) are also supported for
    *   cohort-based sorting.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {boolean} [arg.showAllVariants] - When true, return every product
+   *   variant in the listing response. When false or omitted, each variant
+   *   group is capped at 5 items (storefront default).
    * @returns {Paginator<ProductListingResponseSchema>}
    * @summary: Lists items of collection
    * @description: Fetch items within a particular collection identified by its slug.
@@ -475,6 +482,7 @@ class Catalog {
     filters,
     sortOn,
     pageSize,
+    showAllVariants,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -491,6 +499,7 @@ class Catalog {
         pageSize: pageSize,
         pageNo: pageNo,
         pageType: pageType,
+        showAllVariants: showAllVariants,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -1434,6 +1443,45 @@ class Catalog {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ProductSizesBySlugsSchema>} - Success response
+   * @name getProductSizesBySlugs
+   * @summary: List sizes for multiple products
+   * @description: Provides detailed size information (availability, quantities, dimensions, weight, price details, seller identifiers) for multiple products in a single request. Pass repeated `slug` query parameters (up to 50) to avoid N+1 per-product size lookups when rendering listings. Each entry in the response is a ProductSizes object annotated with its `slug`. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/application/catalog/getProductSizesBySlugs/).
+   */
+  async getProductSizesBySlugs(
+    { slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["slug"] = slug;
+    query_params["store_id"] = storeId;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getProductSizesBySlugs"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ProductStockStatusResponseSchema>} - Success response
    * @name getProductStockByIds
    * @summary: Get product stocks
@@ -1606,6 +1654,7 @@ class Catalog {
       pageSize,
       pageNo,
       pageType,
+      showAllVariants,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1619,6 +1668,7 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["page_type"] = pageType;
+    query_params["show_all_variants"] = showAllVariants;
 
     const xHeaders = {};
 
@@ -1659,11 +1709,21 @@ class Catalog {
    *   listing configuration (e.g., best_selling) are also supported for
    *   cohort-based sorting.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {boolean} [arg.showAllVariants] - When true, return every product
+   *   variant in the listing response. When false or omitted, each variant
+   *   group is capped at 5 items (storefront default).
    * @returns {Paginator<ProductListingResponseSchema>}
    * @summary: List products
    * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
    */
-  getProductsPaginator({ q, f, filters, sortOn, pageSize } = {}) {
+  getProductsPaginator({
+    q,
+    f,
+    filters,
+    sortOn,
+    pageSize,
+    showAllVariants,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -1678,6 +1738,7 @@ class Catalog {
         pageSize: pageSize,
         pageNo: pageNo,
         pageType: pageType,
+        showAllVariants: showAllVariants,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
