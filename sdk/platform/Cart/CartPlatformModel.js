@@ -1548,6 +1548,27 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PlatformCartCODServiceabilityCreation
+ * @property {CartItem[]} cart_items - List of items in the cart
+ * @property {ShippingAddress} shipping_address
+ */
+
+/**
+ * @typedef PlatformCartCODServiceabilityResult
+ * @property {boolean} [is_valid] - Cart validity flag determines the if the
+ *   response is valid or not
+ * @property {CartProductInfo[]} [items] - Items data list in user cart that
+ *   includes item id, item size, store id, available sizes and rest of the item
+ *   related data
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {string} [message] - Message of the cart detail API response
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_cod_available] - Indicates whether Cash on Delivery
+ *   is available for the given cart items at the requested pincode, based on
+ *   logistics serviceability and payment configuration
+ */
+
+/**
  * @typedef OpenApiFiles
  * @property {string} key - Key represents name of file
  * @property {string[]} values - List of urls path
@@ -4711,6 +4732,26 @@ class CartPlatformModel {
       delivery_promise: CartPlatformModel.ShipmentPromise(),
       message: Joi.string().allow(""),
       breakup_values: CartPlatformModel.CartBreakup(),
+    });
+  }
+
+  /** @returns {PlatformCartCODServiceabilityCreation} */
+  static PlatformCartCODServiceabilityCreation() {
+    return Joi.object({
+      cart_items: Joi.array().items(CartPlatformModel.CartItem()).required(),
+      shipping_address: CartPlatformModel.ShippingAddress().required(),
+    });
+  }
+
+  /** @returns {PlatformCartCODServiceabilityResult} */
+  static PlatformCartCODServiceabilityResult() {
+    return Joi.object({
+      is_valid: Joi.boolean(),
+      items: Joi.array().items(CartPlatformModel.CartProductInfo()),
+      delivery_promise: CartPlatformModel.ShipmentPromise(),
+      message: Joi.string().allow(""),
+      breakup_values: CartPlatformModel.CartBreakup(),
+      is_cod_available: Joi.boolean(),
     });
   }
 

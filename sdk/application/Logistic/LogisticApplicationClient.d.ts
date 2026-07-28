@@ -79,6 +79,32 @@ declare class Logistic {
      */
     getLocalities({ localityType, country, state, city, pageNo, pageSize, q, sector, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<GetLocalitiesApp>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.localityType - A `locality_type` contains unique
+     *   geographical division.
+     * @param {string} [arg.country] - A `country` contains a specific value of
+     *   the country iso2 code.
+     * @param {string} [arg.state] - A `state` contains a specific value of the
+     *   state, province.
+     * @param {string} [arg.city] - A `city` contains a specific value of the city.
+     * @param {number} [arg.pageSize] - Page size.
+     * @param {string} [arg.q] - The search string to search in the list of
+     *   locality by name.
+     * @param {string} [arg.sector] - Sector name of mentioned address.
+     * @returns {Paginator<GetLocalitiesApp>}
+     * @summary: Get Localities
+     * @description: Get Localities data.
+     */
+    getLocalitiesPaginator({ localityType, country, state, city, pageSize, q, sector, }?: {
+        localityType: string;
+        country?: string;
+        state?: string;
+        city?: string;
+        pageSize?: number;
+        q?: string;
+        sector?: string;
+    }): Paginator<GetLocalitiesApp>;
+    /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GetLocalityApp>} - Success response
@@ -97,3 +123,4 @@ declare class Logistic {
      */
     validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ValidateAddressDetails>;
 }
+import Paginator = require("../../common/Paginator");

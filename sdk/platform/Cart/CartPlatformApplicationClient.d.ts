@@ -54,6 +54,20 @@ declare class Cart {
      */
     applyLoyaltyPoints({ body, xOrderingSource, xOrderingSourceType, id, i, b, buyNow, requestHeaders, }?: CartPlatformApplicationValidator.ApplyLoyaltyPointsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResult>;
     /**
+     * @param {CartPlatformApplicationValidator.CheckCODServiceabilityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.PlatformCartCODServiceabilityResult>}
+     *   - Success response
+     *
+     * @name checkCODServiceability
+     * @summary: Check COD serviceability and charges for cart
+     * @description: Check whether Cash on Delivery (COD) is available for the given cart items at a specific pin code, and return the applicable COD charges. Performs a pincode-level serviceability check via the logistics layer and computes COD fee based on cart value and payment configuration. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/cart/checkCODServiceability/).
+     */
+    checkCODServiceability({ body, requestHeaders }?: CartPlatformApplicationValidator.CheckCODServiceabilityParam, { responseHeaders }?: object): Promise<CartPlatformModel.PlatformCartCODServiceabilityResult>;
+    /**
      * @param {CartPlatformApplicationValidator.CheckCartServiceabilityParam} arg
      *   - Arg object
      *

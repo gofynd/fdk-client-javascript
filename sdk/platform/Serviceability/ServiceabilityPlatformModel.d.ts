@@ -1599,12 +1599,47 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef FulfillmentOptionItem
+ * @property {string} [application_id] - The unique identifier of the application.
+ * @property {BusinessUnit[]} [business_unit] - Business units (e.g. Store OS,
+ *   Storefront) this fulfillment option applies to; mirrors the platform
+ *   fulfillment option payload.
+ * @property {number} [company_id] - The unique identifier of the company.
+ * @property {FulfillmentOptionDefaultFor} [default_for]
+ * @property {ModifiedBy} [modified_by]
+ * @property {string} [modified_on] - Timestamp when the object was last modified.
+ * @property {string} [serviceability_type] - Type of serviceability for the
+ *   fulfillment option.
+ * @property {string} [status] - Status of the fulfillment option.
  * @property {string} [slug] - Unique identifier for the delivery type.
  * @property {string} [description] - Description of the delivery service.
  * @property {boolean} [is_default] - Indicates if this is the default delivery option.
  * @property {string} [id] - Unique ID of the delivery service.
  * @property {string} [type] - Type of fulfillment option.
  * @property {string} [name] - Name of the delivery service.
+ * @property {MaxPromiseAllowed} [max_promise_allowed]
+ */
+/**
+ * @typedef BusinessUnit
+ * @property {string} [name] - Name of the business unit.
+ * @property {boolean} [is_active] - Whether the business unit is active.
+ */
+/**
+ * @typedef FulfillmentOptionDefaultFor
+ * @property {boolean} [storefront] - If set to true, this fulfillment option
+ *   will be default for storefront.
+ * @property {boolean} [storeos] - If set to true, this fulfillment option will
+ *   be default for storeos.
+ */
+/**
+ * @typedef ModifiedBy
+ * @property {string} [id] - Identifier of the user or system that created the object.
+ */
+/**
+ * @typedef MaxPromiseAllowed
+ * @property {number} [value] - Promise value (in seconds).
+ * @property {boolean} [is_active] - Whether this promise limit is active.
+ * @property {string} [type] - Type of promise configuration. For same_day,
+ *   value is 0 seconds.
  */
 /**
  * @typedef ShipmentsPromise
@@ -1717,18 +1752,6 @@ export = ServiceabilityPlatformModel;
  *   quality control (nullable).
  * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
  *   under quality control (nullable).
- */
-/**
- * @typedef FulfillmentOptionDefaultFor
- * @property {boolean} [storefront] - If set to true, this fulfillment option
- *   will be default for storefront.
- * @property {boolean} [storeos] - If set to true, this fulfillment option will
- *   be default for storeos.
- */
-/**
- * @typedef BusinessUnit
- * @property {string} [name] - Name of the business unit.
- * @property {boolean} [is_active] - Whether the business unit is active.
  */
 /**
  * @typedef FulfillmentStores
@@ -1965,10 +1988,6 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef CreatedBy
- * @property {string} [id] - Identifier of the user or system that created the object.
- */
-/**
- * @typedef ModifiedBy
  * @property {string} [id] - Identifier of the user or system that created the object.
  */
 /**
@@ -2945,7 +2964,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { GenerateShipmentsAndCourierPartnerResult, CourierPartnerDetails, PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, StorePolygonServiceabilityRequestBody, StorePolygonServiceabilityResult, StorePolygonServiceabilityGetResult, ZoneProductsBulkPatchDetails, GetZoneProductsBulkPatchResult, ZoneProductsAtomicPatchItem, ZoneProductsAtomicPatchDetails, ZoneProductsAtomicPatchResultItem, ZoneProductsAtomicPatchResult, CourierPartnerToServiceability, ServiceabilityLocation, CourierPartnerShipments, PromiseObject, PromiseData, PromiseMeta, CourierPartnerPromiseData, DeliveryTat, DeliveryTatSchema, CourierPartnerShipmentsMeta, ShipmentCourierPartnersResult, AreaCode, TAT, LocationDetailsServiceability, CourierPartnerShipmentsArticles, CourierPartnerArticlesPromise, CourierPartnerArticlesReturnReasons, CourierPartnerArticlesReturnReasonsMeta, ArticleWeight, ArticleAttributes, ArticleDimension, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, FulfillmentOptionDefaultFor, BusinessUnit, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ModifiedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, FoDetails, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject, StorePolygonServiceabilityRequestData, StorePolygonServiceabilityStore, StorePolygonServiceabilityStoreCoordinates, StorePolygonServiceabilityConfig, StorePolygonServiceabilityPolygon, StorePolygonServiceabilityFeature, StorePolygonServiceabilityGeometry, StorePolygonServiceabilityAttributes, StorePolygonServiceabilityReferenceCoordinates, StorePolygonServiceabilityStoreSummary, StorePolygonServiceabilityError, StorePolygonServiceabilityPagination, ZoneProductsAtomicPatchItemError, ZoneProductsAtomicPatchSummary };
+    export { GenerateShipmentsAndCourierPartnerResult, CourierPartnerDetails, PlatformShipmentsRequestSchema, PlatformShipmentsResponseSchema, ShipmentsErrorResult, FulfillmentOption, FulfillmentOptionsList, FulfillmentOptionProducts, FulfillmentOptionStores, FulfillmentOptionBulkValidate, FulfillmentOptionBulkValidateData, FulfillmentOptionBulk, FulfillmentOptionBulkData, OperationResponseSchema, SelfshipSchema, ServiceabilityErrorResult, UpdateZoneData, ZoneUpdateSuccessResult, ServiceabilityDeleteErrorResult, ZoneDeleteSuccessResult, ListViewSchema, GetZoneByIdSchema, CommonErrorResult, CreateZoneDataSchema, ZoneBulkExport, GetZoneBulkExport, CreateBulkZoneData, ZoneSchema, CreateBulkZoneResult, BulkCreateZoneExport, PincodeMopData, PincodeMOPResult, PincodeMopUpdateAuditError, PincodeMopBulkError, CommonError, PincodeMopBulkData, PincodeBulkViewResult, PincodeCodStatusListingDetails, PincodeCodStatusListingResult, PincodeMopUpdateAuditHistoryDetails, PincodeMopUpdateAuditHistoryResultData, BulkGeoAreaDetails, BulkGeoAreaResult, BulkGeoAreaGetResult, GeoAreaBulkCreationResult, GeoAreaBulkExportResult, GeoAreaRequestBody, GeoAreaErrorResult, GeoAreaResponseBody, GeoAreaPutResponseBody, GeoAreaGetResponseBody, GeoAreaDetails, Error, CourierAccountDetailsBody, CourierPartnerRuleResult, CourierPartnerRule, BulkFailureResult, FailureResult, CourierPartnerRulesListResult, ShipmentCourierPartnerDetails, ShipmentCourierPartnerResult, CompanyConfig, ApplicationConfigPatch, ApplicationConfigPatchResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, StoreRuleConfigData, StoreRuleDataSchema, GetStoreRulesApiResult, CreateStoreRuleDetailsSchema, StoreRuleResultSchema, StoreRuleUpdateResultSchema, CourierAccountResult, CompanyCourierPartnerAccountListResult, PackageMaterial, PackageMaterialNotFound, PackageMaterialsErrorResult, PackageMaterialResult, PackageRule, PackageRuleResult, PackagesListResult, PackageItem, RulePriorityDetails, RulePriorityResult, OptimalLocationsResult, OptimlLocationsRequestSchema, ValidationError, StandardError, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeModelSchema, CourierPartnerSchemeUpdateDetailsSchema, CourierPartnerSchemeList, BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, BulkRegionServiceabilityTatResult, GetCountries, GetLocalities, GetCountry, BulkImportLocalitiesDetails, BulkImportLocalitiesResult, BulkErrorResult, LocalitiesBulkExport, LocalitiesBulkExportFetch, LocalitiesErrorResult, GetLocality, ValidateAddress, ErrorResult, ApplicationConfigPut, ApplicationConfigPutDetail, ApplicationConfigGetResult, InstallCourierPartnerResponseSchema, GetLocalitiesBulkHistory, CompanyConfigurationSchema, StorePolygonServiceabilityRequestBody, StorePolygonServiceabilityResult, StorePolygonServiceabilityGetResult, ZoneProductsBulkPatchDetails, GetZoneProductsBulkPatchResult, ZoneProductsAtomicPatchItem, ZoneProductsAtomicPatchDetails, ZoneProductsAtomicPatchResultItem, ZoneProductsAtomicPatchResult, CourierPartnerToServiceability, ServiceabilityLocation, CourierPartnerShipments, PromiseObject, PromiseData, PromiseMeta, CourierPartnerPromiseData, DeliveryTat, DeliveryTatSchema, CourierPartnerShipmentsMeta, ShipmentCourierPartnersResult, AreaCode, TAT, LocationDetailsServiceability, CourierPartnerShipmentsArticles, CourierPartnerArticlesPromise, CourierPartnerArticlesReturnReasons, CourierPartnerArticlesReturnReasonsMeta, ArticleWeight, ArticleAttributes, ArticleDimension, PlatformLocationArticles, PlatformLocationArticle, ParentItemIdentifiers, PlatformShipmentsToServiceability, PlatformShipmentsSchema, Packaging, Dimension, FulfillmentOptionItem, BusinessUnit, FulfillmentOptionDefaultFor, ModifiedBy, MaxPromiseAllowed, ShipmentsPromise, CustomerPromise, ShipmentPromiseMeta, SellerPromise, CourierPartnerPromise, CourierPartnerAttributes, CourierPartnerTAT, CustomerInitialPromise, ShipmentsArticle, ShipmentDimension, ShipmentsMeta, ShipmentsCourierPartner, FulfillmentStores, FulfillmentProducts, CourierPartnerSchemes, CourierPartnerScheme, FulfillmentOptionProduct, NetQuantity, Trader, ProductPublish, TaxIdentifier, ReturnConfig, CustomOrder, Size, Identifier, Page, FulfillmentOptionStore, Address, LatLong, StoreDistance, StoreTimingDetails, StoreTiming, Time, FulfillmentOptionValidate, ProductSchema, StoresSchema, CreatedBy, ListViewItems, GeoArea, ListViewProduct, Summary, RegionSchema, FoDetails, ZoneStores, ZoneProduct, ZoneBulkItem, PincodeMopUpdateResult, PincodeCodStatusItem, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResult, Area, GeoAreaResponseDetail, GeoAreaItemResult, AreaExpanded, Country, Region, Page2, CourierPartnerRuleConditions, LocationRule, LocationRuleValues, StringComparisonOperations, IntComparisonOperations, DateOperations, ArithmeticOperations, CourierPartnerRuleCPListResult, CourierPartnerSchemeDefaultTat, CourierPartnerSchemeTat, CourierPartnerSchemeFeatures, CourierPartnerList, ShipmentsCourierPartnersServiceability, CPShipments, ShipmentsArticles, ArticleSet, ArticleSizeDistribution, SetSize, ArticleDeliverySlots, ArticleReturnReason, CourierPartners, ShipmentCourierPartners, CourierPartnerConfig, BuyboxRuleConfig, PromiseConfig, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, StorePrioritySchema, StoreRuleConditionSchema, CustomerRadiusSchema, CourierPartnerSchemeModel, PackageMaterialRule, PackageMaterialRuleQuantity, Channel, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleDepartmentId, PackageRuleProductAttributes, PackageChannel, StoreFilter, PackageRuleSchema, Quantity, PackagePageInfo, OptimalLocationAssignedStoresResult, OptimalLocationArticlesResult, ArticleAssignment, OptimalLocationsArticles, GetCountriesItems, HierarchyItems, CurrencyObject, Localities, PincodeLatLongData, LocalityParent, CountryMetaFields, ApplicationFields, GetCountryFieldsAddress, FieldValidation, FieldValidationRegex, LengthValidation, GetCountryFieldsAddressValues, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetCountryFieldsAddressTemplateApplication, CountryHierarchy, GetCountryFields, GetCountryFieldsAddressTemplate, LocalityParents, ZoneConfig, PromiseType, InstallCourierPartnerItemsSchema, HistoryObject, StorePolygonServiceabilityRequestData, StorePolygonServiceabilityStore, StorePolygonServiceabilityStoreCoordinates, StorePolygonServiceabilityConfig, StorePolygonServiceabilityPolygon, StorePolygonServiceabilityFeature, StorePolygonServiceabilityGeometry, StorePolygonServiceabilityAttributes, StorePolygonServiceabilityReferenceCoordinates, StorePolygonServiceabilityStoreSummary, StorePolygonServiceabilityError, StorePolygonServiceabilityPagination, ZoneProductsAtomicPatchItemError, ZoneProductsAtomicPatchSummary };
 }
 /** @returns {GenerateShipmentsAndCourierPartnerResult} */
 declare function GenerateShipmentsAndCourierPartnerResult(): GenerateShipmentsAndCourierPartnerResult;
@@ -6896,6 +6915,35 @@ type Dimension = {
 declare function FulfillmentOptionItem(): FulfillmentOptionItem;
 type FulfillmentOptionItem = {
     /**
+     * - The unique identifier of the application.
+     */
+    application_id?: string;
+    /**
+     * - Business units (e.g. Store OS,
+     * Storefront) this fulfillment option applies to; mirrors the platform
+     * fulfillment option payload.
+     */
+    business_unit?: BusinessUnit[];
+    /**
+     * - The unique identifier of the company.
+     */
+    company_id?: number;
+    default_for?: FulfillmentOptionDefaultFor;
+    modified_by?: ModifiedBy;
+    /**
+     * - Timestamp when the object was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Type of serviceability for the
+     * fulfillment option.
+     */
+    serviceability_type?: string;
+    /**
+     * - Status of the fulfillment option.
+     */
+    status?: string;
+    /**
      * - Unique identifier for the delivery type.
      */
     slug?: string;
@@ -6919,6 +6967,58 @@ type FulfillmentOptionItem = {
      * - Name of the delivery service.
      */
     name?: string;
+    max_promise_allowed?: MaxPromiseAllowed;
+};
+/** @returns {BusinessUnit} */
+declare function BusinessUnit(): BusinessUnit;
+type BusinessUnit = {
+    /**
+     * - Name of the business unit.
+     */
+    name?: string;
+    /**
+     * - Whether the business unit is active.
+     */
+    is_active?: boolean;
+};
+/** @returns {FulfillmentOptionDefaultFor} */
+declare function FulfillmentOptionDefaultFor(): FulfillmentOptionDefaultFor;
+type FulfillmentOptionDefaultFor = {
+    /**
+     * - If set to true, this fulfillment option
+     * will be default for storefront.
+     */
+    storefront?: boolean;
+    /**
+     * - If set to true, this fulfillment option will
+     * be default for storeos.
+     */
+    storeos?: boolean;
+};
+/** @returns {ModifiedBy} */
+declare function ModifiedBy(): ModifiedBy;
+type ModifiedBy = {
+    /**
+     * - Identifier of the user or system that created the object.
+     */
+    id?: string;
+};
+/** @returns {MaxPromiseAllowed} */
+declare function MaxPromiseAllowed(): MaxPromiseAllowed;
+type MaxPromiseAllowed = {
+    /**
+     * - Promise value (in seconds).
+     */
+    value?: number;
+    /**
+     * - Whether this promise limit is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Type of promise configuration. For same_day,
+     * value is 0 seconds.
+     */
+    type?: string;
 };
 /** @returns {ShipmentsPromise} */
 declare function ShipmentsPromise(): ShipmentsPromise;
@@ -7208,32 +7308,6 @@ type ShipmentsCourierPartner = {
      * under quality control (nullable).
      */
     non_qc_shipment_item_quantity?: number;
-};
-/** @returns {FulfillmentOptionDefaultFor} */
-declare function FulfillmentOptionDefaultFor(): FulfillmentOptionDefaultFor;
-type FulfillmentOptionDefaultFor = {
-    /**
-     * - If set to true, this fulfillment option
-     * will be default for storefront.
-     */
-    storefront?: boolean;
-    /**
-     * - If set to true, this fulfillment option will
-     * be default for storeos.
-     */
-    storeos?: boolean;
-};
-/** @returns {BusinessUnit} */
-declare function BusinessUnit(): BusinessUnit;
-type BusinessUnit = {
-    /**
-     * - Name of the business unit.
-     */
-    name?: string;
-    /**
-     * - Whether the business unit is active.
-     */
-    is_active?: boolean;
 };
 /** @returns {FulfillmentStores} */
 declare function FulfillmentStores(): FulfillmentStores;
@@ -7870,14 +7944,6 @@ type StoresSchema = {
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
-    /**
-     * - Identifier of the user or system that created the object.
-     */
-    id?: string;
-};
-/** @returns {ModifiedBy} */
-declare function ModifiedBy(): ModifiedBy;
-type ModifiedBy = {
     /**
      * - Identifier of the user or system that created the object.
      */

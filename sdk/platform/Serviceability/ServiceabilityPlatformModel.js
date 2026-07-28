@@ -1751,12 +1751,51 @@ const Joi = require("joi");
 
 /**
  * @typedef FulfillmentOptionItem
+ * @property {string} [application_id] - The unique identifier of the application.
+ * @property {BusinessUnit[]} [business_unit] - Business units (e.g. Store OS,
+ *   Storefront) this fulfillment option applies to; mirrors the platform
+ *   fulfillment option payload.
+ * @property {number} [company_id] - The unique identifier of the company.
+ * @property {FulfillmentOptionDefaultFor} [default_for]
+ * @property {ModifiedBy} [modified_by]
+ * @property {string} [modified_on] - Timestamp when the object was last modified.
+ * @property {string} [serviceability_type] - Type of serviceability for the
+ *   fulfillment option.
+ * @property {string} [status] - Status of the fulfillment option.
  * @property {string} [slug] - Unique identifier for the delivery type.
  * @property {string} [description] - Description of the delivery service.
  * @property {boolean} [is_default] - Indicates if this is the default delivery option.
  * @property {string} [id] - Unique ID of the delivery service.
  * @property {string} [type] - Type of fulfillment option.
  * @property {string} [name] - Name of the delivery service.
+ * @property {MaxPromiseAllowed} [max_promise_allowed]
+ */
+
+/**
+ * @typedef BusinessUnit
+ * @property {string} [name] - Name of the business unit.
+ * @property {boolean} [is_active] - Whether the business unit is active.
+ */
+
+/**
+ * @typedef FulfillmentOptionDefaultFor
+ * @property {boolean} [storefront] - If set to true, this fulfillment option
+ *   will be default for storefront.
+ * @property {boolean} [storeos] - If set to true, this fulfillment option will
+ *   be default for storeos.
+ */
+
+/**
+ * @typedef ModifiedBy
+ * @property {string} [id] - Identifier of the user or system that created the object.
+ */
+
+/**
+ * @typedef MaxPromiseAllowed
+ * @property {number} [value] - Promise value (in seconds).
+ * @property {boolean} [is_active] - Whether this promise limit is active.
+ * @property {string} [type] - Type of promise configuration. For same_day,
+ *   value is 0 seconds.
  */
 
 /**
@@ -1881,20 +1920,6 @@ const Joi = require("joi");
  *   quality control (nullable).
  * @property {number} [non_qc_shipment_item_quantity] - Quantity of items not
  *   under quality control (nullable).
- */
-
-/**
- * @typedef FulfillmentOptionDefaultFor
- * @property {boolean} [storefront] - If set to true, this fulfillment option
- *   will be default for storefront.
- * @property {boolean} [storeos] - If set to true, this fulfillment option will
- *   be default for storeos.
- */
-
-/**
- * @typedef BusinessUnit
- * @property {string} [name] - Name of the business unit.
- * @property {boolean} [is_active] - Whether the business unit is active.
  */
 
 /**
@@ -2156,11 +2181,6 @@ const Joi = require("joi");
 
 /**
  * @typedef CreatedBy
- * @property {string} [id] - Identifier of the user or system that created the object.
- */
-
-/**
- * @typedef ModifiedBy
  * @property {string} [id] - Identifier of the user or system that created the object.
  */
 
@@ -5130,12 +5150,55 @@ class ServiceabilityPlatformModel {
   /** @returns {FulfillmentOptionItem} */
   static FulfillmentOptionItem() {
     return Joi.object({
+      application_id: Joi.string().allow("").allow(null),
+      business_unit: Joi.array()
+        .items(ServiceabilityPlatformModel.BusinessUnit())
+        .allow(null, ""),
+      company_id: Joi.number().allow(null),
+      default_for: ServiceabilityPlatformModel.FulfillmentOptionDefaultFor(),
+      modified_by: ServiceabilityPlatformModel.ModifiedBy(),
+      modified_on: Joi.string().allow("").allow(null),
+      serviceability_type: Joi.string().allow("").allow(null),
+      status: Joi.string().allow("").allow(null),
       slug: Joi.string().allow(""),
       description: Joi.string().allow(""),
       is_default: Joi.boolean(),
       id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      max_promise_allowed: ServiceabilityPlatformModel.MaxPromiseAllowed(),
+    });
+  }
+
+  /** @returns {BusinessUnit} */
+  static BusinessUnit() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {FulfillmentOptionDefaultFor} */
+  static FulfillmentOptionDefaultFor() {
+    return Joi.object({
+      storefront: Joi.boolean(),
+      storeos: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ModifiedBy} */
+  static ModifiedBy() {
+    return Joi.object({
+      id: Joi.string().allow("").allow(null),
+    }).allow(null);
+  }
+
+  /** @returns {MaxPromiseAllowed} */
+  static MaxPromiseAllowed() {
+    return Joi.object({
+      value: Joi.number(),
+      is_active: Joi.boolean(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -5274,22 +5337,6 @@ class ServiceabilityPlatformModel {
       reverse_pickup_cutoff: Joi.string().allow("").allow(null),
       qc_shipment_item_quantity: Joi.number().allow(null),
       non_qc_shipment_item_quantity: Joi.number().allow(null),
-    });
-  }
-
-  /** @returns {FulfillmentOptionDefaultFor} */
-  static FulfillmentOptionDefaultFor() {
-    return Joi.object({
-      storefront: Joi.boolean(),
-      storeos: Joi.boolean(),
-    });
-  }
-
-  /** @returns {BusinessUnit} */
-  static BusinessUnit() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      is_active: Joi.boolean(),
     });
   }
 
@@ -5581,13 +5628,6 @@ class ServiceabilityPlatformModel {
 
   /** @returns {CreatedBy} */
   static CreatedBy() {
-    return Joi.object({
-      id: Joi.string().allow("").allow(null),
-    }).allow(null);
-  }
-
-  /** @returns {ModifiedBy} */
-  static ModifiedBy() {
     return Joi.object({
       id: Joi.string().allow("").allow(null),
     }).allow(null);

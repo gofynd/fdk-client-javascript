@@ -1423,6 +1423,25 @@ export = CartPlatformModel;
  * @property {CartBreakup} [breakup_values]
  */
 /**
+ * @typedef PlatformCartCODServiceabilityCreation
+ * @property {CartItem[]} cart_items - List of items in the cart
+ * @property {ShippingAddress} shipping_address
+ */
+/**
+ * @typedef PlatformCartCODServiceabilityResult
+ * @property {boolean} [is_valid] - Cart validity flag determines the if the
+ *   response is valid or not
+ * @property {CartProductInfo[]} [items] - Items data list in user cart that
+ *   includes item id, item size, store id, available sizes and rest of the item
+ *   related data
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {string} [message] - Message of the cart detail API response
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_cod_available] - Indicates whether Cash on Delivery
+ *   is available for the given cart items at the requested pincode, based on
+ *   logistics serviceability and payment configuration
+ */
+/**
  * @typedef OpenApiFiles
  * @property {string} key - Key represents name of file
  * @property {string[]} values - List of urls path
@@ -2925,7 +2944,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, ShipToGstDetails, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, OfferSchedule, OfferListItem, OfferListResult };
+    export { RedeemLoyaltyPoints, CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, BuyRuleItemCriteria, DiscountItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, FulfillmentOptionSchema, StoreTimingSchema, StoreHoursSchema, PickupStoreDetailSchema, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, ProductMaxQuantityInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CurrencyValue, ChargesAmount, ArticleCharges, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, PlatformCartCODServiceabilityCreation, PlatformCartCODServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, PlatformAlternatePickupPerson, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, CartItemInfo, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutData, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, UpdateCartBreakup, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, DiscountRules, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, ShipToGstDetails, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, OrderTag, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetailsData, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, DiscountOfferRule, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError, OfferUser, OfferItemCriteria, DiscountRuleOffer, OfferDiscountRule, OfferUsesRemaining, OfferUsesRestriction, OfferRestrictionFulfillmentOptions, OfferRestrictions, OfferDisplayMeta, OfferCouponConfiguration, OfferOwnership, OfferSchema, OfferPartialUpdate, OfferAuthor, OfferDateMeta, OfferSchedule, OfferListItem, OfferListResult };
 }
 /** @returns {RedeemLoyaltyPoints} */
 declare function RedeemLoyaltyPoints(): RedeemLoyaltyPoints;
@@ -6384,6 +6403,42 @@ type OpenApiCartServiceabilityResult = {
      */
     message?: string;
     breakup_values?: CartBreakup;
+};
+/** @returns {PlatformCartCODServiceabilityCreation} */
+declare function PlatformCartCODServiceabilityCreation(): PlatformCartCODServiceabilityCreation;
+type PlatformCartCODServiceabilityCreation = {
+    /**
+     * - List of items in the cart
+     */
+    cart_items: CartItem[];
+    shipping_address: ShippingAddress;
+};
+/** @returns {PlatformCartCODServiceabilityResult} */
+declare function PlatformCartCODServiceabilityResult(): PlatformCartCODServiceabilityResult;
+type PlatformCartCODServiceabilityResult = {
+    /**
+     * - Cart validity flag determines the if the
+     * response is valid or not
+     */
+    is_valid?: boolean;
+    /**
+     * - Items data list in user cart that
+     * includes item id, item size, store id, available sizes and rest of the item
+     * related data
+     */
+    items?: CartProductInfo[];
+    delivery_promise?: ShipmentPromise;
+    /**
+     * - Message of the cart detail API response
+     */
+    message?: string;
+    breakup_values?: CartBreakup;
+    /**
+     * - Indicates whether Cash on Delivery
+     * is available for the given cart items at the requested pincode, based on
+     * logistics serviceability and payment configuration
+     */
+    is_cod_available?: boolean;
 };
 /** @returns {OpenApiFiles} */
 declare function OpenApiFiles(): OpenApiFiles;

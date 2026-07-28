@@ -377,6 +377,57 @@ class Logistic {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.localityType - A `locality_type` contains unique
+   *   geographical division.
+   * @param {string} [arg.country] - A `country` contains a specific value of
+   *   the country iso2 code.
+   * @param {string} [arg.state] - A `state` contains a specific value of the
+   *   state, province.
+   * @param {string} [arg.city] - A `city` contains a specific value of the city.
+   * @param {number} [arg.pageSize] - Page size.
+   * @param {string} [arg.q] - The search string to search in the list of
+   *   locality by name.
+   * @param {string} [arg.sector] - Sector name of mentioned address.
+   * @returns {Paginator<GetLocalitiesApp>}
+   * @summary: Get Localities
+   * @description: Get Localities data.
+   */
+  getLocalitiesPaginator({
+    localityType,
+    country,
+    state,
+    city,
+    pageSize,
+    q,
+    sector,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getLocalities({
+        localityType: localityType,
+        country: country,
+        state: state,
+        city: city,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        sector: sector,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<GetLocalityApp>} - Success response

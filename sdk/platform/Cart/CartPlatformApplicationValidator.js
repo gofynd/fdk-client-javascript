@@ -50,6 +50,11 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
+ * @typedef CheckCODServiceabilityParam
+ * @property {CartPlatformModel.PlatformCartCODServiceabilityCreation} body
+ */
+
+/**
  * @typedef CheckCartServiceabilityParam
  * @property {string} [xOrderingSource] - Ordering source header, to be used to
  *   identify source of order creation.
@@ -726,6 +731,13 @@ class CartPlatformApplicationValidator {
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
       body: CartPlatformModel.RedeemLoyaltyPoints().required(),
+    }).required();
+  }
+
+  /** @returns {CheckCODServiceabilityParam} */
+  static checkCODServiceability() {
+    return Joi.object({
+      body: CartPlatformModel.PlatformCartCODServiceabilityCreation().required(),
     }).required();
   }
 
