@@ -2830,6 +2830,9 @@ export = OrderPlatformModel;
  *   assigned by an external system. You can use this to map external id to
  *   Fynd's generated id
  * @property {BundleDetailsSchema} [bundle_details]
+ * @property {CreateOrderLineItemChargeSchema[]} [charges] - Custom
+ *   line-item-level charges attached to this bag and folded into its payment
+ *   methods. The amount is per unit and is multiplied by quantity.
  * @property {Object} [meta] - Contains metadata related to the shipment
  */
 /**
@@ -3018,6 +3021,9 @@ export = OrderPlatformModel;
  * @typedef CreateOrderRequestSchema
  * @property {CreateOrderShipmentSchema[]} [shipments] - List of shipments
  *   included in the order.
+ * @property {CreateOrderChargeSchema[]} [charges] - Custom order-level charges
+ *   (e.g. delivery or COD fees) that OMS distributes across the order's
+ *   shipments and apportions onto their payment methods.
  * @property {string[]} [tags] - Tags that can be used to filter and categorize
  *   orders and shipments.
  * @property {CurrencySchema} currency_details
@@ -3053,6 +3059,40 @@ export = OrderPlatformModel;
  * @property {Object} [meta] - Metadata related to the order may include
  *   additional, dynamic information that provides further context about the
  *   order. This information can also be viewed on the Order or Shipment Details page.
+ */
+/**
+ * @typedef CreateOrderChargeSchema
+ * @property {string} name - Name of the charge that indicates its purpose (e.g.
+ *   "Delivery Charge"). Must be at most 25 characters.
+ * @property {number} amount - The charge value in the ordering currency. Must
+ *   be a positive amount.
+ * @property {boolean} [refundable] - Whether the charge is refunded when the
+ *   shipment is cancelled or returned. When set, this is an explicit per-charge
+ *   override. When omitted, refundability is governed by the application's
+ *   charges refund configuration (per order state); there is no fixed default.
+ *   Set `false` for charges that must never be refunded (e.g. delivery/COD fees).
+ * @property {string} [distribution] - How the charge is split across the
+ *   order's shipments. "apportion": split in proportion to each shipment's
+ *   value (default). "equally": split equally across shipments.
+ * @property {string} [tax_rule_id] - Optional tax rule ID applied to this
+ *   charge. When provided it must resolve to an existing tax rule for the
+ *   company; an unresolvable ID is rejected at create time. When omitted, no
+ *   tax is applied to the charge.
+ */
+/**
+ * @typedef CreateOrderLineItemChargeSchema
+ * @property {string} name - Name of the charge that indicates its purpose. Must
+ *   be at most 25 characters.
+ * @property {number} amount - The per-unit charge value in the ordering
+ *   currency. Must be a positive amount.
+ * @property {boolean} [refundable] - Whether the charge is refunded when the
+ *   bag is cancelled or returned. When set, this is an explicit per-charge
+ *   override. When omitted, refundability is governed by the application's
+ *   charges refund configuration (per order state); there is no fixed default.
+ * @property {string} [tax_rule_id] - Optional tax rule ID applied to this
+ *   charge. When provided it must resolve to an existing tax rule for the
+ *   company; an unresolvable ID is rejected at create time. When omitted, no
+ *   tax is applied to the charge.
  */
 /**
  * @typedef Page
@@ -5658,7 +5698,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { PackageSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, RefundModeTransitionData, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, PackagesSchema, PackagesResponseSchema, PackagesErrorResponseSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, TATSchema, ShipmentCourierPartnerPreference, ShipmentCourierPartnerRequestSchema, CourierPartnerResponseSchema, CourierPartnerErrorSchema, PackageProduct, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, OrderingSourceDetails, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, SellerQcDetails, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
+    export { PackageSchema, UpdatePackingErrorResponseSchema, ErrorResponseSchema, StoreReassign, StoreReassignResponseSchema, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponseSchema, UpdateShipmentLockResponseSchema, AnnouncementResponseSchema, AnnouncementsResponseSchema, BaseResponseSchema, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, OrderDataUpdates, SellerQCDetailsSchema, EntityStatusDataSchema, DataUpdatesFiltersSchema, EntityStatusDataUpdates, DataUpdates, TransitionComments, RefundModeTransitionData, ShipmentsRequestSchema, UpdatedAddressSchema, UpdateAddressRequestBody, StatuesRequestSchema, UpdateShipmentStatusRequestSchema, ShipmentsResponseSchema, DPConfiguration, PaymentConfig, LockStateMessage, CreateOrderConfig, StatuesResponseSchema, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderResponseSchema, DispatchManifest, SuccessResponseSchema, ActionInfo, GetActionsResponseSchema, HistoryReason, RefundInformation, HistoryMeta, HistoryDict, ShipmentHistoryResponseSchema, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, SendSmsResponseSchema, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponseSchema, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Tag, ProcessAfterConfig, SystemMessages, Shipment, GeoLocationSchema, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponseSchema, UploadManifestConsent, CreateChannelConfigResponseSchema, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponseSchema, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponseSchema, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponseSchema, BulkReportsFiltersSchema, BulkReportsDownloadRequestSchema, BulkReportsDownloadResponseSchema, APIFailedResponseSchema, BulkStateTransistionRequestSchema, BulkStateTransistionResponseSchema, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponseSchema, JobDetailsData, JobDetailsResponseSchema, JobFailedResponseSchema, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequestSchema, ProcessManifest, ProcessManifestResponseSchema, ProcessManifestItemResponseSchema, FilterInfoOption, FiltersInfo, ManifestFiltersResponseSchema, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponseSchema, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponseSchema, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponseSchema, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponseSchema, GenerateInvoiceIDErrorResponseSchema, ManifestResponseSchema, ProcessManifestRequestSchema, ManifestItems, ManifestErrorResponseSchema, ConfigData, ConfigUpdatedResponseSchema, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, RuleListRequestSchema, RuleErrorResponseSchema, RMAPageInfo, RuleAction, QuestionSetItem, Reason, Conditions, RuleItem, RuleError, RuleListResponseSchema, UpdateShipmentPaymentMode, CommonErrorResponseSchema, ExceptionErrorResponseSchema, ProductSchema, PaymentMethodSchema, ActionDetailSchema, PaymentMetaDataSchema, PaymentMetaLogoURLSchema, FulfillmentOptionSchema, PaymentMethodGatewaySchema, SubModeOfPaymentSchema, PaymentMethodModeOfPaymentSchema, PaymentMethodTransactionPartySchema, LineItemPaymentMethodSchema, PackagesSchema, PackagesResponseSchema, PackagesErrorResponseSchema, BundleDetailsSchema, LineItemMonetaryValuesSchema, DimensionSchema, GiftDetailsSchema, CPRiderDetailsSchema, CPAreaCodeSchema, CPTatToDeliverTheShipmentSchema, CPOptionsSchema, CourierPartnerDetailsSchema, TaxDetailsSchema, PromiseDetailsSchema, CustomerPickupSlotSchema, DpPickupSlotSchema, OrderFulfillmentTimelineSchema, LineItemSchema, CreateOrderShipmentSchema, OrderingCurrencySchema, ConversionRateSchema, CurrencySchema, CouponOwnershipSchema, CouponSchema, BillingDetailsSchema, CPConfigurationSchema, ShippingDetailsSchema, UserDetailsSchema, LifecycleMessageSchema, CreateOrderRequestSchema, CreateOrderChargeSchema, CreateOrderLineItemChargeSchema, Page, OrderingSourceConfig, OrderingSourceFeature, ListOrderingSources, OrderingSourceSummary, CreateAccount, Account, AccountsList, TATSchema, ShipmentCourierPartnerPreference, ShipmentCourierPartnerRequestSchema, CourierPartnerResponseSchema, CourierPartnerErrorSchema, PackageProduct, ValidationError, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, OrderingSourceDetails, UserDataInfo, BundleReturnConfig, BundleDetails, Address, ShipmentListingChannel, Prices, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, OrderingCurrencyPrices, Identifier, TaxComponent, SellerQcDetails, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponseSchema, TrackingList, InvoiceInfo, LoyaltyDiscountDetails, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, PriceMinMax, ItemPriceDetails, FreeGiftItems, AppliedFreeArticles, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, FulfillmentOption, PlatformShipment, ShipmentInfoResponseSchema, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponseSchema, SubLane, SuperLane, LaneConfigResponseSchema, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponseSchema, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponseSchema, URL, FileResponseSchema, BulkActionTemplate, BulkActionTemplateResponseSchema, PlatformShipmentReasonsResponseSchema, ShipmentResponseReasons, ShipmentReasonsResponseSchema, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponseSchema, BagsPage, BagData, GetBagsPlatformResponseSchema, GeneratePosOrderReceiptResponseSchema, Templates, AllowedTemplatesResponseSchema, TemplateDownloadResponseSchema, Error, BulkFailedResponseSchema };
 }
 /** @returns {PackageSchema} */
 declare function PackageSchema(): PackageSchema;
@@ -11351,6 +11391,12 @@ type LineItemSchema = {
     external_line_id?: string;
     bundle_details?: BundleDetailsSchema;
     /**
+     * - Custom
+     * line-item-level charges attached to this bag and folded into its payment
+     * methods. The amount is per unit and is multiplied by quantity.
+     */
+    charges?: CreateOrderLineItemChargeSchema[];
+    /**
      * - Contains metadata related to the shipment
      */
     meta?: any;
@@ -11800,6 +11846,12 @@ type CreateOrderRequestSchema = {
      */
     shipments?: CreateOrderShipmentSchema[];
     /**
+     * - Custom order-level charges
+     * (e.g. delivery or COD fees) that OMS distributes across the order's
+     * shipments and apportions onto their payment methods.
+     */
+    charges?: CreateOrderChargeSchema[];
+    /**
      * - Tags that can be used to filter and categorize
      * orders and shipments.
      */
@@ -11873,6 +11925,69 @@ type CreateOrderRequestSchema = {
      * order. This information can also be viewed on the Order or Shipment Details page.
      */
     meta?: any;
+};
+/** @returns {CreateOrderChargeSchema} */
+declare function CreateOrderChargeSchema(): CreateOrderChargeSchema;
+type CreateOrderChargeSchema = {
+    /**
+     * - Name of the charge that indicates its purpose (e.g.
+     * "Delivery Charge"). Must be at most 25 characters.
+     */
+    name: string;
+    /**
+     * - The charge value in the ordering currency. Must
+     * be a positive amount.
+     */
+    amount: number;
+    /**
+     * - Whether the charge is refunded when the
+     * shipment is cancelled or returned. When set, this is an explicit per-charge
+     * override. When omitted, refundability is governed by the application's
+     * charges refund configuration (per order state); there is no fixed default.
+     * Set `false` for charges that must never be refunded (e.g. delivery/COD fees).
+     */
+    refundable?: boolean;
+    /**
+     * - How the charge is split across the
+     * order's shipments. "apportion": split in proportion to each shipment's
+     * value (default). "equally": split equally across shipments.
+     */
+    distribution?: string;
+    /**
+     * - Optional tax rule ID applied to this
+     * charge. When provided it must resolve to an existing tax rule for the
+     * company; an unresolvable ID is rejected at create time. When omitted, no
+     * tax is applied to the charge.
+     */
+    tax_rule_id?: string;
+};
+/** @returns {CreateOrderLineItemChargeSchema} */
+declare function CreateOrderLineItemChargeSchema(): CreateOrderLineItemChargeSchema;
+type CreateOrderLineItemChargeSchema = {
+    /**
+     * - Name of the charge that indicates its purpose. Must
+     * be at most 25 characters.
+     */
+    name: string;
+    /**
+     * - The per-unit charge value in the ordering
+     * currency. Must be a positive amount.
+     */
+    amount: number;
+    /**
+     * - Whether the charge is refunded when the
+     * bag is cancelled or returned. When set, this is an explicit per-charge
+     * override. When omitted, refundability is governed by the application's
+     * charges refund configuration (per order state); there is no fixed default.
+     */
+    refundable?: boolean;
+    /**
+     * - Optional tax rule ID applied to this
+     * charge. When provided it must resolve to an existing tax rule for the
+     * company; an unresolvable ID is rejected at create time. When omitted, no
+     * tax is applied to the charge.
+     */
+    tax_rule_id?: string;
 };
 /** @returns {Page} */
 declare function Page(): Page;

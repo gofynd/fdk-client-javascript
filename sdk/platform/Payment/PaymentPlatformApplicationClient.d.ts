@@ -115,6 +115,18 @@ declare class Payment {
      */
     getBrandPaymentGatewayConfig({ aggregator, configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayConfigDetails>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetDefaultOfferClassificationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getDefaultOfferClassification
+     * @summary: Get default offer classification
+     * @description: Returns the configured default offer_type (bank or brand) for the given aggregator (Sales Channel x payment gateway), or null when none is configured (the hard-coded brand default then applies). Also returns offer_classification_supported — false for internal, non-offer aggregators (store credits, Fynd) so the seller panel hides the control. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getDefaultOfferClassification/).
+     */
+    getDefaultOfferClassification({ aggregator, requestHeaders }?: PaymentPlatformApplicationValidator.GetDefaultOfferClassificationParam, { responseHeaders }?: object): Promise<any>;
+    /**
      * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorAppVersionParam} arg
      *   - Arg object
      *
@@ -336,6 +348,18 @@ declare class Payment {
      * @description: This has been used when merchant is setup their razorpay payment gateway, they will redirect to razorpay site after submitting all their secrets for authetication. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/oauthGetUrl/).
      */
     oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, requestHeaders }?: PaymentPlatformApplicationValidator.OauthGetUrlParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetOauthUrlDetails>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.PatchDefaultOfferClassificationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name patchDefaultOfferClassification
+     * @summary: Set default offer classification
+     * @description: Sets the default offer_type used to classify offers that arrive without an explicit offer_type, scoped to a single aggregator (Sales Channel x payment gateway). bank => the offer settles as a separate MOP payment leg; brand => the offer settles as a discount. aggregator is required. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/patchDefaultOfferClassification/).
+     */
+    patchDefaultOfferClassification({ body, requestHeaders }?: PaymentPlatformApplicationValidator.PatchDefaultOfferClassificationParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {PaymentPlatformApplicationValidator.PatchMerchantAggregatorPaymentModeDetailsParam} arg
      *   - Arg object

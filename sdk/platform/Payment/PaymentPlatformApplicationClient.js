@@ -760,6 +760,86 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetDefaultOfferClassificationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getDefaultOfferClassification
+   * @summary: Get default offer classification
+   * @description: Returns the configured default offer_type (bank or brand) for the given aggregator (Sales Channel x payment gateway), or null when none is configured (the hard-coded brand default then applies). Also returns offer_classification_supported — false for internal, non-offer aggregators (store credits, Fynd) so the seller panel hides the control. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/getDefaultOfferClassification/).
+   */
+  async getDefaultOfferClassification(
+    { aggregator, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getDefaultOfferClassification().validate(
+      {
+        aggregator,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getDefaultOfferClassification().validate(
+      {
+        aggregator,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getDefaultOfferClassification \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/offer/default-classification`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getDefaultOfferClassification \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorAppVersionParam} arg
    *   - Arg object
    *
@@ -2311,6 +2391,85 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > oauthGetUrl \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.PatchDefaultOfferClassificationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name patchDefaultOfferClassification
+   * @summary: Set default offer classification
+   * @description: Sets the default offer_type used to classify offers that arrive without an explicit offer_type, scoped to a single aggregator (Sales Channel x payment gateway). bank => the offer settles as a separate MOP payment leg; brand => the offer settles as a discount. aggregator is required. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/payment/patchDefaultOfferClassification/).
+   */
+  async patchDefaultOfferClassification(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.patchDefaultOfferClassification().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.patchDefaultOfferClassification().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > patchDefaultOfferClassification \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/offer/default-classification`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > patchDefaultOfferClassification \n ${res_error}`,
         });
       }
     }

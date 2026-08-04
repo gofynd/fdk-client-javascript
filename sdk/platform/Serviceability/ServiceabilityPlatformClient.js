@@ -1527,7 +1527,7 @@ class Serviceability {
    *   Success response
    * @name getOptimalLocations
    * @summary: Get selling locations
-   * @description: Retrieves a list selling locations which are best suited to fullfil an order for a customer. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getOptimalLocations/).
+   * @description: Retrieves a list of selling locations that are optimally suited to fulfill a customer's order, based on product availability and other fulfillment criteria. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },

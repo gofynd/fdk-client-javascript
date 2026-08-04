@@ -51,6 +51,12 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
+ * @typedef GetDefaultOfferClassificationParam
+ * @property {string} aggregator - Aggregator slug (payment gateway) to read the
+ *   default for.
+ */
+
+/**
  * @typedef GetMerchantAggregatorAppVersionParam
  * @property {number} aggregatorId - Aggregators Id
  * @property {string} businessUnit
@@ -170,6 +176,11 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
  * @property {string} [failureRedirectUrl]
+ */
+
+/**
+ * @typedef PatchDefaultOfferClassificationParam
+ * @property {PaymentPlatformModel.DefaultOfferClassification} body
  */
 
 /**
@@ -355,6 +366,13 @@ class PaymentPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetDefaultOfferClassificationParam} */
+  static getDefaultOfferClassification() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetMerchantAggregatorAppVersionParam} */
   static getMerchantAggregatorAppVersion() {
     return Joi.object({
@@ -500,6 +518,13 @@ class PaymentPlatformApplicationValidator {
       aggregator: Joi.string().allow("").required(),
       successRedirectUrl: Joi.string().allow(""),
       failureRedirectUrl: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {PatchDefaultOfferClassificationParam} */
+  static patchDefaultOfferClassification() {
+    return Joi.object({
+      body: PaymentPlatformModel.DefaultOfferClassification().required(),
     }).required();
   }
 

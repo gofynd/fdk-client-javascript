@@ -134,6 +134,9 @@ const Joi = require("joi");
  * @property {number} [cod_charges] - Cod charges to be applied on order.
  * @property {ProductCODData} [product_cod_data]
  * @property {number} [cod_limit] - Cod limit
+ * @property {boolean} [is_split_cod_available] - True when COD can complete
+ *   this split-payment order (early UX eligibility signal; COD is only
+ *   selectable on the final leg).
  * @property {IntentApp[]} [intent_app] - Intent_app
  * @property {string} [nickname] - Nickname
  * @property {boolean} [compliant_with_tokenisation_guidelines] - If card is
@@ -536,6 +539,12 @@ const Joi = require("joi");
  * @property {string} mobileno - Mobile No. of User
  * @property {boolean} is_active - Either true or false
  * @property {string} merchant_user_id - Merchant User id
+ */
+
+/**
+ * @typedef DefaultOfferClassification
+ * @property {string} aggregator - Aggregator slug (payment gateway) to configure.
+ * @property {string} default_offer_type - Default offer classification to apply.
  */
 
 /**
@@ -949,10 +958,12 @@ const Joi = require("joi");
 
 /**
  * @typedef AppliedOffer
- * @property {boolean} [is_mop] - Whether the offer is a mop or not. MOP is a
- *   discount that is applied on the total order value.
- * @property {string} [offer_type] - Type of offer. It can be either a bank or
- *   brand offer.
+ * @property {boolean} [is_mop] - Optional. Whether the offer is treated as a
+ *   MOP (a separate payment leg on the total order value) or a discount. When
+ *   omitted, it is derived from the resolved offer_type (bank => true, brand => false).
+ * @property {string} [offer_type] - Optional. Type of offer (bank or brand).
+ *   When omitted, it is resolved from the Sales Channel x payment-gateway
+ *   configuration (the offer.pg_defaults entry for the aggregator), defaulting to brand.
  * @property {string} [offer_id] - Unique identifier for the offer.
  * @property {string} [description] - Description of the offer.
  * @property {number} [amount] - Amount of the offer in paise. (Example: ₹1 = 100 paise)
@@ -1602,6 +1613,7 @@ class PaymentPlatformModel {
       cod_charges: Joi.number().allow(null),
       product_cod_data: PaymentPlatformModel.ProductCODData(),
       cod_limit: Joi.number().allow(null),
+      is_split_cod_available: Joi.boolean().allow(null),
       intent_app: Joi.array()
         .items(PaymentPlatformModel.IntentApp())
         .allow(null, ""),
@@ -2107,6 +2119,14 @@ class PaymentPlatformModel {
       mobileno: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       merchant_user_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {DefaultOfferClassification} */
+  static DefaultOfferClassification() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      default_offer_type: Joi.string().allow("").required(),
     });
   }
 

@@ -3088,6 +3088,9 @@ const Joi = require("joi");
  *   assigned by an external system. You can use this to map external id to
  *   Fynd's generated id
  * @property {BundleDetailsSchema} [bundle_details]
+ * @property {CreateOrderLineItemChargeSchema[]} [charges] - Custom
+ *   line-item-level charges attached to this bag and folded into its payment
+ *   methods. The amount is per unit and is multiplied by quantity.
  * @property {Object} [meta] - Contains metadata related to the shipment
  */
 
@@ -3288,6 +3291,9 @@ const Joi = require("joi");
  * @typedef CreateOrderRequestSchema
  * @property {CreateOrderShipmentSchema[]} [shipments] - List of shipments
  *   included in the order.
+ * @property {CreateOrderChargeSchema[]} [charges] - Custom order-level charges
+ *   (e.g. delivery or COD fees) that OMS distributes across the order's
+ *   shipments and apportions onto their payment methods.
  * @property {string[]} [tags] - Tags that can be used to filter and categorize
  *   orders and shipments.
  * @property {CurrencySchema} currency_details
@@ -3323,6 +3329,42 @@ const Joi = require("joi");
  * @property {Object} [meta] - Metadata related to the order may include
  *   additional, dynamic information that provides further context about the
  *   order. This information can also be viewed on the Order or Shipment Details page.
+ */
+
+/**
+ * @typedef CreateOrderChargeSchema
+ * @property {string} name - Name of the charge that indicates its purpose (e.g.
+ *   "Delivery Charge"). Must be at most 25 characters.
+ * @property {number} amount - The charge value in the ordering currency. Must
+ *   be a positive amount.
+ * @property {boolean} [refundable] - Whether the charge is refunded when the
+ *   shipment is cancelled or returned. When set, this is an explicit per-charge
+ *   override. When omitted, refundability is governed by the application's
+ *   charges refund configuration (per order state); there is no fixed default.
+ *   Set `false` for charges that must never be refunded (e.g. delivery/COD fees).
+ * @property {string} [distribution] - How the charge is split across the
+ *   order's shipments. "apportion": split in proportion to each shipment's
+ *   value (default). "equally": split equally across shipments.
+ * @property {string} [tax_rule_id] - Optional tax rule ID applied to this
+ *   charge. When provided it must resolve to an existing tax rule for the
+ *   company; an unresolvable ID is rejected at create time. When omitted, no
+ *   tax is applied to the charge.
+ */
+
+/**
+ * @typedef CreateOrderLineItemChargeSchema
+ * @property {string} name - Name of the charge that indicates its purpose. Must
+ *   be at most 25 characters.
+ * @property {number} amount - The per-unit charge value in the ordering
+ *   currency. Must be a positive amount.
+ * @property {boolean} [refundable] - Whether the charge is refunded when the
+ *   bag is cancelled or returned. When set, this is an explicit per-charge
+ *   override. When omitted, refundability is governed by the application's
+ *   charges refund configuration (per order state); there is no fixed default.
+ * @property {string} [tax_rule_id] - Optional tax rule ID applied to this
+ *   charge. When provided it must resolve to an existing tax rule for the
+ *   company; an unresolvable ID is rejected at create time. When omitted, no
+ *   tax is applied to the charge.
  */
 
 /**
@@ -8945,6 +8987,9 @@ class OrderPlatformModel {
       quantity: Joi.number(),
       external_line_id: Joi.string().allow(""),
       bundle_details: OrderPlatformModel.BundleDetailsSchema(),
+      charges: Joi.array().items(
+        OrderPlatformModel.CreateOrderLineItemChargeSchema()
+      ),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -9118,6 +9163,7 @@ class OrderPlatformModel {
       shipments: Joi.array().items(
         OrderPlatformModel.CreateOrderShipmentSchema()
       ),
+      charges: Joi.array().items(OrderPlatformModel.CreateOrderChargeSchema()),
       tags: Joi.array().items(Joi.string().allow("")),
       currency_details: OrderPlatformModel.CurrencySchema().required(),
       external_creation_date: Joi.string().allow(""),
@@ -9139,6 +9185,27 @@ class OrderPlatformModel {
       is_draft: Joi.boolean(),
       is_offline_order: Joi.boolean(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {CreateOrderChargeSchema} */
+  static CreateOrderChargeSchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      amount: Joi.number().required(),
+      refundable: Joi.boolean(),
+      distribution: Joi.string().allow(""),
+      tax_rule_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateOrderLineItemChargeSchema} */
+  static CreateOrderLineItemChargeSchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      amount: Joi.number().required(),
+      refundable: Joi.boolean(),
+      tax_rule_id: Joi.string().allow(""),
     });
   }
 

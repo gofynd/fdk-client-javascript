@@ -880,8 +880,7 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef OptimlLocationsRequestSchema
  * @property {string} channel_id - Unique identifier for the sales channel.
- * @property {string} channel_type - Specifies the type of sales channel
- *   (extension, marketplace, or other).
+ * @property {string} channel_type - Specifies the type of sales channel.
  * @property {string} [channel_identifier] - Identifies the specific marketplace
  *   or platform.
  * @property {LocationDetailsServiceability} to_serviceability
@@ -1429,12 +1428,13 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
+ * @property {string} [pincode] - The pincode of the customer's delivery destination.
+ * @property {string} [sector] - The sector of the customer's delivery destination.
+ * @property {string} [state] - The state of the customer's delivery destination.
+ * @property {string} country - The country of the customer's delivery destination.
+ * @property {string} [city] - The city of the customer's delivery destination.
+ * @property {string} country_iso_code - The ISO code of the country for the
+ *   delivery destination.
  * @property {ServiceabilityLocation} [location]
  */
 /**
@@ -2580,23 +2580,35 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ArticleAssignment
- * @property {string} [level] - Defines the assignment level (multi-companies,
- *   single-company, or single-store).
- * @property {string} [strategy] - The strategy parameter allows users to
- *   specify the desired approach or criteria for selecting optimal locations.
+ * @property {string} level - Defines the assignment scope for locating
+ *   inventory during fulfillment. When set to `single-company`, inventory
+ *   assignment is restricted to a specific seller, (mandatory when
+ *   `channel_type` is `extension`. The `single-store` level confines
+ *   fulfillment strictly to a designated store. Choosing `multi-companies`
+ *   enables the system to flexibly identify the optimal store across all
+ *   configured sellers and locations.
+ * @property {string} strategy - Criteria used to select the best fulfillment
+ *   location within the chosen `level`. Optimal uses the order routing rule
+ *   engine to pick the best store based on configured routing rules.
+ *   Fast-delivery picks the store that can deliver fastest (lowest TAT/delivery
+ *   promise). Low-price picks the store offering the lowest price for the article.
  */
 /**
  * @typedef OptimalLocationsArticles
  * @property {number} item_id - Unique identifier for the item.
  * @property {string} size - Specifies the item's size variant.
  * @property {number} quantity - Number of units requested.
- * @property {string} [group_id] - Identifier for grouping related items.
- * @property {boolean} [is_primary_item] - Indicates if the item is the primary
- *   one in a group.
+ * @property {string} [group_id] - Identifier that links related articles into
+ *   one group (for example parent and child lines such as a bundle or free
+ *   gift). Articles with the same `group_id` are expected to be fulfilled together.
+ * @property {boolean} [is_primary_item] - When `group_id` is set, indicates
+ *   whether this article is the primary (parent) item in the group. Mandatory
+ *   for grouped items.
  * @property {Object} [meta] - Additional metadata for the item.
  * @property {ArticleAssignment} article_assignment
- * @property {number[]} ignore_locations - List of location Ids to exclude.
- * @property {number[]} assign_locations - List of preferred location Ids.
+ * @property {number[]} ignore_locations - Location Ids to exclude from assignment.
+ * @property {number[]} assign_locations - Preferred locations for assignment.
+ *   For other levels, used as preferred locations when provided.
  * @property {number} [seller_id] - Identifier for the seller.
  */
 /**
@@ -5204,8 +5216,7 @@ type OptimlLocationsRequestSchema = {
      */
     channel_id: string;
     /**
-     * - Specifies the type of sales channel
-     * (extension, marketplace, or other).
+     * - Specifies the type of sales channel.
      */
     channel_type: string;
     /**
@@ -6469,27 +6480,28 @@ type TAT = {
 declare function LocationDetailsServiceability(): LocationDetailsServiceability;
 type LocationDetailsServiceability = {
     /**
-     * - The pincode of the serviceability location.
+     * - The pincode of the customer's delivery destination.
      */
     pincode?: string;
     /**
-     * - The sector of the serviceability location.
+     * - The sector of the customer's delivery destination.
      */
     sector?: string;
     /**
-     * - The state of the serviceability location.
+     * - The state of the customer's delivery destination.
      */
     state?: string;
     /**
-     * - The country of the serviceability location.
+     * - The country of the customer's delivery destination.
      */
     country: string;
     /**
-     * - The city of the serviceability location.
+     * - The city of the customer's delivery destination.
      */
     city?: string;
     /**
-     * - The ISO code of the country.
+     * - The ISO code of the country for the
+     * delivery destination.
      */
     country_iso_code: string;
     location?: ServiceabilityLocation;
@@ -9356,15 +9368,23 @@ type OptimalLocationArticlesResult = {
 declare function ArticleAssignment(): ArticleAssignment;
 type ArticleAssignment = {
     /**
-     * - Defines the assignment level (multi-companies,
-     * single-company, or single-store).
+     * - Defines the assignment scope for locating
+     * inventory during fulfillment. When set to `single-company`, inventory
+     * assignment is restricted to a specific seller, (mandatory when
+     * `channel_type` is `extension`. The `single-store` level confines
+     * fulfillment strictly to a designated store. Choosing `multi-companies`
+     * enables the system to flexibly identify the optimal store across all
+     * configured sellers and locations.
      */
-    level?: string;
+    level: string;
     /**
-     * - The strategy parameter allows users to
-     * specify the desired approach or criteria for selecting optimal locations.
+     * - Criteria used to select the best fulfillment
+     * location within the chosen `level`. Optimal uses the order routing rule
+     * engine to pick the best store based on configured routing rules.
+     * Fast-delivery picks the store that can deliver fastest (lowest TAT/delivery
+     * promise). Low-price picks the store offering the lowest price for the article.
      */
-    strategy?: string;
+    strategy: string;
 };
 /** @returns {OptimalLocationsArticles} */
 declare function OptimalLocationsArticles(): OptimalLocationsArticles;
@@ -9382,12 +9402,15 @@ type OptimalLocationsArticles = {
      */
     quantity: number;
     /**
-     * - Identifier for grouping related items.
+     * - Identifier that links related articles into
+     * one group (for example parent and child lines such as a bundle or free
+     * gift). Articles with the same `group_id` are expected to be fulfilled together.
      */
     group_id?: string;
     /**
-     * - Indicates if the item is the primary
-     * one in a group.
+     * - When `group_id` is set, indicates
+     * whether this article is the primary (parent) item in the group. Mandatory
+     * for grouped items.
      */
     is_primary_item?: boolean;
     /**
@@ -9396,11 +9419,12 @@ type OptimalLocationsArticles = {
     meta?: any;
     article_assignment: ArticleAssignment;
     /**
-     * - List of location Ids to exclude.
+     * - Location Ids to exclude from assignment.
      */
     ignore_locations: number[];
     /**
-     * - List of preferred location Ids.
+     * - Preferred locations for assignment.
+     * For other levels, used as preferred locations when provided.
      */
     assign_locations: number[];
     /**

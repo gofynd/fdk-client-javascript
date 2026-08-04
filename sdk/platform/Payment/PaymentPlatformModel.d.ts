@@ -120,6 +120,9 @@ export = PaymentPlatformModel;
  * @property {number} [cod_charges] - Cod charges to be applied on order.
  * @property {ProductCODData} [product_cod_data]
  * @property {number} [cod_limit] - Cod limit
+ * @property {boolean} [is_split_cod_available] - True when COD can complete
+ *   this split-payment order (early UX eligibility signal; COD is only
+ *   selectable on the final leg).
  * @property {IntentApp[]} [intent_app] - Intent_app
  * @property {string} [nickname] - Nickname
  * @property {boolean} [compliant_with_tokenisation_guidelines] - If card is
@@ -477,6 +480,11 @@ export = PaymentPlatformModel;
  * @property {string} mobileno - Mobile No. of User
  * @property {boolean} is_active - Either true or false
  * @property {string} merchant_user_id - Merchant User id
+ */
+/**
+ * @typedef DefaultOfferClassification
+ * @property {string} aggregator - Aggregator slug (payment gateway) to configure.
+ * @property {string} default_offer_type - Default offer classification to apply.
  */
 /**
  * @typedef SetCODOptionDetails
@@ -848,10 +856,12 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef AppliedOffer
- * @property {boolean} [is_mop] - Whether the offer is a mop or not. MOP is a
- *   discount that is applied on the total order value.
- * @property {string} [offer_type] - Type of offer. It can be either a bank or
- *   brand offer.
+ * @property {boolean} [is_mop] - Optional. Whether the offer is treated as a
+ *   MOP (a separate payment leg on the total order value) or a discount. When
+ *   omitted, it is derived from the resolved offer_type (bank => true, brand => false).
+ * @property {string} [offer_type] - Optional. Type of offer (bank or brand).
+ *   When omitted, it is resolved from the Sales Channel x payment-gateway
+ *   configuration (the offer.pg_defaults entry for the aggregator), defaulting to brand.
  * @property {string} [offer_id] - Unique identifier for the offer.
  * @property {string} [description] - Description of the offer.
  * @property {number} [amount] - Amount of the offer in paise. (Example: ₹1 = 100 paise)
@@ -1301,7 +1311,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { AggregatorToken, PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, PaymentModeConfig, PaymentModeItems, SubPaymentMode, LogoSet, PlatformLogoSet, PlatformConfigPaymentModeDetails, PlatformPaymentModeItem, PlatformSubPaymentMode, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, OrderMetaUpdate, OrderMetaResult, OrderMetaErrorResult, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OrderTransactionList, OrderTransactionItem, OperationResponseSchema };
+    export { AggregatorToken, PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, PaymentConfirmationElement, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, DefaultOfferClassification, SetCODOptionDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, PaymentModeConfig, PaymentModeItems, SubPaymentMode, LogoSet, PlatformLogoSet, PlatformConfigPaymentModeDetails, PlatformPaymentModeItem, PlatformSubPaymentMode, MerchnatPaymentModeCreation, SkuDetails, AppliedOffer, OrderDetail, OrderMetaUpdate, OrderMetaResult, OrderMetaErrorResult, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema, OrderTransactionList, OrderTransactionItem, OperationResponseSchema };
 }
 /** @returns {AggregatorToken} */
 declare function AggregatorToken(): AggregatorToken;
@@ -1632,6 +1642,12 @@ type PaymentModeList = {
      * - Cod limit
      */
     cod_limit?: number;
+    /**
+     * - True when COD can complete
+     * this split-payment order (early UX eligibility signal; COD is only
+     * selectable on the final leg).
+     */
+    is_split_cod_available?: boolean;
     /**
      * - Intent_app
      */
@@ -2559,6 +2575,18 @@ type SetCODForUserCreation = {
      * - Merchant User id
      */
     merchant_user_id: string;
+};
+/** @returns {DefaultOfferClassification} */
+declare function DefaultOfferClassification(): DefaultOfferClassification;
+type DefaultOfferClassification = {
+    /**
+     * - Aggregator slug (payment gateway) to configure.
+     */
+    aggregator: string;
+    /**
+     * - Default offer classification to apply.
+     */
+    default_offer_type: string;
 };
 /** @returns {SetCODOptionDetails} */
 declare function SetCODOptionDetails(): SetCODOptionDetails;
@@ -3516,13 +3544,15 @@ type SkuDetails = {
 declare function AppliedOffer(): AppliedOffer;
 type AppliedOffer = {
     /**
-     * - Whether the offer is a mop or not. MOP is a
-     * discount that is applied on the total order value.
+     * - Optional. Whether the offer is treated as a
+     * MOP (a separate payment leg on the total order value) or a discount. When
+     * omitted, it is derived from the resolved offer_type (bank => true, brand => false).
      */
     is_mop?: boolean;
     /**
-     * - Type of offer. It can be either a bank or
-     * brand offer.
+     * - Optional. Type of offer (bank or brand).
+     * When omitted, it is resolved from the Sales Channel x payment-gateway
+     * configuration (the offer.pg_defaults entry for the aggregator), defaulting to brand.
      */
     offer_type?: string;
     /**

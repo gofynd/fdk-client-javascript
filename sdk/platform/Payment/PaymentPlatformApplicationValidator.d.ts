@@ -39,6 +39,11 @@ export = PaymentPlatformApplicationValidator;
  * @property {string} [configType]
  */
 /**
+ * @typedef GetDefaultOfferClassificationParam
+ * @property {string} aggregator - Aggregator slug (payment gateway) to read the
+ *   default for.
+ */
+/**
  * @typedef GetMerchantAggregatorAppVersionParam
  * @property {number} aggregatorId - Aggregators Id
  * @property {string} businessUnit
@@ -141,6 +146,10 @@ export = PaymentPlatformApplicationValidator;
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
  * @property {string} [failureRedirectUrl]
+ */
+/**
+ * @typedef PatchDefaultOfferClassificationParam
+ * @property {PaymentPlatformModel.DefaultOfferClassification} body
  */
 /**
  * @typedef PatchMerchantAggregatorPaymentModeDetailsParam
@@ -258,6 +267,8 @@ declare class PaymentPlatformApplicationValidator {
     static getBankAccountDetailsOpenAPI(): GetBankAccountDetailsOpenAPIParam;
     /** @returns {GetBrandPaymentGatewayConfigParam} */
     static getBrandPaymentGatewayConfig(): GetBrandPaymentGatewayConfigParam;
+    /** @returns {GetDefaultOfferClassificationParam} */
+    static getDefaultOfferClassification(): GetDefaultOfferClassificationParam;
     /** @returns {GetMerchantAggregatorAppVersionParam} */
     static getMerchantAggregatorAppVersion(): GetMerchantAggregatorAppVersionParam;
     /** @returns {GetMerchantAggregatorPaymentModeDetailsParam} */
@@ -294,6 +305,8 @@ declare class PaymentPlatformApplicationValidator {
     static initialisePayment(): InitialisePaymentParam;
     /** @returns {OauthGetUrlParam} */
     static oauthGetUrl(): OauthGetUrlParam;
+    /** @returns {PatchDefaultOfferClassificationParam} */
+    static patchDefaultOfferClassification(): PatchDefaultOfferClassificationParam;
     /** @returns {PatchMerchantAggregatorPaymentModeDetailsParam} */
     static patchMerchantAggregatorPaymentModeDetails(): PatchMerchantAggregatorPaymentModeDetailsParam;
     /** @returns {PatchMerchantPaymentOptionParam} */
@@ -334,7 +347,7 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetOrderTransactionsParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, OauthGetUrlParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SaveTokenForAggregatorParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdateOrderMetaParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
+    export { AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreateMerchantRefundPriorityParam, CreatePaymentLinkParam, CreatePaymentOrderParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetDefaultOfferClassificationParam, GetMerchantAggregatorAppVersionParam, GetMerchantAggregatorPaymentModeDetailsParam, GetMerchantPaymentOptionParam, GetMerchantRefundPriorityParam, GetOrderTransactionsParam, GetPGConfigAggregatorsParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeControlRoutesParam, GetPaymentModeCustomConfigParam, GetPaymentModeRoutesParam, GetPaymentSessionParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, OauthGetUrlParam, PatchDefaultOfferClassificationParam, PatchMerchantAggregatorPaymentModeDetailsParam, PatchMerchantPaymentOptionParam, PatchMerchantPaymentOptionVersionParam, PaymentStatusBulkParam, PollingPaymentLinkParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SaveTokenForAggregatorParam, SetMerchantModeControlRoutesParam, SetPaymentModeCustomConfigParam, SetUserCODlimitRoutesParam, UpdateMerchantRefundPriorityParam, UpdateOrderMetaParam, UpdatePaymentSessionParam, UpdateRefundSessionParam, ValidateCustomerAndCreditSummaryParam, VerifyCustomerForPaymentParam };
 }
 type AddRefundBankAccountUsingOTPParam = {
     body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation;
@@ -371,6 +384,13 @@ type GetBrandPaymentGatewayConfigParam = {
      */
     aggregator: string;
     configType?: string;
+};
+type GetDefaultOfferClassificationParam = {
+    /**
+     * - Aggregator slug (payment gateway) to read the
+     * default for.
+     */
+    aggregator: string;
 };
 type GetMerchantAggregatorAppVersionParam = {
     /**
@@ -532,6 +552,9 @@ type OauthGetUrlParam = {
     aggregator: string;
     successRedirectUrl?: string;
     failureRedirectUrl?: string;
+};
+type PatchDefaultOfferClassificationParam = {
+    body: PaymentPlatformModel.DefaultOfferClassification;
 };
 type PatchMerchantAggregatorPaymentModeDetailsParam = {
     /**

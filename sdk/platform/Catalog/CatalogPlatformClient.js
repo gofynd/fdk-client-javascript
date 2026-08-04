@@ -1833,7 +1833,9 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}`,
+      `/service/platform/catalog/v2.0/company/${
+        this.config.companyId
+      }/products/${itemId}/inventory/${encodeURIComponent(sellerIdentifier)}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -3852,7 +3854,9 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/inventory/${sizeIdentifier}`,
+      `/service/platform/catalog/v1.0/company/${
+        this.config.companyId
+      }/products/${itemId}/inventory/${encodeURIComponent(sizeIdentifier)}`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -6955,7 +6959,11 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/store/${storeId}/identifier/${sellerIdentifier}/price`,
+      `/service/platform/catalog/v1.0/company/${
+        this.config.companyId
+      }/store/${storeId}/identifier/${encodeURIComponent(
+        sellerIdentifier
+      )}/price`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -7044,7 +7052,11 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/store/${storeId}/identifier/${sellerIdentifier}/quantity`,
+      `/service/platform/catalog/v1.0/company/${
+        this.config.companyId
+      }/store/${storeId}/identifier/${encodeURIComponent(
+        sellerIdentifier
+      )}/quantity`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -7215,7 +7227,9 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}`,
+      `/service/platform/catalog/v2.0/company/${
+        this.config.companyId
+      }/products/${itemId}/inventory/${encodeURIComponent(sellerIdentifier)}`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
