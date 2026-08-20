@@ -164,6 +164,9 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 20.
  * @property {string[]} [tags] - Get locations filtered by tags.
  * @property {string[]} [storeTypes] - Get locations filtered by store types.
+ * @property {boolean} [opted] - When true, returns only locations that have at
+ *   least one document with verified set to true. Locations with an empty
+ *   documents array are excluded.
  */
 /**
  * @typedef GetAppProductParam
@@ -983,6 +986,12 @@ type GetAppLocationsParam = {
      * - Get locations filtered by store types.
      */
     storeTypes?: string[];
+    /**
+     * - When true, returns only locations that have at
+     * least one document with verified set to true. Locations with an empty
+     * documents array are excluded.
+     */
+    opted?: boolean;
 };
 type GetAppProductParam = {
     /**

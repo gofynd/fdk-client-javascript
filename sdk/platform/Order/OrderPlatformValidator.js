@@ -232,6 +232,80 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetListingCountParam
+ * @property {string} [groupEntity] - Whether to count shipments or orders. Must
+ *   match the group_entity of the listing API whose count is being fetched.
+ * @property {string} [parentViewSlug] - Slug of the parent view the count is
+ *   for. Used internally while resolving the request; not returned in the response.
+ * @property {string} [childViewSlug] - Slug of the child view (lane) the count
+ *   is for. Used internally while resolving the request; not returned in the response.
+ * @property {string} [bagStatus] - Comma separated values of bag statuses.
+ * @property {string} [statusAssigned] - Used to filter shipments based on
+ *   status present in shipment_status_history. For more information on these
+ *   statuses, refer to the Fynd Partners documentation.
+ * @property {number} [timeToDispatch] - Indicates the time to dispatch.
+ * @property {string} [searchType] - Specifies the key used to determine the
+ *   type of search being performed.
+ * @property {string} [searchValue] - The value corresponding to the search
+ *   type, such as a specific shipment ID or order ID.
+ * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
+ * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [startDate] - The UTC start date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [endDate] - The UTC end date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [statusAssignedStartDate] - Specifies the starting UTC
+ *   date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
+ *   boundary for filtering shipments based on the `created_at` timestamp of
+ *   statuses in the shipment's status history. It allows filtering statuses
+ *   that were created within a specific time range.
+ * @property {string} [statusAssignedEndDate] - Specifies the ending UTC date
+ *   and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
+ *   for filtering shipments based on the `created_at` timestamp of statuses in
+ *   the shipment's status history.
+ * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
+ *   to filter results by specific delivery partners.
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {boolean} [fetchActiveShipment] - A boolean flag that indicates
+ *   whether to include only active shipments in the results.
+ * @property {boolean} [allowInactive] - A flag indicating whether to allow the
+ *   inclusion of inactive shipments in the results.
+ * @property {boolean} [excludeLockedShipments] - A flag to specify whether to
+ *   exclude shipments that are locked from the results.
+ * @property {string} [paymentMethods] - A comma-separated list of payment methods.
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [channelOrderId] - The order ID used in the application.
+ * @property {string} [companyAffiliateTag] - A tag used to identify the
+ *   company's affiliation for filtering or reporting purposes.
+ * @property {boolean} [myOrders] - A boolean flag indicating whether the query
+ *   should return only the user's orders.
+ * @property {string} [platformUserId] - The unique identifier of the user on
+ *   the platform, useful for filtering orders related to a specific user.
+ * @property {boolean} [showCrossCompanyData] - A flag indicating whether to
+ *   include data from both cross-company and non-cross-company orders in the results.
+ * @property {string} [tags] - A comma-separated list of tags associated with
+ *   the orders to filter results based on specific characteristics.
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
+ * @property {string} [orderType] - The type of order being queried.
+ * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
+ *   shipments. This is useful when fetching data for a specific date range
+ *   while performing searches.
+ * @property {string} [fulfillmentType] - Define the Fulfillment Type for
+ *   Listing Orders, This is use when we want to get list of shipments or orders
+ *   by cross store or cross company or fulfilling Store (by default), this is
+ *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
+ */
+
+/**
  * @typedef GetManifestDetailsParam
  * @property {string} manifestId - The unique identifier assigned to the manifest.
  * @property {string} [dpIds] - Filter shipments with the specific Courier
@@ -340,6 +414,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [includeCount] - Set to false to skip computing the total
+ *   number of matching orders. `total_count` and `page.total` are then returned
+ *   as -1; use `page.has_next` to paginate. The total can be fetched separately
+ *   from the listing/count API (`GET
+ *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -458,6 +537,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [includeCount] - Set to false to skip computing the total
+ *   number of matching shipments. `total_count` and `page.total` are then
+ *   returned as -1; use `page.has_next` to paginate. The total can be fetched
+ *   separately from the listing/count API (`GET
+ *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
  */
 
 /**
@@ -863,6 +947,46 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetListingCountParam} */
+  static getListingCount() {
+    return Joi.object({
+      groupEntity: Joi.string().allow(""),
+      parentViewSlug: Joi.string().allow(""),
+      childViewSlug: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      statusAssigned: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+      statusAssignedStartDate: Joi.string().allow(""),
+      statusAssignedEndDate: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
+      fetchActiveShipment: Joi.boolean(),
+      allowInactive: Joi.boolean(),
+      excludeLockedShipments: Joi.boolean(),
+      paymentMethods: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow(""),
+      channelOrderId: Joi.string().allow(""),
+      companyAffiliateTag: Joi.string().allow(""),
+      myOrders: Joi.boolean(),
+      platformUserId: Joi.string().allow(""),
+      showCrossCompanyData: Joi.boolean(),
+      tags: Joi.string().allow(""),
+      customerId: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
+      enforceDateFilter: Joi.boolean(),
+      fulfillmentType: Joi.string().allow(""),
+      orderingSource: Joi.string().allow(""),
+      channelAccountId: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetManifestDetailsParam} */
   static getManifestDetails() {
     return Joi.object({
@@ -953,6 +1077,7 @@ class OrderPlatformValidator {
       fulfillmentType: Joi.string().allow(""),
       orderingSource: Joi.string().allow(""),
       channelAccountId: Joi.string().allow(""),
+      includeCount: Joi.boolean(),
     }).required();
   }
 
@@ -1037,6 +1162,7 @@ class OrderPlatformValidator {
       fulfillmentType: Joi.string().allow(""),
       orderingSource: Joi.string().allow(""),
       channelAccountId: Joi.string().allow(""),
+      includeCount: Joi.boolean(),
     }).required();
   }
 

@@ -192,6 +192,9 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   Default is 20.
  * @property {string[]} [tags] - Get locations filtered by tags.
  * @property {string[]} [storeTypes] - Get locations filtered by store types.
+ * @property {boolean} [opted] - When true, returns only locations that have at
+ *   least one document with verified set to true. Locations with an empty
+ *   documents array are excluded.
  */
 
 /**
@@ -827,6 +830,7 @@ class CatalogPlatformApplicationValidator {
       pageSize: Joi.number(),
       tags: Joi.array().items(Joi.string().allow("")),
       storeTypes: Joi.array().items(Joi.string().allow("")),
+      opted: Joi.boolean(),
     }).required();
   }
 

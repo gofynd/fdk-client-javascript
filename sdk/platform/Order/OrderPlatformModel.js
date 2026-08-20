@@ -3179,6 +3179,12 @@ const Joi = require("joi");
  *   when this coupon is applied.
  * @property {boolean} is_cancellation_allowed - Indicates whether cancellations
  *   are allowed when this coupon is applied.
+ * @property {boolean} [allow_zero_discount] - Set by the cart when a 0 discount
+ *   on this coupon is legitimate -- an eligibility-gate coupon rather than a
+ *   price cut, where the discount amount exactly cancels the item price.
+ *   Optional, and sent only when true; absence means the coupon is a normal
+ *   price cut. The order service does not infer this and takes no action
+ *   without the flag.
  */
 
 /**
@@ -3499,6 +3505,11 @@ const Joi = require("joi");
  * @typedef ValidationError
  * @property {string} message - A brief description of the error encountered.
  * @property {string} field - The field in the request that caused the error.
+ */
+
+/**
+ * @typedef ListingCountResponseSchema
+ * @property {number} [count] - The total number of records matching the filters.
  */
 
 /**
@@ -4496,7 +4507,7 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentInternalPlatformViewResponseSchema
  * @property {number} [total_count] - The total number of shipments matching the
- *   query criteria.
+ *   query criteria. Returned as -1 when `include_count=false`.
  * @property {string} [message] - A message providing additional context about
  *   the response.
  * @property {boolean} [success] - Indicates whether the API call was successful
@@ -5513,7 +5524,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderListingResponseSchema
  * @property {number} [total_count] - The total number of orders matching the
- *   query criteria.
+ *   query criteria. Returned as -1 when `include_count=false`.
  * @property {string} [message] - A message providing additional context about
  *   the response.
  * @property {boolean} [success] - Indicates whether the API call was successful
@@ -9060,6 +9071,7 @@ class OrderPlatformModel {
       ownership: OrderPlatformModel.CouponOwnershipSchema().required(),
       is_return_allowed: Joi.boolean().required(),
       is_cancellation_allowed: Joi.boolean().required(),
+      allow_zero_discount: Joi.boolean(),
     });
   }
 
@@ -9341,6 +9353,13 @@ class OrderPlatformModel {
     return Joi.object({
       message: Joi.string().allow("").required(),
       field: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ListingCountResponseSchema} */
+  static ListingCountResponseSchema() {
+    return Joi.object({
+      count: Joi.number(),
     });
   }
 

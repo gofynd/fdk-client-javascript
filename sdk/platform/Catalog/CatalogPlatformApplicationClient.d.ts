@@ -360,7 +360,7 @@ declare class Catalog {
      * @summary: Retrieve stores for a sales channel
      * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getAppLocations/).
      */
-    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSchema>;
+    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, opted, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.companyId - A `company_id` is a unique identifier for
@@ -378,11 +378,14 @@ declare class Catalog {
      *   page. Default is 20.
      * @param {string[]} [arg.tags] - Get locations filtered by tags.
      * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
+     * @param {boolean} [arg.opted] - When true, returns only locations that
+     *   have at least one document with verified set to true. Locations with an
+     *   empty documents array are excluded.
      * @returns {Paginator<CatalogPlatformModel.LocationListSchema>}
      * @summary: Retrieve stores for a sales channel
      * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
      */
-    getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, }?: {
+    getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, opted, }?: {
         companyId: number;
         applicationId: string;
         storeType?: string;
@@ -392,6 +395,7 @@ declare class Catalog {
         pageSize?: number;
         tags?: string[];
         storeTypes?: string[];
+        opted?: boolean;
     }): Paginator<CatalogPlatformModel.LocationListSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object

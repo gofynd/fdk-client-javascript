@@ -324,6 +324,17 @@ declare class Order {
      */
     getLaneConfig({ superLane, groupEntity, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, orderType, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponseSchema>;
     /**
+     * @param {OrderPlatformValidator.GetListingCountParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ListingCountResponseSchema>} -
+     *   Success response
+     * @name getListingCount
+     * @summary: Get listing count
+     * @description: Get the total number of shipments or orders matching the given filters. Companion to the shipments-listing and orders-listing APIs when they are called with `include_count=false`: the listing skips computing the total and this API returns it separately. Accepts the same filter query parameters as the listing APIs; pass the same values that were sent to the listing call. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getListingCount/).
+     */
+    getListingCount({ groupEntity, parentViewSlug, childViewSlug, bagStatus, statusAssigned, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, companyAffiliateTag, myOrders, platformUserId, showCrossCompanyData, tags, customerId, orderType, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetListingCountParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ListingCountResponseSchema>;
+    /**
      * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -385,7 +396,7 @@ declare class Order {
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Lane refers to a section where orders are
@@ -439,11 +450,16 @@ declare class Order {
      *   Accepts comma-separated values for multiple sources.
      * @param {string} [arg.channelAccountId] - Comma-separated channel account
      *   IDs to filter orders by specific channel accounts.
+     * @param {boolean} [arg.includeCount] - Set to false to skip computing the
+     *   total number of matching orders. `total_count` and `page.total` are
+     *   then returned as -1; use `page.has_next` to paginate. The total can be
+     *   fetched separately from the listing/count API (`GET
+     *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
      * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided.
      */
-    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, }?: {
+    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -471,6 +487,7 @@ declare class Order {
         fulfillmentType?: string;
         orderingSource?: string;
         channelAccountId?: string;
+        includeCount?: boolean;
     }): Paginator<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
@@ -537,7 +554,7 @@ declare class Order {
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
+    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
@@ -621,11 +638,16 @@ declare class Order {
      *   Accepts comma-separated values for multiple sources.
      * @param {string} [arg.channelAccountId] - Comma-separated channel account
      *   IDs to filter orders by specific channel accounts.
+     * @param {boolean} [arg.includeCount] - Set to false to skip computing the
+     *   total number of matching shipments. `total_count` and `page.total` are
+     *   then returned as -1; use `page.has_next` to paginate. The total can be
+     *   fetched separately from the listing/count API (`GET
+     *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
      * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided
      */
-    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, }?: {
+    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, }?: {
         lane?: string;
         bagStatus?: string;
         statusAssigned?: string;
@@ -664,6 +686,7 @@ declare class Order {
         fulfillmentType?: string;
         orderingSource?: string;
         channelAccountId?: string;
+        includeCount?: boolean;
     }): Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetStateManagerConfigParam} arg - Arg object

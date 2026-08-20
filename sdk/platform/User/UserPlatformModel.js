@@ -398,7 +398,17 @@ const Joi = require("joi");
  *   valid email address specified in their profile.
  * @property {boolean} [has_phone] - Apply a filter to retrieve users who have a
  *   valid phone number specified in their profile.
- * @property {string} [phone] - Filter users by their exact phone number.
+ * @property {string} [phone] - Filter users by their exact phone number, digits
+ *   only. Prefer the **national number** with the calling code supplied
+ *   separately in `country_code`. A full number with the calling code embedded
+ *   is still accepted, but is ambiguous: without `country_code` the value is
+ *   searched both as an Indian national number and as a complete international
+ *   number, so an input valid in either sense may return customers from both.
+ * @property {string} [country_code] - Calling code for `phone`, digits only, an
+ *   optional leading `+` is accepted (for example `91`, `62`, `+44`).
+ *   Recommended whenever `phone` holds only the national number - it removes
+ *   the ambiguity described above and scopes the search to that country. When
+ *   omitted, a bare number is treated as Indian. Ignored when `phone` is absent.
  * @property {string[]} [definition_ids] - List of user attribute definition IDs
  *   to fetch attributes values available for each user.
  * @property {UserAttributeFilterRequestConditions[]} conditions - List of
@@ -418,11 +428,35 @@ const Joi = require("joi");
  *       exactly (for strings) - `nis`: Does not match exactly (for strings) -
  *       `sw`: Starts with (for strings) - `ew`: Ends with (for strings) -
  *       `btw`: Between two values (for date and datetime types) - `in`: Value
- *       exists in given list - `nin`: Value does not exist in given list
+ *       exists in given list - `nin`: Value does not exist in given list -
+ *       `today`, `tomorrow`, `week`, and `month`: Date constants - `xdays`:
+ *       Date range from today through the specified number of days -
+ *       `days_after_value`, `days_before_value`: Relative date comparisons
+ *       Type-native operators are:
+ *   - `number`: `eq`, `ne`, `gt`, `lt`, `gte`, `lte` - `string`, `html_string`,
+ *       `image_url`: `cnt`, `nct`, `is`, `nis`, `sw`, `ew` - `boolean`: `eq` -
+ *       `date`: `eq`, `ne`, `gt`, `lt`, `btw`, `today`, `tomorrow`, `week`,
+ *       `month`, `xdays`, `days_after_value`, `days_before_value`
+ *   - `date_time`: `gt`, `lt`, `btw` - `dropdown`, `number_array`, `string_array`,
+ *       `store_uid_array`, `platform_user_array`: `in`, `nin`
  *
+ *   For v1 backward compatibility, the previously supported database comparisons
+ *   remain accepted where their value shape is valid: strings also accept `eq`,
+ *   `ne`, `gt`, `lt`, `gte`, and `lte`; dates also accept `gte` and `lte`;
+ *   date-times also accept `eq`, `ne`, `gte`, and `lte`; booleans also accept
+ *   `ne`; and array-like types also accept `eq` and `ne`. Scalar number,
+ *   string, boolean, date, and date-time attributes also accept `in` and `nin`
+ *   with a type-matched value array; numbers also accept `btw` with two ordered
+ *   numeric values. The relative date operators are restricted to the `date` type.
  * @property {Object} value - Values to be used in filtering the attribute. Can
  *   be a single value or an array of values. Types supported: string, number,
- *   array of string, or array of number.
+ *   boolean, array of string, or array of number. `btw` requires an array of
+ *   exactly two values. `xdays`, `days_after_value` and `days_before_value`
+ *   take a non-negative whole number (capped at 364 when `ignore_year` is
+ *   true). The concrete JSON type depends on the referenced attribute
+ *   definition and is validated by the API.
+ * @property {boolean} [ignore_year] - For date conditions, compare month and
+ *   day without considering the stored year.
  */
 
 /**
@@ -1264,6 +1298,7 @@ class UserPlatformModel {
       has_email: Joi.boolean(),
       has_phone: Joi.boolean(),
       phone: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
       definition_ids: Joi.array().items(Joi.string().allow("")),
       conditions: Joi.array()
         .items(UserPlatformModel.UserAttributeFilterRequestConditions())
@@ -1277,6 +1312,7 @@ class UserPlatformModel {
       definition_id: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
       value: Joi.object().pattern(/\S/, Joi.any()).required(),
+      ignore_year: Joi.boolean(),
     });
   }
 

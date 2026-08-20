@@ -2650,6 +2650,222 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.GetListingCountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.ListingCountResponseSchema>} -
+   *   Success response
+   * @name getListingCount
+   * @summary: Get listing count
+   * @description: Get the total number of shipments or orders matching the given filters. Companion to the shipments-listing and orders-listing APIs when they are called with `include_count=false`: the listing skips computing the total and this API returns it separately. Accepts the same filter query parameters as the listing APIs; pass the same values that were sent to the listing call. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getListingCount/).
+   */
+  async getListingCount(
+    {
+      groupEntity,
+      parentViewSlug,
+      childViewSlug,
+      bagStatus,
+      statusAssigned,
+      timeToDispatch,
+      searchType,
+      searchValue,
+      fromDate,
+      toDate,
+      startDate,
+      endDate,
+      statusAssignedStartDate,
+      statusAssignedEndDate,
+      dpIds,
+      stores,
+      salesChannels,
+      fetchActiveShipment,
+      allowInactive,
+      excludeLockedShipments,
+      paymentMethods,
+      channelShipmentId,
+      channelOrderId,
+      companyAffiliateTag,
+      myOrders,
+      platformUserId,
+      showCrossCompanyData,
+      tags,
+      customerId,
+      orderType,
+      enforceDateFilter,
+      fulfillmentType,
+      orderingSource,
+      channelAccountId,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.getListingCount().validate(
+      {
+        groupEntity,
+        parentViewSlug,
+        childViewSlug,
+        bagStatus,
+        statusAssigned,
+        timeToDispatch,
+        searchType,
+        searchValue,
+        fromDate,
+        toDate,
+        startDate,
+        endDate,
+        statusAssignedStartDate,
+        statusAssignedEndDate,
+        dpIds,
+        stores,
+        salesChannels,
+        fetchActiveShipment,
+        allowInactive,
+        excludeLockedShipments,
+        paymentMethods,
+        channelShipmentId,
+        channelOrderId,
+        companyAffiliateTag,
+        myOrders,
+        platformUserId,
+        showCrossCompanyData,
+        tags,
+        customerId,
+        orderType,
+        enforceDateFilter,
+        fulfillmentType,
+        orderingSource,
+        channelAccountId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getListingCount().validate(
+      {
+        groupEntity,
+        parentViewSlug,
+        childViewSlug,
+        bagStatus,
+        statusAssigned,
+        timeToDispatch,
+        searchType,
+        searchValue,
+        fromDate,
+        toDate,
+        startDate,
+        endDate,
+        statusAssignedStartDate,
+        statusAssignedEndDate,
+        dpIds,
+        stores,
+        salesChannels,
+        fetchActiveShipment,
+        allowInactive,
+        excludeLockedShipments,
+        paymentMethods,
+        channelShipmentId,
+        channelOrderId,
+        companyAffiliateTag,
+        myOrders,
+        platformUserId,
+        showCrossCompanyData,
+        tags,
+        customerId,
+        orderType,
+        enforceDateFilter,
+        fulfillmentType,
+        orderingSource,
+        channelAccountId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getListingCount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["group_entity"] = groupEntity;
+    query_params["parent_view_slug"] = parentViewSlug;
+    query_params["child_view_slug"] = childViewSlug;
+    query_params["bag_status"] = bagStatus;
+    query_params["status_assigned"] = statusAssigned;
+    query_params["time_to_dispatch"] = timeToDispatch;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
+    query_params["status_assigned_start_date"] = statusAssignedStartDate;
+    query_params["status_assigned_end_date"] = statusAssignedEndDate;
+    query_params["dp_ids"] = dpIds;
+    query_params["stores"] = stores;
+    query_params["sales_channels"] = salesChannels;
+    query_params["fetch_active_shipment"] = fetchActiveShipment;
+    query_params["allow_inactive"] = allowInactive;
+    query_params["exclude_locked_shipments"] = excludeLockedShipments;
+    query_params["payment_methods"] = paymentMethods;
+    query_params["channel_shipment_id"] = channelShipmentId;
+    query_params["channel_order_id"] = channelOrderId;
+    query_params["company_affiliate_tag"] = companyAffiliateTag;
+    query_params["my_orders"] = myOrders;
+    query_params["platform_user_id"] = platformUserId;
+    query_params["show_cross_company_data"] = showCrossCompanyData;
+    query_params["tags"] = tags;
+    query_params["customer_id"] = customerId;
+    query_params["order_type"] = orderType;
+    query_params["enforce_date_filter"] = enforceDateFilter;
+    query_params["fulfillment_type"] = fulfillmentType;
+    query_params["ordering_source"] = orderingSource;
+    query_params["channel_account_id"] = channelAccountId;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/listing/count/`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.ListingCountResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > getListingCount \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -3192,6 +3408,7 @@ class Order {
       fulfillmentType,
       orderingSource,
       channelAccountId,
+      includeCount,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3226,6 +3443,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        includeCount,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3264,6 +3482,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        includeCount,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3303,6 +3522,7 @@ class Order {
     query_params["fulfillment_type"] = fulfillmentType;
     query_params["ordering_source"] = orderingSource;
     query_params["channel_account_id"] = channelAccountId;
+    query_params["include_count"] = includeCount;
 
     const xHeaders = {};
 
@@ -3395,6 +3615,11 @@ class Order {
    *   Accepts comma-separated values for multiple sources.
    * @param {string} [arg.channelAccountId] - Comma-separated channel account
    *   IDs to filter orders by specific channel accounts.
+   * @param {boolean} [arg.includeCount] - Set to false to skip computing the
+   *   total number of matching orders. `total_count` and `page.total` are
+   *   then returned as -1; use `page.has_next` to paginate. The total can be
+   *   fetched separately from the listing/count API (`GET
+   *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
    * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
    * @summary: List orders
    * @description: Get a list of orders based on the filters provided.
@@ -3427,6 +3652,7 @@ class Order {
     fulfillmentType,
     orderingSource,
     channelAccountId,
+    includeCount,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -3462,6 +3688,7 @@ class Order {
         fulfillmentType: fulfillmentType,
         orderingSource: orderingSource,
         channelAccountId: channelAccountId,
+        includeCount: includeCount,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -3944,6 +4171,7 @@ class Order {
       fulfillmentType,
       orderingSource,
       channelAccountId,
+      includeCount,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3989,6 +4217,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        includeCount,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4038,6 +4267,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        includeCount,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4088,6 +4318,7 @@ class Order {
     query_params["fulfillment_type"] = fulfillmentType;
     query_params["ordering_source"] = orderingSource;
     query_params["channel_account_id"] = channelAccountId;
+    query_params["include_count"] = includeCount;
 
     const xHeaders = {};
 
@@ -4210,6 +4441,11 @@ class Order {
    *   Accepts comma-separated values for multiple sources.
    * @param {string} [arg.channelAccountId] - Comma-separated channel account
    *   IDs to filter orders by specific channel accounts.
+   * @param {boolean} [arg.includeCount] - Set to false to skip computing the
+   *   total number of matching shipments. `total_count` and `page.total` are
+   *   then returned as -1; use `page.has_next` to paginate. The total can be
+   *   fetched separately from the listing/count API (`GET
+   *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
    * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
    * @summary: List shipments
    * @description: Get a list of shipments based on the filters provided
@@ -4253,6 +4489,7 @@ class Order {
     fulfillmentType,
     orderingSource,
     channelAccountId,
+    includeCount,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -4299,6 +4536,7 @@ class Order {
         fulfillmentType: fulfillmentType,
         orderingSource: orderingSource,
         channelAccountId: channelAccountId,
+        includeCount: includeCount,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

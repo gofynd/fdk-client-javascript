@@ -894,10 +894,18 @@ const Joi = require("joi");
  *   and return are allowed.
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
- * @property {boolean} [included_in_eligibility_amount] - When true (valid only
- *   for charge type with article_level_distribution=true), the distributed
- *   charge value is added to the price_total used for coupon eligibility
- *   checks. Defaults to false.
+ * @property {boolean} [included_in_eligibility_amount] - Opt-in flag. When true
+ *   (valid only for charge type with article_level_distribution=true), the
+ *   distributed charge value is added to the price_total used for offer
+ *   cart_total eligibility checks. Which mode(s) are affected is controlled by
+ *   eligibility_scope. When false or omitted, the charge does not affect
+ *   coupon/promotion eligibility and eligibility_scope is ignored. Defaults to
+ *   false — carts without this flag are unaffected.
+ * @property {string} [eligibility_scope] - When included_in_eligibility_amount
+ *   is true, which offer mode receives this charge in cart_total eligibility:
+ *   coupon (default / omitted), promotion or all (both coupon and promotion).
+ *   Has no effect when included_in_eligibility_amount is false. Defaults to
+ *   coupon when omitted.
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, mop, discount etc.
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
@@ -922,10 +930,18 @@ const Joi = require("joi");
  *   return are permitted, except for `charge` type.
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
- * @property {boolean} [included_in_eligibility_amount] - When true (valid only
- *   for charge type with article_level_distribution=true), the distributed
- *   charge value is added to the price_total used for coupon eligibility
- *   checks. Defaults to false.
+ * @property {boolean} [included_in_eligibility_amount] - Opt-in flag. When true
+ *   (valid only for charge type with article_level_distribution=true), the
+ *   distributed charge value is added to the price_total used for offer
+ *   cart_total eligibility checks. Which mode(s) are affected is controlled by
+ *   eligibility_scope. When false or omitted, the charge does not affect
+ *   coupon/promotion eligibility and eligibility_scope is ignored. Defaults to
+ *   false — carts without this flag are unaffected.
+ * @property {string} [eligibility_scope] - When included_in_eligibility_amount
+ *   is true, which offer mode receives this charge in cart_total eligibility:
+ *   coupon (default / omitted), promotion or all (both coupon and promotion).
+ *   Has no effect when included_in_eligibility_amount is false. Defaults to
+ *   coupon when omitted.
  * @property {string} [id] - Unique identifier of Price adjustment
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment like charge, discount, mop etc.
@@ -962,10 +978,18 @@ const Joi = require("joi");
  * @property {string} [created_by] - The entity that created the field
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
- * @property {boolean} [included_in_eligibility_amount] - When true (valid only
- *   for charge type with article_level_distribution=true), the distributed
- *   charge value is added to the price_total used for coupon eligibility
- *   checks. Defaults to false.
+ * @property {boolean} [included_in_eligibility_amount] - Opt-in flag. When true
+ *   (valid only for charge type with article_level_distribution=true), the
+ *   distributed charge value is added to the price_total used for offer
+ *   cart_total eligibility checks. Which mode(s) are affected is controlled by
+ *   eligibility_scope. When false or omitted, the charge does not affect
+ *   coupon/promotion eligibility and eligibility_scope is ignored. Defaults to
+ *   false — carts without this flag are unaffected.
+ * @property {string} [eligibility_scope] - When included_in_eligibility_amount
+ *   is true, which offer mode receives this charge in cart_total eligibility:
+ *   coupon (default / omitted), promotion or all (both coupon and promotion).
+ *   Has no effect when included_in_eligibility_amount is false. Defaults to
+ *   coupon when omitted.
  * @property {Collection} collection
  * @property {string} type - Type of price adjusment
  * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
@@ -3166,6 +3190,10 @@ const Joi = require("joi");
  * @typedef OfferListItem
  * @property {string} [mode] - Offer mode, like coupon or promotion
  * @property {string} [type] - Type of the offer
+ * @property {string} [code] - Unique identifier code for the offer. For coupons
+ *   (mode = "coupon"), this is the coupon code users enter to apply the offer.
+ *   For promotions (mode = "promotion"), this field may be null or empty as
+ *   promotions are auto-applied.
  * @property {string} [status] - Status of the offer
  * @property {boolean} [published] - Determines whether the offer is published
  *   to customers or marked inactive
@@ -4068,6 +4096,7 @@ class CartPlatformModel {
       restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       article_level_distribution: Joi.boolean().required(),
       included_in_eligibility_amount: Joi.boolean(),
+      eligibility_scope: Joi.string().allow(""),
       collection: CartPlatformModel.Collection().required(),
       type: Joi.string().allow("").required(),
       allowed_refund: Joi.boolean(),
@@ -4089,6 +4118,7 @@ class CartPlatformModel {
       restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       article_level_distribution: Joi.boolean().required(),
       included_in_eligibility_amount: Joi.boolean(),
+      eligibility_scope: Joi.string().allow(""),
       id: Joi.string().allow(""),
       collection: CartPlatformModel.Collection().required(),
       type: Joi.string().allow("").required(),
@@ -4126,6 +4156,7 @@ class CartPlatformModel {
       created_by: Joi.string().allow(""),
       article_level_distribution: Joi.boolean().required(),
       included_in_eligibility_amount: Joi.boolean(),
+      eligibility_scope: Joi.string().allow(""),
       collection: CartPlatformModel.Collection().required(),
       type: Joi.string().allow("").required(),
       allowed_refund: Joi.boolean(),
@@ -6310,6 +6341,7 @@ class CartPlatformModel {
     return Joi.object({
       mode: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      code: Joi.string().allow("").allow(null),
       status: Joi.string().allow(""),
       published: Joi.boolean(),
       display_meta: CartPlatformModel.OfferDisplayMeta(),

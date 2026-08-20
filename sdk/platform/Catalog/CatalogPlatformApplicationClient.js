@@ -2253,6 +2253,7 @@ class Catalog {
       pageSize,
       tags,
       storeTypes,
+      opted,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2269,6 +2270,7 @@ class Catalog {
         pageSize,
         tags,
         storeTypes,
+        opted,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2289,6 +2291,7 @@ class Catalog {
         pageSize,
         tags,
         storeTypes,
+        opted,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2308,6 +2311,7 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["tags"] = tags;
     query_params["store_types"] = storeTypes;
+    query_params["opted"] = opted;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2362,6 +2366,9 @@ class Catalog {
    *   page. Default is 20.
    * @param {string[]} [arg.tags] - Get locations filtered by tags.
    * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
+   * @param {boolean} [arg.opted] - When true, returns only locations that
+   *   have at least one document with verified set to true. Locations with an
+   *   empty documents array are excluded.
    * @returns {Paginator<CatalogPlatformModel.LocationListSchema>}
    * @summary: Retrieve stores for a sales channel
    * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
@@ -2376,6 +2383,7 @@ class Catalog {
     pageSize,
     tags,
     storeTypes,
+    opted,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -2393,6 +2401,7 @@ class Catalog {
         pageSize: pageSize,
         tags: tags,
         storeTypes: storeTypes,
+        opted: opted,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

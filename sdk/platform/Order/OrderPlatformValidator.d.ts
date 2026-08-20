@@ -199,6 +199,79 @@ export = OrderPlatformValidator;
  *       courses, or any other item that can be delivered electronically.
  */
 /**
+ * @typedef GetListingCountParam
+ * @property {string} [groupEntity] - Whether to count shipments or orders. Must
+ *   match the group_entity of the listing API whose count is being fetched.
+ * @property {string} [parentViewSlug] - Slug of the parent view the count is
+ *   for. Used internally while resolving the request; not returned in the response.
+ * @property {string} [childViewSlug] - Slug of the child view (lane) the count
+ *   is for. Used internally while resolving the request; not returned in the response.
+ * @property {string} [bagStatus] - Comma separated values of bag statuses.
+ * @property {string} [statusAssigned] - Used to filter shipments based on
+ *   status present in shipment_status_history. For more information on these
+ *   statuses, refer to the Fynd Partners documentation.
+ * @property {number} [timeToDispatch] - Indicates the time to dispatch.
+ * @property {string} [searchType] - Specifies the key used to determine the
+ *   type of search being performed.
+ * @property {string} [searchValue] - The value corresponding to the search
+ *   type, such as a specific shipment ID or order ID.
+ * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
+ * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [startDate] - The UTC start date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [endDate] - The UTC end date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [statusAssignedStartDate] - Specifies the starting UTC
+ *   date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
+ *   boundary for filtering shipments based on the `created_at` timestamp of
+ *   statuses in the shipment's status history. It allows filtering statuses
+ *   that were created within a specific time range.
+ * @property {string} [statusAssignedEndDate] - Specifies the ending UTC date
+ *   and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
+ *   for filtering shipments based on the `created_at` timestamp of statuses in
+ *   the shipment's status history.
+ * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
+ *   to filter results by specific delivery partners.
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {boolean} [fetchActiveShipment] - A boolean flag that indicates
+ *   whether to include only active shipments in the results.
+ * @property {boolean} [allowInactive] - A flag indicating whether to allow the
+ *   inclusion of inactive shipments in the results.
+ * @property {boolean} [excludeLockedShipments] - A flag to specify whether to
+ *   exclude shipments that are locked from the results.
+ * @property {string} [paymentMethods] - A comma-separated list of payment methods.
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [channelOrderId] - The order ID used in the application.
+ * @property {string} [companyAffiliateTag] - A tag used to identify the
+ *   company's affiliation for filtering or reporting purposes.
+ * @property {boolean} [myOrders] - A boolean flag indicating whether the query
+ *   should return only the user's orders.
+ * @property {string} [platformUserId] - The unique identifier of the user on
+ *   the platform, useful for filtering orders related to a specific user.
+ * @property {boolean} [showCrossCompanyData] - A flag indicating whether to
+ *   include data from both cross-company and non-cross-company orders in the results.
+ * @property {string} [tags] - A comma-separated list of tags associated with
+ *   the orders to filter results based on specific characteristics.
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
+ * @property {string} [orderType] - The type of order being queried.
+ * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
+ *   shipments. This is useful when fetching data for a specific date range
+ *   while performing searches.
+ * @property {string} [fulfillmentType] - Define the Fulfillment Type for
+ *   Listing Orders, This is use when we want to get list of shipments or orders
+ *   by cross store or cross company or fulfilling Store (by default), this is
+ *   also depends on the login user accessType and store access
+ * @property {string} [orderingSource] - Filter orders by ordering source.
+ *   Accepts comma-separated values for multiple sources.
+ * @property {string} [channelAccountId] - Comma-separated channel account IDs
+ *   to filter orders by specific channel accounts.
+ */
+/**
  * @typedef GetManifestDetailsParam
  * @property {string} manifestId - The unique identifier assigned to the manifest.
  * @property {string} [dpIds] - Filter shipments with the specific Courier
@@ -302,6 +375,11 @@ export = OrderPlatformValidator;
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [includeCount] - Set to false to skip computing the total
+ *   number of matching orders. `total_count` and `page.total` are then returned
+ *   as -1; use `page.has_next` to paginate. The total can be fetched separately
+ *   from the listing/count API (`GET
+ *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -414,6 +492,11 @@ export = OrderPlatformValidator;
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [includeCount] - Set to false to skip computing the total
+ *   number of matching shipments. `total_count` and `page.total` are then
+ *   returned as -1; use `page.has_next` to paginate. The total can be fetched
+ *   separately from the listing/count API (`GET
+ *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
  */
 /**
  * @typedef GetStateManagerConfigParam
@@ -589,6 +672,8 @@ declare class OrderPlatformValidator {
     static getFileByStatus(): GetFileByStatusParam;
     /** @returns {GetLaneConfigParam} */
     static getLaneConfig(): GetLaneConfigParam;
+    /** @returns {GetListingCountParam} */
+    static getListingCount(): GetListingCountParam;
     /** @returns {GetManifestDetailsParam} */
     static getManifestDetails(): GetManifestDetailsParam;
     /** @returns {GetManifestShipmentsParam} */
@@ -663,7 +748,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateShipmentPackagesParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentPackagesParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, RequestCourierPartnerForShipmentParam, SaveCourierPartnerPreferenceForShipmentParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentPackagesParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateAccountParam, CreateChannelConfigParam, CreateOrderParam, CreateShipmentPackagesParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FailedOrderLogsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAccountByIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetListingCountParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentPackagesParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, JobDetailsParam, ListAccountsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, RequestCourierPartnerForShipmentParam, SaveCourierPartnerPreferenceForShipmentParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAccountParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentPackagesParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -1023,6 +1108,180 @@ type GetLaneConfigParam = {
      */
     orderType?: string;
 };
+type GetListingCountParam = {
+    /**
+     * - Whether to count shipments or orders. Must
+     * match the group_entity of the listing API whose count is being fetched.
+     */
+    groupEntity?: string;
+    /**
+     * - Slug of the parent view the count is
+     * for. Used internally while resolving the request; not returned in the response.
+     */
+    parentViewSlug?: string;
+    /**
+     * - Slug of the child view (lane) the count
+     * is for. Used internally while resolving the request; not returned in the response.
+     */
+    childViewSlug?: string;
+    /**
+     * - Comma separated values of bag statuses.
+     */
+    bagStatus?: string;
+    /**
+     * - Used to filter shipments based on
+     * status present in shipment_status_history. For more information on these
+     * statuses, refer to the Fynd Partners documentation.
+     */
+    statusAssigned?: string;
+    /**
+     * - Indicates the time to dispatch.
+     */
+    timeToDispatch?: number;
+    /**
+     * - Specifies the key used to determine the
+     * type of search being performed.
+     */
+    searchType?: string;
+    /**
+     * - The value corresponding to the search
+     * type, such as a specific shipment ID or order ID.
+     */
+    searchValue?: string;
+    /**
+     * - Start Date in DD-MM-YYYY format
+     */
+    fromDate?: string;
+    /**
+     * - End Date in DD-MM-YYYY format
+     */
+    toDate?: string;
+    /**
+     * - The UTC start date in ISO format
+     * (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+     */
+    startDate?: string;
+    /**
+     * - The UTC end date in ISO format
+     * (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+     */
+    endDate?: string;
+    /**
+     * - Specifies the starting UTC
+     * date and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the lower
+     * boundary for filtering shipments based on the `created_at` timestamp of
+     * statuses in the shipment's status history. It allows filtering statuses
+     * that were created within a specific time range.
+     */
+    statusAssignedStartDate?: string;
+    /**
+     * - Specifies the ending UTC date
+     * and time (in ISO format, YYYY-MM-DDTHH:MM:SSZ) to define the upper boundary
+     * for filtering shipments based on the `created_at` timestamp of statuses in
+     * the shipment's status history.
+     */
+    statusAssignedEndDate?: string;
+    /**
+     * - A comma-separated list of delivery partner IDs
+     * to filter results by specific delivery partners.
+     */
+    dpIds?: string;
+    /**
+     * - A comma-separated list of store IDs used to
+     * filter results to only those related to specific stores.
+     */
+    stores?: string;
+    /**
+     * - A comma-separated list of sales channel
+     * IDs to filter results based on the sales channels involved.
+     */
+    salesChannels?: string;
+    /**
+     * - A boolean flag that indicates
+     * whether to include only active shipments in the results.
+     */
+    fetchActiveShipment?: boolean;
+    /**
+     * - A flag indicating whether to allow the
+     * inclusion of inactive shipments in the results.
+     */
+    allowInactive?: boolean;
+    /**
+     * - A flag to specify whether to
+     * exclude shipments that are locked from the results.
+     */
+    excludeLockedShipments?: boolean;
+    /**
+     * - A comma-separated list of payment methods.
+     */
+    paymentMethods?: string;
+    /**
+     * - The shipment ID used in the
+     * application, which can be used to reference specific shipments.
+     */
+    channelShipmentId?: string;
+    /**
+     * - The order ID used in the application.
+     */
+    channelOrderId?: string;
+    /**
+     * - A tag used to identify the
+     * company's affiliation for filtering or reporting purposes.
+     */
+    companyAffiliateTag?: string;
+    /**
+     * - A boolean flag indicating whether the query
+     * should return only the user's orders.
+     */
+    myOrders?: boolean;
+    /**
+     * - The unique identifier of the user on
+     * the platform, useful for filtering orders related to a specific user.
+     */
+    platformUserId?: string;
+    /**
+     * - A flag indicating whether to
+     * include data from both cross-company and non-cross-company orders in the results.
+     */
+    showCrossCompanyData?: boolean;
+    /**
+     * - A comma-separated list of tags associated with
+     * the orders to filter results based on specific characteristics.
+     */
+    tags?: string;
+    /**
+     * - The unique identifier for the customer
+     * associated with the query, useful for filtering results to a specific customer.
+     */
+    customerId?: string;
+    /**
+     * - The type of order being queried.
+     */
+    orderType?: string;
+    /**
+     * - Applies a date filter for listing
+     * shipments. This is useful when fetching data for a specific date range
+     * while performing searches.
+     */
+    enforceDateFilter?: boolean;
+    /**
+     * - Define the Fulfillment Type for
+     * Listing Orders, This is use when we want to get list of shipments or orders
+     * by cross store or cross company or fulfilling Store (by default), this is
+     * also depends on the login user accessType and store access
+     */
+    fulfillmentType?: string;
+    /**
+     * - Filter orders by ordering source.
+     * Accepts comma-separated values for multiple sources.
+     */
+    orderingSource?: string;
+    /**
+     * - Comma-separated channel account IDs
+     * to filter orders by specific channel accounts.
+     */
+    channelAccountId?: string;
+};
 type GetManifestDetailsParam = {
     /**
      * - The unique identifier assigned to the manifest.
@@ -1274,6 +1533,14 @@ type GetOrdersParam = {
      * to filter orders by specific channel accounts.
      */
     channelAccountId?: string;
+    /**
+     * - Set to false to skip computing the total
+     * number of matching orders. `total_count` and `page.total` are then returned
+     * as -1; use `page.has_next` to paginate. The total can be fetched separately
+     * from the listing/count API (`GET
+     * /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+     */
+    includeCount?: boolean;
 };
 type GetShipmentByIdParam = {
     /**
@@ -1527,6 +1794,14 @@ type GetShipmentsParam = {
      * to filter orders by specific channel accounts.
      */
     channelAccountId?: string;
+    /**
+     * - Set to false to skip computing the total
+     * number of matching shipments. `total_count` and `page.total` are then
+     * returned as -1; use `page.has_next` to paginate. The total can be fetched
+     * separately from the listing/count API (`GET
+     * /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+     */
+    includeCount?: boolean;
 };
 type GetStateManagerConfigParam = {
     /**
