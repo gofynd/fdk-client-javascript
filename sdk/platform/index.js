@@ -4,6 +4,8 @@ module.exports = {
   PlatformModel: {
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
 
+    AuthorizationPlatformModel: require("./Authorization/AuthorizationPlatformModel"),
+
     BillingPlatformModel: require("./Billing/BillingPlatformModel"),
 
     CartPlatformModel: require("./Cart/CartPlatformModel"),

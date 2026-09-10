@@ -1512,6 +1512,11 @@ const Joi = require("joi");
  * @property {ArticleCharges[]} [charges] - Charges information which denotes
  *   types of charges and amount of charge applied to that product in cart.
  * @property {string} [added_on] - Date and time when the item was added to the cart.
+ * @property {boolean} [returnable] - Whether this cart item can be returned
+ *   after delivery. Resolved from the product/category return configuration
+ *   combined with the post-order restrictions of any applied coupon, promotion
+ *   or price adjustment. Same value the order is created with, so it is safe to
+ *   render a "non-returnable" label from it.
  */
 
 /**
@@ -4702,6 +4707,7 @@ class CartPlatformModel {
       item_type: Joi.string().allow(""),
       charges: Joi.array().items(CartPlatformModel.ArticleCharges()),
       added_on: Joi.string().allow("").allow(null),
+      returnable: Joi.boolean(),
     });
   }
 

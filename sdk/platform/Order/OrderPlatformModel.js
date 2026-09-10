@@ -2885,7 +2885,8 @@ const Joi = require("joi");
  * @typedef LineItemPaymentMethodSchema
  * @property {PaymentMethodGatewaySchema} [gateway]
  * @property {PaymentMethodModeOfPaymentSchema} [mode_of_payment]
- * @property {number} [amount_paid] - Total amount paid by this payment method
+ * @property {number} [amount_paid] - Total amount paid by this payment method,
+ *   for one unit of the line item, in the ordering currency.
  * @property {string} [payment_identifier] - Transaction id
  * @property {PaymentMethodTransactionPartySchema} [transaction_party]
  */
@@ -2937,7 +2938,8 @@ const Joi = require("joi");
 
 /**
  * @typedef LineItemMonetaryValuesSchema
- * @property {number} amount_paid - Amount paid by the customer
+ * @property {number} amount_paid - Amount paid by the customer, for one unit of
+ *   the line item.
  * @property {number} price_effective - The final effective price after applying
  *   discounts, promotional offers, and adjustments.
  * @property {number} [discount] - Discount amount apart from promo and coupon discount
@@ -3148,7 +3150,10 @@ const Joi = require("joi");
 /**
  * @typedef ConversionRateSchema
  * @property {number} rate - The exchange rate used to convert monetary values
- *   from the ordering currency to the seller's currency.
+ *   from the ordering currency to the seller's currency: seller-currency units
+ *   per ONE ordering-currency unit, so 80 for an order priced in USD for a
+ *   seller in INR. It is required, and it must be exactly 1 when the ordering
+ *   currency is the seller's own currency, since there is nothing to convert.
  * @property {number} timestamp_ms - The timestamp (in milliseconds) when the
  *   conversion rate was applied.
  */

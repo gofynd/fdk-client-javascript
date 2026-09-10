@@ -1,3 +1,5 @@
+const Authorization = require("./Authorization/AuthorizationPlatformApplicationClient");
+
 const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Catalog = require("./Catalog/CatalogPlatformApplicationClient");
@@ -44,6 +46,8 @@ class PlatformApplicationClient {
     this.config = config;
     this.companyId = config.companyId;
     this.applicationId = applicationId;
+
+    this.authorization = new Authorization(config, applicationId);
 
     this.cart = new Cart(config, applicationId);
 
