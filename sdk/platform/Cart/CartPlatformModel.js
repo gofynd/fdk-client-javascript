@@ -853,7 +853,14 @@ const Joi = require("joi");
 
 /**
  * @typedef Article
- * @property {number} [value] - Value of price adjustment for article
+ * @property {number} [value] - Value of price adjustment for article. Not used
+ *   by the price_override type, which takes price_effective and price_marked instead.
+ * @property {number} [price_effective] - Absolute per-unit selling price (ESP)
+ *   the article is set to, applied before coupons and promotions are
+ *   calculated. Mandatory for the price_override type, together with price_marked.
+ * @property {number} [price_marked] - Absolute per-unit list price (MRP) the
+ *   article is set to. Mandatory for the price_override type, and must be
+ *   greater than or equal to price_effective.
  * @property {string} [code] - Code to identify price adjustment on article
  * @property {string} [type] - Type of price adjusment
  * @property {string} article_id - Unique identifier of article
@@ -868,7 +875,11 @@ const Joi = require("joi");
  *   (Applicable only for price adjustment discount type)
  * @property {number} [article_index] - Index of the line item in the cart
  * @property {string} [identifier] - Cart line item identifier (prefixed with
- *   'cart:') used to uniquely target a specific line item.
+ *   'cart:') used to uniquely target a specific line item. Mandatory for the
+ *   price_override type: article_id alone matches every cart line carrying that
+ *   article, and article_index is accepted but ignored for that type: it is
+ *   positional and shifts when lines are added or removed, which would move a
+ *   persisted absolute price onto the wrong line.
  */
 
 /**
@@ -1208,6 +1219,11 @@ const Joi = require("joi");
  * @property {string} [currency_code] - Currency code for all amounts
  * @property {string} [currency_symbol] - Currency symbol of the currncy used for price
  * @property {number} [marked] - Original price of product
+ * @property {number} [pre_override_effective] - Per unit selling price before
+ *   any price_override price adjustment. Equals effective when the line was
+ *   never overridden.
+ * @property {number} [pre_override_marked] - Per unit MRP before any
+ *   price_override price adjustment. Equals marked when the line was never overridden.
  */
 
 /**
@@ -1391,6 +1407,11 @@ const Joi = require("joi");
 /**
  * @typedef ProductPrice
  * @property {number} [marked] - Original MRP of product.
+ * @property {number} [pre_override_effective] - Selling price of the product
+ *   before any price_override price adjustment. Equals effective when the line
+ *   was never overridden.
+ * @property {number} [pre_override_marked] - MRP of the product before any
+ *   price_override price adjustment. Equals marked when the line was never overridden.
  * @property {number} [add_on] - Price before promotion and coupon amount
  *   applied for calculation
  * @property {string} [currency_code] - Currency code of the price defined for the product
@@ -1512,6 +1533,11 @@ const Joi = require("joi");
  * @property {ArticleCharges[]} [charges] - Charges information which denotes
  *   types of charges and amount of charge applied to that product in cart.
  * @property {string} [added_on] - Date and time when the item was added to the cart.
+ * @property {boolean} [returnable] - Whether this cart item can be returned
+ *   after delivery. Resolved from the product/category return configuration
+ *   combined with the post-order restrictions of any applied coupon, promotion
+ *   or price adjustment. Same value the order is created with, so it is safe to
+ *   render a "non-returnable" label from it.
  */
 
 /**
@@ -4059,6 +4085,8 @@ class CartPlatformModel {
   static Article() {
     return Joi.object({
       value: Joi.number(),
+      price_effective: Joi.number(),
+      price_marked: Joi.number(),
       code: Joi.string().allow(""),
       type: Joi.string().allow(""),
       article_id: Joi.string().allow("").required(),
@@ -4382,6 +4410,8 @@ class CartPlatformModel {
       currency_code: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
       marked: Joi.number(),
+      pre_override_effective: Joi.number(),
+      pre_override_marked: Joi.number(),
     });
   }
 
@@ -4580,6 +4610,8 @@ class CartPlatformModel {
   static ProductPrice() {
     return Joi.object({
       marked: Joi.number(),
+      pre_override_effective: Joi.number(),
+      pre_override_marked: Joi.number(),
       add_on: Joi.number(),
       currency_code: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
@@ -4702,6 +4734,7 @@ class CartPlatformModel {
       item_type: Joi.string().allow(""),
       charges: Joi.array().items(CartPlatformModel.ArticleCharges()),
       added_on: Joi.string().allow("").allow(null),
+      returnable: Joi.boolean(),
     });
   }
 

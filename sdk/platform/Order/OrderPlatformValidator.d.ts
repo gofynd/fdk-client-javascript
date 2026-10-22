@@ -270,6 +270,9 @@ export = OrderPlatformValidator;
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 /**
  * @typedef GetManifestDetailsParam
@@ -322,6 +325,9 @@ export = OrderPlatformValidator;
  * @property {string} orderId
  * @property {boolean} [myOrders]
  * @property {boolean} [allowInactive] - Flag to allow inactive shipments
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 /**
  * @typedef GetOrdersParam
@@ -380,6 +386,9 @@ export = OrderPlatformValidator;
  *   as -1; use `page.has_next` to paginate. The total can be fetched separately
  *   from the listing/count API (`GET
  *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -391,6 +400,9 @@ export = OrderPlatformValidator;
  *   deactivated shipments
  * @property {boolean} [allowInactive] - Flag indicating whether inactive
  *   shipments are allowed
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 /**
  * @typedef GetShipmentHistoryParam
@@ -497,6 +509,9 @@ export = OrderPlatformValidator;
  *   returned as -1; use `page.has_next` to paginate. The total can be fetched
  *   separately from the listing/count API (`GET
  *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 /**
  * @typedef GetStateManagerConfigParam
@@ -1281,6 +1296,12 @@ type GetListingCountParam = {
      * to filter orders by specific channel accounts.
      */
     channelAccountId?: string;
+    /**
+     * - Find orders and shipments across
+     * stores for in-store returns. Requires return_instore permission for
+     * store-limited users. When false or omitted, existing visibility is unchanged.
+     */
+    instoreReturnLookup?: boolean;
 };
 type GetManifestDetailsParam = {
     /**
@@ -1409,6 +1430,12 @@ type GetOrderByIdParam = {
      * - Flag to allow inactive shipments
      */
     allowInactive?: boolean;
+    /**
+     * - Find orders and shipments across
+     * stores for in-store returns. Requires return_instore permission for
+     * store-limited users. When false or omitted, existing visibility is unchanged.
+     */
+    instoreReturnLookup?: boolean;
 };
 type GetOrdersParam = {
     /**
@@ -1541,6 +1568,12 @@ type GetOrdersParam = {
      * /service/platform/order/v1.0/company/{company_id}/listing/count/`).
      */
     includeCount?: boolean;
+    /**
+     * - Find orders and shipments across
+     * stores for in-store returns. Requires return_instore permission for
+     * store-limited users. When false or omitted, existing visibility is unchanged.
+     */
+    instoreReturnLookup?: boolean;
 };
 type GetShipmentByIdParam = {
     /**
@@ -1562,6 +1595,12 @@ type GetShipmentByIdParam = {
      * shipments are allowed
      */
     allowInactive?: boolean;
+    /**
+     * - Find orders and shipments across
+     * stores for in-store returns. Requires return_instore permission for
+     * store-limited users. When false or omitted, existing visibility is unchanged.
+     */
+    instoreReturnLookup?: boolean;
 };
 type GetShipmentHistoryParam = {
     /**
@@ -1802,6 +1841,12 @@ type GetShipmentsParam = {
      * /service/platform/order/v1.0/company/{company_id}/listing/count/`).
      */
     includeCount?: boolean;
+    /**
+     * - Find orders and shipments across
+     * stores for in-store returns. Requires return_instore permission for
+     * store-limited users. When false or omitted, existing visibility is unchanged.
+     */
+    instoreReturnLookup?: boolean;
 };
 type GetStateManagerConfigParam = {
     /**
