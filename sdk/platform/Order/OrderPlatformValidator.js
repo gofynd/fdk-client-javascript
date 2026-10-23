@@ -303,6 +303,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   Accepts comma-separated values for multiple sources.
  * @property {string} [channelAccountId] - Comma-separated channel account IDs
  *   to filter orders by specific channel accounts.
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 
 /**
@@ -360,6 +363,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} orderId
  * @property {boolean} [myOrders]
  * @property {boolean} [allowInactive] - Flag to allow inactive shipments
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 
 /**
@@ -419,6 +425,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   as -1; use `page.has_next` to paginate. The total can be fetched separately
  *   from the listing/count API (`GET
  *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -432,6 +441,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   deactivated shipments
  * @property {boolean} [allowInactive] - Flag indicating whether inactive
  *   shipments are allowed
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 
 /**
@@ -542,6 +554,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   returned as -1; use `page.has_next` to paginate. The total can be fetched
  *   separately from the listing/count API (`GET
  *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+ * @property {boolean} [instoreReturnLookup] - Find orders and shipments across
+ *   stores for in-store returns. Requires return_instore permission for
+ *   store-limited users. When false or omitted, existing visibility is unchanged.
  */
 
 /**
@@ -984,6 +999,7 @@ class OrderPlatformValidator {
       fulfillmentType: Joi.string().allow(""),
       orderingSource: Joi.string().allow(""),
       channelAccountId: Joi.string().allow(""),
+      instoreReturnLookup: Joi.boolean(),
     }).required();
   }
 
@@ -1043,6 +1059,7 @@ class OrderPlatformValidator {
       orderId: Joi.string().allow("").required(),
       myOrders: Joi.boolean(),
       allowInactive: Joi.boolean(),
+      instoreReturnLookup: Joi.boolean(),
     }).required();
   }
 
@@ -1078,6 +1095,7 @@ class OrderPlatformValidator {
       orderingSource: Joi.string().allow(""),
       channelAccountId: Joi.string().allow(""),
       includeCount: Joi.boolean(),
+      instoreReturnLookup: Joi.boolean(),
     }).required();
   }
 
@@ -1093,6 +1111,7 @@ class OrderPlatformValidator {
       shipmentId: Joi.string().allow(""),
       fetchActiveShipment: Joi.boolean(),
       allowInactive: Joi.boolean(),
+      instoreReturnLookup: Joi.boolean(),
     }).required();
   }
 
@@ -1163,6 +1182,7 @@ class OrderPlatformValidator {
       orderingSource: Joi.string().allow(""),
       channelAccountId: Joi.string().allow(""),
       includeCount: Joi.boolean(),
+      instoreReturnLookup: Joi.boolean(),
     }).required();
   }
 

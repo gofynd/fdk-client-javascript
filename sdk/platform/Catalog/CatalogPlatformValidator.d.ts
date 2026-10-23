@@ -330,6 +330,10 @@ export = CatalogPlatformValidator;
  * @property {string} [pageId] - If page_type is cursor, each response will
  *   contain **next_id** param (datetime or id depending upon sort_on), which
  *   should be sent back as page_id to make cursor pagination work.
+ * @property {string} [modifiedOnGte] - Filter products modified on or after
+ *   this datetime (ISO 8601). Must not be later than modified_on_lte.
+ * @property {string} [modifiedOnLte] - Filter products modified on or before
+ *   this datetime (ISO 8601). Must not be earlier than modified_on_gte.
  */
 /**
  * @typedef GetSellerInsightsParam
@@ -1330,6 +1334,16 @@ type GetProductsParam = {
      * should be sent back as page_id to make cursor pagination work.
      */
     pageId?: string;
+    /**
+     * - Filter products modified on or after
+     * this datetime (ISO 8601). Must not be later than modified_on_lte.
+     */
+    modifiedOnGte?: string;
+    /**
+     * - Filter products modified on or before
+     * this datetime (ISO 8601). Must not be earlier than modified_on_gte.
+     */
+    modifiedOnLte?: string;
 };
 type GetSellerInsightsParam = {
     /**

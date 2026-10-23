@@ -333,7 +333,7 @@ declare class Order {
      * @summary: Get listing count
      * @description: Get the total number of shipments or orders matching the given filters. Companion to the shipments-listing and orders-listing APIs when they are called with `include_count=false`: the listing skips computing the total and this API returns it separately. Accepts the same filter query parameters as the listing APIs; pass the same values that were sent to the listing call. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getListingCount/).
      */
-    getListingCount({ groupEntity, parentViewSlug, childViewSlug, bagStatus, statusAssigned, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, companyAffiliateTag, myOrders, platformUserId, showCrossCompanyData, tags, customerId, orderType, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, requestHeaders, }?: OrderPlatformValidator.GetListingCountParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ListingCountResponseSchema>;
+    getListingCount({ groupEntity, parentViewSlug, childViewSlug, bagStatus, statusAssigned, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, companyAffiliateTag, myOrders, platformUserId, showCrossCompanyData, tags, customerId, orderType, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, instoreReturnLookup, requestHeaders, }?: OrderPlatformValidator.GetListingCountParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ListingCountResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -385,7 +385,7 @@ declare class Order {
      * @summary: Get order
      * @description: Get detailed information about a specific order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrderById/).
      */
-    getOrderById({ orderId, myOrders, allowInactive, requestHeaders }?: OrderPlatformValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderDetailsResponseSchema>;
+    getOrderById({ orderId, myOrders, allowInactive, instoreReturnLookup, requestHeaders, }?: OrderPlatformValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderDetailsResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -396,7 +396,7 @@ declare class Order {
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, instoreReturnLookup, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Lane refers to a section where orders are
@@ -455,11 +455,15 @@ declare class Order {
      *   then returned as -1; use `page.has_next` to paginate. The total can be
      *   fetched separately from the listing/count API (`GET
      *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+     * @param {boolean} [arg.instoreReturnLookup] - Find orders and shipments
+     *   across stores for in-store returns. Requires return_instore permission
+     *   for store-limited users. When false or omitted, existing visibility is
+     *   unchanged.
      * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
      * @summary: List orders
      * @description: Get a list of orders based on the filters provided.
      */
-    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, }?: {
+    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, instoreReturnLookup, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -488,6 +492,7 @@ declare class Order {
         orderingSource?: string;
         channelAccountId?: string;
         includeCount?: boolean;
+        instoreReturnLookup?: boolean;
     }): Paginator<OrderPlatformModel.OrderListingResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
@@ -509,7 +514,7 @@ declare class Order {
      * @summary: Get shipment details
      * @description: Get detailed information about a specific shipment - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipmentById/).
      */
-    getShipmentById({ channelShipmentId, shipmentId, fetchActiveShipment, allowInactive, requestHeaders, }?: OrderPlatformValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInfoResponseSchema>;
+    getShipmentById({ channelShipmentId, shipmentId, fetchActiveShipment, allowInactive, instoreReturnLookup, requestHeaders, }?: OrderPlatformValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInfoResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -554,7 +559,7 @@ declare class Order {
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
+    getShipments({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, instoreReturnLookup, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
@@ -643,11 +648,15 @@ declare class Order {
      *   then returned as -1; use `page.has_next` to paginate. The total can be
      *   fetched separately from the listing/count API (`GET
      *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+     * @param {boolean} [arg.instoreReturnLookup] - Find orders and shipments
+     *   across stores for in-store returns. Requires return_instore permission
+     *   for store-limited users. When false or omitted, existing visibility is
+     *   unchanged.
      * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
      * @summary: List shipments
      * @description: Get a list of shipments based on the filters provided
      */
-    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, }?: {
+    getShipmentsPaginator({ lane, bagStatus, statusAssigned, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, statusAssignedStartDate, statusAssignedEndDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, groupEntity, enforceDateFilter, fulfillmentType, orderingSource, channelAccountId, includeCount, instoreReturnLookup, }?: {
         lane?: string;
         bagStatus?: string;
         statusAssigned?: string;
@@ -687,6 +696,7 @@ declare class Order {
         orderingSource?: string;
         channelAccountId?: string;
         includeCount?: boolean;
+        instoreReturnLookup?: boolean;
     }): Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>;
     /**
      * @param {OrderPlatformValidator.GetStateManagerConfigParam} arg - Arg object

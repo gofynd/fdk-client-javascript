@@ -2695,6 +2695,7 @@ class Order {
       fulfillmentType,
       orderingSource,
       channelAccountId,
+      instoreReturnLookup,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2735,6 +2736,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2781,6 +2783,7 @@ class Order {
         fulfillmentType,
         orderingSource,
         channelAccountId,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2826,6 +2829,7 @@ class Order {
     query_params["fulfillment_type"] = fulfillmentType;
     query_params["ordering_source"] = orderingSource;
     query_params["channel_account_id"] = channelAccountId;
+    query_params["instore_return_lookup"] = instoreReturnLookup;
 
     const xHeaders = {};
 
@@ -3292,9 +3296,13 @@ class Order {
    * @description: Get detailed information about a specific order - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/order/getOrderById/).
    */
   async getOrderById(
-    { orderId, myOrders, allowInactive, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      orderId,
+      myOrders,
+      allowInactive,
+      instoreReturnLookup,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getOrderById().validate(
@@ -3302,6 +3310,7 @@ class Order {
         orderId,
         myOrders,
         allowInactive,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3315,6 +3324,7 @@ class Order {
         orderId,
         myOrders,
         allowInactive,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3329,6 +3339,7 @@ class Order {
     query_params["order_id"] = orderId;
     query_params["my_orders"] = myOrders;
     query_params["allow_inactive"] = allowInactive;
+    query_params["instore_return_lookup"] = instoreReturnLookup;
 
     const xHeaders = {};
 
@@ -3409,6 +3420,7 @@ class Order {
       orderingSource,
       channelAccountId,
       includeCount,
+      instoreReturnLookup,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3444,6 +3456,7 @@ class Order {
         orderingSource,
         channelAccountId,
         includeCount,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3483,6 +3496,7 @@ class Order {
         orderingSource,
         channelAccountId,
         includeCount,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3523,6 +3537,7 @@ class Order {
     query_params["ordering_source"] = orderingSource;
     query_params["channel_account_id"] = channelAccountId;
     query_params["include_count"] = includeCount;
+    query_params["instore_return_lookup"] = instoreReturnLookup;
 
     const xHeaders = {};
 
@@ -3620,6 +3635,10 @@ class Order {
    *   then returned as -1; use `page.has_next` to paginate. The total can be
    *   fetched separately from the listing/count API (`GET
    *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+   * @param {boolean} [arg.instoreReturnLookup] - Find orders and shipments
+   *   across stores for in-store returns. Requires return_instore permission
+   *   for store-limited users. When false or omitted, existing visibility is
+   *   unchanged.
    * @returns {Paginator<OrderPlatformModel.OrderListingResponseSchema>}
    * @summary: List orders
    * @description: Get a list of orders based on the filters provided.
@@ -3653,6 +3672,7 @@ class Order {
     orderingSource,
     channelAccountId,
     includeCount,
+    instoreReturnLookup,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -3689,6 +3709,7 @@ class Order {
         orderingSource: orderingSource,
         channelAccountId: channelAccountId,
         includeCount: includeCount,
+        instoreReturnLookup: instoreReturnLookup,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -3791,6 +3812,7 @@ class Order {
       shipmentId,
       fetchActiveShipment,
       allowInactive,
+      instoreReturnLookup,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3801,6 +3823,7 @@ class Order {
         shipmentId,
         fetchActiveShipment,
         allowInactive,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3817,6 +3840,7 @@ class Order {
         shipmentId,
         fetchActiveShipment,
         allowInactive,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3832,6 +3856,7 @@ class Order {
     query_params["shipment_id"] = shipmentId;
     query_params["fetch_active_shipment"] = fetchActiveShipment;
     query_params["allow_inactive"] = allowInactive;
+    query_params["instore_return_lookup"] = instoreReturnLookup;
 
     const xHeaders = {};
 
@@ -4172,6 +4197,7 @@ class Order {
       orderingSource,
       channelAccountId,
       includeCount,
+      instoreReturnLookup,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -4218,6 +4244,7 @@ class Order {
         orderingSource,
         channelAccountId,
         includeCount,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4268,6 +4295,7 @@ class Order {
         orderingSource,
         channelAccountId,
         includeCount,
+        instoreReturnLookup,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4319,6 +4347,7 @@ class Order {
     query_params["ordering_source"] = orderingSource;
     query_params["channel_account_id"] = channelAccountId;
     query_params["include_count"] = includeCount;
+    query_params["instore_return_lookup"] = instoreReturnLookup;
 
     const xHeaders = {};
 
@@ -4446,6 +4475,10 @@ class Order {
    *   then returned as -1; use `page.has_next` to paginate. The total can be
    *   fetched separately from the listing/count API (`GET
    *   /service/platform/order/v1.0/company/{company_id}/listing/count/`).
+   * @param {boolean} [arg.instoreReturnLookup] - Find orders and shipments
+   *   across stores for in-store returns. Requires return_instore permission
+   *   for store-limited users. When false or omitted, existing visibility is
+   *   unchanged.
    * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
    * @summary: List shipments
    * @description: Get a list of shipments based on the filters provided
@@ -4490,6 +4523,7 @@ class Order {
     orderingSource,
     channelAccountId,
     includeCount,
+    instoreReturnLookup,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -4537,6 +4571,7 @@ class Order {
         orderingSource: orderingSource,
         channelAccountId: channelAccountId,
         includeCount: includeCount,
+        instoreReturnLookup: instoreReturnLookup,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

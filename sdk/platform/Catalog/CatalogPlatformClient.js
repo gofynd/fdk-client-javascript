@@ -4927,6 +4927,8 @@ class Catalog {
       pageType,
       sortOn,
       pageId,
+      modifiedOnGte,
+      modifiedOnLte,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -4948,6 +4950,8 @@ class Catalog {
         pageType,
         sortOn,
         pageId,
+        modifiedOnGte,
+        modifiedOnLte,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4973,6 +4977,8 @@ class Catalog {
         pageType,
         sortOn,
         pageId,
+        modifiedOnGte,
+        modifiedOnLte,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4999,6 +5005,8 @@ class Catalog {
     query_params["page_type"] = pageType;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
+    query_params["modified_on_gte"] = modifiedOnGte;
+    query_params["modified_on_lte"] = modifiedOnLte;
 
     const xHeaders = {};
 
@@ -5057,6 +5065,10 @@ class Catalog {
    *   page. Default is 10.
    * @param {string} [arg.sortOn] - Field which is to be used for sorting,
    *   default is latest. Value can be latest (modified_on) or created (record id)
+   * @param {string} [arg.modifiedOnGte] - Filter products modified on or
+   *   after this datetime (ISO 8601). Must not be later than modified_on_lte.
+   * @param {string} [arg.modifiedOnLte] - Filter products modified on or
+   *   before this datetime (ISO 8601). Must not be earlier than modified_on_gte.
    * @returns {Paginator<CatalogPlatformModel.ProductListingResponseV2>}
    * @summary: List products
    * @description: Retrieve a list of available products
@@ -5074,6 +5086,8 @@ class Catalog {
     tags,
     pageSize,
     sortOn,
+    modifiedOnGte,
+    modifiedOnLte,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -5096,6 +5110,8 @@ class Catalog {
         pageType: pageType,
         sortOn: sortOn,
         pageId: pageId,
+        modifiedOnGte: modifiedOnGte,
+        modifiedOnLte: modifiedOnLte,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

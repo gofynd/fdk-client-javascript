@@ -736,7 +736,7 @@ declare class Catalog {
      * @summary: List products
      * @description: Retrieve a list of available products - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/catalog/getProducts/).
      */
-    getProducts({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageNo, pageSize, pageType, sortOn, pageId, requestHeaders, }?: CatalogPlatformValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponseV2>;
+    getProducts({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageNo, pageSize, pageType, sortOn, pageId, modifiedOnGte, modifiedOnLte, requestHeaders, }?: CatalogPlatformValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
@@ -756,11 +756,15 @@ declare class Catalog {
      *   page. Default is 10.
      * @param {string} [arg.sortOn] - Field which is to be used for sorting,
      *   default is latest. Value can be latest (modified_on) or created (record id)
+     * @param {string} [arg.modifiedOnGte] - Filter products modified on or
+     *   after this datetime (ISO 8601). Must not be later than modified_on_lte.
+     * @param {string} [arg.modifiedOnLte] - Filter products modified on or
+     *   before this datetime (ISO 8601). Must not be earlier than modified_on_gte.
      * @returns {Paginator<CatalogPlatformModel.ProductListingResponseV2>}
      * @summary: List products
      * @description: Retrieve a list of available products
      */
-    getProductsPaginator({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageSize, sortOn, }?: {
+    getProductsPaginator({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageSize, sortOn, modifiedOnGte, modifiedOnLte, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         itemIds?: number[];
@@ -773,6 +777,8 @@ declare class Catalog {
         tags?: string[];
         pageSize?: number;
         sortOn?: string;
+        modifiedOnGte?: string;
+        modifiedOnLte?: string;
     }): Paginator<CatalogPlatformModel.ProductListingResponseV2>;
     /**
      * @param {CatalogPlatformValidator.GetSellerInsightsParam} arg - Arg object

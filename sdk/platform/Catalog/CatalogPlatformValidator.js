@@ -388,6 +388,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [pageId] - If page_type is cursor, each response will
  *   contain **next_id** param (datetime or id depending upon sort_on), which
  *   should be sent back as page_id to make cursor pagination work.
+ * @property {string} [modifiedOnGte] - Filter products modified on or after
+ *   this datetime (ISO 8601). Must not be later than modified_on_lte.
+ * @property {string} [modifiedOnLte] - Filter products modified on or before
+ *   this datetime (ISO 8601). Must not be earlier than modified_on_gte.
  */
 
 /**
@@ -1079,6 +1083,8 @@ class CatalogPlatformValidator {
       pageType: Joi.string().allow(""),
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
+      modifiedOnGte: Joi.string().allow(""),
+      modifiedOnLte: Joi.string().allow(""),
     }).required();
   }
 
