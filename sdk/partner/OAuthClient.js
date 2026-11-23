@@ -2,7 +2,7 @@ const { fdkAxios } = require("../common/AxiosHelper");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const BaseOAuthClient = require("../common/BaseOAuthClient");
-const querystring = require("query-string");
+const querystring = require("../common/queryString");
 const { sign } = require("@gofynd/fp-signature");
 const { convertStringToBase64 } = require("../common/utils");
 

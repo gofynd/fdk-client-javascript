@@ -3326,12 +3326,15 @@ const Joi = require("joi");
  * @property {UserDetailsSchema} [user_details]
  * @property {LifecycleMessageSchema[]} [order_lifecycle_messages] - List of
  *   order lifecycle messages to be displayed to the seller at Order Details.
- * @property {string} [channel_application_id] - Identifies the application from
- *   which the order was created. Pass this when it differs from the fulfilling
- *   company's application.
+ * @property {string} [channel_application_id] - The sales channel the order
+ *   belongs to: either an Application ID (a storefront) or an Extension ID,
+ *   each a 24-character hexadecimal string. OMS resolves which of the two it
+ *   is, so there is no separate field per kind. Required. The channel must
+ *   belong to the company in the path -- an application owned by it, or an
+ *   extension installed in it -- and the request is rejected otherwise.
  * @property {string} [b2b_gstin_number] - The GSTIN (Goods and Services Tax
  *   Identification Number) for business-to-business transactions.
- * @property {string} [channel_company_id] - The company ID where the order is
+ * @property {number} [channel_company_id] - The company ID where the order is
  *   placed. Required when the order is placed from one company but fulfilled by another.
  * @property {boolean} [is_draft] - Indicates whether the order is a draft.
  *   Draft orders will be moved to upcoming state instead of placed status.
@@ -9198,7 +9201,7 @@ class OrderPlatformModel {
       ),
       channel_application_id: Joi.string().allow(""),
       b2b_gstin_number: Joi.string().allow(""),
-      channel_company_id: Joi.string().allow(""),
+      channel_company_id: Joi.number(),
       is_draft: Joi.boolean(),
       is_offline_order: Joi.boolean(),
       meta: Joi.object().pattern(/\S/, Joi.any()),

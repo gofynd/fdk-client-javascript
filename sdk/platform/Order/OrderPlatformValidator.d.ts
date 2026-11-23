@@ -39,14 +39,12 @@ export = OrderPlatformValidator;
  * @typedef CreateOrderParam
  * @property {string} xOrderingSource - To uniquely identify the source through
  *   which order has been placed.
- * @property {string} [xApplicationId] - The Application ID is a unique
- *   identifier assigned to a storefront that typically follows a 24-character
- *   hexadecimal string. Either `x-application-id` or `x-extension-id` header is
- *   mandatory. At least one of them must be provided.
- * @property {string} [xExtensionId] - The Extension ID is a unique identifier
- *   assigned to an extension that typically follows a 24-character hexadecimal
- *   string. Either `x-application-id` or `x-extension-id` header is mandatory.
- *   At least one of them must be provided.
+ * @property {string} [xApplicationId] - This header is deprecated. Send the
+ *   sales channel ID in the `channel_application_id` request body field
+ *   instead. **Deprecated**
+ * @property {string} [xExtensionId] - This header is deprecated. Send the sales
+ *   channel ID in the `channel_application_id` request body field instead.
+ *   **Deprecated**
  * @property {OrderPlatformModel.CreateOrderRequestSchema} body
  */
 /**
@@ -822,17 +820,15 @@ type CreateOrderParam = {
      */
     xOrderingSource: string;
     /**
-     * - The Application ID is a unique
-     * identifier assigned to a storefront that typically follows a 24-character
-     * hexadecimal string. Either `x-application-id` or `x-extension-id` header is
-     * mandatory. At least one of them must be provided.
+     * - This header is deprecated. Send the
+     * sales channel ID in the `channel_application_id` request body field
+     * instead. **Deprecated**
      */
     xApplicationId?: string;
     /**
-     * - The Extension ID is a unique identifier
-     * assigned to an extension that typically follows a 24-character hexadecimal
-     * string. Either `x-application-id` or `x-extension-id` header is mandatory.
-     * At least one of them must be provided.
+     * - This header is deprecated. Send the sales
+     * channel ID in the `channel_application_id` request body field instead.
+     * **Deprecated**
      */
     xExtensionId?: string;
     body: OrderPlatformModel.CreateOrderRequestSchema;

@@ -1,4 +1,4 @@
-const qs = require("query-string");
+const qs = require("./queryString");
 const { combineURLs, isAbsoluteURL } = require("./utils");
 let reqConfig;
 

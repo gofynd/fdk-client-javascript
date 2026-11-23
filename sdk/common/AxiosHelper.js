@@ -1,6 +1,6 @@
 const { isAbsoluteURL, combineURLs, isWebWorker } = require("./utils");
 const axios = require("axios").default;
-const querystring = require("query-string");
+const querystring = require("./queryString");
 const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");

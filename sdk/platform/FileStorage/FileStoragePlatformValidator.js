@@ -33,11 +33,6 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
- * @typedef ProxyParam
- * @property {string} url - Url
- */
-
-/**
  * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
@@ -76,13 +71,6 @@ class FileStoragePlatformValidator {
   static getSignUrls() {
     return Joi.object({
       body: FileStoragePlatformModel.SignUrl().required(),
-    }).required();
-  }
-
-  /** @returns {ProxyParam} */
-  static proxy() {
-    return Joi.object({
-      url: Joi.string().allow("").required(),
     }).required();
   }
 

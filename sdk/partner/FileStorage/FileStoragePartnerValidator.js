@@ -27,18 +27,6 @@ class FileStorageValidator {
     }).required();
   }
 
-  static fetchProxy() {
-    return Joi.object({
-      url: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static saveProxyDetails() {
-    return Joi.object({
-      body: FileStorageModel.ProxyFile().required(),
-    }).required();
-  }
-
   static signUrls() {
     return Joi.object({
       body: FileStorageModel.SignUrl().required(),

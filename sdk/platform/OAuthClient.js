@@ -1,4 +1,4 @@
-const querystring = require("query-string");
+const querystring = require("../common/queryString");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("@gofynd/fp-signature");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");

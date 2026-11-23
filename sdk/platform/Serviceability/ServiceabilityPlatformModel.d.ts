@@ -512,7 +512,7 @@ export = ServiceabilityPlatformModel;
  *   rule is inactive or active.
  * @property {CourierPartnerList[]} [cp_list] - A list of courier partners.
  * @property {string} name - Name for the courier partner rule.
- * @property {string[]} manual_priority - Has the list of courier partner
+ * @property {string[]} [manual_priority] - Has the list of courier partner
  *   account Ids that are to be given priority.
  * @property {string} [filters] - Denotes weather specific filters are applied
  *   to courier partner accounts or all accounts are considered.
@@ -4280,7 +4280,7 @@ type CourierPartnerRule = {
      * - Has the list of courier partner
      * account Ids that are to be given priority.
      */
-    manual_priority: string[];
+    manual_priority?: string[];
     /**
      * - Denotes weather specific filters are applied
      * to courier partner accounts or all accounts are considered.

@@ -69,26 +69,6 @@ declare class FileStorage {
      */
     browseFiles({ namespace, page, limit, requestHeaders }?: FileStoragePartnerValidator.BrowseFilesParam, { responseHeaders }?: object): Promise<any>;
     /**
-     * @param {FileStoragePartnerValidator.FetchProxyParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.FetchProxyDetails>} - Success response
-     * @name fetchProxy
-     * @summary: Proxy
-     * @description: Proxy - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/filestorage/fetchProxy/).
-     */
-    fetchProxy({ url, requestHeaders }?: FileStoragePartnerValidator.FetchProxyParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.FetchProxyDetails>;
-    /**
-     * @param {FileStoragePartnerValidator.SaveProxyDetailsParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePartnerModel.SaveProxy>} - Success response
-     * @name saveProxyDetails
-     * @summary: Proxy
-     * @description: Proxy - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/partner/filestorage/saveProxyDetails/).
-     */
-    saveProxyDetails({ body, requestHeaders }?: FileStoragePartnerValidator.SaveProxyDetailsParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.SaveProxy>;
-    /**
      * @param {FileStoragePartnerValidator.SignUrlsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options

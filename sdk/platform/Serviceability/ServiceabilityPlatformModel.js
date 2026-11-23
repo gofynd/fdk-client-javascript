@@ -568,7 +568,7 @@ const Joi = require("joi");
  *   rule is inactive or active.
  * @property {CourierPartnerList[]} [cp_list] - A list of courier partners.
  * @property {string} name - Name for the courier partner rule.
- * @property {string[]} manual_priority - Has the list of courier partner
+ * @property {string[]} [manual_priority] - Has the list of courier partner
  *   account Ids that are to be given priority.
  * @property {string} [filters] - Denotes weather specific filters are applied
  *   to courier partner accounts or all accounts are considered.
@@ -3927,7 +3927,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.CourierPartnerList()
       ),
       name: Joi.string().allow("").required(),
-      manual_priority: Joi.array().items(Joi.string().allow("")).required(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       filters: Joi.string().allow("").allow(null),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
       sort: Joi.array().items(Joi.string().allow("")).required(),

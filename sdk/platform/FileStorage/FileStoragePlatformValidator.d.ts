@@ -26,10 +26,6 @@ export = FileStoragePlatformValidator;
  * @property {FileStoragePlatformModel.SignUrl} body
  */
 /**
- * @typedef ProxyParam
- * @property {string} url - Url
- */
-/**
  * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
@@ -46,13 +42,11 @@ declare class FileStoragePlatformValidator {
     static copyFiles(): CopyFilesParam;
     /** @returns {GetSignUrlsParam} */
     static getSignUrls(): GetSignUrlsParam;
-    /** @returns {ProxyParam} */
-    static proxy(): ProxyParam;
     /** @returns {StartUploadParam} */
     static startUpload(): StartUploadParam;
 }
 declare namespace FileStoragePlatformValidator {
-    export { BrowseParam, CompleteUploadParam, CopyFilesParam, GetSignUrlsParam, ProxyParam, StartUploadParam };
+    export { BrowseParam, CompleteUploadParam, CopyFilesParam, GetSignUrlsParam, StartUploadParam };
 }
 type BrowseParam = {
     /**
@@ -87,12 +81,6 @@ type CopyFilesParam = {
 };
 type GetSignUrlsParam = {
     body: FileStoragePlatformModel.SignUrl;
-};
-type ProxyParam = {
-    /**
-     * - Url
-     */
-    url: string;
 };
 type StartUploadParam = {
     /**

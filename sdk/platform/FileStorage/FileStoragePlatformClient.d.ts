@@ -43,16 +43,6 @@ declare class FileStorage {
      */
     getSignUrls({ body, requestHeaders }?: FileStoragePlatformValidator.GetSignUrlsParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.SignUrlResult>;
     /**
-     * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.ProxyFileAccess>} - Success response
-     * @name proxy
-     * @summary: Proxy file access.
-     * @description: Access files through a proxy. - Check out [method documentation](https://docs.fynd.com/partners/commerce/sdk/platform/filestorage/proxy/).
-     */
-    proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.ProxyFileAccess>;
-    /**
      * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
